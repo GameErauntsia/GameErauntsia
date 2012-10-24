@@ -1,0 +1,24 @@
+from django import template
+from django.utils.safestring import mark_safe
+
+register = template.Library()
+
+@register.filter
+def breadcrumbs(url):
+    home = ['<strong>Hemen zaude</strong>: <a href="/" title="Sarrera orrira lotura">Sarrera</a> &raquo;',]
+    links = url.strip('/').split('/')
+    bread = []
+    total = len(links)-1
+    for i, link in enumerate(links):
+        if not link == '':
+            bread.append(link)
+            this_url = "/".join(bread)
+            sub_link = link.replace('-',' ').replace('?','').replace('=',', ')
+            sub_link = sub_link.title()
+            if not i == total:
+                tlink = '<a href="/%s/" title="%s orrira lotura">%s</a> &raquo;' % (this_url, sub_link, sub_link)
+            else:
+                tlink = '%s' % sub_link
+            home.append(tlink)
+    bcrumb = " ".join(home)
+    return mark_safe(bcrumb)

@@ -1,0 +1,61 @@
+{% extends "base/index.html" %}
+{%load breadcrumbs%}
+{% load comments %}
+
+{%if item%}
+
+{%block pageTitle%}<title>BlenderEUS | {{item.izenburua}}</title>{%endblock%}
+{%block js%}<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+{%endblock%}
+{% block subheader%}
+	<div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
+    <h2>{{item.izenburua}}</h2>
+	<hr/>
+{%endblock%}
+{% block content%}
+<div class="berriaContent">
+	<p>{{item.desk}}</p>
+	<a href="https://twitter.com/share" class="twitter-share-button" data-via="urtzai">Tweet</a>	
+	{% include "iruzkinak.html" %}
+</div>
+{%endblock%}
+{% else %}
+    <p>Ezin izan da berria kargatu.</p>
+{% endif %}
+{%block submenu%}
+<div class="submenu">
+	<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
+	<script>
+		new TWTR.Widget({
+  		version: 2,
+  		type: 'search',
+  		search: 'blender',
+  		interval: 30000,
+  		title: 'BlenderEUS',
+  		subject: 'Blender Euskaraz',
+  		width: 250,
+  		height: 300,
+  		theme: {
+    		shell: {
+      		background: '#8ec1da',
+      		color: '#ffffff'
+    		},
+    		tweets: {
+      		background: '#ffffff',
+      		color: '#444444',
+      		links: '#1985b5'
+    		}
+  		},
+  		features: {
+    		scrollbar: false,
+    		loop: true,
+    		live: true,
+    		behavior: 'default'
+  		}
+		}).render().start();
+	</script>
+	<br>
+	<iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2FAriolaKulturEkimena&amp;width=260&amp;height=258&amp;colorscheme=light&amp;show_faces=true&amp;border_color&amp;stream=false&amp;header=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:260px; height:258px;" allowTransparency="true"></iframe>
+</div>
+<div style="clear: both"></div>  
+{%endblock%}

@@ -1,0 +1,36 @@
+<div id="cell_1">
+    <h2>Azken Berriak</h2>
+    <br />
+    {%if berriak%}
+    <ul>
+    	{%for berria in berriak%}
+		<li><a href="/berriak/{{berria.slug}}" >{{berria.izenburua}}</a></li>
+		{%endfor%}   
+    </ul>
+    {%else%}
+    Ez da berririk aurkitu.
+    {%endif%}
+    <a href="/berriak/">Gehiago irakurri...</a>
+  </div>
+  <div id="cell_1">
+    <h2>Jarrai gaitzazu</h2>
+    <br />
+    <a href="/azken-berriak/feed"><img src="{{MEDIA_URL}}irudiak/feed.png" alt="Rss" /></a>
+    <a href="http://twitter.com/urtzai" target="blank"><img src="{{MEDIA_URL}}irudiak/twitter.png" alt="Twitter" /></a>
+    <a href="http://facebook.com/urtzi.odriozola"><img src="{{MEDIA_URL}}irudiak/facebook.png" alt="Facebook" /></a>
+  </div>
+  <div id="cell_1">
+    <h2>Nor gara</h2>
+    <br />
+    <table>
+		<tr>
+			<td>
+				<img src="{{MEDIA_URL}}irudiak/urtzi_odriozola.png" alt="Urtzi Odriozola" />
+			</td>
+			<td>
+				<p>Ikasketaz informatikaria, afizioz surflari eta 3D marrazkilaria. Bihotzez Euskalzalea.</p>			
+			</td>
+		</tr>    
+    </table>
+    <a href="/nor-gara/">Gehiago Irakurri...</a>
+  </div>

@@ -1,0 +1,18 @@
+{% extends "base/index.html" %}
+{%load breadcrumbs%}
+
+{%if flatpage %}
+
+{% block subheader%}
+<div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
+<h2>{{flatpage.title}}</h2>
+<hr/>
+{%endblock%}
+
+{% block content%}
+{{flatpage.content}}
+{%endblock%}
+
+{%else%}
+<p>Ezin izan da orrialdea kargatu. Barkatu eragozpenak.</p>
+{%endif%}

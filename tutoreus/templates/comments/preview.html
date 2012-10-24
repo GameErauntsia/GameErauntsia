@@ -1,0 +1,72 @@
+{% extends "base/index.html" %}
+{%load breadcrumbs%}
+{% load comments %}
+
+{% block subheader%}
+	<div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
+    <h2>Iruzkin Aurrebista</h2>
+	<hr/>
+{%endblock%}
+
+{% block content %}
+  
+      <form action="{% comment_form_target %}" method="post">
+    	<fieldset>
+    	{% csrf_token %}
+    	{{ form.non_field_errors }}
+    	<table summary="" >
+			<tr>
+				<td>
+					<label for="id_name">Izena:</label>
+				</td>
+				<td>
+					{{ form.name }}
+        			{{ form.name.errors }}
+				</td>		
+			</tr>
+			<tr>
+				<td>
+					<label for="id_email">E-Posta:</label>
+				</td>
+				<td>
+					{{ form.email.errors }}
+        			{{ form.email }}
+				</td>		
+			</tr>
+			<tr>
+				<td>
+					<label for="id_url">Web Orria:</label>
+				</td>
+				<td>
+					{{ form.url }}
+        			{{ form.url.errors }}
+				</td>		
+			</tr>
+        	<tr>
+				<td>
+					<label></label>
+				</td>
+				<td>
+        			{{ form.comment }}
+        			{{ form.comment.errors }}
+        			{% if honeypot %}<div><input style="display:none;" type="text" name="id_honeypot" value="{{ honeypot }}" /></div>{% endif %}
+        			{{ form.content_type }}
+        			{{ form.object_pk }}
+        			{{ form.timestamp }}
+        			{{ form.security_hash }}
+        			{% if next %}<div><input type="hidden" name="next" value="{{ next }}" /></div>{% endif %}
+				</td>		
+			</tr>
+			<tr>
+				<td>
+					<label></label>
+				</td>
+				<td>
+					<input type="submit" name="submit" value="Bidali">
+        			<input type="submit" name="preview" value="Aurrebista">
+				</td>		
+			</tr>
+        </table>
+    	</fieldset>
+    </form>
+{% endblock %}

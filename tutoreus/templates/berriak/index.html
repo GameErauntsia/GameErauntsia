@@ -1,0 +1,76 @@
+{% extends "base/index.html" %}
+{%load breadcrumbs%}
+
+{%block pageTitle%}<title>BlenderEUS | Berriak</title>{%endblock%}
+{%block js%}<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+{%endblock%}
+{% block subheader%}
+	<div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
+    <h2>Azken berriak</h2>
+	<hr/>
+{%endblock%}
+
+{% block content%}
+<div class="berriaContent">
+{%for berria in zerr_berriak%}
+<h2><a href="{{berria.slug}}" >{{berria.izenburua}}</a></h2>
+<p class="date"><strong>{{berria.pub_date}}</strong></p>
+<p>{{berria.get_desk_txikia}}</p>
+<a href="{{berria.slug}}" >Gehiago irakurri...</a>
+{%endfor%}
+   <div id="pagination">
+        	{% if zerr_berriak.has_previous %}
+            	<a href="?orria={{ zerr_berriak.previous_page_number }}"><<</a>
+         {%else%}
+               <span class="disabled_pagination"><<</span>
+        	{% endif %}
+        	<span class="active_link">{{ zerr_berriak.number }}</span>
+        	{%if zerr_berriak.has_next%}
+        	      <span>...</span>
+               <a href="?orria={{ zerr_berriak.paginator.num_pages }}">{{ zerr_berriak.paginator.num_pages }}</a>
+         {%endif%}
+        	{% if zerr_berriak.has_next %}
+            	<a href="?orria={{ zerr_berriak.next_page_number }}">>></a>
+         {%else%}
+               <span class="disabled_pagination">>></span>
+        	{% endif %}
+	</div>
+</div>
+{%endblock%}
+{%block submenu%}
+<div class="submenu">
+	<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
+	<script>
+		new TWTR.Widget({
+  		version: 2,
+  		type: 'search',
+  		search: 'blender',
+  		interval: 30000,
+  		title: 'BlenderEUS',
+  		subject: 'Blender Euskaraz',
+  		width: 250,
+  		height: 300,
+  		theme: {
+    		shell: {
+      		background: '#8ec1da',
+      		color: '#ffffff'
+    		},
+    		tweets: {
+      		background: '#ffffff',
+      		color: '#444444',
+      		links: '#1985b5'
+    		}
+  		},
+  		features: {
+    		scrollbar: false,
+    		loop: true,
+    		live: true,
+    		behavior: 'default'
+  		}
+		}).render().start();
+	</script>
+	<br>
+	<iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2FAriolaKulturEkimena&amp;width=260&amp;height=258&amp;colorscheme=light&amp;show_faces=true&amp;border_color&amp;stream=false&amp;header=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:260px; height:258px;" allowTransparency="true"></iframe>
+</div>
+<div style="clear: both"></div>  
+{%endblock%}

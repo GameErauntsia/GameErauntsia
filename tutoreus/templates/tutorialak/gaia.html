@@ -1,0 +1,30 @@
+{% extends "base/index.html" %}
+{%load breadcrumbs%}
+{% load comments %}
+
+{%if aplikazioa%}
+{% block subheader%}
+	<div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
+    <h2>{{gaia.izena}}</h2>
+	<hr/>
+{%endblock%}
+{% block content%}
+    	<div id="gaiadesk" class="inline">{{gaia.desk}}</div>
+{%endblock%}
+{%block submenu%}
+<div class="inline">
+<h3>{{gaia.izena}} Tutorialak</h3>
+{% if zerr_tutoriala %}
+    <ul>
+    {% for tutoriala in zerr_tutoriala %}
+        <li><a href="/tutorialak/{{ tutoriala.slug }}/">{{ tutoriala.izenburua }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Tutorialik ez da aurkitu.</p>
+{% endif %}
+</div>
+{%endblock%}
+{% else %}
+    <p>Ezin izan da aplikazioa kargatu.</p>
+{% endif %}

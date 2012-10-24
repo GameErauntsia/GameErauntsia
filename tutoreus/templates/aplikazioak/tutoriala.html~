@@ -1,0 +1,161 @@
+{% extends "base/index.html" %}
+{%load breadcrumbs%}
+{% load comments %}
+
+{%if tutoriala%}
+{% block subheader%}
+	<div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
+    <h2>{{tutoriala.izenburua}}</h2>
+	<hr/>
+{%endblock%}
+{% block content%}
+	<div id="bideoContainer">
+    	<div class="inline"><iframe src="http://player.vimeo.com/video/{{tutoriala.get_url}}" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div>
+        <div id="bideoInfo" class="inline">
+        	<h3>Datu Teknikoak</h3>
+        	<hr/>
+        	<table>
+				<tr>
+					<td>
+						<p>Iraupena:</p>					
+					</td>
+					<td>
+						<span>{%if tutoriala.iraupena_min%}{{tutoriala.iraupena_min}}m {%endif%}{{tutoriala.iraupena_seg}}s</span>	
+					</td>			
+				</tr>
+				<tr>
+					<td>
+						<p>Softwarea:</p>					
+					</td>
+					<td>
+						<span>{{tutoriala.aplikazioa}}</span>		
+					</td>			
+				</tr>
+				<tr>
+					<td>
+						<p>Zailtasuna:</p>					
+					</td>
+					<td>
+						<span>{{tutoriala.zailtasuna.izena}}</span>					
+					</td>			
+				</tr>
+				<tr>
+					<td>
+						<p>Publikatua:</p>					
+					</td>
+					<td>
+						<span>{{tutoriala.pub_date}}</span>				
+					</td>			
+				</tr> 
+				<tr>
+					<td>
+						<p>Egilea:</p>					
+					</td>
+					<td>
+						<span>{{tutoriala.erabiltzailea}}</span>		
+					</td>			
+				</tr>
+				<tr>
+					<td>
+						<p>Gaiak:</p>					
+					</td>
+					<td>
+            		{%for gai in tutoriala.gaia.all%}
+            			<span><a href="/gaiak/{{gai.slug}}">{{gai.izena}}</a></span>
+            		{%endfor%}	
+					</td>			
+				</tr>
+				<tr>
+					<td>
+						<p>Botoak:</p>					
+					</td>
+					<td>
+						<span>{{tutoriala.botoak}}</span>		
+					</td>			
+				</tr>    	
+        	</table>
+        </div>
+        <div style="clear: both"/>
+    </div>
+    
+    <div id="tutoDesk">
+        <p>{{tutoriala.desk}}</p>
+    </div>
+	<h3>Emaitza</h3>
+	<hr/>
+    <img src="{{tutoriala.argazkia.get_small_url}}" alt="{{tutoriala.argazkia}}"/>
+    {% get_comment_count for tutoriala as comment_count %}
+	<h3>Iruzkinak ({{ comment_count }} iruzkin)</h3>
+    <hr/>
+    {% get_comment_list for tutoriala as comment_list%}
+    {% for comment in comment_list %}
+    <div class="iruzkinaBox">
+    	<div class="inline"><img src="{{MEDIA_URL}}/irudiak/comment_profil.png"/></div>
+    	<div class="inline"><strong>{{comment.name}}</strong><br/>{{comment.submit_date}}</div> 
+	</div>
+	<div style="clear: both"></div>
+    <div class="iruzkina">{{comment.comment}}</div>
+	{% endfor %}
+    {% get_comment_form for tutoriala as form %}
+    <form action="{% comment_form_target %}" method="post">
+    	<fieldset>
+    	{% csrf_token %}
+    	{{ form.non_field_errors }}
+    	<table summary="" >
+			<tr>
+				<td>
+					<label for="id_name">Izena:</label>
+				</td>
+				<td>
+					{{ form.name }}
+        			{{ form.name.errors }}
+				</td>		
+			</tr>
+			<tr>
+				<td>
+					<label for="id_email">E-Posta:</label>
+				</td>
+				<td>
+					{{ form.email.errors }}
+        			{{ form.email }}
+				</td>		
+			</tr>
+			<tr>
+				<td>
+					<label for="id_url">Web Orria:</label>
+				</td>
+				<td>
+					{{ form.url }}
+        			{{ form.url.errors }}
+				</td>		
+			</tr>
+        	<tr>
+				<td>
+					<label></label>
+				</td>
+				<td>
+        			{{ form.comment }}
+        			{{ form.comment.errors }}
+        			{% if honeypot %}<div><input style="display:none;" type="text" name="id_honeypot" value="{{ honeypot }}" /></div>{% endif %}
+        			{{ form.content_type }}
+        			{{ form.object_pk }}
+        			{{ form.timestamp }}
+        			{{ form.security_hash }}
+				</td>		
+			</tr>
+			<tr>
+				<td>
+					<label></label>
+				</td>
+				<td>
+					<input type="submit" name="submit" value="Bidali">
+        			<input type="submit" name="preview" value="Aurrebista">
+				</td>		
+			</tr>
+        </table>
+    	</fieldset>
+    </form>
+{%endblock%}
+{% else %}
+    <p>Ezin izan da tutoriala kargatu.</p>
+{% endif %}
