@@ -1,4 +1,4 @@
-Tutoreus
+tutoreus
 ========
 
-Django Tutoreus web page structure.
+Django Tutoreus web page structure
