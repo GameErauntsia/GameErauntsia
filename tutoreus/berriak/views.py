@@ -1,4 +1,4 @@
-from berriak.models import Berria
+from tutoreus.berriak.models import Berria
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render_to_response
 from django.template import RequestContext

@@ -1,10 +1,11 @@
-from tutorialak.models import Tutoriala, Gaia
-from aplikazioak.models import Aplikazioa
-from base.models import Base
-from berriak.models import Berria
+from tutoreus.tutorialak.models import Tutoriala, Gaia
+from tutoreus.aplikazioak.models import Aplikazioa
+from tutoreus.base.models import Base
+from tutoreus.berriak.models import Berria
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.http import Http404
 
 def index(request):
     h = {}
@@ -77,13 +78,15 @@ def bozkatuenak(request):
     page = request.GET.get('orria')
     try:
         tutorialak = paginator.page(page)
+	h['base'] = Base.objects.all()[0]
     except PageNotAnInteger:
         # If page is not an integer, deliver first page.
         tutorialak = paginator.page(1)
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         tutorialak = paginator.page(paginator.num_pages)
-    h['base'] = Base.objects.all()[0]
+    except:
+        return Http404
     h['tutorialak'] = tutorialak
     h['berriak'] = Berria.objects.filter(publikoa_da=True).order_by('-pub_date')[:5]
     return render_to_response('base/index.html', h,context_instance=RequestContext(request))

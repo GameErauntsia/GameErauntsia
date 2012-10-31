@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 from photologue.models import Photo
-from aplikazioak.models import Aplikazioa
+from tutoreus.aplikazioak.models import Aplikazioa
 from datetime import datetime 
 
 class Gaia(models.Model):

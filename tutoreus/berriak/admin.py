@@ -1,6 +1,6 @@
-from berriak.models import Berria
+from tutoreus.berriak.models import Berria
 from django.contrib import admin
-from berriak.forms import BerriaAdminForm
+from tutoreus.berriak.forms import BerriaAdminForm
 
 class BarriakAdmin(admin.ModelAdmin):
     list_display = ('izenburua', 'slug', 'erabiltzailea', 'pub_date', 'mod_date', 'publikoa_da')

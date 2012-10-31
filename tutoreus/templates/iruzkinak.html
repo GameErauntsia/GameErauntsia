@@ -6,7 +6,7 @@
 {% for comment in comment_list %}
     <div class="iruzkinaBox">
         <div class="iruzkinaHeader">
-    	      <div class="inline"><img src="{{MEDIA_URL}}/irudiak/comment_profil.png"/></div>
+    	      <div class="inline"><img src="{{STATIC_URL}}/irudiak/comment_profil.png"/></div>
     	      <div class="signature">
     	          <strong><a href="{{request.get_full_path}}#c{{comment.id}}">{{comment.name}}</a></strong><br/>
     	          <span>{{comment.submit_date}}</span>

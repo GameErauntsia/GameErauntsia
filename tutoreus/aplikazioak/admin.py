@@ -1,4 +1,4 @@
-from aplikazioak.models import Aplikazioa
+from tutoreus.aplikazioak.models import Aplikazioa
 from django.contrib import admin
 
 from datetime import datetime

@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from tutoreus import settings
 
 urlpatterns = patterns('',
-    url(r'^$', 'berriak.views.index', name='berriak_index'),
+    url(r'^$', 'tutoreus.berriak.views.index', name='berriak_index'),
 )
 
 if settings.DEBUG:

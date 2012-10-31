@@ -1,6 +1,6 @@
-from base.models import Base
+from tutoreus.base.models import Base
 from django.contrib import admin
-from base.forms import BaseAdminForm
+from tutoreus.base.forms import BaseAdminForm
     
 class BaseAdmin(admin.ModelAdmin):
     list_display = ('izenburua','azpi_izenburua')

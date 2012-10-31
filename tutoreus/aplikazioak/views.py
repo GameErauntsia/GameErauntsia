@@ -1,8 +1,8 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from aplikazioak.models import Aplikazioa
-from berriak.models import Berria
+from tutoreus.aplikazioak.models import Aplikazioa
+from tutoreus.berriak.models import Berria
 
 def index(request):
     h = {}

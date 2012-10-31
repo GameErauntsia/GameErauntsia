@@ -1,16 +1,16 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-{%load breadcrumbs tutoreus%}
+{%load breadcrumbs include%}
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://www.w3.org/2005/10/profile">
 {%block pageTitle%}<title>Tutoreus</title>{%endblock%}
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}css/style.css" media="screen,projection" />
-<link rel="icon" type="image/jpg" href="{{MEDIA_URL}}irudiak/favicon.jpg" />
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/style.css" media="screen,projection" />
+<link rel="icon" type="image/jpg" href="{{STATIC_URL}}irudiak/favicon.jpg" />
 {%block js%}
-<script type="text/javascript" src="{{MEDIA_URL}}starRating/jquery.js" ></script>
-<script type="text/javascript" src="{{MEDIA_URL}}starRating/jquery.MetaData.js" ></script>
-<script type="text/javascript" src="{{MEDIA_URL}}starRating/jquery.rating.js" ></script>
-<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}starRating/jquery.rating.css" media="screen,projection" />
+<script type="text/javascript" src="{{STATIC_URL}}starRating/jquery.js" ></script>
+<script type="text/javascript" src="{{STATIC_URL}}starRating/jquery.MetaData.js" ></script>
+<script type="text/javascript" src="{{STATIC_URL}}starRating/jquery.rating.js" ></script>
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}starRating/jquery.rating.css" media="screen,projection" />
 {%endblock%}
 </head>
 <body>
@@ -27,7 +27,7 @@
   	<table>
   		<tr>
 			<td>
-				<img src="{{MEDIA_URL}}irudiak/blender_logo.png"/>
+				<img src="{{STATIC_URL}}irudiak/blender_logo.png"/>
 			</td>
 			<td>
 				<h1>Tutoreus</h1>
@@ -113,7 +113,7 @@
   <hr />
   <div id="footerContainer">
   
-  {% azken_berriak %}
+{% azken_berriak %}
   
   <div id="footer"> Copyright, &copy; 2012-2013 <a target="_blank" href="http:/www.codesyntax.com">Code Syntax</a> |  <a href="#">Site Map</a>  </div>
   <!--//end #footer//-->

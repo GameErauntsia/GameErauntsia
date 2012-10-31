@@ -3,7 +3,7 @@ from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', 'blenderEUS.base.views', name='index'),
+    url(r'^$', 'tutoreus.base.views', name='index'),
     # url(r'^blenderEUS/', include('blenderEUS.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

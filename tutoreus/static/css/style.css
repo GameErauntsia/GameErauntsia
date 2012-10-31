@@ -1,0 +1,435 @@
+/*******************************************************
+TITLE: Fixed Three-Column Over Four-Column Layout V1.0
+DATE: 20060807
+AUTHOR: The CSS Tinderbox - http://www.csstinderbox.com
+*******************************************************/
+
+body {
+margin:.5em;
+padding:0;
+height:100%;
+background-color:#0e121b;
+color:#000000;  
+text-align:center;
+font-family:Arial, Helvetica, sans-serif;
+font-size:.9em;
+}
+
+a {
+color:#34767c;
+text-decoration:none;
+}
+
+a:hover {
+color:#616161;
+text-decoration:none;
+}
+
+fieldset {
+border: none;
+}
+
+.berriaContent{
+text-align: justify;
+width: 600px;
+padding-right: 25px;
+float: left;	
+}
+
+.submenu{
+float:left; 	
+}
+
+.iruzkinaBox {
+background-color: #000000;
+}
+
+.iruzkina {
+width: 200px;
+margin: 5px 15px 10px 5px;
+}
+
+label {
+text-align:right;
+}
+
+blockquote {
+margin:1em;
+padding:.5em .5em .5em 85px;
+background-color:#D7ECF8;
+}
+
+blockquote p {
+margin:.2em;
+color:#000000;
+}
+
+hr {
+margin-bottom:20px;
+border:none;
+width:99%;
+color:#eeeeee;
+background-color:#eeeeee;
+height:1px;
+clear:both;
+}
+
+h3 {
+color: #1a1e26;	
+}
+
+td.desc {
+padding:4px;
+text-align:left;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:.7em;
+}
+
+#postHeader { 	
+margin:0 auto;
+padding:0 .2em .3em .2em;
+width:900px;
+text-align:right;
+vertical-align: middle;	
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:.7em;
+text-transform:uppercase;
+}
+
+#centerColumn { 	
+margin:0 auto;
+padding:1em;
+width:900px;
+text-align:left;
+vertical-align: middle;	
+background-color:#ffffff;
+border-radius: 15px;
+}
+
+#centerColumn h2 {
+margin:0 0 -.5em 0;
+padding:.75em 0 0 0;
+font-family:Georgia, "Times New Roman", Times, serif;
+font-size:1.1em;
+}
+
+#centerColumn h3 {
+margin:0 0 -.5em 0;
+padding:.75em 0 0 0;
+font-size:.8em;
+font-weight:lighter;
+letter-spacing:.1em;
+}
+
+#navbar {
+margin:-1em -1em 0 -1em; /* Mozzila attributes */
+padding:1em 0 1em 0 !important; /* IE specific attributes */
+padding:1em 0 0 0;
+background-color:#1a1e26;
+}
+
+#navbar ul {
+margin:0 0 -1em .3em !important;
+margin:.3em 0 0 .3em;
+padding:0 0 1em 0;
+list-style:none;
+background-color:#1a1e26;
+}
+
+#navbar li {
+margin:0 0 0 -.27em;
+padding:.2em 0 .2em 0 !important;
+padding:1em 0 1em 0;
+list-style:none;
+display:inline;
+background-color:#1a1e26;
+}
+
+#navbar li a {
+margin:0 0 0 0;
+padding:1em .5em 1em .5em !important;
+padding:1em .5em 0 .5em;
+text-decoration:none;
+color: #999999;
+}
+
+#navbar li a:hover {
+background-color: #3b3f46;
+}
+
+#header {
+margin:0 -1em 0 -1em;
+padding:0 0 0 0;
+height:143px;
+background-color:#3b3f46;
+border-top:1px solid #ffffff;
+}
+
+#header h1 {
+margin:0 0 -14px 10px;
+padding:10px 0 0 .9em;
+font-family:Georgia, "Times New Roman", Times, serif;
+font-size:1.7em;
+font-weight:lighter;
+letter-spacing:.15em;
+color:#999999;
+}
+
+#header h2 {
+margin:0 0 0 0;
+padding:1em 0 0 30px;
+font-size:.9em;
+font-weight:300;
+letter-spacing:.1em;
+color:#999999;
+}
+
+#breadcrumb {
+margin: 1em 0 0 0;
+font-size: .8em;
+}
+
+#cell_1 {
+margin:1em 0 1em 2em;
+padding:4px;
+float:left;
+width:250px;
+color:#ffffff;
+}
+
+#cell_1 p, {
+font-size:.75em;
+color:#000000;
+}
+
+#cell_1 h2 {
+margin:0 0 -4px 0 !important;
+margin:0 0 -20px 0;
+padding:4px 0 10px 0;
+font-family:Georgia, "Times New Roman", Times, serif;
+color:#999999;
+font-weight:bold;
+}
+
+#tutoIndex{
+margin-top: 25px;
+margin-left: 75px;	
+}
+
+#gaiaIndex{
+margin-top: 25px;
+margin-left: 10em;	
+}
+
+#tutoIndexBox {
+width: 600px;	
+}
+
+#desk {
+width: 500px;
+text-align: justify;	
+}
+
+#bideoContainer { 	
+margin:0 auto;
+}
+
+#bideo{
+background-color:#000000;
+}
+
+#bideoInfo {
+margin-top: 25px;
+margin-left: 25px;
+padding-bottom: 15px;
+padding-right: 15px;
+font-weight: bold;
+width: 280px;
+border-style: solid;
+border-color: #cccccc;
+border-width:3px;
+border-radius: 15px;
+}
+
+#bideoInfo h3 {
+margin-left: 15px;
+}
+
+#bideoInfo p {
+color: #3b3f46;
+margin: 2px 5px 2px 15px;
+}
+
+#bideoInfo span{
+margin-left: 3px;
+color: #347696;
+}
+
+#bideoInfo span.berezia a{
+padding: 2px 4px 2px 4px;
+margin-right: 5px;
+background-color: #cccccc;
+border-radius: 15px;
+}
+
+#tutoDesk { 	
+margin:0 auto;
+background-color:#ffffff;
+}
+
+.sinple li {
+list-style: none;	
+}
+
+.indexIcon {
+padding-top: 2px;
+padding-left: 30px;	
+}
+
+.smallImage {
+width: 200px;
+height: 200px;
+border-radius: 15px;
+-webkit-border-radius: 15px;
+-moz-border-radius: 15px;
+box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+-moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+}
+
+.barepic {
+border:none;
+}
+
+.right {
+float:right;
+margin:5px;
+padding:2px;
+}
+
+.left {
+float:left;
+margin:5px;
+padding:2px;
+}
+
+.center {
+width:auto;
+margin-left:auto;
+margin-right:auto;
+}
+
+.news em {
+font-size:.8em;
+color:#000000;
+}
+
+div.inline {
+margin-right: 2em;
+margin-bottom: 5px;
+float:left; 
+}
+
+#cell_1 ul.news {
+margin:0 0 0 5px;
+padding:0 0 0 0;
+list-style:none;
+}
+
+#cell_1 li.news {
+margin:0 0 .3em 0;
+padding:5px 0 6px 10px;
+font-size:.75em;
+}
+
+#cell_1 ul {
+margin:0 0 0 5px;
+padding:0 0 0 0;
+list-style:none;
+}
+
+#cell_1 li {
+margin:0 0 .3em 0;
+padding:5px 0 6px 5px;
+font-size:.9em;
+list-style: circle;
+}
+
+#cell_1 li a{
+color: #ffffff;
+}
+
+#box_1 {
+margin:0 5px 2em 0;
+padding:8px;
+float:left;
+width:200px;
+background-color:#ffffff;
+}
+
+#box_2 {
+margin:0 7px 2em 14px;
+padding:8px;
+float:left;
+width:150px;
+background-color:#cccccc;
+}
+
+#box_3 {
+margin:0 14px 2em 7px;
+padding:8px;
+float:left;
+width:150px;
+background-color:#cccccc;
+}
+
+#box_1 p, #box_2 p, #box_3 p {
+font-size:.75em;
+color:#000000;
+}
+
+#box_1 h2, #box_2 h2, #box_3 h2 {
+font-family:Georgia, "Times New Roman", Times, serif;
+color:#000000;
+font-size:.8em;
+} 
+
+#box_1 ul, #box_2 ul, #box_3 ul {
+margin:0 0 0 5px;
+padding:0 0 0 0;
+list-style:none;
+}
+
+#box_1 li, #box_2 li, #box_3 li, #box_4 li {
+margin:0 0 .3em 0;
+padding:5px 0 0 5px;
+font-size:.8em;
+}
+
+#tutoContainer {
+padding-top: 10px;
+padding-left: 5px;
+padding-right: 5px; 
+border-color: #cccccc;
+border-style: solid;
+border-width:3px;
+border-radius: 15px;
+}
+
+#footerContainer {
+background-color:#343840;	
+border-radius: 15px;
+}
+
+#footer {
+position:relative;
+clear:both;
+bottom:0;
+margin:5em 0 0 0;
+padding:0;
+height:4em;
+line-height:4em;
+text-align:center;
+font-size:.7em;
+color: #ffffff;
+}
