@@ -1,25 +1,30 @@
 {% extends "base/index.html" %}
 {%load breadcrumbs include%}
 
+{%block pageTitle%} | Gaiak{%endblock%}
+
 {%block subheader%}
 <div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
-<h2>Gaiak</h2>
-<hr/>
+<h1>Gaiak</h1>
 {%endblock%}
 
 {% block content %}
+<div id="tutoIndexBox" class="inline">
 {% if gaiak %}
     <ul class="sinple">
     {% for gaia in gaiak %}
-        <li><a href="/gaiak/{{ gaia.slug }}/">
-            <img src="{{ gaia.irudia.get_thumbnail_url }}"/>
-            <span>{{gaia.izena}}</span>
-        </a></li>
+        <li>
+	    <a href="/gaiak/{{ gaia.slug }}/">
+                <img src="{{ gaia.irudia.get_thumbnail_url }}"/>
+                <span>{{gaia.izena}}</span>
+            </a>
+	</li>
     {% endfor %}
     </ul>
 {% else %}
     <p>Gairik ez da aurkitu.</p>
 {% endif %}
+</div>
 {% endblock %}
 {%block submenu%}
     {% top_tutorialak %}

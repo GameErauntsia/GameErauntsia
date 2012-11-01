@@ -5,8 +5,7 @@
 {%if aplikazioa%}
 {% block subheader%}
 	<div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
-    <h2>{{aplikazioa.izena}}</h2>
-	<hr/>
+    <h1>{{aplikazioa.izena}}</h1>
 {%endblock%}
 {% block content%}
     <div id="bideoContainer">

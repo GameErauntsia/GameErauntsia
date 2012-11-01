@@ -1,11 +1,10 @@
 {% extends "base/index.html" %}
-{%load breadcrumbs%}
+{%load breadcrumbs include%}
 
 {% if gaia%}
 {%block subheader%}
 <div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
-<h2>{{gaia.izena}} Tutorialak</h2>
-<hr/>
+<h1>{{gaia.izena}} Tutorialak</h1>
 {%endblock%}
 
 {% block content %}
@@ -57,18 +56,7 @@
 </div>
 {% endblock %}
 {%block submenu%}
-<div class="inline">
-<h3>Azken Tutorialak</h3>
-{% if zerr_tutoriala %}
-    <ul>
-    {% for tutoriala in zerr_tutoriala %}
-        <li><a href="/tutorialak/{{ tutoriala.slug }}/">{{ tutoriala.izenburua }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>Tutorialik ez da aurkitu.</p>
-{% endif %}
-</div>
+    {% top_tutorialak %}
 {%endblock%}
 {%else%}
     <p>Aplikaziorik ez da aurkitu.</p>

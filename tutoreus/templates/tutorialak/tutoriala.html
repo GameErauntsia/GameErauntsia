@@ -3,7 +3,7 @@
 {% load comments %}
 
 {%if item%}
-{%block pageTitle%}<title>BlenderEUS | {{item.izenburua}}</title>{%endblock%}
+{%block pageTitle%} | {{item.izenburua}}{%endblock%}
 {%block js%}
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 <script type="text/javascript" src="{{STATIC_URL}}starRating/jquery.js" ></script>
@@ -36,8 +36,7 @@ $(function(){
 });
 </script>
 	<div id="bideoContainer">
-    	<div class="inline"><iframe src="http://player.vimeo.com/video/{{item.get_url}}" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div>
-      <a href="https://twitter.com/share" class="twitter-share-button" data-via="urtzai">Tweet</a>         
+    	<div class="inline"><iframe src="http://player.vimeo.com/video/{{item.get_url}}" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div>         
       <div id="bideoInfo" class="inline">
         	<h3>Datu Teknikoak</h3>
         	<hr/>
@@ -112,12 +111,14 @@ $(function(){
     </div>
     
     <div id="tutoDesk">
-        <p>{{item.desk}}</p>
+        <p>{{item.desk|safe}}</p>
     </div>
-   
-   {%if item.argazkia%}     
+
+   {%if item.argazkia%}
+    <div id="emaitza">     
 	<h2>Emaitza</h2>
-   <img src="{{item.argazkia.get_small_url}}" alt="{{item.argazkia}}"/>
+   	<p><img src="{{item.argazkia.get_small_url}}" alt="{{item.argazkia}}"/></p>
+   </div>
    {%endif%}
     
    {% include "iruzkinak.html" %}

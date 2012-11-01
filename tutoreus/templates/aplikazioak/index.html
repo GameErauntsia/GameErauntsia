@@ -1,13 +1,15 @@
 {% extends "base/index.html" %}
 {%load breadcrumbs include%}
 
+{%block pageTitle%} | Aplikazioak{%endblock%}
+
 {%block subheader%}
 <div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
-<h2>Aplikazioak</h2>
-<hr/>
+<h1>Aplikazioak</h1>
 {%endblock%}
 
 {% block content %}
+<div id="tutoIndexBox" class="inline">
 {% if zerr_aplikazioa %}
     <ul class="sinple">
     {% for aplikazioa in zerr_aplikazioa %}
@@ -20,6 +22,7 @@
 {% else %}
     <p>Aplikaziorik ez da aurkitu.</p>
 {% endif %}
+</div>
 {% endblock %}
 {%block submenu%}
     {% top_tutorialak %}

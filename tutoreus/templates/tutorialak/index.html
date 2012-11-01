@@ -1,6 +1,8 @@
 {% extends "base/index.html" %}
 {% load breadcrumbs include %}
 
+{%block pageTitle%} | Tutorialak{%endblock%}
+
 {%block subheader%}
 <div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
 <h1>Tutorialak</h1>
@@ -8,8 +10,6 @@
 
 {% block content %}
 <div id="tutoIndexBox" class="inline">
-
-
 <div id="tutoIndex" class="inline">
 {%for app in aplikazioak%}
 <a href="aplikazioak/{{app.izena}}" ><img src="{{app.logoa.get_icon_url}}" title="{{app.logoa.title}}" alt="{{app.logoa.caption}}"/></a>

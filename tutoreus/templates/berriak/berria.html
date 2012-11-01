@@ -10,11 +10,10 @@
 {% block subheader%}
 	<div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
     <h1>{{item.izenburua}}</h1>
-	<hr/>
 {%endblock%}
 {% block content%}
 <div class="berriaContent">
-	<p>{{item.desk}}</p>
+	<p>{{item.desk|safe}}</p>
 	<a href="https://twitter.com/share" class="twitter-share-button" data-via="urtzai">Tweet</a>	
 	{% include "iruzkinak.html" %}
 </div>

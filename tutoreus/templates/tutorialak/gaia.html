@@ -5,15 +5,14 @@
 {%if aplikazioa%}
 {% block subheader%}
 	<div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
-    <h2>{{gaia.izena}}</h2>
-	<hr/>
+    <h1>{{gaia.izena}}</h1>
 {%endblock%}
 {% block content%}
-    	<div id="gaiadesk" class="inline">{{gaia.desk}}</div>
+    	<div id="tutoIndexBox" class="inline">{{gaia.desk}}</div>
 {%endblock%}
 {%block submenu%}
 <div class="inline">
-<h3>{{gaia.izena}} Tutorialak</h3>
+<h2>{{gaia.izena}} Tutorialak</h2>
 {% if zerr_tutoriala %}
     <ul>
     {% for tutoriala in zerr_tutoriala %}

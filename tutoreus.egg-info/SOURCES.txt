@@ -25,6 +25,7 @@ tutoreus/base/urls.py
 tutoreus/base/views.py
 tutoreus/base/templatetags/__init__.py
 tutoreus/base/templatetags/breadcrumbs.py
+tutoreus/base/templatetags/include.py
 tutoreus/base/templatetags/tutoreus.py
 tutoreus/berriak/__init__.py
 tutoreus/berriak/admin.py
