@@ -1,13 +1,27 @@
 from django.conf.urls import patterns, include, url
 from tutoreus import settings
 from django.contrib import admin
-
+from django.contrib.sitemaps import FlatPageSitemap, GenericSitemap
 from tutoreus.base.feed import LatestEntriesFeed
+from tutoreus.berriak.models import Berria
 
 admin.autodiscover()
 
+
+
+info_dict = {
+    'queryset': Berria.objects.all(),
+    'date_field': 'pub_date',
+}
+
+sitemaps = {
+    'flatpages': FlatPageSitemap,
+    'berriak': GenericSitemap(info_dict, priority=0.6),
+}
+
 urlpatterns = patterns('',
     url(r'^$', 'tutoreus.base.views.index', name='index'),
+    url(r'^googleaf6b2cbbb22dca3f\.html', 'tutoreus.base.views.google', name='google'),
     url(r'^sarrera/$', 'tutoreus.base.views.index', name='index'),
     url(r'^tutorialak/bozkatuenak/$', 'tutoreus.tutorialak.views.bozkatuenak', name='tutorialak_bozkatuenak'),
     url(r'^tutorialak/(?P<slug>[-\w]+)/$', 'tutoreus.tutorialak.views.tutoriala', name='tutoriala'),
@@ -25,13 +39,11 @@ name='tutorialak_aplikazioa'),
     url(r'^kontaktua/bidali/$', 'tutoreus.kontaktua.views.bidali', name='kontaktua_bidali'),
     (r'^azken-berriak/feed/$', LatestEntriesFeed()),
     url(r'^bilaketa?(?P<bilatu>[-\w]+)/$', 'tutoreus.views.bilaketa', name='bilaketa'),
+    url(r'^rating/$', 'tutoreus.base.views.rating', name='rating'),
     (r'^comments/', include('django.contrib.comments.urls')),
     (r'^grappelli/', include('grappelli.urls')),
     (r'^tinymce/', include('tinymce.urls')),
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
+    (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
     url(r'^admin/', include(admin.site.urls)),
 )
 

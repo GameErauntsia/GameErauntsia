@@ -1,6 +1,6 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from tutoreus.tutorialak.models import Tutoriala
 from tutoreus.base.models import Base
@@ -24,3 +24,18 @@ def index(request):
         raise Http404 
     h['tutorialak'] = tutorialak
     return render_to_response('base/index.html', h,context_instance=RequestContext(request))
+
+def google(request):
+    h = {}
+    return render_to_response('googleaf6b2cbbb22dca3f.html', h,context_instance=RequestContext(request))
+
+def rating(request):
+    value = request.GET.get('value')
+    slug = request.GET.get('slug')
+    tutoriala = get_object_or_404(Tutoriala,slug=slug)
+    if tutoriala:
+        tutoriala.botoak += 1
+        tutoriala.puntuak += float(value)/2
+        tutoriala.save()
+    	return HttpResponse('True')
+    return HttpResponse('False')

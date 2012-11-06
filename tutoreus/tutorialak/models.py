@@ -35,7 +35,7 @@ class Tutoriala(models.Model):
     iraupena_min = models.IntegerField(max_length=2,default=0)
     iraupena_seg = models.IntegerField(max_length=2, null=False,blank=False,default=0)
     botoak = models.IntegerField(default=0)
-    puntuak = models.IntegerField(default=0)
+    puntuak = models.FloatField(default=0)
 
     argazkia = models.ForeignKey(Photo,null=True,blank=True)
     bideoa = models.URLField(null=True,blank=True, help_text="Eremu honetan bideoaren URL itsatsi behar duzu. Adb.: http://vimeo.com/41669968")
@@ -50,7 +50,12 @@ class Tutoriala(models.Model):
     mod_date = models.DateTimeField('modifikazio data', default=datetime.now)
     
     def get_puntuak(self):
-        return float(self.puntuak)/2    
+        if self.puntuak == 0:
+            return 0
+        return round(self.puntuak/self.botoak, .5)
+
+    def get_rating(self):
+        return int(self.get_puntuak()*2)
     
     def get_url(self):
     	return self.bideoa[17:]

@@ -13,7 +13,7 @@
 <div class="berriaContent">
 {%for berria in zerr_berriak%}
 <h2><a href="{{berria.slug}}" >{{berria.izenburua}}</a></h2>
-<p class="date"><strong>{{berria.pub_date}}</strong></p>
+<div class="date"><strong>{{berria.pub_date|date:"Y/m/d H:i"}}</strong></div>
 <p>{{berria.get_desk_txikia|safe}}</p>
 <a href="{{berria.slug}}" >Gehiago irakurri...</a>
 {%endfor%}

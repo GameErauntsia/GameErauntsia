@@ -14,9 +14,12 @@
 <div class="inline">
 <h2>{{gaia.izena}} Tutorialak</h2>
 {% if zerr_tutoriala %}
-    <ul>
+    <ul class="sinple">
     {% for tutoriala in zerr_tutoriala %}
-        <li><a href="/tutorialak/{{ tutoriala.slug }}/">{{ tutoriala.izenburua }}</a></li>
+        <li>
+            <img class="setMiddle" src="{{tutoriala.argazkia.get_thumbnail_url}}" />
+            <a href="/tutorialak/{{ tutoriala.slug }}/">{{ tutoriala.izenburua }}</a>
+        </li>
     {% endfor %}
     </ul>
 {% else %}

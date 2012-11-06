@@ -1,18 +1,18 @@
 {% load comments %}
 
 {% get_comment_count for item as comment_count %}
-{%if comment_count > 0%}<h2 id="iruzkinak">Iruzkinak ({%if comment_count == 1%}Iruzkin {{ comment_count }}{%else%}{{ comment_count }} iruzkin{%endif%})</h2><hr/>{%endif%}
+{%if comment_count > 0%}<h2 id="iruzkinak">Iruzkinak ({%if comment_count == 1%}Iruzkin {{ comment_count }}{%else%}{{ comment_count }} iruzkin{%endif%})</h2>{%endif%}
 {% get_comment_list for item as comment_list%}
 {% for comment in comment_list %}
     <div class="iruzkinaBox">
         <div class="iruzkinaHeader">
-    	      <div class="inline"><img src="{{STATIC_URL}}/irudiak/comment_profil.png"/></div>
+    	      <div class="inline"><img src="{{STATIC_URL}}/irudiak/comment_profil.png" width="30"/></div>
     	      <div class="signature">
     	          <strong><a href="{{request.get_full_path}}#c{{comment.id}}">{{comment.name}}</a></strong><br/>
-    	          <span>{{comment.submit_date}}</span>
+    	          <span>{{comment.submit_date|date:"Y/m/d H:i"}}</span>
     	      </div> 
 	     <div style="clear: both"></div>
-	     </div>
+	</div>
         <div class="iruzkina">{{comment.comment}}</div>
     </div>
 	{% endfor %}

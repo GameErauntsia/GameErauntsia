@@ -11,12 +11,14 @@
 {% block content %}
 <div id="tutoIndexBox" class="inline">
 {% if gaiak %}
-    <ul class="sinple">
+    <ul id="quad" class="sinple">
     {% for gaia in gaiak %}
         <li>
 	    <a href="/gaiak/{{ gaia.slug }}/">
-                <img src="{{ gaia.irudia.get_thumbnail_url }}"/>
-                <span>{{gaia.izena}}</span>
+                <div class="themeBox">
+                    <img src="{{ gaia.irudia.get_thumbnail_url }}"/>
+                    <span>{{gaia.izena}}</span>
+                </div>
             </a>
 	</li>
     {% endfor %}

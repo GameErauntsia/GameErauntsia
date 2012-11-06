@@ -4,17 +4,18 @@
 
 {%if item%}
 
-{%block pageTitle%}<title>BlenderEUS | {{item.izenburua}}</title>{%endblock%}
+{%block pageTitle%} | {{item.izenburua}}{%endblock%}
 {%block js%}<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 {%endblock%}
 {% block subheader%}
-	<div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
+    <div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
     <h1>{{item.izenburua}}</h1>
 {%endblock%}
 {% block content%}
+<div class="date"><strong>{{item.pub_date|date:"Y/m/d H:i"}}</strong></div>
 <div class="berriaContent">
 	<p>{{item.desk|safe}}</p>
-	<a href="https://twitter.com/share" class="twitter-share-button" data-via="urtzai">Tweet</a>	
+	<a href="https://twitter.com/share" class="twitter-share-button" data-via="tutoreus_info">Txiokatu</a>	
 	{% include "iruzkinak.html" %}
 </div>
 {%endblock%}
@@ -28,10 +29,10 @@
 		new TWTR.Widget({
   		version: 2,
   		type: 'search',
-  		search: 'blender',
+  		search: 'tutoreus',
   		interval: 30000,
-  		title: 'BlenderEUS',
-  		subject: 'Blender Euskaraz',
+  		title: 'Tutoreus',
+  		subject: 'Tutorialak euskaraz',
   		width: 250,
   		height: 300,
   		theme: {
@@ -54,7 +55,7 @@
 		}).render().start();
 	</script>
 	<br>
-	<iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2FAriolaKulturEkimena&amp;width=260&amp;height=258&amp;colorscheme=light&amp;show_faces=true&amp;border_color&amp;stream=false&amp;header=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:260px; height:258px;" allowTransparency="true"></iframe>
+	<iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FTutoreus%2F288348697944020&amp;width=260&amp;height=258&amp;colorscheme=light&amp;show_faces=true&amp;border_color&amp;stream=false&amp;header=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:260px; height:258px;" allowTransparency="true"></iframe>
 </div>
 <div style="clear: both"></div>  
 {%endblock%}

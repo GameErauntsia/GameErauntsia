@@ -11,12 +11,16 @@
 {% block content %}
 <div id="tutoIndexBox" class="inline">
 {% if zerr_aplikazioa %}
-    <ul class="sinple">
+    <ul id="quad" class="sinple">
     {% for aplikazioa in zerr_aplikazioa %}
-        <li><a href="/aplikazioak/{{ aplikazioa.slug }}/">
-            <img src="{{ aplikazioa.logoa.get_thumbnail_url }}"/>
-            <span>{{aplikazioa.izena}}</span>
-        </a></li>
+        <li>
+	    <a href="/aplikazioak/{{ aplikazioa.slug }}/">
+                <div class="themeBox">
+		    <img src="{{ aplikazioa.logoa.get_thumbnail_url }}"/>
+		    <span>{{aplikazioa.izena}}</span>
+                </div>
+            </a>
+        </li>
     {% endfor %}
     </ul>
 {% else %}
