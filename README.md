@@ -38,12 +38,10 @@ How to use the code
 
     > git clone git@github.com:urtzai/tutoreus.git
     
-2. Create and edit settings.py file
+2. Edit settings.py file
 
     > cd tutoreus/tutoreus
-    
-    > cp empty_settings.py settings.py
-    
+      
     > nano settings.py
 
 Contact
