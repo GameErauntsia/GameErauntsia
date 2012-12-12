@@ -5,7 +5,7 @@ This is a Django *Tutoreus web page project*. Tutoreus was founded to fill the g
 tutorial edition. The final goal is to promote basque language creating and sharing modern application tutorials. 
 You will find our web page in [tutoreus.com](http://tutoreus.com).
 
-This project is 100% open source project where everybody it's up to use, distribute/share or even modify under the 
+This project is 100% open-source project where everybody it's up to use, distribute/share or even modify under the 
 [CC-SA-BY](http://creativecommons.org/licenses/by-sa/3.0/) licence.
 
 Pre-requisites
