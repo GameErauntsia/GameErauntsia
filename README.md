@@ -6,7 +6,7 @@ tutorial edition. The final goal is to promote basque language creating and shar
 You will find our web page in [tutoreus.com](http://tutoreus.com).
 
 This project is 100% open-source project where everybody it's up to use, distribute/share or even modify under the 
-[AGPL v3.0](http://www.gnu.org/licenses/gpl.html#content) licence.
+[AGPL v3.0](http://www.gnu.org/licenses/agpl-3.0.html#content) licence.
 
 Pre-requisites
 --------------
