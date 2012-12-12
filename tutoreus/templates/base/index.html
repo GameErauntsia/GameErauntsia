@@ -3,10 +3,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://www.w3.org/2005/10/profile">
 <title>Tutoreus{%block pageTitle%}{%endblock%}</title>
+<meta name="description" content="Orotariko aplikazioen tutorialak euskaraz biltzen dituen gunea duzu Tutoreus."/>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/style.css" media="screen,projection" />
 <link rel="stylesheet" href="googleaf6b2cbbb22dca3f.html" type="text/css" media="screen">
 <link rel="icon" type="image/jpg" href="{{STATIC_URL}}irudiak/favicon.jpg" />
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36511204-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 {%block js%}
 <script type="text/javascript" src="{{STATIC_URL}}starRating/jquery.js" ></script>
 <script type="text/javascript" src="{{STATIC_URL}}starRating/jquery.MetaData.js" ></script>
@@ -25,22 +39,17 @@
 	  	<input class="searchbox_submit" type="submit" name="sa" value=""/>
 	      </form>
       </div>
-      <!--<form action="/bilaketa">
-          <div class="inline"><input type="text" id="bilatu" name="bilatu" value="" /></div>
-          <div class="inline"><input type="image" src="{{STATIC_URL}}/irudiak/bilatzailea-botoia.png" ></div>
-          <div style="clear: both"></div>
-      </form>-->
   </div>
   <div id="header">
   	<a href="/" >
   	<table>
   		<tr>
 			<td>
-				<img src="{{STATIC_URL}}irudiak/tutoreus_logo.png"/>
+				<img src="{{STATIC_URL}}irudiak/tutoreus_logo.png" alt="Tutoreus logotipoa"/>
 			</td>
 			<td>
 				<h1>Tutoreus</h1>
-    			<h2>Aplikazio ezberdinen tutorialak euskaraz</h2>
+    		<h2 class="tagline">Hainbat aplikazioren tutorialak euskaraz</h2>
 			</td>	
   		</tr>
   	</table>
@@ -49,83 +58,83 @@
   <!--//end #headern//-->
   <div id="navbar">
     <ul>
-      <li><a href="/">Sarrera</a></li>
-      <li><a href="/nor-gara/">Nor gara</a></li>
-      <li><a href="/tutorialak/">Tutorialak</a></li>
-      <li><a href="/aplikazioak/">Aplikazioak</a></li>
-      <li><a href="/gaiak/">Gaiak</a></li>
-      <li><a href="/berriak/">Berriak</a></li>
-      <li><a href="/kontaktua/">Kontaktua</a></li>
+      {{ request.get_full_path|mainmenu }}
     </ul>
   </div>
   <!--//end #navbar//-->
   
   <div id="mainContent">
-  {% block subheader%}
-  {%if base%}
-  <h2>{{base.izenburua}}</h2>
-  <h3>{{base.azpi_izenburua}}</h3>
-  <p>{{base.desk}}</p>
-  {%endif%}
-  <hr />
-  {%endblock%}
-  
-  {% block content %}
-  <div id="navBar">
-	  <ul class="tabrow">
-	      <li class="selected">
-		  <a href="/" >Azkenak</a>
-	      </li>
-	      <li>
-		  <a href="/tutorialak/bozkatuenak/" >Bozkatuenak</a>
-	      </li>
-	  </ul>
-  </div>
-  <div id="tutoContainer">
-  	{%for tutoriala in tutorialak%}
-  	<div id="box_1" >
-    	<a href="/tutorialak/{{tutoriala.slug}}/" ><div class="smallImage" style="background:url({{tutoriala.argazkia.get_small_url}}) no-repeat;"></div></a>
-		<div>
-			<table>
-				<tr>
-					<td>
-					<h2><a href="/tutorialak/{{tutoriala.slug}}/">{{tutoriala.izenburua}}</a></h2>
-    				<p>
-    					{%for 1 in 10|get_range%}
-    					<input name="star-{{tutoriala.slug}}" type="radio" class="star {split:2}" disabled="disabled" {%if forloop.counter == tutoriala.get_rating%}checked="checked" {%endif%}/>
-            			{%endfor%}   		
-    				</p>
-					</td>	
-					<td>
-					 <img class="indexIcon" src="{{tutoriala.aplikazioa.logoa.get_icon_url}}" alt="{{tutoriala.aplikazioa.logoa.title}}" />
-					</td>			
-				</tr>			
-			</table>
-		</div>    	
-  	</div>
-  	{%endfor%}
-  	<div style="clear: both"></div>
-   <div id="pagination">
-        	{% if tutorialak.has_previous %}
-            	<a href="?orria={{ tutorialak.previous_page_number }}"><<</a>
-         {%else%}
-               <span class="disabled_pagination"><<</span>
-        	{% endif %}
-        	<span class="active_link">{{ tutorialak.number }}</span>
-        	{%if tutorialak.has_next%}
-        	      <span>...</span>
-               <a href="?orria={{ tutorialak.paginator.num_pages }}">{{ tutorialak.paginator.num_pages }}</a>
-         {%endif%}
-        	{% if tutorialak.has_next %}
-            	<a href="?orria={{ tutorialak.next_page_number }}">>></a>
-         {%else%}
-               <span class="disabled_pagination">>></span>
-        	{% endif %}
-	</div>
-  </div>
-  {% endblock %}
-  
-  {%block submenu%}{%endblock%}
+    {% block subheader%}
+    {%if base%}
+    <h2>{{base.izenburua}}</h2>
+    <h3>{{base.azpi_izenburua}}</h3>
+    <p>{{base.desk}}</p>
+    {%endif%}
+    <hr />
+    {%endblock%}
+    
+    {% block content %}
+    <div id="tabBar">
+      <ul class="tabrow">
+      {{ request.get_full_path|tabmenu }}
+      </ul>
+  	  <!-- <ul class="tabrow">
+  	      <li class="selected">
+  		  <a href="/" >Azkenak</a>
+  	      </li>
+  	      <li>
+  		  <a href="/sarrera/bozkatuenak/" >Bozkatuenak</a>
+  	      </li>
+  	  </ul> -->
+    </div>
+    <div id="tutoContainer">
+    	{%for tutoriala in tutorialak%}
+    	<div id="box_1" >
+      	<a href="/tutorialak/{{tutoriala.slug}}/" ><div class="smallImage" style="background:url({{tutoriala.argazkia.get_small_url}}) no-repeat;"></div></a>
+  		<div>
+  			<table>
+  				<tr>
+  					<td>
+  					<h2><a href="/tutorialak/{{tutoriala.slug}}/">{{tutoriala.izenburua}}</a></h2>
+      				<p>
+      					{%for 1 in 10|get_range%}
+      					<input name="star-{{tutoriala.slug}}" type="radio" class="star {split:2}" disabled="disabled" {%if forloop.counter == tutoriala.get_rating%}checked="checked" {%endif%}/>
+              			{%endfor%}   		
+      				</p>
+  					</td>	
+  					<td>
+  					 <img class="indexIcon" src="{{tutoriala.aplikazioa.logoa.get_icon_url}}" alt="{{tutoriala.aplikazioa.logoa.title}}" />
+  					</td>			
+  				</tr>			
+  			</table>
+  		</div>    	
+    	</div>
+    	{%endfor%}
+    	<div style="clear: both"></div>
+      <div id="pagContainer">
+           <ul id="pagination">
+           {% if tutorialak.has_previous %}
+              	<li class="previous"><a href="?orria={{ tutorialak.previous_page_number }}"><< Aurrekoa</a></li>
+           {%else%}
+                <li class="previous-off"><< Aurrekoa</li>
+          	{% endif %}
+          	    <li class="active">{{ tutorialak.number }}</li>
+          	{%if tutorialak.has_next%}
+          	    <span>...</span>
+                <li><a href="?orria={{ tutorialak.paginator.num_pages }}">{{ tutorialak.paginator.num_pages }}</a><li>
+           {%endif%}
+          	{% if tutorialak.has_next %}
+              	<li class="next"><a href="?orria={{ tutorialak.next_page_number }}"> Hurrengoa >></a></li>
+           {%else%}
+                <li class="next-off">Hurrengoa >></li>
+          	{% endif %}
+          </ul>
+  	  </div>
+    
+    </div>
+    {% endblock %}
+    
+    {%block submenu%}{%endblock%}
   </div>
   <hr />
   <div id="footerContainer">
@@ -133,7 +142,7 @@
 {% azken_berriak %}
   
   <div id="footer">
-	<a target="_blank" href="http:/www.codesyntax.com">Code Syntax</a> |  <a href="/sitemap.xml">Site Map</a>
+	<a target="_blank" href="http://www.codesyntax.com">Code Syntax</a> |  <a href="/sitemap.xml">Site Map</a>
 	<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.eu"><img alt="Creative Commons-en baimena" 		style="border-width:0;vertical-align:middle;" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" /></a>
   </div>
   <!--//end #footer//-->

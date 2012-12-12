@@ -6,6 +6,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import Http404
+from django.shortcuts import get_object_or_404
 
 def index(request):
     h = {}
@@ -16,7 +17,7 @@ def index(request):
     
 def tutoriala(request,slug):
     h = {}
-    h['item'] = Tutoriala.objects.filter(slug=slug)[0]
+    h['item'] = get_object_or_404(Tutoriala,slug=slug)
     h['berriak'] = Berria.objects.filter(publikoa_da=True).order_by('-pub_date')[:5]
     return render_to_response('tutorialak/tutoriala.html', h,context_instance=RequestContext(request))
     
@@ -35,7 +36,7 @@ def gaia(request,slug):
     
 def tutorialak_aplikazioa(request,aplikazioa):
     h = {}
-    tutorial_list = Tutoriala.objects.filter(aplikazioa__izena=aplikazioa).order_by('-pub_date')
+    tutorial_list = Tutoriala.objects.filter(aplikazioa__izena=aplikazioa,publikoa_da=True).order_by('-pub_date')
     paginator = Paginator(tutorial_list, 6)
     page = request.GET.get('orria')
     try:
@@ -53,7 +54,7 @@ def tutorialak_aplikazioa(request,aplikazioa):
     
 def tutorialak_gaia(request,gaia):
     h = {}
-    tutorial_list = Tutoriala.objects.filter(gaia__izena=gaia).order_by('-pub_date')
+    tutorial_list = Tutoriala.objects.filter(gaia__izena=gaia,publikoa_da=True).order_by('-pub_date')
     paginator = Paginator(tutorial_list, 6)
     page = request.GET.get('orria')
     try:

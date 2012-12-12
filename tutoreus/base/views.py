@@ -8,7 +8,7 @@ from tutoreus.berriak.models import Berria
 
 def index(request):
     h = {}
-    tutorial_list = Tutoriala.objects.all().order_by('-pub_date')
+    tutorial_list = Tutoriala.objects.filter(publikoa_da=True).order_by('-pub_date')
     paginator = Paginator(tutorial_list, 8)
     page = request.GET.get('orria')
     try:

@@ -11,28 +11,32 @@
 
 {% block content%}
 <div class="berriaContent">
-{%for berria in zerr_berriak%}
-<h2><a href="{{berria.slug}}" >{{berria.izenburua}}</a></h2>
-<div class="date"><strong>{{berria.pub_date|date:"Y/m/d H:i"}}</strong></div>
-<p>{{berria.get_desk_txikia|safe}}</p>
-<a href="{{berria.slug}}" >Gehiago irakurri...</a>
-{%endfor%}
-   <div id="pagination">
+    <div class="berria">
+        {%for berria in zerr_berriak%}
+        <h2><a href="{{berria.slug}}" >{{berria.izenburua}}</a></h2>
+        <div class="date"><strong>{{berria.pub_date|date:"Y/m/d H:i"}}</strong></div>
+        <p>{{berria.get_desk_txikia|safe}}</p>
+        <a class="more" href="{{berria.slug}}" >Gehiago irakurri...</a>
+        {%endfor%}
+    </div>
+   <div id="pagContainer">
+      <ul id="pagination">
         	{% if zerr_berriak.has_previous %}
-            	<a href="?orria={{ zerr_berriak.previous_page_number }}"><<</a>
+            	<li class="previous"><a href="?orria={{ zerr_berriak.previous_page_number }}"><< Aurrekoa</a></li>
          {%else%}
-               <span class="disabled_pagination"><<</span>
+               <li class="previous-off"><< Aurrekoa</li>
         	{% endif %}
-        	<span class="active_link">{{ zerr_berriak.number }}</span>
+        	<li class="active">{{ zerr_berriak.number }}</li>
         	{%if zerr_berriak.has_next%}
-        	      <span>...</span>
-               <a href="?orria={{ zerr_berriak.paginator.num_pages }}">{{ zerr_berriak.paginator.num_pages }}</a>
+        	    <span>...</span>
+              <li><a href="?orria={{ zerr_berriak.paginator.num_pages }}">{{ zerr_berriak.paginator.num_pages }}</a></li>
          {%endif%}
         	{% if zerr_berriak.has_next %}
-            	<a href="?orria={{ zerr_berriak.next_page_number }}">>></a>
+            	<li class="next"><a href="?orria={{ zerr_berriak.next_page_number }}">Hurrengoa >></a></li>
          {%else%}
-               <span class="disabled_pagination">>></span>
+               <li class="next-off">Hurrengoa >></li>
         	{% endif %}
+      </ul>
 	</div>
 </div>
 {%endblock%}
@@ -51,7 +55,7 @@
   		height: 300,
   		theme: {
     		shell: {
-      		background: '#8ec1da',
+      		background: '#3b3f46',
       		color: '#ffffff'
     		},
     		tweets: {

@@ -1,16 +1,27 @@
 {% extends "base/index.html" %}
-{%load breadcrumbs%}
+{% load breadcrumbs include %}
 {% load comments %}
 
 {%if item%}
 {%block pageTitle%} | {{item.izenburua}}{%endblock%}
+
 {%block js%}
+<script type="text/javascript" src="{{STATIC_URL}}js/lightbox.js"></script>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 <script type="text/javascript" src="{{STATIC_URL}}starRating/jquery.js" ></script>
 <script type="text/javascript" src="{{STATIC_URL}}starRating/jquery.MetaData.js" ></script>
 <script type="text/javascript" src="{{STATIC_URL}}starRating/jquery.rating.js" ></script>
 <script type="text/javascript" src="{{STATIC_URL}}starRating/ratingcall.js" ></script>
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}starRating/jquery.rating.css" media="screen,projection" />
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@tutoreus_info">
+<meta name="twitter:creator" content="@tutoreus_info">
+<meta name="twitter:url" content="{{request.get_full_path}}">
+<meta name="twitter:title" content="{{item.izenburua}}">
+<meta name="twitter:description" content="{{item.desk|safe}}">
+<meta name="twitter:image" content="{{item.argazkia.get_small_url}}">
+
 {%endblock%}
 
 {% block subheader%}
@@ -18,49 +29,9 @@
     <h1>{{item.izenburua}}</h1>
 {%endblock%}
 {% block content%}
-<script>
-$(document).ready(function() {
-         $('.auto-submit-star').rating({
-		  callback: function(value, link){
-		   var slug = window.location.pathname;
-                   slug = slug.replace('/tutorialak/','').replace('/','');
-		   // To submit the form via ajax:
-		   ajaxSubmit(value,slug);
-		  }
- 	});
-    });
 
-    function AjaxSucceeded(result) {
-        if (result == 'True'){
-            alert('Mila esker zure bozkagatik!')
-        }
-        else{
-            alert('Ezin izan dugu zure bozka erregistratu...')
-        }
-        
-    }
-   
-    function AjaxFailed(result) {
-         alert(result.status + ' ' + result.statusText);
-    }
-    
-    function ajaxSubmit(value,slug){
-        $.ajax({
-                type: "GET",
-                url: "/rating",
-                data: "value=" + value +"&slug="+ slug,
-                success: function(msg) {                    
-                    var delay = function() {
-                        AjaxSucceeded(msg);
-                    };
-                    setTimeout(delay, 150);
-                },
-                error: AjaxFailed
-        });       
-    }
-</script>
 	<div id="bideoContainer">
-    	<div class="inline"><iframe src="http://player.vimeo.com/video/{{item.get_url}}" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div>         
+    	<div class="inline">{{item|get_bideo|safe}}</div>         
       <div id="bideoInfo" class="inline">
         	<h3>Datu Teknikoak</h3>
         	<hr/>
@@ -94,7 +65,7 @@ $(document).ready(function() {
 						<p>Publikatua:</p>					
 					</td>
 					<td>
-						<span class="berezia">{{item.pub_date}}</span>				
+						<span class="berezia">{{item.pub_date|date:"Y/m/d H:i"}}</span>				
 					</td>			
 				</tr> 
 				<tr>
@@ -102,7 +73,7 @@ $(document).ready(function() {
 						<p>Egilea:</p>					
 					</td>
 					<td>
-						<span class="berezia">{{item.erabiltzailea}}</span>		
+						<span class="berezia">{{item.erabiltzailea.get_full_name}}</span>		
 					</td>			
 				</tr>
 				<tr>
@@ -141,7 +112,7 @@ $(document).ready(function() {
    {%if item.argazkia%}
     <div id="emaitza">     
 	<h2>Emaitza</h2>
-   	<p><img src="{{item.argazkia.get_small_url}}" alt="{{item.argazkia}}"/></p>
+   	<p><a href="{{item.argazkia.get_full_url}}" rel="lightbox" title="{{item.argazkia.caption}}"><img class="shadow" src="{{item.argazkia.get_small_url}}" alt="{{item.argazkia}}"/></a></p>
    </div>
    {%endif%}
     

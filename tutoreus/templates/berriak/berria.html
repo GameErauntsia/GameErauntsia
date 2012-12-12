@@ -5,18 +5,53 @@
 {%if item%}
 
 {%block pageTitle%} | {{item.izenburua}}{%endblock%}
-{%block js%}<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-{%endblock%}
+{% block js %}<script type="text/javascript" src="{{STATIC_URL}}js/lightbox.js"></script>{% endblock %}
+
 {% block subheader%}
     <div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
-    <h1>{{item.izenburua}}</h1>
 {%endblock%}
 {% block content%}
-<div class="date"><strong>{{item.pub_date|date:"Y/m/d H:i"}}</strong></div>
 <div class="berriaContent">
-	<p>{{item.desk|safe}}</p>
-	<a href="https://twitter.com/share" class="twitter-share-button" data-via="tutoreus_info">Txiokatu</a>	
-	{% include "iruzkinak.html" %}
+  <div class="berria">
+    <h1>{{item.izenburua}}</h1>
+<!--    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+    </script>-->
+
+<!--     <div class="socialButton">
+            <ul>
+                <li class="twitter">
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-via="tutoreus_info">Txiokatu</a>
+                </li>
+                <li class="gplus">
+                    <div class="g-plus" data-action="share" data-annotation="bubble"></div>
+                    <script type="text/javascript">
+			    window.___gcfg = {lang: 'eu'};
+
+			    (function() {
+			    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+			    po.src = 'https://apis.google.com/js/plusone.js';
+			    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+			    })();
+	            </script>
+                </li>
+                <li class="facebook">
+                    <div id="fb-root"></div>
+                    <script>(function(d, s, id) {
+			  var js, fjs = d.getElementsByTagName(s)[0];
+			  if (d.getElementById(id)) return;
+			  js = d.createElement(s); js.id = id;
+			  js.src = "//connect.facebook.net/eu_ES/all.js#xfbml=1";
+			  fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+	            </script>
+		    <div class="fb-like" data-send="false" data-layout="button_count" data-width="50" data-show-faces="false"></div>
+                </li>
+            </ul>
+      </div> -->
+      <div class="date"><strong>{{item.pub_date|date:"Y/m/d H:i"}}</strong></div>
+      <p>{{item.desk|safe}}</p>	
+  </div>
+  {% include "iruzkinak.html" %}
 </div>
 {%endblock%}
 {% else %}
@@ -37,7 +72,7 @@
   		height: 300,
   		theme: {
     		shell: {
-      		background: '#8ec1da',
+      		background: '#3b3f46',
       		color: '#ffffff'
     		},
     		tweets: {

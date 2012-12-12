@@ -5,7 +5,7 @@ from django.template import RequestContext
 
 def index(request):
     h = {}
-    berria_list = Berria.objects.all().order_by('-pub_date')
+    berria_list = Berria.objects.filter(publikoa_da=True).order_by('-pub_date')
     paginator = Paginator(berria_list, 10)
     page = request.GET.get('orria')
     try:
@@ -17,11 +17,9 @@ def index(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         berriak = paginator.page(paginator.num_pages)
     h['zerr_berriak'] = berriak
-    h['berriak'] = Berria.objects.filter(publikoa_da=True).order_by('-pub_date')[:5]
     return render_to_response('berriak/index.html', h,context_instance=RequestContext(request))
    
 def berria(request,slug):
     h = {}
     h['item'] = Berria.objects.filter(slug=slug)[0]
-    h['berriak'] = Berria.objects.filter(publikoa_da=True).order_by('-pub_date')[:5]
     return render_to_response('berriak/berria.html', h,context_instance=RequestContext(request))

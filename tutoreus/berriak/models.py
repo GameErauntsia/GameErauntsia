@@ -1,6 +1,8 @@
 from django.db import models
+from django.db.models.signals import post_save
 from django.contrib.auth.models import User
-from datetime import datetime 
+from datetime import datetime
+from tutoreus.utils import post_to_twitter
 
 class Berria(models.Model):
     izenburua = models.CharField(max_length=64)
@@ -26,3 +28,5 @@ class Berria(models.Model):
 
     def get_absolute_url(self):
         return "/azken-berriak/feed/"
+
+post_save.connect(post_to_twitter, sender=Berria)

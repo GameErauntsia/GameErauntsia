@@ -3,6 +3,8 @@ setup.py
 tutoreus/__init__.py
 tutoreus/settings.py
 tutoreus/urls.py
+tutoreus/utils.py
+tutoreus/views.py
 tutoreus.egg-info/PKG-INFO
 tutoreus.egg-info/SOURCES.txt
 tutoreus.egg-info/dependency_links.txt
@@ -26,7 +28,6 @@ tutoreus/base/views.py
 tutoreus/base/templatetags/__init__.py
 tutoreus/base/templatetags/breadcrumbs.py
 tutoreus/base/templatetags/include.py
-tutoreus/base/templatetags/tutoreus.py
 tutoreus/berriak/__init__.py
 tutoreus/berriak/admin.py
 tutoreus/berriak/forms.py

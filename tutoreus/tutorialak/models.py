@@ -3,7 +3,9 @@ from django.contrib.auth.models import User
 
 from photologue.models import Photo
 from tutoreus.aplikazioak.models import Aplikazioa
-from datetime import datetime 
+from datetime import datetime
+from tutoreus.utils import post_to_twitter
+from django.db.models.signals import post_save
 
 class Gaia(models.Model):
     izena = models.CharField(max_length=64)
@@ -58,7 +60,12 @@ class Tutoriala(models.Model):
         return int(self.get_puntuak()*2)
     
     def get_url(self):
-    	return self.bideoa[17:]
+        url = ''
+        if self.bideoa.startswith('http://vimeo.com'):
+            url = self.bideoa.replace('http://vimeo.com/','')
+        elif self.bideoa.startswith('http://youtu.be'):
+            url = self.bideoa.replace('http://youtu.be/','')
+    	return url
     
     class Meta:    
         verbose_name = "tutoriala"
@@ -67,4 +74,4 @@ class Tutoriala(models.Model):
     def __unicode__(self):
         return u'%s' % (self.izenburua)
         
-        
+post_save.connect(post_to_twitter, sender=Tutoriala)    

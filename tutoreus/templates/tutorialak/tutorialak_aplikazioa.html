@@ -20,7 +20,7 @@
 					<h2><a href="/tutorialak/{{tutoriala.slug}}/">{{tutoriala.izenburua}}</a></h2>
     				<p>
     					{%for 1 in 10|get_range%}
-    					<input name="star-{{tutoriala.slug}}" type="radio" class="star {split:2}" disabled="disabled" {%if forloop.counter == tutoriala.puntuak%}checked="checked" {%endif%}/>
+    					<input name="star-{{tutoriala.slug}}" type="radio" class="star {split:2}" disabled="disabled" {%if forloop.counter == tutoriala.get_rating%}checked="checked" {%endif%}/>
             			{%endfor%}   		
     				</p>
 					</td>	
@@ -32,23 +32,25 @@
 		</div>    	
   	</div>
   	{%endfor%}
-  	<div style="clear: both"></div>
-   <div id="pagination">
+   <div style="clear: both"></div>
+   <div id="pagContainer">
+        <ul id="pagination">
         	{% if tutorialak.has_previous %}
-            	<a href="?orria={{ tutorialak.previous_page_number }}"><<</a>
+            	<li class="previous"><a href="?orria={{ tutorialak.previous_page_number }}"><< Aurrekoa</a><li>
          {%else%}
-               <span class="disabled_pagination"><<</span>
+               <li class="previous-off"><< Aurrekoa</li>
         	{% endif %}
-        	<span class="active_link">{{ tutorialak.number }}</span>
+        	     <li class="active">{{ tutorialak.number }}</li>
         	{%if tutorialak.has_next%}
         	      <span>...</span>
-               <a href="?orria={{ tutorialak.paginator.num_pages }}">{{ tutorialak.paginator.num_pages }}</a>
+               <li><a href="?orria={{ tutorialak.paginator.num_pages }}">{{ tutorialak.paginator.num_pages }}</a></li>
          {%endif%}
         	{% if tutorialak.has_next %}
-            	<a href="?orria={{ tutorialak.next_page_number }}">>></a>
+            	<li class="next"><a href="?orria={{ tutorialak.next_page_number }}">Hurrengoa >></a></li>
          {%else%}
-               <span class="disabled_pagination">>></span>
+               <li class="next-off">Hurrengoa >></li>
         	{% endif %}
+        </ul>
 	</div>
 {%else%}
    <p>Ez da tutorialik aurkitu!</p>
