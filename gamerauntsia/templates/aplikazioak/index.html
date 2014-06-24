@@ -1,0 +1,33 @@
+{% extends "base/index.html" %}
+{%load breadcrumbs include%}
+
+{%block pageTitle%} | Aplikazioak{%endblock%}
+
+{%block subheader%}
+<div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
+<h1>Aplikazioak</h1>
+{%endblock%}
+
+{% block content %}
+<div id="tutoIndexBox" class="inline">
+{% if zerr_aplikazioa %}
+    <ul id="quad" class="sinple">
+    {% for aplikazioa in zerr_aplikazioa %}
+        <li>
+	    <a href="/aplikazioak/{{ aplikazioa.slug }}/">
+                <div class="themeBox">
+		    <img src="{{ aplikazioa.logoa.get_thumbnail_url }}"/>
+		    <span>{{aplikazioa.izena}}</span>
+                </div>
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Aplikaziorik ez da aurkitu.</p>
+{% endif %}
+</div>
+{% endblock %}
+{%block submenu%}
+    {% top_tutorialak %}
+{%endblock%}

@@ -3,7 +3,7 @@ import sys, os
 
 version = '0.01'
 
-setup(name='tutoreus',
+setup(name='gamerauntsia',
       version=version,
       description="Tutoreus euskarazko open-source tutorialak",
       long_description="""\

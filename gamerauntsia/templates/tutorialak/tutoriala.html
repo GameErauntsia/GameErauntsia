@@ -1,0 +1,124 @@
+{% extends "base/index.html" %}
+{% load breadcrumbs include %}
+{% load comments %}
+
+{%if item%}
+{%block pageTitle%} | {{item.izenburua}}{%endblock%}
+
+{%block js%}
+<script type="text/javascript" src="{{STATIC_URL}}js/lightbox.js"></script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<script type="text/javascript" src="{{STATIC_URL}}starRating/jquery.js" ></script>
+<script type="text/javascript" src="{{STATIC_URL}}starRating/jquery.MetaData.js" ></script>
+<script type="text/javascript" src="{{STATIC_URL}}starRating/jquery.rating.js" ></script>
+<script type="text/javascript" src="{{STATIC_URL}}starRating/ratingcall.js" ></script>
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}starRating/jquery.rating.css" media="screen,projection" />
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@tutoreus_info">
+<meta name="twitter:creator" content="@tutoreus_info">
+<meta name="twitter:url" content="{{request.get_full_path}}">
+<meta name="twitter:title" content="{{item.izenburua}}">
+<meta name="twitter:description" content="{{item.desk|safe}}">
+<meta name="twitter:image" content="{{item.argazkia.get_small_url}}">
+
+{%endblock%}
+
+{% block subheader%}
+	<div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
+    <h1>{{item.izenburua}}</h1>
+{%endblock%}
+{% block content%}
+
+	<div id="bideoContainer">
+    	<div class="inline">{{item|get_bideo|safe}}</div>         
+      <div id="bideoInfo" class="inline">
+        	<h3>Datu Teknikoak</h3>
+        	<hr/>
+        	<table>
+				<tr>
+					<td>
+						<p>Iraupena:</p>					
+					</td>
+					<td>
+						<span class="berezia">{%if item.iraupena_min%}{{item.iraupena_min}}m {%endif%}{{item.iraupena_seg}}s</span>	
+					</td>			
+				</tr>
+				<tr>
+					<td>
+						<p>Softwarea:</p>					
+					</td>
+					<td>
+						<span class="berezia"><a href="/aplikazioak/{{item.aplikazioa.slug}}">{{item.aplikazioa}}</a></span>
+					</td>			
+				</tr>
+				<tr>
+					<td>
+						<p>Zailtasuna:</p>					
+					</td>
+					<td>
+						<span class="berezia">{{item.zailtasuna.izena}}</span>					
+					</td>			
+				</tr>
+				<tr>
+					<td>
+						<p>Publikatua:</p>					
+					</td>
+					<td>
+						<span class="berezia">{{item.pub_date|date:"Y/m/d H:i"}}</span>				
+					</td>			
+				</tr> 
+				<tr>
+					<td>
+						<p>Egilea:</p>					
+					</td>
+					<td>
+						<span class="berezia">{{item.erabiltzailea.get_full_name}}</span>		
+					</td>			
+				</tr>
+				<tr>
+					<td>
+						<p>Gaiak:</p>					
+					</td>
+					<td>
+            		{%for gai in item.gaia.all%}
+            			<span class="berezia"><a href="/gaiak/{{gai.slug}}">{{gai.izena}}</a></span>
+            		{%endfor%}	
+					</td>			
+				</tr>
+				<tr>
+					<td>
+						<p>Botoak:</p>					
+					</td>
+					<td>
+					<form action="/rating">
+						{%for 1 in 10|get_range%}
+    					<input name="star-{{item.slug}}" type="radio" class="auto-submit-star {%if forloop.counter == 1%}required {%endif%} star-rating-on {split:2}" {%if forloop.counter == item.get_rating%}checked="checked" {%endif%} value="{{forloop.counter}}"/>
+            			{%endfor%}
+            			<br>
+            			<small>{{item.botoak}} / {{item.get_puntuak}} puntu</small>
+					</form>
+					</td>			
+				</tr>    	
+        	</table>
+        </div>
+        <div style="clear: both"/>
+    </div>
+    
+    <div id="tutoDesk">
+        <p>{{item.desk|safe}}</p>
+    </div>
+
+   {%if item.argazkia%}
+    <div id="emaitza">     
+	<h2>Emaitza</h2>
+   	<p><a href="{{item.argazkia.get_full_url}}" rel="lightbox" title="{{item.argazkia.caption}}"><img class="shadow" src="{{item.argazkia.get_small_url}}" alt="{{item.argazkia}}"/></a></p>
+   </div>
+   {%endif%}
+    
+   {% include "iruzkinak.html" %}
+    
+{%endblock%}
+{% else %}
+    <p>Ezin izan da tutoriala kargatu.</p>
+{% endif %}

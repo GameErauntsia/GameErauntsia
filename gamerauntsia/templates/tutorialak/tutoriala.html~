@@ -1,0 +1,127 @@
+{% extends "base/index.html" %}
+{%load breadcrumbs%}
+{% load comments %}
+
+{%if item%}
+{%block pageTitle%}<title>BlenderEUS | {{item.izenburua}}</title>{%endblock%}
+{%block js%}
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<script type="text/javascript" src="{{MEDIA_URL}}starRating/jquery.js" ></script>
+<script type="text/javascript" src="{{MEDIA_URL}}starRating/jquery.MetaData.js" ></script>
+<script type="text/javascript" src="{{MEDIA_URL}}starRating/jquery.rating.js" ></script>
+<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}starRating/jquery.rating.css" media="screen,projection" />
+{%endblock%}
+{% block subheader%}
+	<div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
+    <h1>{{item.izenburua}}</h1>
+{%endblock%}
+{% block content%}
+<script>
+$(function(){
+ $('.auto-submit-star').rating({
+  callback: function(value, link){
+   // 'this' is the hidden form element holding the current value
+   // 'value' is the value selected
+   // 'element' points to the link element that received the click.
+   //alert("The value selected was '" + value + "'\n\nWith this callback function I can automatically submit the form with this code:\nthis.form.submit();");
+   
+   // To submit the form automatically:
+   this.form.submit();
+   
+   // To submit the form via ajax:
+   //$(this.form).ajaxSubmit();
+  }
+ });
+});
+</script>
+	<div id="bideoContainer">
+    	<div class="inline"><iframe src="http://player.vimeo.com/video/{{item.get_url}}" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="urtzai">Tweet</a>         
+      <div id="bideoInfo" class="inline">
+        	<h3>Datu Teknikoak</h3>
+        	<hr/>
+        	<table>
+				<tr>
+					<td>
+						<p>Iraupena:</p>					
+					</td>
+					<td>
+						<span class="berezia">{%if item.iraupena_min%}{{item.iraupena_min}}m {%endif%}{{item.iraupena_seg}}s</span>	
+					</td>			
+				</tr>
+				<tr>
+					<td>
+						<p>Softwarea:</p>					
+					</td>
+					<td>
+						<span class="berezia"><a href="/aplikazioak/{{item.aplikazioa.slug}}">{{item.aplikazioa}}</a></span>
+					</td>			
+				</tr>
+				<tr>
+					<td>
+						<p>Zailtasuna:</p>					
+					</td>
+					<td>
+						<span class="berezia">{{item.zailtasuna.izena}}</span>					
+					</td>			
+				</tr>
+				<tr>
+					<td>
+						<p>Publikatua:</p>					
+					</td>
+					<td>
+						<span class="berezia">{{item.pub_date}}</span>				
+					</td>			
+				</tr> 
+				<tr>
+					<td>
+						<p>Egilea:</p>					
+					</td>
+					<td>
+						<span class="berezia">{{item.erabiltzailea}}</span>		
+					</td>			
+				</tr>
+				<tr>
+					<td>
+						<p>Gaiak:</p>					
+					</td>
+					<td>
+            		{%for gai in item.gaia.all%}
+            			<span class="berezia"><a href="/gaiak/{{gai.slug}}">{{gai.izena}}</a></span>
+            		{%endfor%}	
+					</td>			
+				</tr>
+				<tr>
+					<td>
+						<p>Botoak:</p>					
+					</td>
+					<td>
+					<form action="/rating">
+						{%for 1 in 10|get_range%}
+    					<input name="star-{{item.slug}}" type="radio" class="auto-submit-star {%if forloop.counter == 1%}required {%endif%} star-rating-on {split:2}" {%if forloop.counter == item.puntuak%}checked="checked" {%endif%} title="{{forloop.counter}}"/>
+            			{%endfor%}
+            			<br>
+            			<small>{{item.botoak}} / {{item.get_puntuak}} puntu</small>
+					</form>
+					</td>			
+				</tr>    	
+        	</table>
+        </div>
+        <div style="clear: both"/>
+    </div>
+    
+    <div id="tutoDesk">
+        <p>{{item.desk}}</p>
+    </div>
+   
+   {%if item.argazkia%}     
+	<h2>Emaitza</h2>
+   <img src="{{item.argazkia.get_small_url}}" alt="{{item.argazkia}}"/>
+   {%endif%}
+    
+   {% include "iruzkinak.html" %}
+    
+{%endblock%}
+{% else %}
+    <p>Ezin izan da tutoriala kargatu.</p>
+{% endif %}

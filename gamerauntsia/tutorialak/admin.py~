@@ -1,0 +1,27 @@
+from tutorialak.models import Tutoriala, Gaia, Zailtasuna
+from django.contrib import admin
+from tutorialak.forms import TutorialAdminForm
+
+from datetime import datetime
+from django.utils import timezone
+
+class TutoAdmin(admin.ModelAdmin):
+    list_display = ('izenburua', 'slug','zailtasuna', 'aplikazioa','pub_date', 'erabiltzailea','publikoa_da')
+    prepopulated_fields = {"slug": ("izenburua",)}
+    form = TutorialAdminForm
+    
+    def get_form(self, request, obj=None, **kwargs):
+         form = super(TutoAdmin, self).get_form(request, obj, **kwargs)
+         form.current_user = request.user
+         return form
+    
+class GaiaAdmin(admin.ModelAdmin):
+    list_display = ('izena','slug')
+    prepopulated_fields = {"slug": ("izena",)}
+    
+class ZailtasunAdmin(admin.ModelAdmin):
+    list_display = ('izena',)
+
+admin.site.register(Tutoriala, TutoAdmin)
+admin.site.register(Gaia, GaiaAdmin)
+admin.site.register(Zailtasuna, ZailtasunAdmin)

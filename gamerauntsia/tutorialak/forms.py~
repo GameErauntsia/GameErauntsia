@@ -1,0 +1,15 @@
+from django import forms
+from tutorialak.models import Tutoriala
+from tinymce.widgets import TinyMCE
+
+class TutorialAdminForm(forms.ModelForm):
+    desk = forms.CharField(widget=TinyMCE(
+               attrs={
+               'mode' : "textareas",
+               'theme' : "advanced",
+               'theme_advanced_layout_manager' : "SimpleLayout",
+               'theme_advanced_toolbar_location' : "top",
+               }))
+
+    class Meta:
+        model = Tutoriala	

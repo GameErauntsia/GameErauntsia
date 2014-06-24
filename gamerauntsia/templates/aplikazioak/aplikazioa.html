@@ -1,0 +1,66 @@
+{% extends "base/index.html" %}
+{%load breadcrumbs%}
+{% load comments %}
+
+{%if aplikazioa%}
+{% block subheader%}
+	<div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
+    <h1>{{aplikazioa.izena}}</h1>
+{%endblock%}
+{% block content%}
+    <div id="bideoContainer">
+    	<div id="desk" class="inline">{{aplikazioa.desk}}</div>
+        <div id="bideoInfo" class="inline">
+        	<h3>Datu Teknikoak</h3>
+        	<hr/>
+        	<table>
+        		<tr>
+					<td>
+						<p>Irudia:</p>					
+					</td>
+					<td>
+						<img src="{{aplikazioa.logoa.get_thumbnail_url}}" alt="{{aplikazioa.izena}} logoa"/>	
+					</td>			
+				</tr>
+				<tr>
+					<td>
+						<p>Lizentzia:</p>					
+					</td>
+					<td>
+						<span>{{aplikazioa.get_lizentzia_display}}</span>	
+					</td>			
+				</tr>
+				<tr>
+					<td>
+						<p>Bertsioa:</p>					
+					</td>
+					<td>
+						<span>{{aplikazioa.bertsioa}}</span>
+					</td>			
+				</tr>
+				<tr>
+					<td>
+						<p>Ataria:</p>					
+					</td>
+					<td>
+						<span><a target="blank" href="{{aplikazioa.url}}">{{aplikazioa.url}}</a></span>					
+					</td>			
+				</tr>
+				{%if aplikazioa.wiki%}
+				<tr>
+					<td>
+						<p>Wikipedia:</p>					
+					</td>
+					<td>
+						<span><a target="blank" href="{{aplikazioa.wiki}}">{{aplikazioa.izena}}</a></span>					
+					</td>			
+				</tr>
+				{%endif%}
+        	</table>
+        </div>
+        <div style="clear: both"/>
+    </div>
+{%endblock%}
+{% else %}
+    <p>Ezin izan da aplikazioa kargatu.</p>
+{% endif %}

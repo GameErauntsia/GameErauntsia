@@ -1,0 +1,41 @@
+{% extends "base/index.html" %}
+{%load breadcrumbs%}
+
+{%if tutoriala%}
+{% block subheader%}
+	<div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
+    <h2>{{tutoriala.izenburua}}</h2>
+	<hr/>
+{%endblock%}
+{% block content%}
+	<div id="bideoContainer">
+    	<iframe src="http://player.vimeo.com/video/{{tutoriala.get_url}}" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+        <div id="bideoInfo">
+        	<h3>Datu Teknikoak</h3>
+        	<hr/>
+        	<p>
+            Iraupena: <br/>
+            Softwarea: <br/>
+            Zailtasuna: {{tutoriala.zailtasuna}}<br/>
+            Publikatua: {{tutoriala.pub_date}}<br/>
+            Egilea: {{tutoriala.erabiltzailea}}<br/>
+            {%comment%}
+            Gaia: 
+            {%for gai in tutoriala.gaia%}
+            {{gai.izena}}
+            {%endfor%}          
+            <br/>
+            {%endcomment%}
+            Botoak: {{tutoriala.botoak}}<br/>
+            </p>
+        </div>
+    </div>
+    
+    <div id="tutoDesk">
+        <p>{{tutoriala.desk}}</p>
+    </div>
+   
+{%endblock%}
+{% else %}
+    <p>Ezin izan da tutoriala kargatu.</p>
+{% endif %}

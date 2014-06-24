@@ -1,0 +1,26 @@
+{% extends "base/index.html" %}
+{%load breadcrumbs%}
+{% load comments %}
+
+{%block subheader%}
+<div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
+<h2>Kontaktua</h2>
+<hr/>
+{%endblock%}
+
+{% block content %}
+<p>Gurekin harremanetan jarrik nahi izan ezkero, bete itzazu hurrengo datuak. Ahalik eta azkarren erantzuten saiatuko gara. Eskerrik asko!</p>
+<div id="contactForm" class="inline">
+<form action="bidali/" method="POST">
+{% csrf_token %}
+<fieldset>
+	<label for="eposta">E-posta: </label><input type="email" name="eposta" placeholder="nire@helbidea.com"/><br/><br/>
+	<textarea name="epostamezua" class="iruzkina" /></textarea><br/>
+	<input type="submit" value="Bidali" />
+</fieldset>
+</form>
+</div>
+<div class="inline">
+<img src="{{STATIC_URL}}irudiak/contact_us.gif" alt="Harremanetan jarri" >
+</div>
+{% endblock %}

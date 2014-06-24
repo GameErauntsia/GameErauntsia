@@ -1,0 +1,79 @@
+{% extends "base/index.html" %}
+{%load breadcrumbs%}
+
+{%block pageTitle%} | Berriak{%endblock%}
+{%block js%}<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+{%endblock%}
+{% block subheader%}
+	<div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
+    <h1>Azken berriak</h1>
+{%endblock%}
+
+{% block content%}
+<div class="berriaContent">
+    <div class="berria">
+        {%for berria in zerr_berriak%}
+        <h2><a href="{{berria.slug}}" >{{berria.izenburua}}</a></h2>
+        <div class="date"><strong>{{berria.pub_date|date:"Y/m/d H:i"}}</strong></div>
+        <p>{{berria.get_desk_txikia|safe}}</p>
+        <a class="more" href="{{berria.slug}}" >Gehiago irakurri...</a>
+        {%endfor%}
+    </div>
+   <div id="pagContainer">
+      <ul id="pagination">
+        	{% if zerr_berriak.has_previous %}
+            	<li class="previous"><a href="?orria={{ zerr_berriak.previous_page_number }}"><< Aurrekoa</a></li>
+         {%else%}
+               <li class="previous-off"><< Aurrekoa</li>
+        	{% endif %}
+        	<li class="active">{{ zerr_berriak.number }}</li>
+        	{%if zerr_berriak.has_next%}
+        	    <span>...</span>
+              <li><a href="?orria={{ zerr_berriak.paginator.num_pages }}">{{ zerr_berriak.paginator.num_pages }}</a></li>
+         {%endif%}
+        	{% if zerr_berriak.has_next %}
+            	<li class="next"><a href="?orria={{ zerr_berriak.next_page_number }}">Hurrengoa >></a></li>
+         {%else%}
+               <li class="next-off">Hurrengoa >></li>
+        	{% endif %}
+      </ul>
+	</div>
+</div>
+{%endblock%}
+{%block submenu%}
+<div class="submenu">
+	<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
+	<script>
+		new TWTR.Widget({
+  		version: 2,
+  		type: 'search',
+  		search: 'tutoreus',
+  		interval: 30000,
+  		title: 'Tutoreus',
+  		subject: 'Tutorialak Euskaraz',
+  		width: 250,
+  		height: 300,
+  		theme: {
+    		shell: {
+      		background: '#3b3f46',
+      		color: '#ffffff'
+    		},
+    		tweets: {
+      		background: '#ffffff',
+      		color: '#444444',
+      		links: '#1985b5'
+    		}
+  		},
+  		features: {
+    		scrollbar: false,
+    		loop: true,
+    		live: true,
+    		behavior: 'default'
+  		}
+		}).render().start();
+	</script>
+	<br>
+	<iframe src="//www.facebook.com/plugins/likebox.php?href=http:%2F%2Fwww.facebook.com%2Fpages%2FTutoreus%2F288348697944020&amp;width=260&amp;height=258&amp;colorscheme=light&amp;show_faces=true&amp;border_color&amp;stream=false&amp;header=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:260px; height:258px;" allowTransparency="true"></iframe>
+</div>
+<div style="clear: both"></div>  
+{%endblock%}

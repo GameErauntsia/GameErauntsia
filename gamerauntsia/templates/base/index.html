@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+{%load breadcrumbs include%}
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://www.w3.org/2005/10/profile">
+<title>Tutoreus{%block pageTitle%}{%endblock%}</title>
+<meta name="description" content="Orotariko aplikazioen tutorialak euskaraz biltzen dituen gunea duzu Tutoreus."/>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/style.css" media="screen,projection" />
+<link rel="stylesheet" href="googleaf6b2cbbb22dca3f.html" type="text/css" media="screen">
+<link rel="icon" type="image/jpg" href="{{STATIC_URL}}irudiak/favicon.jpg" />
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36511204-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+{%block js%}
+<script type="text/javascript" src="{{STATIC_URL}}starRating/jquery.js" ></script>
+<script type="text/javascript" src="{{STATIC_URL}}starRating/jquery.MetaData.js" ></script>
+<script type="text/javascript" src="{{STATIC_URL}}starRating/jquery.rating.js" ></script>
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}starRating/jquery.rating.css" media="screen,projection" />
+{%endblock%}
+</head>
+<body>
+<div id="centerColumn">
+  <div id="postHeader">
+      <div id="searchwrapper">
+	      <form id="cse-search-box" action="/bilaketa">
+	  	<input type="hidden" name="cx" value="017970277364664224976:wvsjq88oys0" />
+	  	<input type="hidden" name="ie" value="UTF-8" />
+	  	<input class="searchbox" type="text" name="q" />
+	  	<input class="searchbox_submit" type="submit" name="sa" value=""/>
+	      </form>
+      </div>
+  </div>
+  <div id="header">
+  	<a href="/" >
+  	<table>
+  		<tr>
+			<td>
+				<img src="{{STATIC_URL}}irudiak/tutoreus_logo.png" alt="Tutoreus logotipoa"/>
+			</td>
+			<td>
+				<h1>Tutoreus</h1>
+    		<h2 class="tagline">Hainbat aplikazioren tutorialak euskaraz</h2>
+			</td>	
+  		</tr>
+  	</table>
+    </a>
+  </div>
+  <!--//end #headern//-->
+  <div id="navbar">
+    <ul>
+      {{ request.get_full_path|mainmenu }}
+    </ul>
+  </div>
+  <!--//end #navbar//-->
+  
+  <div id="mainContent">
+    {% block subheader%}
+    {%if base%}
+    <h2>{{base.izenburua}}</h2>
+    <h3>{{base.azpi_izenburua}}</h3>
+    <p>{{base.desk}}</p>
+    {%endif%}
+    <hr />
+    {%endblock%}
+    
+    {% block content %}
+    <div id="tabBar">
+      <ul class="tabrow">
+      {{ request.get_full_path|tabmenu }}
+      </ul>
+  	  <!-- <ul class="tabrow">
+  	      <li class="selected">
+  		  <a href="/" >Azkenak</a>
+  	      </li>
+  	      <li>
+  		  <a href="/sarrera/bozkatuenak/" >Bozkatuenak</a>
+  	      </li>
+  	  </ul> -->
+    </div>
+    <div id="tutoContainer">
+    	{%for tutoriala in tutorialak%}
+    	<div id="box_1" >
+      	<a href="/tutorialak/{{tutoriala.slug}}/" ><div class="smallImage" style="background:url({{tutoriala.argazkia.get_small_url}}) no-repeat;"></div></a>
+  		<div>
+  			<table>
+  				<tr>
+  					<td>
+  					<h2><a href="/tutorialak/{{tutoriala.slug}}/">{{tutoriala.izenburua}}</a></h2>
+      				<p>
+      					{%for 1 in 10|get_range%}
+      					<input name="star-{{tutoriala.slug}}" type="radio" class="star {split:2}" disabled="disabled" {%if forloop.counter == tutoriala.get_rating%}checked="checked" {%endif%}/>
+              			{%endfor%}   		
+      				</p>
+  					</td>	
+  					<td>
+  					 <img class="indexIcon" src="{{tutoriala.aplikazioa.logoa.get_icon_url}}" alt="{{tutoriala.aplikazioa.logoa.title}}" />
+  					</td>			
+  				</tr>			
+  			</table>
+  		</div>    	
+    	</div>
+    	{%endfor%}
+    	<div style="clear: both"></div>
+      <div id="pagContainer">
+           <ul id="pagination">
+           {% if tutorialak.has_previous %}
+              	<li class="previous"><a href="?orria={{ tutorialak.previous_page_number }}"><< Aurrekoa</a></li>
+           {%else%}
+                <li class="previous-off"><< Aurrekoa</li>
+          	{% endif %}
+          	    <li class="active">{{ tutorialak.number }}</li>
+          	{%if tutorialak.has_next%}
+          	    <span>...</span>
+                <li><a href="?orria={{ tutorialak.paginator.num_pages }}">{{ tutorialak.paginator.num_pages }}</a><li>
+           {%endif%}
+          	{% if tutorialak.has_next %}
+              	<li class="next"><a href="?orria={{ tutorialak.next_page_number }}"> Hurrengoa >></a></li>
+           {%else%}
+                <li class="next-off">Hurrengoa >></li>
+          	{% endif %}
+          </ul>
+  	  </div>
+    
+    </div>
+    {% endblock %}
+    
+    {%block submenu%}{%endblock%}
+  </div>
+  <hr />
+  <div id="footerContainer">
+  
+{% azken_berriak %}
+  
+  <div id="footer">
+	<a target="_blank" href="http://www.codesyntax.com">Code Syntax</a> |  <a href="/sitemap.xml">Site Map</a>
+	<a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.eu"><img alt="Creative Commons-en baimena" 		style="border-width:0;vertical-align:middle;" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" /></a>
+  </div>
+  <!--//end #footer//-->
+  </div>
+</div>
+<!--//end #centerColumn//-->
+</body>
+</html>

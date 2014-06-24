@@ -1,0 +1,73 @@
+{% extends "base/index.html" %}
+{%load breadcrumbs%}
+
+{% if gaia%}
+{%block subheader%}
+<div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
+<h2>{{gaia.izena}} Tutorialak</h2>
+<hr/>
+{%endblock%}
+
+{% block content %}
+<div id="tutoIndexBox" class="inline">
+
+	{%for tutoriala in tutorialak%}
+  	<div id="box_1" >
+    	<a href="/tutorialak/{{tutoriala.slug}}/" ><div class="smallImage" style="background:url({{tutoriala.argazkia.get_small_url}}) no-repeat;"></div></a>
+		<div>
+			<table>
+				<tr>
+					<td>
+					<h2><a href="/tutorialak/{{tutoriala.slug}}/">{{tutoriala.izenburua}}</a></h2>
+    				<p>
+    					{%for 1 in 10|get_range%}
+    					<input name="star-{{tutoriala.slug}}" type="radio" class="star {split:2}" disabled="disabled" {%if forloop.counter == tutoriala.puntuak%}checked="checked" {%endif%}/>
+            			{%endfor%}   		
+    				</p>
+					</td>	
+					<td>
+					 <img class="indexIcon" src="{{tutoriala.aplikazioa.logoa.get_icon_url}}" alt="{{tutoriala.aplikazioa.logoa.title}}" />
+					</td>			
+				</tr>			
+			</table>
+		</div>    	
+  	</div>
+  	{%endfor%}
+  	<div style="clear: both"></div>
+   <div id="pagination">
+        	{% if tutorialak.has_previous %}
+            	<a href="?orria={{ tutorialak.previous_page_number }}"><<</a>
+         {%else%}
+               <span class="disabled_pagination"><<</span>
+        	{% endif %}
+        	<span class="active_link">{{ tutorialak.number }}</span>
+        	{%if tutorialak.has_next%}
+        	      <span>...</span>
+               <a href="?orria={{ tutorialak.paginator.num_pages }}">{{ tutorialak.paginator.num_pages }}</a>
+         {%endif%}
+        	{% if tutorialak.has_next %}
+            	<a href="?orria={{ tutorialak.next_page_number }}">>></a>
+         {%else%}
+               <span class="disabled_pagination">>></span>
+        	{% endif %}
+	</div>
+
+</div>
+{% endblock %}
+{%block submenu%}
+<div class="inline">
+<h3>Azken Tutorialak</h3>
+{% if zerr_tutoriala %}
+    <ul>
+    {% for tutoriala in zerr_tutoriala %}
+        <li><a href="/tutorialak/{{ tutoriala.slug }}/">{{ tutoriala.izenburua }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Tutorialik ez da aurkitu.</p>
+{% endif %}
+</div>
+{%endblock%}
+{%else%}
+    <p>Aplikaziorik ez da aurkitu.</p>
+{%endif%}
