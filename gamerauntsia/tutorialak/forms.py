@@ -1,5 +1,5 @@
 from django import forms
-from tutoreus.tutorialak.models import Tutoriala
+from gamerauntsia.tutorialak.models import Tutoriala
 from tinymce.widgets import TinyMCE
 
 class TutorialAdminForm(forms.ModelForm):

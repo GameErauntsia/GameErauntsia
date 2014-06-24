@@ -1,7 +1,7 @@
-from tutoreus.tutorialak.models import Tutoriala, Gaia
-from tutoreus.aplikazioak.models import Aplikazioa
-from tutoreus.base.models import Base
-from tutoreus.berriak.models import Berria
+from gamerauntsia.tutorialak.models import Tutoriala, Gaia
+from gamerauntsia.aplikazioak.models import Aplikazioa
+from gamerauntsia.base.models import Base
+from gamerauntsia.berriak.models import Berria
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render_to_response
 from django.template import RequestContext

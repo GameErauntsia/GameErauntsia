@@ -1,5 +1,5 @@
 from django.conf import settings
-from tutoreus.berriak.models import Berria
+from gamerauntsia.berriak.models import Berria
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.mail import send_mail

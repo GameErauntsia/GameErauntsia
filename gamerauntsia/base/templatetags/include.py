@@ -1,7 +1,7 @@
 from django import template
 from django.utils.safestring import mark_safe
-from tutoreus.tutorialak.models import Tutoriala
-from tutoreus.berriak.models import Berria
+from gamerauntsia.tutorialak.models import Tutoriala
+from gamerauntsia.berriak.models import Berria
 
 register = template.Library()
 

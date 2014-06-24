@@ -2,9 +2,9 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.http import Http404, HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from tutoreus.tutorialak.models import Tutoriala
-from tutoreus.base.models import Base
-from tutoreus.berriak.models import Berria
+from gamerauntsia.tutorialak.models import Tutoriala
+from gamerauntsia.base.models import Base
+from gamerauntsia.berriak.models import Berria
 
 def index(request):
     h = {}

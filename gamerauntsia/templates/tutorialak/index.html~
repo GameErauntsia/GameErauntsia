@@ -1,5 +1,5 @@
 {% extends "base/index.html" %}
-{% load breadcrumbs tutoreus %}
+{% load breadcrumbs gamerauntsia %}
 
 {%block subheader%}
 <div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>

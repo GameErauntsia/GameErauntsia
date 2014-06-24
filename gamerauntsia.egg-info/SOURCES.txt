@@ -1,6 +1,7 @@
 setup.cfg
 setup.py
 gamerauntsia/__init__.py
+gamerauntsia/local_settings.py
 gamerauntsia/settings.py
 gamerauntsia/urls.py
 gamerauntsia/utils.py

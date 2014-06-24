@@ -1,5 +1,5 @@
 from django import forms
-from tutoreus.berriak.models import Berria
+from gamerauntsia.berriak.models import Berria
 from tinymce.widgets import TinyMCE
 
 class BerriaAdminForm(forms.ModelForm):

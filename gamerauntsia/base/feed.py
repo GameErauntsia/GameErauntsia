@@ -1,5 +1,5 @@
 from django.contrib.syndication.views import Feed
-from tutoreus.berriak.models import Berria
+from gamerauntsia.berriak.models import Berria
 
 class LatestEntriesFeed(Feed):
     title = "BlenderEUS berriak"

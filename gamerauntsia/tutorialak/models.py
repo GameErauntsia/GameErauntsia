@@ -2,9 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 
 from photologue.models import Photo
-from tutoreus.aplikazioak.models import Aplikazioa
+from gamerauntsia.aplikazioak.models import Aplikazioa
 from datetime import datetime
-from tutoreus.utils import post_to_twitter
+from gamerauntsia.utils import post_to_twitter
 from django.db.models.signals import post_save
 
 class Gaia(models.Model):

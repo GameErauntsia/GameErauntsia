@@ -1,8 +1,8 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-{%load breadcrumbs tutoreus%}
+{%load breadcrumbs gamerauntsia%}
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://www.w3.org/2005/10/profile">
-{%block pageTitle%}<title>Tutoreus</title>{%endblock%}
+{%block pageTitle%}<title>gamerauntsia</title>{%endblock%}
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}css/style.css" media="screen,projection" />
 <link rel="icon" type="image/jpg" href="{{MEDIA_URL}}irudiak/favicon.jpg" />
@@ -30,7 +30,7 @@
 				<img src="{{MEDIA_URL}}irudiak/blender_logo.png"/>
 			</td>
 			<td>
-				<h1>Tutoreus</h1>
+				<h1>gamerauntsia</h1>
     			<h2>Aplikazio ezberdinen tutorialak euskaraz</h2>
 			</td>	
   		</tr>

@@ -1,6 +1,6 @@
-from tutoreus.tutorialak.models import Tutoriala, Gaia, Zailtasuna
+from gamerauntsia.tutorialak.models import Tutoriala, Gaia, Zailtasuna
 from django.contrib import admin
-from tutoreus.tutorialak.forms import TutorialAdminForm
+from gamerauntsia.tutorialak.forms import TutorialAdminForm
 
 from datetime import datetime
 from django.utils import timezone

@@ -1,8 +1,8 @@
 from django.conf.urls import patterns, include, url
-from tutoreus import settings
+from gamerauntsia import settings
 
 urlpatterns = patterns('',
-    url(r'^$', 'tutoreus.tutorialak.views.index', name='tutorialak_index'),
+    url(r'^$', 'gamerauntsia.tutorialak.views.index', name='tutorialak_index'),
 )
 
 if settings.DEBUG:
