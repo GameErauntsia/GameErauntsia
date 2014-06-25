@@ -3,7 +3,7 @@
 
 {%block subheader%}
 <div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
-<h2>Aplikazioak</h2>
+<h2>Jokoak</h2>
 <hr/>
 {%endblock%}
 

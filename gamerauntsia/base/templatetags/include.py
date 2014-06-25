@@ -1,14 +1,14 @@
 from django import template
 from django.utils.safestring import mark_safe
-from gamerauntsia.tutorialak.models import Tutoriala
+from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.berriak.models import Berria
 
 register = template.Library()
 
-@register.inclusion_tag('top_tutorialak.html')
-def top_tutorialak():
+@register.inclusion_tag('top_gameplayak.html')
+def top_gameplayak():
     h = {}
-    h['zerr_tutoriala'] = Tutoriala.objects.filter(publikoa_da=True).order_by('-pub_date')[:10]
+    h['zerr_tutoriala'] = GamePlaya.objects.filter(publikoa_da=True).order_by('-pub_date')[:10]
     return h
  
 @register.inclusion_tag('behe_blokeak.html') 
@@ -20,7 +20,7 @@ def azken_berriak():
 @register.filter
 def mainmenu(url):
     """ """
-    mainmenulist = (('','Sarrera'),('nor-gara','Nor gara'),('tutorialak','Tutorialak'),('aplikazioak','Aplikazioak'),('gaiak','Gaiak'),('berriak','Berriak'),('kontaktua','Kontaktua'))
+    mainmenulist = (('','Sarrera'),('gameplayak','GamePlayak'),('jokoak','Jokoak'),('gaiak','Gaiak'),('berriak','Berriak'),('nor-gara','Nor gara'),('kontaktua','Kontaktua'))
     mainmenu = []
     links = url.strip('/').split('/')
     selected_mainmenu=''
