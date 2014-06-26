@@ -40,7 +40,7 @@ class GamePlaya(models.Model):
     puntuak = models.FloatField(default=0)
 
     argazkia = models.ForeignKey(Photo,null=True,blank=True)
-    bideoa = models.URLField(null=True,blank=True, help_text="Eremu honetan bideoaren URL itsatsi behar duzu. Adb.: http://vimeo.com/41669968")
+    bideoa = models.CharField(max_length=100,null=True,blank=True, help_text="Eremu honetan bideoaren URL kodea itsatsi behar duzu. Adb.: 41669968")
     
     jokoa = models.ForeignKey(Jokoa)
     zailtasuna = models.ForeignKey(Zailtasuna)
@@ -74,4 +74,4 @@ class GamePlaya(models.Model):
     def __unicode__(self):
         return u'%s' % (self.izenburua)
         
-post_save.connect(post_to_twitter, sender=GamePlaya)    
+#post_save.connect(post_to_twitter, sender=GamePlaya)    

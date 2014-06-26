@@ -29,4 +29,4 @@ class Berria(models.Model):
     def get_absolute_url(self):
         return "/azken-berriak/feed/"
 
-post_save.connect(post_to_twitter, sender=Berria)
+#post_save.connect(post_to_twitter, sender=Berria)

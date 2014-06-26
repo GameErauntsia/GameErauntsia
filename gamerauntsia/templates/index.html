@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+    {% for gp in gameplayak %}
+    {% if forloop.first %}
+    <div class="col-lg-8">
+        <iframe width="700" height="394" src="//www.youtube.com/embed/{{gp.bideoa}}" frameborder="0" allowfullscreen></iframe>
+        <!-- take out img-rounded if you don't want the rounded corners on the image -->
+    </div>
+    <div class="col-lg-4">
+        <h1>{{gp.izenburua}}</h1>
+        <p>{{gp.desk}}</p>
+        <a class="btn btn-primary btn-lg" href="#">Gehiago nahi?</a>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="well text-center">
+            Euskal gameplay komunitatearen jokaldirik onenak hemen dituzu ikusgai! Gozatu!
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    {% for gp in gameplayak %}
+    {% if not forloop.first %}
+    <div class="col-lg-4">
+        <iframe width="350" height="197" src="//www.youtube.com/embed/{{gp.bideoa}}" frameborder="0" allowfullscreen></iframe>
+        <h2>{{gp.izenburua}}</h2>
+        <p>{{gp.desk}}</p>
+        <a class="btn btn-default" href="#">Ikusi +</a>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

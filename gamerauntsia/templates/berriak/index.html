@@ -1,79 +1,83 @@
-{% extends "base/index.html" %}
-{%load breadcrumbs%}
-
-{%block pageTitle%} | Berriak{%endblock%}
-{%block js%}<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-{%endblock%}
-{% block subheader%}
-	<div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
-    <h1>Azken berriak</h1>
-{%endblock%}
+{% extends "base.html" %}
 
 {% block content%}
-<div class="berriaContent">
-    <div class="berria">
-        {%for berria in zerr_berriak%}
-        <h2><a href="{{berria.slug}}" >{{berria.izenburua}}</a></h2>
-        <div class="date"><strong>{{berria.pub_date|date:"Y/m/d H:i"}}</strong></div>
+
+<div class="row">
+    <div class="col-lg-8">
+        {% for berria in zerr_berriak %}
+        <h1><a href="{{berria.slug}}">{{berria.izenburua}}</a></h1>
+        <p class="lead">by <a href="index.php">{{berria.user.getprofile.fullname}}</a></p>
+        <hr>
+        <p><span class="glyphicon glyphicon-time"></span> {{berria.pub_date|date:"Y/m/d H:i"}}</p>
+        <hr>
+        <img src="http://placehold.it/900x300" class="img-responsive"/>
+        <hr>
         <p>{{berria.get_desk_txikia|safe}}</p>
-        <a class="more" href="{{berria.slug}}" >Gehiago irakurri...</a>
-        {%endfor%}
+        <a class="btn btn-primary" href="{{berria.slug}}">Irakurri gehiago</a>
+        
+        <hr>
+        {% endfor %}
+
+        <!-- pager -->
+        <ul class="pager">
+            <li class="previous"><a href="#">&larr; Older</a></li>
+            <li class="next"><a href="#">Newer &rarr;</a></li>
+        </ul>
+
     </div>
-   <div id="pagContainer">
-      <ul id="pagination">
-        	{% if zerr_berriak.has_previous %}
-            	<li class="previous"><a href="?orria={{ zerr_berriak.previous_page_number }}"><< Aurrekoa</a></li>
-         {%else%}
-               <li class="previous-off"><< Aurrekoa</li>
-        	{% endif %}
-        	<li class="active">{{ zerr_berriak.number }}</li>
-        	{%if zerr_berriak.has_next%}
-        	    <span>...</span>
-              <li><a href="?orria={{ zerr_berriak.paginator.num_pages }}">{{ zerr_berriak.paginator.num_pages }}</a></li>
-         {%endif%}
-        	{% if zerr_berriak.has_next %}
-            	<li class="next"><a href="?orria={{ zerr_berriak.next_page_number }}">Hurrengoa >></a></li>
-         {%else%}
-               <li class="next-off">Hurrengoa >></li>
-        	{% endif %}
-      </ul>
-	</div>
+
+    <div class="col-lg-4">
+        <div class="well">
+            <h4>Blog Search</h4>
+            <div class="input-group">
+                <input type="text" class="form-control">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+            </div>
+            <!-- /input-group -->
+        </div>
+        <!-- /well -->
+        <div class="well">
+            <h4>Popular Blog Categories</h4>
+            <div class="row">
+                <div class="col-lg-6">
+                    <ul class="list-unstyled">
+                        <li><a href="#dinosaurs">Dinosaurs</a>
+                        </li>
+                        <li><a href="#spaceships">Spaceships</a>
+                        </li>
+                        <li><a href="#fried-foods">Fried Foods</a>
+                        </li>
+                        <li><a href="#wild-animals">Wild Animals</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <ul class="list-unstyled">
+                        <li><a href="#alien-abductions">Alien Abductions</a>
+                        </li>
+                        <li><a href="#business-casual">Business Casual</a>
+                        </li>
+                        <li><a href="#robots">Robots</a>
+                        </li>
+                        <li><a href="#fireworks">Fireworks</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /well -->
+        <div class="well">
+            <h4>Side Widget Well</h4>
+            <p>Bootstrap's default wells work great for side widgets! What is a widget anyways...?</p>
+        </div>
+        <!-- /well -->
+    </div>
 </div>
+
+<hr>
 {%endblock%}
-{%block submenu%}
-<div class="submenu">
-	<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
-	<script>
-		new TWTR.Widget({
-  		version: 2,
-  		type: 'search',
-  		search: 'gamerauntsia',
-  		interval: 30000,
-  		title: 'gamerauntsia',
-  		subject: 'Tutorialak Euskaraz',
-  		width: 250,
-  		height: 300,
-  		theme: {
-    		shell: {
-      		background: '#3b3f46',
-      		color: '#ffffff'
-    		},
-    		tweets: {
-      		background: '#ffffff',
-      		color: '#444444',
-      		links: '#1985b5'
-    		}
-  		},
-  		features: {
-    		scrollbar: false,
-    		loop: true,
-    		live: true,
-    		behavior: 'default'
-  		}
-		}).render().start();
-	</script>
-	<br>
-	<iframe src="//www.facebook.com/plugins/likebox.php?href=http:%2F%2Fwww.facebook.com%2Fpages%2Fgamerauntsia%2F288348697944020&amp;width=260&amp;height=258&amp;colorscheme=light&amp;show_faces=true&amp;border_color&amp;stream=false&amp;header=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:260px; height:258px;" allowTransparency="true"></iframe>
-</div>
-<div style="clear: both"></div>  
-{%endblock%}
+
