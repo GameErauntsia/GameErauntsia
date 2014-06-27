@@ -1,9 +1,8 @@
 Tutoreus
 ========
 
-This is a Django *Tutoreus web page project*. Tutoreus was founded to fill the gap encountered in Basque video 
-tutorial edition. The final goal is to promote basque language creating and sharing modern application tutorials. 
-You will find our web page in [tutoreus.com](http://tutoreus.com).
+This is a Django *Gamerauntsia web page project*. Gamerauntsia was founded to fill the gap encountered in Basque gameplay videos. The final goal is to promote basque language creating and sharing modern game play videos. 
+You will find our web page in [gamerauntsia.com](http://gamerauntsia.com).
 
 This project is 100% open-source project where everybody it's up to use, distribute/share or even modify under the 
 [AGPL v3.0](http://www.gnu.org/licenses/agpl-3.0.html#content) licence.
@@ -36,7 +35,7 @@ How to use the code
 
 1. Download the code
 
-    > git clone git@github.com:urtzai/tutoreus.git
+    > git clone git@github.com:urtzai/gamerauntsia.git
     
 2. Edit settings.py file
 
@@ -47,4 +46,4 @@ How to use the code
 Contact
 -------
 
-You will find us on twitter [@tutoreus_info](http://twitter.com/tutoreus_inf) and [facebook](http://www.facebook.com/pages/Tutoreus/288348697944020) or you can email us to tutoreus.info@gmail.com.
+You will find us on twitter [@gari_infernu](http://twitter.com/gari_infernu) or you can email us to gari.infernuan@gmail.com.
