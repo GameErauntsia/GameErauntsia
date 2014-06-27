@@ -1,5 +1,5 @@
-Tutoreus
-========
+Gamerauntsia
+============
 
 This is a Django *Gamerauntsia web page project*. Gamerauntsia was founded to fill the gap encountered in Basque gameplay videos. The final goal is to promote basque language creating and sharing modern game play videos. 
 You will find our web page in [gamerauntsia.com](http://gamerauntsia.com).
@@ -39,7 +39,7 @@ How to use the code
     
 2. Edit settings.py file
 
-    > cd tutoreus/tutoreus
+    > cd gamerauntsia/gamerauntsia
       
     > nano settings.py
 
