@@ -6,13 +6,13 @@
     {% for gp in gameplayak %}
     {% if forloop.first %}
     <div class="col-lg-8">
-        <iframe width="700" height="394" src="//www.youtube.com/embed/{{gp.bideoa}}" frameborder="0" allowfullscreen></iframe>
+        <div class="flex-video widescreen"><iframe width="700" height="394" src="//www.youtube.com/embed/{{gp.bideoa}}" frameborder="0" allowfullscreen></iframe></div>
         <!-- take out img-rounded if you don't want the rounded corners on the image -->
     </div>
     <div class="col-lg-4">
         <h1>{{gp.izenburua}}</h1>
         <p>{{gp.desk}}</p>
-        <a class="btn btn-primary btn-lg" href="#">Gehiago nahi?</a>
+        <a class="btn btn-primary btn-lg" href="{{gp.get_absolute_url}}">Gehiago nahi?</a>
     </div>
     {% endif %}
     {% endfor %}
@@ -32,10 +32,11 @@
     {% for gp in gameplayak %}
     {% if not forloop.first %}
     <div class="col-lg-4">
-        <iframe width="350" height="197" src="//www.youtube.com/embed/{{gp.bideoa}}" frameborder="0" allowfullscreen></iframe>
+        <!--<iframe width="350" height="197" src="//www.youtube.com/embed/{{gp.bideoa}}" frameborder="0" allowfullscreen></iframe>-->
+        <a href="{{gp.get_absolute_url}}"><img class="img-responsive" src="{{gp.argazkia.get_gp_thumbnail_url}}"></a>
         <h2>{{gp.izenburua}}</h2>
         <p>{{gp.desk}}</p>
-        <a class="btn btn-default" href="#">Ikusi +</a>
+        <a class="btn btn-default" href="{{gp.get_absolute_url}}">Ikusi +</a>
     </div>
     {% endif %}
     {% endfor %}

@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load pagination_tags include %}
+
+{% block title %}Game playak - {% endblock %}
+
+{% block content %}
+<div class="row">
+
+        <div class="col-lg-12">
+            <h1 class="page-header">Game Playak
+                <small>Denak</small>
+            </h1>
+        </div>
+
+        <div class="col-lg-8">
+            {% autopaginate gameplayak 6 %}
+            {% for gp in gameplayak %}
+
+            {% if forloop.counter1|divisibleby:2 or forloop.first %}
+            <div class="row">
+            {% endif %}  
+
+                <div class="col-md-6 portfolio-item">
+                    <a href="{{gp.get_absolute_url}}">
+                        <img class="img-responsive" src="{{gp.argazkia.get_gp_thumbnail_url}}">
+                    </a>
+                    <h3><a href="{{gp.get_absolute_url}}">{{gp.izenburua}}</a>
+                    </h3>
+                    <p>{{gp.desk}}</p>
+                </div>
+
+            {% if forloop.counter1|divisibleby:2 or forloop.first %}
+            </div>
+            {% endif %}
+            {% endfor %}
+
+            <hr>
+
+            {% paginate %}
+        </div>
+
+        <div class="col-lg-4">
+            <div class="well">
+                <h4>Bilatu</h4>
+                <div class="input-group">
+                    <input type="text" class="form-control">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                    </span>
+                </div>
+                <!-- /input-group -->
+            </div>
+            <!-- /well -->
+            <div class="well">
+                <h4>Kategoriak</h4>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            {% for gaia in gaiak %}
+                            <li><a href="#">{{gaia.izena}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="well">
+                <h4>Jokalariak</h4>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            {% for user in users %}
+                            <li><a href="#">{{user.username|get_fullname}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /well -->
+            <div class="well">
+                <h4>Zailtasuna</h4>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            {% for zaila in zailtasunak %}
+                            <li><a href="#">{{zaila.izena}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /well -->
+        </div>
+
+{% endblock %}

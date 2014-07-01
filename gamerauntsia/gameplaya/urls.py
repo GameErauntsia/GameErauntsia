@@ -3,6 +3,7 @@ from gamerauntsia import settings
 
 urlpatterns = patterns('',
     url(r'^$', 'gamerauntsia.gameplaya.views.index', name='gameplay_index'),
+    url(r'^(?P<slug>[-\w]+)/$', 'gamerauntsia.gameplaya.views.gameplaya', name='gameplay'),
 )
 
 if settings.DEBUG:

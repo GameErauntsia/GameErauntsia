@@ -1,12 +1,6 @@
-{% extends "base/index.html" %}
-{%load breadcrumbs include%}
+{% extends "base.html" %}
 
-{%block pageTitle%} | {{flatpage.title}}{%endblock%}
-
-{%block subheader%}
-<div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
-<h1>{{flatpage.title}}</h1>
-{%endblock%}
+{%block title%}{{flatpage.title}} - {%endblock%}
 
 {% block content %}
     {{flatpage.content}}

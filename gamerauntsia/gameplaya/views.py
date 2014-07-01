@@ -1,6 +1,7 @@
-from gamerauntsia.gameplaya.models import GamePlaya, Gaia
+from gamerauntsia.gameplaya.models import GamePlaya, Gaia, Zailtasuna
 from gamerauntsia.jokoa.models import Jokoa
 from gamerauntsia.berriak.models import Berria
+from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -8,17 +9,15 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404
 
 def index(request):
-    h = {}
-    h['aplikazioak'] = Jokoa.objects.all()
-    h['gaiak'] = Gaia.objects.all()
-    h['berriak'] = Berria.objects.filter(publikoa_da=True).order_by('-pub_date')[:5]
-    return render_to_response('gameplaya/index.html', h,context_instance=RequestContext(request))
+    gameplayak = GamePlaya.objects.filter(publikoa_da=True).order_by('-pub_date')
+    users = User.objects.all()
+    gaiak = Gaia.objects.all()
+    zailtasunak = Zailtasuna.objects.all()
+    return render_to_response('gameplaya/index.html', locals(),context_instance=RequestContext(request))
     
-def tutoriala(request,slug):
-    h = {}
-    h['item'] = get_object_or_404(GamePlaya,slug=slug)
-    h['berriak'] = Berria.objects.filter(publikoa_da=True).order_by('-pub_date')[:5]
-    return render_to_response('gameplaya/tutoriala.html', h,context_instance=RequestContext(request))
+def gameplaya(request,slug):
+    gp = get_object_or_404(GamePlaya,slug=slug)
+    return render_to_response('gameplaya/gameplay.html', locals(),context_instance=RequestContext(request))
     
 def gaiak(request):
     h = {}

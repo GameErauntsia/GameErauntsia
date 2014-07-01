@@ -32,7 +32,7 @@ class Zailtasuna(models.Model):
 
 class GamePlaya(models.Model):
     izenburua = models.CharField(max_length=64)
-    slug = models.SlugField(db_index=True, help_text="Eremu honetan tutorial honen URL helbidea zehazten ari zara.")
+    slug = models.SlugField(unique=True,db_index=True, help_text="Eremu honetan tutorial honen URL helbidea zehazten ari zara.")
     desk = models.TextField(max_length=256)
     iraupena_min = models.IntegerField(max_length=2,default=0)
     iraupena_seg = models.IntegerField(max_length=2, null=False,blank=False,default=0)
@@ -47,7 +47,7 @@ class GamePlaya(models.Model):
     gaia = models.ManyToManyField(Gaia)
     
     erabiltzailea = models.ForeignKey(User)
-    publikoa_da = models.BooleanField() 
+    publikoa_da = models.BooleanField(default=True) 
     pub_date = models.DateTimeField('publikazio data', default=datetime.now)
     mod_date = models.DateTimeField('modifikazio data', default=datetime.now)
     
@@ -66,6 +66,9 @@ class GamePlaya(models.Model):
         elif self.bideoa.startswith('http://youtu.be'):
             url = self.bideoa.replace('http://youtu.be/','')
     	return url
+
+    def get_absolute_url(self):
+        return '/gameplayak/%s' % self.slug
     
     class Meta:    
         verbose_name = "gameplaya"

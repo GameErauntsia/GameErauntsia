@@ -2,6 +2,7 @@ from django import template
 from django.utils.safestring import mark_safe
 from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.berriak.models import Berria
+from django.contrib.auth.models import User
 
 register = template.Library()
 
@@ -67,3 +68,8 @@ def get_bideo(item):
     else:
         html = ''
     return html
+
+@register.filter
+def get_fullname(username):
+    user = User.objects.get(username=username)
+    return '%s %s' % (user.first_name, user.last_name)    

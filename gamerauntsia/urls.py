@@ -20,15 +20,9 @@ sitemaps = {
 }
 
 urlpatterns = patterns('',
-    url(r'^$', 'gamerauntsia.base.views.index', name='index'),
-    url(r'^googleaf6b2cbbb22dca3f\.html', 'gamerauntsia.base.views.google', name='google'),
-    url(r'^sarrera/$', 'gamerauntsia.base.views.index', name='index'),
-    url(r'^sarrera/bozkatuenak/$', 'gamerauntsia.gameplaya.views.bozkatuenak', name='gameplaya_bozkatuenak'),
-    url(r'^gameplaya/(?P<slug>[-\w]+)/$', 'gamerauntsia.gameplaya.views.tutoriala', name='tutoriala'),
-    url(r'^gameplaya/$', include('gamerauntsia.gameplaya.urls')),
-    url(r'^gameplaya/aplikazioak/(?P<aplikazioa>[-\w]+)/$', 'gamerauntsia.gameplaya.views.gameplaya_aplikazioa', 
-name='gameplaya_aplikazioa'),
-    url(r'^gameplaya/gaiak/(?P<gaia>[-\w]+)/$', 'gamerauntsia.gameplaya.views.gameplaya_gaia', name='gameplaya_gaia'),
+    url(r'^$', 'gamerauntsia.views.index', name='index'),
+    url(r'^gameplayak/', include('gamerauntsia.gameplaya.urls')),
+    
     url(r'^aplikazioak/(?P<slug>[-\w]+)/$', 'gamerauntsia.jokoa.views.aplikazioa', name='aplikazioa'),
     url(r'^aplikazioak/$', include('gamerauntsia.jokoa.urls')),
     url(r'^gaiak/$', 'gamerauntsia.gameplaya.views.gaiak', name='gaiak_index'),

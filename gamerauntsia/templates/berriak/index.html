@@ -1,17 +1,23 @@
 {% extends "base.html" %}
+{% load include %}
+
+{% block title %}Berriak - {% endblock %}
 
 {% block content%}
-
 <div class="row">
     <div class="col-lg-8">
+
+        {% block container %}
+   
         {% for berria in zerr_berriak %}
         <h1><a href="{{berria.slug}}">{{berria.izenburua}}</a></h1>
-        <p class="lead">by <a href="index.php">{{berria.user.getprofile.fullname}}</a></p>
-        <hr>
+        <p class="lead">by {{berria.erabiltzailea.username|get_fullname}}</p>
         <p><span class="glyphicon glyphicon-time"></span> {{berria.pub_date|date:"Y/m/d H:i"}}</p>
         <hr>
-        <img src="http://placehold.it/900x300" class="img-responsive"/>
+        {% if berria.argazkia %}
+        <img src="{{berria.argazkia.get_blog_url}}" class="img-responsive"/>
         <hr>
+        {% endif %}
         <p>{{berria.get_desk_txikia|safe}}</p>
         <a class="btn btn-primary" href="{{berria.slug}}">Irakurri gehiago</a>
         
@@ -20,28 +26,28 @@
 
         <!-- pager -->
         <ul class="pager">
-            <li class="previous"><a href="#">&larr; Older</a></li>
-            <li class="next"><a href="#">Newer &rarr;</a></li>
+            <li class="previous"><a href="#">&larr; Hurrengoak</a></li>
+            <li class="next"><a href="#">Aurrekoak &rarr;</a></li>
         </ul>
+
+        {% endblock %}
 
     </div>
 
     <div class="col-lg-4">
         <div class="well">
-            <h4>Blog Search</h4>
+            <h4>Bilatu</h4>
             <div class="input-group">
                 <input type="text" class="form-control">
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </button>
+                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
                 </span>
             </div>
             <!-- /input-group -->
         </div>
         <!-- /well -->
         <div class="well">
-            <h4>Popular Blog Categories</h4>
+            <h4>Kategoriak</h4>
             <div class="row">
                 <div class="col-lg-6">
                     <ul class="list-unstyled">
@@ -80,4 +86,3 @@
 
 <hr>
 {%endblock%}
-
