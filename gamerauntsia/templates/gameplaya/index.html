@@ -13,6 +13,8 @@
                 {{gaia.izena}}
                 {% elif user %}
                 {{user.username|get_fullname}}
+                {% elif maila %}
+                {{maila.izena}}
                 {% else %}
                 Denak
                 {% endif %}
@@ -85,7 +87,7 @@
                     <div class="col-lg-6">
                         <ul class="list-unstyled">
                             {% for zaila in zailtasunak %}
-                            <li><a href="#">{{zaila.izena}}</a></li>
+                            <li><a href="{% url 'gameplay_level' zaila.izena %}">{{zaila.izena}}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
