@@ -10,7 +10,8 @@ from django.shortcuts import get_object_or_404
 
 def index(request,gaia=None):
     if gaia:
-        gameplayak = GamePlaya.objects.filter(publikoa_da=True,gaia__in=gaia).order_by('-pub_date')
+        gaia = Gaia.objects.get_object_or_404(slug=gaia)
+        gameplayak = GamePlaya.objects.filter(publikoa_da=True,gaia__in=gaia.id).order_by('-pub_date')
     else:
         gameplayak = GamePlaya.objects.filter(publikoa_da=True).order_by('-pub_date')
     users = User.objects.all()
