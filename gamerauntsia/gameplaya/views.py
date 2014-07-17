@@ -14,7 +14,7 @@ def index(request,gaia=None,username=None):
         gameplayak = GamePlaya.objects.filter(publikoa_da=True,gaia=gaia).order_by('-pub_date')
     elif username:
         user = get_object_or_404(User,user=username)
-        gameplayak = GamePlaya.objects.filter(publikoa_da=True,user=user).order_by('-pub_date')
+        gameplayak = GamePlaya.objects.filter(publikoa_da=True,erabiltzailea=user).order_by('-pub_date')
     else:
         gameplayak = GamePlaya.objects.filter(publikoa_da=True).order_by('-pub_date')
     users = User.objects.all()
