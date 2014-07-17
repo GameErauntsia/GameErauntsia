@@ -22,7 +22,8 @@ class Gaia(models.Model):
 	
 class Zailtasuna(models.Model):
     izena = models.CharField(max_length=64)
-	
+	slug = models.SlugField(db_index=True, help_text="Eremu honetan zailtasun honen URL helbidea zehazten ari zara.")
+
     class Meta:    
         verbose_name = "zailtasuna"
         verbose_name_plural = "zailtasunak"
@@ -32,7 +33,7 @@ class Zailtasuna(models.Model):
 
 class GamePlaya(models.Model):
     izenburua = models.CharField(max_length=64)
-    slug = models.SlugField(unique=True,db_index=True, help_text="Eremu honetan tutorial honen URL helbidea zehazten ari zara.")
+    slug = models.SlugField(unique=True,db_index=True, help_text="Eremu honetan game play honen URL helbidea zehazten ari zara.")
     desk = models.TextField(max_length=256)
     iraupena_min = models.IntegerField(max_length=2,default=0)
     iraupena_seg = models.IntegerField(max_length=2, null=False,blank=False,default=0)
