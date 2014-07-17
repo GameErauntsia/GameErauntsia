@@ -11,10 +11,10 @@
                 <small>
                 {% if gaia %}
                 {{gaia.izena}}
-                {% elif user %}
-                {{user.username|get_fullname}}
                 {% elif maila %}
                 {{maila.izena}}
+                {% elif username %}
+                {{username|get_fullname}}
                 {% else %}
                 Denak
                 {% endif %}
