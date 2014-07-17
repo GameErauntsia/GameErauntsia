@@ -8,11 +8,15 @@
 
         <div class="col-lg-12">
             <h1 class="page-header">Game Playak
+                <small>
                 {% if gaia %}
-                <small>{{gaia.izena}}</small>
+                {{gaia.izena}}
+                {% elif user %}
+                {{user.username|get_fullname}}
                 {% else %}
-                <small>Denak</small>
+                Denak
                 {% endif %}
+                </small>
             </h1>
         </div>
 
