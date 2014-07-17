@@ -8,10 +8,13 @@ from django.template import RequestContext
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 
-def index(request,gaia=None):
+def index(request,gaia=None,username=None):
     if gaia:
         gaia = get_object_or_404(Gaia,slug=gaia)
-        gameplayak = GamePlaya.objects.filter(publikoa_da=True,gaia__in=gaia.id).order_by('-pub_date')
+        gameplayak = GamePlaya.objects.filter(publikoa_da=True,gaia=gaia).order_by('-pub_date')
+    elif:
+        user = get_object_or_404(User,user=username)
+        gameplayak = GamePlaya.objects.filter(publikoa_da=True,user=user).order_by('-pub_date')
     else:
         gameplayak = GamePlaya.objects.filter(publikoa_da=True).order_by('-pub_date')
     users = User.objects.all()
