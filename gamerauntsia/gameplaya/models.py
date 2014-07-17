@@ -22,7 +22,7 @@ class Gaia(models.Model):
 	
 class Zailtasuna(models.Model):
     izena = models.CharField(max_length=64)
-	slug = models.SlugField(db_index=True, help_text="Eremu honetan zailtasun honen URL helbidea zehazten ari zara.")
+    slug = models.SlugField(db_index=True, help_text="Eremu honetan zailtasun honen URL helbidea zehazten ari zara.")
 
     class Meta:    
         verbose_name = "zailtasuna"
