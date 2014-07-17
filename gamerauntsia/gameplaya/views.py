@@ -8,8 +8,11 @@ from django.template import RequestContext
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 
-def index(request):
-    gameplayak = GamePlaya.objects.filter(publikoa_da=True).order_by('-pub_date')
+def index(request,gaia=None):
+    if gaia:
+        gameplayak = GamePlaya.objects.filter(publikoa_da=True,gaia__slug__in=gaia).order_by('-pub_date')
+    else:
+        gameplayak = GamePlaya.objects.filter(publikoa_da=True).order_by('-pub_date')
     users = User.objects.all()
     gaiak = Gaia.objects.all()
     zailtasunak = Zailtasuna.objects.all()
