@@ -2,6 +2,7 @@ from gamerauntsia.berriak.models import Berria
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.conf import settings
 
 def index(request):
     h = {}
@@ -17,6 +18,7 @@ def index(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         berriak = paginator.page(paginator.num_pages)
     h['zerr_berriak'] = berriak
+    h['HOST'] = settings.HOST
     return render_to_response('berriak/index.html', h,context_instance=RequestContext(request))
    
 def berria(request,slug):
