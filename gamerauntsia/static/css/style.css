@@ -25,6 +25,12 @@ height: 100%;
 
 .btn-primary {
   background-color: #149845;
-  border-color: #06642c;
+  border-color: #0f843c;
+  color: #fff;
+}
+
+toggle.btn-primary {
+  background-color: #149845;
+  border-color: #0f843c;
   color: #fff;
 }
