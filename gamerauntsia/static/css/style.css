@@ -23,6 +23,11 @@ height: 100%;
 .flex-video { padding-top: 0; }
 }
 
+a {
+  color: #149845;
+  text-decoration: none;
+}
+
 .btn-primary {
   background-color: #149845;
   border-color: #0f843c;
