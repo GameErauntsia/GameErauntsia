@@ -21,7 +21,7 @@
         {% endif %}
         <p>{{berria.get_desk_txikia|safe}}</p>
         <a class="btn btn-primary" href="{{berria.slug}}">Irakurri gehiago</a>
-        <span class="glyphicon glyphicon-comment pull-right"></span><a href="{{berria.slug}}#disqus_thread"></a>
+        <a href="{{berria.get_absolute_url}}"><span class="glyphicon glyphicon-comment pull-right"></span></a><a href="{{berria.get_absolute_url}}#disqus_thread"></a>
         <hr>
         {% endfor %}
 
