@@ -9,10 +9,10 @@
 
         <!-- the actual blog post: title/author/date/content -->
         <h1>{{item.izenburua}}</h1>
-        <p class="lead">by {{item.erabiltzailea.username|get_fullname}}
+        <p class="lead">
+            <span class="glyphicon glyphicon-user"></span> {{item.erabiltzailea.username|get_fullname}}<br/>
+            <span class="glyphicon glyphicon-time"></span> {{item.pub_date|date:"Y/m/d H:i"}}
         </p>
-        <p>
-            <span class="glyphicon glyphicon-time"></span> {{item.pub_date|date:"Y/m/d H:i"}}</p>
         <hr>
         {% if item.argazkia %}
         <img src="{{item.argazkia.get_blog_url}}" class="img-responsive"/>
