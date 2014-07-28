@@ -33,6 +33,10 @@ a:hover, a:focus {
     text-decoration: none;
 }
 
+.lead {
+  font-size: 14px;
+}
+
 .navbar-brand {
   float: left;
   font-size: 18px;
