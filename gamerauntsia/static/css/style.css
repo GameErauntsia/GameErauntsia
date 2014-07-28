@@ -28,6 +28,10 @@ a {
   text-decoration: none;
 }
 
+a:hover, a:focus {
+    color: #0f843c;
+}
+
 .navbar-brand {
   float: left;
   font-size: 18px;
@@ -42,7 +46,7 @@ a {
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
-  background-color: #149845;
+  background-color: #19ae51;
   border-color: #0f843c;
   color: #fff;
 }
