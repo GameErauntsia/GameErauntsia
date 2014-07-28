@@ -29,7 +29,7 @@ height: 100%;
   color: #fff;
 }
 
-toggle.btn-primary {
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
   background-color: #149845;
   border-color: #0f843c;
   color: #fff;
