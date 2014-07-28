@@ -30,6 +30,7 @@ a {
 
 a:hover, a:focus {
     color: #0f843c;
+    text-decoration: none;
 }
 
 .navbar-brand {
