@@ -28,6 +28,13 @@ a {
   text-decoration: none;
 }
 
+.navbar-brand {
+  float: left;
+  font-size: 18px;
+  line-height: 20px;
+  padding-top: 5px;
+}
+
 .btn-primary {
   background-color: #149845;
   border-color: #0f843c;
