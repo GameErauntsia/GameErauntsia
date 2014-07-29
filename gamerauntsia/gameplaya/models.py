@@ -1,5 +1,5 @@
 from django.db import models
-from gamerauntsia.gamer.models import GamerUser
+from django.conf import settings
 from photologue.models import Photo
 from gamerauntsia.jokoa.models import Jokoa
 from datetime import datetime
@@ -46,7 +46,7 @@ class GamePlaya(models.Model):
     zailtasuna = models.ForeignKey(Zailtasuna)
     gaia = models.ManyToManyField(Gaia)
     
-    erabiltzailea = models.ForeignKey(GamerUser)
+    erabiltzailea = models.ForeignKey(settings.AUTH_USER_MODEL)
     publikoa_da = models.BooleanField(default=True) 
     pub_date = models.DateTimeField('publikazio data', default=datetime.now)
     mod_date = models.DateTimeField('modifikazio data', default=datetime.now)
