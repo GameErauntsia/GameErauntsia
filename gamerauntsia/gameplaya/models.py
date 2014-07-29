@@ -1,6 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
-
+from gamerauntsia.gamer.models import GamerUser as User
 from photologue.models import Photo
 from gamerauntsia.jokoa.models import Jokoa
 from datetime import datetime
