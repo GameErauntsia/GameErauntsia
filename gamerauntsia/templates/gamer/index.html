@@ -21,26 +21,14 @@
 </div>
 
 <div class="row">
+    {% for user in users %}
     <div class="col-lg-4 col-sm-6">
         <img class="img-circle img-responsive" src="http://placehold.it/200x200">
-        <h3>Garikoitz Larrañaga
+        <h3><a href="{% url 'gamer_profile' user.username %}">{{user.username|get_fullname}}</a>
             <small>@gari_infernu</small>
         </h3>
         <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
     </div>
-    <div class="col-lg-4 col-sm-6">
-        <img class="img-circle img-responsive" src="http://placehold.it/200x200">
-        <h3>Joseba Galarraga
-            <small>@joxhell</small>
-        </h3>
-        <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
-    </div>
-    <div class="col-lg-4 col-sm-6">
-        <img class="img-circle img-responsive" src="http://placehold.it/200x200">
-        <h3>Urtzi Odriozola
-            <small>@urtzai</small>
-        </h3>
-        <p>What does this team member to? Keep it short! This is also a great spot for social links!</p>
-    </div>
+    {% endfor %}
 </div>
 {% endblock %}
