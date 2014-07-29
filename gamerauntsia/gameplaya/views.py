@@ -1,7 +1,7 @@
 from gamerauntsia.gameplaya.models import GamePlaya, Gaia, Zailtasuna
 from gamerauntsia.jokoa.models import Jokoa
 from gamerauntsia.berriak.models import Berria
-from django.contrib.auth.models import User
+from gamerauntsia.gamer.models import GamerUser as User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render_to_response
 from django.template import RequestContext

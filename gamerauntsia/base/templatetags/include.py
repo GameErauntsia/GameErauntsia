@@ -2,7 +2,7 @@ from django import template
 from django.utils.safestring import mark_safe
 from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.berriak.models import Berria
-from django.contrib.auth.models import User
+from gamerauntsia.gamer.models import GamerUser as User
 
 register = template.Library()
 
