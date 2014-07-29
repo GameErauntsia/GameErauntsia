@@ -15,9 +15,6 @@ class GamerUser(CSAbstractSocialUser):
 
     objects = UserManager()
 
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email']
-
     def get_photo(self):
         if self.photo:
             return self.photo
