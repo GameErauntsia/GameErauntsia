@@ -1,18 +1,13 @@
-{% extends "base/index.html" %}
+{% extends "base.html" %}
 {%load breadcrumbs%}
 {% load comments %}
 
-{%block subheader%}
-<div id="breadcrumb">{{ request.get_full_path|breadcrumbs }}</div>
-<h2>Kontaktua</h2>
-<hr/>
-{%endblock%}
 
 {% block content %}
-<div id="contactForm" class="inline">
-<img src="{{STATIC_URL}}irudiak/icon_ok.png" alt="Bidalita" align="left"><p class="mezuaOK">Mila esker zure mezua bidaltzeagatik!! <br>Ahalik eta azkarren erantzuten saiatuko gara!</p>
-</div>
-<div class="inline">
-<img src="{{STATIC_URL}}irudiak/contact_us.gif" alt="Harremanetan jarri" >
+<div class="row">
+    <div class="col-lg-12">
+		<h1>Kontaktua</h1>
+		<p>Mila esker zure mezua bidaltzeagatik!! <br>Ahalik eta azkarren erantzuten saiatuko gara!</p>
+	</div>
 </div>
 {% endblock %}
