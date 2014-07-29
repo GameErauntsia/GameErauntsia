@@ -1,7 +1,7 @@
 from gamerauntsia.gameplaya.models import GamePlaya, Gaia, Zailtasuna
 from gamerauntsia.jokoa.models import Jokoa
 from gamerauntsia.berriak.models import Berria
-from gamerauntsia.gamer.models import GamerUser as User
+from gamerauntsia.gamer.models import GamerUser
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -13,14 +13,14 @@ def index(request,gaia=None,username=None,maila=None):
         gaia = get_object_or_404(Gaia,slug=gaia)
         gameplayak = GamePlaya.objects.filter(publikoa_da=True,gaia=gaia).order_by('-pub_date')
     elif username:
-        user = get_object_or_404(User,username=username)
+        user = get_object_or_404(GamerUser,username=username)
         gameplayak = GamePlaya.objects.filter(publikoa_da=True,erabiltzailea=user).order_by('-pub_date')
     elif maila:
         maila = get_object_or_404(Zailtasuna,slug=maila)
         gameplayak = GamePlaya.objects.filter(publikoa_da=True,zailtasuna=maila).order_by('-pub_date')
     else:
         gameplayak = GamePlaya.objects.filter(publikoa_da=True).order_by('-pub_date')
-    users = User.objects.all()
+    users = GamerUser.objects.all()
     gaiak = Gaia.objects.all()
     zailtasunak = Zailtasuna.objects.all()
     return render_to_response('gameplaya/index.html', locals(),context_instance=RequestContext(request))

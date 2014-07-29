@@ -2,7 +2,7 @@ from django import template
 from django.utils.safestring import mark_safe
 from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.berriak.models import Berria
-from gamerauntsia.gamer.models import GamerUser as User
+from gamerauntsia.gamer.models import GamerUser
 
 register = template.Library()
 
@@ -71,5 +71,5 @@ def get_bideo(item):
 
 @register.filter
 def get_fullname(username):
-    user = User.objects.get(username=username)
+    user = GamerUser.objects.get(username=username)
     return '%s %s' % (user.first_name, user.last_name)    
