@@ -16,7 +16,7 @@ urlpatterns = patterns('',
     url(r'^berriak/$', include('gamerauntsia.berriak.urls')),
 
     # JOKALARIAK
-    url(r'^nor-gara/$', include('gamerauntsia.gamer.urls')),
+    url(r'^nor-gara/', include('gamerauntsia.gamer.urls')),
 
     # KONTAKTUA
     url(r'^kontaktua/$', 'gamerauntsia.kontaktua.views.index', name='kontaktua'),
