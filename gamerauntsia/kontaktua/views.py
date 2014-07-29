@@ -14,7 +14,6 @@ def bidali(request):
     eposta = request.POST.get('eposta')
     gaia = request.POST.get('gaia')
     iruzkina = request.POST.get('iruzkina')
-    send_mail(settings.EMAIL_SUBJECT+' '+gaia, iruzkina, eposta,
-    [settings.DEFAULT_FROM_EMAIL], fail_silently=False)
+    send_mail(settings.EMAIL_SUBJECT+' '+gaia, iruzkina, eposta,[settings.DEFAULT_FROM_EMAIL], fail_silently=False)
     h['berriak'] = Berria.objects.all().order_by('-pub_date')[:5]
     return render_to_response('kontaktua/bidalita.html', h,context_instance=RequestContext(request))
