@@ -45,5 +45,5 @@ class GamerUser(CSAbstractSocialUser):
   
        
     class Meta:
-        verbose_name = 'Erabiltzailea'
-        verbose_name_plural = 'Erabiltzaileak'     
+        verbose_name = 'GE Erabiltzailea'
+        verbose_name_plural = 'GE Erabiltzaileak'     
