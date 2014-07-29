@@ -1,6 +1,6 @@
 from cssocialuser.models import CSAbstractSocialUser
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser,PermissionsMixin,BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import UserManager
 from django.core.mail import send_mail
 from django.conf import settings

@@ -17,6 +17,7 @@ urlpatterns = patterns('',
 
     # JOKALARIAK
     url(r'^nor-gara/', include('gamerauntsia.gamer.urls')),
+    (r'^profilak/', include('cssocialuser.urls')),
 
     # KONTAKTUA
     url(r'^kontaktua/$', 'gamerauntsia.kontaktua.views.index', name='kontaktua'),
