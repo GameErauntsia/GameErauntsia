@@ -16,6 +16,9 @@ class GamerUser(CSAbstractSocialUser):
 
     objects = UserManager()
 
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email']
+
     def get_photo(self):
         if self.photo:
             return self.photo
@@ -25,22 +28,21 @@ class GamerUser(CSAbstractSocialUser):
             except:
                 return None 
 
-
-    def getFullName(self):
-        try:
-            return self.get_full_name().strip() or self.username
-        except:
-            return self.username
-
-
+        
     def get_profile(self):
         return self
+
+    def getFullName(self):
+        return self.get_full_name() or self.username  
 
     def email_user(self, subject, message, from_email=None, **kwargs):
         """
         Sends an email to this User.
         """
         send_mail(subject, message, from_email, [self.email], **kwargs)
+
+    def __unicode__(self):
+        return u'%s' % self.username
   
        
     class Meta:
