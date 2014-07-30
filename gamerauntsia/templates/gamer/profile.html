@@ -16,10 +16,9 @@
 					{% endif %}
 					<p><strong>Bio: </strong> {{user.bio}}</p>
 					<p><strong>Kategoriak: </strong>
-						<span class="label label-info tags">html5</span> 
-						<span class="label label-info tags">css3</span>
-						<span class="label label-info tags">jquery</span>
-						<span class="label label-info tags">bootstrap3</span>
+						{% for cat in categs %}
+						<span class="label label-info tags">{{cat.gaia__izena}}</span> 
+						{% endfor %}
 					</p>
 					<p>
 						{% if user.ytube_channel %}
@@ -55,9 +54,9 @@
 					<div class="headerDivider"></div>
 					<div class="col-lg-6">
 						<h4>Kategoriaka:</h4>
-						<p><strong>1</strong> FPS</p>
-						<p><strong>1</strong> Plataforma</p>
-						<p><strong>1</strong> Estrategia</p>                  
+						{% for cat in categs %}
+						<p><strong>{{cat.count}}</strong> {{cat.gaia__izena}}</p>
+						{% endfor %}                 
 					</div>
 				</div>
 			</div>
@@ -86,6 +85,4 @@
 			<a href="{% url 'gameplay_user' user.username %}" class="btn btn-success btn-block"><span class="glyphicon glyphicon-play-circle"></span> Gehiago ikusi! </a>
 		</div>
 	</div>
-
-	{{categ}}
 {% endblock %}
