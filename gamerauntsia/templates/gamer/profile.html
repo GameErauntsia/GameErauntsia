@@ -11,7 +11,9 @@
 				</div><!--/col--> 
 				<div class="col-xs-12 col-sm-8">
 					<h2>{{user.fullname}}</h2>
-					<p><strong>Ezizena: </strong> Web Designer / UI. </p>
+					{% if user.twitter_id or user.nickname %}
+					<p><strong>Ezizena: </strong> {% if user.twitter_id %}{{user.twitter_id}}{% else %}{{user.nickname}}{% endif %}</p>
+					{% endif %}
 					<p><strong>Bio: </strong> {{user.bio}}</p>
 					<p><strong>Kategoriak: </strong>
 						<span class="label label-info tags">html5</span> 
@@ -24,15 +26,15 @@
 		  	</div>
 	    </div>
 	    <div class="col-md-4">
-	    	<div class="col-xs-12 col-sm-4">
+	    	<div class="col-lg-12">
 				<h2><strong> 20,7K </strong></h2>                    
 				<p><small>Game Play</small></p>
 				<button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Gehiago! </button>
 			</div><!--/col-->
-			<div class="col-xs-12 col-sm-4">                   
+			<div class="col-lg-12">                   
 				<button class="btn btn-info btn-block"><span class="fa fa-user"></span> Twitter </button>
 			</div><!--/col-->
-			<div class="col-xs-12 col-sm-4">
+			<div class="col-lg-12">
 				<button type="button" class="btn btn-primary btn-block"><span class="fa fa-gear"></span> Facebook </button>  
 			</div>
 	    </div>
