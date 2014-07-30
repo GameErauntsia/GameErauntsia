@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load pagination_tags include %}
 
 {% block morejs %}
 <div id="fb-root"></div>
@@ -19,6 +20,7 @@
 
         {% block container %}
    
+        {% autopaginate zerr_berriak 15 %}
         {% for berria in zerr_berriak %}
         <h1><a href="{{berria.slug}}">{{berria.izenburua}}</a></h1>
         <p class="lead">
@@ -34,11 +36,7 @@
         <hr>
         {% endfor %}
 
-        <!-- pager -->
-        <ul class="pager">
-            <li class="previous"><a href="#">&larr; Hurrengoak</a></li>
-            <li class="next"><a href="#">Aurrekoak &rarr;</a></li>
-        </ul>
+        {% paginate %}
 
         {% endblock %}
 
