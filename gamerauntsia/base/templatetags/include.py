@@ -89,3 +89,7 @@ def isequal(value, arg):
   if arg == value:
     return True
   return False
+
+@register.filter
+def urlfriend(value):
+    return value.replace(' ', '%20')
