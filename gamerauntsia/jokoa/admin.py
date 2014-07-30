@@ -8,11 +8,11 @@ class JokoaAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("izena","bertsioa")}
 
     fieldsets = (
-
         ('Datu orokorrak',
         {'fields':('izena','bertsioa','slug', 'desk')},),
         ('Osagarriak',
         {'fields':('lizentzia','url', 'logoa', 'wiki')},),
+    )
    
 
 admin.site.register(Jokoa, JokoaAdmin)
