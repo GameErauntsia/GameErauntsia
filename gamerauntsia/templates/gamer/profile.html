@@ -95,6 +95,11 @@
 			</div>
 			<hr/>
 		    {% endfor %}
+		    <div class="row">
+			    <div class="col-lg-6">
+					<a href="" class="btn btn-success btn-block"><span class="glyphicon glyphicon-play-circle"></span> Gehiago ikusi! </a>
+				</div>
+			</div>
 		</div>
 		<div class="col-lg-4">
 			<h2>Azken berriak</h2>
@@ -106,11 +111,6 @@
 		        <p><strong><a href="{% url 'berria' berri.slug %}">{{berri.izenburua}}</strong></a><p>
 		    </div>
 		    {% endfor %}
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-lg-6">
-			<a href="" class="btn btn-success btn-block"><span class="glyphicon glyphicon-play-circle"></span> Gehiago ikusi! </a>
 		</div>
 	</div>
 {% endblock %}
