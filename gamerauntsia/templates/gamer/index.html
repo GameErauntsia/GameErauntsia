@@ -20,7 +20,7 @@
 </div>
 
     {% for user in users %}
-    {% if not forloop.counter|divisibleby:3 %}
+    {% if forloop.counter|divisibleby:4 or forloop.first %}
     <div class="row">
     {% endif %}
         <div class="col-lg-4 col-sm-6">
