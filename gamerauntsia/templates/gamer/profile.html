@@ -14,6 +14,7 @@
 					{% if user.twitter_id or user.nickname %}
 					<p><strong>Ezizena: </strong> {% if user.twitter_id %}@{{user.twitter_id}}{% else %}{{user.nickname}}{% endif %}</p>
 					{% endif %}
+					<p><strong>Youtube: </strong> {{user.ytube_channel}}</p>
 					<p><strong>Bio: </strong> {{user.bio}}</p>
 					<p><strong>Kategoriak: </strong>
 						<span class="label label-info tags">html5</span> 

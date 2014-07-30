@@ -13,10 +13,10 @@
         <h3>Fitxa teknikoa</h3>
         <div class="well">
         <p><strong>{% if gp.jokoa.url %}<a href="{{gp.jokoa.url}}">{{gp.jokoa}}</a>{% else %}{{gp.jokoa}}{% endif%}</strong></p>
-        <p><span class="glyphicon glyphicon-tag"> {% for gai in gp.gaia.all %}{{gai.izena}}{% if not forloop.last %}, {%endif%}{% endfor %}</p>
-        <p><span class="glyphicon glyphicon-fire"> {{gp.zailtasuna.izena}}</p>
+        <p><span class="glyphicon glyphicon-tag"> {% for gai in gp.gaia.all %}<a href="{% url 'gameplay_gaia' gai.slug %}">{{gai.izena}}</a>{% if not forloop.last %}, {%endif%}{% endfor %}</p>
+        <p><span class="glyphicon glyphicon-fire"> <a href="{% url 'gameplay_level' gp.zailtasuna.slug %}">{{gp.zailtasuna.izena}}</a></p>
         <p><span class="glyphicon glyphicon-time"> {{gp.iraupena_min}}min {{gp.iraupena_seg}}seg</p>
-        <p><span class="glyphicon glyphicon-user"> {{gp.erabiltzailea.fullname}}</p>
+        <p><span class="glyphicon glyphicon-user"> <a href="{% url 'gamer_profile' gp.erabiltzailea.username %}">{{gp.erabiltzailea.fullname}}</a></p>
         </div>
     </div>
 </div>

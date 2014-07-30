@@ -57,7 +57,7 @@ class GamerUserAdmin(UserAdmin):
         (None, {'fields': ('username', 'password')}),
 
         ('Datuak',
-        {'fields':(  'email', 'phone',  'fullname', 'bio','photo')},),
+        {'fields':('fullname','nickname','email','ytube_channel', 'phone', 'photo','bio')},),
         ('Sare sozialak',
         {'fields':('twitter_id', 'facebook_id', 'openid_id', 'googleplus_id'),'classes': ['collapse',],},),
         ('Mota',
