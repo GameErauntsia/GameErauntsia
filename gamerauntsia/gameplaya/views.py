@@ -14,8 +14,8 @@ def index(request,gaia=None,username=None,maila=None):
         gaia = get_object_or_404(Gaia,slug=gaia)
         gameplayak = GamePlaya.objects.filter(publikoa_da=True,gaia=gaia).order_by('-pub_date')
     elif username:
-        user = get_object_or_404(settings.AUTH_USER_MODEL,username=username)
-        gameplayak = GamePlaya.objects.filter(publikoa_da=True,erabiltzailea=user).order_by('-pub_date')
+        gpuser = get_object_or_404(settings.AUTH_USER_MODEL,username=username)
+        gameplayak = GamePlaya.objects.filter(publikoa_da=True,erabiltzailea=gpuser).order_by('-pub_date')
     elif maila:
         maila = get_object_or_404(Zailtasuna,slug=maila)
         gameplayak = GamePlaya.objects.filter(publikoa_da=True,zailtasuna=maila).order_by('-pub_date')

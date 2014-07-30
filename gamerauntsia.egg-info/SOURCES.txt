@@ -35,6 +35,12 @@ gamerauntsia/gameplaya/models.py
 gamerauntsia/gameplaya/tests.py
 gamerauntsia/gameplaya/urls.py
 gamerauntsia/gameplaya/views.py
+gamerauntsia/gamer/__init__.py
+gamerauntsia/gamer/admin.py
+gamerauntsia/gamer/forms.py
+gamerauntsia/gamer/models.py
+gamerauntsia/gamer/urls.py
+gamerauntsia/gamer/views.py
 gamerauntsia/jokoa/__init__.py
 gamerauntsia/jokoa/admin.py
 gamerauntsia/jokoa/models.py
