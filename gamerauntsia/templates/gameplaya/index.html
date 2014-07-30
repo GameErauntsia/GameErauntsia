@@ -13,6 +13,8 @@
                 {{gaia.izena}}
                 {% elif maila %}
                 {{maila.izena}}k
+                {% elif jokoa %}
+                {{jokoa.izena}}
                 {% elif gpuser %}
                 {{gpuser.fullname}}
                 {% else %}
@@ -59,6 +61,16 @@
                         <ul class="list-unstyled">
                             {% for gaia in gaiak %}
                             <li><a href="{% url 'gameplay_gaia' gaia.slug %}">{{gaia.izena}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <h4><span class="glyphicon glyphicon-play"></span> Jokoa</h4>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="list-unstyled">
+                            {% for jokoa in jokoak %}
+                            <li><a href="{% url 'gameplay_game' jokoa.slug %}">{{jokoa.izena}}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
