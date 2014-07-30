@@ -37,11 +37,9 @@ class GamePlaya(models.Model):
     desk = models.TextField(max_length=256)
     iraupena_min = models.IntegerField(max_length=2,default=0)
     iraupena_seg = models.IntegerField(max_length=2, null=False,blank=False,default=0)
-    botoak = models.IntegerField(default=0)
-    puntuak = models.FloatField(default=0)
 
-    argazkia = models.ForeignKey(Photo,null=True,blank=True)
-    bideoa = models.CharField(max_length=100,null=True,blank=True, help_text="Eremu honetan bideoaren URL kodea itsatsi behar duzu. Adb.: 41669968")
+    argazkia = models.ForeignKey(Photo)
+    bideoa = models.CharField(max_length=100, help_text="Eremu honetan bideoaren URL kodea itsatsi behar duzu. Adb.: c21XAuI3aMo")
     
     jokoa = models.ForeignKey(Jokoa)
     zailtasuna = models.ForeignKey(Zailtasuna)

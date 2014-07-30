@@ -44,19 +44,24 @@
 	    </div>
 	</div>
 	<hr/>
+	<h2>Azken Game Playak</h2>
 	<div class="row">
 		<div class="col-md-8 col-xs-10">
 		    {% for gp in gameplayak %}
-		    <div class="col-lg-8">
+		    <div class="col-lg-6">
 		        <img src="{{gp.argazkia.get_videoprofile_url}}" alt="" />
 		    </div>
-		    <div class="col-lg-4">
+		    <div class="col-lg-6">
 		        <h1>{{gp.izenburua}}</h1>
 		        <p>{{gp.desk}}</p>
 		    </div>
 		    <hr/>
 		    {% endfor %}
-		    <a href="{% url 'gameplay_user' user.username %}" class="btn btn-success btn-block"><span class="glyphicon glyphicon-play-circle"></span> Gehiago ikusi! </a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-6">
+			<a href="{% url 'gameplay_user' user.username %}" class="btn btn-success btn-block"><span class="glyphicon glyphicon-play-circle"></span> Gehiago ikusi! </a>
 		</div>
 	</div>
 {% endblock %}
