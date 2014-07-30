@@ -17,7 +17,7 @@
 					<p><strong>Bio: </strong> {{user.bio}}</p>
 					<p><strong>Kategoriak: </strong>
 						{% for cat in categs %}
-						<span class="label label-info tags"><a href="{% url 'gameplay_gaia' cat.gaia__izena|slugify %}">{{cat.gaia__izena}}</a></span> 
+						<span class="label label-info tags"><a href="{% url 'gameplay_category' cat.gaia__izena|slugify %}">{{cat.gaia__izena}}</a></span> 
 						{% endfor %}
 					</p>
 					<p>
@@ -53,7 +53,7 @@
 						</div>
 						<div class="col-lg-6">
 							{% for cat in categs %}
-							<p><strong>{{cat.count}}</strong> <span class="label label-info tags"><a href="{% url 'gameplay_gaia' cat.gaia__izena|slugify %}">{{cat.gaia__izena}}</a></span></p>
+							<p><strong>{{cat.count}}</strong> <span class="label label-info tags"><a href="{% url 'gameplay_category' cat.gaia__izena|slugify %}">{{cat.gaia__izena}}</a></span></p>
 							{% endfor %}                 
 						</div>
 					</div>
@@ -70,7 +70,7 @@
 						</div>
 						<div class="col-lg-6">
 							{% for bcat in bcategs %}
-							<p><strong>{{bcat.count}}</strong> <span class="label label-info tags"><a href="{% url 'gameplay_gaia' bcat.gaia__izena|slugify %}">{{bcat.gaia__izena}}</a></span></p>
+							<p><strong>{{bcat.count}}</strong> <span class="label label-info tags">{{bcat.gaia__izena}}</span></p>
 							{% endfor %}                 
 						</div>
 					</div>

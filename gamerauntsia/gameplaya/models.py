@@ -7,15 +7,15 @@ from datetime import datetime
 from gamerauntsia.utils import post_to_twitter
 from django.db.models.signals import post_save
 
-class Gaia(models.Model):
+class Kategoria(models.Model):
     izena = models.CharField(max_length=64)
-    slug = models.SlugField(db_index=True, help_text="Eremu honetan gai honen URL helbidea zehazten ari zara.")
+    slug = models.SlugField(db_index=True, help_text="Eremu honetan kategoria honen URL helbidea zehazten ari zara.")
     desk = models.TextField(max_length=256)
     irudia = models.ForeignKey(Photo,null=True,blank=True)
     
     class Meta:
-        verbose_name = "gaia"
-        verbose_name_plural = "gaiak"
+        verbose_name = "Kategoria"
+        verbose_name_plural = "Kategoriak"
         
     def __unicode__(self):
         return u'%s' % (self.izena)
@@ -43,7 +43,7 @@ class GamePlaya(models.Model):
     
     jokoa = models.ForeignKey(Jokoa)
     zailtasuna = models.ForeignKey(Zailtasuna)
-    gaia = models.ManyToManyField(Gaia)
+    kategoria = models.ManyToManyField(Kategoria)
     
     erabiltzailea = models.ForeignKey(GamerUser)
     publikoa_da = models.BooleanField(default=True) 

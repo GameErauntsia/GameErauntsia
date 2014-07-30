@@ -7,10 +7,25 @@ from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.utils import post_to_twitter
 from django.template import defaultfilters as filters
 
+class Gaia(models.Model):
+    izena = models.CharField(max_length=64)
+    slug = models.SlugField(db_index=True, help_text="Eremu honetan gai honen URL helbidea zehazten ari zara.")
+    desk = models.TextField(max_length=256)
+    irudia = models.ForeignKey(Photo,null=True,blank=True)
+    
+    class Meta:
+        verbose_name = "Gaia"
+        verbose_name_plural = "Gaiak"
+        
+    def __unicode__(self):
+        return u'%s' % (self.izena)
+
 class Berria(models.Model):
     izenburua = models.CharField(max_length=64)
     slug = models.SlugField(db_index=True, help_text="Eremu honetan berri honen URL helbidea zehazten ari zara.")
     desk = models.TextField(max_length=256)
+
+    gaia = models.ManyToManyField(Gaia)
     
     erabiltzailea = models.ForeignKey(GamerUser)
     argazkia = models.ForeignKey(Photo,null=True,blank=True)

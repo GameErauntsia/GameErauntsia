@@ -1,4 +1,4 @@
-from gamerauntsia.gameplaya.models import GamePlaya, Gaia, Zailtasuna
+from gamerauntsia.gameplaya.models import GamePlaya, Kategoria, Zailtasuna
 from django.contrib import admin
 from gamerauntsia.gameplaya.forms import GamePlayAdminForm
 
@@ -19,5 +19,5 @@ class ZailtasunAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("izena",)}
 
 admin.site.register(GamePlaya, GamePlayAdmin)
-admin.site.register(Gaia, GaiaAdmin)
+admin.site.register(Kategoria, GaiaAdmin)
 admin.site.register(Zailtasuna, ZailtasunAdmin)

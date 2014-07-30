@@ -9,8 +9,8 @@
         <div class="col-lg-12">
             <h1 class="page-header">Game Playak
                 <small>
-                {% if gaia %}
-                {{gaia.izena}}
+                {% if kategoria %}
+                {{kategoria.izena}}
                 {% elif maila %}
                 {{maila.izena}}k
                 {% elif jokoa %}
@@ -59,8 +59,8 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <ul class="list-unstyled">
-                            {% for gaia in gaiak %}
-                            <li><a href="{% url 'gameplay_gaia' gaia.slug %}">{{gaia.izena}}</a></li>
+                            {% for kategoria in kategoriak %}
+                            <li><a href="{% url 'gameplay_category' kategoria.slug %}">{{kategoria.izena}}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
