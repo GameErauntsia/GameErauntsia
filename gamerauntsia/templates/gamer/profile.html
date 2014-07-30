@@ -26,9 +26,16 @@
 		  	</div>
 	    </div>
 	    <div class="col-md-4">
-	    	<div class="col-lg-12">
+	    	<div class="col-lg-6 text-center">
+	    		{% if gp_count == 1 %}                  
+				<p><small>Game Play</small></p>
+				<h2><strong> {{gp_count}} </strong></h2>  
+	    		{% else %}
 				<h2><strong> {{gp_count}} </strong></h2>                    
 				<p><small>Game Play</small></p>
+				{% endif %}
+			</div>
+			<div class="col-lg-6">
 				<a href="{% url 'gameplay_user' user.username %}" class="btn btn-success btn-block"><span class="glyphicon glyphicon-play-circle"></span> Gehiago! </a>
 			</div>
 			{% if user.twitter_id %}
@@ -48,14 +55,16 @@
 	<div class="row">
 		<div class="col-md-8 col-xs-10">
 		    {% for gp in gameplayak %}
-		    <div class="col-lg-6">
-		        <img src="{{gp.argazkia.get_videoprofile_url}}" alt="" />
-		    </div>
-		    <div class="col-lg-6">
-		        <h1>{{gp.izenburua}}</h1>
-		        <p>{{gp.desk}}</p>
-		    </div>
-		    <hr/>
+		    <div class="row">
+			    <div class="col-lg-6">
+			        <img src="{{gp.argazkia.get_videoprofile_url}}" alt="" />
+			    </div>
+			    <div class="col-lg-6">
+			        <h1>{{gp.izenburua}}</h1>
+			        <p>{{gp.desk}}</p>
+			    </div>
+			</div>
+			<hr/>
 		    {% endfor %}
 		</div>
 	</div>
