@@ -57,6 +57,7 @@
 							{% endfor %}                 
 						</div>
 					</div>
+					{% if berri_count %}
 					<hr/>
 					<div class="row">
 						<div class="col-lg-6 text-center">
@@ -74,6 +75,7 @@
 							{% endfor %}                 
 						</div>
 					</div>
+					{% endif %}
 				</div>
 			</div>
 	    </div>
@@ -101,6 +103,7 @@
 				</div>
 			</div>
 		</div>
+		{% if berriak %}
 		<div class="col-lg-4">
 			<h2>Azken berriak</h2>
 			{% for berri in berriak %}
@@ -112,5 +115,6 @@
 		    </div>
 		    {% endfor %}
 		</div>
+		{% endif %}
 	</div>
 {% endblock %}
