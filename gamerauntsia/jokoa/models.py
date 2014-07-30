@@ -12,7 +12,7 @@ class Jokoa(models.Model):
     slug = models.SlugField(db_index=True, unique=True, help_text="Eremu honetan joko honen URL helbidea zehazten ari zara.")
     desk = models.TextField(max_length=256,null=True,blank=True)
     bertsioa = models.CharField(max_length=64,null=True,blank=True)
-    lizentzia = models.CharField(max_length=2, choices=SOFTWARE_AUKERAK)
+    lizentzia = models.CharField(max_length=2, default='C',choices=SOFTWARE_AUKERAK)
     
     logoa = models.ForeignKey(Photo,null=True,blank=True)
     url = models.CharField(max_length=64, help_text="Eremu honetan joko honen atariko URL helbidea zehazten ari zara." )
