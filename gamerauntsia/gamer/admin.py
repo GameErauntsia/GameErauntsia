@@ -62,7 +62,7 @@ class GamerUserAdmin(UserAdmin):
         {'fields':('ytube_channel','twitter_id', 'facebook_id', 'openid_id', 'googleplus_id'),'classes': ['collapse',],},),
         ('Mota',
         {'fields':('usertype',  'added_source'),'classes': ['collapse',],},),
-        (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
+        (_('Permissions'), {'fields': ('is_active','is_gamer', 'is_staff', 'is_superuser',
                                        'groups', 'user_permissions','last_login'),
                             'classes': ['collapse',],}),
 

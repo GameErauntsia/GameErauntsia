@@ -21,7 +21,7 @@ def index(request,kategoria=None,username=None,maila=None,jokoa=None):
         gameplayak = GamePlaya.objects.filter(publikoa_da=True,jokoa=jokoa).order_by('-pub_date')
     else:
         gameplayak = GamePlaya.objects.filter(publikoa_da=True).order_by('-pub_date')
-    users = GamerUser.objects.all()
+    users = GamerUser.objects.filter(is_active=True,is_gamer=True)
     kategoriak = Kategoria.objects.all()
     zailtasunak = Zailtasuna.objects.all()
     jokoak = Jokoa.objects.all()
