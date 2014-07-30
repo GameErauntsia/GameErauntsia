@@ -10,7 +10,7 @@ from django.db.models.signals import post_save
 class Kategoria(models.Model):
     izena = models.CharField(max_length=64)
     slug = models.SlugField(db_index=True, help_text="Eremu honetan kategoria honen URL helbidea zehazten ari zara.")
-    desk = models.TextField(max_length=256)
+    desk = models.TextField(max_length=256,null=True,blank=True)
     irudia = models.ForeignKey(Photo,null=True,blank=True)
     
     class Meta:

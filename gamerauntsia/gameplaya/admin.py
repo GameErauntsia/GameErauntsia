@@ -9,6 +9,7 @@ class GamePlayAdmin(admin.ModelAdmin):
     list_display = ('izenburua', 'slug','zailtasuna', 'jokoa','pub_date', 'erabiltzailea','publikoa_da')
     prepopulated_fields = {"slug": ("izenburua",)}
     form = GamePlayAdminForm
+    row_fields = ('argazkia','erabiltzailea')
     
 class GaiaAdmin(admin.ModelAdmin):
     list_display = ('izena','slug')

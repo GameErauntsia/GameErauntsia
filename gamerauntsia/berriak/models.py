@@ -10,7 +10,7 @@ from django.template import defaultfilters as filters
 class Gaia(models.Model):
     izena = models.CharField(max_length=64)
     slug = models.SlugField(db_index=True, help_text="Eremu honetan gai honen URL helbidea zehazten ari zara.")
-    desk = models.TextField(max_length=256)
+    desk = models.TextField(max_length=256,null=True,blank=True)
     irudia = models.ForeignKey(Photo,null=True,blank=True)
     
     class Meta:
