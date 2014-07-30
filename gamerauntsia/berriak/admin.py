@@ -6,5 +6,11 @@ class BarriakAdmin(admin.ModelAdmin):
     list_display = ('izenburua', 'slug', 'erabiltzailea', 'pub_date', 'mod_date', 'publikoa_da')
     prepopulated_fields = {"slug": ("izenburua",)}
     form = BerriaAdminForm	
-	
+
+class GaiaAdmin(admin.ModelAdmin):
+    list_display = ('izena','slug')
+    prepopulated_fields = {"slug": ("izena",)}
+    
+
+admin.site.register(Gaia, GaiaAdmin)	
 admin.site.register(Berria, BarriakAdmin)

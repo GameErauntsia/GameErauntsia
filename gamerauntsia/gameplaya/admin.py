@@ -11,7 +11,7 @@ class GamePlayAdmin(admin.ModelAdmin):
     form = GamePlayAdminForm
     row_fields = ('argazkia','erabiltzailea')
     
-class GaiaAdmin(admin.ModelAdmin):
+class KategoriaAdmin(admin.ModelAdmin):
     list_display = ('izena','slug')
     prepopulated_fields = {"slug": ("izena",)}
     
@@ -20,5 +20,5 @@ class ZailtasunAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("izena",)}
 
 admin.site.register(GamePlaya, GamePlayAdmin)
-admin.site.register(Kategoria, GaiaAdmin)
+admin.site.register(Kategoria, KategoriaAdmin)
 admin.site.register(Zailtasuna, ZailtasunAdmin)
