@@ -9,5 +9,5 @@ def index(request):
     return render_to_response('gamer/index.html', locals(),context_instance=RequestContext(request))
     
 def profile(request,username):
-    user = get_object_or_404(settings.AUTH_USER_MODEL,username=username)
+    user = get_object_or_404(GamerUser,username=username)
     return render_to_response('gamer/profile.html', locals(),context_instance=RequestContext(request))

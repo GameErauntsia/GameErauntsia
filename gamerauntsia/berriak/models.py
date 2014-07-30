@@ -3,6 +3,7 @@ from django.db.models.signals import post_save
 from django.conf import settings
 from datetime import datetime
 from photologue.models import Photo
+from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.utils import post_to_twitter
 from django.template import defaultfilters as filters
 
@@ -11,7 +12,7 @@ class Berria(models.Model):
     slug = models.SlugField(db_index=True, help_text="Eremu honetan berri honen URL helbidea zehazten ari zara.")
     desk = models.TextField(max_length=256)
     
-    erabiltzailea = models.ForeignKey(settings.AUTH_USER_MODEL)
+    erabiltzailea = models.ForeignKey(GamerUser)
     argazkia = models.ForeignKey(Photo,null=True,blank=True)
 
     publikoa_da = models.BooleanField(default=True) 

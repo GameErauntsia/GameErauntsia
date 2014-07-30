@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from photologue.models import Photo
 from gamerauntsia.jokoa.models import Jokoa
+from gamerauntsia.gamer.models import GamerUser
 from datetime import datetime
 from gamerauntsia.utils import post_to_twitter
 from django.db.models.signals import post_save
@@ -46,7 +47,7 @@ class GamePlaya(models.Model):
     zailtasuna = models.ForeignKey(Zailtasuna)
     gaia = models.ManyToManyField(Gaia)
     
-    erabiltzailea = models.ForeignKey(settings.AUTH_USER_MODEL)
+    erabiltzailea = models.ForeignKey(GamerUser)
     publikoa_da = models.BooleanField(default=True) 
     pub_date = models.DateTimeField('publikazio data', default=datetime.now)
     mod_date = models.DateTimeField('modifikazio data', default=datetime.now)
