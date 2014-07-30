@@ -67,7 +67,7 @@
                     <div class="col-lg-6">
                         <ul class="list-unstyled">
                             {% for user in users %}
-                            <li><a href="{% url 'gameplay_user' user.username %}">{{user.username.fullname}}</a></li>
+                            <li><a href="{% url 'gameplay_user' user.username %}">{{user.fullname}}</a></li>
                             {% endfor %}
                         </ul>
                     </div>

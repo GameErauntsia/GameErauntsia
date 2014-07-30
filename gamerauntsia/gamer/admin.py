@@ -57,9 +57,9 @@ class GamerUserAdmin(UserAdmin):
         (None, {'fields': ('username', 'password')}),
 
         ('Datuak',
-        {'fields':('fullname','nickname','email','ytube_channel', 'phone', 'photo','bio')},),
+        {'fields':('fullname','nickname','email', 'phone', 'photo','bio')},),
         ('Sare sozialak',
-        {'fields':('twitter_id', 'facebook_id', 'openid_id', 'googleplus_id'),'classes': ['collapse',],},),
+        {'fields':('ytube_channel','twitter_id', 'facebook_id', 'openid_id', 'googleplus_id'),'classes': ['collapse',],},),
         ('Mota',
         {'fields':('usertype',  'added_source'),'classes': ['collapse',],},),
         (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
