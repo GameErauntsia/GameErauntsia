@@ -41,47 +41,51 @@
 			    	<h3 class="panel-title">Estatistikak</h3>
 			  	</div>
 			  	<div class="panel-body">
-			    	<div class="col-lg-6 text-center">
-			    		{% if gp_count == 1 %}                  
-						<p><small>Game Play</small></p>
-						<h2><strong> {{gp_count}} </strong></h2>  
-			    		{% else %}
-						<h2><strong> {{gp_count}} </strong></h2>                    
-						<p><small>Game Play</small></p>
-						{% endif %}
-					</div>
-					<div class="headerDivider"></div>
-					<div class="col-lg-6">
-						<h4>Kategoriaka:</h4>
-						{% for cat in categs %}
-						<p><strong>{{cat.count}}</strong> {{cat.gaia__izena}}</p>
-						{% endfor %}                 
+			  		<div class="row">
+				    	<div class="col-lg-6 text-center">
+				    		{% if gp_count == 1 %}                  
+							<p><small>Game Play</small></p>
+							<h2><strong> {{gp_count}} </strong></h2>  
+				    		{% else %}
+							<h2><strong> {{gp_count}} </strong></h2>                    
+							<p><small>Game Play</small></p>
+							{% endif %}
+						</div>
+						<div class="headerDivider"></div>
+						<div class="col-lg-6">
+							<h4>Kategoriaka:</h4>
+							{% for cat in categs %}
+							<p><strong>{{cat.count}}</strong> {{cat.gaia__izena}}</p>
+							{% endfor %}                 
+						</div>
 					</div>
 					<hr/>
-					<div class="col-lg-6 text-center">
-			    		{% if berri_count == 1 %}                  
-						<p><small>Artikulu</small></p>
-						<h2><strong> {{berri_count}} </strong></h2>  
-			    		{% else %}
-						<h2><strong> {{berri_count}} </strong></h2>                    
-						<p><small>Artikulu</small></p>
-						{% endif %}
-					</div>
-					<div class="headerDivider"></div>
-					<div class="col-lg-6">
-						<h4>Kategoriaka:</h4>
-						{% for bcat in bcategs %}
-						<p><strong>{{bcat.count}}</strong> {{bcat.gaia__izena}}</p>
-						{% endfor %}                 
+					<div class="row">
+						<div class="col-lg-6 text-center">
+				    		{% if berri_count == 1 %}                  
+							<p><small>Artikulu</small></p>
+							<h2><strong> {{berri_count}} </strong></h2>  
+				    		{% else %}
+							<h2><strong> {{berri_count}} </strong></h2>                    
+							<p><small>Artikulu</small></p>
+							{% endif %}
+						</div>
+						<div class="headerDivider"></div>
+						<div class="col-lg-6">
+							<h4>Kategoriaka:</h4>
+							{% for bcat in bcategs %}
+							<p><strong>{{bcat.count}}</strong> {{bcat.gaia__izena}}</p>
+							{% endfor %}                 
+						</div>
 					</div>
 				</div>
 			</div>
 	    </div>
 	</div>
 	<hr/>
-	<h2>Azken Game Playak</h2>
 	<div class="row">
-		<div class="col-md-8 col-xs-10">
+		<div class="col-md-8">
+			<h2>Azken Game Playak</h2>
 		    {% for gp in gameplayak %}
 		    <div class="row">
 			    <div class="col-lg-6">
@@ -95,6 +99,9 @@
 			</div>
 			<hr/>
 		    {% endfor %}
+		</div>
+		<div class="col-md-4">
+			<h2>Azken berriak</h2>
 		</div>
 	</div>
 	<div class="row">
