@@ -1,4 +1,4 @@
-from gamerauntsia.berriak.models import Berria
+from gamerauntsia.berriak.models import Berria, Gaia
 from django.contrib import admin
 from gamerauntsia.berriak.forms import BerriaAdminForm
 
