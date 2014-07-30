@@ -10,7 +10,7 @@ MEMBER_PHOTO_SLUG=getattr(settings,'PROFILE_PHOTO_DEFAULT_SLUG','no-profile-phot
 
 class GamerUser(CSAbstractSocialUser):
     nickname = models.CharField(max_length=64,null=True,blank=True)
-    is_gamer = models.BooleanField(defaut=1)
+    is_gamer = models.BooleanField(default=1)
     ytube_channel = models.CharField(max_length=150,null=True,blank=True)
     last_updated = models.DateTimeField(auto_now_add=True,editable=False)
     date_joined = models.DateTimeField(auto_now_add=True,editable=False,null=True,blank=True)
