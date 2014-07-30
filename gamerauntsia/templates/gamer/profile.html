@@ -17,7 +17,7 @@
 					<p><strong>Bio: </strong> {{user.bio}}</p>
 					<p><strong>Kategoriak: </strong>
 						{% for cat in categs %}
-						<span class="label label-info tags">{{cat.gaia__izena}}</span> 
+						<span class="label label-info tags"><a href="{% url 'gameplay_gaia' cat.gaia__izena|slugify %}">{{cat.gaia__izena}}</a></span> 
 						{% endfor %}
 					</p>
 					<p>
