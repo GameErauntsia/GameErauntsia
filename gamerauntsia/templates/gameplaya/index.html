@@ -70,7 +70,7 @@
                     <div class="col-lg-6">
                         <ul class="list-unstyled">
                             {% for jokoa in jokoak %}
-                            <li><a href="{% url 'gameplay_game' jokoa.slug %}">{{jokoa.izena}}</a></li>
+                            <li><a href="{% url 'gameplay_game' jokoa.slug %}">{{jokoa.izena}} {%if jokoa.bertsioa %}{{jokoa.bertsioa}}{% endif %}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
