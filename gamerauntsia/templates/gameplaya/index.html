@@ -28,7 +28,7 @@
             {% autopaginate gameplayak 6 %}
             {% for gp in gameplayak %}
 
-            {% if forloop.counter|divisibleby:2 %}
+            {% if not forloop.counter|divisibleby:2 %}
             <div class="row">
             {% endif %}  
 
