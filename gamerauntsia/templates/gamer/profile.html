@@ -84,10 +84,10 @@
 			<h2>Azken Game Playak</h2>
 		    {% for gp in gameplayak %}
 		    <div class="row">
-			    <div class="col-lg-6">
+			    <div class="col-lg-4">
 			        <a href="{{gp.get_absolute_url}}"><img src="{{gp.argazkia.get_videoprofile_url}}" alt="" /></a>
 			    </div>
-			    <div class="col-lg-6">
+			    <div class="col-lg-8">
 			        <h3><a href="{{gp.get_absolute_url}}">{{gp.izenburua}}</a></h3>
 			        <p><span class="glyphicon glyphicon-play"></span> {% if gp.jokoa.url %}<a href="{{gp.jokoa.url}}">{{gp.jokoa}}</a>{% else %}{{gp.jokoa}}{% endif%} | <span class="glyphicon glyphicon-time"></span> {{gp.iraupena_min}}min {{gp.iraupena_seg}}seg</p>
 			        <p>{{gp.desk}}</p>
@@ -100,10 +100,10 @@
 			<h2>Azken berriak</h2>
 			{% for berri in berriak %}
 			<div class="col-lg-4">
-			    <a href="{{berri.get_absolute_url}}"><img src="{{berri.argazkia.get_newsprofile_url}}" alt="" /></a>
+			    <a href="{% url 'berria' berri.slug %}"><img src="{{berri.argazkia.get_newsprofile_url}}" alt="" /></a>
 			</div>
 		    <div class="col-lg-8">
-		        <p><strong><a href="{{berri.get_absolute_url}}">{{berri.izenburua}}</strong></a><p>
+		        <p><strong><a href="{% url 'berria' berri.slug %}">{{berri.izenburua}}</strong></a><p>
 		    </div>
 		    {% endfor %}
 		</div>
