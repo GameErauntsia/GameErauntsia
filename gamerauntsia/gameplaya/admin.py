@@ -8,8 +8,9 @@ from django.utils import timezone
 class GamePlayAdmin(admin.ModelAdmin):
     list_display = ('izenburua', 'slug','zailtasuna', 'jokoa','pub_date', 'erabiltzailea','publikoa_da')
     prepopulated_fields = {"slug": ("izenburua",)}
-    form = GamePlayAdminForm
+    filter_horizontal = ('kategoria',)
     row_fields = ('argazkia','erabiltzailea')
+    form = GamePlayAdminForm
     
 class KategoriaAdmin(admin.ModelAdmin):
     list_display = ('izena','slug')
