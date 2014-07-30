@@ -11,7 +11,7 @@
 				</div><!--/col--> 
 				<div class="col-xs-12 col-sm-8">
 					<h2>{{user.fullname}}</h2>
-					{% if user.twitter_id | user.nickname %}
+					{% if user.twitter_id or user.nickname %}
 					<p><strong>Ezizena: </strong> {% if user.twitter_id %}@{{user.twitter_id}}{% else %}{{user.nickname}}{% endif %}</p>
 					{% endif %}
 					<p><strong>Bio: </strong> {{user.bio}}</p>
