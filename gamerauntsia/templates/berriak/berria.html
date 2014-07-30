@@ -17,9 +17,9 @@
         <hr>
         {% endif %}
         <p class="lead">{{item.desk|safe}}</p>
-        <p><a class="twitter popup" href="http://twitter.com/share?text={{item.izenburua}}"><img src="{{STATIC_URL}}img/twitter.png"/></a> <a href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={% url 'berria' item.slug %}&p[images][0]={{item.argazkia.image.url}}&p[title]={{item.izenburua}}&p[summary]={{item.desk|safe}}"><img src="{{STATIC_URL}}img/facebook.png"/></a></p>
+        <p><a class="twitter popup" href="http://twitter.com/share?text={{item.izenburua|urlize}}"><img src="{{STATIC_URL}}img/twitter.png"/></a> <a href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={% url 'berria' item.slug %}&p[images][0]={{item.argazkia.image.url}}&p[title]={{item.izenburua|urlize}}&p[summary]={{item.desk|urlize}}"><img src="{{STATIC_URL}}img/facebook.png"/></a></p>
         <hr>
-        {{item.argazkia.image.url}}
+        
         <div id="disqus_thread"></div>
         <script type="text/javascript">
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
