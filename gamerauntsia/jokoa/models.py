@@ -9,7 +9,7 @@ SOFTWARE_AUKERAK = (
 
 class Jokoa(models.Model):
     izena = models.CharField(max_length=64)
-    slug = models.SlugField(db_index=True, help_text="Eremu honetan joko honen URL helbidea zehazten ari zara.")
+    slug = models.SlugField(db_index=True, unique=True, help_text="Eremu honetan joko honen URL helbidea zehazten ari zara.")
     desk = models.TextField(max_length=256,null=True,blank=True)
     bertsioa = models.CharField(max_length=64,null=True,blank=True)
     lizentzia = models.CharField(max_length=2, null=True,blank=True, choices=SOFTWARE_AUKERAK)

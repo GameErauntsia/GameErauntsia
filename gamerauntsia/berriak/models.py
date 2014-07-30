@@ -9,7 +9,7 @@ from django.template import defaultfilters as filters
 
 class Gaia(models.Model):
     izena = models.CharField(max_length=64)
-    slug = models.SlugField(db_index=True, help_text="Eremu honetan gai honen URL helbidea zehazten ari zara.")
+    slug = models.SlugField(db_index=True, unique=True, help_text="Eremu honetan gai honen URL helbidea zehazten ari zara.")
     desk = models.TextField(max_length=256,null=True,blank=True)
     irudia = models.ForeignKey(Photo,null=True,blank=True)
     
@@ -22,7 +22,7 @@ class Gaia(models.Model):
 
 class Berria(models.Model):
     izenburua = models.CharField(max_length=64)
-    slug = models.SlugField(db_index=True, help_text="Eremu honetan berri honen URL helbidea zehazten ari zara.")
+    slug = models.SlugField(db_index=True, unique=True, help_text="Eremu honetan berri honen URL helbidea zehazten ari zara.")
     desk = models.TextField(max_length=256)
 
     gaia = models.ManyToManyField(Gaia)
