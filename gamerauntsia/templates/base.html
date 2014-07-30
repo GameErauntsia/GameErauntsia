@@ -45,10 +45,10 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li {% if not request.path|contains:".com/" %}class="active"{% endif %}><a href="/" title="Sarrera">Sarrera</a></li>
-                    <li {% if request.path|contains:"/gameplayak" %}class="active"{% endif %}><a href="/gameplayak">Game Playak</a></li>
-                    <li {% if request.path|contains:"/berriak" %}class="active"{% endif %}><a href="/berriak" title="Berriak">Berriak</a></li>
-                    <li {% if request.path|contains:"/nor-gara" %}class="active"{% endif %}><a href="/nor-gara" title="Nor gara">Nor gara</a></li>
-                    <li {% if request.path|contains:"/kontaktua" %}class="active"{% endif %}><a href="/kontaktua" title="Kontaktua">Kontaktua</a></li>
+                    <li {% if request.path|contains:"gameplayak" %}class="active"{% endif %}><a href="/gameplayak">Game Playak</a></li>
+                    <li {% if request.path|contains:"berriak" %}class="active"{% endif %}><a href="/berriak" title="Berriak">Berriak</a></li>
+                    <li {% if request.path|contains:"nor-gara" %}class="active"{% endif %}><a href="/nor-gara" title="Nor gara">Nor gara</a></li>
+                    <li {% if request.path|contains:"kontaktua" %}class="active"{% endif %}><a href="/kontaktua" title="Kontaktua">Kontaktua</a></li>
                     <li>
                         <form class="navbar-search pull-right" action="/bilaketa">
                             <div class="input-group search-query">
