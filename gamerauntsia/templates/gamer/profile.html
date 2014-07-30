@@ -57,6 +57,23 @@
 						<p><strong>{{cat.count}}</strong> {{cat.gaia__izena}}</p>
 						{% endfor %}                 
 					</div>
+					<hr/>
+					<div class="col-lg-6 text-center">
+			    		{% if berri_count == 1 %}                  
+						<p><small>Artikulu</small></p>
+						<h2><strong> {{berri_count}} </strong></h2>  
+			    		{% else %}
+						<h2><strong> {{berri_count}} </strong></h2>                    
+						<p><small>Artikulu</small></p>
+						{% endif %}
+					</div>
+					<div class="headerDivider"></div>
+					<div class="col-lg-6">
+						<h4>Kategoriaka:</h4>
+						{% for bcat in bcategs %}
+						<p><strong>{{bcat.count}}</strong> {{bcat.gaia__izena}}</p>
+						{% endfor %}                 
+					</div>
 				</div>
 			</div>
 	    </div>
