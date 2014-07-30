@@ -44,15 +44,17 @@
 	    </div>
 	</div>
 	<div class="row">
-	    {% for gp in gameplayak %}
-	    <div class="col-lg-8">
-	        <div class="flex-video widescreen"><iframe width="700" height="394" src="//www.youtube.com/embed/{{gp.bideoa}}" frameborder="0" allowfullscreen></iframe></div>
-	        <!-- take out img-rounded if you don't want the rounded corners on the image -->
-	    </div>
-	    <div class="col-lg-4">
-	        <h1>{{gp.izenburua}}</h1>
-	        <p>{{gp.desk}}</p>
-	    </div>
-	    {% endfor %}
+		<div class="col-md-8 col-xs-10">
+		    {% for gp in gameplayak %}
+		    <div class="col-lg-8">
+		        <div class="flex-video widescreen"><iframe width="300" height="169" src="//www.youtube.com/embed/{{gp.bideoa}}" frameborder="0" allowfullscreen></iframe></div>
+		        <!-- take out img-rounded if you don't want the rounded corners on the image -->
+		    </div>
+		    <div class="col-lg-4">
+		        <h1>{{gp.izenburua}}</h1>
+		        <p>{{gp.desk}}</p>
+		    </div>
+		    {% endfor %}
+		</div>
 	</div>
 {% endblock %}

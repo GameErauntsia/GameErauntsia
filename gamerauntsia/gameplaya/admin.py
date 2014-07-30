@@ -16,6 +16,7 @@ class GaiaAdmin(admin.ModelAdmin):
     
 class ZailtasunAdmin(admin.ModelAdmin):
     list_display = ('izena',)
+    prepopulated_fields = {"slug": ("izena",)}
 
 admin.site.register(GamePlaya, GamePlayAdmin)
 admin.site.register(Gaia, GaiaAdmin)
