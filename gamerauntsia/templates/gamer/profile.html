@@ -53,9 +53,8 @@
 						</div>
 						<div class="headerDivider"></div>
 						<div class="col-lg-6">
-							<h4>Kategoriaka:</h4>
 							{% for cat in categs %}
-							<p><strong>{{cat.count}}</strong> {{cat.gaia__izena}}</p>
+							<p><strong>{{cat.count}}</strong> <span class="label label-info tags"><a href="{% url 'gameplay_gaia' cat.gaia__izena|slugify %}">{{cat.gaia__izena}}</a></span></p>
 							{% endfor %}                 
 						</div>
 					</div>
@@ -72,9 +71,8 @@
 						</div>
 						<div class="headerDivider"></div>
 						<div class="col-lg-6">
-							<h4>Kategoriaka:</h4>
 							{% for bcat in bcategs %}
-							<p><strong>{{bcat.count}}</strong> {{bcat.gaia__izena}}</p>
+							<p><strong>{{bcat.count}}</strong> <span class="label label-info tags"><a href="{% url 'gameplay_gaia' bcat.gaia__izena|slugify %}">{{bcat.gaia__izena}}</a></span></p>
 							{% endfor %}                 
 						</div>
 					</div>
@@ -88,10 +86,10 @@
 			<h2>Azken Game Playak</h2>
 		    {% for gp in gameplayak %}
 		    <div class="row">
-			    <div class="col-lg-6">
+			    <div class="col-lg-4">
 			        <a href="{{gp.get_absolute_url}}"><img src="{{gp.argazkia.get_videoprofile_url}}" alt="" /></a>
 			    </div>
-			    <div class="col-lg-6">
+			    <div class="col-lg-8">
 			        <h3><a href="{{gp.get_absolute_url}}">{{gp.izenburua}}</a></h3>
 			        <p><span class="glyphicon glyphicon-play"></span> {% if gp.jokoa.url %}<a href="{{gp.jokoa.url}}">{{gp.jokoa}}</a>{% else %}{{gp.jokoa}}{% endif%} | <span class="glyphicon glyphicon-time"></span> {{gp.iraupena_min}}min {{gp.iraupena_seg}}seg</p>
 			        <p>{{gp.desk}}</p>

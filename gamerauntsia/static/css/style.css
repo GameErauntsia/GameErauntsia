@@ -76,3 +76,7 @@ a:hover, a:focus {
      right:249px;
      top:10px; 
 }
+
+.tags a {
+  color: #fff;
+}
