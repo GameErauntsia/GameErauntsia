@@ -1,7 +1,6 @@
 {% extends "base.html" %}
-{% load include %}
 
-{%block title%}{{user.username|get_fullname}} - {%endblock%}
+{%block title%}{{user.fullname}} - {%endblock%}
 
 {% block content %}
 	<div class="row">
@@ -11,7 +10,7 @@
 					<img src="http://placehold.it/200x200" alt="" class="center-block img-circle img-responsive">
 				</div><!--/col--> 
 				<div class="col-xs-12 col-sm-8">
-					<h2>{{user.username|get_fullname}}</h2>
+					<h2>{{user.username.fullname}}</h2>
 					<p><strong>Ezizena: </strong> Web Designer / UI. </p>
 					<p><strong>Bio: </strong> {{user.bio}}</p>
 					<p><strong>Kategoriak: </strong>

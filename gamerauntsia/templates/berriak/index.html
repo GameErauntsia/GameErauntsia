@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load include %}
 
 {% block morejs %}
 <div id="fb-root"></div>
@@ -23,7 +22,7 @@
         {% for berria in zerr_berriak %}
         <h1><a href="{{berria.slug}}">{{berria.izenburua}}</a></h1>
         <p class="lead">
-            <span class="glyphicon glyphicon-user"></span> {{berria.erabiltzailea.username|get_fullname}}<br/>
+            <span class="glyphicon glyphicon-user"></span> {{berria.erabiltzailea.fullname}}<br/>
             <span class="glyphicon glyphicon-time"></span> {{berria.pub_date|date:"Y/m/d H:i"}}
         </p>
         {% if berria.argazkia %}

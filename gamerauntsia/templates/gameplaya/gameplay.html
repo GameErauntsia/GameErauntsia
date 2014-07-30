@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load include %}
 
 {% block title %}{{gp.izenburua}} - Game playak - {% endblock %}
 
@@ -17,7 +16,7 @@
         <p><span class="glyphicon glyphicon-tag"> {% for gai in gp.gaia.all %}{{gai.izena}}{% if not forloop.last %}, {%endif%}{% endfor %}</p>
         <p><span class="glyphicon glyphicon-fire"> {{gp.zailtasuna.izena}}</p>
         <p><span class="glyphicon glyphicon-time"> {{gp.iraupena_min}}min {{gp.iraupena_seg}}seg</p>
-        <p><span class="glyphicon glyphicon-user"> {{gp.erabiltzailea|get_fullname}}</p>
+        <p><span class="glyphicon glyphicon-user"> {{gp.erabiltzailea.fullname}}</p>
         </div>
     </div>
 </div>
