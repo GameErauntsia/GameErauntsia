@@ -80,14 +80,14 @@
 	</div>
 	<hr/>
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-lg-8">
 			<h2>Azken Game Playak</h2>
 		    {% for gp in gameplayak %}
 		    <div class="row">
-			    <div class="col-lg-5">
+			    <div class="col-lg-8">
 			        <a href="{{gp.get_absolute_url}}"><img src="{{gp.argazkia.get_videoprofile_url}}" alt="" /></a>
 			    </div>
-			    <div class="col-lg-9">
+			    <div class="col-lg-4">
 			        <h3><a href="{{gp.get_absolute_url}}">{{gp.izenburua}}</a></h3>
 			        <p><span class="glyphicon glyphicon-play"></span> {% if gp.jokoa.url %}<a href="{{gp.jokoa.url}}">{{gp.jokoa}}</a>{% else %}{{gp.jokoa}}{% endif%} | <span class="glyphicon glyphicon-time"></span> {{gp.iraupena_min}}min {{gp.iraupena_seg}}seg</p>
 			        <p>{{gp.desk}}</p>
@@ -96,7 +96,7 @@
 			<hr/>
 		    {% endfor %}
 		</div>
-		<div class="col-md-4">
+		<div class="col-lg-4">
 			<h2>Azken berriak</h2>
 		</div>
 	</div>
