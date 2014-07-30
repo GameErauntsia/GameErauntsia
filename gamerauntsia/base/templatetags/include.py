@@ -69,7 +69,17 @@ def get_bideo(item):
         html = ''
     return html
 
+
 @register.filter
-def get_fullname(username):
-    user = GamerUser.objects.get(username=username)
-    return '%s %s' % (user.first_name, user.last_name)    
+def contains(value, arg):
+  """
+  Usage:
+  {% if text|contains:"http://" %}
+  This is a link.
+  {% else %}
+  Not a link.
+  {% endif %}
+  """
+  if arg in value:
+    return True
+  return False
