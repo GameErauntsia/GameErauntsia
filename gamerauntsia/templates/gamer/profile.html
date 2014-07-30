@@ -57,10 +57,10 @@
 		    {% for gp in gameplayak %}
 		    <div class="row">
 			    <div class="col-lg-6">
-			        <img src="{{gp.argazkia.get_videoprofile_url}}" alt="" />
+			        <a href="{{gp.get_absolute_url}}"><img src="{{gp.argazkia.get_videoprofile_url}}" alt="" /></a>
 			    </div>
 			    <div class="col-lg-6">
-			        <h1>{{gp.izenburua}}</h1>
+			        <h3><a href="{{gp.get_absolute_url}}">{{gp.izenburua}}</a></h3>
 			        <p>{{gp.desk}}</p>
 			    </div>
 			</div>
