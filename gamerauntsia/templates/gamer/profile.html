@@ -53,7 +53,7 @@
 						</div>
 						<div class="col-lg-6">
 							{% for cat in categs %}
-							<p><strong>{{cat.count}}</strong> <span class="label label-info tags"><a href="{% url 'gameplay_category' cat.gaia__izena|slugify %}">{{cat.gaia__izena}}</a></span></p>
+							<p><strong>{{cat.count}}</strong> <span class="label label-info tags"><a href="{% url 'gameplay_category' cat.kategoria__izena|slugify %}">{{cat.kategoria__izena}}</a></span></p>
 							{% endfor %}                 
 						</div>
 					</div>
