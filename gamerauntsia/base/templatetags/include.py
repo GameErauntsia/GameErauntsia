@@ -83,3 +83,9 @@ def contains(value, arg):
   if arg in value:
     return True
   return False
+
+@register.filter
+def isequal(value, arg):
+  if arg == value:
+    return True
+  return False
