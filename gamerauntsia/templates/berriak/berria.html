@@ -9,8 +9,7 @@
         <!-- the actual blog post: title/author/date/content -->
         <h1>{{item.izenburua}}</h1>
         <p class="lead">
-            <span class="glyphicon glyphicon-user"></span> {{item.erabiltzailea.fullname}}<br/>
-            <span class="glyphicon glyphicon-time"></span> {{item.pub_date|date:"Y/m/d H:i"}}
+            <a href="{% url 'gamer_profile' item.erabiltzailea.username %}"><img src="{{item.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{item.erabiltzailea.fullname}}</a> | <span class="glyphicon glyphicon-time"></span> {{item.pub_date|date:"Y/m/d H:i"}}
         </p>
         <hr>
         {% if item.argazkia %}

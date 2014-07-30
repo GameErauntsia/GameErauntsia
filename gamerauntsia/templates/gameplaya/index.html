@@ -92,11 +92,9 @@
                 <hr/>
                 <div class="row">
                     <div class="col-lg-12">
-                        <ul class="list-unstyled">
-                            {% for user in users %}
-                            <li><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.fullname}}</a></li>
-                            {% endfor %}
-                        </ul>
+                        {% for user in users %}
+                        <p><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.fullname}}</a></p>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
