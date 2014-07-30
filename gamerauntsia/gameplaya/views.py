@@ -22,9 +22,9 @@ def index(request,kategoria=None,username=None,maila=None,jokoa=None):
     else:
         gameplayak = GamePlaya.objects.filter(publikoa_da=True).order_by('-pub_date')
     users = GamerUser.objects.filter(is_active=True,is_gamer=True)
-    kategoriak = Kategoria.objects.all()
-    zailtasunak = Zailtasuna.objects.all()
-    jokoak = Jokoa.objects.all()
+    kategoriak = Kategoria.objects.exclude(gameplay__isnull=True)
+    zailtasunak = Zailtasuna.objects.exclude(gameplay__isnull=True)
+    jokoak = Jokoa.objects.exclude(gameplay__isnull=True)
     return render_to_response('gameplaya/index.html', locals(),context_instance=RequestContext(request))
     
 def gameplaya(request,slug):

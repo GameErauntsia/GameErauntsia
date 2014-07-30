@@ -41,9 +41,9 @@ class GamePlaya(models.Model):
     argazkia = models.ForeignKey(Photo)
     bideoa = models.CharField(max_length=100, help_text="Eremu honetan bideoaren URL kodea itsatsi behar duzu. Adb.: c21XAuI3aMo")
     
-    jokoa = models.ForeignKey(Jokoa)
-    zailtasuna = models.ForeignKey(Zailtasuna)
-    kategoria = models.ManyToManyField(Kategoria)
+    jokoa = models.ForeignKey(Jokoa, related_name='gameplay')
+    zailtasuna = models.ForeignKey(Zailtasuna, related_name='gameplay')
+    kategoria = models.ManyToManyField(Kategoria, related_name='gameplay')
     
     erabiltzailea = models.ForeignKey(GamerUser)
     publikoa_da = models.BooleanField(default=True) 
