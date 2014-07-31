@@ -7,7 +7,7 @@ class BarriakAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("izenburua",)}
     filter_horizontal = ('gaia',)
     list_filter = ('erabiltzailea', 'publikoa_da')
-    search_fields = ['erabiltzailea','izenburua']
+    search_fields = ['erabiltzailea__username','erabiltzailea__fullname','izenburua']
     form = BerriaAdminForm	
     
 
