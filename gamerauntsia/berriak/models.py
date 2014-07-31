@@ -12,7 +12,7 @@ class Gaia(models.Model):
     slug = models.SlugField(db_index=True, unique=True, help_text="Eremu honetan gai honen URL helbidea zehazten ari zara.")
     desk = models.TextField(max_length=256,null=True,blank=True)
     irudia = models.ForeignKey(Photo,null=True,blank=True)
-    
+
     class Meta:
         verbose_name = "Gaia"
         verbose_name_plural = "Gaiak"
@@ -33,7 +33,6 @@ class Berria(models.Model):
     publikoa_da = models.BooleanField(default=True) 
     pub_date = models.DateTimeField('publikazio data', default=datetime.now)
     mod_date = models.DateTimeField('modifikazio data', default=datetime.now)
-    
 
     def get_desk_txikia(self):
     	return filters.striptags(self.desk)[:400]+'...'    
@@ -45,8 +44,5 @@ class Berria(models.Model):
 
     def __unicode__(self):
         return u'%s' % (self.izenburua)
-
-    def get_absolute_url(self):
-        return "/azken-berriak/feed/"
 
 #post_save.connect(post_to_twitter, sender=Berria)

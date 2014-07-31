@@ -13,6 +13,27 @@ class GamePlayAdmin(admin.ModelAdmin):
     list_filter = ('erabiltzailea','zailtasuna', 'publikoa_da')
     search_fields = ['erabiltzailea__fullname','erabiltzailea__username','izenburua']
     form = GamePlayAdminForm
+
+    def queryset(self, request):
+        qs = super(GamePlayAdmin, self).queryset(request)
+        if request.user.is_superuser:
+            return qs
+        else:
+            return qs.filter(erabiltzailea = request.user)
+    
+    def save_model(self, request, obj, form, change):
+        obj.erabiltzailea = request.user
+        obj.save()
+    
+    def has_change_permission(self, request, obj=None):
+        if not obj:
+            return True # So they can see the change list page
+        if request.user.is_superuser or obj.erabiltzailea == request.user:
+            return True
+        else:
+            return False
+    
+    has_delete_permission = has_change_permission
     
 class KategoriaAdmin(admin.ModelAdmin):
     list_display = ('izena','slug')

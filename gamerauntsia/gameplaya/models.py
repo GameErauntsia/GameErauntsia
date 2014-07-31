@@ -12,7 +12,7 @@ class Kategoria(models.Model):
     slug = models.SlugField(db_index=True, unique=True, help_text="Eremu honetan kategoria honen URL helbidea zehazten ari zara.")
     desk = models.TextField(max_length=256,null=True,blank=True)
     irudia = models.ForeignKey(Photo,null=True,blank=True)
-    
+
     class Meta:
         verbose_name = "Kategoria"
         verbose_name_plural = "Kategoriak"
@@ -49,7 +49,7 @@ class GamePlaya(models.Model):
     publikoa_da = models.BooleanField(default=True) 
     pub_date = models.DateTimeField('publikazio data', default=datetime.now)
     mod_date = models.DateTimeField('modifikazio data', default=datetime.now)
-    
+
     def get_puntuak(self):
         if self.puntuak == 0:
             return 0
@@ -68,7 +68,7 @@ class GamePlaya(models.Model):
 
     def get_absolute_url(self):
         return '/gameplayak/%s' % self.slug
-    
+
     class Meta:    
         verbose_name = "gameplaya"
         verbose_name_plural = "gameplayak"
