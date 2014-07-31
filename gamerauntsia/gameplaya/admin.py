@@ -10,7 +10,7 @@ class GamePlayAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("izenburua",)}
     filter_horizontal = ('kategoria',)
     row_id_fields = ('argazkia','erabiltzailea')
-    list_filter = ('kategoria__izena','zailtasuna', 'erabiltzailea', 'is_public')
+    list_filter = ('erabiltzailea','zailtasuna', 'is_public')
     search_fields = ['erabiltzailea','izenburua']
     form = GamePlayAdminForm
     
