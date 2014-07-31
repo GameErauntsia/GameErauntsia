@@ -41,7 +41,7 @@
                     <p>{{gp.desk|safe}}</p>
                 </div>
 
-            {% if forloop.counter|divisibleby:2 %}
+            {% if forloop.counter|divisibleby:2 or forloop.last %}
             </div>
             {% endif %}
             {% endfor %}
