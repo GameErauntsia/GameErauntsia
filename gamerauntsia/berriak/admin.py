@@ -6,8 +6,10 @@ class BarriakAdmin(admin.ModelAdmin):
     list_display = ('izenburua', 'slug', 'erabiltzailea', 'pub_date', 'mod_date', 'publikoa_da')
     prepopulated_fields = {"slug": ("izenburua",)}
     filter_horizontal = ('gaia',)
+    list_filter = ('gaia__izena', 'erabiltzailea', 'is_public')
+    search_fields = ['erabiltzailea','izenburua']
     form = BerriaAdminForm	
-
+    
 
 class GaiaAdmin(admin.ModelAdmin):
     list_display = ('izena','slug')
