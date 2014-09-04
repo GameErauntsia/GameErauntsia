@@ -22,7 +22,8 @@ class GamePlayAdmin(admin.ModelAdmin):
             return qs.filter(erabiltzailea = request.user)
     
     def save_model(self, request, obj, form, change):
-        obj.erabiltzailea = request.user
+        if not request.user.is_superuser:
+            obj.erabiltzailea = request.user
         obj.save()
     
     def has_change_permission(self, request, obj=None):
