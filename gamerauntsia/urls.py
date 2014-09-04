@@ -6,6 +6,7 @@ from gamerauntsia.base.feed import LatestEntriesFeed
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    (r'^robots.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: ", mimetype="text/plain")),
     url(r'^$', 'gamerauntsia.views.index', name='index'),
 
     # GAMEPLAYAK
