@@ -79,11 +79,11 @@ border-radius: 5px;
 }
 
 input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:focus {
-background-color: #1a4195 !important;
+background-color: #149845 !important;
 background-image: url("http://www.google.com/uds/css/v2/search_box_icon.png") !important;
 background-position: 50% 50%;
 background-repeat: no-repeat;
 height: 16px !important;
-border-color: #1a4195 !important;
+border-color: #149845 !important;
 filter: none;
 }
