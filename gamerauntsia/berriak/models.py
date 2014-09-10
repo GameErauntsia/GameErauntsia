@@ -35,7 +35,16 @@ class Berria(models.Model):
     mod_date = models.DateTimeField('modifikazio data', default=datetime.now)
 
     def get_desk_txikia(self):
-    	return filters.striptags(self.desk)[:400]+'...'    
+    	return filters.striptags(self.desk)[:400]+'...'
+
+    def get_absolute_url(self):
+        return '%s/berriak/%s' % (settings.HOST, self.slug)
+
+    def getTwitText(self):
+        if self.erabiltzailea.twitter_id:
+            return self.izenburua + ' ' + self.get_absolute_url() + '@%s 2dz' % (self.erabiltzailea.twitter_id)
+        else:
+            return self.izenburua + ' ' + self.get_absolute_url() 
     
     
     class Meta:    
@@ -45,4 +54,4 @@ class Berria(models.Model):
     def __unicode__(self):
         return u'%s' % (self.izenburua)
 
-#post_save.connect(post_to_twitter, sender=Berria)
+post_save.connect(post_to_twitter, sender=Berria)

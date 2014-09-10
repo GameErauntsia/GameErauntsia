@@ -4,7 +4,7 @@ from photologue.models import Photo
 from gamerauntsia.jokoa.models import Jokoa
 from gamerauntsia.gamer.models import GamerUser
 from datetime import datetime
-from gamerauntsia.utils import post_to_twitter
+from gamerauntsia.utils.social import post_to_twitter
 from django.db.models.signals import post_save
 
 class Kategoria(models.Model):
@@ -67,7 +67,13 @@ class GamePlaya(models.Model):
     	return url
 
     def get_absolute_url(self):
-        return '/gameplayak/%s' % self.slug
+        return '%s/gameplayak/%s' % (settings.HOST, self.slug)
+
+    def getTwitText(self):
+        if self.erabiltzailea.twitter_id:
+            return self.izenburua + ' ' + self.get_absolute_url() + '@%s 2dz' % (self.erabiltzailea.twitter_id)
+        else:
+            return self.izenburua + ' ' + self.get_absolute_url()
 
     class Meta:    
         verbose_name = "gameplaya"
@@ -76,4 +82,4 @@ class GamePlaya(models.Model):
     def __unicode__(self):
         return u'%s' % (self.izenburua)
         
-#post_save.connect(post_to_twitter, sender=GamePlaya)    
+post_save.connect(post_to_twitter, sender=GamePlaya)    
