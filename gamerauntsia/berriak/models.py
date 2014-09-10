@@ -4,7 +4,7 @@ from django.conf import settings
 from datetime import datetime
 from photologue.models import Photo
 from gamerauntsia.gamer.models import GamerUser
-from gamerauntsia.utils import post_to_twitter
+from gamerauntsia.utils.social import post_to_twitter
 from django.template import defaultfilters as filters
 
 class Gaia(models.Model):
