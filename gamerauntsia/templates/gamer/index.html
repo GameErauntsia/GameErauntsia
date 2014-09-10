@@ -17,8 +17,6 @@
         <h2 class="page-header">Gure taldea</h2>
     </div>
 
-</div>
-
     {% for user in users %}
     {% if forloop.counter|divisibleby:4 or forloop.first %}
     <div class="row">
@@ -41,5 +39,6 @@
     </div>
     {% endif %}
     {% endfor %}
+    
 </div>
 {% endblock %}
