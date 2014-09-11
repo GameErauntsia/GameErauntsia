@@ -67,7 +67,7 @@ class GamePlaya(models.Model):
     	return url
 
     def get_absolute_url(self):
-        return '%s/gameplayak/%s' % (settings.HOST, self.slug)
+        return '%sgameplayak/%s' % (settings.HOST, self.slug)
 
     def getTwitText(self):
         if self.erabiltzailea.twitter_id:
