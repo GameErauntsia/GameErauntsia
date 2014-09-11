@@ -82,4 +82,4 @@ class GamePlaya(models.Model):
     def __unicode__(self):
         return u'%s' % (self.izenburua)
         
-#post_save.connect(post_to_twitter, sender=GamePlaya)    
+post_save.connect(post_to_twitter, sender=GamePlaya)    
