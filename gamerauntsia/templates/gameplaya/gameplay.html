@@ -3,22 +3,21 @@
 {% block title %}{{gp.izenburua}} - Game playak - {% endblock %}
 
 {% block morejs %}
+    <meta property="fb:app_id" content="{{facebook_id}}" />
     <meta name="twitter:site" content="@gamerauntsia" />
     <meta name="twitter:creator" content="@gamerauntsia" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:domain" content="gamerauntsia.com" />
-
-    <meta property="og:description" content="{{gp.desk|truncatewords:25|safe|striptags}}" />
-    <meta name="twitter:description" content="{{gp.desk|truncatewords:25|safe|striptags}}" />
-    <meta property="og:title" content="{{gp.izenburua}}" />
+    <meta name="twitter:description" content="{{gp.desk|truncatewords:15|safe|striptags}}" />
     <meta name="twitter:title" content="{{gp.izenburua}}" />
+    <meta name="twitter:url" content="{{gp.get_absolute_url}}" />
+    <meta name="twitter:image" content="http://gamerauntsia.com{{gp.argazkia.get_blog_url}}" /> 
+
+    <meta property="og:description" content="{{gp.desk|truncatewords:15|safe|striptags}}" />
+    <meta property="og:title" content="{{gp.izenburua}}" />
     <meta property="og:locale" content="eu_ES" /> 
     <meta property="og:url" content="{{gp.get_absolute_url}}" />
-    <meta name="twitter:url" content="{{gp.get_absolute_url}}" /> 
-    <meta property="og:image" content="http://gamerauntsia.com{{gp.argazkia.image.url}}" />
-    <meta name="twitter:image" content="http://gamerauntsia.com{{gp.argazkia.image.url}}" />
-    
-    <meta property="fb:app_id" content="{{facebook_id}}" />
+    <meta property="og:image" content="http://gamerauntsia.com{{gp.argazkia.get_blog_url}}" />
 {% endblock %}
 
 {% block content %}
