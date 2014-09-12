@@ -1,7 +1,24 @@
 {% extends "berriak/index.html" %}
 {% load include %}
 
-{% block js %}<script type="text/javascript" src="{{STATIC_URL}}js/lightbox.js"></script>{% endblock %}
+{% block morejs %}
+    <meta property="fb:app_id" content="{{facebook_id}}" />
+    <meta name="twitter:site" content="@gamerauntsia" />
+    <meta name="twitter:creator" content="@gamerauntsia" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:domain" content="gamerauntsia.com" />
+    <meta name="twitter:description" content="{{item.desk|truncatewords:15|safe|striptags}}" />
+    <meta name="twitter:title" content="{{item.izenburua}}" />
+    <meta name="twitter:url" content="{{item.get_absolute_url}}" />
+    <meta name="twitter:image" content="http://gamerauntsia.com{{item.argazkia.get_blog_url}}" /> 
+
+    <meta property="og:description" content="{{item.desk|truncatewords:15|safe|striptags}}" />
+    <meta property="og:title" content="{{item.izenburua}}" />
+    <meta property="og:locale" content="eu_ES" /> 
+    <meta property="og:url" content="{{item.get_absolute_url}}" />
+    <meta property="og:image" content="http://gamerauntsia.com{{item.argazkia.get_blog_url}}" />
+    <script type="text/javascript" src="{{STATIC_URL}}js/lightbox.js"></script>
+{% endblock %}
 
 {% block title %}{{item.izenburua}} - Berriak - {% endblock %}
 
