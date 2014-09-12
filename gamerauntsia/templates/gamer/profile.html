@@ -82,10 +82,11 @@
 	</div>
 	<hr/>
 	<div class="row">
+	        {% if gameplayak %}
 		<div class="col-lg-8">
-			<h2>Azken Game Playak</h2>
-		    {% for gp in gameplayak %}
-		    <div class="row">
+		       <h2>Azken Game Playak</h2>
+		       {% for gp in gameplayak %}
+		       <div class="row">
 			    <div class="col-lg-4">
 			        <a href="{{gp.get_absolute_url}}"><img src="{{gp.argazkia.get_videoprofile_url}}" alt="" /></a>
 			    </div>
@@ -96,13 +97,14 @@
 			    </div>
 			</div>
 			<hr/>
-		    {% endfor %}
-		    <div class="row">
+		       {% endfor %}
+		        <div class="row">
 			    <div class="col-lg-6">
 					<a href="" class="btn btn-success btn-block"><span class="glyphicon glyphicon-play-circle"></span> Gehiago ikusi! </a>
 				</div>
 			</div>
 		</div>
+		{% endif %}
 		{% if berriak %}
 		<div class="col-lg-4">
 			<h2>Azken berriak</h2>
