@@ -42,6 +42,7 @@
 			  	</div>
 			  	<div class="panel-body">
 			  		<div class="row">
+			  		{% if gp_count %}
 				    	<div class="col-lg-6 text-center">
 				    		{% if gp_count == 1 %}                  
 							<p><small>Game Play</small></p>
@@ -57,6 +58,7 @@
 							{% endfor %}                 
 						</div>
 					</div>
+					{% endif %}
 					{% if berri_count %}
 					<hr/>
 					<div class="row">
