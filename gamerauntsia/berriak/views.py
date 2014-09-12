@@ -22,6 +22,6 @@ def index(request):
     return render_to_response('berriak/index.html', h,context_instance=RequestContext(request))
    
 def berria(request,slug):
-    h = {}
-    h['item'] = Berria.objects.filter(slug=slug)[0]
-    return render_to_response('berriak/berria.html', h,context_instance=RequestContext(request))
+    item = Berria.objects.filter(slug=slug)[0]
+    facebook_id = settings.FACEBOOK_APP_ID
+    return render_to_response('berriak/berria.html', locals(),context_instance=RequestContext(request))
