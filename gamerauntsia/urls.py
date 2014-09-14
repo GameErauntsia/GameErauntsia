@@ -28,6 +28,9 @@ urlpatterns = patterns('',
     # BILAKETA
     url(r'^bilaketa?(?P<bilatu>[-\w]+)/$', 'gamerauntsia.views.bilaketa', name='bilaketa'),
 
+    #RSS FEED
+    url(r'^rss/gameplayak$', LatestEntriesFeed()),
+
     # KUDEATU
     url(r'^kudeatu/', include(admin.site.urls)),
 )

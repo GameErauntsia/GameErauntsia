@@ -1,13 +1,13 @@
 from django.contrib.syndication.views import Feed
-from gamerauntsia.berriak.models import Berria
+from gamerauntsia.gameplaya.models import Gameplaya
 
 class LatestEntriesFeed(Feed):
-    title = "BlenderEUS berriak"
-    link = "/azken-berriak/"
-    description = "BlenderEUS-en publikatzen diren berriak."
+    title = "Gamerauntsia harpidetza"
+    link = "/gameplayak/"
+    description = "Gamerauntsian argitaratzen diren gameplayak"
 
     def items(self):
-        return Berria.objects.order_by('-pub_date')[:5]
+        return Gameplaya.objects.order_by('-pub_date')[:20]
 
     def item_title(self, item):
         return item.izenburua
