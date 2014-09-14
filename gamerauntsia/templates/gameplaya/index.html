@@ -67,7 +67,7 @@
                 </div>
                 <h4><span class="glyphicon glyphicon-play"></span> Jokoa</h4>
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <ul class="list-unstyled">
                             {% for jokoa in jokoak %}
                             <li><a href="{% url 'gameplay_game' jokoa.slug %}">{{jokoa.izena}} {%if jokoa.bertsioa %}{{jokoa.bertsioa}}{% endif %}</a></li>
