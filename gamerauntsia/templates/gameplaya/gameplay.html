@@ -40,7 +40,7 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-8">
         <h1>{{gp.izenburua}}</h1>
         <p>{{gp.desk|safe}}</p>
         <p><a class="twitter popup" href="http://twitter.com/share?text={{gp.izenburua}}"><img src="{{STATIC_URL}}img/twitter.png"/></a> <a href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={% url 'gameplay' gp.slug %}&p[images][0]={{gp.get_photo.image.url}}&p[title]={{gp.izenburua}}&p[summary]={{gp.desk|safe}}"><img src="{{STATIC_URL}}img/facebook.png"/></a></p>
