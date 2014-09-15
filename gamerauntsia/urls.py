@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from gamerauntsia import settings
 from django.contrib import admin
 from django.http import HttpResponse
-from gamerauntsia.base.feed import LatestEntriesFeed
+from gamerauntsia.base.feed import LatestEntriesFeed, LatestNewsFeed
 
 admin.autodiscover()
 
@@ -30,6 +30,7 @@ urlpatterns = patterns('',
 
     #RSS FEED
     url(r'^rss/gameplayak$', LatestEntriesFeed()),
+    url(r'^rss/berriak$', LatestNewsFeed()),
 
     # KUDEATU
     url(r'^kudeatu/', include(admin.site.urls)),
