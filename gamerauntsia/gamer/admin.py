@@ -66,6 +66,8 @@ class GamerUserAdmin(UserAdmin):
                                        'groups', 'user_permissions','last_login'),
                             'classes': ['collapse',],}),
                             
+    )
+    
     restricted_fieldsets = (
         (None, {'fields': ('username', 'password')}),
 
@@ -73,8 +75,9 @@ class GamerUserAdmin(UserAdmin):
         {'fields':('fullname','nickname','email', 'phone', 'photo','bio')},),
         ('Sare sozialak',
         {'fields':('ytube_channel','twitter_id', 'facebook_id', 'openid_id', 'googleplus_id'),'classes': ['collapse',],},),
-
     )
+    
+    
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
