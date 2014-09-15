@@ -87,5 +87,12 @@ class GamerUserAdmin(UserAdmin):
             defaults['form'] = self.add_form
         defaults.update(kwargs)
         return super(GamerUserAdmin, self).get_form(request, obj, **defaults)
+        
+    def queryset(self, request):
+        qs = super(GamePlayAdmin, self).queryset(request)
+        if request.user.is_superuser:
+            return qs
+        else:
+            return qs.filter(id = request.user.id)
 
 admin.site.register(GamerUser,GamerUserAdmin)
