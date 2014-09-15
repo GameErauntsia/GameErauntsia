@@ -65,6 +65,14 @@ class GamerUserAdmin(UserAdmin):
         (_('Permissions'), {'fields': ('is_active','is_gamer', 'is_staff', 'is_superuser',
                                        'groups', 'user_permissions','last_login'),
                             'classes': ['collapse',],}),
+                            
+    restricted_fieldsets = (
+        (None, {'fields': ('username', 'password')}),
+
+        ('Datuak',
+        {'fields':('fullname','nickname','email', 'phone', 'photo','bio')},),
+        ('Sare sozialak',
+        {'fields':('ytube_channel','twitter_id', 'facebook_id', 'openid_id', 'googleplus_id'),'classes': ['collapse',],},),
 
     )
     add_fieldsets = (
@@ -94,5 +102,10 @@ class GamerUserAdmin(UserAdmin):
             return qs
         else:
             return qs.filter(id = request.user.id)
+            
+    def get_fieldsets(self, request, obj=None):
+        if request.user.is_superuser:
+            return self.fieldsets
+        return self.restricted_fieldsets
 
 admin.site.register(GamerUser,GamerUserAdmin)
