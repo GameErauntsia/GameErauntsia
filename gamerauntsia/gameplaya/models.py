@@ -6,6 +6,7 @@ from gamerauntsia.gamer.models import GamerUser
 from datetime import datetime
 from gamerauntsia.utils.social import post_to_twitter
 from django.db.models.signals import post_save
+from django.template import defaultfilters as filters
 
 class Kategoria(models.Model):
     izena = models.CharField(max_length=64)
@@ -49,6 +50,9 @@ class GamePlaya(models.Model):
     publikoa_da = models.BooleanField(default=True) 
     pub_date = models.DateTimeField('publikazio data', default=datetime.now)
     mod_date = models.DateTimeField('modifikazio data', default=datetime.now)
+
+    def get_desk_txikia(self):
+        return filters.striptags(self.desk)[:400]+'...'
 
     def get_puntuak(self):
         if self.puntuak == 0:
