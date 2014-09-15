@@ -6,6 +6,7 @@ from datetime import datetime
 class JokoaAdmin(admin.ModelAdmin):
     list_display = ('izena','bertsioa','url','slug')
     prepopulated_fields = {"slug": ("izena","bertsioa")}
+    ordering = ('izena','bertsioa')
 
     fieldsets = (
         ('Datu orokorrak',
