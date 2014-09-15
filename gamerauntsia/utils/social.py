@@ -32,6 +32,6 @@ def send_to_fb(item):
     access_token_page = urlparse.parse_qs(str(oauth_response))['access_token'][0]
     graph = facebook.GraphAPI(access_token_page)
     try:
-        graph.put_wall_post('', attachment=attach, profile_id = settings.FACEBOOK_PAGE_ID)
+        graph.put_wall_post('', attachment=attach)
     except facebook.GraphAPIError as e:
         print e
