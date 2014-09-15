@@ -89,7 +89,7 @@ class GamerUserAdmin(UserAdmin):
         return super(GamerUserAdmin, self).get_form(request, obj, **defaults)
         
     def queryset(self, request):
-        qs = super(GamePlayAdmin, self).queryset(request)
+        qs = super(GamerUserAdmin, self).queryset(request)
         if request.user.is_superuser:
             return qs
         else:
