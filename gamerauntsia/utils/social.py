@@ -21,13 +21,13 @@ def send_to_fb(item):
     oauth_response = urllib.urlopen('https://graph.facebook.com/oauth/access_token?' + urllib.urlencode(oauth_args)).read()                                  
 
 
-    attachment = {'name': item.izenburua.encode('utf8'),
+    attach = {'name': item.izenburua.encode('utf8'),
                   'link': item.get_absolute_url(),
                   }
     if item.argazkia:
-        attachment['picture'] = item.argazkia.get_blog_url()
+        attach['picture'] = item.argazkia.get_blog_url()
     else:
-        attachment['picture'] = ''
+        attach['picture'] = ''
     
     access_token_page = urlparse.parse_qs(str(oauth_response))['access_token'][0]
     graph = facebook.GraphAPI(access_token_page)
