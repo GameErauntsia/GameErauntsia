@@ -1,6 +1,7 @@
 from django.conf import settings
 import tweepy
 import facebook
+import logging
 
 def post_to_twitter(sender,instance,**kwargs):
     if instance.publikoa_da and kwargs['created']:
