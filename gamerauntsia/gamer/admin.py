@@ -106,10 +106,10 @@ class GamerUserAdmin(UserAdmin):
         else:
             return qs.filter(id = request.user.id)
             
-    def get_fieldsets(self, request, obj=None):
-        if request.user.is_superuser:
-            return self.fieldsets + self.add_fieldsets
-        return self.restricted_fieldsets
+    #def get_fieldsets(self, request, obj=None):
+    #    if request.user.is_superuser:
+    #        return self.fieldsets
+    #    return self.restricted_fieldsets
         
     def has_change_permission(self, request, obj=None):
         if not obj:
