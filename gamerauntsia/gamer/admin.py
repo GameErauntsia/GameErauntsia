@@ -110,5 +110,14 @@ class GamerUserAdmin(UserAdmin):
         if request.user.is_superuser:
             return self.fieldsets
         return self.restricted_fieldsets
+        
+    def has_change_permission(self, request, obj=None):
+        if not obj:
+            return True # So they can see the change list page
+        if request.user.is_superuser or obj.id == request.user.id:
+            return True
+        else:
+            return False
+    has_delete_permission = has_change_permission
 
 admin.site.register(GamerUser,GamerUserAdmin)
