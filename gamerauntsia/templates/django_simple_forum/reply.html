@@ -3,9 +3,10 @@
 {% block title %}Erantzuna - {% endblock %}
 
 {% block content %}
+<h1>Erantzun berri bat bidali</h1>
 <form action="{% url 'reply' forum.slug topic.id %}" method="POST">
     {% csrf_token %} 
     {{ form.as_p }}
-    <input class="btn btn-primary" type="submit" value="Submit" />
+    <input class="btn btn-primary" type="submit" value="Bidali" />
 </form>
 {% endblock %}

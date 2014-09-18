@@ -4,9 +4,9 @@
 
 {% block content %}
 <!-- Posts  -->
-<h1 class="page-header">Foroa: <small>{{forum.title}} - {{ topic.title }}</small></h1>
+<h1 class="page-header">Foroa <small>{{forum.title}}: {{topic.title}}</small></h1>
+<p><a href="/foroa">Denak</a>/<a href="{% url 'forum-detail' forum.slug %}">{{forum.title}}</a>/<strong>{{topic.title}}</strong></p>
 <div id="list">
-
     {% for post in posts.object_list %}
         <div class="post">
             <p><strong>{{ post.title }}</strong></p>
