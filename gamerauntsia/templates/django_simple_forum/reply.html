@@ -2,7 +2,7 @@
 
 {% block title %}Erantzuna - {% endblock %}
 
-{% block content %}
+{% block container %}
 <form action="{% url 'reply' topic.id %}" method="POST">
     {% csrf_token %} 
     {{ form.as_p }}

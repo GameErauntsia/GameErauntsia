@@ -2,7 +2,7 @@
 
 {% block title %}Gai berria - {% endblock %}
 
-{% block content %}
+{% block container %}
 <form action="{% url 'new-topic' forum.id %}" method="POST">
     {% csrf_token %} 
     {{ form.as_p }}
