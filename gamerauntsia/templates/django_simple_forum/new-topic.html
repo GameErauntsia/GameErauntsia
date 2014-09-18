@@ -4,7 +4,7 @@
 
 {% block content %}
 <h1>Gai berria gehitu</h1>
-<form action="{% url 'new-topic' forum.id %}" method="POST">
+<form action="{% url 'new-topic' forum.slug %}" method="POST">
     {% csrf_token %} 
     {{ form.as_p }}
     <input class="btn btn-primary" type="submit" value="Submit" />
