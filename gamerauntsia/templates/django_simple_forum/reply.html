@@ -8,5 +8,6 @@
     {% csrf_token %} 
     {{ form.as_p }}
     <input class="btn btn-primary" type="submit" value="Bidali" />
+    <a class="btn btn-default" href="{% url 'topic-detail' forum.slug topic.id %}">Ezeztatu</a>
 </form>
 {% endblock %}
