@@ -30,7 +30,7 @@
                             <td>{{ forum.last_post.short|linebreaksbr }}</td>
                             <td>{{forum.creator}}</td>
                             <td>{{forum.created}}</td>
-                            <td><a class="btn btn-default" href="{% url 'forum-detail' forum.pk %}">IKUSI</a></td>
+                            <td><a class="btn btn-default" href="{% url 'forum-detail' forum.slug %}">IKUSI</a></td>
                         </tr>
                     {% endfor %}
                     </tbody>
