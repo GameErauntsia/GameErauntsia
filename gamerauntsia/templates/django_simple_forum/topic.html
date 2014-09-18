@@ -9,7 +9,7 @@
 
     {% for post in posts.object_list %}
         <div class="post">
-            <p><strong>{{ post.title }}</strong>></p>
+            <p><strong>{{ post.title }}</strong></p>
             <p>by {{ post.creator }} | <span class="date">{{ post.created }}</span></p>
             <p>{{ post.body }}</p>
         </div>
