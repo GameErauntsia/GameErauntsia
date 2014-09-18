@@ -33,7 +33,7 @@ to use [Buildout](http://www.buildout.org/) for the project construction.
 Screenshot
 ----------
 
-![Azaleko irudia](img/gamerauntsia_index.png "Azaleko irudia")
+![Azaleko irudia](img/gamerauntsia.png "Azaleko irudia")
 
 How to use the code
 -------------------
