@@ -1,5 +1,8 @@
-{% load url from future %}
+{% extends "base.html" %}
 
+{% block title %}Foroak - {% endblock %}
+
+{% block content %}
 <!-- Forums  -->
 <div id="list">
     <table border="0" cellpadding="4" width="100%">
@@ -23,3 +26,4 @@
             </tr>
         {% endfor %}
 </div>
+{% endblock %}

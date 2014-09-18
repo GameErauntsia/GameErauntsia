@@ -1,5 +1,8 @@
-{% load url from future %}
+{% extends "base.html" %}
 
+{% block title %}Mezuak - {% endblock %}
+
+{% block content %}
 <!-- Posts  -->
 <div class="ttitle">{{ topic.title }}</div>
 <div id="list">
@@ -32,3 +35,4 @@
 </div>
 {% endif %}
 <a class="button" href="{% url 'reply' pk %}">Reply</a>
+{% endblock %}
