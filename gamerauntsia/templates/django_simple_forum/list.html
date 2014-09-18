@@ -13,8 +13,10 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Posts</th>
-                            <th>Last post</th>
+                            <th>Eztabaida</th>
+                            <th>Azken mezua</th>
+                            <th>Egilea</th>
+                            <th>Noiz sortua</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -24,12 +26,11 @@
                             <td {% if forloop.last %}class="last"{% endif %}>
                                 <div class="title"> <a href="{% url 'forum-detail' forum.pk %}">{{ forum.title }}</a></div>
                             </td>
-                            <td {% if forloop.last %}class="last"{% endif %}>{{ forum.num_posts }}</td>
-                            <td {% if forloop.last %}class="last"{% endif %}>
-                                {{ forum.last_post.short|linebreaksbr }}</td>
-                            <td {% if forloop.last %}class="last"{% endif %}>
-                                <a class="btn btn-default" href="{% url 'forum-detail' forum.pk %}">IKUSI</a>
-                            </td>
+                            <td>{{ forum.num_posts }}</td>
+                            <td>{{ forum.last_post.short|linebreaksbr }}</td>
+                            <td>{{forum.creator}}</td>
+                            <td>{{forum.created}}</td>
+                            <td><a class="btn btn-default" href="{% url 'forum-detail' forum.pk %}">IKUSI</a></td>
                         </tr>
                     {% endfor %}
                     </tbody>
