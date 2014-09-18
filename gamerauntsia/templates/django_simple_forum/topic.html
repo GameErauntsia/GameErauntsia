@@ -4,7 +4,7 @@
 
 {% block content %}
 <!-- Posts  -->
-<h1>{{ topic.title }}</h1>
+<h1 class="page-header">Foroa: <small>{{forum.title}} - {{ topic.title }}</small></h1>
 <div id="list">
 
     {% for post in posts.object_list %}
