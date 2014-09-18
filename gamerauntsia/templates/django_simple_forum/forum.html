@@ -6,6 +6,7 @@
 {% block content %}
 <!-- Threads  -->
 <h1 class="page-header">Foroa: <small>{{forum.title}}</small></h1>
+<p>{{forum.description}}</p>
 <div class="row">
     <div class="col-lg-12">
         <a id="new_topic" class="btn btn-primary" href="{% url 'new-topic' pk %}">Gai berria hasi</a>
