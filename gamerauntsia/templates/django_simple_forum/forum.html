@@ -5,34 +5,45 @@
 
 {% block content %}
 <!-- Threads  -->
-<a id="new_topic" class="btn btn-primary" href="{% url 'new-topic' pk %}">Start New Topic</a>
-<br />
-<br />
 
-<div id="list">
-<table border="0" cellpadding="4" width="100%">
-    <tr>
-        <td>Topics</td>
-        <td>Replies</td>
-        <td>Last post</td>
-        <td></td>
-    </tr>
-
-    {% for topic in topics.object_list %}
-    <tr>
-        <td {% if forloop.last %}class="last"{% endif %}>
-        <div class="title"> <a href="{% url 'topic-detail' topic.pk %}">{{ topic.title }}</a>
-            </div></td>
-        <td {% if forloop.last %}class="last"{% endif %}>{{ topic.num_replies }}</td>
-        <td {% if forloop.last %}class="last"{% endif %}>
-            {{ topic.last_post.short|linebreaksbr }}</td>
-        <td {% if forloop.last %}class="last"{% endif %}>
-            <a class="button" href="{% url 'topic-detail' topic.pk %}">VIEW</a>
-        </td>
-    </tr>
-
-    {% endfor %}
-</table>
+<div class="row">
+    <div class="col-lg-12">
+        <a id="new_topic" class="btn btn-primary" href="{% url 'new-topic' pk %}">Gai berria hasi</a>
+    </div>
+</div>
+    
+<div class="row">
+    <div class="col-lg-12">
+        <div id="list">
+            <div class="table-responsive">
+                <table class="table table-condensed table-hover">
+                    <thead>
+                        <tr>
+                            <td>Topics</td>
+                            <td>Replies</td>
+                            <td>Last post</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for topic in topics.object_list %}
+                        <tr>
+                            <td {% if forloop.last %}class="last"{% endif %}>
+                            <div class="title"> <a href="{% url 'topic-detail' topic.pk %}">{{ topic.title }}</a>
+                                </div></td>
+                            <td {% if forloop.last %}class="last"{% endif %}>{{ topic.num_replies }}</td>
+                            <td {% if forloop.last %}class="last"{% endif %}>
+                                {{ topic.last_post.short|linebreaksbr }}</td>
+                            <td {% if forloop.last %}class="last"{% endif %}>
+                                <a class="button" href="{% url 'topic-detail' topic.pk %}">VIEW</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Next/Prev page links  -->
