@@ -52,7 +52,9 @@ class GamePlaya(models.Model):
     mod_date = models.DateTimeField('modifikazio data', default=datetime.now)
 
     def get_desk_txikia(self):
-        return filters.striptags(self.desk)[:400]+'...'
+    	if len(self.desk) > 400:
+    	    return filters.striptags(self.desk)[:400]+'...'
+        return filters.striptags(self.desk)
 
     def get_puntuak(self):
         if self.puntuak == 0:
