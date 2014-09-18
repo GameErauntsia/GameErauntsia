@@ -27,7 +27,7 @@
                             <td {% if forloop.last %}class="last"{% endif %}>
                                 {{ forum.last_post.short|linebreaksbr }}</td>
                             <td {% if forloop.last %}class="last"{% endif %}>
-                                <a class="btn btn-primary" href="{% url 'forum-detail' forum.pk %}">IKUSI</a>
+                                <a class="btn btn-default" href="{% url 'forum-detail' forum.pk %}">IKUSI</a>
                             </td>
                         </tr>
                     {% endfor %}
