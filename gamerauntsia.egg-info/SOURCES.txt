@@ -1,8 +1,9 @@
 setup.cfg
 setup.py
 gamerauntsia/__init__.py
+gamerauntsia/local_settings.py
+gamerauntsia/settings.py
 gamerauntsia/urls.py
-gamerauntsia/utils.py
 gamerauntsia/views.py
 gamerauntsia.egg-info/PKG-INFO
 gamerauntsia.egg-info/SOURCES.txt
@@ -49,3 +50,5 @@ gamerauntsia/kontaktua/__init__.py
 gamerauntsia/kontaktua/models.py
 gamerauntsia/kontaktua/tests.py
 gamerauntsia/kontaktua/views.py
+gamerauntsia/utils/__init__.py
+gamerauntsia/utils/social.py

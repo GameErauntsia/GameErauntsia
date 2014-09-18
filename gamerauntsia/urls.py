@@ -21,6 +21,9 @@ urlpatterns = patterns('',
     url(r'^nor-gara/', include('gamerauntsia.gamer.urls')),
     (r'^profilak/', include('cssocialuser.urls')),
 
+    # FOROA
+    url(r'^foroa/', include('django_simple_forum.urls')),
+
     # KONTAKTUA
     url(r'^kontaktua/$', 'gamerauntsia.kontaktua.views.index', name='kontaktua'),
     url(r'^kontaktua/bidali/$', 'gamerauntsia.kontaktua.views.bidali', name='kontaktua_bidali'),
