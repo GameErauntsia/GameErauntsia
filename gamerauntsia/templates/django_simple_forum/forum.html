@@ -32,13 +32,13 @@
                     <tbody>
                         {% for topic in topics.object_list %}
                         <tr>
-                            <td {% if forloop.last %}class="last"{% endif %}>
+                            <td>
                             <div class="title"> <a href="{% url 'topic-detail' forum.slug topic.pk %}">{{ topic.title }}</a>
                                 </div></td>
-                            <td {% if forloop.last %}class="last"{% endif %}>{{ topic.num_replies }}</td>
-                            <td {% if forloop.last %}class="last"{% endif %}>
+                            <td>{{ topic.num_replies }}</td>
+                            <td>
                                 {{ topic.last_post.short|linebreaksbr }}</td>
-                            <td {% if forloop.last %}class="last"{% endif %}>
+                            <td>
                                 <a class="btn btn-default" href="{% url 'topic-detail' forum.slug topic.pk %}">IKUSI</a>
                             </td>
                         </tr>

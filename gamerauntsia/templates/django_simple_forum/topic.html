@@ -36,6 +36,6 @@
 {% endif %}
 
 {% if request.user.is_authenticated %}
-<a class="btn btn-primary" href="{% url 'reply' pk %}">Erantzun</a>
+<a class="btn btn-primary" href="{% url 'reply' forum.slug pk %}">Erantzun</a>
 {% endif %}
 {% endblock %}
