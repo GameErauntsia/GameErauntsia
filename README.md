@@ -30,6 +30,11 @@ Dependencies for the installation are the following:
 All these packages are available in [PyPi](http://pypi.python.org/pypi) repositories. It's also strongly recommended 
 to use [Buildout](http://www.buildout.org/) for the project construction.
 
+Screenshot
+----------
+
+![Azaleko irudia](https://github.com/urtzai/gamerauntsia/blob/master/gamerauntsia/static/img/gamerauntsia.png "Azaleko irudia")
+
 How to use the code
 -------------------
 
@@ -46,4 +51,4 @@ How to use the code
 Contact
 -------
 
-You will find us on twitter [@gari_infernu](http://twitter.com/gari_infernu) or you can email us to gari.infernuan@gmail.com.
+You will find us on twitter [@gamerauntsia](http://twitter.com/gamerauntsia) or you can email us to gamerauntsia@gmail.com.
