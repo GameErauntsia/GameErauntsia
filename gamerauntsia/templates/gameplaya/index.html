@@ -38,7 +38,7 @@
                     </a>
                     <h3><a href="{{gp.get_absolute_url}}">{{gp.izenburua}}</a></h3>
                     <p><span class="glyphicon glyphicon-play"></span> {% if gp.jokoa.url %}<a href="{{gp.jokoa.url}}">{{gp.jokoa.izena}} {%if gp.jokoa.bertsioa %}{{gp.jokoa.bertsioa}}{% endif %}</a>{% else %}{{gp.jokoa}}{% endif%} | <span class="glyphicon glyphicon-time"></span> {{gp.iraupena_min}}min {{gp.iraupena_seg}}seg</p>
-                    <p>{{gp.desk.get_desk_txikia|safe}}</p>
+                    <p>{{gp.get_desk_txikia|safe}}</p>
                 </div>
 
             {% if forloop.counter|divisibleby:2 or forloop.last %}
