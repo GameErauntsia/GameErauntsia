@@ -16,12 +16,13 @@
                 {% if post.creator.is_gamer %}<span class="text-success">Jokalaria</span></p>{% endif %}
             </div>
             <div class="col-xs-12 col-sm-10">
-                <h3>{{post.title}}</h3>
+                <h3>{{post.title}}
                 {% if request.user.is_authenticated %}
                 {% if not topic.closed %}
                 <a class="btn btn-default pull-right" href="{% url 'reply' forum.slug pk %}?author={{post.creator}}&quote={{post.body|truncatewords:30}}">Zitatu</a>
                 {% endif %}
                 {% endif %}
+                </h3>
                 <p>{{post.body|safe|urlize}}</p>
             </div>
         </div>
