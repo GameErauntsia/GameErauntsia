@@ -8,6 +8,7 @@
 
 {% block content %}
 <h1>Erantzun berri bat bidali</h1>
+{{quote}}
 <form action="{% url 'reply' forum.slug topic.id %}" method="POST">
     {% csrf_token %} 
     {{ form.as_p }}
