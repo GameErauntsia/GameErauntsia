@@ -22,7 +22,7 @@
             {% if request.user.is_authenticated %}
             <div class="col-lg-12">
                 {% if not topic.closed %}
-                <a class="btn btn-primary pull-right" href="{% url 'reply' forum.slug pk %}?author={{post.creator}}&quote={{post.body|truncatewords:30}}">Zitatu</a>
+                <a class="btn btn-default pull-right" href="{% url 'reply' forum.slug pk %}?author={{post.creator}}&quote={{post.body|truncatewords:30}}">Zitatu</a>
                 {% endif %}
             </div>
             {% endif %}
