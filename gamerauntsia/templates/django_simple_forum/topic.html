@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-xs-12 col-sm-2 text-center">
                 <img src="{{post.creator.get_photo.get_forum_profile_url}}" alt="" class="center-block img-circle img-responsive"/>
-                <p>{% if post.creator.is_gamer %}<a href="{% url 'gamer_profile' post.creator.username %}">{{post.creator.fullname}}</a>{% else %}{{post.creator}}{% endif %} | <span class="date">{{post.created|date:"Y/m/d H:i"}}</span><br/>
+                <p>{% if post.creator.is_gamer %}<a href="{% url 'gamer_profile' post.creator.username %}">{{post.creator.fullname}}</a>{% else %}{{post.creator}}{% endif %}<br/><span class="date">{{post.created|date:"Y/m/d H:i"}}</span><br/>
                 {% if post.creator.is_gamer %}<span class="text-success">Jokalaria</span></p>{% endif %}
             </div>
             <div class="col-xs-12 col-sm-10">
