@@ -33,10 +33,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for topic in topics.object_list %}
+                        {% for topic in top_topics %}
+                        <tr class="active">
+                            <td>
+                            <div class="title"> <a href="{% url 'topic-detail' forum.slug topic.pk %}"><span class="glyphicon glyphicon-envelope"></span> {{ topic.title }}</a>
+                                </div></td>
+                            <td>{{ topic.num_replies }}</td>
+                            <td>{{ topic.last_post.short|linebreaksbr }}</td>
+                            <td>{{ topic.creator }}</td>
+                            <td>{{ topic.created }}</td>
+                            <td>
+                                <a class="btn btn-default" href="{% url 'topic-detail' forum.slug topic.pk %}">IKUSI</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% for topic in topics %}
                         <tr>
                             <td>
-                            <div class="title"> <a href="{% url 'topic-detail' forum.slug topic.pk %}"><span class="glyphicon glyphicon-folder-open"></span> {{ topic.title }}</a>
+                            <div class="title"> <a href="{% url 'topic-detail' forum.slug topic.pk %}"><span class="{%if topic.close %}glyphicon glyphicon-folder-close{% else %}glyphicon glyphicon-folder-open{% endif %}"></span> {{ topic.title }}</a>
                                 </div></td>
                             <td>{{ topic.num_replies }}</td>
                             <td>{{ topic.last_post.short|linebreaksbr }}</td>
