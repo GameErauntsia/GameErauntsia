@@ -19,7 +19,7 @@ urlpatterns = patterns('',
 
     # JOKALARIAK
     url(r'^nor-gara/', include('gamerauntsia.gamer.urls')),
-    (r'^profilak/', include('cssocialuser.urls')),
+    (r'^erabiltzaileak/', include('registration.urls')),
 
     # FOROA
     url(r'^foroa/', include('django_simple_forum.urls')),
@@ -34,6 +34,7 @@ urlpatterns = patterns('',
     #RSS FEED
     url(r'^rss/gameplayak$', LatestEntriesFeed()),
     url(r'^rss/berriak$', LatestNewsFeed()),
+
 
     # KUDEATU
     url(r'^kudeatu/', include(admin.site.urls)),
