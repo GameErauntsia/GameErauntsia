@@ -21,7 +21,6 @@
     <div class="col-lg-12">
         <div id="list">
             <div class="table-responsive">
-                {% autopaginate topics 20 %}
                 <table class="table table-condensed table-hover">
                     <thead>
                         <tr>
@@ -39,24 +38,25 @@
                             <td>
                             <div class="title"> <a href="{% url 'topic-detail' forum.slug topic.pk %}"><span class="glyphicon glyphicon-envelope"></span> {{ topic.title }}</a>
                                 </div></td>
-                            <td>{{ topic.num_replies }}</td>
-                            <td>{{ topic.last_post.short|linebreaksbr }}</td>
-                            <td>{{ topic.creator }}</td>
-                            <td>{{ topic.created }}</td>
+                            <td>{{topic.num_replies}}</td>
+                            <td>{{topic.last_post.short|linebreaksbr}}</td>
+                            <td>{{topic.creator}}</td>
+                            <td>{{topic.created}}</td>
                             <td>
                                 <a class="btn btn-default" href="{% url 'topic-detail' forum.slug topic.pk %}">IKUSI</a>
                             </td>
                         </tr>
                         {% endfor %}
+                        {% autopaginate topics 20 %}
                         {% for topic in topics %}
                         <tr>
                             <td>
                             <div class="title"> <a href="{% url 'topic-detail' forum.slug topic.pk %}"><span class="{%if topic.closed %}glyphicon glyphicon-folder-close{% else %}glyphicon glyphicon-folder-open{% endif %}"></span> {{ topic.title }}</a>
                                 </div></td>
-                            <td>{{ topic.num_replies }}</td>
-                            <td>{{ topic.last_post.short|linebreaksbr }}</td>
-                            <td>{{ topic.creator }}</td>
-                            <td>{{ topic.created }}</td>
+                            <td>{{topic.num_replies}}</td>
+                            <td>{{topic.last_post.short|linebreaksbr}}</td>
+                            <td>{{topic.creator}}</td>
+                            <td>{{topic.created}}</td>
                             <td>
                                 <a class="btn btn-default" href="{% url 'topic-detail' forum.slug topic.pk %}">IKUSI</a>
                             </td>
