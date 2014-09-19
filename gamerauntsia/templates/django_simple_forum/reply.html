@@ -2,6 +2,10 @@
 
 {% block title %}Erantzuna - {% endblock %}
 
+{% block morejs %}
+    <script type="text/javascript" src="{{ STATIC_URL }}tiny_mce/tiny_mce.js"></script>
+{% endblock %}
+
 {% block content %}
 <h1>Erantzun berri bat bidali</h1>
 <form action="{% url 'reply' forum.slug topic.id %}" method="POST">
