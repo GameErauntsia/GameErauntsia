@@ -1,5 +1,5 @@
 from django import template
-from gamerauntsia.base.forms import RegistrationFormUniqueEmail
+from gamerauntsia.gamer.forms import RegistrationFormUniqueEmail
 
 register = template.Library()
 
