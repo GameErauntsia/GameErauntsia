@@ -2,6 +2,7 @@ from django.conf.urls import patterns, include, url
 from gamerauntsia import settings
 from django.contrib import admin
 from django.http import HttpResponse
+from django.views.generic.base import RedirectView
 from gamerauntsia.base.feed import LatestEntriesFeed, LatestNewsFeed
 
 admin.autodiscover()
