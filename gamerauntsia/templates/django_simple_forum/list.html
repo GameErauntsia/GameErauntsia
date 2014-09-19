@@ -12,7 +12,7 @@
         {% for forum in cat.get_forums %}
             <div class="col-md-4">
                 <div class="row">
-                    <div class="col-xs-12 col-sm-2 text-center">
+                    <div class="col-xs-12 col-sm-2">
                         <a href="{% url 'forum-detail' forum.slug %}"><img class="img-responsive center-block" src="{{forum.icon.get_forum_thumbnail_url}}"/></a>
                     </div>
                     <div class="col-xs-12 col-sm-10">
