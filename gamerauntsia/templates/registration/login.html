@@ -2,24 +2,21 @@
 
 
 {% block content %}
-{% if user.is_authenticated %}
-<p>Saioa hasita daukazu dagoeneko</p>
-{% else %}
-<div class="loginSartu">
-<h2>Sartu / Login</h2>
-
-{%include 'registration/login_form.html'%}
-
-<ul>
-<li><a href="{% url 'auth_password_reset' %}">Pasahitza ahaztu zait</a></li>
-</ul>
-<div class="clear"></div>
-</div>
-<div class="loginBerria">
-{% include 'registration/registration_form.html'%}
-<div class="clear"></div>
-</div>
-<div class="clear"></div>
-{% endif %}
-</div>
+	{% if user.is_authenticated %}
+		<p>Saioa hasita daukazu dagoeneko</p>
+	{% else %}
+	<div class="loginSartu">
+		<h2>Sartu / Login</h2>
+		{%include 'registration/login_form.html'%}
+		<ul>
+			<li><a href="{% url 'auth_password_reset' %}">Pasahitza ahaztu zait</a></li>
+		</ul>
+		<div class="clear"></div>
+	</div>
+	<div class="loginBerria">
+		{% include 'registration/registration_form.html'%}
+		<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+	{% endif %}
 {% endblock %}
