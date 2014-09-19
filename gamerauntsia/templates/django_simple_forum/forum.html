@@ -50,7 +50,7 @@
                         {% for topic in topics %}
                         <tr>
                             <td>
-                            <div class="title"> <a href="{% url 'topic-detail' forum.slug topic.pk %}"><span class="{%if topic.close %}glyphicon glyphicon-folder-close{% else %}glyphicon glyphicon-folder-open{% endif %}"></span> {{ topic.title }}</a>
+                            <div class="title"> <a href="{% url 'topic-detail' forum.slug topic.pk %}"><span class="{%if topic.closed %}glyphicon glyphicon-folder-close{% else %}glyphicon glyphicon-folder-open{% endif %}"></span> {{ topic.title }}</a>
                                 </div></td>
                             <td>{{ topic.num_replies }}</td>
                             <td>{{ topic.last_post.short|linebreaksbr }}</td>
