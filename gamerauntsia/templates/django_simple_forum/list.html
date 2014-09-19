@@ -11,7 +11,7 @@
         {% for forum in cat.get_forums %}
             <div class="col-lg-4">
                 <div class="col-lg-2 text-center">
-                    <a href="{% url 'forum-detail' forum.slug %}"><img class="img-responsive" src="{{forum.photo.get_forum_thumbnail_url}}"></a>
+                    <a href="{% url 'forum-detail' forum.slug %}"><img class="img-responsive" src="{{forum.photo.get_forum_thumbnail_url}}"/></a>
                 </div>
                 <div class="col-lg-10">
                     <h3><a href="{% url 'forum-detail' forum.slug %}">{{forum.title}}</a></h3>
@@ -20,37 +20,5 @@
             </div>
         {% endfor %}
     {% endfor %}
-    <!-- <div class="col-lg-12">
-        <div id="list">
-            <div class="table-responsive">
-                <table class="table table-condensed table-hover">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Eztabaida</th>
-                            <th>Azken mezua</th>
-                            <th>Egilea</th>
-                            <th>Noiz sortua</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {% for forum in forums %}
-                        <tr>
-                            <td {% if forloop.last %}class="last"{% endif %}>
-                                <div class="title"> <a href="{% url 'forum-detail' forum.slug %}">{{ forum.title }}</a></div>
-                            </td>
-                            <td>{{ forum.num_posts }}</td>
-                            <td>{{ forum.last_post.short|linebreaksbr }}</td>
-                            <td>{{forum.creator}}</td>
-                            <td>{{forum.created}}</td>
-                            <td><a class="btn btn-default" href="{% url 'forum-detail' forum.slug %}">IKUSI</a></td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div> -->
 </div>
 {% endblock %}
