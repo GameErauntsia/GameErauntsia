@@ -17,7 +17,7 @@
             </div>
             <div class="col-xs-12 col-sm-10">
                 <h3>{{post.title}}</h3>
-                <p>{{post.body}}</p>
+                <p>{{post.body|safe|urlize}}</p>
             </div>
         </div>
         <hr/>
