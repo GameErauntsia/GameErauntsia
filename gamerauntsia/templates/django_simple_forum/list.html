@@ -11,8 +11,8 @@
         {% for forum in cat.get_forums %}
             {% if not forloop.first %}
             <div class="col-lg-4">
-                <a href="{{forum.get_absolute_url}}"><img class="img-responsive" src="{{forum.argazkia.get_forum_thumbnail_url}}"></a>
-                <h2><a href="{{forum.get_absolute_url}}">{{forum.title}}</a></h2>
+                <!-- <a href="{% url 'forum-detail' forum.slug %}"><img class="img-responsive" src="{{forum.argazkia.get_forum_thumbnail_url}}"></a> -->
+                <h2><a href="{% url 'forum-detail' forum.slug %}">{{forum.title}}</a></h2>
                 <p>{{forum.get_summary}}</p>
             </div>
             {% endif %}
