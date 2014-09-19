@@ -8,6 +8,7 @@
 <div class="row">
     {% for cat in categories %}
         <h2>{{cat.title}}</h2>
+        <div class="row">
         {% for forum in cat.get_forums %}
             <div class="col-lg-4">
                 <div class="col-lg-2 text-center">
@@ -19,6 +20,7 @@
                 </div>
             </div>
         {% endfor %}
+        </div>
     {% endfor %}
 </div>
 {% endblock %}
