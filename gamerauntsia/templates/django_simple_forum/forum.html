@@ -21,6 +21,7 @@
     <div class="col-lg-12">
         <div id="list">
             <div class="table-responsive">
+                {% autopaginate topics 20 %}
                 <table class="table table-condensed table-hover">
                     <thead>
                         <tr>
@@ -63,6 +64,7 @@
                         {% endfor %}
                     </tbody>
                 </table>
+                {% paginate %}
             </div>
         </div>
     </div>
