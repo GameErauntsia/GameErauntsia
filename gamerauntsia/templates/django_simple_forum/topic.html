@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load include %}
 
+{% block morejs %}
+    <script type="text/javascript" src="{{ STATIC_URL }}tiny_mce/tiny_mce.js"></script>
+{% endblock %}
+
 {% block title %}{{ topic.title }} - {% endblock %}
 
 {% block content %}
