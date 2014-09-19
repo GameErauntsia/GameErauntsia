@@ -11,7 +11,7 @@
     {% for post in posts.object_list %}
         <div class="row">
             <div class="col-xs-12 col-sm-4 text-center">
-                <img src="{{post.creator.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive"/>
+                <img src="{{post.creator.get_photo.get_forum_profile_url}}" alt="" class="center-block img-circle img-responsive"/>
                 <p>{{ post.creator }} | <span class="date">{{ post.created|date:"Y/m/d H:i" }}</span></p>
             </div>
             <div class="col-xs-12 col-sm-8">
@@ -19,29 +19,15 @@
                 <p>{{ post.body }}</p>
             </div>
         </div>
+        <hr/>
     {% endfor %}
 </div>
 
-<!-- Next/Prev page links  -->
-{% if posts.object_list and posts.paginator.num_pages > 1 %}
-<div class="pagination">
-    <span class="step-links">
-        {% if posts.has_previous %}
-            <a href= "?page={{ posts.previous_page_number }}">previous &lt;&lt; </a>
-        {% endif %}
-
-        <span class="current">
-            &nbsp;Page {{ posts.number }} of {{ topics.paginator.num_pages }}
-        </span>
-
-        {% if posts.has_next %}
-            <a href="?page={{ posts.next_page_number }}"> &gt;&gt; next</a>
-        {% endif %}
-    </span>
-</div>
-{% endif %}
-
 {% if request.user.is_authenticated %}
-<a class="btn btn-primary" href="{% url 'reply' forum.slug pk %}">Erantzun</a>
+<div class="row">
+    <div class="col-lg-12">
+        <a class="btn btn-primary pull-right" href="{% url 'reply' forum.slug pk %}">Erantzun</a>
+    </div>
+</div>
 {% endif %}
 {% endblock %}
