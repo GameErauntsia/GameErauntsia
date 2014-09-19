@@ -6,7 +6,19 @@
 <!-- Forums  -->
 <h1 class="page-header">Foroa <small>Denak</small></h1>
 <div class="row">
-    <div class="col-lg-12">
+    {% for cat in categories %}
+        <h2>{{cat.title}}</h2>
+        {% for forum in cat.get_forums %}
+            {% if not forloop.first %}
+            <div class="col-lg-4">
+                <a href="{{forum.get_absolute_url}}"><img class="img-responsive" src="{{forum.argazkia.get_forum_thumbnail_url}}"></a>
+                <h2><a href="{{forum.get_absolute_url}}">{{forum.title}}</a></h2>
+                <p>{{forum.get_summary}}</p>
+            </div>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    <!-- <div class="col-lg-12">
         <div id="list">
             <div class="table-responsive">
                 <table class="table table-condensed table-hover">
@@ -37,6 +49,6 @@
                 </table>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 {% endblock %}
