@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load include %}
 
 {% block title %}{{ topic.title }} - {% endblock %}
 
@@ -8,10 +9,15 @@
 <p><a href="/foroa">Denak</a>-><a href="{% url 'forum-detail' forum.slug %}">{{forum.title}}</a>-><strong>{{topic.title}}</strong></p>
 <div id="list">
     {% for post in posts.object_list %}
-        <div class="post">
-            <p><strong>{{ post.title }}</strong></p>
-            <p>by {{ post.creator }} | <span class="date">{{ post.created }}</span></p>
-            <p>{{ post.body }}</p>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 text-center">
+                <img src="{{post.creator.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive"/>
+                <p>{{ post.creator }} | <span class="date">{{ post.created|date:"Y/m/d H:i" }}</span></p>
+            </div>
+            <div class="col-xs-12 col-sm-8">
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.body }}</p>
+            </div>
         </div>
     {% endfor %}
 </div>
