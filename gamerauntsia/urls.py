@@ -21,8 +21,8 @@ urlpatterns = patterns('',
     # JOKALARIAK
     url(r'^nor-gara/', include('gamerauntsia.gamer.urls')),
     url(r'^erabiltzaileak/$', RedirectView.as_view(url='/nor-gara/', permanent=False)),
-    #(r'^erabiltzaileak/', include('registration.urls')),
     (r'^erabiltzaileak/', include('cssocialuser.urls')),
+    (r'^erabiltzaileak/', include('registration.urls')),
 
     # FOROA
     url(r'^foroa/', include('django_simple_forum.urls')),
