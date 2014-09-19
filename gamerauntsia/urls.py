@@ -22,7 +22,7 @@ urlpatterns = patterns('',
     url(r'^nor-gara/', include('gamerauntsia.gamer.urls')),
     url(r'^erabiltzaileak/$', RedirectView.as_view(url='/nor-gara/', permanent=False)),
     #(r'^erabiltzaileak/', include('registration.urls')),
-    (r'^erabiltzaileak/', include('cssocialprofile.urls')),
+    (r'^erabiltzaileak/', include('cssocialuser.urls')),
 
     # FOROA
     url(r'^foroa/', include('django_simple_forum.urls')),
