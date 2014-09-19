@@ -27,6 +27,8 @@
                             <th>Gaiak</th>
                             <th>Erantzunak</th>
                             <th>Azken mezua</th>
+                            <th>Egilea</th>
+                            <th>Noiz sortua</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -37,8 +39,9 @@
                             <div class="title"> <a href="{% url 'topic-detail' forum.slug topic.pk %}">{{ topic.title }}</a>
                                 </div></td>
                             <td>{{ topic.num_replies }}</td>
-                            <td>
-                                {{ topic.last_post.short|linebreaksbr }}</td>
+                            <td>{{ topic.last_post.short|linebreaksbr }}</td>
+                            <td>{{ topic.creator }}</td>
+                            <td>{{ topic.created }}</td>
                             <td>
                                 <a class="btn btn-default" href="{% url 'topic-detail' forum.slug topic.pk %}">IKUSI</a>
                             </td>
