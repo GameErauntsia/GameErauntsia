@@ -88,8 +88,7 @@ border-color: #149845 !important;
 filter: none;
 }
 
-.vcenter {
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
+#breadcrumb {
+ background:lightGrey;
+ -moz-border-radius:6px;  
 }
