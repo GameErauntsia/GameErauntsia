@@ -11,7 +11,7 @@
         {% for forum in cat.get_forums %}
             <div class="col-lg-4">
                 <div class="col-lg-2 text-center">
-                    <a href="{% url 'forum-detail' forum.slug %}"><img class="img-responsive" src="{{forum.photo.get_forum_thumbnail_url}}"/></a>
+                    <a href="{% url 'forum-detail' forum.slug %}"><img class="img-responsive" src="{{forum.icon.get_forum_thumbnail_url}}"/></a>
                 </div>
                 <div class="col-lg-10">
                     <h3><a href="{% url 'forum-detail' forum.slug %}">{{forum.title}}</a></h3>
