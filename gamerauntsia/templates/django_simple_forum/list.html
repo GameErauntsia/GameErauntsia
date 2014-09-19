@@ -11,12 +11,14 @@
         <div class="row">
         {% for forum in cat.get_forums %}
             <div class="col-lg-4">
-                <div class="col-xs-12 col-sm-2 text-center">
-                    <a href="{% url 'forum-detail' forum.slug %}"><img class="img-responsive" src="{{forum.icon.get_forum_thumbnail_url}}"/></a>
-                </div>
-                <div class="col-xs-12 col-sm-10">
-                    <h3><a href="{% url 'forum-detail' forum.slug %}">{{forum.title}}</a></h3>
-                    <p>{{forum.get_summary}}</p>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2 text-center">
+                        <a href="{% url 'forum-detail' forum.slug %}"><img class="img-responsive" src="{{forum.icon.get_forum_thumbnail_url}}"/></a>
+                    </div>
+                    <div class="col-xs-12 col-sm-10">
+                        <h3><a href="{% url 'forum-detail' forum.slug %}">{{forum.title}}</a></h3>
+                        <p>{{forum.get_summary}}</p>
+                    </div>
                 </div>
             </div>
         {% endfor %}
