@@ -87,3 +87,9 @@ height: 16px !important;
 border-color: #149845 !important;
 filter: none;
 }
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
