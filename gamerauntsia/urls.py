@@ -15,8 +15,9 @@ urlpatterns = patterns('',
     url(r'^gameplayak/', include('gamerauntsia.gameplaya.urls')),
     
     # BERRIAK
-    url(r'^berriak/(?P<slug>[-\w]+)/$', 'gamerauntsia.berriak.views.berria', name='berria'),
-    url(r'^berriak/$', include('gamerauntsia.berriak.urls')),
+    #url(r'^berriak', RedirectView.as_view(url='/nor-gara/', permanent=True)),
+    url(r'^bloga/(?P<slug>[-\w]+)/$', 'gamerauntsia.berriak.views.berria', name='berria'),
+    url(r'^bloga/$', include('gamerauntsia.berriak.urls')),
 
     # JOKALARIAK
     url(r'^nor-gara/', include('gamerauntsia.gamer.urls')),
@@ -36,7 +37,7 @@ urlpatterns = patterns('',
 
     #RSS FEED
     url(r'^rss/gameplayak$', LatestEntriesFeed()),
-    url(r'^rss/berriak$', LatestNewsFeed()),
+    url(r'^rss/bloga$', LatestNewsFeed()),
 
 
     # KUDEATU
