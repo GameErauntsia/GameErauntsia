@@ -14,7 +14,7 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 
-class RegistrationForm(forms.Form):
+class MyRegistrationForm(forms.Form):
     """
     Form for registering a new user account.
     
@@ -65,7 +65,7 @@ class RegistrationForm(forms.Form):
         return self.cleaned_data
 
 
-class RegistrationFormTermsOfService(RegistrationForm):
+class MyRegistrationFormTermsOfService(RegistrationForm):
     """
     Subclass of ``RegistrationForm`` which adds a required checkbox
     for agreeing to a site's Terms of Service.
@@ -76,7 +76,7 @@ class RegistrationFormTermsOfService(RegistrationForm):
                              error_messages={'required': _("You must agree to the terms to register")})
 
 
-class RegistrationFormUniqueEmail(RegistrationForm):
+class MyRegistrationFormUniqueEmail(RegistrationForm):
     """
     Subclass of ``RegistrationForm`` which enforces uniqueness of
     email addresses.
@@ -93,7 +93,7 @@ class RegistrationFormUniqueEmail(RegistrationForm):
         return self.cleaned_data['email']
 
 
-class RegistrationFormNoFreeEmail(RegistrationForm):
+class MyRegistrationFormNoFreeEmail(RegistrationForm):
     """
     Subclass of ``RegistrationForm`` which disallows registration with
     email addresses from popular free webmail services; moderately
