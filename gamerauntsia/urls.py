@@ -19,7 +19,7 @@ urlpatterns = patterns('',
     url(r'^berriak/(?P<slug>[-\w]+)/$', lambda x, slug: HttpResponseRedirect(reverse('berria', args=[slug]))),
     #url(r'^berriak/', RedirectView.as_view(url='/bloga/', permanent=True)),
     #url(r'^berriak/$', RedirectView.as_view(url='/bloga/', permanent=True)),
-    url(r'^berriak/$', HttpResponseRedirect(reverse('berriak_index'))),
+    url(r'^berriak/$', reverse('berriak_index')),
     url(r'^bloga/', include('gamerauntsia.berriak.urls'), name='bloga'),
 
     # JOKALARIAK
