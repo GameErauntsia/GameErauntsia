@@ -10,6 +10,6 @@
 		<li><a href="{% url 'gamer_profile' user.username  %}">{{user.getFullName}}</a></li>
 	</ul>
 {%else%}
-    <a class="btn" href="{% url "user_login" %}?next={{url}}" title="Log in">
+    <a class="btn" href="{% url 'auth_login' %}?next={{url}}" title="Log in">
 		{% trans 'Log in' %}</a>
 {%endif%}
