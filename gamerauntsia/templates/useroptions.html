@@ -3,16 +3,13 @@
 {% if user.is_authenticated %}
 
 	<a class="dropdown-toggle" data-toggle="dropdown" href="{% url "community_user_index" user.username  %}">
-		<img class="userlogged" width="30" height="30" src="{{user.get_photo.get_profile_small_url}}" alt="{{user.username}}" />
+		<img class="userlogged" width="30" height="30" src="{{user.argazkia.get_profilesmall_url}}" alt="{{user.username}}" />
 	<b class="caret"></b>
 	</a>
 	<ul  class="dropdown-menu pull-right">
-		<li><a href="{% url "community_user_index" user.username  %}">{{ user.get_profile.get_fullname }}</a></li>
-		<li><a href="{% url "community_user_index_post" user.username  %}">{% trans 'Post article' %}</a></li>
-		<li><a href="{% url "cssocialuser_edit_profile" %}">{% trans 'Profile' %}</a> </li>
-	    <li><a href="{% url "cssocialuser_logout" %}?next=/">{% trans 'Log out' %}</a></li>
+		<li><a href="{% url 'gamer_profile' user.username  %}">{{user.getFullName}}</a></li>
 	</ul>
 {%else%}
-    <a class="btn" href="{% url "cssocialuser_user_login" %}?next={{url}}" title="Log in">
+    <a class="btn" href="{% url "user_login" %}?next={{url}}" title="Log in">
 		{% trans 'Log in' %}</a>
 {%endif%}
