@@ -1,10 +1,10 @@
 from django import template
-from gamerauntsia.gamer.forms import MyRegistrationFormUniqueEmail
+from gamerauntsia.gamer.forms import MyRegistrationForm
 
 register = template.Library()
 
 def regform(request):
-    forma=MyRegistrationFormUniqueEmail()
+    forma=MyRegistrationForm()
     return forma.as_p()
 
 register.simple_tag(regform)

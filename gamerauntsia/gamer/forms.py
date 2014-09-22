@@ -1,14 +1,3 @@
-"""
-Forms and validation code for user registration.
-
-Note that all of these forms assume Django's bundle default ``User``
-model; since it's not possible for a form to anticipate in advance the
-needs of custom user models, you will need to write your own forms if
-you're using a custom model.
-
-"""
-
-
 from models import GamerUser as User
 from django import forms
 from django.utils.translation import ugettext_lazy as _
