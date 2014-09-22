@@ -87,3 +87,23 @@ height: 16px !important;
 border-color: #149845 !important;
 filter: none;
 }
+
+#useroptions a.btn{
+    background-color:#f3a308;
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    margin-left:0.5em;
+    padding:5px 10px !important;
+    font-size:100%;
+}
+
+#useroptions .dropdown-toggle {
+    padding: 3px 10px !important;
+}
+#useroptions .dropdown-toggle img{
+    border-radius:20px;
+    -moz-border-radius:20px;
+    -webkit-border-radius:20px;
+    behavior: url("/static/css/PIE.htc");
+    border:2px solid #f3a308 !important;
+}
