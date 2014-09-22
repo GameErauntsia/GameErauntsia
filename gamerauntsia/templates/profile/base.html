@@ -2,7 +2,7 @@
 {% load i18n %}
 
 
-{% block title%}{% trans "Edit your profile" %}{% endblock %}
+{% block title%}Editatu profila{% endblock %}
 
 {% block content %}
 	{% block cscontent %}
@@ -10,9 +10,9 @@
 	<div id="editprofile">
 
 			<ul class="nav nav-tabs">
-				<li class="{% if tab == 'personal' %}active{%endif%}"><a href="{% url "cssocialuser_edit_profile" %}">{% trans "Data" %}</a></li>
-				<li class="{% if tab == 'photo' %}active{%endif%}"><a href="{% url "cssocialuser_edit_profile_photo" %}">{% trans "Photo" %}</a></li>
-				<li class="{% if tab == 'social' %}active{%endif%}"><a href="{% url "cssocialuser_edit_profile_social" %}">{% trans "Social network" %}</a></li>
+				<li class="{% if tab == 'personal' %}active{%endif%}"><a href="{% url 'cssocialuser_edit_profile' %}">Datu orokorrak</a></li>
+				<li class="{% if tab == 'photo' %}active{%endif%}"><a href="{% url 'cssocialuser_edit_profile_photo' %}">Argazkia</a></li>
+<!-- 				<li class="{% if tab == 'social' %}active{%endif%}"><a href="{% url "cssocialuser_edit_profile_social" %}">{% trans "Social network" %}</a></li> -->
 			</ul>
 
 
