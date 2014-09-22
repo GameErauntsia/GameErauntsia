@@ -1,7 +1,8 @@
 from django.conf.urls import patterns, include, url
 from gamerauntsia import settings
 from django.contrib import admin
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.core.urlresolvers import reverse
 from django.views.generic.base import RedirectView
 from gamerauntsia.base.feed import LatestEntriesFeed, LatestNewsFeed
 
@@ -15,7 +16,8 @@ urlpatterns = patterns('',
     url(r'^gameplayak/', include('gamerauntsia.gameplaya.urls')),
     
     # BERRIAK
-    url(r'^berriak/', RedirectView.as_view(url='/bloga/', permanent=True)),
+    url(r'^berriak/(?P<slug>[-\w]+)/$', lambda x, slug: HttpResponseRedirect(reverse('berria', args=[slug]))),
+    #url(r'^berriak/', RedirectView.as_view(url='/bloga/', permanent=True)),
     url(r'^berriak/$', RedirectView.as_view(url='/bloga/', permanent=True)),
     url(r'^bloga/', include('gamerauntsia.berriak.urls'), name='bloga'),
 
