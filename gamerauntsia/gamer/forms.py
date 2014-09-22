@@ -9,7 +9,7 @@ you're using a custom model.
 """
 
 
-from gamerauntsia.gamer.models import GamerUser as User
+from models import GamerUser as User
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
@@ -65,7 +65,7 @@ class MyRegistrationForm(forms.Form):
         return self.cleaned_data
 
 
-class MyRegistrationFormTermsOfService(RegistrationForm):
+class MyRegistrationFormTermsOfService(MyRegistrationForm):
     """
     Subclass of ``RegistrationForm`` which adds a required checkbox
     for agreeing to a site's Terms of Service.
@@ -76,7 +76,7 @@ class MyRegistrationFormTermsOfService(RegistrationForm):
                              error_messages={'required': _("You must agree to the terms to register")})
 
 
-class MyRegistrationFormUniqueEmail(RegistrationForm):
+class MyRegistrationFormUniqueEmail(MyRegistrationForm):
     """
     Subclass of ``RegistrationForm`` which enforces uniqueness of
     email addresses.
@@ -93,7 +93,7 @@ class MyRegistrationFormUniqueEmail(RegistrationForm):
         return self.cleaned_data['email']
 
 
-class MyRegistrationFormNoFreeEmail(RegistrationForm):
+class MyRegistrationFormNoFreeEmail(MyRegistrationForm):
     """
     Subclass of ``RegistrationForm`` which disallows registration with
     email addresses from popular free webmail services; moderately
