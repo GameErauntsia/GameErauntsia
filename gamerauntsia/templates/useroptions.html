@@ -2,8 +2,8 @@
 
 {% if user.is_authenticated %}
 
-	<a class="dropdown-toggle" data-toggle="dropdown" href="{{% url 'gamer_profile' user.username  %}">
-		<img class="userlogged" width="30" height="30" src="{{user.argazkia.get_profilesmall_url}}" alt="{{user.username}}" />
+	<a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'gamer_profile' user.username  %}">
+		<img class="userlogged" width="30" height="30" src="{{user.get_photo.get_profilesmall_url}}" alt="{{user.username}}" />
 	<b class="caret"></b>
 	</a>
 	<ul  class="dropdown-menu pull-right">
