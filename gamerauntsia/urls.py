@@ -17,16 +17,13 @@ urlpatterns = patterns('',
     
     # BERRIAK
     url(r'^berriak/(?P<slug>[-\w]+)/$', lambda x, slug: HttpResponseRedirect(reverse('berria', args=[slug]))),
-    #url(r'^berriak/', RedirectView.as_view(url='/bloga/', permanent=True)),
-    #url(r'^berriak/$', RedirectView.as_view(url='/bloga/', permanent=True)),
-    #url(r'^berriak/$', reverse('berriak_index')),
     url(r'^bloga/', include('gamerauntsia.berriak.urls'), name='bloga'),
 
     # JOKALARIAK
     url(r'^nor-gara/', include('gamerauntsia.gamer.urls')),
-    url(r'^erabiltzaileak/$', RedirectView.as_view(url='/nor-gara/', permanent=False)),
-    (r'^erabiltzaileak/', include('cssocialuser.urls')),
-    (r'^erabiltzaileak/', include('registration.urls')),
+    #url(r'^erabiltzaileak/$', RedirectView.as_view(url='/nor-gara/', permanent=False)),
+    (r'^nor-gara/', include('cssocialuser.urls')),
+    (r'^nor-gara/', include('registration.urls')),
 
     # FOROA
     url(r'^foroa/', include('django_simple_forum.urls')),
