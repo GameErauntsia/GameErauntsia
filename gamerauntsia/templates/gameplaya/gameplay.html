@@ -37,6 +37,14 @@
         <p><img src="{{gp.plataforma.icon.get_profilesmall_url}}"/> {{gp.plataforma.izena}}</p>
         <p><a href="{% url 'gamer_profile' gp.erabiltzailea.username %}"><img src="{{gp.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{gp.erabiltzailea.fullname}}</a></a></p>
         </div>
+        {% if user.is_authenticated %}
+        {% if user.is_superuser or user == gp.erabiltzailea %}
+        <div class="well">
+            <h3>Editatu gameplaya</h3>
+            <a class="btn btn-default" href="/kudeatu/gameplayak/gameplaya/{{gp.id}}">Editatu</a>
+        </div>
+        {% endif %}
+        {% endif %}
     </div>
 </div>
 
