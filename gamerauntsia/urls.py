@@ -3,7 +3,6 @@ from gamerauntsia import settings
 from django.contrib import admin
 from django.http import HttpResponse
 from django.views.generic.base import RedirectView
-from django.core.urlresolvers import reverse_lazy
 from gamerauntsia.base.feed import LatestEntriesFeed, LatestNewsFeed
 
 admin.autodiscover()
@@ -16,7 +15,8 @@ urlpatterns = patterns('',
     url(r'^gameplayak/', include('gamerauntsia.gameplaya.urls')),
     
     # BERRIAK
-    url(r'^berriak/', RedirectView.as_view(url=reverse_lazy('bloga'), permanent=True)),
+    url(r'^berriak/', RedirectView.as_view(url='bloga/%(slug)s', permanent=True)),
+    url(r'^berriak/$', RedirectView.as_view(url='bloga/', permanent=True)),
     url(r'^bloga/', include('gamerauntsia.berriak.urls'), name='bloga'),
 
     # JOKALARIAK
