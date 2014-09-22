@@ -106,5 +106,5 @@ filter: none;
 }
 
 .navbar-nav > li > a {
-  padding-top: 15px;
+   padding-bottom: 0;
 }
