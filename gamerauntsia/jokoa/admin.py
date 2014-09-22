@@ -16,7 +16,7 @@ class JokoaAdmin(admin.ModelAdmin):
     )
 
 class PlataformaAdmin(admin.ModelAdmin):
-    list_display = ('izena')
+    list_display = ('izena',)
     prepopulated_fields = {"slug": ("izena",)}
     ordering = ('izena',)
    
