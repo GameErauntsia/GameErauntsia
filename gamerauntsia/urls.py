@@ -15,8 +15,8 @@ urlpatterns = patterns('',
     url(r'^gameplayak/', include('gamerauntsia.gameplaya.urls')),
     
     # BERRIAK
-    url(r'^berriak/', RedirectView.as_view(url='bloga/', permanent=True)),
-    url(r'^berriak/$', RedirectView.as_view(url='bloga/', permanent=True)),
+    url(r'^berriak/', RedirectView.as_view(url='/bloga/', permanent=True)),
+    url(r'^berriak/$', RedirectView.as_view(url='/bloga/', permanent=True)),
     url(r'^bloga/', include('gamerauntsia.berriak.urls'), name='bloga'),
 
     # JOKALARIAK
