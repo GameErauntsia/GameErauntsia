@@ -14,30 +14,30 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 
-# class MyRegistrationForm(forms.Form):
-#     """
-#     Form for registering a new user account.
+class MyRegistrationForm(forms.Form):
+    """
+    Form for registering a new user account.
     
-#     Validates that the requested username is not already in use, and
-#     requires the password to be entered twice to catch typos.
+    Validates that the requested username is not already in use, and
+    requires the password to be entered twice to catch typos.
     
-#     Subclasses should feel free to add any additional validation they
-#     need, but should avoid defining a ``save()`` method -- the actual
-#     saving of collected user data is delegated to the active
-#     registration backend.
+    Subclasses should feel free to add any additional validation they
+    need, but should avoid defining a ``save()`` method -- the actual
+    saving of collected user data is delegated to the active
+    registration backend.
 
-#     """
-#     required_css_class = 'required'
+    """
+    required_css_class = 'required'
     
-#     username = forms.RegexField(regex=r'^[\w.@+-]+$',
-#                                 max_length=30,
-#                                 label=_("Username"),
-#                                 error_messages={'invalid': _("This value may contain only letters, numbers and @/./+/-/_ characters.")})
-#     email = forms.EmailField(label=_("E-mail"))
-#     password1 = forms.CharField(widget=forms.PasswordInput,
-#                                 label=_("Password"))
-#     password2 = forms.CharField(widget=forms.PasswordInput,
-#                                 label=_("Password (again)"))
+    username = forms.RegexField(regex=r'^[\w.@+-]+$',
+                                max_length=30,
+                                label=_("Username"),
+                                error_messages={'invalid': _("This value may contain only letters, numbers and @/./+/-/_ characters.")})
+    email = forms.EmailField(label=_("E-mail"))
+    password1 = forms.CharField(widget=forms.PasswordInput,
+                                label=_("Password"))
+    password2 = forms.CharField(widget=forms.PasswordInput,
+                                label=_("Password (again)"))
     
 #     def clean_username(self):
 #         """
@@ -76,21 +76,21 @@ from django.utils.translation import ugettext_lazy as _
 #                              error_messages={'required': _("You must agree to the terms to register")})
 
 
-# class MyRegistrationFormUniqueEmail(MyRegistrationForm):
-#     """
-#     Subclass of ``RegistrationForm`` which enforces uniqueness of
-#     email addresses.
+class MyRegistrationFormUniqueEmail(MyRegistrationForm):
+    """
+    Subclass of ``RegistrationForm`` which enforces uniqueness of
+    email addresses.
     
-#     """
-#     def clean_email(self):
-#         """
-#         Validate that the supplied email address is unique for the
-#         site.
+    """
+    def clean_email(self):
+        """
+        Validate that the supplied email address is unique for the
+        site.
         
-#         """
-#         if User.objects.filter(email__iexact=self.cleaned_data['email']):
-#             raise forms.ValidationError(_("This email address is already in use. Please supply a different email address."))
-#         return self.cleaned_data['email']
+        """
+        if User.objects.filter(email__iexact=self.cleaned_data['email']):
+            raise forms.ValidationError(_("This email address is already in use. Please supply a different email address."))
+        return self.cleaned_data['email']
 
 
 # class MyRegistrationFormNoFreeEmail(MyRegistrationForm):
