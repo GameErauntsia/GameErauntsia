@@ -5,7 +5,19 @@ SOFTWARE_AUKERAK = (
         ('C', 'Copyright'),
         ('FR', 'Doakoa'),
         ('OS', 'Kode Irekia'),
-    )	
+    )
+
+class Plataforma(models.Model):
+    izena = models.CharField(max_length=64)
+    slug = models.SlugField(db_index=True, unique=True, help_text="Eremu honetan plataforma honen URL helbidea zehazten ari zara.")
+    icon = models.ForeignKey(Photo,null=True,blank=True)
+    
+    class Meta:
+        verbose_name = "Plataforma"
+        verbose_name_plural = "Plataformak"
+        
+    def __unicode__(self):
+        return u'%s' % (self.izena)	
 
 class Jokoa(models.Model):
     izena = models.CharField(max_length=64)
@@ -20,8 +32,8 @@ class Jokoa(models.Model):
     
     
     class Meta:
-        verbose_name = "jokoa"
-        verbose_name_plural = "jokoak"
+        verbose_name = "Jokoa"
+        verbose_name_plural = "Jokoak"
         
     def __unicode__(self):
         return u'%s %s' % (self.izena, self.bertsioa)

@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 from photologue.models import Photo
-from gamerauntsia.jokoa.models import Jokoa
+from gamerauntsia.jokoa.models import Jokoa, Plataforma
 from gamerauntsia.gamer.models import GamerUser
 from datetime import datetime
 from gamerauntsia.utils.social import post_to_twitter
@@ -43,6 +43,7 @@ class GamePlaya(models.Model):
     bideoa = models.CharField(max_length=100, help_text="Eremu honetan bideoaren URL kodea itsatsi behar duzu. Adb.: c21XAuI3aMo")
     
     jokoa = models.ForeignKey(Jokoa, related_name='gameplay')
+    plataforma = models.ForeignKey(Plataforma, related_name='gameplay')
     zailtasuna = models.ForeignKey(Zailtasuna, related_name='gameplay')
     kategoria = models.ManyToManyField(Kategoria, related_name='gameplay')
     

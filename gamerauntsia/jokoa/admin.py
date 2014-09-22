@@ -1,4 +1,4 @@
-from gamerauntsia.jokoa.models import Jokoa
+from gamerauntsia.jokoa.models import Jokoa, Plataforma
 from django.contrib import admin
 
 from datetime import datetime
@@ -14,6 +14,12 @@ class JokoaAdmin(admin.ModelAdmin):
         ('Osagarriak',
         {'fields':('lizentzia','url', 'logoa', 'wiki')},),
     )
+
+class PlataformaAdmin(admin.ModelAdmin):
+    list_display = ('izena')
+    prepopulated_fields = {"slug": ("izena",)}
+    ordering = ('izena',)
    
 
 admin.site.register(Jokoa, JokoaAdmin)
+admin.site.register(Plataforma, PlataformaAdmin)
