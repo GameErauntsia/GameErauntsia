@@ -6,10 +6,10 @@ from datetime import datetime
 from django.utils import timezone
 
 class GamePlayAdmin(admin.ModelAdmin):
-    list_display = ('izenburua', 'slug','zailtasuna', 'jokoa','pub_date', 'erabiltzailea','publikoa_da')
+    list_display = ('izenburua', 'slug','zailtasuna', 'jokoa','plataforma','pub_date', 'erabiltzailea','publikoa_da')
     prepopulated_fields = {"slug": ("izenburua",)}
     filter_horizontal = ('kategoria',)
-    raw_id_fields = ('argazkia','jokoa','erabiltzailea')
+    raw_id_fields = ('argazkia','jokoa','plataforma','erabiltzailea')
     list_filter = ('erabiltzailea','zailtasuna', 'publikoa_da')
     search_fields = ['erabiltzailea__fullname','erabiltzailea__username','izenburua']
     form = GamePlayAdminForm
