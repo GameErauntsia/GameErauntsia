@@ -41,7 +41,7 @@ urlpatterns = patterns('',
 
 
     # KUDEATU
-    url(r'^kudeatu/', include(admin.site.urls), name='admin_site'),
+    url(r'^kudeatu/', include(admin.site.urls)),
 )
 
 
