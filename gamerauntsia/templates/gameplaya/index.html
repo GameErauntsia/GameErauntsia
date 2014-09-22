@@ -59,7 +59,7 @@
                 <hr/>
                 <h4><span class="glyphicon glyphicon-tag"></span> Kategoriak</h4>
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <ul class="list-unstyled">
                             {% for kategoria in kategoriak %}
                             <li><a href="{% url 'gameplay_category' kategoria.slug %}">{{kategoria.izena}}</a></li>
