@@ -89,10 +89,10 @@ filter: none;
 }
 
 #useroptions a.btn{
-    background-color:#f3a308;
     background-image: none;
     filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
     margin-left:0.5em;
+    margin-top: 10px;
     padding:5px 10px !important;
     font-size:100%;
 }
