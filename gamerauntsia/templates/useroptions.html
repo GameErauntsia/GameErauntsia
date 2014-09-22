@@ -8,6 +8,7 @@
 	</a>
 	<ul  class="dropdown-menu pull-right">
 		<li><a href="{% url 'gamer_profile' user.username  %}">{{user.getFullName}}</a></li>
+		<li><a href="{% url 'cssocialuser_edit_profile' %}">{% trans 'Profile' %}</a> </li>
 		<li><a href="{% url 'auth_logout' %}?next=/">Irten</a></li>
 	</ul>
 {%else%}
