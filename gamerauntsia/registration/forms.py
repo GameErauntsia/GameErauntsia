@@ -10,7 +10,7 @@ you're using a custom model.
 
 
 #from django.contrib.auth.models import User
-from gamerauntsia.gamer.models import GamerUser as User
+from gamerauntsia.gamer.models import GamerUser
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
@@ -46,7 +46,7 @@ class RegistrationForm(forms.Form):
         in use.
         
         """
-        existing = User.objects.filter(username__iexact=self.cleaned_data['username'])
+        existing = GamerUser.objects.filter(username__iexact=self.cleaned_data['username'])
         if existing.exists():
             raise forms.ValidationError(_("A user with that username already exists."))
         else:
@@ -89,7 +89,7 @@ class RegistrationFormUniqueEmail(RegistrationForm):
         site.
         
         """
-        if User.objects.filter(email__iexact=self.cleaned_data['email']):
+        if GamerUser.objects.filter(email__iexact=self.cleaned_data['email']):
             raise forms.ValidationError(_("This email address is already in use. Please supply a different email address."))
         return self.cleaned_data['email']
 
