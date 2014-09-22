@@ -61,11 +61,7 @@
                             </div>
                         </form>
                     </li>
-                    <li class="dropdown " id="useroptions">
-                        <a class="btn" href="{% url 'auth_login' %}?next={{request.path}}" title="Log in">
-                            Sartu
-                        </a>
-                    </li>
+                    {% include 'useroptions.html' %}
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
