@@ -1,0 +1,14 @@
+{% extends "profile/base.html" %}
+{% load i18n %}
+
+{% block perfil %}
+<div class="profileform">
+	<h2>{% trans "Your personal data" %}</h2>
+	<form action="{{request.path}}" method="POST">
+		{% csrf_token %}
+		{{userform.as_p}}
+		{{profileform.as_p}}
+		<input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
+	</form>
+</div>
+{% endblock %}
