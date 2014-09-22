@@ -34,6 +34,7 @@
         <p><span class="glyphicon glyphicon-tag"></span> {% for gai in gp.kategoria.all %}<a href="{% url 'gameplay_category' gai.slug %}">{{gai.izena}}</a>{% if not forloop.last %}, {%endif%}{% endfor %}</p>
         <p><span class="glyphicon glyphicon-fire"></span> <a href="{% url 'gameplay_level' gp.zailtasuna.slug %}">{{gp.zailtasuna.izena}}</a></p>
         <p><span class="glyphicon glyphicon-time"></span> {{gp.iraupena_min}}min {{gp.iraupena_seg}}seg</p>
+        <p><img src="{{gp.plataforma.icon.get_profilesmall_url}}"/> {{gp.plataforma.izena}}</p>
         <p><a href="{% url 'gamer_profile' gp.erabiltzailea.username %}"><img src="{{gp.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{gp.erabiltzailea.fullname}}</a></a></p>
         </div>
     </div>
