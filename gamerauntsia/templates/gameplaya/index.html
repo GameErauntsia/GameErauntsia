@@ -82,7 +82,7 @@
                     <div class="col-lg-12">
                         <ul class="list-unstyled">
                             {% for plat in plataformak %}
-                            <li><a href="{% url 'gameplay_platform' plat.slug %}"><img src="{{gp.plataforma.icon.get_profilesmall_url}}"/> {{plat.izena}}</a></li>
+                            <li><a href="{% url 'gameplay_platform' plat.slug %}"><img src="{{plat.icon.get_profilesmall_url}}"/> {{plat.izena}}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
