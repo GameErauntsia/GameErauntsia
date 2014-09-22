@@ -3,6 +3,7 @@ setup.py
 gamerauntsia/__init__.py
 gamerauntsia/local_settings.py
 gamerauntsia/settings.py
+gamerauntsia/tiny_mce_settings.py
 gamerauntsia/urls.py
 gamerauntsia/views.py
 gamerauntsia.egg-info/PKG-INFO
@@ -36,7 +37,6 @@ gamerauntsia/gameplaya/urls.py
 gamerauntsia/gameplaya/views.py
 gamerauntsia/gamer/__init__.py
 gamerauntsia/gamer/admin.py
-gamerauntsia/gamer/forms.py
 gamerauntsia/gamer/models.py
 gamerauntsia/gamer/urls.py
 gamerauntsia/gamer/views.py
@@ -50,5 +50,9 @@ gamerauntsia/kontaktua/__init__.py
 gamerauntsia/kontaktua/models.py
 gamerauntsia/kontaktua/tests.py
 gamerauntsia/kontaktua/views.py
+gamerauntsia/registration/__init__.py
+gamerauntsia/registration/forms.py
+gamerauntsia/templatetags/__init__.py
+gamerauntsia/templatetags/gamerauntsia.py
 gamerauntsia/utils/__init__.py
 gamerauntsia/utils/social.py
