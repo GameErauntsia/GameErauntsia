@@ -7,13 +7,17 @@
 {% endblock %}
 
 {% block content %}
-<h1>Erantzun berri bat bidali</h1>
-{{quote|safe}}
-<form action="{% url 'reply' forum.slug topic.id %}" method="POST">
-    {% csrf_token %} 
-    {{ form.as_p }}
-    <input type="hidden" name="quote" value="{{quote}}"/>
-    <input class="btn btn-primary" type="submit" value="Bidali" />
-    <a class="btn btn-default" href="{% url 'topic-detail' forum.slug topic.id %}">Ezeztatu</a>
-</form>
+<div class="row">
+    <div class="col-lg-12">
+		<h1>Erantzun berri bat bidali</h1>
+		{{quote|safe}}
+		<form action="{% url 'reply' forum.slug topic.id %}" method="POST">
+		    {% csrf_token %} 
+		    {{ form.as_p }}
+		    <input type="hidden" name="quote" value="{{quote}}"/>
+		    <input class="btn btn-primary" type="submit" value="Bidali" />
+		    <a class="btn btn-default" href="{% url 'topic-detail' forum.slug topic.id %}">Ezeztatu</a>
+		</form>
+	</div>
+</div>
 {% endblock %}

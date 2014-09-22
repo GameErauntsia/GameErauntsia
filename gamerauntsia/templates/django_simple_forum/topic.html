@@ -4,46 +4,49 @@
 {% block title %}{{ topic.title }} - {% endblock %}
 
 {% block content %}
-<!-- Posts  -->
-<h1 class="page-header">Foroa <small>{{forum.title}}: {{topic.title}}</small></h1>
-<p class="breadcrumb"><a href="/foroa">Denak</a>-><a href="{% url 'forum-detail' forum.slug %}">{{forum.title}}</a>-><strong>{{topic.title}}</strong></p>
-<div id="list">
-    {% autopaginate posts 10 %}
-    {% for post in posts %}
-        <div class="row">
-            <div class="col-xs-12 col-sm-2 text-center">
-                <img src="{{post.creator.get_photo.get_forum_profile_url}}" alt="" class="center-block img-circle img-responsive"/>
-                <p>{% if post.creator.is_gamer %}<a href="{% url 'gamer_profile' post.creator.username %}">{{post.creator.fullname}}</a>{% else %}{{post.creator}}{% endif %}<br/><span class="date">{{post.created|date:"Y/m/d H:i"}}</span><br/>
-                {% if post.creator.is_gamer %}<span class="text-success">Jokalaria</span></p>{% endif %}
-            </div>
-            <div class="col-xs-12 col-sm-10">
-                <h3>{{post.title}}
-                {% if request.user.is_authenticated %}
-                {% if not topic.closed %}
-                <a class="btn btn-default pull-right" href="{% url 'reply' forum.slug pk %}?author={{post.creator}}&quote={{post.body|truncatewords:30}}">Zitatu</a>
-                {% endif %}
-                {% endif %}
-                </h3>
-                <p>{{post.body|safe|urlize}}</p>
-            </div>
-        </div>
-        <hr/>
-    {% empty %}
-    <div class="alert alert-success" role="alert"><strong>Animatu!</strong> Izan zaitez lehenengoa gai honetan idazten!</div>
-    {% endfor %}
-
-    {% paginate %}
-</div>
-
-{% if request.user.is_authenticated %}
 <div class="row">
     <div class="col-lg-12">
-        {% if topic.closed %}
-        <div class="alert alert-warning pull-right" role="alert"><strong>Berandu!</strong> Gai hau dagoeneko itxita dago...</div>
-        {% else %}
-        <a class="btn btn-primary pull-right" href="{% url 'reply' forum.slug pk %}">Erantzun</a>
+        <h1 class="page-header">Foroa <small>{{forum.title}}: {{topic.title}}</small></h1>
+        <p class="breadcrumb"><a href="/foroa">Denak</a>-><a href="{% url 'forum-detail' forum.slug %}">{{forum.title}}</a>-><strong>{{topic.title}}</strong></p>
+        <div id="list">
+            {% autopaginate posts 10 %}
+            {% for post in posts %}
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2 text-center">
+                        <img src="{{post.creator.get_photo.get_forum_profile_url}}" alt="" class="center-block img-circle img-responsive"/>
+                        <p>{% if post.creator.is_gamer %}<a href="{% url 'gamer_profile' post.creator.username %}">{{post.creator.fullname}}</a>{% else %}{{post.creator}}{% endif %}<br/><span class="date">{{post.created|date:"Y/m/d H:i"}}</span><br/>
+                        {% if post.creator.is_gamer %}<span class="text-success">Jokalaria</span></p>{% endif %}
+                    </div>
+                    <div class="col-xs-12 col-sm-10">
+                        <h3>{{post.title}}
+                        {% if request.user.is_authenticated %}
+                        {% if not topic.closed %}
+                        <a class="btn btn-default pull-right" href="{% url 'reply' forum.slug pk %}?author={{post.creator}}&quote={{post.body|truncatewords:30}}">Zitatu</a>
+                        {% endif %}
+                        {% endif %}
+                        </h3>
+                        <p>{{post.body|safe|urlize}}</p>
+                    </div>
+                </div>
+                <hr/>
+            {% empty %}
+            <div class="alert alert-success" role="alert"><strong>Animatu!</strong> Izan zaitez lehenengoa gai honetan idazten!</div>
+            {% endfor %}
+
+            {% paginate %}
+        </div>
+
+        {% if request.user.is_authenticated %}
+        <div class="row">
+            <div class="col-lg-12">
+                {% if topic.closed %}
+                <div class="alert alert-warning pull-right" role="alert"><strong>Berandu!</strong> Gai hau dagoeneko itxita dago...</div>
+                {% else %}
+                <a class="btn btn-primary pull-right" href="{% url 'reply' forum.slug pk %}">Erantzun</a>
+                {% endif %}
+            </div>
+        </div>
         {% endif %}
     </div>
 </div>
-{% endif %}
 {% endblock %}
