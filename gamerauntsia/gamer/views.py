@@ -8,7 +8,7 @@ from django.conf import settings
 from django.db.models import Count
 
 def index(request):
-    users = GamerUser.objects.filter(is_active=True).order_by('-date_joined')
+    users = GamerUser.objects.filter(is_active=True,is_staff=True).order_by('-date_joined')
     return render_to_response('gamer/index.html', locals(),context_instance=RequestContext(request))
     
 def profile(request,username):
