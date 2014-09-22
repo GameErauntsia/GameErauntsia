@@ -104,3 +104,7 @@ filter: none;
     behavior: url("/static/css/PIE.htc");
     border:2px solid #149845 !important;
 }
+
+.navbar-nav > li > a {
+  padding-top: 15px;
+}
