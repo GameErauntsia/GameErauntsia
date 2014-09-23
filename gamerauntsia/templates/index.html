@@ -46,7 +46,7 @@
                 {% for berria in berriak %}
                     <div class="col-md-3">
                         <div class="row">
-                            <div class="col-lg-4 forum-img">
+                            <div class="col-lg-4">
                                 <a href="{% url 'berria' berria.slug %}"><img class="img-responsive center-block" src="{{berria.argazkia.get_forum_thumbnail_url}}"/></a>
                             </div>
                             <div class="col-lg-8">
