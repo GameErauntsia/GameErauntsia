@@ -42,27 +42,25 @@
     <div class="col-lg-12">
         <div class="well">
             <h3 class="text-center">Azken berriak</h3>
+            {% for berria in berriak %}
+            {% if forloop.counter|divisibleby:5 or forloop.first %}
             <div class="row">
-                {% for berria in berriak %}
-                {% if forloop.counter|divisibleby:5 or forloop.first %}
-                <div class="row">
-                {% endif %}
-                    <div class="col-md-3">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <a href="{% url 'berria' berria.slug %}"><img class="img-responsive center-block" src="{{berria.argazkia.get_forum_thumbnail_url}}"/></a>
-                            </div>
-                            <div class="col-lg-8">
-                                <h4><a href="{% url 'berria' berria.slug %}">{{berria.izenburua}}</a></h4>
-                            </div>
+            {% endif %}
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <a href="{% url 'berria' berria.slug %}"><img class="img-responsive center-block" src="{{berria.argazkia.get_forum_thumbnail_url}}"/></a>
+                        </div>
+                        <div class="col-lg-8">
+                            <h4><a href="{% url 'berria' berria.slug %}">{{berria.izenburua}}</a></h4>
                         </div>
                     </div>
-                {% if forloop.counter|divisibleby:4 or forloop.last %}
                 </div>
-                {% endif %}
-                {% endfor %}
-                </div>
-        </div>
+            {% if forloop.counter|divisibleby:4 or forloop.last %}
+            </div>
+            {% endif %}
+            {% endfor %}
+            </div>
     </div>
 </div>
 {% endblock %}
