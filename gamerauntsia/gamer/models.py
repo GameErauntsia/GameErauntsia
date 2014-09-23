@@ -22,7 +22,7 @@ class GamerUser(CSAbstractSocialUser):
             return self.photo
         else:
             try:
-                return Photo.objects.get(title_slug=MEMBER_PHOTO_SLUG)    
+                return Photo.objects.get(slug=MEMBER_PHOTO_SLUG)    
             except:
                 return None 
 
