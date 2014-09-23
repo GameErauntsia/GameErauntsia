@@ -29,7 +29,7 @@
                     <div class="col-md-3">
                         <div class="row">
                             <div class="col-lg-4 forum-img">
-                                <a href="{% url 'berria' berria.slug %}"><img class="img-responsive center-block" src="{{berria.get_photo.get_forum_thumbnail_url}}"/></a>
+                                <a href="{% url 'berria' berria.slug %}"><img class="img-responsive center-block" src="{{berria.argazkia.get_forum_thumbnail_url}}"/></a>
                             </div>
                             <div class="col-lg-8">
                                 <h3><a href="{% url 'berria' berria.slug %}">{{berria.izenburua}}</a></h3>
