@@ -26,7 +26,7 @@
         <div class="well">
             <div class="row">
                 {% for berria in berriak %}
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="row">
                             <div class="col-lg-4 forum-img">
                                 <a href="{% url 'berria' berria.slug %}"><img class="img-responsive center-block" src="{{berria.get_photo.get_forum_thumbnail_url}}"/></a>
