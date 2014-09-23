@@ -21,13 +21,27 @@
 
 <hr>
 
-<!-- <div class="row">
+<div class="row">
     <div class="col-lg-12">
-        <div class="well text-center">
-            Euskal gameplay komunitatearen jokaldirik onenak hemen dituzu ikusgai! Gozatu!
+        <div class="well">
+            <div class="row">
+                {% for berria in berriak %}
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-lg-4 forum-img">
+                                <a href="{% url 'berria' berria.slug %}"><img class="img-responsive center-block" src="{{berria.get_photo.get_forum_thumbnail_url}}"/></a>
+                            </div>
+                            <div class="col-lg-8">
+                                <h3><a href="{% url 'berria' berria.slug %}">{{berria.izenburua}}</a></h3>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                {% endfor %}
+                </div>
         </div>
     </div>
-</div> -->
+</div>
 
 <div class="row">
     {% for gp in gameplayak %}
