@@ -42,6 +42,7 @@ urlpatterns = patterns('',
 
     # KUDEATU
     url(r'^kudeatu/', include(admin.site.urls)),
+    (r'^photologue/', include('photologue.urls')),
 )
 
 
