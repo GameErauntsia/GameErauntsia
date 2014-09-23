@@ -22,23 +22,6 @@
 <hr>
 
 <div class="row">
-    {% for gp in gameplayak %}
-    {% if not forloop.first %}
-    <div class="col-lg-4">
-        <!--<iframe width="350" height="197" src="//www.youtube.com/embed/{{gp.bideoa}}" frameborder="0" allowfullscreen></iframe>-->
-        <a href="{{gp.get_absolute_url}}"><img class="img-responsive" src="{{gp.argazkia.get_gp_thumbnail_url}}"></a>
-        <h2>{{gp.izenburua}}</h2>
-        <p><span class="glyphicon glyphicon-play"></span> {% if gp.jokoa.url %}<a href="{{gp.jokoa.url}}">{{gp.jokoa}}</a>{% else %}{{gp.jokoa}}{% endif%} | <span class="glyphicon glyphicon-time"></span> {{gp.iraupena_min}}min {{gp.iraupena_seg}}seg | <img src="{{gp.plataforma.icon.get_profilesmall_url}}"/></p>
-        <p>{{gp.get_desk_txikia|safe}}</p>
-        <a class="btn btn-default" href="{{gp.get_absolute_url}}">Ikusi +</a>
-    </div>
-    {% endif %}
-    {% endfor %}
-</div>
-
-<hr>
-
-<div class="row">
     <div class="col-lg-12">
         <div class="well">
             <h3 class="text-center">Azken berriak</h3>
@@ -62,5 +45,23 @@
             {% endfor %}
             </div>
     </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <h3 class="text-center">Gameplay gehiago</h3>
+    {% for gp in gameplayak %}
+    {% if not forloop.first %}
+    <div class="col-lg-4">
+        <!--<iframe width="350" height="197" src="//www.youtube.com/embed/{{gp.bideoa}}" frameborder="0" allowfullscreen></iframe>-->
+        <a href="{{gp.get_absolute_url}}"><img class="img-responsive" src="{{gp.argazkia.get_gp_thumbnail_url}}"></a>
+        <h2>{{gp.izenburua}}</h2>
+        <p><span class="glyphicon glyphicon-play"></span> {% if gp.jokoa.url %}<a href="{{gp.jokoa.url}}">{{gp.jokoa}}</a>{% else %}{{gp.jokoa}}{% endif%} | <span class="glyphicon glyphicon-time"></span> {{gp.iraupena_min}}min {{gp.iraupena_seg}}seg | <img src="{{gp.plataforma.icon.get_profilesmall_url}}"/></p>
+        <p>{{gp.get_desk_txikia|safe}}</p>
+        <a class="btn btn-default" href="{{gp.get_absolute_url}}">Ikusi +</a>
+    </div>
+    {% endif %}
+    {% endfor %}
 </div>
 {% endblock %}
