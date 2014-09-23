@@ -44,7 +44,7 @@
             <h3 class="text-center">Azken berriak</h3>
             <div class="row">
                 {% for berria in berriak %}
-                {% if not forloop.counter|divisibleby:4 %}
+                {% if forloop.counter|divisibleby:5 or forloop.first %}
                 <div class="row">
                 {% endif %}
                     <div class="col-md-3">
