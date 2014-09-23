@@ -6,7 +6,7 @@ from gamerauntsia.berriak.models import Berria
 
 def index(request):
     gameplayak = GamePlaya.objects.filter(publikoa_da=True).order_by('-pub_date')[:4]
-    berriak = Berria.objects.filter(publikoa_da=True).order_by('-pub_date')[:4]
+    berriak = Berria.objects.filter(publikoa_da=True).order_by('-pub_date')[:8]
     return render_to_response('index.html', locals(),context_instance=RequestContext(request))
 
 def bilaketa(request,bilatu):
