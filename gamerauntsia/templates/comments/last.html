@@ -7,7 +7,7 @@
         <h4 class="media-heading"><a href="{% url 'gamer_profile' eran.user.username %}">{{ eran.name }}</a>
         <a href="{{eran.get_absolute_url}}"><small>{{ eran.submit_date }}</small></a>
         </h4>
-        {{ eran.comment }}
+        {{ eran.comment|truncatechars:150 }}
     </div>
 </div>
 {% endfor %}
