@@ -55,10 +55,10 @@
         <p><a class="twitter popup" href="http://twitter.com/share?text={{item.izenburua|urlfriend}}"><img src="{{STATIC_URL}}img/twitter.png"/></a> <a href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={% url 'berria' item.slug %}&p[images][0]={{item.argazkia.image.url}}&p[title]={{item.izenburua|urlfriend}}&p[summary]={{item.desk|urlfriend}}"><img src="{{STATIC_URL}}img/facebook.png"/></a></p>
         <hr>
         
-        {% render_comment_list for gp %}
+        {% render_comment_list for item %}
 
         {% if user.is_authenticated %}
-            {% render_comment_form for gp %}
+            {% render_comment_form for item %}
         {% else %}
             <p>Mesedez, <a href="{% url 'auth_login' %}">sartu</a> iruzkina utzi ahal izateko.</p>
         {% endif %}
