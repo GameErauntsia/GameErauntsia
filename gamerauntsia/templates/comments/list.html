@@ -1,8 +1,8 @@
 <div id="comments">
 	<h3>Iruzkinak</h3>
 	{% for comment in comment_list %}
-	<div class="media" id="c{{ comment.id }}">
-	        <a class="pull-left" href="#">
+	<div class="media">
+	        <a class="pull-left" href="#{{ comment.id }}">
 	            <img class="media-object" src="{{comment.user.get_photo.get_comment_url}}">
 	        </a>
 	    <div class="media-body">
