@@ -1,6 +1,7 @@
 {% load comments i18n %}
 <div class="well">
 	<h4>Utzi iruzkina:</h4>
+	<p><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.fullname}}</a></a></p>
 	<form action="{% comment_form_target %}" method="post">{% csrf_token %}
 		<div><input type="hidden" name="next" value="{{request.path}}" /></div>
 		{% for field in form %}
