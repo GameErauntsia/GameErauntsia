@@ -39,6 +39,8 @@ urlpatterns = patterns('',
     url(r'^rss/gameplayak$', LatestEntriesFeed()),
     url(r'^rss/bloga$', LatestNewsFeed()),
 
+    # COMMENTS
+    (r'^comments/', include('django_comments.urls')),
 
     # KUDEATU
     url(r'^kudeatu/', include(admin.site.urls)),
