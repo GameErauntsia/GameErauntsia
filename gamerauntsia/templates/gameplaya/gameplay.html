@@ -78,20 +78,9 @@
     </div>
 
     {% if user.is_authenticated %}
-        {% get_comment_form for gp as form %}
-        <form action="{% comment_form_target %}" method="POST">
-        {% csrf_token %}
-        {{ form.comment }}
-        {{ form.honeypot }}
-        {{ form.content_type }}
-        {{ form.object_pk }}
-        {{ form.timestamp }}
-        {{ form.security_hash }}
-        <input type="hidden" name="next" value="{% url 'gameplay' gp.slug %}" />
-        <input type="submit" value="Add comment" id="id_submit" />
-        </form>
+        {% render_comment_form for gp %}
     {% else %}
-        <p>Please <a href="{% url 'auth_login' %}">log in</a> to leave a comment.</p>
+        <p>Mesedez, <a href="{% url 'auth_login' %}">sartu</a> iruzkina utzi ahal izateko.</p>
     {% endif %}
 
     <!-- Posted Comments -->
