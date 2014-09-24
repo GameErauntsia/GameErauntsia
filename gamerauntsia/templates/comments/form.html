@@ -10,11 +10,13 @@
 				{% if field.errors %}{{ field.errors }}{% endif %}
 			{% endif %}
 		{% endfor %}
-		<textarea cols="40" id="id_comment" name="comment" rows="10"></textarea>
+		<div class="form-group">
+		<textarea class="form-control" cols="40" id="id_comment" name="comment" rows="10"></textarea>
+		</div>
         <p  style="display:none;">
 			<input id="id_honeypot" name="honeypot" type="text" />
 		</p>
-		<input type="submit" name="post" class="btn btn-primary" value="Bidali" />
+		<button type="submit" name="post" class="btn btn-primary">Bidali</button>
 		<!-- <input type="submit" name="preview" class="submit-preview" value="{% trans "Preview" %}" /> -->
 	</form>
 </div>
