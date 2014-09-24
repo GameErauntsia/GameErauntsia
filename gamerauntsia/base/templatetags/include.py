@@ -4,6 +4,7 @@ from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.berriak.models import Berria
 from gamerauntsia.gamer.models import GamerUser
 from django_comments.models import Comment
+from django.contrib.contenttypes.models import ContentType
 
 register = template.Library()
 
@@ -98,5 +99,6 @@ def urlfriend(value):
 @register.inclusion_tag('comments/last.html')
 def azken_erantzunak():
     h = {}
-    h['comments'] = Comment.objects.filter(content_type__id=16).order_by('-submit_date')[:5]
+    ct = ContentType.objects.get(model='Berria')
+    h['comments'] = Comment.objects.filter(content_type=ct).order_by('-submit_date')[:5]
     return h
