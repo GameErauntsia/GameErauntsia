@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load comments %}
 
 {%block title%}{{user.fullname}} - {%endblock%}
 
@@ -88,13 +89,14 @@
 		<div class="col-lg-8">
 		    <h2>Azken Game Playak</h2>
 		    {% for gp in gameplayak %}
+		    {% get_comment_count for gp as comment_count %}
 		    <div class="row">
 			    <div class="col-lg-4">
 			        <a href="{{gp.get_absolute_url}}"><img src="{{gp.argazkia.get_videoprofile_url}}" alt="" /></a>
 			    </div>
 			    <div class="col-lg-8">
 			        <h3><a href="{{gp.get_absolute_url}}">{{gp.izenburua}}</a></h3>
-			        <p><span class="glyphicon glyphicon-play"></span> {% if gp.jokoa.url %}<a href="{{gp.jokoa.url}}">{{gp.jokoa}}</a>{% else %}{{gp.jokoa}}{% endif%} | <span class="glyphicon glyphicon-time"></span> {{gp.iraupena_min}}min {{gp.iraupena_seg}}seg | <img src="{{gp.plataforma.icon.get_profilesmall_url}}"/></p>
+			        <p><span class="glyphicon glyphicon-play"></span> {% if gp.jokoa.url %}<a href="{{gp.jokoa.url}}">{{gp.jokoa}}</a>{% else %}{{gp.jokoa}}{% endif%} | <span class="glyphicon glyphicon-time"></span> {{gp.iraupena_min}}min {{gp.iraupena_seg}}seg | <img src="{{gp.plataforma.icon.get_profilesmall_url}}"/>{% if comment_count %} | <a href="{{gp.get_absolute_url}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}</p>
 			        <p>{{gp.get_desk_txikia|safe}}</p>
 			    </div>
 			</div>
