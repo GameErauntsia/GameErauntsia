@@ -3,6 +3,7 @@ from django.utils.safestring import mark_safe
 from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.berriak.models import Berria
 from gamerauntsia.gamer.models import GamerUser
+from gamerauntsia.comments.models import Comment
 
 register = template.Library()
 
@@ -93,3 +94,7 @@ def isequal(value, arg):
 @register.filter
 def urlfriend(value):
     return value.replace(' ', '%20')
+
+@register.filter
+def azken_erantzunak():
+    return Comment.objects.filter(content_type__id=16).order_by('-submit_date')[:5]

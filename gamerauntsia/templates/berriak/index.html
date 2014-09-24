@@ -44,6 +44,22 @@
     </div>
 
     <div class="col-lg-4">
+        <div id="azkenErantzunak">
+        <h2>Azken erantzunak</h2>
+        {% for eran in azken_erantzunak %}
+        <div class="media">
+            <a class="pull-left" href="#{{ comment.id }}">
+                <img class="media-object" src="{{comment.user.get_photo.get_profilesmall_url}}">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">{{ comment.name }}
+                <small>{{ comment.submit_date }}</small>
+                </h4>
+                {{ comment.comment }}
+            </div>
+        </div>
+        {% endfor %}
+        </div>
         <div class="well">
             <div class="fb-like-box" data-href="https://www.facebook.com/Gamerauntsia" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
         </div>
