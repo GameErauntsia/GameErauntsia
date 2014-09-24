@@ -1,5 +1,5 @@
 {% extends "berriak/index.html" %}
-{% load include %}
+{% load emoticons_tags include %}
 
 {% block morejs %}
     <meta property="fb:app_id" content="{{facebook_id}}" />
@@ -51,7 +51,7 @@
         </div>
         {% endif %}
         {% endif %}
-        <p class="lead">{{item.desk|safe}}</p>
+        <p class="lead">{{item.desk|safe|emoticons}}</p>
         <p><a class="twitter popup" href="http://twitter.com/share?text={{item.izenburua|urlfriend}}"><img src="{{STATIC_URL}}img/twitter.png"/></a> <a href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]={% url 'berria' item.slug %}&p[images][0]={{item.argazkia.image.url}}&p[title]={{item.izenburua|urlfriend}}&p[summary]={{item.desk|urlfriend}}"><img src="{{STATIC_URL}}img/facebook.png"/></a></p>
         <hr>
         
