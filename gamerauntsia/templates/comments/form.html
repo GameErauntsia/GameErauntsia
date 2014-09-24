@@ -10,14 +10,13 @@
 				<div>{{ field }}</div>
 			{% else %}
 				{% if field.errors %}{{ field.errors }}{% endif %}
-				<p {% if field.errors %} class="error"{% endif %}{% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}>
-					{{ field.label_tag }} {{ field }}
-				</p>
 			{% endif %}
 		{% endfor %}
-		<p class="submit">
-			<input type="submit" name="post" class="btn btn-primary" value="Bidali" />
-		<!-- <input type="submit" name="preview" class="submit-preview" value="{% trans "Preview" %}" /> -->
+		<textarea cols="40" id="id_comment" name="comment" rows="10"></textarea>
+        <p  style="display:none;">
+			<input id="id_honeypot" name="honeypot" type="text" />
 		</p>
+		<input type="submit" name="post" class="btn btn-primary" value="Bidali" />
+		<!-- <input type="submit" name="preview" class="submit-preview" value="{% trans "Preview" %}" /> -->
 	</form>
 </div>
