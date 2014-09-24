@@ -112,3 +112,7 @@ filter: none;
 .forum-img {
   margin-top: 25px;
 }
+
+.well.commentform {
+  margin-top: 20px;
+}

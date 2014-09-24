@@ -1,5 +1,5 @@
 {% load comments i18n %}
-<div class="well">
+<div class="well commentform">
 	<h4><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.fullname}}</a> utzi iruzkina:</h4>
 	<form action="{% comment_form_target %}" method="post">{% csrf_token %}
 		<div><input type="hidden" name="next" value="{{request.path}}" /></div>
