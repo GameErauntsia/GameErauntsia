@@ -3,7 +3,7 @@ from django.utils.safestring import mark_safe
 from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.berriak.models import Berria
 from gamerauntsia.gamer.models import GamerUser
-from gamerauntsia.comments.models import Comment
+from django_comments.models import Comment
 
 register = template.Library()
 
