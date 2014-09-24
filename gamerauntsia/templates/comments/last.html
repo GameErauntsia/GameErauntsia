@@ -1,0 +1,13 @@
+{% for eran in comments %}
+<div class="media">
+    <a class="pull-left" href="#{{ eran.id }}">
+        <img class="media-object" src="{{eran.user.get_photo.get_profilesmall_url}}">
+    </a>
+    <div class="media-body">
+        <h4 class="media-heading">{{ eran.name }}
+        <small>{{ eran.submit_date }}</small>
+        </h4>
+        {{ eran.comment }}
+    </div>
+</div>
+{% endfor %}

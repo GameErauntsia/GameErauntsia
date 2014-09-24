@@ -95,6 +95,8 @@ def isequal(value, arg):
 def urlfriend(value):
     return value.replace(' ', '%20')
 
-@register.filter
+@register.inclusion_tag('comments/last.html')
 def azken_erantzunak():
-    return Comment.objects.filter(content_type__id=16).order_by('-submit_date')[:5]
+    h = {}
+    h['comments'] = Comment.objects.filter(content_type__id=16).order_by('-submit_date')[:5]
+    return h
