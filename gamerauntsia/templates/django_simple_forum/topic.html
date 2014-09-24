@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load pagination_tags include %}
+{% load pagination_tags emoticons_tags include %}
 
 {% block title %}{{ topic.title }} - {% endblock %}
 
@@ -25,7 +25,7 @@
                         {% endif %}
                         {% endif %}
                         </h3>
-                        <p>{{post.body|safe|urlize}}</p>
+                        <p>{{post.body|safe|urlize|emoticons}}</p>
                     </div>
                 </div>
                 <hr/>
