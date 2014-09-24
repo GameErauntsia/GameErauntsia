@@ -78,7 +78,7 @@
     </div>
 
     {% if user.is_authenticated %}
-        {% get_comment_form for object as form %}
+        {% get_comment_form for gp as form %}
         <form action="{% comment_form_target %}" method="POST">
         {% csrf_token %}
         {{ form.comment }}
