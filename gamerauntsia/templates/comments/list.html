@@ -2,7 +2,7 @@
 	{% for comment in comment_list %}
 	<div class="media" id="c{{ comment.id }}">
 	        <a class="pull-left" href="#">
-	            <img class="media-object" src="{{comment.user.get_profilesmall_url}}">
+	            <img class="media-object" src="{{comment.user.get_photo.get_comment_url}}">
 	        </a>
 	    <div class="media-body">
 	        <h4 class="media-heading">{{ comment.name }}
