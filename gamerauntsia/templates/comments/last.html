@@ -1,11 +1,11 @@
 {% for eran in comments %}
 <div class="media">
-    <a class="pull-left" href="{{ eran.get_absolute_url }}">
+    <a class="pull-left" href="{% url 'gamer_profile' comment.user.username %}">
         <img class="media-object" src="{{eran.user.get_photo.get_profilesmall_url}}">
     </a>
     <div class="media-body">
-        <h4 class="media-heading"><a href="{{ eran.get_absolute_url }}">{{ eran.name }}
-        <small>{{ eran.submit_date }}</small></a>
+        <h4 class="media-heading"><a href="{% url 'gamer_profile' comment.user.username %}">{{ eran.name }}</a>
+        <a href="{{eran.get_absolute_url}}"><small>{{ eran.submit_date }}</small></a>
         </h4>
         {{ eran.comment }}
     </div>
