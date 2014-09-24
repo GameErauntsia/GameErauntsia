@@ -33,7 +33,7 @@
         {% endif %}
         <p>{{berria.get_desk_txikia|safe}}</p>
         <a class="btn btn-primary" href="{{berria.slug}}">Irakurri gehiago</a>
-        {% if comment_count %}<a href="{{HOST}}berriak/{{berria.slug}}">{{comment_count}} <span class="glyphicon glyphicon-comment pull-right"></span></a>{% endif %}
+        {% if comment_count %}<a class="pull-right" href="{{HOST}}berriak/{{berria.slug}}">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}
         <hr>
         {% endfor %}
 
