@@ -19,18 +19,18 @@ def _get_fb_graph():
     try:
         user = GamerUser.objects.get(facebook_id=FACEBOOK_ID)
     except:
-        logging.info('Ez dago FB erabiltzailerik')
+        logging.error('Ez dago FB erabiltzailerik')
         return 0
         
     fb_backend = user.social_auth.filter(provider=u'facebook')
     if fb_backend.exists():
         fb_backend = fb_backend[0]
     else:
-        logging.info('ez daukagu login informaziorik')
+        logging.error('ez daukagu login informaziorik')
         return 0
     access_token = fb_backend.tokens.get('access_token',None)
     if access_token == None:
-        logging.info('Ez dago access tokenik')
+        logging.error('Ez dago access tokenik')
         return 0
     graph = facebook.GraphAPI(access_token)
     return graph
@@ -42,7 +42,7 @@ def send_to_fb_wall(item, attachment):
     try:
         graph.put_wall_post('',attachment=attachment)
     except Exception, e:
-        logging.info('Errorea FBra bidaltzean: %(error)s' % {'error': e})
+        logging.error('Errorea FBra bidaltzean: %(error)s' % {'error': e})
     return 1
 
 def send_to_fb_page(item, attachment):
@@ -52,17 +52,17 @@ def send_to_fb_page(item, attachment):
     PAGE_ID = getattr(settings, 'FACEBOOK_PAGE_ID', None)
     FB_PAGE = getattr(settings, 'FACEBOOK_PAGE_NAME', None)
     if not (graph and PAGE_ID and FB_PAGE):
-        logging.info('Ezin lortu orrian idazteko osagaiak')
+        logging.error('Ezin lortu orrian idazteko osagaiak')
         return 0
     page_access_token = graph.get_object(PAGE_ID, fields='access_token').get('access_token')
     if not page_access_token:
-        logging.info('Errorea FBko orriaren access tokena lortzean')
+        logging.error('Errorea FBko orriaren access tokena lortzean')
         return 0
     try:
         page_graph = facebook.GraphAPI(page_access_token)
         page_graph.put_object(PAGE_ID, FB_PAGE,'',**attachment)
     except Exception, e:
-        logging.info('Errorea FBra bidaltzean: %(error)s' % {'error': e})
+        logging.error('Errorea FBra bidaltzean: %(error)s' % {'error': e})
     return 1
     
 
@@ -92,7 +92,7 @@ def send_to_fb(item):
 
 
 def post_social(sender,instance,**kwargs):
-    logging.basicConfig(filename='debug.log',level=logging.DEBUG)
+    logging.basicConfig(filename='debug.log',level=logging.ERROR)
     if instance.publikoa_da:# and kwargs['created']:
         #post_to_twitter(instance)
         send_to_fb(instance)
