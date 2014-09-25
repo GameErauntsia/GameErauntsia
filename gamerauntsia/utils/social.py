@@ -15,9 +15,7 @@ def post_to_twitter(item):
 def post_to_page(obj, data={}):
     PAGE_ID = getattr(settings, 'FB_PAGE_ID', None)
     
-    link = u'http://%(url)s' % {'url': unicode(obj.get_absolute_url())}
-    link = link.encode('utf8')
-    data['link'] = link
+    data['link'] = unicode(obj.get_absolute_url())
     data['name'] = obj.izenburua.encode('utf8')
     if obj.argazkia:
         data['picture'] = unicode(settings.HOST+obj.argazkia.get_blog_url()).encode('utf8')
