@@ -62,7 +62,7 @@ def send_to_fb_page(item, attachment):
         return 0
     try:
         page_graph = facebook.GraphAPI(page_access_token)
-        page_graph.put_object(PAGE_ID, FB_PAGE,'',attachment)
+        page_graph.put_object(PAGE_ID, FB_PAGE, attachment)
     except Exception, e:
         logging.error('Errorea FBra bidaltzean: %(error)s' % {'error': e})
     return 1
@@ -81,11 +81,10 @@ def send_to_fb(item):
 
     attachment = {'name': item.izenburua.encode('utf8'),
                   'link': item.get_absolute_url(),
+                  'picture': '',
                   }
     if item.argazkia:
         attachment['picture'] = item.argazkia.get_blog_url()
-    else:
-        attachment['picture'] = ''
 
     if not(send_to_page):
         send_to_fb_wall(item, attachment)
