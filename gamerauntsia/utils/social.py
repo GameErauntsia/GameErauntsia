@@ -31,7 +31,7 @@ def post_to_page(obj, data={}):
 
 def post_social(sender,instance,**kwargs):
     logging.basicConfig(filename='debug.log',level=logging.ERROR)
-    if instance.publikoa_da:# and kwargs['created']:
-        #post_to_twitter(instance)
+    if instance.publikoa_da and kwargs['created']:
+        post_to_twitter(instance)
         post_to_page(instance)
     return True
