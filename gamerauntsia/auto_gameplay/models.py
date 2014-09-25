@@ -12,10 +12,10 @@ class AutoGamePlaya(models.Model):
     argazkia = models.ForeignKey(Photo)
     bideoa = models.CharField(max_length=100, help_text="Eremu honetan bideoaren URL kodea itsatsi behar duzu. Adb.: c21XAuI3aMo")
     
-    jokoa = models.ForeignKey(Jokoa, related_name='gameplay', null=False,blank=False)
-    plataforma = models.ForeignKey(Plataforma, related_name='gameplay', null=False,blank=False)
-    zailtasuna = models.ForeignKey(Zailtasuna, related_name='gameplay', null=False,blank=False)
-    kategoria = models.ManyToManyField(Kategoria, related_name='gameplay', null=False,blank=False)
+    jokoa = models.ForeignKey(Jokoa, related_name='autogameplay', null=False,blank=False)
+    plataforma = models.ForeignKey(Plataforma, related_name='autogameplay', null=False,blank=False)
+    zailtasuna = models.ForeignKey(Zailtasuna, related_name='autogameplay', null=False,blank=False)
+    kategoria = models.ManyToManyField(Kategoria, related_name='autogameplay', null=False,blank=False)
     
     erabiltzailea = models.ForeignKey(GamerUser)
 
