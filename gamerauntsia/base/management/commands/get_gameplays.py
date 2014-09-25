@@ -13,6 +13,7 @@ def get_gameplays():
 
         for video in data['feed']['entry']:
             print video['title']['$t']
+            print video['media$group']['media$description']['$t']
             print video['media$group']['yt$videoid']['$t']
             print video['media$group']['yt$duration']['seconds']
             for media in video['media$group']['media$thumbnail']:
