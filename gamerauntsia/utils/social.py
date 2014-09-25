@@ -91,7 +91,7 @@ def send_to_fb(item):
 
 
 def post_social(sender,instance,**kwargs):
-    if instance.publikoa_da and kwargs['created']:
-        post_to_twitter(instance)
+    if instance.publikoa_da:# and kwargs['created']:
+        #post_to_twitter(instance)
         send_to_fb(instance)
     return True
