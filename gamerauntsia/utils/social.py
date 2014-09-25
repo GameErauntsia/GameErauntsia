@@ -20,7 +20,7 @@ def post_to_page(obj, data={}):
     data['link'] = link
     data['name'] = obj.izenburua.encode('utf8')
     if obj.argazkia:
-        data['picture'] = unicode(obj.argazkia.image.url).encode('utf8')
+        data['picture'] = unicode(settings.HOST+obj.argazkia.get_blog_url()).encode('utf8')
     else:
         data['picture'] = unicode(getattr(settings,'STATIC_URL')+u'img/fb_no_image.jpg').encode('utf8')
     component = u'feed'.encode('utf8')
