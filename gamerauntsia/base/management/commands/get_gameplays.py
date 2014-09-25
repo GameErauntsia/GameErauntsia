@@ -20,14 +20,6 @@ def get_gameplays():
         for video in data['feed']['entry'][:5]:
             if not GamePlaya.objects.filter(bideoa=video['media$group']['yt$videoid']['$t'],erabiltzailea=gamer).exists():
                 if not AutoGamePlaya.objects.filter(bideoa=video['media$group']['yt$videoid']['$t'],erabiltzailea=gamer).exists():
-                    auto = AutoGamePlaya()
-                    auto.izenburua = video['title']['$t']
-                    auto.slug = slugify(video['title']['$t'])
-                    auto.desk = video['media$group']['media$description']['$t']
-                    duration = datetime.timedelta(seconds=int(video['media$group']['yt$duration']['seconds']))
-                    auto.iraupena_min = duration.minute
-                    auto.iraupena_seg = duration.second
-
                     url = ''
                     for media in video['media$group']['media$thumbnail']:
                         if media['yt$name'] == 'sddefault':
@@ -36,6 +28,14 @@ def get_gameplays():
                             url = media['url']
                         elif media['yt$name'] == 'default':
                             url = media['url']
+
+                    auto = AutoGamePlaya()
+                    auto.izenburua = video['title']['$t']
+                    auto.slug = slugify(video['title']['$t'])
+                    auto.desk = video['media$group']['media$description']['$t']
+                    duration = datetime.timedelta(seconds=int(video['media$group']['yt$duration']['seconds']))
+                    auto.iraupena_min = duration.minute
+                    auto.iraupena_seg = duration.second
 
                     photo = Photo()
                     name = urlparse(img_url).path.split('/')[-1]
