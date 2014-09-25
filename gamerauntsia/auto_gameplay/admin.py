@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import AutoGamePlaya
+from gamerauntsia.auto_gameplay.models import AutoGamePlaya
 from gamerauntsia.auto_gameplay.forms import AutoGamePlayAdminForm
 
 class GamePlayAdmin(admin.ModelAdmin):
