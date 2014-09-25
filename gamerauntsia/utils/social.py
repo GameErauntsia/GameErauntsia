@@ -4,6 +4,7 @@ import tweepy
 import facebook
 import urllib 
 import urlparse
+import logging
 
 def post_to_twitter(item):
     textua = item.getTwitText()
