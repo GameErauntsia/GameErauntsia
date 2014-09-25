@@ -1,25 +1,21 @@
-from django.shortcuts import render_to_response, get_object_or_404
-from django.template import RequestContext
-from django.http import Http404, HttpResponse
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from gamerauntsia.gameplaya.models import GamePlaya
-from gamerauntsia.berriak.models import Berria
+from django.conf import settings
+from django.core.mail import send_mail
+from django_simple_forum.models import Post
+from django.db.models.signals import post_save
 
-def index(request):
-    gameplayak = GamePlaya.objects.filter(publikoa_da=True).order_by('-pub_date')[:4]
-    return render_to_response('index.html', locals(),context_instance=RequestContext(request))
+MESSAGE = 'Mezu berri bat utzi dute zuk idatzitako gai honetan: '
 
-def google(request):
-    h = {}
-    return render_to_response('googleaf6b2cbbb22dca3f.html', h,context_instance=RequestContext(request))
+def send_email(sender,instance,**kwargs):
+    if kwargs['created']:
+        recipient_list = []
+        message = MESSAGE + '%s%s%s' % (settings.HOST,instance.topic.forum.slug,instance.topic.id)
+        creators = Post.objects.filter(topic=instance.topic).values('creator').distinct()
+        for creator in creators:
+            recipient_list.append(creator.email)
 
-def rating(request):
-    value = request.GET.get('value')
-    slug = request.GET.get('slug')
-    tutoriala = get_object_or_404(GamePlaya,slug=slug)
-    if tutoriala:
-        tutoriala.botoak += 1
-        tutoriala.puntuak += float(value)/2
-        tutoriala.save()
-    	return HttpResponse('True')
-    return HttpResponse('False')
+        send_mail('['+instance.topic.title+']', message, settings.DEFAULT_FROM_EMAIL, recipient_list)
+
+post_save.connect(send_email, sender=Post)
+
+
+
