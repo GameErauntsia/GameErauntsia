@@ -11,8 +11,6 @@ def send_email(sender,instance,**kwargs):
         message = MESSAGE + '%s%s/%s' % (settings.HOST,instance.topic.forum.slug,instance.topic.id)
         creators = Post.objects.filter(topic=instance.topic).values('creator__email').distinct()
         for creator in creators:
-            recipient_list.append(creator['creator__email'])
-
-        send_mail('[Game Erauntsia - '+instance.topic.title+']', message, settings.DEFAULT_FROM_EMAIL, recipient_list)
+            send_mail('[Game Erauntsia - '+instance.topic.title+']', message, settings.DEFAULT_FROM_EMAIL, [creator['creator__email']])
 
 post_save.connect(send_email, sender=Post)
