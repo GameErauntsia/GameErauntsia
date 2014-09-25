@@ -12,6 +12,7 @@ class GamerUser(CSAbstractSocialUser):
     nickname = models.CharField(max_length=64,null=True,blank=True)
     is_gamer = models.BooleanField(default=False)
     ytube_channel = models.CharField(max_length=150,null=True,blank=True)
+    email_notification = models.BooleanField(default=True)
     last_updated = models.DateTimeField(auto_now_add=True,editable=False)
     date_joined = models.DateTimeField(auto_now_add=True,editable=False,null=True,blank=True)
 
