@@ -8,7 +8,7 @@ class GamePlayAdmin(admin.ModelAdmin):
     raw_id_fields = ('argazkia','jokoa','plataforma','erabiltzailea')
     list_filter = ('erabiltzailea','zailtasuna')
     search_fields = ['erabiltzailea__fullname','erabiltzailea__username','izenburua']
-    form = GamePlayAdminForm
+    form = AutoGamePlayAdminForm
 
     def queryset(self, request):
         qs = super(AutoGamePlayAdmin, self).queryset(request)
