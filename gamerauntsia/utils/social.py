@@ -56,7 +56,9 @@ def send_to_fb_page(item, attachment):
         logging.error(PAGE_ID+ ' '+FB_PAGE+' '+str(graph))
         return 0
     try:
-        page_access_token = graph.get_object(PAGE_ID, fields='access_token').get('access_token')
+        #graph = facebook.GraphAPI(request.facebook.user.oauth_token.token)                     
+        page_access_token=graph.get(PAGE_ID+'?fields=access_token')
+        #page_access_token = graph.get_object(PAGE_ID, fields='access_token').get('access_token')
     except Exception, e:
         logging.error('Errorea FBko orriaren access tokena lortzean: %(error)s' % {'error': e})
         return 0
