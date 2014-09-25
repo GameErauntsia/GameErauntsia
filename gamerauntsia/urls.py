@@ -39,6 +39,9 @@ urlpatterns = patterns('',
     url(r'^rss/gameplayak$', LatestEntriesFeed()),
     url(r'^rss/bloga$', LatestNewsFeed()),
 
+    #FB
+    url(r'^2b27b83ad50e677714b2dd832b42acc3', include('facebookpagewriter.urls')),
+
     # COMMENTS
     (r'^comments/', include('django_comments.urls')),
 
