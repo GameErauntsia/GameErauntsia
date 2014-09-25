@@ -19,6 +19,8 @@ def get_gameplays():
             for media in video['media$group']['media$thumbnail']:
                 if media['yt$name'] == 'sddefault':
                     print media['url']
+                elif media['yt$name'] == 'hqdefault':
+                    print media['url']
             break
         break
 
