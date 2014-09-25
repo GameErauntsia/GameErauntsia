@@ -7,11 +7,12 @@ def get_gameplays():
     gamers = GamerUser.objects.filter(is_gamer=True,ytube_channel__isnull=False)
 
     for gamer in gamers:
-        user = gamer.ytube_channel.replace('http://www.youtube.com/user/','').replace('http://www.youtube.com/channel/','')
+        user = gamer.ytube_channel.replace('http://www.youtube.com/user/','').replace('https://www.youtube.com/channel/','')
         channel = u'http://gdata.youtube.com/feeds/api/users/'+user+'/uploads?v=2&alt=json'
         data = get_urljson(channel)
 
-        print data
+        for video in data['entry']:
+            print video['title']['$t']
 
         break
 
