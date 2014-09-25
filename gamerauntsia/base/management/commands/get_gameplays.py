@@ -21,7 +21,7 @@ def get_gameplays():
                     print media['url']
                 elif media['yt$name'] == 'hqdefault':
                     print media['url']
-            break
+            print '\n'
         break
 
 class Command(BaseCommand):
