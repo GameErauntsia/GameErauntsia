@@ -11,10 +11,9 @@ def get_gameplays():
         channel = u'http://gdata.youtube.com/feeds/api/users/'+user+'/uploads?v=2&alt=json'
         data = get_urljson(channel)
 
-        for video in data['entry']:
-            print video['title']['$t']
-
-        break
+        for video in data:
+            print video
+            break
 
 class Command(BaseCommand):
     help = 'Get GPs automaticaly'
