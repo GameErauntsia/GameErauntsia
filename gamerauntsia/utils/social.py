@@ -17,6 +17,7 @@ def post_to_page(obj, data={}):
     
     data['link'] = unicode(obj.get_absolute_url())
     data['name'] = obj.izenburua.encode('utf8')
+    data['description'] = obj.desk[:150].encode('utf8')
     if obj.argazkia:
         data['picture'] = unicode(settings.HOST+obj.argazkia.get_blog_url()).encode('utf8')
     else:
