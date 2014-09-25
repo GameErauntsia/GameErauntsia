@@ -25,7 +25,7 @@ def get_gameplays():
                 elif media['yt$name'] == 'default':
                     print media['url']
             print '\n'
-        break
+        
 
 class Command(BaseCommand):
     help = 'Get GPs automaticaly'
