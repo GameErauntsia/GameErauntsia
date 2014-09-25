@@ -2,7 +2,7 @@ from django.contrib import admin
 from gamerauntsia.auto_gameplay.models import AutoGamePlaya
 from gamerauntsia.auto_gameplay.forms import AutoGamePlayAdminForm
 
-class GamePlayAdmin(admin.ModelAdmin):
+class AutoGamePlayAdmin(admin.ModelAdmin):
     list_display = ('izenburua', 'slug','zailtasuna', 'jokoa','plataforma', 'erabiltzailea')
     prepopulated_fields = {"slug": ("izenburua",)}
     filter_horizontal = ('kategoria',)
