@@ -53,6 +53,7 @@ def send_to_fb_page(item, attachment):
     FB_PAGE = getattr(settings, 'FACEBOOK_PAGE_NAME', None)
     if not (graph and PAGE_ID and FB_PAGE):
         logging.error('Ezin lortu orrian idazteko osagaiak')
+        logging.error(PAGE_ID+ ' '+FB_PAGE)
         return 0
     page_access_token = graph.get_object(PAGE_ID, fields='access_token').get('access_token')
     if not page_access_token:
