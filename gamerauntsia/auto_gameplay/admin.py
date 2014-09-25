@@ -1,5 +1,6 @@
 from django.contrib import admin
 from models import AutoGamePlaya
+from forms import AutoGamePlayAdminForm
 
 class GamePlayAdmin(admin.ModelAdmin):
     list_display = ('izenburua', 'slug','zailtasuna', 'jokoa','plataforma', 'erabiltzailea')
