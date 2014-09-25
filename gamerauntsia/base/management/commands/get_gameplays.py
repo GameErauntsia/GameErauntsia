@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand
 from gamerauntsia.utils.urls import get_urljson
 from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.auto_gameplay.models import AutoGamePlaya
+import datetime
  
 def get_gameplays():
     gamers = GamerUser.objects.filter(is_gamer=True,ytube_channel__isnull=False)
@@ -15,7 +16,7 @@ def get_gameplays():
             print video['title']['$t']
             print video['media$group']['media$description']['$t']
             print video['media$group']['yt$videoid']['$t']
-            print video['media$group']['yt$duration']['seconds']
+            print str(datetime.timedelta(seconds=int(video['media$group']['yt$duration']['seconds'])))
             for media in video['media$group']['media$thumbnail']:
                 if media['yt$name'] == 'sddefault':
                     print media['url']
