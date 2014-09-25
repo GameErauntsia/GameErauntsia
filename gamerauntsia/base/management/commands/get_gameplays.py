@@ -12,7 +12,7 @@ def get_gameplays():
         channel = u'http://gdata.youtube.com/feeds/api/users/'+user+'/uploads?v=2&alt=json'
         data = get_urljson(channel)
 
-        for video in data['feed']['entry']:
+        for video in data['feed']['entry'][:5]:
             print video['title']['$t']
             print video['media$group']['media$description']['$t']
             print video['media$group']['yt$videoid']['$t']
