@@ -66,6 +66,7 @@ def send_to_fb_page(item, attachment):
     except Exception, e:
         logging.error('Errorea FBra bidaltzean: %(error)s' % {'error': e})
         logging.error(attachment)
+        logging.error(page_access_token)
     return 1
     
 
@@ -85,7 +86,7 @@ def send_to_fb(item):
                   'picture': '',
                   }
     if item.argazkia:
-        attachment['picture'] = item.argazkia.get_blog_url()
+        attachment['picture'] = settings.HOST + item.argazkia.get_blog_url()
 
     if not(send_to_page):
         send_to_fb_wall(item, attachment)
