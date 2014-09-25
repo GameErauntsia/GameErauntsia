@@ -58,10 +58,10 @@ class GamerUserAdmin(UserAdmin):
 
         ('Datuak',
         {'fields':('fullname','nickname','email', 'phone', 'photo','bio')},),
-        ('Sare sozialak',
-        {'fields':('ytube_channel','twitter_id', 'facebook_id', 'openid_id', 'googleplus_id'),'classes': ['collapse',],},),
         ('Jakinarazpenak',
         {'fields':('email_notification',)},),
+        ('Sare sozialak',
+        {'fields':('ytube_channel','twitter_id', 'facebook_id', 'openid_id', 'googleplus_id'),'classes': ['collapse',],},),
         (_('Permissions'), {'fields': ('is_active','is_gamer', 'is_staff', 'is_superuser',
                                        'groups', 'user_permissions','last_login'),
                             'classes': ['collapse',],}),

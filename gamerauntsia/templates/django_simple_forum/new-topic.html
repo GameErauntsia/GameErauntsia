@@ -8,9 +8,15 @@
 		<h1>Gai berria gehitu</h1>
 		<form action="{% url 'new-topic' forum.slug %}" method="POST">
 		    {% csrf_token %} 
-		    {{ form.as_p }}
-		    <input class="btn btn-primary" type="submit" value="Bidali" />
-		    <a class="btn btn-default" href="{% url 'forum-detail' forum.slug %}">Ezeztatu</a>
+		    <fieldset>
+				<div class="input-group">
+  					<input id="id_title" class="form-control" type="text" name="title" maxlength="60" placeholder="Gaiaren izenburua">
+  				</div>
+  				<br/>
+                <textarea id="id_description" rows="10" name="description" cols="40"></textarea>
+		        <input class="btn btn-primary" type="submit" value="Bidali" />
+		        <a class="btn btn-default" href="{% url 'forum-detail' forum.slug %}">Ezeztatu</a>
+		    </fieldset>
 		</form>
 	</div>
 </div>
