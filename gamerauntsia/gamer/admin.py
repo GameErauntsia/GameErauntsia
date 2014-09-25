@@ -47,7 +47,7 @@ class GamerUserAdmin(UserAdmin):
     add_form = MyUserCreationForm
     change_password_form = AdminPasswordChangeForm
 
-    list_display = ('username','fullname','get_email','is_staff')
+    list_display = ('username','fullname','get_email','is_gamer','is_staff')
 
     list_display_links = ('fullname','username')
     search_fields = ['email','username','fullname']
