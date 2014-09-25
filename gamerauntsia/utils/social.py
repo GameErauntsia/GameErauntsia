@@ -92,6 +92,7 @@ def send_to_fb(item):
 
 
 def post_social(sender,instance,**kwargs):
+    logging.basicConfig(filename='debug.log',level=logging.DEBUG)
     if instance.publikoa_da:# and kwargs['created']:
         #post_to_twitter(instance)
         send_to_fb(instance)
