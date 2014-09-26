@@ -2,13 +2,24 @@ from django.contrib import admin
 from gamerauntsia.auto_gameplay.models import AutoGamePlaya
 from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.auto_gameplay.forms import AutoGamePlayAdminForm
-from django.core import serializers
+
 
 def onartu(modeladmin, request, queryset):
     for auto in queryset:
         if auto.jokoa and auto.plataforma and auto.zailtasuna and auto.kategoria:
-            data = serializers.serialize("json", [auto])
-            gp = GamePlaya(**auto)
+            gp = GamePlaya()
+            gp.izenburua = auto.izenburua
+            gp.slug = auto.slug
+            gp.desk = auto.desk
+            gp.iraupena_min = auto.iraupena_min
+            gp.iraupena_seg = auto.iraupena_seg
+            gp.argazkia = auto.argazkia
+            gp.bideoa = auto.bideoa
+            gp.jokoa = auto.jokoa
+            gp.plataforma = auto.plataforma
+            gp.zailtasuna = auto.zailtasuna
+            gp.kategoria.add(auto.kategoria)
+            gp.erabiltzailea = auto.erabiltzailea
             gp.save()
             auto.delete()
 onartu.short_description = "GamePlayak onartu"
