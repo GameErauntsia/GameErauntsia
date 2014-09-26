@@ -1,6 +1,15 @@
 from django.contrib import admin
 from gamerauntsia.auto_gameplay.models import AutoGamePlaya
+from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.auto_gameplay.forms import AutoGamePlayAdminForm
+
+def onartu(modeladmin, request, queryset):
+    for auto in queryset:
+        if auto.jokoa and auto.plataforma and auto.zailtasuna and auto.kategoria:
+            gp = GamePlaya(**auto)
+            gp.save()
+            auto.delete()
+onartu.short_description = "GamePlayak onartu"
 
 class AutoGamePlayAdmin(admin.ModelAdmin):
     list_display = ('izenburua', 'slug','zailtasuna', 'jokoa','plataforma', 'erabiltzailea')
@@ -10,6 +19,7 @@ class AutoGamePlayAdmin(admin.ModelAdmin):
     list_filter = ('erabiltzailea','zailtasuna')
     search_fields = ['erabiltzailea__fullname','erabiltzailea__username','izenburua']
     form = AutoGamePlayAdminForm
+    actions = [onartu]
 
     def queryset(self, request):
         qs = super(AutoGamePlayAdmin, self).queryset(request)
