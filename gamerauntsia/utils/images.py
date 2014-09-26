@@ -34,7 +34,7 @@ def loadUrlImage(url='', title='', tags='', format='jpg', slug=''):
     if not slug:
         slug = time_slug()
 
-    if Photo.objects.filter(title_slug=slug):
+    if Photo.objects.filter(slug=slug):
         slug = time_slug_long()
 
     title = title[:99]
@@ -62,7 +62,7 @@ def loadUrlImage(url='', title='', tags='', format='jpg', slug=''):
         photo.image.save('%s.%s' % (slug,format), ContentFile(f.read()))
 
     except Exception, e:
-        print 'Errorea irudi honekin RGB', photo.title_slug, e
+        print 'Errorea irudi honekin RGB', photo.slug, e
         return photo      
 
     try:
@@ -77,7 +77,7 @@ def handle_uploaded_file(f,title):
     """ """
     photo = Photo()
     photo.title = u'%s %s' % (time_slug_string(), title) 
-    photo.title_slug = time_slug_string()
+    photo.slug = time_slug_string()
     photo.image = f
     photo.save()
     return photo    
