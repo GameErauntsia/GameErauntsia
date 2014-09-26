@@ -4,7 +4,7 @@ from gamerauntsia.utils.urls import get_urljson
 from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.auto_gameplay.models import AutoGamePlaya
 from gamerauntsia.gameplaya.models import GamePlaya
-from gamerauntsia.utils.image import loadUrlImage
+from gamerauntsia.utils.images import loadUrlImage
 from photologue.models import Photo
 import time
 import urllib2
