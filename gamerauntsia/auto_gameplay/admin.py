@@ -2,10 +2,12 @@ from django.contrib import admin
 from gamerauntsia.auto_gameplay.models import AutoGamePlaya
 from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.auto_gameplay.forms import AutoGamePlayAdminForm
+from django.core import serializers
 
 def onartu(modeladmin, request, queryset):
     for auto in queryset:
         if auto.jokoa and auto.plataforma and auto.zailtasuna and auto.kategoria:
+            data = serializers.serialize("json", auto)
             gp = GamePlaya(**auto)
             gp.save()
             auto.delete()
