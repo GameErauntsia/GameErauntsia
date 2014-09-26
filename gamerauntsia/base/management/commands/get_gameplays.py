@@ -32,8 +32,8 @@ def get_gameplays():
                             url = media['url']
 
                     auto = AutoGamePlaya()
-                    auto.izenburua = video['title']['$t']
-                    auto.slug = filters.slugify(video['title']['$t'])
+                    auto.izenburua = video['title']['$t'][:64]
+                    auto.slug = filters.slugify(video['title']['$t'])[:50]
                     auto.desk = video['media$group']['media$description']['$t']
                     auto.iraupena_min = time.strftime('%M', time.gmtime(int(video['media$group']['yt$duration']['seconds'])))
                     auto.iraupena_seg = time.strftime('%S', time.gmtime(int(video['media$group']['yt$duration']['seconds'])))
