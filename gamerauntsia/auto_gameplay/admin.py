@@ -18,7 +18,7 @@ def onartu(modeladmin, request, queryset):
             gp.jokoa = auto.jokoa
             gp.plataforma = auto.plataforma
             gp.zailtasuna = auto.zailtasuna
-            for kat in auto.kategoria.all:
+            for kat in auto.kategoria.all():
                 gp.kategoria.add(kat)
             gp.erabiltzailea = auto.erabiltzailea
             gp.save()
