@@ -7,7 +7,7 @@ from django.core import serializers
 def onartu(modeladmin, request, queryset):
     for auto in queryset:
         if auto.jokoa and auto.plataforma and auto.zailtasuna and auto.kategoria:
-            data = serializers.serialize("json", auto)
+            data = serializers.serialize("json", [auto])
             gp = GamePlaya(**auto)
             gp.save()
             auto.delete()
