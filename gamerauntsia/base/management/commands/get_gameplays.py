@@ -5,7 +5,7 @@ from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.auto_gameplay.models import AutoGamePlaya
 from gamerauntsia.gameplaya.models import GamePlaya
 from photologue.models import Photo
-import datetime
+import time
 import urllib2
 from urlparse import urlparse
 from django.core.files import File
@@ -34,9 +34,8 @@ def get_gameplays():
                     auto.izenburua = video['title']['$t']
                     auto.slug = filters.slugify(video['title']['$t'])
                     auto.desk = video['media$group']['media$description']['$t']
-                    duration = datetime.timedelta(seconds=int(video['media$group']['yt$duration']['seconds']))
-                    auto.iraupena_min = duration.minute
-                    auto.iraupena_seg = duration.second
+                    auto.iraupena_min = time.strftime('%M', time.gmtime(int(video['media$group']['yt$duration']['seconds'])))
+                    auto.iraupena_seg = time.strftime('%S', time.gmtime(int(video['media$group']['yt$duration']['seconds'])))
 
                     auto.argazkia = loadUrlImage(url)
                     auto.bideoa = video['media$group']['yt$videoid']['$t']
