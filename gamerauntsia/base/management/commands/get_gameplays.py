@@ -38,11 +38,7 @@ def get_gameplays():
                     auto.iraupena_min = duration.minute
                     auto.iraupena_seg = duration.second
 
-                    photo = Photo()
-                    name = urlparse(img_url).path.split('/')[-1]
-                    photo.image.save(name, File(urllib2.urlopen(self.url).read(), save=True))
-
-                    auto.argazkia = photo
+                    auto.argazkia = loadUrlImage(url)
                     auto.bideoa = video['media$group']['yt$videoid']['$t']
                     auto.erabiltzailea = gamer
                     auto.save()

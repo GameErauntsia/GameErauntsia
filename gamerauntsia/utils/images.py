@@ -50,7 +50,7 @@ def loadUrlImage(url='', title='', tags='', format='jpg', slug=''):
     photo = Photo()
     photo.title = title[:100]
     photo.tags = tags
-    photo.title_slug = slug
+    photo.slug = slug
     
     try:
         image_t = Image.open(ContentFile(image.read()))
@@ -68,7 +68,7 @@ def loadUrlImage(url='', title='', tags='', format='jpg', slug=''):
     try:
         photo.save()
     except:
-        print 'Errorea irudi honekin', photo.title_slug
+        print 'Errorea irudi honekin', photo.slug
 
     return photo
     
