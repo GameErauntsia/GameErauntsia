@@ -10,7 +10,7 @@
 	        <h4 class="media-heading">{{ comment.name }}
 	        <small>{{ comment.submit_date }}</small>
 	        </h4>
-	        {{ comment.comment }}
+	        {{comment.comment|urlize}}
 	    </div>
 	</div>
 	{% endfor %}
