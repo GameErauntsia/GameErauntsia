@@ -1,35 +1,35 @@
 {% extends "base.html" %}
 {% load comments %}
 
-{%block title%}{{user.fullname}} - {%endblock%}
+{%block title%}{{user_prof.fullname}} - {%endblock%}
 
 {% block content %}
 	<div class="row">
 	    <div class="col-md-8">
 		    <div class="row">
 		        <div class="col-xs-12 col-sm-4 text-center">
-					<img src="{{user.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive">
+					<img src="{{user_prof.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive">
 				</div><!--/col--> 
 				<div class="col-xs-12 col-sm-8">
-					<h2>{{user.fullname}}</h2>
-					{% if user.twitter_id or user.nickname %}
-					<p><strong>Ezizena: </strong> {% if user.twitter_id %}@{{user.twitter_id}}{% else %}{{user.nickname}}{% endif %}</p>
+					<h2>{{user_prof.fullname}}</h2>
+					{% if user_prof.twitter_id or user_prof.nickname %}
+					<p><strong>Ezizena: </strong> {% if user_prof.twitter_id %}@{{user_prof.twitter_id}}{% else %}{{user_prof.nickname}}{% endif %}</p>
 					{% endif %}
-					<p><strong>Bio: </strong> {{user.bio}}</p>
+					<p><strong>Bio: </strong> {{user_prof.bio}}</p>
 					<p><strong>Kategoriak: </strong>
 						{% for cat in categs %}
 						<span class="label label-info tags"><a href="{% url 'gameplay_category' cat.kategoria__izena|slugify %}">{{cat.kategoria__izena}}</a></span> 
 						{% endfor %}
 					</p>
 					<p>
-						{% if user.ytube_channel %}
-						<a href="{{user.ytube_channel}}"><img src="{{STATIC_URL}}img/youtube.png" /></a>
+						{% if user_prof.ytube_channel %}
+						<a href="{{user_prof.ytube_channel}}"><img src="{{STATIC_URL}}img/youtube.png" /></a>
 						{% endif %}
-						{% if user.twitter_id %}
-						<a href="http://twitter.com/{{user.twitter_id}}"><img src="{{STATIC_URL}}img/twitter.png" /></a>
+						{% if user_prof.twitter_id %}
+						<a href="http://twitter.com/{{user_prof.twitter_id}}"><img src="{{STATIC_URL}}img/twitter.png" /></a>
 						{% endif %}
-						{% if user.facebook_id %}
-						<a href="http://facebook.com/{{user.facebook_id}}"><img src="{{STATIC_URL}}img/facebook.png" /></a>
+						{% if user_prof.facebook_id %}
+						<a href="http://facebook.com/{{user_prof.facebook_id}}"><img src="{{STATIC_URL}}img/facebook.png" /></a>
 						{% endif %}
 					</p>
 				</div>          

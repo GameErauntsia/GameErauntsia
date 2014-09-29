@@ -12,7 +12,7 @@ def index(request):
     return render_to_response('gamer/index.html', locals(),context_instance=RequestContext(request))
     
 def profile(request,username):
-    user = get_object_or_404(GamerUser,username=username)
+    user_prof = get_object_or_404(GamerUser,username=username)
     gameplayak = GamePlaya.objects.filter(publikoa_da=True,erabiltzailea=user).order_by('-pub_date')
     gp_count = len(gameplayak)
     gameplayak = gameplayak[:5]
