@@ -53,7 +53,7 @@
     <div class="col-lg-8">
         <h1>{{gp.izenburua}}</h1>
         <p>{{gp.desk|safe|emoticons}}</p>
-        <p><a class="twitter popup" href="http://twitter.com/share?text={{gp.izenburua|urlencode}}"><img src="{{STATIC_URL}}img/twitter.png"/></a> <a href="https://www.facebook.com/dialog/share?app_id={{FB_APP_ID}}&display=popup&href={% url 'gameplay' gp.slug %}&redirect_uri={{gp.get_absolute_url}}"><img src="{{STATIC_URL}}img/facebook.png"/></a></p>
+        <p><a class="twitter popup" href="http://twitter.com/share?text={{gp.izenburua|urlencode}}"><img src="{{STATIC_URL}}img/twitter.png"/></a> <a href="https://www.facebook.com/dialog/share?app_id={{FB_APP_ID}}&display=popup&href={{gp.get_absolute_url}}&redirect_uri={{gp.get_absolute_url}}"><img src="{{STATIC_URL}}img/facebook.png"/></a></p>
 
         
     </div>
