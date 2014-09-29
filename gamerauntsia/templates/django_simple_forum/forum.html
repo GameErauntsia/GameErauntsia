@@ -41,7 +41,7 @@
                             <div class="title"> <a href="{% url 'topic-detail' forum.slug topic.pk %}"><span class="{% if topic.block_top%}glyphicon glyphicon-envelope{% else %}{%if topic.closed %}glyphicon glyphicon-folder-close{% else %}glyphicon glyphicon-folder-open{% endif %}{% endif %}"></span> {{ topic.title }}</a>
                                 </div></td>
                             <td>{{topic.num_replies}}</td>
-                            <td>{{topic.last_post.short|linebreaksbr}}</td>
+                            <td><img src="{{topic.last_post.creator.get_photo.get_profilesmall_url}}"/>{{topic.last_post.short|linebreaksbr}}</td>
                             <td>{{topic.creator}}</td>
                             <td>{{topic.created}}</td>
                             <td>
