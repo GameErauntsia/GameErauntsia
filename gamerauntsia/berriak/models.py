@@ -21,7 +21,7 @@ class Gaia(models.Model):
         return u'%s' % (self.izena)
 
 class Berria(models.Model):
-    izenburua = models.CharField(max_length=64)
+    izenburua = models.CharField(max_length=150)
     slug = models.SlugField(db_index=True, unique=True, help_text="Eremu honetan berri honen URL helbidea zehazten ari zara.")
     desk = models.TextField(max_length=256)
 
