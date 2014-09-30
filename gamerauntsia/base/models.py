@@ -9,7 +9,7 @@ def send_email(sender,instance,**kwargs):
     if kwargs['created']:
         recipient_list = []
         message = MESSAGE
-        for forum in instance.topic.forum.all():
+        for forum in instance.topic.forums.all():
         	message += '%sforoa/%s/%s\n\n' % (settings.HOST,forum.slug,instance.topic.id)
         creators = Post.objects.filter(topic=instance.topic).values('creator__email').distinct()
         for creator in creators:
