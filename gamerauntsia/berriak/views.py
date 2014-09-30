@@ -3,10 +3,11 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.conf import settings
+from datetime import datetime
 
 def index(request):
     h = {}
-    berria_list = Berria.objects.filter(publikoa_da=True).order_by('-pub_date')
+    berria_list = Berria.objects.filter(publikoa_da=True, pub_date__lt=datetime.now()).order_by('-pub_date')
     paginator = Paginator(berria_list, 10)
     page = request.GET.get('orria')
     try:
