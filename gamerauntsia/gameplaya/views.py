@@ -8,22 +8,23 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import Http404
 from django.shortcuts import get_object_or_404
+from datetime import datetime
 
 def index(request,kategoria=None,username=None,maila=None,jokoa=None,plataforma=None):
     if kategoria:
         kategoria = get_object_or_404(Kategoria,slug=kategoria)
-        gameplayak = GamePlaya.objects.filter(publikoa_da=True,kategoria=kategoria).order_by('-pub_date')
+        gameplayak = GamePlaya.objects.filter(publikoa_da=True,kategoria=kategoria, pub_date__lt=datetime.now()).order_by('-pub_date')
     elif maila:
         maila = get_object_or_404(Zailtasuna,slug=maila)
-        gameplayak = GamePlaya.objects.filter(publikoa_da=True,zailtasuna=maila).order_by('-pub_date')
+        gameplayak = GamePlaya.objects.filter(publikoa_da=True,zailtasuna=maila, pub_date__lt=datetime.now()).order_by('-pub_date')
     elif jokoa:
         jokoa = get_object_or_404(Jokoa,slug=jokoa)
-        gameplayak = GamePlaya.objects.filter(publikoa_da=True,jokoa=jokoa).order_by('-pub_date')
+        gameplayak = GamePlaya.objects.filter(publikoa_da=True,jokoa=jokoa, pub_date__lt=datetime.now()).order_by('-pub_date')
     elif plataforma:
         plataforma = get_object_or_404(Plataforma,slug=plataforma)
-        gameplayak = GamePlaya.objects.filter(publikoa_da=True,plataforma=plataforma).order_by('-pub_date')
+        gameplayak = GamePlaya.objects.filter(publikoa_da=True,plataforma=plataforma, pub_date__lt=datetime.now()).order_by('-pub_date')
     else:
-        gameplayak = GamePlaya.objects.filter(publikoa_da=True).order_by('-pub_date')
+        gameplayak = GamePlaya.objects.filter(publikoa_da=True, pub_date__lt=datetime.now()).order_by('-pub_date')
     users = GamerUser.objects.filter(is_active=True,is_gamer=True)
     kategoriak = Kategoria.objects.exclude(gameplay__isnull=True).order_by('izena')
     zailtasunak = Zailtasuna.objects.exclude(gameplay__isnull=True).order_by('izena')
