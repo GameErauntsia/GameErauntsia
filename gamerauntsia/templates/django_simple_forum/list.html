@@ -12,21 +12,27 @@
         <div class="col-lg-12">
             {% for cat in categories %}
                 <div class="col-lg-12">
-                <h2>{{cat.title}}</h2>
-                {% for forum in cat.get_forums %}
-                    <div class="col-md-4">
-                        <div class="col-lg-12">
-                            <div class="col-lg-4 forum-img">
-                                <a href="{% url 'forum-detail' forum.slug %}"><img class="img-responsive center-block" src="{{forum.icon.get_forum_thumbnail_url}}"/></a>
-                            </div>
-                            <div class="col-lg-8">
-                                <h3><a href="{% url 'forum-detail' forum.slug %}">{{forum.title}}</a></h3>
-                                <p>{{forum.get_summary}}</p>
-                                <p>{{forum.last_post.supershort}}</p>
+                    <h2>{{cat.title}}</h2>
+                    {% for forum in cat.get_forums %}
+                    {% if forloop.counter|divisibleby:4 or forloop.first %}
+                    <div class="row">
+                    {% endif %}
+                        <div class="col-md-4">
+                            <div class="col-lg-12">
+                                <div class="col-lg-4 forum-img">
+                                    <a href="{% url 'forum-detail' forum.slug %}"><img class="img-responsive center-block" src="{{forum.icon.get_forum_thumbnail_url}}"/></a>
+                                </div>
+                                <div class="col-lg-8">
+                                    <h3><a href="{% url 'forum-detail' forum.slug %}">{{forum.title}}</a></h3>
+                                    <p>{{forum.get_summary}}</p>
+                                    <p>{{forum.last_post.supershort}}</p>
+                                </div>
                             </div>
                         </div>
+                    {% endfor %}
+                    {% if forloop.counter|divisibleby:3 %}
                     </div>
-                {% endfor %}
+                    {% endif %}
                 </div>
             {% endfor %}
         </div>
