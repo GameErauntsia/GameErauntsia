@@ -1,3 +1,5 @@
+{% load emoticons_tags %}
+
 <div id="comments">
 	<h3>Iruzkinak</h3>
 	<a id="#iruzkinak"></a>
@@ -10,7 +12,7 @@
 	        <h4 class="media-heading">{{ comment.name }}
 	        <small>{{ comment.submit_date }}</small>
 	        </h4>
-	        {{comment.comment|urlize}}
+	        {{comment.comment|urlize|emoticons}}
 	    </div>
 	</div>
 	{% endfor %}
