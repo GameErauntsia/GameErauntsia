@@ -7,6 +7,7 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">Foroa <small>{{forum.title}}: {{topic.title}}</small></h1>
+        <p>{{topic.description}}</p>
         <p class="breadcrumb"><a href="/foroa">Denak</a>-><a href="{% url 'forum-detail' forum.slug %}">{{forum.title}}</a>-><strong>{{topic.title}}</strong></p>
         <div id="list">
             {% autopaginate posts 10 %}
