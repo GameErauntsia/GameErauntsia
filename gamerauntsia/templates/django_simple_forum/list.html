@@ -44,7 +44,7 @@
                                 <tr>
                                     <td>
                                     <div class="title">
-                                        <img class="img-rounded" src="{{forum.icon.get_forum_thumbnail_url}}"/> <a href="{% url 'forum-detail' forum.slug %}">{{ forum.title }}</a>
+                                        <img class="img-rounded" src="{{forum.icon.get_forum_thumbnail_url}}"/> <a href="">{{ forum.title }}</a>
                                     </div></td>
                                     <td>{{forum.num_posts}}</td>
                                     <td>
@@ -60,7 +60,7 @@
                                     <td>{{forum.creator}}</td>
                                     <td>{{forum.created}}</td>
                                     <td>
-                                        <a class="btn btn-default" href="{% url 'forum-detail' forum.slug %}">IKUSI</a>
+                                        <a class="btn btn-default" href="">IKUSI</a>
                                     </td>
                                 </tr>
                                 {% endfor %}
