@@ -11,11 +11,11 @@
         </div>
         <div class="col-lg-12">
             {% for cat in categories %}
+                <div class="col-lg-12">
                 <h2>{{cat.title}}</h2>
-                <div class="row">
                 {% for forum in cat.get_forums %}
                     <div class="col-md-4">
-                        <div class="row">
+                        <div class="col-lg-12">
                             <div class="col-lg-4 forum-img">
                                 <a href="{% url 'forum-detail' forum.slug %}"><img class="img-responsive center-block" src="{{forum.icon.get_forum_thumbnail_url}}"/></a>
                             </div>
