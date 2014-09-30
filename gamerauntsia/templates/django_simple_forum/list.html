@@ -41,7 +41,7 @@
                             </thead>
                             <tbody>
                                 {% for forum in cat.get_forums %}
-                                <tr {% if topic.block_top %}class="active"{% endif %}>
+                                <tr>
                                     <td>
                                     <div class="title">
                                         <img class="img-rounded" src="{{forum.icon.get_forum_thumbnail_url}}"/> <a href="{% url 'forum-detail' forum.slug %}">{{ forum.title }}</a>
@@ -67,7 +67,6 @@
                             </tbody>
                         </table>
                     </div>
-                    {% endfor %}
                 </div>
             {% endfor %}
         </div>
