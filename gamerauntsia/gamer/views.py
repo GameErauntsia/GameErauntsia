@@ -12,7 +12,7 @@ from gamerauntsia.utils.images import handle_uploaded_file
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from photologue.models import Photo
-from hiribili.hiribiliuser.forms import NotifyForm
+from gamerauntsia.gamer.forms import NotifyForm
 from django.utils.translation import ugettext as _
 
 def index(request):
