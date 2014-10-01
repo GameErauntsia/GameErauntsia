@@ -7,8 +7,9 @@
   <form action="{{request.path}}" method="POST">
     {% csrf_token %}
     {% for gameform in gameformset %}
-    {{gameform.as_p}}
+    {{gameform.as_table}}
     {% endfor %}
+    {{ gameformset.management_form }}
     <input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
   </form>
 </div>
