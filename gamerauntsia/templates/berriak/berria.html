@@ -27,6 +27,13 @@
     fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
 
+    <script src="{{STATIC_URL}}js/fancybox/jquery.fancybox.js"></script>
+    <link href="{{STATIC_URL}}js/fancybox/jquery.fancybox.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{STATIC_URL}}js/fancybox/helpers/jquery.fancybox-buttons.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="{{STATIC_URL}}js/fancybox/helpers/jquery.fancybox-buttons.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/fancybox/helpers/jquery.fancybox-media.js"></script>
+
 {% endblock %}
 
 {% block title %}{{item.izenburua}} - Berriak - {% endblock %}
@@ -40,7 +47,9 @@
         </p>
         <hr>
         {% if item.argazkia %}
-        <img src="{{item.argazkia.get_blog_url}}" class="img-responsive"/>
+        <a class="fancybox" href="{{item.argazkia.image.url}}">
+            <img src="{{item.argazkia.get_blog_url}}" class="img-responsive"/>
+        </a>
         <hr>
         {% endif %}
         {% if user.is_authenticated %}
@@ -65,3 +74,11 @@
 
 
 {%endblock%}
+
+{% block footerjs %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".fancybox").fancybox();
+    });
+</script>
+{% endblock %}
