@@ -6,6 +6,14 @@ from django.template import RequestContext
 from django.shortcuts import get_object_or_404
 from django.conf import settings
 from django.db.models import Count
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
+from gamerauntsia.utils.images import handle_uploaded_file
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from photologue.models import Photo
+from hiribili.hiribiliuser.forms import NotifyForm
+from django.utils.translation import ugettext as _
 
 def index(request):
     users = GamerUser.objects.filter(is_active=True,is_staff=True).order_by('-date_joined')
@@ -22,3 +30,20 @@ def profile(request,username):
     berri_count = len(berriak)
     berriak = berriak[:5]
     return render_to_response('gamer/profile.html', locals(),context_instance=RequestContext(request))
+
+
+@login_required
+def edit_notifications(request):
+    """ """
+    tab = 'notifications'
+    user = request.user
+    if request.method == 'POST':
+         posta=request.POST.copy()     
+         notifyform = NotifyForm(posta, instance=user)
+         if notifyform.is_valid():
+            notifyform.save()
+            return HttpResponseRedirect(reverse('edit_profile_noti'))
+    else:
+        notifyform = NotifyForm(instance=user)
+
+    return render_to_response('profile/edit_notifications.html', locals(), context_instance=RequestContext(request))

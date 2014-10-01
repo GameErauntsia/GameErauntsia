@@ -1,0 +1,13 @@
+{% extends "profile/base.html" %}
+{% load i18n %}
+
+{% block perfil %}
+<div class="profileform">
+	<h2>{% trans "Notifications" %}</h2>
+	<form action="{{request.path}}" method="POST">
+		{% csrf_token %}
+		{{notifyform.as_p}}
+		<input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
+	</form>
+</div>
+{% endblock %}

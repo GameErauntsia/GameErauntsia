@@ -50,6 +50,10 @@ urlpatterns = patterns('',
     (r'^photologue/', include('photologue.urls')),
 )
 
+urlpatterns += patterns('gamerauntsia.gamer.views',
+    url(r'^editatu-profil-jakin$','edit_notifications', name='edit_profile_noti'),    
+)
+
 
 if settings.DEBUG:
     urlpatterns += patterns('',
