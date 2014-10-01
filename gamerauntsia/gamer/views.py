@@ -47,3 +47,19 @@ def edit_notifications(request):
         notifyform = NotifyForm(instance=user)
 
     return render_to_response('profile/edit_notifications.html', locals(), context_instance=RequestContext(request))
+
+@login_required
+def edit_platform(request):
+    """ """
+    tab = 'platforms'
+    user = request.user
+    if request.method == 'POST':
+         posta=request.POST.copy()     
+         gameform = GameForm(posta, instance=user)
+         if gameform.is_valid():
+            gameform.save()
+            return HttpResponseRedirect(reverse('edit_profile_plat'))
+    else:
+        gameform = GameForm(instance=user)
+
+    return render_to_response('profile/edit_platform.html', locals(), context_instance=RequestContext(request))

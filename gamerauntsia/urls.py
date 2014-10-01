@@ -51,7 +51,8 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += patterns('gamerauntsia.gamer.views',
-    url(r'^editatu-profil-jakin$','edit_notifications', name='edit_profile_noti'),    
+    url(r'^editatu-profil-jakin$','edit_notifications', name='edit_profile_noti'), 
+    url(r'^editatu-profil-plat$','edit_platform', name='edit_profile_plat')   
 )
 
 
