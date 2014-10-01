@@ -27,7 +27,7 @@
                     <thead>
                         <tr>
                             <th>Gaiak</th>
-                            <th>Erantzunak</th>
+                            <th>Mezuak</th>
                             <th>Azken mezua</th>
                             <th>Egilea</th>
                             <th>Noiz sortua</th>
@@ -40,7 +40,7 @@
                             <td>
                             <div class="title"> <a href="{% url 'topic-detail' forum.slug topic.pk %}"><span class="{% if topic.block_top%}glyphicon glyphicon-envelope{% else %}{%if topic.closed %}glyphicon glyphicon-folder-close{% else %}glyphicon glyphicon-folder-open{% endif %}{% endif %}"></span> {{ topic.title }}</a>
                                 </div></td>
-                            <td>{{topic.num_replies}}</td>
+                            <td>{{topic.num_posts}}</td>
                             <td>
                                 {% if topic.last_post %}
                                 <div class="col-lg-2">
