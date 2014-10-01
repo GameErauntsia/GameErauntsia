@@ -54,7 +54,7 @@ def edit_platform(request):
     """ """
     tab = 'platforms'
     user = request.user
-    GameFormSet = formset_factory(GameForm, extra=3, can_delete=True)
+    GameFormSet = formset_factory(GameForm, can_delete=True)
     if request.method == 'POST':
          posta=request.POST.copy()     
          gameformset = GameFormSet(posta)
@@ -64,6 +64,6 @@ def edit_platform(request):
                     form.save()
             return HttpResponseRedirect(reverse('edit_profile_plat'))
     else:
-        gameformset = GameFormSet()
+        gameformset = GameFormSet(initial=[{'user': user,},{'user': user,},{'user': user,}])
 
     return render_to_response('profile/edit_platform.html', locals(), context_instance=RequestContext(request))
