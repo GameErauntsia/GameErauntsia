@@ -4,6 +4,7 @@
 {% block perfil %}
 <div class="profileform">
 	<h2>Jakinarazpenak</h2>
+	<p>Nik iruzkindutako foroko gai eta blogeko artikuluetan norbaitek idazten duenean jakinarazpena jaso nahi dut eposta bidez:</p>
 	<form action="{{request.path}}" method="POST">
 		{% csrf_token %}
 		{{notifyform.as_p}}
