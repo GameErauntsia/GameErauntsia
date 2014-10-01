@@ -8,6 +8,16 @@ from django.utils.translation import ugettext as _
 
 MEMBER_PHOTO_SLUG=getattr(settings,'PROFILE_PHOTO_DEFAULT_SLUG','no-profile-photo')
 
+PLATFORM = (
+    ('steam','Steam'),
+    ('origin','Origin'),
+    ('lol','League of Legends'),
+    ('uplay','Uplay'),
+    ('xbox','XBOX'),
+    ('ps4','PS4'),
+    ('wii','Wii'),
+)
+
 class GamerUser(CSAbstractSocialUser):
     nickname = models.CharField(max_length=64,null=True,blank=True)
     is_gamer = models.BooleanField(default=False)
@@ -47,3 +57,12 @@ class GamerUser(CSAbstractSocialUser):
     class Meta:
         verbose_name = 'GE Erabiltzailea'
         verbose_name_plural = 'GE Erabiltzaileak'     
+
+
+class JokuPlataforma(models.Model):
+    plataforma = models.CharField(max_length=10, choices=PLATFORM)
+    nick = models.CharField(max_length=64)
+    user = models.ForeignKey(GamerUser)
+
+    def __unicode__(self):
+        return u'%s - %s' % (self.platforma,self.nick)
