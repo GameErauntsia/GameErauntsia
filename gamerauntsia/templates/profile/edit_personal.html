@@ -7,12 +7,12 @@
 	<form action="{{request.path}}" method="POST">
 		{% csrf_token %}
 		<fieldset>
-			<label>Zure izen osoa:</label><br/>
-			{{ profileform.fullname }}<br/><br/>
-			<label>Biografia:</label><br/>
-			{{ profileform.bio }}
-	    </fieldset><br/>
-		<input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
+			<div class="input-group">
+  				<input id="id_fullname" class="form-control" type="text" name="fullname" maxlength="60" placeholder="Zure izena" value="{{ profileform.fullname.value }}">
+  			</div>
+			<br/><textarea id="id_description" rows="10" name="description" cols="40" value="{{ profileform.bio.value }}"></textarea><br/>
+			<input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
+	    </fieldset>
 	</form>
 </div>
 {% endblock %}
