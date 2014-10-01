@@ -20,6 +20,7 @@
                                 <tr>
                                     <th>Foroak</th>
                                     <th>Gaiak</th>
+                                    <th>Mezuak</th>
                                     <th>Azken mezua</th>
                                     <th>Egilea</th>
                                     <th>Noiz sortua</th>
@@ -34,6 +35,7 @@
                                         <img class="img-rounded" src="{{forum.icon.get_forum_thumbnail_url}}"/> <a href="{% url 'forum-detail' forum.slug %}">{{ forum.title }}</a>
                                     </div></td>
                                     <td>{{forum.num_topics}}</td>
+                                    <td>{{forum.num_posts}}</td>
                                     <td>
                                         {% if forum.last_post %}
                                         <div class="col-lg-2">
