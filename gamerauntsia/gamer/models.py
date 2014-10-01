@@ -66,3 +66,7 @@ class JokuPlataforma(models.Model):
 
     def __unicode__(self):
         return u'%s - %s' % (self.platforma,self.nick)
+
+    class Meta:
+        verbose_name = 'Plataforma'
+        verbose_name_plural = 'Plataformak'
