@@ -6,9 +6,9 @@
   <h2>Plataformak</h2>
   <form action="{{request.path}}" method="POST">
     {% csrf_token %}
+    {% for gameform in gameformset %}
     {{gameform.as_p}}
-    {{gameform.as_p}}
-    {{gameform.as_p}}
+    {% endfor %}
     <input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
   </form>
 </div>
