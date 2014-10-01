@@ -10,6 +10,12 @@
   js.src = "//connect.facebook.net/eu_ES/sdk.js#xfbml=1&version=v2.0";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+<script src="{{STATIC_URL}}js/fancybox/jquery.fancybox.js"></script>
+<link href="{{STATIC_URL}}js/fancybox/jquery.fancybox.css" rel="stylesheet">
+
+<link rel="stylesheet" href="{{STATIC_URL}}js/fancybox/helpers/jquery.fancybox-buttons.css" type="text/css" media="screen" />
+<script type="text/javascript" src="{{STATIC_URL}}js/fancybox/helpers/jquery.fancybox-buttons.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/fancybox/helpers/jquery.fancybox-media.js"></script>
 {% endblock %}
 
 {% block title %}Berriak - {% endblock %}
@@ -28,7 +34,9 @@
             <a href="{% url 'gamer_profile' berria.erabiltzailea.username %}"><img src="{{berria.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{berria.erabiltzailea.fullname}}</a> | <span class="glyphicon glyphicon-time"></span> {{berria.pub_date|date:"Y/m/d H:i"}} {% for gai in berria.gaia.all %}<span class="label label-success tags">{{gai.izena}}</span>{% endfor %}
         </p>
         {% if berria.argazkia %}
+        <a class="fancybox" href="{{berria.argazkia.image.url}}">
         <img src="{{berria.argazkia.get_blog_url}}" class="img-responsive"/>
+        </a>
         <hr>
         {% endif %}
         <p>{{berria.get_desk_txikia|safe}}</p>
@@ -62,15 +70,8 @@
 
 {% block footerjs %}
 <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'gamerauntsia'; // required: replace example with your forum shortname
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
+    $(document).ready(function() {
+        $(".fancybox").fancybox();
+    });
 </script>
 {% endblock %}
