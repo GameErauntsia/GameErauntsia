@@ -6,10 +6,12 @@
   <h2>Plataformak</h2>
   <form action="{{request.path}}" method="POST">
     {% csrf_token %}
+    <table>
     {% for gameform in gameformset %}
     {{gameform.as_table}}
     {% endfor %}
     {{ gameformset.management_form }}
+  </table>
     <input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
   </form>
 </div>
