@@ -7,9 +7,9 @@
 	<form action="{{request.path}}" method="POST">
 		{% csrf_token %}
 		<fieldset>
-			<label>Zure izen osoa:</label>
+			<label>Zure izen osoa:</label><br/>
 			{{ profileform.fullname }}<br/><br/>
-			<label>Biografia:</label>
+			<label>Biografia:</label><br/>
 			{{ profileform.bio }}
 	    </fieldset><br/>
 		<input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
