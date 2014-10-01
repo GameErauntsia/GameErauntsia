@@ -62,6 +62,6 @@ def edit_platform(request):
             gameform.save()
             return HttpResponseRedirect(reverse('edit_profile_plat'))
     else:
-        gameformset = GameFormSet(instance=user)
+        gameformset = GameFormSet()
 
     return render_to_response('profile/edit_platform.html', locals(), context_instance=RequestContext(request))
