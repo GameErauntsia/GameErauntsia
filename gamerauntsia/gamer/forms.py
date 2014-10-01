@@ -12,4 +12,4 @@ class GameForm(forms.ModelForm):
 
     class Meta:
         model = JokuPlataforma
-        fields = ('plataforma','nick','user')
+        fields = ('plataforma','nick')
