@@ -57,7 +57,7 @@ def edit_platform(request):
     GameFormSet = formset_factory(GameForm, extra=3, can_delete=True)
     if request.method == 'POST':
          posta=request.POST.copy()     
-         gameformset = GameFormSet(posta,instance=user)
+         gameformset = GameFormSet(posta)
          if gameformset.is_valid():
             gameformset.save()
             return HttpResponseRedirect(reverse('edit_profile_plat'))
