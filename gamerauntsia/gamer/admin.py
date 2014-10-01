@@ -1,11 +1,16 @@
 from django.contrib import admin
-from gamerauntsia.gamer.models import GamerUser
+from gamerauntsia.gamer.models import GamerUser, JokuPlataforma
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.contrib.auth.forms import AdminPasswordChangeForm,UserCreationForm, UserChangeForm
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.contrib.auth.admin import UserAdmin
 from django.forms import ModelForm
 from django import forms
+
+class PlataformaInline(admin.TabularInline):
+    model = JokuPlataforma
+    fields = ('plataforma','nick')
+
 
 
 class MyUserChangeForm(UserChangeForm):
@@ -52,6 +57,8 @@ class GamerUserAdmin(UserAdmin):
     list_display_links = ('fullname','username')
     search_fields = ['email','username','fullname']
     raw_id_fields = ('photo',)
+
+    inlines = [PlataformaInline]
 
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
