@@ -65,7 +65,7 @@ class JokuPlataforma(models.Model):
     user = models.ForeignKey(GamerUser)
 
     def __unicode__(self):
-        return u'%s - %s' % (self.platforma,self.nick)
+        return u'%s - %s' % (self.plataforma,self.nick)
 
     class Meta:
         verbose_name = 'Plataforma'
