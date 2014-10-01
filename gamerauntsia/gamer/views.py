@@ -12,7 +12,7 @@ from gamerauntsia.utils.images import handle_uploaded_file
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from photologue.models import Photo
-from gamerauntsia.gamer.forms import NotifyForm
+from gamerauntsia.gamer.forms import NotifyForm,GameForm
 from django.utils.translation import ugettext as _
 
 def index(request):
@@ -53,13 +53,13 @@ def edit_platform(request):
     """ """
     tab = 'platforms'
     user = request.user
-    # if request.method == 'POST':
-    #      posta=request.POST.copy()     
-    #      gameform = GameForm(posta, instance=user)
-    #      if gameform.is_valid():
-    #         gameform.save()
-    #         return HttpResponseRedirect(reverse('edit_profile_plat'))
-    # else:
-    #     gameform = GameForm(instance=user)
+    if request.method == 'POST':
+         posta=request.POST.copy()     
+         gameform = GameForm(posta, instance=user)
+         if gameform.is_valid():
+            gameform.save()
+            return HttpResponseRedirect(reverse('edit_profile_plat'))
+    else:
+        gameform = GameForm(instance=user)
 
     return render_to_response('profile/edit_platform.html', locals(), context_instance=RequestContext(request))
