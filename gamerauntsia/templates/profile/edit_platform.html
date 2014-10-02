@@ -20,8 +20,10 @@
                             {% endfor %}
                         </select>
                     {% else %}
-                        <label for="{{field.id_for_label}}" class="col-sm-2 control-label">{{field.label}}</label>
-                        <input id="{{field.id_for_label}}" type="checkbox" name="{{field.name}}">
+                        {% if 'DELETE' in field.name %}
+                          <label for="{{field.id_for_label}}" class="col-sm-2 control-label">{{field.label}}</label>
+                          <input id="{{field.id_for_label}}" type="checkbox" name="{{field.name}}">
+                        {% endif %}
                     {% endif %}
                 {% endif %}
             </div>

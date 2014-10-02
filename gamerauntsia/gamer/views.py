@@ -71,7 +71,7 @@ def edit_platform(request):
                         platform.save()
             return HttpResponseRedirect(reverse('edit_profile_plat'))
     else:
-        qset = JokuPlataforma.objects.filter(user=user).values('plataforma','nick')
+        qset = JokuPlataforma.objects.filter(user=user)
         gameformset = GameFormSet(queryset=qset)
         options = PLATFORM
         
