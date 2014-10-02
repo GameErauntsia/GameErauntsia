@@ -9,9 +9,10 @@
         {{ gameformset.management_form }}
         {% for gameform in gameformset %}
             {% for field in gameform %}
+            {{forloop.counter}}
                 {% if 'nick' in field.name %}
                     <div class="col-sm-4">
-                        <input class="form-control" type="text" name="form-{{forloop.couter}}-{{field.name}}" placeholder="{{field.label}}"/>
+                        <input class="form-control" type="text" name="form-{{forloop.counter}}-{{field.name}}" placeholder="{{field.label}}"/>
                     </div>
                 {% else %}
                     {% if 'plataforma' in field.name %}
