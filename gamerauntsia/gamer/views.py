@@ -54,7 +54,7 @@ def edit_platform(request):
     """ """
     tab = 'platforms'
     user = request.user
-    GameFormSet = modelformset_factory(JokuPlataforma, form=GameForm, can_delete=True)
+    GameFormSet = modelformset_factory(JokuPlataforma, form=GameForm, can_delete=True, max_num=1)
     if request.method == 'POST':
          posta=request.POST.copy()     
          gameformset = GameFormSet(posta)
