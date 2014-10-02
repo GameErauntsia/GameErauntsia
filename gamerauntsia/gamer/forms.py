@@ -9,7 +9,7 @@ class NotifyForm(forms.ModelForm):
         fields = ('email_notification',)
 
 class GameForm(forms.ModelForm):
-    user = forms.CharField(widget=forms.HiddenInput(),required=False)
+    user = forms.IntegerField(widget=forms.HiddenInput(),required=False)
 
     class Meta:
         model = JokuPlataforma
