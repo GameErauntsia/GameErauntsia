@@ -9,7 +9,6 @@ class NotifyForm(forms.ModelForm):
         fields = ('email_notification',)
 
 class GameForm(forms.ModelForm):
-    user = forms.ModelChoiceField(widget=forms.HiddenInput(),queryset=GamerUser.objects.all())
 
     class Meta:
         model = JokuPlataforma
