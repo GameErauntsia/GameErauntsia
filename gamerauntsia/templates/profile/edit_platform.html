@@ -7,7 +7,7 @@
     <form class="form-horizontal" action="{{request.path}}" method="POST">
         {% csrf_token %}
         {{ gameformset.management_form }}
-        {% for gameform in gameformset %}
+        <!-- {% for gameform in gameformset %}
             {% for field in gameform %}
                 {% if 'nick' in field.name %}
                     <div class="col-sm-4">
@@ -34,9 +34,9 @@
                     {% endif %}
                 {% endif %}
             {% endfor %}
-        {% endfor %}
-</table>
-<input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
-</form>
+        {% endfor %} -->
+        {% gameformset %}
+        <input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
+    </form>
 </div>
 {% endblock %}
