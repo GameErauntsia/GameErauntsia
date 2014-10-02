@@ -61,10 +61,12 @@ def edit_platform(request):
          if gameformset.is_valid():
             for form in gameformset:
                 if form.is_valid():
-                    form.data['user'] = user.id
                     form.save()
             return HttpResponseRedirect(reverse('edit_profile_plat'))
     else:
         gameformset = GameFormSet()
+        for form in gameformset.forms:
+            if 'user' not in form.initial:
+                form.initial['user'] = user.pk
 
     return render_to_response('profile/edit_platform.html', locals(), context_instance=RequestContext(request))
