@@ -61,7 +61,7 @@ def edit_platform(request):
          if gameformset.is_valid():
             marked_for_delete = gameformset.deleted_forms
             for form in gameformset:
-                if form.is_valid():
+                if form.is_valid() and not form.empty_permitted:
                     if form['id'].value() in [deleted_record['id'].value() for deleted_record in marked_for_delete]:
                         platform = form.save(commit=False)
                         platform.delete()
