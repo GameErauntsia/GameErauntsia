@@ -8,17 +8,16 @@
         {% csrf_token %}
         {{ gameformset.management_form }}
         {% for gameform in gameformset %}
-            {{gameform.name}}
             {% for field in gameform %}
                 {% if 'nick' in field.name %}
                     <div class="col-sm-4">
-                        <input class="form-control" type="text" name="{{field.name}}" placeholder="{{field.label}}"/>
+                        <input class="form-control" type="text" name="{{field.auto_id}}" placeholder="{{field.label}}"/>
                     </div>
                 {% else %}
                     {% if 'plataforma' in field.name %}
                     <div class="form-group">
                         <div class="col-sm-4">
-                            <select class="form-control" id="{{field.id_for_label}}" name="{{field.name}}">
+                            <select class="form-control" id="{{field.id_for_label}}" name="{{field.auto_id}}">
                                 {% for x,y in options %}
                                   <option value="{{ x }}">{{ y }}</option>
                                 {% endfor %}
@@ -28,7 +27,7 @@
                         {% if 'DELETE' in field.name %}
                             <label for="{{field.id_for_label}}" class="col-sm-1 control-label">{{field.label}}</label>
                             <div class="col-sm-1">
-                                <input class="form-control" id="{{field.id_for_label}}" type="checkbox" name="{{field.name}}">
+                                <input class="form-control" id="{{field.id_for_label}}" type="checkbox" name="{{field.auto_id}}">
                             </div>
                         </div>
                         {% endif %}
