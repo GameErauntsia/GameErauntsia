@@ -61,7 +61,7 @@ def edit_platform(request):
          if gameformset.is_valid():
             for form in gameformset:
                 if form.is_valid():
-                    form.data['user'] = user
+                    form.data['user'] = user.id
                     form.save()
             return HttpResponseRedirect(reverse('edit_profile_plat'))
     else:
