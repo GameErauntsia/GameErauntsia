@@ -14,7 +14,6 @@ from django.contrib import messages
 from photologue.models import Photo
 from gamerauntsia.gamer.forms import NotifyForm,GameForm
 from django.utils.translation import ugettext as _
-from django.forms.formsets import formset_factory
 from django.forms.models import modelformset_factory
 
 def index(request):
@@ -55,7 +54,7 @@ def edit_platform(request):
     """ """
     tab = 'platforms'
     user = request.user
-    GameFormSet = modelformset_factory(JokuPlataforma)
+    GameFormSet = modelformset_factory(JokuPlataforma, form=GameForm)
     if request.method == 'POST':
          posta=request.POST.copy()     
          gameformset = GameFormSet(posta)
