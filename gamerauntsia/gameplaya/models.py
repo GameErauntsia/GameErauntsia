@@ -4,8 +4,6 @@ from photologue.models import Photo
 from gamerauntsia.jokoa.models import Jokoa, Plataforma
 from gamerauntsia.gamer.models import GamerUser
 from datetime import datetime
-from gamerauntsia.utils.social import post_social
-from django.db.models.signals import post_save
 from django.template import defaultfilters as filters
 
 class Kategoria(models.Model):
@@ -93,6 +91,4 @@ class GamePlaya(models.Model):
         verbose_name_plural = "gameplayak"
 
     def __unicode__(self):
-        return u'%s' % (self.izenburua)
-        
-post_save.connect(post_social, sender=GamePlaya)    
+        return u'%s' % (self.izenburua)    

@@ -30,9 +30,8 @@ def post_to_page(obj, data={}):
     except Exception, e:
         logging.error('post_to_page, ERROR: %(error)s' % {'error': e})
 
-def post_social(sender,instance,**kwargs):
+def post_social(obj):
     logging.basicConfig(filename='debug.log',level=logging.ERROR)
-    if instance.publikoa_da and kwargs['created']:
-        post_to_twitter(instance)
-        post_to_page(instance)
+    post_to_twitter(obj)
+    post_to_page(obj)
     return True
