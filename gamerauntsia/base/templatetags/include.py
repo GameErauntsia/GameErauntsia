@@ -102,3 +102,7 @@ def azken_erantzunak():
     ct = ContentType.objects.get(model='Berria')
     h['comments'] = Comment.objects.filter(content_type=ct).order_by('-submit_date')[:5]
     return h
+
+@register.filter
+def ken1(value):
+    return value-1

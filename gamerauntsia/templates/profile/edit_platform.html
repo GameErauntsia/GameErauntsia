@@ -1,5 +1,5 @@
 {% extends "profile/base.html" %}
-{% load i18n %}
+{% load i18n include %}
 
 {% block perfil %}
 <div class="profileform">
@@ -11,13 +11,13 @@
             {% for field in gameform %}
                 {% if 'nick' in field.name %}
                     <div class="col-sm-4">
-                        <input class="form-control" type="text" name="form-{{forloop.parentloop.counter1}}-{{field.name}}" placeholder="{{field.label}}"/>
+                        <input class="form-control" type="text" name="form-{{forloop.parentloop.counter|ken1}}-{{field.name}}" placeholder="{{field.label}}"/>
                     </div>
                 {% else %}
                     {% if 'plataforma' in field.name %}
                     <div class="form-group">
                         <div class="col-sm-4">
-                            <select class="form-control" id="{{field.id_for_label}}" name="form-{{forloop.parentloop.counter1}}-{{field.name}}">
+                            <select class="form-control" id="{{field.id_for_label}}" name="form-{{forloop.parentloop.counter|ken1}}-{{field.name}}">
                                 {% for x,y in options %}
                                   <option value="{{ x }}">{{ y }}</option>
                                 {% endfor %}
@@ -27,7 +27,7 @@
                         {% if 'DELETE' in field.name %}
                             <label for="{{field.id_for_label}}" class="col-sm-1 control-label">{{field.label}}</label>
                             <div class="col-sm-1">
-                                <input class="form-control" id="{{field.id_for_label}}" type="checkbox" name="form-{{forloop.parentloop.counter1}}-{{field.name}}">
+                                <input class="form-control" id="{{field.id_for_label}}" type="checkbox" name="form-{{forloop.parentloop.counter|ken1}}-{{field.name}}">
                             </div>
                         </div>
                         {% endif %}
