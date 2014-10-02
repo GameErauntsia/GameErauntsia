@@ -68,5 +68,8 @@ def edit_platform(request):
     else:
         qset = JokuPlataforma.objects.filter(user=user).values('plataforma','nick')
         gameformset = GameFormSet()
+        for subform, data in zip(gameformset.forms, qset):
+            subform.initial = data
+        
 
     return render_to_response('profile/edit_platform.html', locals(), context_instance=RequestContext(request))
