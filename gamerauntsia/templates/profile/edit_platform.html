@@ -17,9 +17,10 @@
                         <select class="form-control" id="{{field.id_for_label}}" name="{{field.name}}">
                             {% for x,y in options %}
                               <option value="{{ x }}">{{ y }}</option>
-                          {% endfor %}
+                            {% endfor %}
                         </select>
                     {% else %}
+                        <label for="{{field.id_for_label}}" class="col-sm-2 control-label">{{field.label}}</label>
                         <input id="{{field.id_for_label}}" type="checkbox" name="{{field.name}}">
                     {% endif %}
                 {% endif %}
