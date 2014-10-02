@@ -1,4 +1,4 @@
-from gamerauntsia.gamer.models import GamerUser
+from gamerauntsia.gamer.models import GamerUser, JokuPlataforma
 from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.berriak.models import Berria
 from django.shortcuts import render_to_response
@@ -66,7 +66,8 @@ def edit_platform(request):
                     platform.save()
             return HttpResponseRedirect(reverse('edit_profile_plat'))
     else:
-        gameformset = GameFormSet()
+        qset = JokuPlataforma.objects.filter(user=user) #or however your getting your Points to modify
+        gameformset = GameFormSet(queryset = qset)
         for form in gameformset.forms:
             if 'user' not in form.initial:
                 form.initial['user'] = user.pk
