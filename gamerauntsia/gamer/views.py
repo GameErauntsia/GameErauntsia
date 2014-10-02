@@ -15,6 +15,7 @@ from photologue.models import Photo
 from gamerauntsia.gamer.forms import NotifyForm,GameForm
 from django.utils.translation import ugettext as _
 from django.forms.formsets import formset_factory
+from django.forms.models import modelformset_factory
 
 def index(request):
     users = GamerUser.objects.filter(is_active=True,is_staff=True).order_by('-date_joined')
@@ -54,7 +55,7 @@ def edit_platform(request):
     """ """
     tab = 'platforms'
     user = request.user
-    GameFormSet = formset_factory(GameForm, extra=2, can_delete=True)
+    GameFormSet = modelformset_factory(JokuPlataforma)
     if request.method == 'POST':
          posta=request.POST.copy()     
          gameformset = GameFormSet(posta)
@@ -66,10 +67,8 @@ def edit_platform(request):
                     platform.save()
             return HttpResponseRedirect(reverse('edit_profile_plat'))
     else:
-        qset = JokuPlataforma.objects.filter(user=user).values('plataforma','nick')
-        gameformset = GameFormSet()
-        for subform, data in zip(gameformset.forms, qset):
-            subform.initial = data
+        qset = JokuPlataforma.objects.filter(user=user)
+        gameformset = GameFormSet(queryset=qset)
         
 
     return render_to_response('profile/edit_platform.html', locals(), context_instance=RequestContext(request))
