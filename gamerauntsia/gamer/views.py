@@ -54,7 +54,7 @@ def edit_platform(request):
     """ """
     tab = 'platforms'
     user = request.user
-    GameFormSet = formset_factory(JokuPlataforma, form=GameForm, can_delete=True)
+    GameFormSet = formset_factory(GameForm, can_delete=True)
     if request.method == 'POST':
          posta=request.POST.copy()     
          gameformset = GameFormSet(posta)
@@ -67,7 +67,7 @@ def edit_platform(request):
             return HttpResponseRedirect(reverse('edit_profile_plat'))
     else:
         qset = JokuPlataforma.objects.filter(user=user) #or however your getting your Points to modify
-        gameformset = GameFormSet(queryset = qset)
+        gameformset = GameFormSet(queryset=qset)
         for form in gameformset.forms:
             if 'user' not in form.initial:
                 form.initial['user'] = user.pk
