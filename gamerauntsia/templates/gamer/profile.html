@@ -21,6 +21,15 @@
 						<span class="label label-info tags"><a href="{% url 'gameplay_category' cat.kategoria__izena|slugify %}">{{cat.kategoria__izena}}</a></span> 
 						{% endfor %}
 					</p>
+					{% if user.getplatforms %}
+					<p>
+						<ul>
+	                    {% for plat in user.getplatforms %}
+	                    	<li><strong>{{plat.platform}}:</strong> {{plat.nick}}</li>
+	                    {% endfor %}
+	                    </ul>
+					</p>
+					{% endif %}
 					<p>
 						{% if user_prof.ytube_channel %}
 						<a href="{{user_prof.ytube_channel}}"><img src="{{STATIC_URL}}img/youtube.png" /></a>

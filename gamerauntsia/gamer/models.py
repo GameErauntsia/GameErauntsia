@@ -42,7 +42,10 @@ class GamerUser(CSAbstractSocialUser):
         return self
 
     def getFullName(self):
-        return self.get_full_name() or self.username  
+        return self.get_full_name() or self.username
+
+    def getplatforms(self):
+        return JokuPlataforma.objects.filter(user=self)  
 
     def email_user(self, subject, message, from_email=None, **kwargs):
         """
