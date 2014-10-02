@@ -23,9 +23,9 @@
 					</p>
 					{% if user.getplatforms %}
 					<p>
-						<ul>
+						<ul class="list-unstyled">
 	                    {% for plat in user.getplatforms %}
-	                    	<li><strong>{{plat.platform}}:</strong> {{plat.nick}}</li>
+	                    	<li><strong>{{plat.plataforma}}:</strong> {{plat.nick}}</li>
 	                    {% endfor %}
 	                    </ul>
 					</p>
