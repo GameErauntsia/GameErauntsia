@@ -26,7 +26,7 @@
 
         {% block container %}
    
-        {% autopaginate zerr_berriak 10 %}
+        {% autopaginate zerr_berriak 5 %}
         {% for berria in zerr_berriak %}
         {% get_comment_count for berria as comment_count %}
         <h1><a href="{{berria.slug}}">{{berria.izenburua}}</a></h1>
