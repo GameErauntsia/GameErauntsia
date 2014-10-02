@@ -15,7 +15,7 @@
                 {% else %}
                     {% if 'plataforma' in field.name %}
                         <select class="form-control" id="{{field.id_for_label}}" name="{{field.name}}">
-                            {% for x,y in form.fields.plataforma.choices %}
+                            {% for x,y in form.fields.field.name.choices %}
                               <option value="{{ x }}">{{ y }}</option>
                           {% endfor %}
                         </select>
