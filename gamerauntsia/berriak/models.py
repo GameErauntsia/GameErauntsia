@@ -33,6 +33,7 @@ class Berria(models.Model):
     publikoa_da = models.BooleanField(default=True) 
     pub_date = models.DateTimeField('publikazio data', default=datetime.now)
     mod_date = models.DateTimeField('modifikazio data', default=datetime.now)
+    shared = models.BooleanField(default=False)
 
     def get_desk_txikia(self):
     	return filters.striptags(self.desk)[:400]+'...'
