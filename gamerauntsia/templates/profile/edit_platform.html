@@ -11,18 +11,24 @@
             {% for field in gameform %}
             <div class="form-group">
                 {% if 'nick' in field.name %}
-                    <input class="form-control" type="text" name="{{field.name}}" placeholder="{{field.label}}"/>
+                    <div class="col-sm-4">
+                        <input class="form-control" type="text" name="{{field.name}}" placeholder="{{field.label}}"/>
+                    </div>S
                 {% else %}
                     {% if 'plataforma' in field.name %}
-                        <select class="form-control" id="{{field.id_for_label}}" name="{{field.name}}">
-                            {% for x,y in options %}
-                              <option value="{{ x }}">{{ y }}</option>
-                            {% endfor %}
-                        </select>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="{{field.id_for_label}}" name="{{field.name}}">
+                                {% for x,y in options %}
+                                  <option value="{{ x }}">{{ y }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
                     {% else %}
                         {% if 'DELETE' in field.name %}
                           <label for="{{field.id_for_label}}" class="col-sm-2 control-label">{{field.label}}</label>
-                          <input id="{{field.id_for_label}}" type="checkbox" name="{{field.name}}">
+                          <div class="col-sm-4">
+                              <input class="form-control" id="{{field.id_for_label}}" type="checkbox" name="{{field.name}}">
+                          </div>
                         {% endif %}
                     {% endif %}
                 {% endif %}
