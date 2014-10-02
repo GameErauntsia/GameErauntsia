@@ -1,4 +1,4 @@
-from gamerauntsia.gamer.models import GamerUser, JokuPlataforma
+from gamerauntsia.gamer.models import GamerUser, JokuPlataforma, PLATFORM
 from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.berriak.models import Berria
 from django.shortcuts import render_to_response
@@ -73,5 +73,6 @@ def edit_platform(request):
     else:
         qset = JokuPlataforma.objects.filter(user=user)
         gameformset = GameFormSet(queryset=qset)
+        options = PLATFORM
         
     return render_to_response('profile/edit_platform.html', locals(), context_instance=RequestContext(request))
