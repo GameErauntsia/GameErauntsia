@@ -13,7 +13,6 @@
                     <div class="col-sm-4">
                         <input class="form-control" type="text" name="{{field.name}}" placeholder="{{field.label}}"/>
                     </div>
-                </div>
                 {% else %}
                     {% if 'plataforma' in field.name %}
                     <div class="form-group">
@@ -26,7 +25,6 @@
                         </div>
                     {% else %}
                         {% if 'DELETE' in field.name %}
-                        <div class="form-group">
                             <label for="{{field.id_for_label}}" class="col-sm-2 control-label">{{field.label}}</label>
                             <div class="col-sm-4">
                                 <input class="form-control" id="{{field.id_for_label}}" type="checkbox" name="{{field.name}}">
