@@ -8,6 +8,7 @@
         {% csrf_token %}
         {{ gameformset.management_form }}
         {% for gameform in gameformset %}
+            {{gameform.name}}
             {% for field in gameform %}
                 {% if 'nick' in field.name %}
                     <div class="col-sm-4">
