@@ -35,7 +35,9 @@
                 {% endif %}
             {% endfor %}
         {% endfor %} -->
-        {{ gameformset }}
+        {% for form in gameformset %}
+            {{form}}<br/>
+        {% endfor %}
         <input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
     </form>
 </div>
