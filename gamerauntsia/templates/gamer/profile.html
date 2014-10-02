@@ -21,10 +21,10 @@
 						<span class="label label-info tags"><a href="{% url 'gameplay_category' cat.kategoria__izena|slugify %}">{{cat.kategoria__izena}}</a></span> 
 						{% endfor %}
 					</p>
-					{% if user.getplatforms %}
+					{% if user_prof.getplatforms %}
 					<p>
 						<ul class="list-unstyled">
-	                    {% for plat in user.getplatforms %}
+	                    {% for plat in user_prof.getplatforms %}
 	                    	<li><strong>{{plat.get_plataforma_display}}:</strong> {{plat.nick}}</li>
 	                    {% endfor %}
 	                    </ul>
