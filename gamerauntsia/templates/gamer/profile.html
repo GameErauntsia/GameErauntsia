@@ -97,7 +97,7 @@
 	</div>
 	<hr/>
 	<div class="row">
-	        {% if gameplayak %}
+	    {% if gameplayak %}
 		<div class="col-lg-8">
 		    <h2>Azken Game Playak</h2>
 		    {% for gp in gameplayak %}
@@ -120,7 +120,6 @@
 				</div>
 			</div>
 		</div>
-		{% endif %}
 		{% if berriak %}
 		<div class="col-lg-4">
 			<h2>Azken berriak</h2>
@@ -135,6 +134,23 @@
 			</div>
 		    {% endfor %}
 		</div>
+		{% endif %}
+		{% else %}
+		{% if berriak %}
+		<div class="col-lg-8">
+			<h2>Azken berriak</h2>
+			{% for berri in berriak %}
+			<div class="row bloglist">
+				<div class="col-lg-4">
+				    <a href="{% url 'berria' berri.slug %}"><img src="{{berri.argazkia.get_newsprofile_url}}" alt="" /></a>
+				</div>
+			    <div class="col-lg-8">
+			        <p><strong><a href="{% url 'berria' berri.slug %}">{{berri.izenburua}}</strong></a><p>
+			    </div>
+			</div>
+		    {% endfor %}
+		</div>
+		{% endif %}
 		{% endif %}
 	</div>
 {% endblock %}
