@@ -31,6 +31,13 @@ def profile(request,username):
     side_berriak = berriak[:5]
     return render_to_response('gamer/profile.html', locals(),context_instance=RequestContext(request))
 
+def guestprofile(request,username):
+    user_prof = get_object_or_404(GamerUser,username=username,is_active=True)
+    if user_prof.is_staff:
+        return HttpResponseRedirect(reverse('gamer_guestprofile'))
+    return render_to_response('gamer/profile.html', locals(),context_instance=RequestContext(request))
+
+
 
 @login_required
 def edit_notifications(request):

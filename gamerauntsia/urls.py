@@ -52,7 +52,8 @@ urlpatterns = patterns('',
 
 urlpatterns += patterns('gamerauntsia.gamer.views',
     url(r'^erabiltzaileak/editatu-profil-jakin$','edit_notifications', name='edit_profile_noti'), 
-    url(r'^erabiltzaileak/editatu-profil-plat$','edit_platform', name='edit_profile_plat')   
+    url(r'^erabiltzaileak/editatu-profil-plat$','edit_platform', name='edit_profile_plat')  
+    url(r'^erabiltzaileak/(?P<username>[-\w]+)$', 'gamerauntsia.gamer.views.guestprofile', name='gamer_guestprofile'), 
 )
 
 
