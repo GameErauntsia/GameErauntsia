@@ -22,17 +22,11 @@
     <div class="row">
     {% endif %}
         <div class="col-lg-4 col-sm-6">
-            {% if user.is_gamer %}
+            {% if user.is_staff and user.is_active %}
             <a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profile_url}}" class="img-circle img-responsive"></a>
             <h3><a href="{% url 'gamer_profile' user.username %}">{{user.fullname}}</a>
                 <small>{% if user.twitter_id %}@{{user.twitter_id}}{% else %}{{user.nickname}}{% endif %}</small>
             </h3>
-            {% else %}
-            <img src="{{user.get_photo.get_profile_url}}" class="img-circle img-responsive">
-            <h3>{{user.fullname}}
-                <small>{% if user.twitter_id %}@{{user.twitter_id}}{% else %}{{user.nickname}}{% endif %}</small>
-            </h3>
-            {% endif %}
             <p>{{user.bio}}</p>
         </div>
     {% if forloop.counter|divisibleby:3 %}
