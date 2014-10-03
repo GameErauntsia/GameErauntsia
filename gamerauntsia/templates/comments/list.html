@@ -5,11 +5,11 @@
 	<a id="#iruzkinak"></a>
 	{% for comment in comment_list %}
 	<div class="media">
-	        <a class="pull-left" href="#{{ comment.id }}">
+	        <a class="pull-left" href="{{user_prof.get_photo.get_profile_url}}">
 	            <img class="media-object" src="{{comment.user.get_photo.get_comment_url}}">
 	        </a>
 	    <div class="media-body">
-	        <h4 class="media-heading">{{ comment.name }}
+	        <h4 class="media-heading"><a href="{{user_prof.get_photo.get_profile_url}}">{{ comment.name }}</a>
 	        <small>{{ comment.submit_date }}</small>
 	        </h4>
 	        {{comment.comment|urlize|emoticons}}
