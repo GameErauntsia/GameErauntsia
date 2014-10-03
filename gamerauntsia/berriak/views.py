@@ -13,6 +13,6 @@ def index(request):
     return render_to_response('berriak/index.html', locals(),context_instance=RequestContext(request))
    
 def berria(request,slug):
-    item = Berria.objects.get_object_or_404(Berria,slug=slug)
+    item = get_object_or_404(Berria,slug=slug)
     facebook_id = settings.FACEBOOK_APP_ID
     return render_to_response('berriak/berria.html', locals(),context_instance=RequestContext(request))
