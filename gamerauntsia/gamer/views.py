@@ -28,6 +28,7 @@ def profile(request,username):
     berriak = Berria.objects.filter(publikoa_da=True,erabiltzailea=user_prof).order_by('-pub_date')
     bcategs = Berria.objects.filter(publikoa_da=True,erabiltzailea=user_prof).values('gaia__izena',).annotate(count=Count('id'))
     berri_count = len(berriak)
+    side_berriak = berriak[:5]
     return render_to_response('gamer/profile.html', locals(),context_instance=RequestContext(request))
 
 

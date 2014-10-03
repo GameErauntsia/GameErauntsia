@@ -122,7 +122,7 @@
 		{% if berriak %}
 		<div class="col-lg-4">
 			<h2>Azken berriak</h2>
-			{% for berri in berriak %}
+			{% for berri in side_berriak %}
 			<div class="row bloglist">
 				<div class="col-lg-4">
 				    <a href="{% url 'berria' berri.slug %}"><img src="{{berri.argazkia.get_newsprofile_url}}" alt="" /></a>
