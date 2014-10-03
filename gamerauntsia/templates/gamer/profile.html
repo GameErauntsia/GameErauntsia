@@ -11,7 +11,7 @@
 					<img src="{{user_prof.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive">
 				</div><!--/col--> 
 				<div class="col-xs-12 col-sm-8">
-					<h2>{{user_prof.fullname}}
+					<h2>{%if user_prof.fullname %}{{user_prof.fullname}}{% else %}{{user_prof.username}}{% endif %}
 					{% if user_prof.twitter_id or user_prof.nickname %}
 					<small>{% if user_prof.twitter_id %}@{{user_prof.twitter_id}}{% else %}{{user_prof.nickname}}{% endif %}</small></h2>
 					{% endif %}
