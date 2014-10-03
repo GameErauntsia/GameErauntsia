@@ -24,12 +24,10 @@ def profile(request,username):
     user_prof = get_object_or_404(GamerUser,username=username)
     gameplayak = GamePlaya.objects.filter(publikoa_da=True,erabiltzailea=user_prof).order_by('-pub_date')
     gp_count = len(gameplayak)
-    gameplayak = gameplayak[:5]
     categs = GamePlaya.objects.filter(publikoa_da=True,erabiltzailea=user_prof).values('kategoria__izena',).annotate(count=Count('id'))
     berriak = Berria.objects.filter(publikoa_da=True,erabiltzailea=user_prof).order_by('-pub_date')
     bcategs = Berria.objects.filter(publikoa_da=True,erabiltzailea=user_prof).values('gaia__izena',).annotate(count=Count('id'))
     berri_count = len(berriak)
-    berriak = berriak[:5]
     return render_to_response('gamer/profile.html', locals(),context_instance=RequestContext(request))
 
 
