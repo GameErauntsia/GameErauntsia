@@ -148,6 +148,8 @@
 				</div>
 			    <div class="col-lg-8">
 			        <h3><a href="{% url 'berria' berri.slug %}">{{berri.izenburua}}</a></h3>
+			        <p><span class="glyphicon glyphicon-time"></span> {{berri.pub_date|date:"Y/m/d H:i"}} {% for gai in berri.gaia.all %}<span class="label label-success tags">{{gai.izena}}</span>{% endfor %}</p>
+			        <p>{{berri.get_desk_txikia|safe}}</p>
 			    </div>
 			</div>
 			<hr/>
