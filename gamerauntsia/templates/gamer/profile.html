@@ -15,7 +15,7 @@
 					{% if user_prof.twitter_id or user_prof.nickname %}
 					<small>{% if user_prof.twitter_id %}@{{user_prof.twitter_id}}{% else %}{{user_prof.nickname}}{% endif %}</small></h2>
 					{% endif %}
-					<p>{{user_prof.bio}}</p>
+					{% if user_prof.bio%}<p>{{user_prof.bio}}</p>{% endif %}
 					{% if user_prof.getplatforms %}
 					<p>
 						<ul class="list-unstyled">
