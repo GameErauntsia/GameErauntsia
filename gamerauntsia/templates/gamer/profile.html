@@ -25,14 +25,16 @@
 	                    </ul>
 					</p>
 					{% endif %}
+					{% if categs or bcategs %}
 					<p><strong>Kategoriak: </strong>
 						{% for cat in categs %}
 						<span class="label label-info tags"><a href="{% url 'gameplay_category' cat.kategoria__izena|slugify %}">{{cat.kategoria__izena}}</a></span> 
 						{% endfor %}
-						{% for cat in bcategs %}
-						<span class="label label-success tags">{{cat.kategoria__izena}}</span> 
+						{% for bcat in bcategs %}
+						<span class="label label-success tags">{{bcat.kategoria__izena}}</span> 
 						{% endfor %}
 					</p>
+					{% endif %}
 					<p>
 						{% if user_prof.ytube_channel %}
 						<a href="{{user_prof.ytube_channel}}"><img src="{{STATIC_URL}}img/youtube.png" /></a>
