@@ -4,6 +4,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.conf import settings
 from datetime import datetime
+from django.shortcuts import get_object_or_404
 
 def index(request):
     h = {}
@@ -12,6 +13,6 @@ def index(request):
     return render_to_response('berriak/index.html', locals(),context_instance=RequestContext(request))
    
 def berria(request,slug):
-    item = Berria.objects.filter(slug=slug)[0]
+    item = Berria.objects.get_object_or_404(Berria,slug=slug)
     facebook_id = settings.FACEBOOK_APP_ID
     return render_to_response('berriak/berria.html', locals(),context_instance=RequestContext(request))
