@@ -34,7 +34,7 @@ def profile(request,username):
 def guestprofile(request,username):
     user_prof = get_object_or_404(GamerUser,username=username,is_active=True)
     if user_prof.is_staff:
-        return HttpResponseRedirect(reverse('gamer_guestprofile',args=[username]))
+        return HttpResponseRedirect(reverse('gamer_guestprofile',args=[username,]))
     return render_to_response('gamer/profile.html', locals(),context_instance=RequestContext(request))
 
 
