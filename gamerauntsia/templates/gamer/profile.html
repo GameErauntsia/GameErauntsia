@@ -142,10 +142,10 @@
 			{% for berri in berriak %}
 			<div class="row bloglist">
 				<div class="col-lg-4">
-				    <a href="{% url 'berria' berri.slug %}"><img src="{{berri.argazkia.get_newsprofile_url}}" alt="" /></a>
+				    <a href="{% url 'berria' berri.slug %}"><img src="{{berri.argazkia.get_videoprofile_url}}" alt="" /></a>
 				</div>
 			    <div class="col-lg-8">
-			        <p><strong><a href="{% url 'berria' berri.slug %}">{{berri.izenburua}}</strong></a><p>
+			        <h3><a href="{% url 'berria' berri.slug %}">{{berri.izenburua}}</a></h3>
 			    </div>
 			</div>
 		    {% endfor %}
