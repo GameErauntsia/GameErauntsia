@@ -18,6 +18,7 @@ PLATFORM = (
     ('wii','Wii'),
     ('archeage','Archeage'),
     ('wow','World of Warcraft'),
+    ('bnet','Battlenet'),
 )
 
 class GamerUser(CSAbstractSocialUser):
