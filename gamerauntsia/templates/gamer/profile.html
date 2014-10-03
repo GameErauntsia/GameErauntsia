@@ -25,7 +25,7 @@
 					<p>
 						<ul class="list-unstyled">
 	                    {% for plat in user_prof.getplatforms %}
-	                    	<li><strong>{{plat.get_plataforma_display}}:</strong> {{plat.nick}}</li>
+	                    	<li><img src="{{STATIC_URL}}img/plataformak/{{plat.plataforma}}.png"/> {{plat.nick}}</li>
 	                    {% endfor %}
 	                    </ul>
 					</p>
