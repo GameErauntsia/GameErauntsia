@@ -44,7 +44,10 @@ class GamerUser(CSAbstractSocialUser):
         return self
 
     def getFullName(self):
-        return self.get_full_name() or self.username
+        if self.get_full_name():
+            return self.get_full_name()
+        else:
+            return self.username
 
     def getplatforms(self):
         return JokuPlataforma.objects.filter(user=self)  
