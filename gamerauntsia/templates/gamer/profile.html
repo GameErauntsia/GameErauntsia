@@ -29,6 +29,9 @@
 						{% for cat in categs %}
 						<span class="label label-info tags"><a href="{% url 'gameplay_category' cat.kategoria__izena|slugify %}">{{cat.kategoria__izena}}</a></span> 
 						{% endfor %}
+						{% for cat in bcategs %}
+						<span class="label label-success tags">{{cat.kategoria__izena}}</span> 
+						{% endfor %}
 					</p>
 					<p>
 						{% if user_prof.ytube_channel %}
