@@ -9,6 +9,7 @@
 		    <div class="row">
 		        <div class="col-xs-12 col-sm-4 text-center">
 					<img src="{{user_prof.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive">
+					<p>{{user_prof.date_joined|date:"Y/m/d H:i"}}</p>
 				</div><!--/col--> 
 				<div class="col-xs-12 col-sm-8">
 					<h2>{{user_prof.getFullName}}
