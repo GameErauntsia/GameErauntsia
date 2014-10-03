@@ -16,6 +16,8 @@ PLATFORM = (
     ('xbox','XBOX'),
     ('ps4','PS4'),
     ('wii','Wii'),
+    ('archeage','Archeage'),
+    ('wow','World of Warcraft'),
 )
 
 class GamerUser(CSAbstractSocialUser):
