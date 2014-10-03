@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load comments %}
+{% load comments pagination_tags %}
 
 {%block title%}{{user_prof.fullname}} - {%endblock%}
 
@@ -102,6 +102,7 @@
 	    {% if gameplayak %}
 		<div class="col-lg-8">
 		    <h2>Azken Game Playak</h2>
+		    {% autopaginate gameplayak 5 %}
 		    {% for gp in gameplayak %}
 		    {% get_comment_count for gp as comment_count %}
 		    <div class="row">
@@ -116,11 +117,7 @@
 			</div>
 			<hr/>
 		    {% endfor %}
-		    <div class="row">
-			    <div class="col-lg-6">
-					<a href="" class="btn btn-success btn-block"><span class="glyphicon glyphicon-play-circle"></span> Gehiago ikusi! </a>
-				</div>
-			</div>
+		    {% paginate %}
 		</div>
 		{% if berriak %}
 		<div class="col-lg-4">
@@ -141,6 +138,7 @@
 		{% if berriak %}
 		<div class="col-lg-8">
 			<h2>Azken berriak</h2>
+			{% autopaginate berriak 5 %}
 			{% for berri in berriak %}
 			<div class="row bloglist">
 				<div class="col-lg-4">
@@ -154,6 +152,7 @@
 			</div>
 			<hr/>
 		    {% endfor %}
+		    {% paginate %}
 		</div>
 		{% endif %}
 		{% endif %}
