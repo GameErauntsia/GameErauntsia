@@ -44,8 +44,8 @@ class GamerUser(CSAbstractSocialUser):
         return self
 
     def getFullName(self):
-        if self.get_full_name():
-            return self.get_full_name()
+        if self.fullname:
+            return self.fullname
         else:
             return self.username
 
