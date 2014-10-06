@@ -127,7 +127,7 @@ filter: none;
 }
 
 .imageHolder .caption {
-  background: rgb(0,0,0,0.7);
+  background: rgba(0, 0, 0, 0.7);
   bottom: 20px;
   color: #fff;
   font-weight: bold;
