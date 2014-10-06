@@ -3,7 +3,7 @@ from django.core.mail import send_mail
 from django_simple_forum.models import Post, Topic
 from django.db.models.signals import post_save
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.comments.models import Comment
+from django_comments.models import Comment
 
 def send_post_email(sender,instance,**kwargs):
     if kwargs['created']:
