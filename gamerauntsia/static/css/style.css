@@ -128,11 +128,10 @@ filter: none;
 
 .imageHolder .caption {
   background: none repeat scroll 0 0 black;
-  bottom: 0;
+  bottom: 20px;
   color: #fff;
   font-weight: bold;
-  left: 0;
   opacity: 0.7;
-  position: absolute;
+  position: relative;
   text-align: center;
 }
