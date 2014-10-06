@@ -120,3 +120,19 @@ filter: none;
 .forumlist {
   height: 160px;
 }
+
+.imageHolder {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.imageHolder .caption {
+  background: none repeat scroll 0 0 black;
+  bottom: 0;
+  color: #fff;
+  font-weight: bold;
+  left: 0;
+  opacity: 0.7;
+  position: absolute;
+  text-align: center;
+}
