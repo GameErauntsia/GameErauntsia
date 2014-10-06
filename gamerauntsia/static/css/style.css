@@ -127,11 +127,10 @@ filter: none;
 }
 
 .imageHolder .caption {
-  background: none repeat scroll 0 0 black;
+  background: rgb(0,0,0,0.7);
   bottom: 20px;
   color: #fff;
   font-weight: bold;
-  opacity: 0.7;
   position: relative;
   text-align: center;
 }
