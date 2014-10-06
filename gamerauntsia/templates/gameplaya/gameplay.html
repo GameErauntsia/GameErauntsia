@@ -60,7 +60,7 @@
             <h3>GamePlay +</h3>
             {% for rgp in related_gps %}
                 <a href="{{rgp.get_absolute_url}}"><img class="img-responsive" src="{{rgp.argazkia.get_gp_thumbnail_url}}"></a>
-                <h2>{{rgp.izenburua}}</h2>
+                <h4>{{rgp.izenburua}}</h4>
             {% endfor %}
         {% endif %}
     </div>
