@@ -32,7 +32,8 @@ def index(request,kategoria=None,username=None,maila=None,jokoa=None,plataforma=
     plataformak = Plataforma.objects.exclude(gameplay__isnull=True).order_by('izena')
     return render_to_response('gameplaya/index.html', locals(),context_instance=RequestContext(request))
     
-def gameplaya(request,slug):
+def gameplaya(request,slug,related=None):
     gp = get_object_or_404(GamePlaya,slug=slug)
+    related_gp = GamePlaya.objects.filter(publikoa_da=True, jokoa= gp.jokoa, pub_date__lt=gp.pub_date).exclude(id=gp.id).order_by('-pub_date')[:5]
     facebook_id = settings.FACEBOOK_APP_ID
     return render_to_response('gameplaya/gameplay.html', locals(),context_instance=RequestContext(request))
