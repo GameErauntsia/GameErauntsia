@@ -27,7 +27,7 @@ def send_comment_email(sender,instance,**kwargs):
     if kwargs['created']:
         recipient_list = []
         message = 'Iruzkin berri bat utzi dute zuk iruzkindutako artikulu honetan: \n\n'
-        ct = ContentType.objects.get_for_id(instance.content_type)
+        ct = ContentType.objects.get_for_id(instance.content_type.id)
         obj = ct.get_object_for_this_type(pk=instance.object_pk)
         if obj.__class__.__name__ == 'Berria':
             message += '%sbloga/%s\n\n' % (settings.HOST,obj.slug)
