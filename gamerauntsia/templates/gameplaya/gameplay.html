@@ -59,15 +59,17 @@
         {% if related_gps %}
             <h3>GamePlay +</h3>
             {% for rgp in related_gps %}
+            <div class="well">
                 <div class="row bloglist">
                     <div class="col-lg-4">
-                        <a href="{{rgp.get_absolute_url}}"><img src="{{rgp.argazkia.get_gp_thumbnail_url}}" /></a>
+                        <a href="{{rgp.get_absolute_url}}"><img src="{{rgp.argazkia.get_newsprofile_url}}" /></a>
                     </div>
                     <div class="col-lg-8">
                         <p><strong><a href="{{rgp.get_absolute_url}}">{{rgp.izenburua}}</strong></a><p>
                     </div>
                 </div>
             {% endfor %}
+            </div>
         {% endif %}
     </div>
 </div>
