@@ -58,8 +58,8 @@
 
         {% if related_gps %}
             <h3>GamePlay +</h3>
-            {% for rgp in related_gps %}
             <div class="well">
+            {% for rgp in related_gps %}
                 <div class="row bloglist">
                     <div class="col-lg-4">
                         <a href="{{rgp.get_absolute_url}}"><img src="{{rgp.argazkia.get_newsprofile_url}}" /></a>
