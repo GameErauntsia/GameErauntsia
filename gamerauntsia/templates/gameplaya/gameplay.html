@@ -59,13 +59,13 @@
         {% if related_gps %}
             <h3>GamePlay +</h3>
             {% for rgp in related_gps %}
-                <div class="imageHolder">
-                    <a href="{{rgp.get_absolute_url}}">
-                        <img class="img-responsive" src="{{rgp.argazkia.get_gp_thumbnail_url}}">
-                    </a> 
-                    <div class="caption">
-                        {{rgp.izenburua}}
-                    </div> 
+                <div class="row bloglist">
+                    <div class="col-lg-4">
+                        <a href="{{rgp.get_absolute_url}}"><img src="{{rgp.argazkia.get_gp_thumbnail_url}}" /></a>
+                    </div>
+                    <div class="col-lg-8">
+                        <p><strong><a href="{{rgp.get_absolute_url}}">{{rgp.izenburua}}</strong></a><p>
+                    </div>
                 </div>
             {% endfor %}
         {% endif %}
