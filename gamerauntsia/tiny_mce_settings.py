@@ -10,7 +10,7 @@ TINYMCE_BODY_CONFIG = {
     "theme_advanced_buttons3" : "",
     "theme_advanced_toolbar_location" : "top",
     "theme_advanced_toolbar_align" : "left",
-    "plugins" : "paste,youtube",
+    "plugins" : "paste",
     "paste_auto_cleanup_on_paste" : True,
     "paste_use_dialog" : False,
     "forced_root_block" : "",  
