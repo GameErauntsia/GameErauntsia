@@ -21,9 +21,9 @@ urlpatterns = patterns('',
 
     # JOKALARIAK
     url(r'^nor-gara/', include('gamerauntsia.gamer.urls')),
-    url(r'^erabiltzaileak/$', 'gamerauntsia.gamer.views.community', name='komunitatea'),
-    (r'^erabiltzaileak/', include('cssocialuser.urls')),
-    (r'^erabiltzaileak/', include('registration.urls')),
+    url(r'^komunitatea/$', 'gamerauntsia.gamer.views.community', name='komunitatea'),
+    (r'^komunitatea/', include('cssocialuser.urls')),
+    (r'^komunitatea/', include('registration.urls')),
 
     # FOROA
     url(r'^foroa/', include('django_simple_forum.urls')),
@@ -51,9 +51,9 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += patterns('gamerauntsia.gamer.views',
-    url(r'^erabiltzaileak/editatu-profil-jakin$','edit_notifications', name='edit_profile_noti'), 
-    url(r'^erabiltzaileak/editatu-profil-plat$','edit_platform', name='edit_profile_plat'),  
-    url(r'^erabiltzaileak/(?P<username>[-\w]+)$', 'guestprofile', name='gamer_guestprofile'), 
+    url(r'^komunitatea/editatu-profil-jakin$','edit_notifications', name='edit_profile_noti'), 
+    url(r'^komunitatea/editatu-profil-plat$','edit_platform', name='edit_profile_plat'),  
+    url(r'^komunitatea/(?P<username>[-\w]+)$', 'guestprofile', name='gamer_guestprofile'), 
 )
 
 
