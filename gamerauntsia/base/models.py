@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.core.mail import send_mail
+from django.core.mail import send_mail, mail_admins
 from django_simple_forum.models import Post, Topic
 from django.db.models.signals import post_save
 from django.contrib.contenttypes.models import ContentType
@@ -42,7 +42,7 @@ def send_comment_email(sender,instance,**kwargs):
 def send_newuser_email(sender,instance,**kwargs):
     if kwargs['created']:
         message = 'Erabiltzaile bat sortu dute: \n\n%skudeatu/gamer/gameruser/%s' % (settings.HOST,instance.id)
-        send_mail('[Game Erauntsia - '+instance.username+']', message, settings.DEFAULT_FROM_EMAIL, settings.ADMINS)
+        mail_admins('[Game Erauntsia - '+instance.username+']', message)
 
 
 
