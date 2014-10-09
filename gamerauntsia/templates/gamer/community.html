@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load comments pagination_tags %}
+{% load pagination_tags %}
 
 {%block title%}Komunitatea - {%endblock%}
 
@@ -17,10 +17,10 @@
     <div class="col-md-4 portfolio-item">
 	    <div class="row">
 	        <div class="col-xs-12 col-sm-4 text-center">
-				<a href="{% 'gamer_guestprofile' user_prof.username %}"><img src="{{user_prof.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive"></a>
+				<a href="{% url 'gamer_guestprofile' user_prof.username %}"><img src="{{user_prof.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive"></a>
 			</div><!--/col--> 
 			<div class="col-xs-12 col-sm-8">
-				<a href="{% 'gamer_guestprofile' user_prof.username %}"><h2>{{user_prof.getFullName}}
+				<a href="{% url 'gamer_guestprofile' user_prof.username %}"><h2>{{user_prof.getFullName}}
 				{% if user_prof.twitter_id or user_prof.nickname %}
 				<small>{% if user_prof.twitter_id %}@{{user_prof.twitter_id}}{% else %}{{user_prof.nickname}}{% endif %}</small>
 				{% endif %}
