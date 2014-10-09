@@ -21,7 +21,7 @@ urlpatterns = patterns('',
 
     # JOKALARIAK
     url(r'^nor-gara/', include('gamerauntsia.gamer.urls')),
-    url(r'^erabiltzaileak/$', RedirectView.as_view(url='/nor-gara/', permanent=False)),
+    url(r'^erabiltzaileak/$', 'gamerauntsia.gamer.views.community', name='komunitatea'),
     (r'^erabiltzaileak/', include('cssocialuser.urls')),
     (r'^erabiltzaileak/', include('registration.urls')),
 

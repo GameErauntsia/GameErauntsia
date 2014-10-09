@@ -38,6 +38,10 @@ def guestprofile(request,username):
     return render_to_response('gamer/profile.html', locals(),context_instance=RequestContext(request))
 
 
+def community(request):
+    users = GamerUser.objects.filter(username=username,is_active=True)
+    return render_to_response('gamer/community.html', locals(),context_instance=RequestContext(request))
+
 
 @login_required
 def edit_notifications(request):
