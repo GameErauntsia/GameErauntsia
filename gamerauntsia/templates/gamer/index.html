@@ -17,6 +17,7 @@
         <h2 class="page-header">Gure taldea</h2>
     </div>
 
+    <div class="col-lg-12">
     {% for user in users %}
     {% if user.is_staff and user.is_active %}
         {% if forloop.first %}<div class="row">{% endif %}
@@ -29,9 +30,10 @@
             </div>
 
         {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
-    {% if forloop.last %}</div>{% endif %}
+        {% if forloop.last %}</div>{% endif %}
     {% endif %}
     {% endfor %}
+    </div>
     
     <div class="col-lg-12">
         <h2 class="page-header">Dohaintza bat egin</h2>
