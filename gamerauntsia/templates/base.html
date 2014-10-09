@@ -49,10 +49,8 @@
                     <li {% if request.path|contains:"/gameplayak/" %}class="active"{% endif %}><a href="/gameplayak">Game Playak</a></li>
                     <li {% if request.path|contains:"/bloga/" %}class="active"{% endif %}><a href="/bloga" title="Berriak">Bloga</a></li>
                     <li {% if request.path|contains:"/foroa/" %}class="active"{% endif %}><a href="/foroa" title="Foroa">Foroa</a></li>
-                    <li>
-                    <ul class="list-unstyled">
-                        <li class="dropdown {% if request.path|contains:"/nor-gara/" %}active{% endif %}">
-                            <a href="/nor-gara" class="dropdown-toggle" data-toggle="dropdown">Nor gara <b class="caret"></b></a>
+                    <li class="{% if request.path|contains:"/nor-gara/" %}active{% endif %}">
+                        <a href="/nor-gara" class="dropdown-toggle" data-toggle="dropdown">Nor gara <b class="caret"></b></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{% url 'komunitatea' %}" title="Komunitatea">Komunitatea</a></li>
                             </ul>
