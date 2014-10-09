@@ -30,6 +30,7 @@
 					</p>
 					{% if user_prof.getplatforms %}
 					<p>
+						<strong>Gustuko plataformak:</strong> 
 						<ul class="list-unstyled">
 	                    {% for plat in user_prof.getplatforms %}
 	                    	<li><img src="{{STATIC_URL}}img/plataformak/{{plat.plataforma}}.png"/> {{plat.nick}}</li>
