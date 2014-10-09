@@ -15,8 +15,9 @@
 				<div class="col-xs-12 col-sm-8">
 					<h2>{{user_prof.getFullName}}
 					{% if user_prof.twitter_id or user_prof.nickname %}
-					<small>{% if user_prof.twitter_id %}@{{user_prof.twitter_id}}{% else %}{{user_prof.nickname}}{% endif %}</small></h2>
+					<small>{% if user_prof.twitter_id %}@{{user_prof.twitter_id}}{% else %}{{user_prof.nickname}}{% endif %}</small>
 					{% endif %}
+					</h2>
 					<p>{% if user_prof.bio%}{{user_prof.bio}}{% else %}<div class="alert alert-success" role="alert"><strong>Profila erdi hutsik dago!</strong> Bete itzazu zure datu batzuk, besteek ere zurekin jolas eta hitz egin dezaten!</div>{% endif %}</p>
 					{% if user_prof.getplatforms %}
 					<p>
