@@ -6,6 +6,7 @@
 {% block content %}
 <div class="col-lg-12">
     {% for user_prof in users %}
+    {% if forloop.first %}<div class="row">{% endif %}
     <div class="col-md-4 portfolio-item">
 	    <div class="row">
 	        <div class="col-xs-12 col-sm-4 text-center">
@@ -20,6 +21,8 @@
 			</div>          
 	  	</div>
     </div>
+    {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
+    {% if forloop.last %}</div>{% endif %}
     {% endfor %}
 </div>
 {% endblock %}
