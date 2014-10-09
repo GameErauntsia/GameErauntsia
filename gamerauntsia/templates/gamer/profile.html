@@ -30,12 +30,15 @@
 					</p>
 					{% if user_prof.getplatforms %}
 					<p>
-						<strong>Gustuko plataformak:</strong> 
-						<ul class="list-unstyled">
-	                    {% for plat in user_prof.getplatforms %}
-	                    	<li><img src="{{STATIC_URL}}img/plataformak/{{plat.plataforma}}.png"/> {{plat.nick}}</li>
-	                    {% endfor %}
-	                    </ul>
+						<strong>Gustuko plataformak:</strong>
+		                    {% for plat in user_prof.getplatforms %}
+			                    {% if forloop.first %}
+			                    <div class="col-lg-6"><ul class="list-unstyled">
+			                    {%endif%}
+			                    	<li><img src="{{STATIC_URL}}img/plataformak/{{plat.plataforma}}.png"/> {{plat.nick}}</li>
+			                {% if forloop.counter|divisibleby:6 %}</ul></div><div class="col-lg-6"><ul class="list-unstyled">{% endif %}
+    						{% if forloop.last %}</ul></div>{% endif %}
+		                    {% endfor %}
 					</p>
 					{% endif %}
 					{% if categs or bcategs %}
