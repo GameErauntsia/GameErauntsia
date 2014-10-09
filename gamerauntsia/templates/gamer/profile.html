@@ -31,14 +31,16 @@
 					{% if user_prof.getplatforms %}
 					<p>
 						<strong>Gustuko plataformak:</strong>
+						<div class="row">
 		                    {% for plat in user_prof.getplatforms %}
 			                    {% if forloop.first %}
 			                    <div class="col-lg-6"><ul class="list-unstyled">
 			                    {%endif%}
 			                    	<li><img src="{{STATIC_URL}}img/plataformak/{{plat.plataforma}}.png"/> {{plat.nick}}</li>
-			                {% if forloop.counter|divisibleby:6 %}</ul></div><div class="col-lg-6"><ul class="list-unstyled">{% endif %}
+			                {% if forloop.counter|divisibleby:4 %}</ul></div><div class="col-lg-6"><ul class="list-unstyled">{% endif %}
     						{% if forloop.last %}</ul></div>{% endif %}
 		                    {% endfor %}
+		                </div>
 					</p>
 					{% endif %}
 					{% if categs or bcategs %}
