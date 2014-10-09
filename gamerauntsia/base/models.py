@@ -42,7 +42,7 @@ def send_comment_email(sender,instance,**kwargs):
 def send_newuser_email(sender,instance,**kwargs):
     if kwargs['created']:
         message = 'Erabiltzaile bat sortu dute: \n\n%skudeatu/gamer/gameruser/%s' % (settings.HOST,instance.id)
-        send_mail('[Game Erauntsia - '+instance.username+']', message, settings.DEFAULT_FROM_EMAIL, [settings.ADMINS])
+        send_mail('[Game Erauntsia - '+instance.username+']', message, settings.DEFAULT_FROM_EMAIL, settings.ADMINS)
 
 
 
