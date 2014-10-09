@@ -10,7 +10,7 @@
     </h1>
     <p>Zaletasun berdin batek bildu gaituen komunitate bat gara. Bideo jokoak ditugu gustuko eta horien inguruan sortzen diren albiste eta berrikuntzak ditugu gustuko. Euskal gamer taldea gara gu, <span class="text-success">Game Erauntsia</span>.</p>
     <p>Bideo jokoak gustuko dituzula? Zeren zain zaude! Hemen denetarik aurkituko duzu eta gainera euskaraz! Gozatu gure komunitatean parte hartuz eta animatzen bazara zuk ere zure txoko propioa izan dezakezu gure taldean! Zer animatzen?</p>
-</div><br/>
+</div><br/><br/>
 <div class="col-lg-12">
     {% for user_prof in users %}
     {% if forloop.first %}<div class="row">{% endif %}
@@ -29,7 +29,7 @@
 	  	</div>
     </div>
     {% if forloop.counter|divisibleby:3 %}</div><hr/><div class="row">{% endif %}
-    {% if forloop.last %}</div>{% endif %}
+    {% if forloop.last %}</div><hr/>{% endif %}
     {% endfor %}
 </div>
 {% endblock %}
