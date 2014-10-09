@@ -4,6 +4,7 @@ from django_simple_forum.models import Post, Topic
 from django.db.models.signals import post_save
 from django.contrib.contenttypes.models import ContentType
 from django_comments.models import Comment
+from gamerauntsia.gamer.models import GamerUser
 
 def send_post_email(sender,instance,**kwargs):
     if kwargs['created']:
@@ -38,7 +39,14 @@ def send_comment_email(sender,instance,**kwargs):
             if not instance.user.email == creator['user__email'] and instance.user.email_notification:
                 send_mail('[Game Erauntsia - Iruzkin berria]', message, settings.DEFAULT_FROM_EMAIL, [creator['user__email']])
 
+def send_newuser_email(sender,instance,**kwargs):
+    if kwargs['created']:
+        message = 'Erabiltzaile bat sortu dute: \n\n%skudeatu/gamer/gameruser/%s' % (settings.HOST,instance.id)
+        send_mail('[Game Erauntsia - '+instance.title+']', message, settings.DEFAULT_FROM_EMAIL, [settings.ADMINS])
+
+
 
 post_save.connect(send_topic_email, sender=Topic)
 post_save.connect(send_post_email, sender=Post)
 post_save.connect(send_comment_email, sender=Comment)
+post_save.connect(send_newuser_email, sender=GamerUser)
