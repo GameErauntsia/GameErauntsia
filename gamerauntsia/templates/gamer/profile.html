@@ -18,7 +18,16 @@
 					<small>{% if user_prof.twitter_id %}@{{user_prof.twitter_id}}{% else %}{{user_prof.nickname}}{% endif %}</small>
 					{% endif %}
 					</h2>
-					<p>{% if user_prof.bio%}{{user_prof.bio}}{% else %}<div class="alert alert-success" role="alert"><strong>Profila erdi hutsik dago!</strong> Bete itzazu zure datu batzuk, besteek ere zurekin jolas eta hitz egin dezaten!</div>{% endif %}</p>
+					<p>{% if user_prof.bio%}{{user_prof.bio}}
+						{% else %}
+	                        {% if user_prof == user %}
+							<div class="alert alert-success" role="alert"><strong>Profila erdi hutsik dago!</strong> Bete itzazu zure datu batzuk, besteek ere zurekin jolas eta hitz egin dezaten!</div>
+							<p>Bete zure datuak <a href="{% url 'cssocialuser_edit_profile' %}">zure profila</a> editatuz.<p>
+							{% else %}
+							<div class="alert alert-success" role="alert"><strong>Sentitzen dugu!</strong> Erabiltzaile honek ez ditu profileko datu guztiak bete!</div>
+							{% endif %}
+						{% endif %}
+					</p>
 					{% if user_prof.getplatforms %}
 					<p>
 						<ul class="list-unstyled">
