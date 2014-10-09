@@ -28,6 +28,16 @@
 							{% endif %}
 						{% endif %}
 					</p>
+					{% if categs or bcategs %}
+					<p><strong>Kategoriak: </strong>
+						{% for cat in categs %}
+						<span class="label label-info tags"><a href="{% url 'gameplay_category' cat.kategoria__izena|slugify %}">{{cat.kategoria__izena}}</a></span> 
+						{% endfor %}
+						{% for bcat in bcategs %}
+						<span class="label label-success tags">{{bcat.gaia__izena}}</span> 
+						{% endfor %}
+					</p>
+					{% endif %}
 					{% if user_prof.getplatforms %}
 					<p>
 						<strong>Gustuko plataformak:</strong>
@@ -41,16 +51,6 @@
     						{% if forloop.last %}</ul></div>{% endif %}
 		                    {% endfor %}
 		                </div>
-					</p>
-					{% endif %}
-					{% if categs or bcategs %}
-					<p><strong>Kategoriak: </strong>
-						{% for cat in categs %}
-						<span class="label label-info tags"><a href="{% url 'gameplay_category' cat.kategoria__izena|slugify %}">{{cat.kategoria__izena}}</a></span> 
-						{% endfor %}
-						{% for bcat in bcategs %}
-						<span class="label label-success tags">{{bcat.gaia__izena}}</span> 
-						{% endfor %}
 					</p>
 					{% endif %}
 					{% if user_prof.is_staff %}
