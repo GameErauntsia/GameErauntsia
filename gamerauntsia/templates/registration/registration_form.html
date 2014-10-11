@@ -2,7 +2,7 @@
 <script type="text/javascript" src="{{STATIC_URL}}/js/ajax_login.js"></script>
 
 <h2>Sortu kontu berria</h2>
-<form action="/erabiltzaileak/accounts/register/" id="register_form" method="POST">
+<form action="/komunitatea/accounts/register/" id="register_form" method="POST">
 {% csrf_token %}
 
 <div id="valid">{% if request.POST.email %}{% if form.errors %}
