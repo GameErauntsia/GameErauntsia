@@ -15,6 +15,7 @@ from photologue.models import Photo
 from gamerauntsia.gamer.forms import NotifyForm,GameForm
 from django.utils.translation import ugettext as _
 from django.forms.models import modelformset_factory
+from datetime import datetime
 
 def index(request):
     users = GamerUser.objects.filter(is_active=True,is_staff=True).order_by('-date_joined')
@@ -22,7 +23,7 @@ def index(request):
     
 def profile(request,username):
     user_prof = get_object_or_404(GamerUser,username=username)
-    gameplayak = GamePlaya.objects.filter(publikoa_da=True,erabiltzailea=user_prof).order_by('-pub_date')
+    gameplayak = GamePlaya.objects.filter(publikoa_da=True,erabiltzailea=user_prof, pub_date__lt=datetime.now()).order_by('-pub_date')
     gp_count = len(gameplayak)
     categs = GamePlaya.objects.filter(publikoa_da=True,erabiltzailea=user_prof).values('kategoria__izena',).annotate(count=Count('id'))
     berriak = Berria.objects.filter(publikoa_da=True,erabiltzailea=user_prof).order_by('-pub_date')
