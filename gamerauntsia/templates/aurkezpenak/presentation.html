@@ -15,7 +15,7 @@
     <h1>{{item.izena}}</h1>
     <p class="footer">
       {{item.erabiltzailea.getFullName}}, 
-      {% if item.erabiltzailea.twitter_id %}<a href="http://twitter.com/">@twitter</a> | {% endif %}
+      {% if item.erabiltzailea.twitter_id %}<a href="http://twitter.com/{{item.erabiltzailea.twitter_id}}">@{{item.erabiltzailea.twitter_id}}</a> | {% endif %}
       <a href="mailto:{{item.erabiltzailea.email}}">{{item.erabiltzailea.email}}</a>
     </p>
   </header>
