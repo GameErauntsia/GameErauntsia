@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load pagination_tags include comments %}
+
+{% block title %}Aurkezpenak - {% endblock %}
+
+{% block content%}
+
+<div class="col-lg-12">
+    <h1 class="page-header">
+        Aurkezpenak
+        <small>
+        
+        </small>
+    </h1>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <ul class="list-unstyled">
+        {% for item in items %}
+        <li><a href="{% url 'aurkezpena' item.slug %}">item.izena</a></li>
+        {% endfor %}
+        </ul>
+    </div>
+
+    <div class="col-lg-4">
+        
+    </div>
+</div>
+
+{%endblock%}
