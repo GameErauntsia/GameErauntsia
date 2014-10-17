@@ -7,7 +7,7 @@ from django.template import defaultfilters as filters
 class Aurkezpena(models.Model):
     izena = models.CharField(max_length=64)
     slug = models.SlugField(db_index=True, unique=True, help_text="Eremu honetan aurkezpen honen URL helbidea zehazten ari zara.")
-    abstract = models.TextField(max_length=256)
+    abstract = models.TextField(max_length=256,null=True,blank=True)
     slides = models.TextField()
 
     erabiltzailea = models.ForeignKey(GamerUser)
