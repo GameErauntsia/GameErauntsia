@@ -11,4 +11,4 @@ def index(request):
 
 def aurkezpena(request,slug):
     item = get_object_or_404(Aurkezpena,slug=slug)
-    return render_to_response('aurkezpenak/'+item.template_name, locals(),context_instance=RequestContext(request))
+    return render_to_response('aurkezpenak/presentation.html', locals(),context_instance=RequestContext(request))
