@@ -15,8 +15,8 @@
     <h1>{{item.izena}}</h1>
     <p class="footer">
       {{item.erabiltzailea.getFullName}}, 
-      {your <a href="http://twitter.com/">@twitter</a> or 
-      <a href="mailto:you@email.com">you@email.com</a>}
+      {% if item.erabiltzailea.twitter_id %}<a href="http://twitter.com/">@twitter</a> | {% endif %}
+      <a href="mailto:{{item.erabiltzailea.email}}">{{item.erabiltzailea.email}}</a>
     </p>
   </header>
 
@@ -29,7 +29,7 @@
   </aside>
 
 
-  {{item.slides}}
+  {{item.slides|safe}}
 
   <div class="progress"><div></div></div>
   <script src="{{STATIC_URL}}js/mozilla/script.js"></script>
