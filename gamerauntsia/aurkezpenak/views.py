@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404
 from gamerauntsia.aurkezpenak.models import Aurkezpena
 
 def index(request):
-	items = Aurkezpena.objects.all()
+    items = Aurkezpena.objects.all()
     return render_to_response('aurkezpenak/index.html', locals(),context_instance=RequestContext(request))
 
 def aurkezpena(request,slug):
