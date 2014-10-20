@@ -12,6 +12,7 @@ class GamePlayAdmin(admin.ModelAdmin):
     raw_id_fields = ('argazkia','jokoa','plataforma','erabiltzailea')
     list_filter = ('erabiltzailea','zailtasuna', 'publikoa_da')
     search_fields = ['erabiltzailea__fullname','erabiltzailea__username','izenburua']
+    ordering = ('-pub_date',)
     form = GamePlayAdminForm
 
     def queryset(self, request):

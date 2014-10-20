@@ -9,6 +9,7 @@ class BarriakAdmin(admin.ModelAdmin):
     list_filter = ('erabiltzailea', 'publikoa_da')
     search_fields = ['erabiltzailea__username','erabiltzailea__fullname','izenburua']
     raw_id_fields = ('argazkia','erabiltzailea')
+    ordering = ('-pub_date',)
     form = BerriaAdminForm	
 
     def queryset(self, request):
