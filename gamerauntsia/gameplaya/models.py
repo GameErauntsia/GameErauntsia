@@ -86,6 +86,13 @@ class GamePlaya(models.Model):
         else:
             return self.izenburua + ' ' + self.get_absolute_url()
 
+    def save(self, *args, **kwargs):
+        if not self.izenburua[0].isupper():
+            self.izenburua[0].upper()
+        if not self.desk[0].isupper():
+            self.desk[0].upper()
+        super(GamePlaya,self).save(*args,**kwargs)
+
     class Meta:    
         verbose_name = "gameplaya"
         verbose_name_plural = "gameplayak"
