@@ -19,6 +19,7 @@ PLATFORM = (
     ('archeage','Archeage'),
     ('wow','World of Warcraft'),
     ('bnet','Battlenet'),
+    ('minecraft','Minecraft'),
 )
 
 class GamerUser(CSAbstractSocialUser):
