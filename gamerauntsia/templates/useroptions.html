@@ -8,7 +8,7 @@
 	</a>
 	<ul  class="dropdown-menu pull-right">
 		<li><a href="{% url 'gamer_profile' user.username  %}">{{user.getFullName}}</a></li>
-        {% if user.is_gamer or user.is_superuser %}<li><a href="/kudeatu">Admin gunea</a></li>{% endif %}
+        {% if user.is_staff or user.is_superuser %}<li><a href="/kudeatu">Admin gunea</a></li>{% endif %}
 		<li><a href="{% url 'cssocialuser_edit_profile' %}">Profila editatu</a></li>
 		<li><a href="{% url 'auth_logout' %}?next=/">Irten</a></li>
 	</ul>
