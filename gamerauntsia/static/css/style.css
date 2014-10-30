@@ -105,6 +105,10 @@ filter: none;
     border:2px solid #149845 !important;
 }
 
+#useroptions.login {
+  color: #fff;
+}
+
 .row.bloglist {
   margin-bottom: 10px;
 }
@@ -147,8 +151,4 @@ filter: none;
   color: #fff;
   cursor: default;
   z-index: 2;
-}
-
-.login {
-  color: #fff;
 }
