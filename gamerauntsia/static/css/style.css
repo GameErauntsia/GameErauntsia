@@ -105,7 +105,7 @@ filter: none;
     border:2px solid #149845 !important;
 }
 
-#useroptions.login {
+#useroptions a.login {
   color: #fff;
 }
 
