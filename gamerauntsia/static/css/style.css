@@ -140,3 +140,11 @@ filter: none;
   margin-top: 10px;
   max-width: 250px;
 }
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+  background-color: #149845;
+  border-color: #149845;
+  color: #fff;
+  cursor: default;
+  z-index: 2;
+}
