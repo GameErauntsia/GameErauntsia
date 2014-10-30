@@ -135,3 +135,8 @@ filter: none;
   position: relative;
   text-align: center;
 }
+
+.search-query {
+  margin-top: 10px;
+  max-width: 250px;
+}
