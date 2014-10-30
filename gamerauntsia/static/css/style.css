@@ -109,6 +109,12 @@ filter: none;
   color: #fff;
 }
 
+#useroptions a.login:hover {
+  background-color: #19ae51;
+  border-color: #0f843c;
+  color: #fff;
+}
+
 .row.bloglist {
   margin-bottom: 10px;
 }
