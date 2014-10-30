@@ -148,3 +148,7 @@ filter: none;
   cursor: default;
   z-index: 2;
 }
+
+.login {
+  color: #fff;
+}

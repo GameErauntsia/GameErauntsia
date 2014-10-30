@@ -13,6 +13,6 @@
 		<li><a href="{% url 'auth_logout' %}?next=/">Irten</a></li>
 	</ul>
 {%else%}
-    <a class="btn" href="{% url 'auth_login' %}?next={{request.path}}" title="Log in">
+    <a class="login btn btn-primary" href="{% url 'auth_login' %}?next={{request.path}}" title="Log in">
 		{% trans 'Log in' %}</a>
 {%endif%}
