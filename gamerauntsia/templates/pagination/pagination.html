@@ -7,23 +7,23 @@
         {% if page_obj.has_previous %}
             <li><a href="?page={{ page_obj.previous_page_number }}{{ getvars }}">&lsaquo; Aurrekoa</a></li>
         {% else %}
-            <li><a href="#">&lsaquo; Aurrekoa</a></li>
+            <li class="disabled"><a href="#">&lsaquo; Aurrekoa</a></li>
         {% endif %}
         {% for page in pages %}
             {% if page %}
                 {% ifequal page page_obj.number %}
-                    <li class="current page"><a href="#">{{ page }}</a></li>
+                    <li class="active"><a href="#">{{ page }}</a></li>
                 {% else %}
                     <li><a href="?page={{ page }}{{ getvars }}" class="page">{{ page }}</a></li>
                 {% endifequal %}
             {% else %}
-                ...
+                <li>...</li>
             {% endif %}
         {% endfor %}
         {% if page_obj.has_next %}
             <li><a href="?page={{ page_obj.next_page_number }}{{ getvars }}" class="next">Hurrengoa &rsaquo;</a></li>
         {% else %}
-            <li><a href="#">Hurrengoa &rsaquo;</a></li>
+            <li class="disabled" ><a href="#">Hurrengoa &rsaquo;</a></li>
         {% endif %}
         </ul>
     </div>
