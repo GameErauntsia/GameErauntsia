@@ -32,12 +32,14 @@
         <div class="col-lg-4">
             <div class="well">
                 {% if item.insk_date|irekita %}
-                <h3>Izena eman</h3>
-                <a href="#" class="btn btn-default">Parte hartu!</a>
-                <h3>Partaideak</h3>
-                {% for user in item.jokalariak.all %}
-                <p><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.fullname}}</a></p>
-                {% endfor %}
+                    {% if user not in item.jokalariak.all %}
+                    <h3>Izena eman</h3>
+                    <a href="#" class="btn btn-default">Parte hartu!</a>
+                    {% endif %}
+                    <h3>Partaideak</h3>
+                    {% for user in item.jokalariak.all %}
+                    <p><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.fullname}}</a></p>
+                    {% endfor %}
                 {% endif %}
             </div>
         </div>
