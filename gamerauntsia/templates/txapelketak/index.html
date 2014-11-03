@@ -21,7 +21,7 @@
 
                 <div class="col-md-6 portfolio-item">
                     <a href="{{tx.get_absolute_url}}">
-                        <img class="img-responsive" src="{{tx.argazkia.get_tx_thumbnail_url}}">
+                        <img class="img-responsive" src="{{tx.irudia.get_gp_thumbnail_url}}">
                     </a>
                     <h3><a href="{{tx.get_absolute_url}}">{{tx.izena}}</a></h3>
                     <p><span class="glyphicon glyphicon-play"></span> {% if tx.jokoa.url %}<a href="{{tx.jokoa.url}}">{{tx.jokoa.izena}} {%if tx.jokoa.bertsioa %}{{tx.jokoa.bertsioa}}{% endif %}</a>{% else %}{{tx.jokoa}}{% endif%} | {{tx.get_mota_display}} | {{tx.get_modalitatea_display}}{% if comment_count %} | <a href="{{tx.get_absolute_url}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}</p>
