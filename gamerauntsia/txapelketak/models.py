@@ -38,6 +38,9 @@ class Txapelketa(models.Model):
             return filters.striptags(self.desk)[:150]+'...'
         return filters.striptags(self.desk)
 
+    def get_absolute_url(self):
+        return '%stxapelketak/%s' % (settings.HOST, self.slug)
+
     class Meta:
         verbose_name = "Txapelketa"
         verbose_name_plural = "Txapelketak"
