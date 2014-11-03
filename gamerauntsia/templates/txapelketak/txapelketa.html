@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load pagination_tags include comments %}
+{% load emoticons_tags include comments %}
 
 {% block title %}{{item.izena}} - {% endblock %}
 
@@ -11,9 +11,9 @@
         </div>
 
         <div class="col-lg-8">
-            {% if item.argazkia %}
-            <a class="fancybox" href="{{item.argazkia.image.url}}">
-                <img src="{{item.argazkia.get_blog_url}}" class="img-responsive"/>
+            {% if item.irudia %}
+            <a class="fancybox" href="{{item.irudia.image.url}}">
+                <img src="{{item.irudia.get_blog_url}}" class="img-responsive"/>
             </a>
             <hr>
             {% endif %}
