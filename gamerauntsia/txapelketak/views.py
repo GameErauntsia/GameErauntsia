@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404
 from gamerauntsia.txapelketak.models import *
 
 def index(request):
-    items = Txapelketak.objects.all()
+    items = Txapelketa.objects.all()
     return render_to_response('txapelketak/index.html', locals(),context_instance=RequestContext(request))
 
 def txapelketa(request,slug):
