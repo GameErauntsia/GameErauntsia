@@ -26,9 +26,9 @@ class Txapelketa(models.Model):
     mota = models.CharField(max_length=1, choices=MOTA, default='0')
     modalitatea = models.CharField(max_length=1, choices=MODALITATEA, default='0')
     
-    jokalariak = models.ManyToManyField(GamerUser,verbose_name="Inskripzioa",null=True,blank=True)
+    jokalariak = models.ManyToManyField(GamerUser,related_name="jokalariak",verbose_name="Inskripzioa",null=True,blank=True)
     jokoa = models.ForeignKey(Jokoa)
-    erabiltzailea = models.ForeignKey(GamerUser,verbose_name="Egilea")
+    erabiltzailea = models.ForeignKey(GamerUser,related_name="erabiltzailea",verbose_name="Egilea")
 
     publikoa_da = models.BooleanField(default=True) 
     pub_date = models.DateTimeField('Publikazio data', default=datetime.now)
