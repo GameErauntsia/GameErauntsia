@@ -11,6 +11,21 @@
         </div>
 
         <div class="col-lg-8">
+            {% if item.argazkia %}
+            <a class="fancybox" href="{{item.argazkia.image.url}}">
+                <img src="{{item.argazkia.get_blog_url}}" class="img-responsive"/>
+            </a>
+            <hr>
+            {% endif %}
+            {% if user.is_authenticated %}
+            {% if user.is_superuser or user == item.erabiltzailea %}
+            <div class="well">
+                <h3>Editatu txapelketa</h3>
+                <a class="btn btn-default" href="/kudeatu/txapelketak/txapelketa/{{item.id}}">Editatu</a>
+            </div>
+            {% endif %}
+            {% endif %}
+            <p class="lead">{{item.desk|safe|emoticons}}</p>
             
         </div>
 
