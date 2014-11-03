@@ -5,6 +5,7 @@ from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.jokoa.models import Jokoa
 from gamerauntsia.gameplaya.models import GamePlaya
 from datetime import datetime
+from django.template import defaultfilters as filters
 
 MOTA = (
     ('0','Kanporaketa'),
