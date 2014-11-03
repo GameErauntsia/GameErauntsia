@@ -24,7 +24,7 @@
                         <img class="img-responsive" src="{{tx.argazkia.get_tx_thumbnail_url}}">
                     </a>
                     <h3><a href="{{tx.get_absolute_url}}">{{tx.izenburua}}</a></h3>
-                    <p><span class="glyphicon glyphicon-play"></span> {% if tx.jokoa.url %}<a href="{{tx.jokoa.url}}">{{tx.jokoa.izena}} {%if tx.jokoa.bertsioa %}{{tx.jokoa.bertsioa}}{% endif %}</a>{% else %}{{tx.jokoa}}{% endif%} | <span class="glyphicon glyphicon-time"></span> {{tx.iraupena_min}}min {{tx.iraupena_seg}}seg | <img src="{{tx.plataforma.icon.get_profilesmall_url}}" alt="{{tx.plataforma.izena}}" caption="{{tx.plataforma.izena}}"/>{% if comment_count %} | <a href="{{tx.get_absolute_url}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}</p>
+                    <p><span class="glyphicon glyphicon-play"></span> {% if tx.jokoa.url %}<a href="{{tx.jokoa.url}}">{{tx.jokoa.izena}} {%if tx.jokoa.bertsioa %}{{tx.jokoa.bertsioa}}{% endif %}</a>{% else %}{{tx.jokoa}}{% endif%} | {{tx.mota}} | {{tx.modalitatea}}{% if comment_count %} | <a href="{{tx.get_absolute_url}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}</p>
                     <p>{{tx.get_desk_txikia|safe}}</p>
                 </div>
 

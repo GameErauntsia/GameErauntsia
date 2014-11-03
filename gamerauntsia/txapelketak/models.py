@@ -32,6 +32,11 @@ class Txapelketa(models.Model):
     pub_date = models.DateTimeField('Publikazio data', default=datetime.now)
     insk_date = models.DateTimeField('Izen ematea', default=datetime.now)
 
+    def get_desk_txikia(self):
+        if len(self.desk) > 150:
+            return filters.striptags(self.desk)[:150]+'...'
+        return filters.striptags(self.desk)
+
     class Meta:
         verbose_name = "Txapelketa"
         verbose_name_plural = "Txapelketak"
