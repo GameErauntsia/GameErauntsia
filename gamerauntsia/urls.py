@@ -25,6 +25,12 @@ urlpatterns = patterns('',
     (r'^komunitatea/', include('cssocialuser.urls')),
     (r'^komunitatea/', include('registration.urls')),
 
+    #AURKEZPENAK
+    (r'^aurkezpenak/', include('gamerauntsia.aurkezpenak.urls')),
+
+    #TXAPELKETAK
+    (r'^txapelketak/', include('gamerauntsia.txapelketak.urls')),
+
     # FOROA
     url(r'^foroa/', include('django_simple_forum.urls')),
 
@@ -41,9 +47,6 @@ urlpatterns = patterns('',
 
     #FB
     url(r'^2b27b83ad50e677714b2dd832b42acc3', include('facebookpagewriter.urls')),
-
-    #AURKEZPENAK
-    (r'^aurkezpenak/', include('gamerauntsia.aurkezpenak.urls')),
 
     # COMMENTS
     (r'^comments/', include('django_comments.urls')),
