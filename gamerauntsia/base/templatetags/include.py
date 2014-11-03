@@ -5,7 +5,7 @@ from gamerauntsia.berriak.models import Berria
 from gamerauntsia.gamer.models import GamerUser
 from django_comments.models import Comment
 from django.contrib.contenttypes.models import ContentType
-form datetime import datetime
+from datetime import datetime
 
 register = template.Library()
 
