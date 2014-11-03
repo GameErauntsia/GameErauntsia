@@ -105,6 +105,16 @@ filter: none;
     border:2px solid #149845 !important;
 }
 
+#useroptions a.login {
+  color: #fff;
+}
+
+#useroptions a.login:hover {
+  background-color: #19ae51;
+  border-color: #0f843c;
+  color: #fff;
+}
+
 .row.bloglist {
   margin-bottom: 10px;
 }
@@ -134,4 +144,17 @@ filter: none;
   height: 40px;
   position: relative;
   text-align: center;
+}
+
+.search-query {
+  margin-top: 10px;
+  max-width: 250px;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+  background-color: #149845;
+  border-color: #149845;
+  color: #fff;
+  cursor: default;
+  z-index: 2;
 }
