@@ -5,6 +5,7 @@ from gamerauntsia.berriak.models import Berria
 from gamerauntsia.gamer.models import GamerUser
 from django_comments.models import Comment
 from django.contrib.contenttypes.models import ContentType
+form datetime import datetime
 
 register = template.Library()
 
@@ -106,3 +107,9 @@ def azken_erantzunak():
 @register.filter
 def ken1(value):
     return value-1
+
+@register.filter
+def irekita(value):
+    if value < datetime.now():
+        return True
+    return False 
