@@ -5,7 +5,7 @@ from gamerauntsia.berriak.models import Berria
 from gamerauntsia.gamer.models import GamerUser
 from django_comments.models import Comment
 from django.contrib.contenttypes.models import ContentType
-from datetime import datetime
+from django.utils import timezone
 
 register = template.Library()
 
@@ -110,6 +110,6 @@ def ken1(value):
 
 @register.filter
 def irekita(value):
-    if value < datetime.now():
+    if value < timezone.now():
         return True
     return False 
