@@ -1,16 +1,17 @@
 {% load emoticons_tags %}
 
 <div id="comments">
+	<p id="iruzkinak"></p>
 	<h3>Iruzkinak</h3>
-	<a name="#iruzkinak"></a>
 	{% for comment in comment_list %}
 	<div class="media">
-	        <a class="pull-left" href="{% url 'gamer_guestprofile' comment.user.username %}">
-	            <img class="media-object" src="{{comment.user.get_photo.get_comment_url}}">
-	        </a>
+		<a id="c{{comment.id}}"></a>
+        <a class="pull-left" href="{% url 'gamer_guestprofile' comment.user.username %}">
+            <img class="media-object" src="{{comment.user.get_photo.get_comment_url}}">
+        </a>
 	    <div class="media-body">
 	        <h4 class="media-heading"><a href="{% url 'gamer_guestprofile' comment.user.username %}">{{ comment.name }}</a>
-	        <small><a href="#c{{comment.id}}">{{ comment.submit_date }}</a></small>
+	        <small><a href="{{comment.get_absolute_url}}">{{ comment.submit_date }}</a></small>
 	        </h4>
 	        {{comment.comment|urlize|emoticons}}
 	    </div>
