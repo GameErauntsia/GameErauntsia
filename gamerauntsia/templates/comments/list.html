@@ -2,7 +2,7 @@
 
 <div id="comments">
 	<h3>Iruzkinak</h3>
-	<a id="#iruzkinak"></a>
+	<a name="#iruzkinak"></a>
 	{% for comment in comment_list %}
 	<div class="media">
 	        <a class="pull-left" href="{% url 'gamer_guestprofile' comment.user.username %}">
@@ -10,7 +10,7 @@
 	        </a>
 	    <div class="media-body">
 	        <h4 class="media-heading"><a href="{% url 'gamer_guestprofile' comment.user.username %}">{{ comment.name }}</a>
-	        <small>{{ comment.submit_date }}</small>
+	        <small><a href="#c{{comment.id}}">{{ comment.submit_date }}</a></small>
 	        </h4>
 	        {{comment.comment|urlize|emoticons}}
 	    </div>
