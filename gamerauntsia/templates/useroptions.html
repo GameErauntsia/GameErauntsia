@@ -4,12 +4,16 @@
 
 	<a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'gamer_profile' user.username  %}">
 		<img class="userlogged" width="30" height="30" src="{{user.get_photo.get_profilesmall_url}}" alt="{{user.username}}" />
-	<b class="caret"></b>
+		&nbsp;{% if messages_inbox_count > 0 %}{{ messages_inbox_count }}{% endif %}
+		<b class="caret"></b>
 	</a>
 	<ul  class="dropdown-menu pull-right">
 		<li><a href="{% url 'gamer_profile' user.username  %}">{{user.getFullName}}</a></li>
         {% if user.is_staff or user.is_superuser %}<li><a href="/kudeatu">Admin gunea</a></li>{% endif %}
 		<li><a href="{% url 'cssocialuser_edit_profile' %}">Profila editatu</a></li>
+		<li role="presentation" class="divider"></li>
+		<li><a href="{% url 'messages_inbox' %}">Mezuak [ {{ messages_inbox_count }} ]</a></li>
+		<li role="presentation" class="divider"></li>
 		<li><a href="{% url 'auth_logout' %}?next=/">Irten</a></li>
 	</ul>
 {%else%}

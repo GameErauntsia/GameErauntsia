@@ -1,0 +1,13 @@
+{% load i18n %}
+{% load url from future %}
+
+{% blocktrans with recipient=message.recipient sender=message.sender %}Kaixo {{ recipient }},
+
+{{ sender }} erabiltzailearen mezu bat jaso duzu gai honekin:{% endblocktrans %}
+
+{{ message.body|safe }}
+
+--
+{% blocktrans %}{{ site_url }}-etik bidalia{% endblocktrans %}
+{% trans "Inbox" %}: {{ site_url }}{% url 'messages_inbox' %}
+{% trans "Reply" %}: {{ site_url }}{% url 'messages_reply' message.pk %}

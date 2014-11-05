@@ -14,7 +14,7 @@ urlpatterns = patterns('',
 
     # GAMEPLAYAK
     url(r'^gameplayak/', include('gamerauntsia.gameplaya.urls')),
-    
+
     # BERRIAK
     url(r'^berriak/(?P<slug>[-\w]+)/$', lambda x, slug: HttpResponseRedirect(reverse('berria', args=[slug]))),
     url(r'^bloga/', include('gamerauntsia.berriak.urls'), name='bloga'),
@@ -51,12 +51,17 @@ urlpatterns = patterns('',
     # KUDEATU
     url(r'^kudeatu/', include(admin.site.urls)),
     (r'^photologue/', include('photologue.urls')),
+
+    #MEZUAK
+    (r'^mezuak/', include('django_messages.urls')),
 )
 
+
+
 urlpatterns += patterns('gamerauntsia.gamer.views',
-    url(r'^komunitatea/editatu-profil-jakin$','edit_notifications', name='edit_profile_noti'), 
-    url(r'^komunitatea/editatu-profil-plat$','edit_platform', name='edit_profile_plat'),  
-    url(r'^komunitatea/(?P<username>[-\w]+)$', 'guestprofile', name='gamer_guestprofile'), 
+    url(r'^komunitatea/editatu-profil-jakin$','edit_notifications', name='edit_profile_noti'),
+    url(r'^komunitatea/editatu-profil-plat$','edit_platform', name='edit_profile_plat'),
+    url(r'^komunitatea/(?P<username>[-\w]+)$', 'guestprofile', name='gamer_guestprofile'),
 )
 
 

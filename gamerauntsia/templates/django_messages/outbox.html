@@ -1,0 +1,37 @@
+{% extends "django_messages/base.html" %}
+{% load i18n %}
+{% load url from future %}
+
+{% block content %}
+<h1>{% trans "Igorritako mezuak" %}</h1>
+{{ block.super }}
+{% if message_list %}
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>{% trans "Hartzailea" %}</th>
+                    <th>{% trans "Gaia" %}</th>
+                    <th>{% trans "Bidalia" %}</th>
+                    <th>{% trans " " %}</th>
+                </tr>
+            </thead>
+            <tbody>
+        {% for message in message_list %}
+            <tr>
+                <td>{{ message.recipient }}</td>
+                <td>
+                <a href="{{ message.get_absolute_url }}">{{ message.subject }}</a>
+                </td>
+                <td>{{ message.sent_at|date:_("DATETIME_FORMAT") }}</td>
+                <td><a class="btn btn-sm btn-danger" href="{% url 'messages_delete' message.id %}?next={% url 'messages_outbox' %}"><i class="fa fa-trash-o"></i></a></td>
+            </tr>
+        {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+<p>{% trans "Mezurik ez dago." %}</p>
+{% endif %}
+{% endblock %}
