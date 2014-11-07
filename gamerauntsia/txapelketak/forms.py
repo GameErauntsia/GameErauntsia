@@ -6,4 +6,4 @@ class PartidaInlineForm(forms.ModelForm):
         super(PartidaInlineForm, self).__init__(*args, **kwargs)
         if self.instance:
         	self.fields['partaideak'].queryset = Partaidea.objects.filter(
-            txapelketa=self.instance.txapelketa)
+            txapelketa=self.instance)
