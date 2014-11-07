@@ -65,7 +65,7 @@
                     <tbody>
                         {% for partaide in list_sailkapena %}
                         <tr>
-                            <td>{{forloop.counter}}</td>
+                            <td>#{{forloop.counter}}</td>
                             <td><img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-circle"/> {{partaide.get_izena}}</a></td>
                             <td>{{partaide.win}}</td>
                             <td>{{partaide.lose}}</td>
@@ -89,7 +89,7 @@
                     <tbody>
                         {% for partida in item.get_partidak %}
                         <tr>
-                            <td>{{partida.jardunaldia}}</td>
+                            <td>#{{partida.jardunaldia}}</td>
                             <td>{{partida.get_partaide_list}}</td>
                             <td>{{partida.emaitza}}</td>
                             <td>{{partida.date}}</td>
