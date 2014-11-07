@@ -6,7 +6,7 @@ from gamerauntsia.gamer.models import GamerUser
 from django_comments.models import Comment
 from django.contrib.contenttypes.models import ContentType
 from django.utils import timezone
-from django_messages.models import Messages
+from django_messages.models import Message
 
 register = template.Library()
 
