@@ -43,7 +43,7 @@
                 {% else %}
                     <h3>Partaideak</h3>
                     {% for partaide in item.get_partaideak %}
-                        <p>{% if partaide.irudia %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-circle"/>{% endif %} {{partaide.get_izena}}</a></p>
+                        <p><img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-circle"/> {{partaide.get_izena}}</a></p>
                     {% endfor %}
                 {% endif %}
             </div>
