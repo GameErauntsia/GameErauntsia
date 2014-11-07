@@ -25,7 +25,7 @@
                 <a href="{{ message.get_absolute_url }}">{{ message.subject }}</a>
                 </td>
                 <td>{{ message.sent_at|date:_("DATETIME_FORMAT") }}</td>
-                <td><a class="btn btn-sm btn-danger" href="{% url 'messages_delete' message.id %}?next={% url 'messages_outbox' %}"><i class="fa fa-trash-o"></i></a></td>
+                <td><a class="btn btn-sm btn-danger" href="{% url 'messages_delete' message.id %}?next={% url 'messages_outbox' %}"><i class="glyphicon glyphicon-trash"></i></a></td>
             </tr>
         {% endfor %}
             </tbody>
