@@ -6,6 +6,7 @@ from gamerauntsia.gamer.models import GamerUser
 from django_comments.models import Comment
 from django.contrib.contenttypes.models import ContentType
 from django.utils import timezone
+from django_messages.models import Messages
 
 register = template.Library()
 
@@ -112,4 +113,7 @@ def ken1(value):
 def irekita(value):
     if value < timezone.now():
         return True
-    return False 
+    return False
+    
+def inbox_count_for(user):
+    return Message.objects.filter(recipient=user, read_at__isnull=True, recipient_deleted_at__isnull=True).count()
