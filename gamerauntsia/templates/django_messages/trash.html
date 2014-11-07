@@ -5,9 +5,9 @@
 {% block content %}
 <h1>{% trans "Ezabatutako mezuak" %}</h1>
 {{ block.super }}
-{% if message_list %}
 <div class="row">&nbsp;</div>
-    <div class="row">
+<div class="col-lg-12">
+    {% if message_list %}
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
@@ -30,9 +30,9 @@
         {% endfor %}
             </tbody>
         </table>
-    </div>
-{% else %}
-<p>{% trans "Ez dago mezurik." %}</p>
-{% endif %}
+    {% else %}
+        <p>{% trans "Ez dago mezurik." %}</p>
+    {% endif %}
+</div>
 <br />
 {% endblock %}
