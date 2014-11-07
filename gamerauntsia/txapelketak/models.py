@@ -34,7 +34,9 @@ class Txapelketa(models.Model):
     pub_date = models.DateTimeField('Publikazio data', default=datetime.now)
     insk_date = models.DateTimeField('Izen ematea', default=datetime.now)
 
-    def get_partaideak(self):
+    def get_partaideak(self,order=None):
+        if order:
+            return Partaidea.objects.filter(txapelketa=self).order_by(order)
         return Partaidea.objects.filter(txapelketa=self)
 
     def partaideak_count(self):

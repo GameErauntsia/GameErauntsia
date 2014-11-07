@@ -11,4 +11,5 @@ def index(request):
 
 def txapelketa(request,slug):
     item = get_object_or_404(Txapelketa,slug=slug)
+    list_sailkapena = item.get_partaideak('points')
     return render_to_response('txapelketak/txapelketa.html', locals(),context_instance=RequestContext(request))
