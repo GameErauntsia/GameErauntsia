@@ -42,6 +42,9 @@ class Txapelketa(models.Model):
     def partaideak_count(self):
         return get_partaideak().count()
 
+    def get_partidak(self):
+        return Partidak.objects.filter(txapelketa=self).order_by('date')
+
     def get_desk_txikia(self):
         if len(self.desk) > 150:
             return filters.striptags(self.desk)[:150]+'...'

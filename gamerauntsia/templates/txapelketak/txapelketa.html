@@ -75,6 +75,31 @@
                     </tbody>
                 </table>
             </div>
+            <h2>Egutegia</h2>
+            <div class="table-responsive">
+                <table class="table table-condensed table-hover">
+                    <thead>
+                        <tr>
+                            <th>Jardunaldia</th>
+                            <th>Partaideak</th>
+                            <th>Emaitza</th>
+                            <th>Galdutakoak</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for partida in item.get_partidak %}
+                        <tr>
+                            <td>{{partida.jardunaldia}}</td>
+                            <td></td>
+                            <td>{{partaide.win}}</td>
+                            <td>{{partaide.lose}}</td>
+                            <td>{{partaide.points}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
 </div>
 
