@@ -8,13 +8,13 @@
 		<b class="caret"></b>
 	</a>
 	<ul  class="dropdown-menu pull-right">
-		<li><span class="glyphicon glyphicon-user"></span> <a href="{% url 'gamer_profile' user.username  %}">{{user.getFullName}}</a></li>
-        {% if user.is_staff or user.is_superuser %}<li><span class="glyphicon glyphicon-pencil"></span> <a href="/kudeatu">Admin gunea</a></li>{% endif %}
-		<li><span class="glyphicon glyphicon-pencil"></span>  <a href="{% url 'cssocialuser_edit_profile' %}">Profila editatu</a></li>
+		<li><a href="{% url 'gamer_profile' user.username  %}"><span class="glyphicon glyphicon-user"></span> {{user.getFullName}}</a></li>
+        {% if user.is_staff or user.is_superuser %}<li><a href="/kudeatu"><span class="glyphicon glyphicon-pencil"></span> Admin gunea</a></li>{% endif %}
+		<li><a href="{% url 'cssocialuser_edit_profile' %}"><span class="glyphicon glyphicon-pencil"></span>  Profila editatu</a></li>
 		<li role="presentation" class="divider"></li>
-		<li><span class="glyphicon glyphicon-envelope"></span> <a href="{% url 'messages_inbox' %}">Mezuak [ {{ messages_inbox_count }} ]</a></li>
+		<li><a href="{% url 'messages_inbox' %}"><span class="glyphicon glyphicon-envelope"></span> Mezuak [ {{ messages_inbox_count }} ]</a></li>
 		<li role="presentation" class="divider"></li>
-		<li><span class="glyphicon glyphicon-off"></span> <a href="{% url 'auth_logout' %}?next=/">Irten</a></li>
+		<li><a href="{% url 'auth_logout' %}?next=/"><span class="glyphicon glyphicon-off"></span> Irten</a></li>
 	</ul>
 {%else%}
     <a class="login btn btn-primary" href="{% url 'auth_login' %}?next={{request.path}}" title="Log in">
