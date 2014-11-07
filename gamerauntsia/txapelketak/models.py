@@ -119,6 +119,12 @@ class Partida(models.Model):
         else:
             return u'%d jardunaldia' % (self.jardunaldia)
 
+    def get_partaide_list(self):
+        if self.partaideak.all():
+            return " VS ".join([p.get_izena() for p in self.partaideak.all()])
+        else:
+            return u'???'
+
     class Meta:
         verbose_name = "Partida"
         verbose_name_plural = "Partidak"

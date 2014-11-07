@@ -83,7 +83,6 @@
                             <th>Jardunaldia</th>
                             <th>Partaideak</th>
                             <th>Emaitza</th>
-                            <th>Galdutakoak</th>
                             <th>Data</th>
                         </tr>
                     </thead>
@@ -91,10 +90,9 @@
                         {% for partida in item.get_partidak %}
                         <tr>
                             <td>{{partida.jardunaldia}}</td>
-                            <td></td>
-                            <td>{{partaide.win}}</td>
-                            <td>{{partaide.lose}}</td>
-                            <td>{{partaide.points}}</td>
+                            <td>{{partida.get_partaide_list}}</td>
+                            <td>{{partida.emaitza}}</td>
+                            <td>{{partida.data}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
