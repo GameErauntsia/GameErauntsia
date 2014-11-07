@@ -72,20 +72,23 @@ class Partaidea(models.Model):
         return False
 
     def get_photo(self):
-        if self.irudia:
-            return self.irudia
+        if is_group:
+            if self.irudia:
+                return self.irudia
+            else:
+                try:
+                    return Photo.objects.get(slug=GROUP_PHOTO_SLUG)    
+                except:
+                    return None
         else:
-            try:
-                return Photo.objects.get(slug=MEMBER_PHOTO_SLUG)    
-            except:
-                return None
+            return self.jokalariak.all()[0].get_photo()
 
     def get_izena(self):
         if not self.izena:
             if len(self.jokalariak.all()) == 1:
-                return u'%s' % (self.jokalariak.all()[0].username)
+                return u'%s' % (self.jokalariak.all()[0].getFullName)
             else:
-                return u'%s' % (", ".join([p.username for p in self.jokalariak.all()]))
+                return u'%s' % (", ".join([p.getFullName for p in self.jokalariak.all()]))
         return u'%s' %(self.izena)
 
     class Meta:
