@@ -86,9 +86,9 @@ class Partaidea(models.Model):
     def get_izena(self):
         if not self.izena:
             if len(self.jokalariak.all()) == 1:
-                return u'%s' % (self.jokalariak.all()[0].getFullName)
+                return u'%s' % (self.jokalariak.all()[0].getFullName())
             else:
-                return u'%s' % (", ".join([p.getFullName for p in self.jokalariak.all()]))
+                return u'%s' % (", ".join([p.getFullName() for p in self.jokalariak.all()]))
         return u'%s' %(self.izena)
 
     class Meta:
