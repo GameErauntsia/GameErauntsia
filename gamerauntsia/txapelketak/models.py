@@ -34,6 +34,12 @@ class Txapelketa(models.Model):
     pub_date = models.DateTimeField('Publikazio data', default=datetime.now)
     insk_date = models.DateTimeField('Izen ematea', default=datetime.now)
 
+    def get_partaideak(self):
+        return Partaidea.objects.filter(txapelketa=self)
+
+    def partaideak_count(self):
+        return get_partaideak().count()
+
     def get_desk_txikia(self):
         if len(self.desk) > 150:
             return filters.striptags(self.desk)[:150]+'...'
@@ -59,6 +65,20 @@ class Partaidea(models.Model):
     win = models.IntegerField('Irabazitakoak', default=0)
     lose = models.IntegerField('Galdutakoak', default=0)
     points = models.IntegerField('Puntuak', default=0)
+
+    def is_group(self):
+        if len(self.jokalariak.all()) > 1:
+            return True
+        return False
+
+    def get_photo(self):
+        if self.irudia:
+            return self.irudia
+        else:
+            try:
+                return Photo.objects.get(slug=MEMBER_PHOTO_SLUG)    
+            except:
+                return None
 
     def get_izena(self):
         if not self.izena:

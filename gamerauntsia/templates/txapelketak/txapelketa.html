@@ -40,6 +40,11 @@
                     {% for user in item.jokalariak.all %}
                     <p><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.fullname}}</a></p>
                     {% endfor %}
+                {% else %}
+                    <h3>Partaideak</h3>
+                    {% for partaide in item.get_partaideak %}
+                        <p>{% if partaide.irudia %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-circle"/>{% endif %} {{partaide.get_izena}}</a></p>
+                    {% endfor %}
                 {% endif %}
             </div>
         </div>
