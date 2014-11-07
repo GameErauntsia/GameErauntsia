@@ -91,7 +91,7 @@
                         <tr>
                             <td>#{{partida.jardunaldia}}</td>
                             <td>{{partida.get_partaide_list}}</td>
-                            <td>{{partida.emaitza}}</td>
+                            <td>{% if partida.emaitza %}{{partida.emaitza}}{% else %}---{% endif %}</td>
                             <td>{{partida.date}}</td>
                         </tr>
                         {% endfor %}
