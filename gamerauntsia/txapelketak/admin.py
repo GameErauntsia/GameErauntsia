@@ -1,6 +1,7 @@
 from django.contrib import admin
 from gamerauntsia.txapelketak.models import Txapelketa, Partida, Partaidea
 from gamerauntsia.gamer.models import GamerUser
+from forms import PartidaInlineForm
 
 class PartidaAdmin(admin.ModelAdmin):
 
@@ -18,6 +19,7 @@ class PartidaAdmin(admin.ModelAdmin):
 class PartidaInline(admin.TabularInline):
     model = Partida
     fields = ('jardunaldia','partaideak','emaitza','parent_partida','date')
+    form = PartidaInlineForm
 
 class TxapelketaAdmin(admin.ModelAdmin):
     list_display = ('izena', 'slug','mota', 'modalitatea','jokoa','insk_date','pub_date', 'publikoa_da')

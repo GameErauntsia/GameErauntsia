@@ -111,7 +111,7 @@ def ken1(value):
 
 @register.filter
 def irekita(value):
-    if value < timezone.now():
+    if value > timezone.now():
         return True
     return False
 
