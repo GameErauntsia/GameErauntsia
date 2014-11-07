@@ -1,0 +1,41 @@
+{% extends "django_messages/base.html" %}
+{% load i18n %}
+{% load url from future %}
+
+{% block content %}
+<h1>{% trans "Sarrerako erretila" %}</h1>
+{{ block.super }}
+{% if message_list %}
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>{% trans "Igorlea" %}</th>
+                    <th>{% trans "Gaia" %}</th>
+                    <th>{% trans "Jasota" %}</th>
+                    <th>{% trans " " %}</th>
+                </tr>
+            </thead>
+            <tbody>
+        {% for message in message_list %}
+            <tr>
+                <td>{{ message.sender }}</td>
+                <td>
+                    {% if message.new %}<strong>{% endif %}
+                    {% if message.replied %}<em>{% endif %}
+                    <a href="{{message.get_absolute_url }}">{{ message.subject }}</a>
+                    {% if message.replied %}</em>{% endif %}
+                    {% if message.new %}</strong>{% endif %}</td>
+                <td>{{ message.sent_at|date:_("DATETIME_FORMAT") }}</td>
+                <td><a class="btn btn-sm btn-danger" href="{% url 'messages_delete' message.id %}"><i class="fa fa-trash-o"></i></a></td>
+
+            </tr>
+        {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+<p>{% trans "Ez dago mezurik." %}</p>
+{% endif %}
+{% endblock %}
