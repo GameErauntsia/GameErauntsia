@@ -72,7 +72,7 @@ class Partaidea(models.Model):
         return False
 
     def get_photo(self):
-        if is_group:
+        if self.is_group():
             if self.irudia:
                 return self.irudia
             else:
