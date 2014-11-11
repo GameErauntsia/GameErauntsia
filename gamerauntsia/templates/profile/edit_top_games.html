@@ -12,26 +12,14 @@
     </form>
 
     <h3>Kontutan hartu beharko zenituzkeen komunitateko jokalariak</h3>
-    <ul>
+    <ul class="list-unstyled">
         {% for lagun in lagunak %}
-            {% if lagun.user_id != ni.id %}
-                {% for jokoa in qset %}
-                     {# {% set aurkitua = 0 %} dJangon ezin dira bariableak sortu plantilletan? pos vaya! #}
-                    {% if jokoa.izena == lagun.izena %}
-                        {# {% if aurkitua == "0" %} #}
-                            {# {{ lagun.izena }} => #}
-                        {# {% endif %} #}
-
-                        <li>
-                            <a href="{% url 'gamer_guestprofile' lagun.user.username %}">
-                                <span>{{ lagun.user.username }}</span>
-                                <img src="{{lagun.user.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive">
-                            </a>
-                        </li>
-                    {% endif %}
-
-                {% endfor  %}
-            {% endif %}
+        <li>
+            <a href="{% url 'gamer_guestprofile' lagun.username %}">
+                <span>{{ lagun.getFullName }}</span>
+                <img src="{{lagun.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive">
+            </a>
+        </li>
         {% endfor %}
     </ul>
 
