@@ -1,6 +1,10 @@
 {% extends "profile/base.html" %}
 {% load i18n %}
 
+{% block morejs %}
+    <script type="text/javascript" src="{{ STATIC_URL }}tiny_mce/tiny_mce.js"></script>
+{% endblock %}
+
 {% block perfil %}
 <div class="profileform">
 	<h2>{% trans "Your personal data" %}</h2>
