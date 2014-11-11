@@ -1,5 +1,5 @@
 {% extends "profile/base.html" %}
-{% load i18n include %}
+{% load i18n include adminmedia %}
 
 {% block morejs %}
 <link rel="stylesheet" type="text/css" href="/media/admin/css/forms.css"/>
@@ -9,6 +9,9 @@
 
 <script type="text/javascript" src="/kudeatu/jsi18n/"></script>
 <script type="text/javascript" src="/media/admin/js/core.js"></script>
+<script type="text/javascript">
+window.__admin_media_prefix__ = "{% filter escapejs %}{% admin_media_prefix %}{% endfilter %}";
+</script>
 {% endblock %}
 
 {% block perfil %}
@@ -21,7 +24,7 @@
         <input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
     </form>
 
-    <h2>Kontutan hartu beharko zenituzkeen komunitateko jokalariak</h2>
+    <h3>Kontutan hartu beharko zenituzkeen komunitateko jokalariak</h3>
     <ul>
         {% for lagun in lagunak %}
             {% if lagun.user_id != ni.id %}
@@ -45,7 +48,7 @@
         {% endfor %}
     </ul>
 
-    <h2>Komikateto jokuen Top-a:</h2>
+    <h3>Komunitateko jokuen Top-a:</h3>
     <ul>
         {% for k in komunitatekoTop %}
             <li>{{k.izena}} ({{k.dcount}})</li>
