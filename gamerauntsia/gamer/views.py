@@ -119,6 +119,6 @@ def edit_top_games(request):
             return HttpResponseRedirect(reverse('edit_profile_top'))
     else:
         topform = TopForm(instance=user)
-        lagunak = GamerUser.objects.filter(top_jokoak__in=user.top_jokoak)
+        lagunak = GamerUser.objects.filter(top_jokoak=user.top_jokoak)
 
     return render_to_response('profile/edit_top_games.html', locals(), context_instance=RequestContext(request))
