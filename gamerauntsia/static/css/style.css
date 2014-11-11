@@ -162,3 +162,7 @@ filter: none;
 .subnavilist {
   display: inline;
 }
+
+.nickname {
+  color: #999;
+}
