@@ -23,7 +23,7 @@ class NotifyForm(forms.ModelForm):
 
 class TopForm(forms.ModelForm):
 
-    top_jokoak = forms.ModelMultipleChoiceField(queryset=Jokoa.objects.all(),
+    top_jokoak = forms.ModelMultipleChoiceField(queryset=Jokoa.objects.all().order_by('izena','bertsioa'),
                                           label='',
                                           required=False,
                                           widget=FilteredSelectMultiple(
