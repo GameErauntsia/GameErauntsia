@@ -29,7 +29,7 @@ class TopForm(forms.ModelForm):
                                           widget=FilteredSelectMultiple(
                                                     _('Top jokoak'),
                                                     False,
-                                                 ))
+                                                 ),auto_id=False)
 
     class Meta:
         model = GamerUser
