@@ -122,6 +122,6 @@ def edit_top_games(request):
     else:
         topform = TopForm(instance=user)
         lagunak = GamerUser.objects.filter(top_jokoak__in=user.top_jokoak.all()).exclude(id=user.id).distinct()
-        topjokoak = GamerUser.objects.values('top_jokoak').annotate(Count('top_jokoak')).order_by('-top_jokoak__count')[:10]
+        topjokoak = GamerUser.objects.values('top_jokoak__izena').annotate(Count('top_jokoak')).order_by('-top_jokoak__count')[:10]
 
     return render_to_response('profile/edit_top_games.html', locals(), context_instance=RequestContext(request))
