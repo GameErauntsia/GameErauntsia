@@ -15,16 +15,29 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-8">
-        <ul class="list-unstyled">
-        {% for item in items %}
-        <li><a href="{% url 'aurkezpena' item.slug %}">{{item.izena}}</a></li>
-        {% endfor %}
-        </ul>
-    </div>
-
-    <div class="col-lg-4">
-        
+    <div class="col-lg-12">
+        <div id="list">
+            <div class="table-responsive">
+                <table class="table table-condensed table-hover">
+                    <thead>
+                        <tr>
+                            <th>Izenburua</th>
+                            <th>Abstract</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in items %}
+                        <tr>
+                            <td><a href="{% url 'aurkezpena' item.slug %}">{{item.izena}}</a></td>
+                            <td>{{item.abstract}}</td>
+                            <td>{{item.pub_date}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 

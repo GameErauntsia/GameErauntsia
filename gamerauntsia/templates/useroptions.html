@@ -1,18 +1,22 @@
-{% load i18n %}
+{% load include i18n %}
 
 {% if user.is_authenticated %}
 
 	<a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'gamer_profile' user.username  %}">
 		<img class="userlogged" width="30" height="30" src="{{user.get_photo.get_profilesmall_url}}" alt="{{user.username}}" />
-	<b class="caret"></b>
+		&nbsp;{% if user|inbox_count_for > 0 %}{{ user|inbox_count_for }}{% endif %}
+		<b class="caret"></b>
 	</a>
 	<ul  class="dropdown-menu pull-right">
-		<li><a href="{% url 'gamer_profile' user.username  %}">{{user.getFullName}}</a></li>
-        {% if user.is_staff or user.is_superuser %}<li><a href="/kudeatu">Admin gunea</a></li>{% endif %}
-		<li><a href="{% url 'cssocialuser_edit_profile' %}">Profila editatu</a></li>
-		<li><a href="{% url 'auth_logout' %}?next=/">Irten</a></li>
+		<li><a href="{% url 'gamer_profile' user.username  %}"><span class="glyphicon glyphicon-user"></span> {{user.getFullName}}</a></li>
+        {% if user.is_staff or user.is_superuser %}<li><a href="/kudeatu"><span class="glyphicon glyphicon-pencil"></span> Admin gunea</a></li>{% endif %}
+		<li><a href="{% url 'edit_profile' %}"><span class="glyphicon glyphicon-pencil"></span>  Profila editatu</a></li>
+		<li role="presentation" class="divider"></li>
+		<li><a href="{% url 'messages_inbox' %}"><span class="glyphicon glyphicon-envelope"></span> Mezuak {% if user|inbox_count_for > 0 %}[{{ user|inbox_count_for }}]{% endif %}</a></li>
+		<li role="presentation" class="divider"></li>
+		<li><a href="{% url 'auth_logout' %}?next=/"><span class="glyphicon glyphicon-off"></span> Irten</a></li>
 	</ul>
 {%else%}
-    <a class="btn" href="{% url 'auth_login' %}?next={{request.path}}" title="Log in">
+    <a class="login btn btn-primary" href="{% url 'auth_login' %}?next={{request.path}}" title="Log in">
 		{% trans 'Log in' %}</a>
 {%endif%}

@@ -3,7 +3,6 @@ TINYMCE_BODY_CONFIG = {
     "mode" : "exact",
     "elements" : "body",
     "convert_urls" : False,    
-    "extended_valid_elements" : "iframe[src|name|width|height|align|frameborder|marginwidth|marginheight|scrolling]",
     "theme" : "advanced",
     "theme_advanced_buttons1" : "styleselect,bold,italic,underline,separator,bullist,numlist,blockquote,undo,redo,link,unlink,image,code,removeformat,cut,copy,paste,pastetext,pasteword,selectall,pastetext,",
     "theme_advanced_buttons2" : "",
@@ -17,5 +16,5 @@ TINYMCE_BODY_CONFIG = {
     "force_br_newlines" : True,
     "force_p_newlines" : False,
     "content_css" : "/static/css/stylehtmleditor.css",
-    "extended_valid_elements" : "object[width|height|classid|codebase],param[name|value],embed[src|type|width|height|flashvars|wmode]",
+    "extended_valid_elements" : "object[width|height|classid|codebase],param[name|value],embed[src|type|width|height|flashvars|wmode],iframe[src|name|width|height|align|frameborder|marginwidth|marginheight|scrolling],audio[controls=],source[src|type]",
 }

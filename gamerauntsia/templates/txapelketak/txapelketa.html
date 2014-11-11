@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% load emoticons_tags include comments %}
+
+{% block title %}{{item.izena}} - {% endblock %}
+
+{% block morejs %}
+    <style type="text/css">
+      
+        .node {
+        cursor: pointer;
+      }
+
+      .overlay{
+          background-color:#EEE;
+      }
+       
+      .node circle {
+        fill: #fff;
+        stroke: steelblue;
+        stroke-width: 1.5px;
+      }
+       
+      .node text {
+        font-size:10px; 
+        font-family:sans-serif;
+      }
+       
+      .link {
+        fill: none;
+        stroke: #ccc;
+        stroke-width: 1.5px;
+      }
+
+      .templink {
+        fill: none;
+        stroke: red;
+        stroke-width: 3px;
+      }
+
+      .ghostCircle.show{
+          display:block;
+      }
+
+      .ghostCircle, .activeDrag .ghostCircle{
+           display: none;
+      }
+
+    </style>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="{{STATIC_URL}}js/dndTree.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+
+        <div class="col-lg-12">
+            <h1 class="page-header">{{item.izena}}</h1>
+        </div>
+
+        <div class="col-lg-8">
+            {% if item.irudia %}
+            <a class="fancybox" href="{{item.irudia.image.url}}">
+                <img src="{{item.irudia.get_blog_url}}" class="img-responsive"/>
+            </a>
+            <hr>
+            {% endif %}
+            {% if user.is_authenticated %}
+            {% if user.is_superuser or user == item.erabiltzailea %}
+            <div class="well">
+                <h3>Editatu txapelketa</h3>
+                <a class="btn btn-default" href="/kudeatu/txapelketak/txapelketa/{{item.id}}">Editatu</a>
+            </div>
+            {% endif %}
+            {% endif %}
+            <p class="lead">{{item.desk|safe|emoticons}}</p>
+            
+        </div>
+
+        <div class="col-lg-4">
+            <div class="well">
+                {% if item.insk_date|irekita %}
+                    {% if user not in item.jokalariak.all %}
+                    <h3>Izena eman</h3>
+                    <a href="#" class="btn btn-default">Parte hartu!</a>
+                    {% endif %}
+                    <h3>Izen emateak</h3>
+                    {% for user in item.jokalariak.all %}
+                    <p><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.fullname}}</a></p>
+                    {% endfor %}
+                {% else %}
+                    <h3>Partaideak</h3>
+                    {% for partaide in item.get_partaideak %}
+                        <p><img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-circle"/> {{partaide.get_izena}}</a></p>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            {% if item.mota == '0' %}
+            <h2><span class="glyphicon glyphicon-align-justify"></span> Kanporaketa</h2>
+            <div id="tree-container"></div>
+            {% else %}
+            <h2><span class="glyphicon glyphicon-align-justify"></span> Sailkapena</h2>
+            <div class="table-responsive">
+                <table class="table table-condensed table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Partaidea</th>
+                            <th>Irabazitakoak</th>
+                            <th>Galdutakoak</th>
+                            <th>Puntuak</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for partaide in list_sailkapena %}
+                        <tr>
+                            <td>#{{forloop.counter}}</td>
+                            <td><img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-circle"/> {{partaide.get_izena}}</a></td>
+                            <td>{{partaide.win}}</td>
+                            <td>{{partaide.lose}}</td>
+                            <td>{{partaide.points}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <h2><span class="glyphicon glyphicon-calendar"></span>Egutegia</h2>
+            <div class="table-responsive">
+                <table class="table table-condensed table-hover">
+                    <thead>
+                        <tr>
+                            <th>Jardunaldia</th>
+                            <th>Partaideak</th>
+                            <th>Emaitza</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for partida in item.get_partidak %}
+                        <tr>
+                            <td>#{{partida.jardunaldia}}</td>
+                            <td>{{partida.get_partaide_list}}</td>
+                            <td>{% if partida.emaitza %}{{partida.emaitza}}{% else %}---{% endif %}</td>
+                            <td>{{partida.date}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+        </div>
+</div>
+
+{% endblock %}

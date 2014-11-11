@@ -5,6 +5,8 @@ from gamerauntsia.berriak.models import Berria
 from gamerauntsia.gamer.models import GamerUser
 from django_comments.models import Comment
 from django.contrib.contenttypes.models import ContentType
+from django.utils import timezone
+from django_messages.models import Message
 
 register = template.Library()
 
@@ -97,12 +99,22 @@ def urlfriend(value):
     return value.replace(' ', '%20')
 
 @register.inclusion_tag('comments/last.html')
-def azken_erantzunak():
+def azken_erantzunak(model='Berria'):
     h = {}
-    ct = ContentType.objects.get(model='Berria')
+    ct = ContentType.objects.get(model=model)
     h['comments'] = Comment.objects.filter(content_type=ct).order_by('-submit_date')[:5]
     return h
 
 @register.filter
 def ken1(value):
     return value-1
+
+@register.filter
+def irekita(value):
+    if value > timezone.now():
+        return True
+    return False
+
+@register.filter
+def inbox_count_for(user):
+    return Message.objects.filter(recipient=user, read_at__isnull=True, recipient_deleted_at__isnull=True).count()

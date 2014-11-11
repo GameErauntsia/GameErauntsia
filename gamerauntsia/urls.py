@@ -14,7 +14,7 @@ urlpatterns = patterns('',
 
     # GAMEPLAYAK
     url(r'^gameplayak/', include('gamerauntsia.gameplaya.urls')),
-    
+
     # BERRIAK
     url(r'^berriak/(?P<slug>[-\w]+)/$', lambda x, slug: HttpResponseRedirect(reverse('berria', args=[slug]))),
     url(r'^bloga/', include('gamerauntsia.berriak.urls'), name='bloga'),
@@ -24,6 +24,12 @@ urlpatterns = patterns('',
     url(r'^komunitatea/$', 'gamerauntsia.gamer.views.community', name='komunitatea'),
     (r'^komunitatea/', include('cssocialuser.urls')),
     (r'^komunitatea/', include('registration.urls')),
+
+    #AURKEZPENAK
+    (r'^aurkezpenak/', include('gamerauntsia.aurkezpenak.urls')),
+
+    #TXAPELKETAK
+    (r'^txapelketak/', include('gamerauntsia.txapelketak.urls')),
 
     # FOROA
     url(r'^foroa/', include('django_simple_forum.urls')),
@@ -42,21 +48,24 @@ urlpatterns = patterns('',
     #FB
     url(r'^2b27b83ad50e677714b2dd832b42acc3', include('facebookpagewriter.urls')),
 
-    #AURKEZPENAK
-    (r'^aurkezpenak/', include('gamerauntsia.aurkezpenak.urls')),
-
     # COMMENTS
     (r'^comments/', include('django_comments.urls')),
 
     # KUDEATU
     url(r'^kudeatu/', include(admin.site.urls)),
     (r'^photologue/', include('photologue.urls')),
+
+    #MEZUAK
+    (r'^mezuak/', include('django_messages.urls')),
 )
 
+
+
 urlpatterns += patterns('gamerauntsia.gamer.views',
-    url(r'^komunitatea/editatu-profil-jakin$','edit_notifications', name='edit_profile_noti'), 
-    url(r'^komunitatea/editatu-profil-plat$','edit_platform', name='edit_profile_plat'),  
-    url(r'^komunitatea/(?P<username>[-\w]+)$', 'guestprofile', name='gamer_guestprofile'), 
+    url(r'^komunitatea/editatu-profil$','edit_profile', name='edit_profile'),
+    url(r'^komunitatea/editatu-profil-jakin$','edit_notifications', name='edit_profile_noti'),
+    url(r'^komunitatea/editatu-profil-plat$','edit_platform', name='edit_profile_plat'),
+    url(r'^komunitatea/(?P<username>[-\w]+)$', 'guestprofile', name='gamer_guestprofile'),
 )
 
 

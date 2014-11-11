@@ -10,7 +10,9 @@
 		        <div class="col-xs-12 col-sm-4 text-center">
 					<img src="{{user_prof.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive">
 					{% if user_prof.is_staff%}<img src="{{STATIC_URL}}img/kidea.png" alt="Game Erauntsiako Kidea" class="center-block img-responsive"/>{% endif %}
-					<p>{{user_prof.date_joined|date:"Y/m/d H:i"}}</p>
+					<p>{{user_prof.date_joined|date:"Y/m/d H:i"}}
+					{% if user.is_authenticated %}<br/><a href="{% url 'messages_compose_to' user_prof.username  %}"><span class="glyphicon glyphicon-envelope"></span></a>{% endif %}
+					</p>
 				</div><!--/col--> 
 				<div class="col-xs-12 col-sm-8">
 					<h2>{{user_prof.getFullName}}

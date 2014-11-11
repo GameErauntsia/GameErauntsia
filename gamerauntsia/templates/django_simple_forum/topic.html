@@ -15,9 +15,11 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-2 text-center">
                         <a href="{% url 'gamer_guestprofile' post.creator.username %}"><img src="{{post.creator.get_photo.get_forum_profile_url}}" alt="" class="center-block img-circle img-responsive"/></a>
-                        <p><strong><a href="{% url 'gamer_guestprofile' post.creator.username %}">{{post.creator.getFullName}}</a></strong><br/>{% if post.creator.is_staff %}<img src="{{STATIC_URL}}img/kidea.png" alt="Game Erauntsiako Kidea" class="center-block img-responsive"/>{% endif %}<span class="date">{{post.created|date:"Y/m/d H:i"}}</span></p>
+                        <p><strong><a href="{% url 'gamer_guestprofile' post.creator.username %}">{{post.creator.getFullName}}</a></strong><br/>{% if post.creator.is_staff %}<img src="{{STATIC_URL}}img/kidea.png" alt="Game Erauntsiako Kidea" class="center-block img-responsive"/>{% endif %}<span class="date">{{post.created|date:"Y/m/d H:i"}}</span>{% if user.is_authenticated %}<br/><a href="{% url 'messages_compose_to' post.creator.username  %}"><span class="glyphicon glyphicon-envelope"></span></a>{% endif %}
+                        </p>
                     </div>
                     <div class="col-xs-12 col-sm-10">
+                        <a id="p{{post.id}}"></a>
                         <h3>{{post.title}}
                         {% if request.user.is_authenticated %}
                         {% if not topic.closed %}
@@ -26,6 +28,10 @@
                         {% endif %}
                         </h3>
                         <p>{{post.body|safe|urlize|emoticons}}</p>
+                        {% if post.creator.signature %}
+                        <hr class="dotted" />
+                        <p>{{post.creator.signature|safe|urlize|emoticons}}</p>
+                        {% endif %}
                     </div>
                 </div>
                 <hr/>
