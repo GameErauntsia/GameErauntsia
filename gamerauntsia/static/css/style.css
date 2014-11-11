@@ -168,9 +168,8 @@ filter: none;
 }
 
 hr.dotted {
-  border-top: 1px dotted #000;
-  color: #fff;
   background-color: #fff;
-  height: 1px;
-  width:50%;
+  border-top: 1px dotted #000;
+  margin-left: 0;
+  width: 50%;
 }
