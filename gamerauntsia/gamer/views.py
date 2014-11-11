@@ -16,6 +16,7 @@ from gamerauntsia.gamer.forms import NotifyForm,GameForm, GamerForm, TopForm
 from django.utils.translation import ugettext as _
 from django.forms.models import modelformset_factory
 from datetime import datetime
+from django.db.models import Count
 
 def index(request):
     users = GamerUser.objects.filter(is_active=True,is_staff=True).order_by('-date_joined')
@@ -120,5 +121,6 @@ def edit_top_games(request):
     else:
         topform = TopForm(instance=user)
         lagunak = GamerUser.objects.filter(top_jokoak__in=user.top_jokoak.all()).exclude(id=user.id).distinct()
+        topjokoak = Jokoa.objects.annotate(Count('top_jokoak_set'))
 
     return render_to_response('profile/edit_top_games.html', locals(), context_instance=RequestContext(request))

@@ -23,12 +23,15 @@
         </div>
     </div>
 
-    <h3>Komunitateko jokuen Top-a:</h3>
-    <ul>
-        {% for k in komunitatekoTop %}
-            <li>{{k.izena}} ({{k.dcount}})</li>
-        {% endfor %}
-    </ul>
+    <div class="well">
+        <h3>Komunitateko jokuen Top-a:</h3>
+        <hr/>
+        <ul class="list-unstyled">
+            {% for k in topjokoak %}
+                <li>{{k.izena}} ({{k.dcount}})</li>
+            {% endfor %}
+        </ul>
+    </div>
 
 </div>
 
