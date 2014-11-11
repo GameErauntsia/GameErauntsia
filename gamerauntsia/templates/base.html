@@ -52,8 +52,10 @@
                     <li class="{% if request.path|contains:"/nor-gara/" or request.path|contains:"/komunitatea/" %}active{% endif %}">
                         <a href="/nor-gara" class="dropdown-toggle" data-toggle="dropdown">Komunitatea <b class="caret"></b></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{% url 'gamer_index' %}" title="Komunitatea">Nor gara</a></li>
+                            <li><a href="{% url 'gamer_index' %}" title="Nor gara">Nor gara</a></li>
                             <li><a href="{% url 'komunitatea' %}" title="Komunitatea">Komunitatea</a></li>
+                            <li role="presentation" class="divider"></li>
+                            <li><a href="{% url 'aurkezpenak_index' %}" title="Aurkezpenak">Aurkezpenak</a></li>
                         </ul>
                     </li>
                     <li {% if request.path|contains:"/kontaktua/" %}class="active"{% endif %}><a href="/kontaktua" title="Kontaktua">Kontaktua</a></li>
