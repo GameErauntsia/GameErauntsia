@@ -25,8 +25,7 @@ PLATFORM = (
 class GamerUser(CSAbstractSocialUser):
     nickname = models.CharField(max_length=64,null=True,blank=True)
     is_gamer = models.BooleanField(default=False)
-    #ALTER TABLE `hiribiliuser_hiribiliuser` ADD `signature` LONGTEXT NULL ;
-    signature = models.TextField(verbose_name="Foro sinadura")
+    signature = models.TextField(verbose_name="Foro sinadura",null=True,blank=True)
     ytube_channel = models.CharField(max_length=150,null=True,blank=True)
     email_notification = models.BooleanField(default=True)
     last_updated = models.DateTimeField(auto_now_add=True,editable=False)
