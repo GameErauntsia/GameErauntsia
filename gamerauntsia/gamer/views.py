@@ -1,4 +1,5 @@
 from gamerauntsia.gamer.models import GamerUser, JokuPlataforma, PLATFORM
+from gamerauntsia.jokoa.models import Jokoa
 from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.berriak.models import Berria
 from django.shortcuts import render_to_response
