@@ -4,6 +4,7 @@ from django.contrib.auth.models import UserManager
 from django.core.mail import send_mail
 from django.conf import settings
 from photologue.models import Photo
+from gamerauntsia.jokoa.models import Jokoa
 from django.utils.translation import ugettext as _
 
 MEMBER_PHOTO_SLUG=getattr(settings,'PROFILE_PHOTO_DEFAULT_SLUG','no-profile-photo')
@@ -25,6 +26,7 @@ PLATFORM = (
 class GamerUser(CSAbstractSocialUser):
     nickname = models.CharField(max_length=64,null=True,blank=True)
     is_gamer = models.BooleanField(default=False)
+    top_jokuak = models.ManyToManyField(Jokoa,null=True,blank=True)
     signature = models.TextField(verbose_name="Foro sinadura",null=True,blank=True)
     ytube_channel = models.CharField(max_length=150,null=True,blank=True)
     email_notification = models.BooleanField(default=True)

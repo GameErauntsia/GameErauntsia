@@ -19,6 +19,12 @@ class NotifyForm(forms.ModelForm):
         model = GamerUser
         fields = ('email_notification',)
 
+class TopForm(forms.ModelForm):
+
+    class Meta:
+        model = GamerUser
+        fields = ('top_jokoak',)
+
 class GameForm(forms.ModelForm):
 
     class Meta:

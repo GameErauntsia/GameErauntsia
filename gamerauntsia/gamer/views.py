@@ -104,3 +104,20 @@ def edit_platform(request):
         options = PLATFORM
         
     return render_to_response('profile/edit_platform.html', locals(), context_instance=RequestContext(request))
+
+
+@login_required
+def edit_top_games(request):
+    """ """
+    tab = 'top_games'
+    user = request.user
+    if request.method == 'POST':
+         posta=request.POST.copy()     
+         topform = TopForm(posta, instance=user)
+         if topform.is_valid():
+            topform.save()
+            return HttpResponseRedirect(reverse('edit_profile_top'))
+    else:
+        topform = TopForm(instance=user)
+
+    return render_to_response('profile/edit_top_games.html', locals(), context_instance=RequestContext(request))
