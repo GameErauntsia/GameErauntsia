@@ -24,12 +24,12 @@ class NotifyForm(forms.ModelForm):
 class TopForm(forms.ModelForm):
 
     top_jokoak = forms.ModelMultipleChoiceField(queryset=Jokoa.objects.all(),
-                                          label=_('Top jokoak'),
+                                          label='',
                                           required=False,
                                           widget=FilteredSelectMultiple(
                                                     _('Top jokoak'),
                                                     False,
-                                                 ),auto_id=False)
+                                                 ))
 
     class Meta:
         model = GamerUser
