@@ -12,7 +12,7 @@ from gamerauntsia.utils.images import handle_uploaded_file
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from photologue.models import Photo
-from gamerauntsia.gamer.forms import NotifyForm,GameForm
+from gamerauntsia.gamer.forms import NotifyForm,GameForm, GamerForm
 from django.utils.translation import ugettext as _
 from django.forms.models import modelformset_factory
 from datetime import datetime
@@ -43,6 +43,23 @@ def community(request):
     users = GamerUser.objects.filter(is_active=True).order_by('-date_joined')
     return render_to_response('gamer/community.html', locals(),context_instance=RequestContext(request))
 
+@login_required
+def edit_profile(request):
+    """ """
+    tab = 'personal'
+    user= request.user
+    profile = user
+    if request.method == 'POST':
+         posta=request.POST.copy()     
+         profileform = GamerForm(posta, instance=profile)
+         if profileform.is_valid():
+            profileform.save()
+            messages.add_message(request, messages.SUCCESS, _('New user data saved.'), fail_silently=True)    
+            return HttpResponseRedirect(reverse('edit_profile'))
+    else:
+        profileform = GamerForm(instance=profile)
+
+    return render_to_response('profile/edit_personal.html', locals(), context_instance=RequestContext(request))
 
 @login_required
 def edit_notifications(request):
