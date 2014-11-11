@@ -166,3 +166,11 @@ filter: none;
 .nickname {
   color: #999;
 }
+
+hr.dotted {
+  border-top: 1px dotted #f00;
+  color: #fff;
+  background-color: #fff;
+  height: 1px;
+  width:50%;
+}
