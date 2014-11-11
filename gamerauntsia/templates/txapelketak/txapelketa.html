@@ -50,6 +50,10 @@
         </div>
 
         <div class="col-lg-12">
+            {% if item.mota == '0' %}
+            <h2><span class="glyphicon glyphicon-align-justify"></span> Kanporaketa</h2>
+            {% include "txapelketak/champion_tree.html" %}
+            {% else %}
             <h2><span class="glyphicon glyphicon-align-justify"></span> Sailkapena</h2>
             <div class="table-responsive">
                 <table class="table table-condensed table-hover">
@@ -98,6 +102,7 @@
                     </tbody>
                 </table>
             </div>
+            {% endif %}
         </div>
 </div>
 
