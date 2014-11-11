@@ -53,6 +53,7 @@ urlpatterns = patterns('',
 
     # KUDEATU
     url(r'^kudeatu/', include(admin.site.urls)),
+    (r'^kudeatu/jsi18n', 'django.views.i18n.javascript_catalog'),
     (r'^photologue/', include('photologue.urls')),
 
     #MEZUAK
