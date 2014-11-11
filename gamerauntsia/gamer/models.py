@@ -26,7 +26,7 @@ PLATFORM = (
 class GamerUser(CSAbstractSocialUser):
     nickname = models.CharField(max_length=64,null=True,blank=True)
     is_gamer = models.BooleanField(default=False)
-    top_jokuak = models.ManyToManyField(Jokoa,null=True,blank=True)
+    top_jokoak = models.ManyToManyField(Jokoa,null=True,blank=True)
     signature = models.TextField(verbose_name="Foro sinadura",null=True,blank=True)
     ytube_channel = models.CharField(max_length=150,null=True,blank=True)
     email_notification = models.BooleanField(default=True)
