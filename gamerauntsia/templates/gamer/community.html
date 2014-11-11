@@ -18,11 +18,19 @@
 				<a href="{% url 'gamer_guestprofile' user_prof.username %}"><img src="{{user_prof.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive"></a>
 			</div>
 			<div class="col-xs-12 col-sm-8">
-				<h2><a href="{% url 'gamer_guestprofile' user_prof.username %}">{{user_prof.getFullName}}
+				<h2>
+					<a href="{% url 'gamer_guestprofile' user_prof.username %}">{{user_prof.getFullName}}
 				{% if user_prof.twitter_id or user_prof.nickname %}
-				<small>{% if user_prof.twitter_id %}@{{user_prof.twitter_id}}{% else %}{{user_prof.nickname}}{% endif %}</small>
+						<small>{% if user_prof.twitter_id %}@{{user_prof.twitter_id}}{% else %}{{user_prof.nickname}}{% endif %}</small>
+					</a>
+					{% if user.is_authenticated %}<small><a href="{% url 'messages_compose_to' user_prof.username  %}"><span class="glyphicon glyphicon-envelope"></span></a></small>{% endif %}
+				</h2>
+				{% else %}
+				</h2>
+                <h2>
+                	{% if user.is_authenticated %}<small><a href="{% url 'messages_compose_to' user_prof.username  %}"><span class="glyphicon glyphicon-envelope"></span></a></small>{% endif %}
 				{% endif %}
-				</a>{% if user.is_authenticated %}<small><a href="{% url 'messages_compose_to' user_prof.username  %}"><span class="glyphicon glyphicon-envelope"></span></a></small>{% endif %}</h2>
+			    </h2>
 			</div>
 	  	</div>
     </div>
