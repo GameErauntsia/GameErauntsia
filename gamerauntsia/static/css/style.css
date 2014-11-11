@@ -168,7 +168,7 @@ filter: none;
 }
 
 hr.dotted {
-  border-top: 1px dotted #f00;
+  border-top: 1px dotted #000;
   color: #fff;
   background-color: #fff;
   height: 1px;
