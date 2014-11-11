@@ -27,8 +27,10 @@
                         {% endif %}
                         </h3>
                         <p>{{post.body|safe|urlize|emoticons}}</p>
+                        {% if post.creator.signature %}
                         <hr class="dotted" />
                         <p>{{post.creator.signature|safe|urlize|emoticons}}</p>
+                        {% endif %}
                     </div>
                 </div>
                 <hr/>
