@@ -19,6 +19,7 @@
                         </p>
                     </div>
                     <div class="col-xs-12 col-sm-10">
+                        <a id="#{{post.id}}"></a>
                         <h3>{{post.title}}
                         {% if request.user.is_authenticated %}
                         {% if not topic.closed %}
