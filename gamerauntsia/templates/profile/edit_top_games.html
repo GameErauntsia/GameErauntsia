@@ -29,7 +29,7 @@
         <ul class="list-unstyled">
             {% for k in topjokoak %}
                 {% if k.top_jokoak__count %}
-                <li>{{top_jokoak__izena}} ({top_jokoak__count})</li>
+                <li>{{k.top_jokoak__izena}} ({k.top_jokoak__count})</li>
                 {% endif %}
             {% endfor %}
         </ul>
