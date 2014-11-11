@@ -28,7 +28,9 @@
         <hr/>
         <ul class="list-unstyled">
             {% for k in topjokoak %}
-                <li>{{k}}</li>
+                {% if k.top_jokoak__count %}
+                <li>{{k.top_jokoak}} ({k.top_jokoak__count})</li>
+                {% endif %}
             {% endfor %}
         </ul>
     </div>
