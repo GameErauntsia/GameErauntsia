@@ -17,6 +17,7 @@
 					{% if user_prof.twitter_id or user_prof.nickname %}
 					<small>{% if user_prof.twitter_id %}@{{user_prof.twitter_id}}{% else %}{{user_prof.nickname}}{% endif %}</small>
 					{% endif %}
+					{% if user.is_authenticated %}<a href="{% url 'messages_compose_to' user_prof.username  %}"><span class="glyphicon glyphicon-envelope"></span></a>{% endif %}
 					</h2>
 					<p>{% if user_prof.bio%}{{user_prof.bio}}
 						{% else %}
