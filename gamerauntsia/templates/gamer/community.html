@@ -27,10 +27,10 @@
 				</h2>
 				{% else %}
 				</h2>
-                <h2>
+                <p>
                 	{% if user.is_authenticated %}<small><a href="{% url 'messages_compose_to' user_prof.username  %}"><span class="glyphicon glyphicon-envelope"></span></a></small>{% endif %}
 				{% endif %}
-			    </h2>
+			    </p>
 			</div>
 	  	</div>
     </div>
