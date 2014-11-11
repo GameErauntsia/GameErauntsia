@@ -28,7 +28,7 @@
 				{% else %}
 				</h2>
                 <p>
-                	{% if user.is_authenticated %}<small><a href="{% url 'messages_compose_to' user_prof.username  %}"><span class="glyphicon glyphicon-envelope"></span></a></small>{% endif %}
+                	{% if user.is_authenticated %}<a href="{% url 'messages_compose_to' user_prof.username  %}"><span class="glyphicon glyphicon-envelope"></span></a>{% endif %}
 				{% endif %}
 			    </p>
 			</div>
