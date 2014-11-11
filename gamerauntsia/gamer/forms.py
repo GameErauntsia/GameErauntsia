@@ -1,5 +1,4 @@
 from django import forms
-from django.contrib.admin.widgets import FilteredSelectMultiple
 from gamerauntsia.gamer.models import GamerUser, JokuPlataforma
 from gamerauntsia.jokoa.models import Jokoa
 from tinymce.widgets import TinyMCE
@@ -26,10 +25,7 @@ class TopForm(forms.ModelForm):
     top_jokoak = forms.ModelMultipleChoiceField(queryset=Jokoa.objects.all().order_by('izena','bertsioa'),
                                           label='',
                                           required=False,
-                                          widget=FilteredSelectMultiple(
-                                                    _('Top jokoak'),
-                                                    False,
-                                                 ))
+                                          widget=forms.CheckboxSelectMultiple())
 
     class Meta:
         model = GamerUser
