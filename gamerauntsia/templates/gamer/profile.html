@@ -181,7 +181,7 @@
 			</div>
 			{% endif %}
 		{% endif %}
-		{% if user_prof.top_jokoak %}
+		{% if user_prof.top_jokoak.all %}
 			<div class="col-lg-4">
 				<h2>Gustuko jokoak</h2>
 				{% for joko in user_prof.top_jokoak.all %}
