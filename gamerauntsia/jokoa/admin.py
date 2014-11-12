@@ -4,7 +4,16 @@ from django.contrib import admin
 from datetime import datetime
     
 class JokoaAdmin(admin.ModelAdmin):
-    list_display = ('izena','bertsioa','url','slug')
+    
+    def admin_thumbnail(self):
+        if self.logoa:
+            return u'<img src="%s" />' % self.logoa.get_admin_thumbnail_url()
+        else:
+            return '(Irudirik ez)'
+        image_img.short_description = 'Thumb'
+        image_img.allow_tags = True
+
+    list_display = ('izena','bertsioa','url','slug', 'admin_thumbnail' )
     prepopulated_fields = {"slug": ("izena","bertsioa")}
     ordering = ('izena','bertsioa')
 

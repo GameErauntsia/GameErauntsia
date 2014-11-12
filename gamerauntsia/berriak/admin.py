@@ -3,6 +3,15 @@ from django.contrib import admin
 from gamerauntsia.berriak.forms import BerriaAdminForm
 
 class BarriakAdmin(admin.ModelAdmin):
+
+    def admin_thumbnail(self):
+        if self.argazkia:
+            return u'<img src="%s" />' % self.argazkia.get_admin_thumbnail_url()
+        else:
+            return '(Sin imagen)'
+        image_img.short_description = 'Thumb'
+        image_img.allow_tags = True
+
     list_display = ('izenburua', 'slug', 'erabiltzailea', 'pub_date', 'mod_date', 'publikoa_da')
     prepopulated_fields = {"slug": ("izenburua",)}
     filter_horizontal = ('gaia',)
