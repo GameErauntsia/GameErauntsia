@@ -95,7 +95,7 @@ class GamePlaya(models.Model):
 
     def admin_thumbnail(self):
         if self.argazkia:
-            return u'<img src="%s" />' % self.argazkia.get_admin_thumbnail_url()
+            return u'<img src="%s%s" />' % (settings.HOST, self.argazkia.get_admin_thumbnail_url())
         else:
             return '(Irudirik ez)'
         admin_thumbnail.short_description = 'Thumb'
