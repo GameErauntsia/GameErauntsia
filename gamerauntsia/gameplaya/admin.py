@@ -1,21 +1,20 @@
 from gamerauntsia.gameplaya.models import GamePlaya, Kategoria, Zailtasuna
 from django.contrib import admin
 from gamerauntsia.gameplaya.forms import GamePlayAdminForm
-
 from datetime import datetime
 from django.utils import timezone
 
 class GamePlayAdmin(admin.ModelAdmin):
 
-    def admin_thumbnail(self,obj):
+    def image_tag(self,obj):
         if obj.argazkia:
             return u'<img src="%s" />' % (obj.argazkia.get_admin_thumbnail_url())
         else:
             return u'(Irudirik ez)'
-        admin_thumbnail.short_description = 'Thumb'
-        admin_thumbnail.allow_tags = True
+        image_tag.short_description = 'Thumb'
+        image_tag.allow_tags = True
 
-    list_display = ('izenburua', 'slug','zailtasuna', 'jokoa','plataforma','pub_date', 'erabiltzailea','publikoa_da', 'admin_thumbnail')
+    list_display = ('izenburua', 'slug','zailtasuna', 'jokoa','plataforma','pub_date', 'erabiltzailea','publikoa_da', 'image_tag')
     prepopulated_fields = {"slug": ("izenburua",)}
     filter_horizontal = ('kategoria',)
     raw_id_fields = ('argazkia','jokoa','plataforma','erabiltzailea')
