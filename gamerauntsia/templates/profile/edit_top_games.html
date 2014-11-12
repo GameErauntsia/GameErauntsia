@@ -24,6 +24,8 @@
                 <div class="col-lg-12">
                     {% for lagun in lagunak %}
                     <p><a href="{% url 'gamer_profile' lagun.username %}"><img src="{{lagun.get_photo.get_profilesmall_url}}" class="img-circle"/> {{lagun.fullname}}</a></p>
+                    {% empty %}
+                    <p>Sentitzen dugu... ez dugu zure gustu berdinak dituen lagunik aurkitu. Jokoren bat aukeratu duzu?</p>
                     {% endfor %}
                 </div>
             </div>
