@@ -125,61 +125,76 @@
 	<hr/>
 	<div class="row">
 	    {% if gameplayak %}
-		<div class="col-lg-8">
-		    <h2>Azken Game Playak</h2>
-		    {% autopaginate gameplayak 5 %}
-		    {% for gp in gameplayak %}
-		    {% get_comment_count for gp as comment_count %}
-		    <div class="row">
-			    <div class="col-lg-4">
-			        <a href="{{gp.get_absolute_url}}"><img src="{{gp.argazkia.get_videoprofile_url}}" alt="" /></a>
-			    </div>
-			    <div class="col-lg-8">
-			        <h3><a href="{{gp.get_absolute_url}}">{{gp.izenburua}}</a></h3>
-			        <p><span class="glyphicon glyphicon-play"></span> {% if gp.jokoa.url %}<a href="{{gp.jokoa.url}}">{{gp.jokoa}}</a>{% else %}{{gp.jokoa}}{% endif%} | <span class="glyphicon glyphicon-time"></span> {{gp.iraupena_min}}min {{gp.iraupena_seg}}seg | <img src="{{gp.plataforma.icon.get_profilesmall_url}}" alt="{{gp.plataforma.izena}}" caption="{{gp.plataforma.izena}}"/>{% if comment_count %} | <a href="{{gp.get_absolute_url}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}</p>
-			        <p>{{gp.get_desk_txikia|safe}}</p>
-			    </div>
-			</div>
-			<hr/>
-		    {% endfor %}
-		    {% paginate %}
-		</div>
-		{% if berriak %}
-		<div class="col-lg-4">
-			<h2>Azken berriak</h2>
-			{% for berri in side_berriak %}
-			<div class="row bloglist">
-				<div class="col-lg-4">
-				    <a href="{% url 'berria' berri.slug %}"><img src="{{berri.argazkia.get_newsprofile_url}}" alt="" /></a>
+			<div class="col-lg-8">
+			    <h2>Azken Game Playak</h2>
+			    {% autopaginate gameplayak 5 %}
+			    {% for gp in gameplayak %}
+			    {% get_comment_count for gp as comment_count %}
+			    <div class="row">
+				    <div class="col-lg-4">
+				        <a href="{{gp.get_absolute_url}}"><img src="{{gp.argazkia.get_videoprofile_url}}" alt="" /></a>
+				    </div>
+				    <div class="col-lg-8">
+				        <h3><a href="{{gp.get_absolute_url}}">{{gp.izenburua}}</a></h3>
+				        <p><span class="glyphicon glyphicon-play"></span> {% if gp.jokoa.url %}<a href="{{gp.jokoa.url}}">{{gp.jokoa}}</a>{% else %}{{gp.jokoa}}{% endif%} | <span class="glyphicon glyphicon-time"></span> {{gp.iraupena_min}}min {{gp.iraupena_seg}}seg | <img src="{{gp.plataforma.icon.get_profilesmall_url}}" alt="{{gp.plataforma.izena}}" caption="{{gp.plataforma.izena}}"/>{% if comment_count %} | <a href="{{gp.get_absolute_url}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}</p>
+				        <p>{{gp.get_desk_txikia|safe}}</p>
+				    </div>
 				</div>
-			    <div class="col-lg-8">
-			        <p><strong><a href="{% url 'berria' berri.slug %}">{{berri.izenburua}}</strong></a><p>
-			    </div>
+				<hr/>
+			    {% endfor %}
+			    {% paginate %}
 			</div>
-		    {% endfor %}
-		</div>
-		{% endif %}
+			{% if berriak %}
+			<div class="col-lg-4">
+				<h2>Azken berriak</h2>
+				{% for berri in side_berriak %}
+				<div class="row bloglist">
+					<div class="col-lg-4">
+					    <a href="{% url 'berria' berri.slug %}"><img src="{{berri.argazkia.get_newsprofile_url}}" alt="" /></a>
+					</div>
+				    <div class="col-lg-8">
+				        <p><strong><a href="{% url 'berria' berri.slug %}">{{berri.izenburua}}</strong></a><p>
+				    </div>
+				</div>
+			    {% endfor %}
+			</div>
+			{% endif %}
 		{% else %}
-		{% if berriak %}
-		<div class="col-lg-8">
-			<h2>Azken berriak</h2>
-			{% autopaginate berriak 5 %}
-			{% for berri in berriak %}
-			<div class="row bloglist">
-				<div class="col-lg-4">
-				    <a href="{% url 'berria' berri.slug %}"><img src="{{berri.argazkia.get_videoprofile_url}}" alt="" /></a>
+			{% if berriak %}
+			<div class="col-lg-8">
+				<h2>Azken berriak</h2>
+				{% autopaginate berriak 5 %}
+				{% for berri in berriak %}
+				<div class="row bloglist">
+					<div class="col-lg-4">
+					    <a href="{% url 'berria' berri.slug %}"><img src="{{berri.argazkia.get_videoprofile_url}}" alt="" /></a>
+					</div>
+				    <div class="col-lg-8">
+				        <h3><a href="{% url 'berria' berri.slug %}">{{berri.izenburua}}</a></h3>
+				        <p><span class="glyphicon glyphicon-time"></span> {{berri.pub_date|date:"Y/m/d H:i"}} {% for gai in berri.gaia.all %}<span class="label label-success tags">{{gai.izena}}</span>{% endfor %}</p>
+				        <p>{{berri.get_desk_txikia|safe}}</p>
+				    </div>
 				</div>
-			    <div class="col-lg-8">
-			        <h3><a href="{% url 'berria' berri.slug %}">{{berri.izenburua}}</a></h3>
-			        <p><span class="glyphicon glyphicon-time"></span> {{berri.pub_date|date:"Y/m/d H:i"}} {% for gai in berri.gaia.all %}<span class="label label-success tags">{{gai.izena}}</span>{% endfor %}</p>
-			        <p>{{berri.get_desk_txikia|safe}}</p>
-			    </div>
+				<hr/>
+			    {% endfor %}
+			    {% paginate %}
 			</div>
-			<hr/>
-		    {% endfor %}
-		    {% paginate %}
-		</div>
+			{% endif %}
 		{% endif %}
+		{% if user_prof.top_jokoak %}
+			<div class="col-lg-4">
+				<h2>Gustuko jokoak</h2>
+				{% for joko in user_prof.top_jokoak.all %}
+				<div class="row bloglist">
+					<div class="col-lg-4">
+					    <img src="{{joko.get_photo.get_newsprofile_url}}" alt="" />
+					</div>
+				    <div class="col-lg-8">
+				        <p><strong>{{joko.izena}}</strong><p>
+				    </div>
+				</div>
+				{% endfor %}
+			</div>
 		{% endif %}
 	</div>
 {% endblock %}
