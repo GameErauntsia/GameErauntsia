@@ -10,7 +10,7 @@
         <a href="{{eran.get_absolute_url}}"><small>{{ eran.submit_date }}</small></a>
         </h4>
         {{ eran.comment|truncatechars:150 }}
-        <small><a href="{{eran.get_absolute_url}}">{{eran|get_parent_title}}</a></small>
+        <br/><small><a class="nickname" href="{{eran.get_absolute_url}}">{{eran|get_parent_title|truncatechars:40}}</a></small>
     </div>
 </div>
 {% endfor %}
