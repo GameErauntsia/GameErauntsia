@@ -2,43 +2,42 @@
 {% load i18n include %}
 
 {% block perfil %}
-<div class="col-lg-8">
-    <div class="profileform">
-        <h2>Joko gustokoenak</h2>
-        <p>Zehaztu hemen zein diren zure joko gustukoenak edo gehien erabiltzen dituzunak. Datu hauek erabiliko ditugu zure interes berdinak dituzten jokalariak aurkezteko.</p>
-        <form class="form-horizontal" action="{{request.path}}" method="POST">
-            {% csrf_token %}
-            {{topform.as_p}}
-            <input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
-        </form>
-    </div>
-</div>
-<div class="col-lg-4">
-    <div class="well">
-        <h3>Kontutan hartu beharko zenituzkeen komunitateko jokalariak</h3>
-        <hr/>
-        <div class="row">
-            <div class="col-lg-12">
-                {% for lagun in lagunak %}
-                <p><a href="{% url 'gamer_profile' lagun.username %}"><img src="{{lagun.get_photo.get_profilesmall_url}}" class="img-circle"/> {{lagun.fullname}}</a></p>
-                {% endfor %}
-            </div>
+<div class="col-lg-12">
+    <div class="col-lg-8">
+        <div class="profileform">
+            <h2>Joko gustokoenak</h2>
+            <p>Zehaztu hemen zein diren zure joko gustukoenak edo gehien erabiltzen dituzunak. Datu hauek erabiliko ditugu zure interes berdinak dituzten jokalariak aurkezteko.</p>
+            <form class="form-horizontal" action="{{request.path}}" method="POST">
+                {% csrf_token %}
+                {{topform.as_p}}
+                <input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
+            </form>
         </div>
     </div>
-    <div class="well">
-        <h3>Komunitateko jokuen Top-a:</h3>
-        <hr/>
-        <ul class="list-unstyled">
-            {% for k in topjokoak %}
-                {% if k.top_jokoak__count %}
-                <li>{{k.top_jokoak__izena}} ({{k.top_jokoak__count}})</li>
-                {% endif %}
-            {% endfor %}
-        </ul>
+    <div class="col-lg-4">
+        <div class="well">
+            <h3>Kontutan hartu beharko zenituzkeen komunitateko jokalariak</h3>
+            <hr/>
+            <div class="row">
+                <div class="col-lg-12">
+                    {% for lagun in lagunak %}
+                    <p><a href="{% url 'gamer_profile' lagun.username %}"><img src="{{lagun.get_photo.get_profilesmall_url}}" class="img-circle"/> {{lagun.fullname}}</a></p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="well">
+            <h3>Komunitateko jokuen Top-a:</h3>
+            <hr/>
+            <ul class="list-unstyled">
+                {% for k in topjokoak %}
+                    {% if k.top_jokoak__count %}
+                    <li>{{k.top_jokoak__izena}} ({{k.top_jokoak__count}})</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 </div>
-
-
-
 
 {% endblock %}
