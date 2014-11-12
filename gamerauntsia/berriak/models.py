@@ -45,14 +45,6 @@ class Berria(models.Model):
         else:
             return self.izenburua + ' ' + self.get_absolute_url() 
     
-    def admin_thumbnail(self):
-        if self.argazkia:
-            return u'<img src="%s" />' % self.argazkia.get_admin_thumbnail_url()
-        else:
-            return '(Irudirik ez)'
-        admin_thumbnail.short_description = 'Thumb'
-        admin_thumbnail.allow_tags = True
-    
     class Meta:    
         verbose_name = "berria"
         verbose_name_plural = "berriak"

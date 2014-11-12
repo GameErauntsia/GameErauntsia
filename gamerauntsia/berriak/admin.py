@@ -2,7 +2,15 @@ from gamerauntsia.berriak.models import Berria, Gaia
 from django.contrib import admin
 from gamerauntsia.berriak.forms import BerriaAdminForm
 
-class BarriakAdmin(admin.ModelAdmin):
+class BerriakAdmin(admin.ModelAdmin):
+
+    def admin_thumbnail(self,obj):
+        if obj.argazkia:
+            return u'<img src="%s" />' % (obj.argazkia.get_admin_thumbnail_url())
+        else:
+            return u'(Irudirik ez)'
+    admin_thumbnail.short_description = 'Thumb'
+    admin_thumbnail.allow_tags = True
 
     list_display = ('izenburua', 'slug', 'erabiltzailea', 'pub_date', 'mod_date', 'publikoa_da','admin_thumbnail')
     prepopulated_fields = {"slug": ("izenburua",)}
@@ -42,4 +50,4 @@ class GaiaAdmin(admin.ModelAdmin):
     
 
 admin.site.register(Gaia, GaiaAdmin)	
-admin.site.register(Berria, BarriakAdmin)
+admin.site.register(Berria, BerriakAdmin)
