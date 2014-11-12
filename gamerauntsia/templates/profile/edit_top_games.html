@@ -3,10 +3,12 @@
 
 {% block perfil %}
 <div class="col-lg-12">
+    <h2>Joko gustokoenak</h2>
+    <p>Zehaztu hemen zein diren zure joko gustukoenak edo gehien erabiltzen dituzunak. Datu hauek erabiliko ditugu zure interes berdinak dituzten jokalariak aurkezteko.</p>
+</div>
+<div class="col-lg-12">
     <div class="col-lg-8">
         <div class="profileform">
-            <h2>Joko gustokoenak</h2>
-            <p>Zehaztu hemen zein diren zure joko gustukoenak edo gehien erabiltzen dituzunak. Datu hauek erabiliko ditugu zure interes berdinak dituzten jokalariak aurkezteko.</p>
             <form class="form-horizontal" action="{{request.path}}" method="POST">
                 {% csrf_token %}
                 {{topform.as_p}}
@@ -39,5 +41,5 @@
         </div>
     </div>
 </div>
-
+<hr>
 {% endblock %}
