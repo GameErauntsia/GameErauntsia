@@ -29,8 +29,15 @@ class Jokoa(models.Model):
     logoa = models.ForeignKey(Photo,null=True,blank=True)
     url = models.CharField(max_length=64, help_text="Eremu honetan joko honen atariko URL helbidea zehazten ari zara." )
     wiki = models.CharField(max_length=64, null=True, blank=True, help_text="Eremu honetan joko honen wikipediako URL helbidea zehaztu mesedez." )
-    
-    
+      
+    def admin_thumbnail(self):
+        if self.logoa:
+            return u'<img src="%s" />' % self.logoa.get_admin_thumbnail_url()
+        else:
+            return '(Irudirik ez)'
+        admin_thumbnail.short_description = 'Thumb'
+        admin_thumbnail.allow_tags = True
+
     class Meta:
         verbose_name = "Jokoa"
         verbose_name_plural = "Jokoak"

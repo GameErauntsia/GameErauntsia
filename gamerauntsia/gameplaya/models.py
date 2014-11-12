@@ -93,6 +93,14 @@ class GamePlaya(models.Model):
             self.desk[0].upper()
         super(GamePlaya,self).save(*args,**kwargs)
 
+    def admin_thumbnail(self):
+        if self.argazkia:
+            return u'<img src="%s" />' % self.argazkia.get_admin_thumbnail_url()
+        else:
+            return '(Irudirik ez)'
+        admin_thumbnail.short_description = 'Thumb'
+        admin_thumbnail.allow_tags = True
+
     class Meta:    
         verbose_name = "gameplaya"
         verbose_name_plural = "gameplayak"
