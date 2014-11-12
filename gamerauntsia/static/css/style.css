@@ -173,3 +173,7 @@ hr.dotted {
   margin-left: 0;
   width: 50%;
 }
+
+.profileform ul {
+  list-style: none;
+}
