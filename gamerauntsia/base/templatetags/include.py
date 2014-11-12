@@ -118,3 +118,14 @@ def irekita(value):
 @register.filter
 def inbox_count_for(user):
     return Message.objects.filter(recipient=user, read_at__isnull=True, recipient_deleted_at__isnull=True).count()
+
+
+def get_comment_object(comment):
+  """
+  This is the reverse, it gets an object from the comment
+  """
+  return comment.content_type.get_object_for_this_type(pk = comment.object_pk)
+
+@register.filter
+def get_parent_title(comment):
+    return get_comment_object(comment).izenburua

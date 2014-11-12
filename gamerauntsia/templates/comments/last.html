@@ -1,3 +1,5 @@
+{% load include %}
+
 {% for eran in comments %}
 <div class="media">
     <a class="pull-left" href="{% url 'gamer_guestprofile' eran.user.username %}">
@@ -8,6 +10,7 @@
         <a href="{{eran.get_absolute_url}}"><small>{{ eran.submit_date }}</small></a>
         </h4>
         {{ eran.comment|truncatechars:150 }}
+        <small><a href="{{eran.get_absolute_url}}">{{eran|get_parent_title}}</a></small>
     </div>
 </div>
 {% endfor %}

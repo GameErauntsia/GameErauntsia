@@ -37,7 +37,7 @@ class Berria(models.Model):
     	return filters.striptags(self.desk)[:400]+'...'
 
     def get_absolute_url(self):
-        return '%sberriak/%s' % (settings.HOST, self.slug)
+        return '%sbloga/%s' % (settings.HOST, self.slug)
 
     def getTwitText(self):
         if self.erabiltzailea.twitter_id:
