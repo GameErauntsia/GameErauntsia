@@ -11,7 +11,6 @@ class GamePlayAdmin(admin.ModelAdmin):
             return u'<img src="%s" />' % (obj.argazkia.get_admin_thumbnail_url())
         else:
             return u'(Irudirik ez)'
-        image_tag.short_description = 'Thumb'
         image_tag.allow_tags = True
 
     list_display = ('izenburua', 'slug','zailtasuna', 'jokoa','plataforma','pub_date', 'erabiltzailea','publikoa_da', 'image_tag')
