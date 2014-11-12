@@ -7,6 +7,14 @@ from django.utils import timezone
 
 class GamePlayAdmin(admin.ModelAdmin):
 
+    def admin_thumbnail(self,obj):
+        if obj.argazkia:
+            return u'<img src="%s" />' % (obj.argazkia.get_admin_thumbnail_url())
+        else:
+            return u'(Irudirik ez)'
+        admin_thumbnail.short_description = 'Thumb'
+        admin_thumbnail.allow_tags = True
+
     list_display = ('izenburua', 'slug','zailtasuna', 'jokoa','plataforma','pub_date', 'erabiltzailea','publikoa_da', 'admin_thumbnail')
     prepopulated_fields = {"slug": ("izenburua",)}
     filter_horizontal = ('kategoria',)
