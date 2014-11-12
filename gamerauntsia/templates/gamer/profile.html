@@ -72,6 +72,21 @@
 				<div class="clearfix"></div>
 		  	</div>
 	    </div>
+	    {% if user_prof.top_jokoak.all and not user_prof.is_staff %}
+			<div class="col-lg-4">
+				<h2>Gustuko jokoak</h2>
+				{% for joko in user_prof.top_jokoak.all %}
+				<div class="row bloglist">
+					<div class="col-lg-4">
+					    <img src="{{joko.get_photo.get_newsprofile_url}}" alt="" />
+					</div>
+				    <div class="col-lg-8">
+				        <p><strong>{{joko.izena}} {{joko.bertsioa}}</strong><p>
+				    </div>
+				</div>
+				{% endfor %}
+			</div>
+		{% endif %}
 	    <div class="col-md-4">
 	    	{% if not gp_count and not berri_count %}
 	    	{% else %}
@@ -181,7 +196,7 @@
 			</div>
 			{% endif %}
 		{% endif %}
-		{% if user_prof.top_jokoak.all %}
+		{% if user_prof.top_jokoak.all and user_prof.is_staff %}
 			<div class="col-lg-4">
 				<h2>Gustuko jokoak</h2>
 				{% for joko in user_prof.top_jokoak.all %}
