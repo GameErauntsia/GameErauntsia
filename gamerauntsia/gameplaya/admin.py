@@ -11,7 +11,7 @@ class GamePlayAdmin(admin.ModelAdmin):
             return u'<img src="%s" />' % (obj.argazkia.get_admin_thumbnail_url())
         else:
             return u'(Irudirik ez)'
-        _image_tag.allow_tags = True
+    _image_tag.allow_tags = True
 
     list_display = ('izenburua', 'slug','zailtasuna', 'jokoa','plataforma','pub_date', 'erabiltzailea','publikoa_da', '_image_tag')
     prepopulated_fields = {"slug": ("izenburua",)}
