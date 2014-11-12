@@ -22,7 +22,7 @@ class BerriakAdmin(admin.ModelAdmin):
     form = BerriaAdminForm	
 
     def queryset(self, request):
-        qs = super(BarriakAdmin, self).queryset(request)
+        qs = super(BerriakAdmin, self).queryset(request)
         if request.user.is_superuser:
             return qs
         else:
