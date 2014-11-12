@@ -5,9 +5,9 @@ from datetime import datetime
     
 class JokoaAdmin(admin.ModelAdmin):
 
-    def admin_thumbnail(self):
-        if self.logoa:
-            return u'<img src="%s" />' % self.logoa.get_admin_thumbnail_url()
+    def admin_thumbnail(self,obj):
+        if obj.logoa:
+            return u'<img src="%s" />' % obj.logoa.get_admin_thumbnail_url()
         else:
             return '(Irudirik ez)'
     admin_thumbnail.short_description = 'Thumb'
