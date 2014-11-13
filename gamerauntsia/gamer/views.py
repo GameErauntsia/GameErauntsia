@@ -22,7 +22,19 @@ from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.forms import PasswordChangeForm
 from django.template.response import TemplateResponse
-from django.contrib.auth import (update_session_auth_hash)
+
+
+def update_session_auth_hash(request, user):
+    """
+    Updating a user's password logs out all sessions for the user if
+    django.contrib.auth.middleware.SessionAuthenticationMiddleware is enabled.
+    This function takes the current request and the updated user object from
+    which the new session hash will be derived and updates the session hash
+    appropriately to prevent a password change from logging out the session
+    from which the password was changed.
+    """
+    if hasattr(user, 'get_session_auth_hash') and request.user == user:
+        request.session[HASH_SESSION_KEY] = user.get_session_auth_hash()
 
 def index(request):
     users = GamerUser.objects.filter(is_active=True,is_staff=True).order_by('-date_joined')
