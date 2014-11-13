@@ -45,14 +45,14 @@
                                 </div></td>
                             <td>{{topic.num_posts}}</td>
                             <td>
-
+                                {% if topic.last_post %}
                                 <div class="col-lg-2">
                                     <img src="{{topic.last_post.creator.get_photo.get_profilesmall_url}}" class="img-circle"/>
                                 </div>
                                 <div class="col-lg-10">
                                 {{topic.last_post.short|linebreaksbr}}
                                 </div>
-
+                                {% endif %}
                             </td>
                             <td>{{topic.creator}}</td>
                             <td>{{topic.created}}</td>
