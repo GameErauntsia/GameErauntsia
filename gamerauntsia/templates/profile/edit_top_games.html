@@ -2,46 +2,47 @@
 {% load i18n include %}
 
 {% block perfil %}
-<div class="col-lg-12">
-    <h2>Joko gustokoenak</h2>
-    <p>Zehaztu hemen zein diren zure joko gustukoenak edo gehien erabiltzen dituzunak. Datu hauek erabiliko ditugu zure interes berdinak dituzten jokalariak aurkezteko.</p>
-</div>
-<div class="col-lg-12">
-    <div class="col-lg-8">
-        <div class="profileform">
-            <form class="form-horizontal" action="{{request.path}}" method="POST">
-                {% csrf_token %}
-                {{topform.as_p}}
-                <input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
-            </form>
-        </div>
+<div class="profileform">
+    <div class="col-lg-12">
+        <h2>Joko gustokoenak</h2>
+        <p>Zehaztu hemen zein diren zure joko gustukoenak edo gehien erabiltzen dituzunak. Datu hauek erabiliko ditugu zure interes berdinak dituzten jokalariak aurkezteko.</p>
     </div>
-    <div class="col-lg-4">
-        <div class="well">
-            <h3>Lagun posibleak</h3>
-            <hr/>
-            <div class="row">
-                <div class="col-lg-12">
-                    {% for lagun in lagunak %}
-                    <p><a href="{% url 'gamer_profile' lagun.username %}"><img src="{{lagun.get_photo.get_profilesmall_url}}" class="img-circle"/> {{lagun.fullname}}</a></p>
-                    {% empty %}
-                    <p>Sentitzen dugu... ez dugu zure gustu berdinak dituen lagunik aurkitu. Jokoren bat aukeratu duzu?</p>
-                    {% endfor %}
-                </div>
+    <div class="col-lg-12">
+        <div class="col-lg-8">
+            <div class="profileform">
+                <form class="form-horizontal" action="{{request.path}}" method="POST">
+                    {% csrf_token %}
+                    {{topform.as_p}}
+                    <input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
+                </form>
             </div>
         </div>
-        <div class="well">
-            <h3>Jokuen Top-a:</h3>
-            <hr/>
-            <ul class="list-unstyled">
-                {% for k in topjokoak %}
-                    {% if k.top_jokoak__count %}
-                    <li>{{k.top_jokoak__izena}} ({{k.top_jokoak__count}})</li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
+        <div class="col-lg-4">
+            <div class="well">
+                <h3>Lagun posibleak</h3>
+                <hr/>
+                <div class="row">
+                    <div class="col-lg-12">
+                        {% for lagun in lagunak %}
+                        <p><a href="{% url 'gamer_profile' lagun.username %}"><img src="{{lagun.get_photo.get_profilesmall_url}}" class="img-circle"/> {{lagun.fullname}}</a></p>
+                        {% empty %}
+                        <p>Sentitzen dugu... ez dugu zure gustu berdinak dituen lagunik aurkitu. Jokoren bat aukeratu duzu?</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="well">
+                <h3>Jokuen Top-a:</h3>
+                <hr/>
+                <ul class="list-unstyled">
+                    {% for k in topjokoak %}
+                        {% if k.top_jokoak__count %}
+                        <li>{{k.top_jokoak__izena}} ({{k.top_jokoak__count}})</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </div>
 </div>
-<hr>
 {% endblock %}
