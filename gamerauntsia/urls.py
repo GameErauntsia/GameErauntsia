@@ -57,9 +57,6 @@ urlpatterns = patterns('',
 
     #MEZUAK
     (r'^mezuak/', include('django_messages.urls')),
-
-    #PASAHITZA ALDATU
-    url(r'^komunitatea/editatu-profil-pass/$','django.contrib.auth.views.password_change', name='edit_profile_pass'), 
 )
 
 
@@ -69,6 +66,7 @@ urlpatterns += patterns('gamerauntsia.gamer.views',
     url(r'^komunitatea/editatu-profil-jakin$','edit_notifications', name='edit_profile_noti'),
     url(r'^komunitatea/editatu-profil-plat$','edit_platform', name='edit_profile_plat'),
     url(r'^komunitatea/editatu-profil-top$','edit_top_games', name='edit_profile_top'),
+    url(r'^komunitatea/editatu-profil-pass/$','password_change', name='edit_profile_pass'), 
     url(r'^komunitatea/(?P<username>[-\w]+)$', 'guestprofile', name='gamer_guestprofile'),
 )
 
