@@ -22,7 +22,8 @@ from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.forms import PasswordChangeForm
 from django.template.response import TemplateResponse
-from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import (REDIRECT_FIELD_NAME, login as auth_login,
+    logout as auth_logout, get_user_model, update_session_auth_hash)
 
 def index(request):
     users = GamerUser.objects.filter(is_active=True,is_staff=True).order_by('-date_joined')
