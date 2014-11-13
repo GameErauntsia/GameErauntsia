@@ -31,8 +31,14 @@
                                 {% for forum in cat.get_forums %}
                                 <tr>
                                     <td>
+
+
+
                                     <div class="title">
-                                        <img class="img-rounded" src="{{forum.icon.get_forum_thumbnail_url}}"/> <a href="{% url 'forum-detail' forum.slug %}">{{ forum.title }}</a>
+                                        <img class="img-rounded" src="{{forum.icon.get_forum_thumbnail_url}}"/> <a href="{% url 'forum-detail' forum.slug %}">{{ forum.title }} &nbsp;
+                                        {% if forum.last_post.updated > user.last_login %}
+                                            <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                                        {% endif %}</a>
                                     </div></td>
                                     <td>{{forum.num_topics}}</td>
                                     <td>{{forum.num_posts}}</td>

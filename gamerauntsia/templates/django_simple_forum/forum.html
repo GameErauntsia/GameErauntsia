@@ -17,7 +17,7 @@
     </div>
 </div>
 {% endif %}
-    
+
 <div class="row">
     <div class="col-lg-12">
         <div id="list">
@@ -38,18 +38,21 @@
                         {% for topic in topics %}
                         <tr {% if topic.block_top %}class="active"{% endif %}>
                             <td>
-                            <div class="title"> <a href="{% url 'topic-detail' forum.slug topic.pk %}"><span class="{% if topic.block_top%}glyphicon glyphicon-envelope{% else %}{%if topic.closed %}glyphicon glyphicon-folder-close{% else %}glyphicon glyphicon-folder-open{% endif %}{% endif %}"></span> {{ topic.title }}</a>
+                            <div class="title"> <a href="{% url 'topic-detail' forum.slug topic.pk %}"><span class="{% if topic.block_top%}glyphicon glyphicon-envelope{% else %}{%if topic.closed %}glyphicon glyphicon-folder-close{% else %}glyphicon glyphicon-folder-open{% endif %}{% endif %}"></span> {{ topic.title }}
+                            {% if topic.last_post.updated > user.last_login %}
+                                <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                            {% endif %}</a>
                                 </div></td>
                             <td>{{topic.num_posts}}</td>
                             <td>
-                                {% if topic.last_post %}
+
                                 <div class="col-lg-2">
                                     <img src="{{topic.last_post.creator.get_photo.get_profilesmall_url}}" class="img-circle"/>
                                 </div>
                                 <div class="col-lg-10">
                                 {{topic.last_post.short|linebreaksbr}}
                                 </div>
-                                {% endif %}
+
                             </td>
                             <td>{{topic.creator}}</td>
                             <td>{{topic.created}}</td>
