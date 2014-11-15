@@ -36,3 +36,10 @@ class GameForm(forms.ModelForm):
     class Meta:
         model = JokuPlataforma
         fields = ('plataforma','nick')
+
+class LastloginForm(forms.ModelForm):
+
+    class Meta:
+        model = GamerUser
+        fields = ('last_login',)
+    
