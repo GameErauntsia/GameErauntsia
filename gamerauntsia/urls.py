@@ -59,7 +59,7 @@ urlpatterns = patterns('',
     (r'^mezuak/', include('django_messages.urls')),
     
     #EGUTEGIA
-    (r'^egutegia/', include('django_bootstrap_calendar.urls')),
+    (r'^calendar/', include('django_bootstrap_calendar.urls')),
 )
 
 
