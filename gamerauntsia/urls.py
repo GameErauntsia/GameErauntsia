@@ -61,6 +61,10 @@ urlpatterns = patterns('',
     
     #EGUTEGIA
     (r'^calendar/', include('django_bootstrap_calendar.urls')),
+
+    #ERABILERA ETA PRIBATUTASUNA
+    (r'^erabilera-baldintzak/$', TemplateView.as_view(template_name='erabilera_baldintzak.html')),
+    (r'^pribatutasun-politika/$', TemplateView.as_view(template_name='pribatutasun_politika.html')),
 )
 
 
