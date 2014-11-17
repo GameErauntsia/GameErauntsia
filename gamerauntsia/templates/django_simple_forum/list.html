@@ -36,7 +36,7 @@
                             </thead>
                             <tbody>
                                 {% for forum in cat.get_forums %}
-                                <tr>
+                                <tr {% if forum.last_post.updated > user.last_login %}class="bg-success"{% endif %}>
                                     <td>
 
 
@@ -60,7 +60,7 @@
                                     <td>{{forum.created}}</td>
                                     <td>
                                         {% if forum.last_post.updated > user.last_login %}
-                                            <p class="text-danger"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> BERRIA</p>
+                                            <strong class="text-success"><span aria-hidden="true" class="glyphicon glyphicon-star-empty"></span> BERRIA</strong>
                                         {% endif %}
                                     </td>
                                 </tr>
