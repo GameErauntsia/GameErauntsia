@@ -13,7 +13,7 @@ from gamerauntsia.utils.images import handle_uploaded_file
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from photologue.models import Photo
-from gamerauntsia.gamer.forms import NotifyForm,GameForm, GamerForm, TopForm
+from gamerauntsia.gamer.forms import NotifyForm,GameForm, GamerForm, TopForm, LastloginForm
 from django.utils.translation import ugettext as _
 from django.forms.models import modelformset_factory
 from datetime import datetime
@@ -22,7 +22,8 @@ from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.forms import PasswordChangeForm
 from django.template.response import TemplateResponse
-
+from django_simple_forum.models import Category
+from django.utils import timezone
 
 def update_session_auth_hash(request, user):
     """
@@ -190,3 +191,19 @@ def password_change_done(request,
         context.update(extra_context)
     return TemplateResponse(request, template_name, context,
                             current_app=current_app)
+
+@login_required
+def lastlogin(request):
+    """ """
+    user = request.user
+    if request.method == 'POST':
+        user.last_login = timezone.now()
+        user.save(update_fields=['last_login'])
+        return HttpResponseRedirect(reverse('forum-index'))
+    else:
+        lastloginform = LastloginForm(instance=user)
+
+    categories = Category.objects.all().order_by('order')
+    return render_to_response("django_simple_forum/list.html", {'categories': categories, 
+                                'user': request.user}, 
+                                context_instance=RequestContext(request))
