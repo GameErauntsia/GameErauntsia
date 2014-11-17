@@ -17,7 +17,7 @@
     </div>
 </div>
 {% endif %}
-    
+
 <div class="row">
     <div class="col-lg-12">
         <div id="list">
@@ -36,7 +36,7 @@
                     </thead>
                     <tbody>
                         {% for topic in topics %}
-                        <tr {% if topic.block_top %}class="active"{% endif %}>
+                        <tr {% if topic.block_top %}class="active"{% else %}{% if topic.last_post.updated > user.last_login %}class="bg-success"{% endif %}{% endif %}>
                             <td>
                             <div class="title"> <a href="{% url 'topic-detail' forum.slug topic.pk %}"><span class="{% if topic.block_top%}glyphicon glyphicon-envelope{% else %}{%if topic.closed %}glyphicon glyphicon-folder-close{% else %}glyphicon glyphicon-folder-open{% endif %}{% endif %}"></span> {{ topic.title }}</a>
                                 </div></td>
@@ -54,7 +54,9 @@
                             <td>{{topic.creator}}</td>
                             <td>{{topic.created}}</td>
                             <td>
-                                <a class="btn btn-default" href="{% url 'topic-detail' forum.slug topic.pk %}">IKUSI</a>
+                                {% if topic.last_post.updated > user.last_login %}
+                                    <strong class="text-success"><span aria-hidden="true" class="glyphicon glyphicon-star-empty"></span> BERRIA</strong>
+                                {% endif %}
                             </td>
                         </tr>
                         {% endfor %}
