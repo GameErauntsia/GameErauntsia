@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.views.generic.base import RedirectView
 from gamerauntsia.base.feed import LatestEntriesFeed, LatestNewsFeed
+from django.views.generic import TemplateView
 
 admin.autodiscover()
 

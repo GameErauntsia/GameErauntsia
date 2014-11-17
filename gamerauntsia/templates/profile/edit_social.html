@@ -3,24 +3,24 @@
 
 {% block perfil %}
 <div class="profileform">
-<h2>Sare sozialak</h2>
+	<h2>Sare sozialak</h2>
 
-<h3>Twitter</h3>
-<p>
-{% if profile.twitter_id %}
-{% trans "Twitter linked" %}: <a href="http://twitter.com/{{profile.twitter_id}}">{{profile.twitter_id}}</a>
-{% else %}
-{% trans "Link Twitter for this user" %} <br /><a rel="nofollow" href="{% url 'socialauth_associate_begin' 'twitter' %}?next={{request.path}}"><img src="{{STATIC_URL}}img/tw-sign.png" alt="Twitter icon" /></a>
-{% endif %}
-</p>
-<h3>Facebook</h3>
-<p>
-{% if profile.facebook_id %}
-{% trans "Facebook linked" %}: <a href="http://facebook.com/profile.php?id={{profile.facebook_id}}">{{profile.facebook_id}}</a>
-{% else %}
-{% trans "Link Facebook for this user" %} <br /><a rel="nofollow" href="{% url 'socialauth_associate_begin' 'facebook' %}?next={{request.path}}"><img src="{{STATIC_URL}}img/fb-sign.png" alt="Facebook icon" /></a>
-{% endif %}
-</p>
+	<h3>Twitter</h3>
+	<p>
+	{% if profile.twitter_id %}
+	{% trans "Twitter linked" %}: <a href="http://twitter.com/{{profile.twitter_id}}">{{profile.twitter_id}}</a>
+	{% else %}
+	{% trans "Link Twitter for this user" %} <br /><a rel="nofollow" href="{% url 'socialauth_associate_begin' 'twitter' %}?next={{request.path}}"><img src="{{STATIC_URL}}img/tw-sign.png" alt="Twitter icon" /></a>
+	{% endif %}
+	</p>
+	<h3>Facebook</h3>
+	<p>
+	{% if profile.facebook_id %}
+	{% trans "Facebook linked" %}: <a href="http://facebook.com/profile.php?id={{profile.facebook_id}}">{{profile.facebook_id}}</a>
+	{% else %}
+	{% trans "Link Facebook for this user" %} <br /><a rel="nofollow" href="{% url 'socialauth_associate_begin' 'facebook' %}?next={{request.path}}"><img src="{{STATIC_URL}}img/fb-sign.png" alt="Facebook icon" /></a>
+	{% endif %}
+	</p>
 
 </div>
 
