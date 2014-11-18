@@ -34,6 +34,9 @@
     <script type="text/javascript" src="{{STATIC_URL}}js/fancybox/helpers/jquery.fancybox-buttons.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/fancybox/helpers/jquery.fancybox-media.js"></script>
 
+    {% bootstrap_calendar_css %}
+    {% bootstrap_calendar_js language="eu-ES"  %}
+
 {% endblock %}
 
 {% block title %}{{item.izenburua}} - Berriak - {% endblock %}
@@ -81,4 +84,5 @@
         $(".fancybox").fancybox();
     });
 </script>
+{% bootstrap_calendar_init language="eu-ES" %}
 {% endblock %}
