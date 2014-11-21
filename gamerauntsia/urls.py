@@ -39,6 +39,9 @@ urlpatterns = patterns('',
     url(r'^kontaktua/$', 'gamerauntsia.kontaktua.views.index', name='kontaktua'),
     url(r'^kontaktua/bidali/$', 'gamerauntsia.kontaktua.views.bidali', name='kontaktua_bidali'),
 
+    # TERMINOLOGIA
+    url(r'^terminologia/$', 'gamerauntsia.base.views.index', name='terminologia'),
+
     # BILAKETA
     url(r'^bilaketa?(?P<bilatu>[-\w]+)/$', 'gamerauntsia.views.bilaketa', name='bilaketa'),
 
