@@ -1,3 +1,4 @@
+from django.db import models
 from django.conf import settings
 from django.core.mail import send_mail, mail_admins
 from django_simple_forum.models import Post, Topic
