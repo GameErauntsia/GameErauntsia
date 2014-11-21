@@ -5,50 +5,86 @@
 
 {% block morejs %}
     <style type="text/css">
-      
-      .node {
-        cursor: pointer;
-      }
 
-      .overlay{
-          background-color:#EEE;
-      }
-       
-      .node circle {
-        fill: #fff;
-        stroke: steelblue;
-        stroke-width: 1.5px;
-      }
-       
-      .node text {
-        font-size:10px; 
-        font-family:sans-serif;
-      }
-       
-      .link {
-        fill: none;
-        stroke: #ccc;
-        stroke-width: 1.5px;
-      }
+      /* formatting page */
+      body { font-family: helvetica, verdana, arial, sans-serif; font-size: 12px; background-color: #efefef; padding: 35px; color: #333;}
+      .wrapper { margin: 0; width: 100%; overflow: hidden; border-radius: 0 5px 5px 5px; }
+      a {color: #2C96AF;}
+      a:hover { color: #A0B43C; }
+      h1 { font-size: 35px; line-height: 24px; }
+      h1 small { font-size: 14px; font-weight: normal;}
+      h1 a {text-decoration: none; text-transform: uppercase; text-shadow: 0 1px 0 #fff; }
+      body > h3, .container-secondary > h3 { margin: 45px 0 0; font-size: 16px; background: #fff; display: inline-block; padding: 15px 25px 15px 15px; border-radius: 5px 5px 0 0}
+      body > h3 p, .container-secondary > h3 > p { color: #CCCCCC; font-size: 14px; font-weight: normal; margin: 2px 0 0; }
 
-      .templink {
-        fill: none;
-        stroke: red;
-        stroke-width: 3px;
-      }
+      /* theme */
+      .g_gracket { width: 9999px; background-color: #fff; padding: 55px 15px 5px; line-height: 100%; position: relative; overflow: hidden;}
+      .g_round { float: left; margin-right: 70px; }
+      .g_game { position: relative; margin-bottom: 15px; box-shadow: 3px 4px 0px #ddd; border: 1px solid #fff; border-top: 0; border-left: 0; }
+      .g_gracket h3 { min-width: 180px; margin: 0; padding: 10px 8px 8px; font-size: 18px; font-weight: normal; color: #fff} /* @note: this width determinds node size */
+      .g_team { background: #3597AE; }
+      .g_round_label { top: -5px; font-weight: normal; color: #ccc; text-align: center; font-size: 18px}
+      .g_team:last-child {  background: #FCB821; }
+      .g_round:last-child { margin-right: 20px; }
+      .g_winner { background: #444; }
+      .g_winner .g_team { background: none; }
+      .g_current { cursor: pointer; background: #A0B43C!important; }
 
-      .ghostCircle.show{
-          display:block;
-      }
+      /* custom colors*/
+      .g_team_custom { background: #444; border-radius: 50px 50px 0 0; }
+      .g_team_custom:last-child {  background: #777; border-radius: 0 0 50px 50px; }
+      .g_winner_custom .g_team_custom { background: none; border-radius: 50px; }
+      .g_winner_custom { background: #444; border-radius: 50px; }
+      .g_current_custom { cursor: pointer; background: #900!important; }
+      .g_gracket .g_team_custom h3 { font-weight: bold; padding: 30px; text-shadow: 0 2px 1px #222222; text-transform: uppercase; }
+      .g_game_custom { position: relative; margin-bottom: 15px; }
 
-      .ghostCircle, .activeDrag .ghostCircle{
-           display: none;
-      }
+      /* secondary-bracket */
+      .container-secondary { position: relative; overflow: hidden; }
+      .secondary-bracket { bottom: 40px; left: 802px; position: absolute; width: 500px; }
+      .container-secondary h4 { color: #CCCCCC; font-weight: normal; left: 0; margin: 0; padding: 0; position: absolute; bottom: 55px; z-index: 9999; }
+      .secondary-bracket .g_round_label { top: -25px; }
+      .secondary-bracket > div { padding-top: 35px;}
+
 
     </style>
-    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="{{STATIC_URL}}js/dndTree.js"></script>
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="{{STATIC_URL}}js/txapelketa.js"></script>
+    <script>
+        $( document ).ready(function() {
+            var niredatuak = [
+                [
+                  [ {"name" : "Urtzi Odriozola", "id" : "urtzai", "seed" : 1},            {"name" : "Joxepo", "id" : "joxepo", "seed" : 2} ],
+                  [ {"name" : "Garikoitz Larrañaga", "id" : "gari_infernu", "seed" : 3},  {"name" : "Mitxelon", "id" : "mitxelon", "seed" : 4}],
+                  [ {"name" : "Joseba Galarraga", "id" : "joxhell", "seed" : 5},          {"name" : "Haritz Odriozola", "id" : "theprodigyeh", "seed" : 6} ],
+                  [ {"name" : "Eñaut Odriozola", "id" : "eodri", "seed" : 7},             {"name" : "Iker Bellido", "id" : "robouteguiliam", "seed" : 8}],
+                  [ {"name" : "Patxi Ordozgoiti", "id" : "ipatx", "seed" : 9},             {"name" : "Ander Intxaurrondo", "id" : "marmoka", "seed" : 10} ],
+                  [ {"name" : "yolocaust", "id" : "Olentzero", "seed" : 1},           {"name" : "Bingen Galartza Iparragirre", "id" : "Galaipa", "seed" : 12}],
+                  [ {"name" : "Arkaitz Lasarte", "id" : "arklasarte", "seed" : 13},          {"name" : "Gari Galarza Aizpun", "id" : "Gari", "seed" : 14} ],
+                  [ {"name" : "Diego Alvarez", "id" : "Gramity", "seed" : 15},          {"name" : "Iker Ibarguren", "id" : "ikerib", "seed" : 16}]
+                ],
+                [
+                  [ {"name" : "Urtzi Odriozola", "id" : "urtzai", "seed" : 1},            {"name" : "Garikoitz Larrañaga", "id" : "gari_infernu", "seed" : 3} ],
+                  [ {"name" : "Joseba Galarraga", "id" : "joxhell", "seed" : 5},          {"name" : "Iker Bellido", "id" : "robouteguiliam", "seed" : 8} ],
+                  [ {"name" : "Patxi Ordozgoiti", "id" : "ipatx", "seed" : 10},           {"name" : "yolocaust", "id" : "Olentzero", "seed" : 12} ],
+                  [ {"name" : "Gari Galarza Aizpun", "id" : "Gari", "seed" : 14},           {"name" : "Iker Ibarguren", "id" : "ikerib", "seed" : 15} ]
+                ],
+                [
+                  [ {"name" : "Urtzi Odriozola", "id" : "urtzai", "seed" : 1},            {"name" : "Joseba Galarraga", "id" : "joxhell", "seed" : 5} ],
+                  [ {"name" : "Patxi Ordozgoiti", "id" : "ipatx", "seed" : 10},           {"name" : "Gari Galarza Aizpun", "id" : "Gari", "seed" : 14} ]
+                ],
+                [
+                  [ {"name" : "Urtzi Odriozola", "id" : "urtzai", "seed" : 1},   {"name" : "Patxi Ordozgoiti", "id" : "ipatx", "seed" : 10} ]
+                ],
+                [
+                  [ {"name" : "Urtzi Odriozola", "id" : "urtzai", "seed" : 1} ]
+                ]
+            ];
+            $('#taula').gracket({
+                src : niredatuak
+            });
+        });
+    </script
 {% endblock %}
 
 {% block content %}
@@ -74,7 +110,7 @@
             {% endif %}
             {% endif %}
             <p class="lead">{{item.desk|safe|emoticons}}</p>
-            
+
         </div>
 
         <div class="col-lg-4">
@@ -100,7 +136,9 @@
         <div class="col-lg-12">
             {% if item.mota == '0' %}
             <h2><span class="glyphicon glyphicon-align-justify"></span> Kanporaketa</h2>
-            <div id="tree-container"></div>
+            <div id="taula">aaa</div>
+      </div>
+
             {% else %}
             <h2><span class="glyphicon glyphicon-align-justify"></span> Sailkapena</h2>
             <div class="table-responsive">
@@ -153,5 +191,63 @@
             {% endif %}
         </div>
 </div>
+<script type="text/javascript">
+
+      // excanvas does not like radius ):
+      var isIE = ($.browser.msie && parseInt($.browser.version) < 9);
+
+      // init on data-gracket
+      $("[data-gracket]").eq(0).gracket({
+        cornerRadius : (isIE ? 0 : 15),
+        canvasLineGap : 15
+      });
+
+      // init on data-gracket
+      $("[data-gracket]").eq(1).gracket({
+        cornerRadius : (isIE ? 0 : 15),
+        canvasLineGap : 15
+      });
+
+      // init on data-gracket
+      $("[data-gracket]").eq(2).gracket({
+        cornerRadius : (isIE ? 0 : 50),
+        canvasLineGap : 0,
+        teamClass : "g_team_custom",
+        gameClass : "g_game_custom",
+        currentClass : "g_current_custom",
+        canvasLineColor : "#444",
+        winnerClass : "g_winner_custom"
+      });
+
+      // init on data-gracket
+      $("[data-gracket]").eq(3).gracket({
+        cornerRadius : (isIE ? 0 : 15),
+        canvasLineGap : 15
+      });
+
+      // init on data-gracket
+      $("[data-gracket]").eq(4).gracket({
+        cornerRadius : (isIE ? 0 : 15),
+        canvasLineGap : 15
+      });
+
+      // init on data-gracket
+      $("[data-gracket]").eq(5).gracket({
+        cornerRadius : (isIE ? 0 : 15),
+        roundLabels : ["SPORTS : 1st Round", "SPORTS : 2nd Round", "SPORTS : WINNER!!!!"]
+      });
+
+      // add some labels
+      $(".container-secondary .secondary-bracket .g_winner")
+        .parent()
+        .css("position", "relative")
+        .prepend("<h4>3rd Place</h4>")
+
+      $(".container-secondary > div").eq(0).find(".g_winner")
+        .parent()
+        .css("position", "relative")
+        .prepend("<h4>Winner</h4>")
+
+    </script>
 
 {% endblock %}
