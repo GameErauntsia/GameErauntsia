@@ -40,7 +40,7 @@ def update_session_auth_hash(request, user):
 def index(request):
     users = GamerUser.objects.filter(is_active=True,is_staff=True).order_by('-date_joined')
     return render_to_response('gamer/index.html', locals(),context_instance=RequestContext(request))
-    
+
 def profile(request,username):
     user_prof = get_object_or_404(GamerUser,username=username)
     gameplayak = GamePlaya.objects.filter(publikoa_da=True,erabiltzailea=user_prof, pub_date__lt=datetime.now()).order_by('-pub_date')
@@ -70,11 +70,11 @@ def edit_profile(request):
     user= request.user
     profile = user
     if request.method == 'POST':
-         posta=request.POST.copy()     
+         posta=request.POST.copy()
          profileform = GamerForm(posta, instance=profile)
          if profileform.is_valid():
             profileform.save()
-            messages.add_message(request, messages.SUCCESS, _('New user data saved.'), fail_silently=True)    
+            messages.add_message(request, messages.SUCCESS, _('New user data saved.'), fail_silently=True)
             return HttpResponseRedirect(reverse('edit_profile'))
     else:
         profileform = GamerForm(instance=profile)
@@ -87,7 +87,7 @@ def edit_notifications(request):
     tab = 'notifications'
     user = request.user
     if request.method == 'POST':
-         posta=request.POST.copy()     
+         posta=request.POST.copy()
          notifyform = NotifyForm(posta, instance=user)
          if notifyform.is_valid():
             notifyform.save()
@@ -104,7 +104,7 @@ def edit_platform(request):
     user = request.user
     GameFormSet = modelformset_factory(JokuPlataforma, form=GameForm, can_delete=True)
     if request.method == 'POST':
-         posta=request.POST.copy()     
+         posta=request.POST.copy()
          gameformset = GameFormSet(posta)
          if gameformset.is_valid():
             marked_for_delete = gameformset.deleted_forms
@@ -113,7 +113,7 @@ def edit_platform(request):
                     if form['id'].value() in [deleted_record['id'].value() for deleted_record in marked_for_delete]:
                         platform = form.save(commit=False)
                         platform.delete()
-                    else:    
+                    else:
                         platform = form.save(commit=False)
                         platform.user = user
                         platform.save()
@@ -122,7 +122,7 @@ def edit_platform(request):
         qset = JokuPlataforma.objects.filter(user=user)
         gameformset = GameFormSet(queryset=qset)
         options = PLATFORM
-        
+
     return render_to_response('profile/edit_platform.html', locals(), context_instance=RequestContext(request))
 
 
@@ -132,7 +132,7 @@ def edit_top_games(request):
     tab = 'top_games'
     user = request.user
     if request.method == 'POST':
-         posta=request.POST.copy()     
+         posta=request.POST.copy()
          topform = TopForm(posta, instance=user)
          if topform.is_valid():
             topform.save()
