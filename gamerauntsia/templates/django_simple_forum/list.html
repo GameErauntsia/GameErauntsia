@@ -52,7 +52,7 @@
                                             <img src="{{forum.last_post.creator.get_photo.get_profilesmall_url}}" class="img-circle"/>
                                         </div>
                                         <div class="col-lg-10">
-                                        {{forum.last_post.short|linebreaksbr}}
+                                        <a href="/foroa/{{forum.slug}}{{forum.last_post.get_absolute_url}}">{{forum.last_post.short|linebreaksbr}}</a>
                                         </div>
                                         {% endif %}
                                     </td>
