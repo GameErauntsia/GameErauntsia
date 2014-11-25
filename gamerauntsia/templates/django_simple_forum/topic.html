@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-xs-12 col-sm-10">
                         <a id="{{post.id}}"></a>
-                        <h3><a href="/{{forum.slug}}{{post.get_absolute_url}}">#{{post.id}}</a> {{post.title}}
+                        <h3><a href="/foroa/{{forum.slug}}{{post.get_absolute_url}}">#</a> {{post.title}}
                         {% if request.user.is_authenticated %}
                         {% if not topic.closed %}
                         <a class="btn btn-default pull-right" href="{% url 'reply' forum.slug pk %}?author={{post.creator}}&quote={{post.body|truncatewords:30}}">Zitatu</a>
