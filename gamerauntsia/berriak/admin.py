@@ -12,14 +12,20 @@ class BerriakAdmin(admin.ModelAdmin):
     admin_thumbnail.short_description = 'Thumb'
     admin_thumbnail.allow_tags = True
 
-    list_display = ('izenburua', 'slug', 'erabiltzailea', 'pub_date', 'mod_date', 'publikoa_da','admin_thumbnail')
+    list_display = ('izenburua', 'slug', 'erabiltzailea', 'pub_date', 'mod_date', 'status','admin_thumbnail')
     prepopulated_fields = {"slug": ("izenburua",)}
     filter_horizontal = ('gaia',)
-    list_filter = ('erabiltzailea', 'publikoa_da')
+    list_filter = ('erabiltzailea', 'status')
     search_fields = ['erabiltzailea__username','erabiltzailea__fullname','izenburua']
     raw_id_fields = ('argazkia','erabiltzailea')
     ordering = ('-pub_date',)
-    form = BerriaAdminForm	
+    form = BerriaAdminForm
+
+    def get_readonly_fields(self, request, obj=None):
+        if request.user.is_superuser:
+            return super(BerriakAdmin, self).get_readonly_fields(request, obj)
+        else:
+            return ('status',)
 
     def queryset(self, request):
         qs = super(BerriakAdmin, self).queryset(request)

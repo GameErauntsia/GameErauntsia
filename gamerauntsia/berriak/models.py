@@ -5,6 +5,11 @@ from photologue.models import Photo
 from gamerauntsia.gamer.models import GamerUser
 from django.template import defaultfilters as filters
 
+STATUS = (
+    ('0','Zirriborroa'),
+    ('1','Publikoa'),
+)
+
 class Gaia(models.Model):
     izena = models.CharField(max_length=64)
     slug = models.SlugField(db_index=True, unique=True, help_text="Eremu honetan gai honen URL helbidea zehazten ari zara.")
@@ -28,7 +33,9 @@ class Berria(models.Model):
     erabiltzailea = models.ForeignKey(GamerUser)
     argazkia = models.ForeignKey(Photo,null=True,blank=True)
 
-    publikoa_da = models.BooleanField(default=True) 
+    publikoa_da = models.BooleanField(default=True)
+
+    status = models.CharField(max_length=1, choice=STATUS, default='0')
     pub_date = models.DateTimeField('publikazio data', default=datetime.now)
     mod_date = models.DateTimeField('modifikazio data', default=datetime.now)
     shared = models.BooleanField(default=False, help_text="Lauki hau automatikoki markatuko da sistemak edukia sare sozialetan elkarbanatzean.")

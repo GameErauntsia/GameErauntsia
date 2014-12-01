@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404
 
 def index(request):
     h = {}
-    zerr_berriak = Berria.objects.filter(publikoa_da=True, pub_date__lt=datetime.now()).order_by('-pub_date')
+    zerr_berriak = Berria.objects.filter(status='1', pub_date__lt=datetime.now()).order_by('-pub_date')
     HOST = settings.HOST
     return render_to_response('berriak/index.html', locals(),context_instance=RequestContext(request))
    
