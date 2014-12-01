@@ -35,7 +35,7 @@ class Berria(models.Model):
 
     publikoa_da = models.BooleanField(default=True)
 
-    status = models.CharField(max_length=1, choice=STATUS, default='0')
+    status = models.CharField(max_length=1, choices=STATUS, default='0')
     pub_date = models.DateTimeField('publikazio data', default=datetime.now)
     mod_date = models.DateTimeField('modifikazio data', default=datetime.now)
     shared = models.BooleanField(default=False, help_text="Lauki hau automatikoki markatuko da sistemak edukia sare sozialetan elkarbanatzean.")
