@@ -7,7 +7,7 @@ from datetime import datetime
 
 def index(request):
     gameplayak = GamePlaya.objects.filter(publikoa_da=True, pub_date__lt=datetime.now()).order_by('-pub_date')[:4]
-    berriak = Berria.objects.filter(publikoa_da=True, pub_date__lt=datetime.now()).order_by('-pub_date')[:8]
+    berriak = Berria.objects.filter(status='1', pub_date__lt=datetime.now()).order_by('-pub_date')[:8]
     return render_to_response('index.html', locals(),context_instance=RequestContext(request))
 
 def bilaketa(request,bilatu):
