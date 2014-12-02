@@ -12,7 +12,7 @@
                 src : {{kanporaketadatuak}}
             });
         });
-    </script
+    </script>
 {% endblock %}
 
 {% block content %}
@@ -64,8 +64,7 @@
         <div class="col-lg-12">
             {% if item.mota == '0' %}
             <h2><span class="glyphicon glyphicon-align-justify"></span> Kanporaketa</h2>
-            <div id="taula">aaa</div>
-      </div>
+            <div id="taula"></div>
 
             {% else %}
             <h2><span class="glyphicon glyphicon-align-justify"></span> Sailkapena</h2>
@@ -119,8 +118,8 @@
             {% endif %}
         </div>
 </div>
-<script type="text/javascript">
 
+<script type="text/javascript">
       // excanvas does not like radius ):
       var isIE = ($.browser.msie && parseInt($.browser.version) < 9);
 
@@ -169,13 +168,12 @@
       $(".container-secondary .secondary-bracket .g_winner")
         .parent()
         .css("position", "relative")
-        .prepend("<h4>3rd Place</h4>")
+        .prepend("<h4>3rd Place</h4>");
 
       $(".container-secondary > div").eq(0).find(".g_winner")
         .parent()
         .css("position", "relative")
-        .prepend("<h4>Winner</h4>")
-
-    </script>
+        .prepend("<h4>Winner</h4>");
+</script>
 
 {% endblock %}
