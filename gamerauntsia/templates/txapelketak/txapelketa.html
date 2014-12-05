@@ -48,10 +48,12 @@
                     <h3>Izena eman</h3>
                     <a href="#" class="btn btn-default">Parte hartu!</a>
                     {% endif %}
+                    {% if item.jokalariak %}
                     <h3>Izen emateak</h3>
                     {% for user in item.jokalariak.all %}
                     <p><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.fullname}}</a></p>
                     {% endfor %}
+                    {% endif %}
                 {% else %}
                     <h3>Partaideak</h3>
                     {% for partaide in item.get_partaideak %}
