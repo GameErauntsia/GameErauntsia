@@ -49,6 +49,7 @@
                         {% if user.is_authenticated %}
                         <a href="{% url 'txapelketa_insk' item.slug %}" class="btn btn-default">Parte hartu!</a>
                         {% else %}
+                        <p>Txapelketetan parte hartu ahal izateko lehendabizi Game Erauntsian izena eman behar duzu.</p>
                         <a class="btn btn-default" href="{% url 'auth_login' %}?next={{item.get_absolute_url}}" title="Log in">{% trans 'Log in' %}</a>
                         {% endif %}
                     {% endif %}
