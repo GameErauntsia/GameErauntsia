@@ -46,7 +46,7 @@
                 {% if item.insk_date|irekita %}
                     {% if user not in item.jokalariak.all %}
                     <h3>Izena eman</h3>
-                    <a href="{% url 'txapelketa_insk' %}" class="btn btn-default">Parte hartu!</a>
+                    <a href="{% url 'txapelketa_insk' item.slug %}" class="btn btn-default">Parte hartu!</a>
                     {% endif %}
                     {% if item.jokalariak.all %}
                     <h3>Izen emateak</h3>
