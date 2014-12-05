@@ -39,6 +39,68 @@
             {% endif %}
             <p class="lead">{{item.desk|safe|emoticons}}</p>
 
+
+
+            {% if not item.insk_date|irekita %}
+            <div class="col-lg-12">
+                {% if item.mota == '0' %}
+                <h2><span class="glyphicon glyphicon-align-justify"></span> Kanporaketa</h2>
+                <div id="taula"></div>
+
+                {% else %}
+                <h2><span class="glyphicon glyphicon-align-justify"></span> Sailkapena</h2>
+                <div class="table-responsive">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Partaidea</th>
+                                <th>Irabazitakoak</th>
+                                <th>Galdutakoak</th>
+                                <th>Puntuak</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for partaide in list_sailkapena %}
+                            <tr>
+                                <td>#{{forloop.counter}}</td>
+                                <td><img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-circle"/> {{partaide.get_izena}}</a></td>
+                                <td>{{partaide.win}}</td>
+                                <td>{{partaide.lose}}</td>
+                                <td>{{partaide.points}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <h2><span class="glyphicon glyphicon-calendar"></span>Egutegia</h2>
+                <div class="table-responsive">
+                    <table class="table table-condensed table-hover">
+                        <thead>
+                            <tr>
+                                <th>Jardunaldia</th>
+                                <th>Partaideak</th>
+                                <th>Emaitza</th>
+                                <th>Data</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for partida in item.get_partidak %}
+                            <tr>
+                                <td>#{{partida.jardunaldia}}</td>
+                                <td>{{partida.get_partaide_list}}</td>
+                                <td>{% if partida.emaitza %}{{partida.emaitza}}{% else %}---{% endif %}</td>
+                                <td>{{partida.date}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+
+
             {% render_comment_list for item %}
 
             {% if user.is_authenticated %}
@@ -91,65 +153,6 @@
                 <img src="{{item.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{item.erabiltzailea.fullname}}</a>
             </div>
         </div>
-        
-        {% if not item.insk_date|irekita %}
-        <div class="col-lg-12">
-            {% if item.mota == '0' %}
-            <h2><span class="glyphicon glyphicon-align-justify"></span> Kanporaketa</h2>
-            <div id="taula"></div>
-
-            {% else %}
-            <h2><span class="glyphicon glyphicon-align-justify"></span> Sailkapena</h2>
-            <div class="table-responsive">
-                <table class="table table-condensed table-hover">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Partaidea</th>
-                            <th>Irabazitakoak</th>
-                            <th>Galdutakoak</th>
-                            <th>Puntuak</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for partaide in list_sailkapena %}
-                        <tr>
-                            <td>#{{forloop.counter}}</td>
-                            <td><img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-circle"/> {{partaide.get_izena}}</a></td>
-                            <td>{{partaide.win}}</td>
-                            <td>{{partaide.lose}}</td>
-                            <td>{{partaide.points}}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <h2><span class="glyphicon glyphicon-calendar"></span>Egutegia</h2>
-            <div class="table-responsive">
-                <table class="table table-condensed table-hover">
-                    <thead>
-                        <tr>
-                            <th>Jardunaldia</th>
-                            <th>Partaideak</th>
-                            <th>Emaitza</th>
-                            <th>Data</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for partida in item.get_partidak %}
-                        <tr>
-                            <td>#{{partida.jardunaldia}}</td>
-                            <td>{{partida.get_partaide_list}}</td>
-                            <td>{% if partida.emaitza %}{{partida.emaitza}}{% else %}---{% endif %}</td>
-                            <td>{{partida.date}}</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            {% endif %}
-        </div>
-        {% endif %}
 </div>
 
 <script type="text/javascript">
