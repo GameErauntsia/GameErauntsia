@@ -1,7 +1,7 @@
 from django.contrib import admin
 from gamerauntsia.txapelketak.models import Txapelketa, Partida, Partaidea
 from gamerauntsia.gamer.models import GamerUser
-from forms import PartidaInlineForm
+from forms import PartidaInlineForm, TxapelketaAdminForm
 
 class PartidaAdmin(admin.ModelAdmin):
 
