@@ -51,7 +51,7 @@
 
         <div class="col-lg-4">
             {% if item.insk_date|irekita %}
-            <div class="alert alert-success" role="alert"><strong>EGOERA:</strong> Izen emate epea zabalik ({{item.insk_date|date:"Y/m/d H:i"}})</div>
+            <div class="alert alert-success" role="alert"><strong>EGOERA:</strong><br/>Izen emate epea zabalik ({{item.insk_date|date:"Y/m/d H:i"}})</div>
             {% endif %}
             <div class="well">
                 {% if item.insk_date|irekita %}
