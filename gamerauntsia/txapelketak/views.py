@@ -22,7 +22,7 @@ def txapelketa(request,slug):
 
 @login_required
 def txapelketa_insk(request,slug):
-	user = request.user
+    user = request.user
     
     item = get_object_or_404(Txapelketa,slug=slug)
     item.jokalariak.add(user)
