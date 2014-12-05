@@ -16,7 +16,8 @@ def txapelketa(request,slug):
     list_sailkapena = item.get_partaideak('points')
 
     kanporaketadatuak = [
-        
+    [{'name':'Urtzi','seed':'1','id':'urtzai'},{'name':'Jon','seed':'2','id':'jonny'}],
+    [{'name':'Urtzi','seed':'1','id':'urtzai'}]    
     ]
     return render_to_response('txapelketak/txapelketa.html', locals(),context_instance=RequestContext(request))
 
