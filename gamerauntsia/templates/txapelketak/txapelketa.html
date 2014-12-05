@@ -8,8 +8,9 @@
     <script src="{{STATIC_URL}}js/txapelketa.js"></script>
     <script>
         $( document ).ready(function() {
+            var data = {{Kanporaketadatuak|safe}}
             $('#taula').gracket({
-                src : [[[{'name':'Urtzi','seed':1,'id':'urtzai'},{'name':'Jon','seed':2,'id':'jonny'}]],[[{'name':'Urtzi','seed':1,'id':'urtzai'}]]];
+                src : data
             });
         });
     </script>
