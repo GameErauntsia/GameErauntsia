@@ -61,13 +61,12 @@
                     {% endfor %}
                 {% endif %}
             </div>
+            {% if item.insk_date|irekita %}
+            <div class="alert alert-success" role="alert"><strong>Izen emate epea zabalik:</strong> {{item.insk_date|date:"Y/m/d H:i"}}</div>
+            {% endif %}
         </div>
         
-        {% if item.insk_date|irekita %}
-        <div class="col-lg-12">
-            <div class="alert alert-success" role="alert"><strong>Izen emate epea zabalik:</strong> {{item.insk_date|date:"Y/m/d H:i"}}</div>
-        </div>
-        {% else %}
+        {% if not item.insk_date|irekita %}
         <div class="col-lg-12">
             {% if item.mota == '0' %}
             <h2><span class="glyphicon glyphicon-align-justify"></span> Kanporaketa</h2>
