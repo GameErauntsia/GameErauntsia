@@ -49,6 +49,7 @@
                     <li {% if request.path|contains:"/gameplayak/" %}class="active"{% endif %}><a href="/gameplayak">Game Playak</a></li>
                     <li {% if request.path|contains:"/bloga/" %}class="active"{% endif %}><a href="/bloga" title="Berriak">Bloga</a></li>
                     <li {% if request.path|contains:"/foroa/" %}class="active"{% endif %}><a href="/foroa" title="Foroa">Foroa</a></li>
+                    <li {% if request.path|contains:"/txapelketak/" %}class="active"{% endif %}><a href="{% url 'txapelketak_index' %}" title="Txapelketak">Txapelketak</a></li>
                     <li class="{% if request.path|contains:"/nor-gara/" or request.path|contains:"/komunitatea/" or request.path|contains:"/aurkezpenak/" %}active{% endif %}">
                         <a href="/nor-gara" class="dropdown-toggle" data-toggle="dropdown">Komunitatea <b class="caret"></b></a>
                         <ul class="dropdown-menu" role="menu">
@@ -59,7 +60,6 @@
                             <li><a href="{% url 'aurkezpenak_index' %}" title="Aurkezpenak">Aurkezpenak</a></li>
                         </ul>
                     </li>
-                    <li {% if request.path|contains:"/txapelketak/" %}class="active"{% endif %}><a href="{% url 'txapelketak_index' %}" title="Txapelketak">Txapelketak</a></li>
                     <li>
                         <form class="navbar-search pull-right" action="/bilaketa">
                             <div class="input-group search-query">
