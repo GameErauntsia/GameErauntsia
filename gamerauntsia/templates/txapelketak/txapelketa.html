@@ -46,7 +46,11 @@
                 {% if item.insk_date|irekita %}
                     {% if user not in item.jokalariak.all %}
                     <h3>Izena eman</h3>
-                    <a href="{% url 'txapelketa_insk' item.slug %}" class="btn btn-default">Parte hartu!</a>
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'txapelketa_insk' item.slug %}" class="btn btn-default">Parte hartu!</a>
+                        {% else %}
+                        <a class="btn btn-default" href="{% url 'auth_login' %}?next={{request.path}}" title="Log in">{% trans 'Log in' %}</a>
+                        {% endif %}
                     {% endif %}
                     {% if item.jokalariak.all %}
                     <h3>Izen emateak</h3>
