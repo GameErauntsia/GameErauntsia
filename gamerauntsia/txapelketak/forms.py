@@ -14,6 +14,8 @@ class PartidaInlineForm(forms.ModelForm):
 class TxapelketaAdminForm(forms.ModelForm):
     desk = forms.CharField(widget=TinyMCE(
                attrs={'cols': 80, 'rows': 30,},mce_attrs=settings.TINYMCE_BODY_CONFIG))
+    arauak = forms.CharField(widget=TinyMCE(
+               attrs={'cols': 80, 'rows': 30,},mce_attrs=settings.TINYMCE_BODY_CONFIG))
 
     class Meta:
         model = Txapelketa

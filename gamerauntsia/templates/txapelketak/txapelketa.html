@@ -69,6 +69,10 @@
             {% if item.insk_date|irekita %}
             <div class="alert alert-success" role="alert"><strong>Izen emate epea zabalik:</strong> {{item.insk_date|date:"Y/m/d H:i"}}</div>
             {% endif %}
+            <div class="well">
+                <h3>Arauak</h3>
+                {{item.arauak|safe}}
+            </div>
         </div>
         
         {% if not item.insk_date|irekita %}
