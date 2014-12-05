@@ -59,7 +59,7 @@
                             <li><a href="{% url 'aurkezpenak_index' %}" title="Aurkezpenak">Aurkezpenak</a></li>
                         </ul>
                     </li>
-                    <li {% if request.path|contains:"/kontaktua/" %}class="active"{% endif %}><a href="/kontaktua" title="Kontaktua">Kontaktua</a></li>
+                    <li {% if request.path|contains:"/txapelketak/" %}class="active"{% endif %}><a href="{% url 'txapelketak_index' %}" title="Txapelketak">Txapelketak</a></li>
                     <li>
                         <form class="navbar-search pull-right" action="/bilaketa">
                             <div class="input-group search-query">
@@ -91,6 +91,7 @@
                 <div class="col-lg-4 text-center">
                     <a href="/erabilera-baldintzak/">Erabilera baldintzak</a> |
                     <a href="/pribatutasun-politika/">Pribatutasun politika</a> |
+                    <a href="{% url 'kontaktua' %}">Kontaktua</a> |
                     <a href="http://statcounter.com/p10060615/?guest=1">Estatistikak</a>
                     <br/>
                     <a href="http://www.domeinuak.eus"><img border="0" src="http://www.domeinuak.eus/img/eus130x30.png" style="border: 1px solid #808080" width="130" height="30"></a>
