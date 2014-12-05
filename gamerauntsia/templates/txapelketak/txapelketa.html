@@ -42,6 +42,9 @@
         </div>
 
         <div class="col-lg-4">
+            {% if item.insk_date|irekita %}
+            <div class="alert alert-success" role="alert"><strong>EGOERA:</strong> Izen emate epea zabalik ({{item.insk_date|date:"Y/m/d H:i"}})</div>
+            {% endif %}
             <div class="well">
                 {% if item.insk_date|irekita %}
                     {% if user not in item.jokalariak.all %}
@@ -66,9 +69,6 @@
                     {% endfor %}
                 {% endif %}
             </div>
-            {% if item.insk_date|irekita %}
-            <div class="alert alert-success" role="alert"><strong>Izen emate epea zabalik:</strong> {{item.insk_date|date:"Y/m/d H:i"}}</div>
-            {% endif %}
             <div class="well">
                 <h3>Arauak</h3>
                 {{item.arauak|safe}}
