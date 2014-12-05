@@ -73,6 +73,10 @@
                 <h3>Arauak</h3>
                 {{item.arauak|safe}}
             </div>
+            <div class="well">
+                <h3>Antolatzailea</h3>
+                <img src="{{item.author.get_photo.get_profilesmall_url}}" class="img-circle"/> {{item.author.fullname}}</a>
+            </div>
         </div>
         
         {% if not item.insk_date|irekita %}
