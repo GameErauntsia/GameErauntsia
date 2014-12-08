@@ -4,6 +4,7 @@
 {% block title %}{{item.izena}} - {% endblock %}
 
 {% block morejs %}
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <link href="{{STATIC_URL}}css/gracket.css">
     <script src="{{STATIC_URL}}js/txapelketa.js"></script>
     <script>
@@ -130,7 +131,7 @@
                     {% if item.jokalariak.all %}
                     <h3>Izen emateak</h3>
                     {% for user in item.jokalariak.all %}
-                    <p><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.fullname}}</a></p>
+                    <p><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.getFullName}}</a></p>
                     {% endfor %}
                     {% endif %}
                 {% else %}
@@ -151,7 +152,7 @@
             </div>
             <div class="well">
                 <h3>Antolatzailea</h3>
-                <img src="{{item.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{item.erabiltzailea.fullname}}</a>
+                <img src="{{item.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{item.erabiltzailea.getFullName}}</a>
             </div>
         </div>
 </div>
