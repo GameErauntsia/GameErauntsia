@@ -19,6 +19,13 @@ MODALITATEA = (
     ('1','Taldeka'),
 )
 
+EGOERA = (
+    ('0','Izen ematea'),
+    ('1','Partidak sortzen'),
+    ('2','Txapelketa jokuan'),
+    ('3','Bukatuta'),
+)
+
 class Txapelketa(models.Model):
     izena = models.CharField(max_length=64)
     slug = models.SlugField(db_index=True, unique=True, help_text="Eremu honetan kategoria honen URL helbidea zehazten ari zara.")
@@ -27,7 +34,8 @@ class Txapelketa(models.Model):
     irudia = models.ForeignKey(Photo,null=True,blank=True)
     mota = models.CharField(max_length=1, choices=MOTA, default='0')
     modalitatea = models.CharField(max_length=1, choices=MODALITATEA, default='0')
-    
+    status = models.CharField(max_length=1, choices=EGOERA, default='0')
+
     jokalariak = models.ManyToManyField(GamerUser,related_name="jokalariak",verbose_name="Inskripzioa",null=True,blank=True)
     jokoa = models.ForeignKey(Jokoa)
     erabiltzailea = models.ForeignKey(GamerUser,related_name="erabiltzailea",verbose_name="Egilea")

@@ -23,7 +23,7 @@ class PartidaInline(admin.TabularInline):
     form = PartidaInlineForm
 
 class TxapelketaAdmin(admin.ModelAdmin):
-    list_display = ('izena', 'slug','mota', 'modalitatea','jokoa','insk_date','pub_date', 'publikoa_da')
+    list_display = ('izena', 'slug','mota', 'modalitatea','jokoa','insk_date','pub_date', 'status', 'publikoa_da')
     prepopulated_fields = {"slug": ("izena",)}
     filter_horizontal = ('jokalariak',)
     raw_id_fields = ('irudia','jokoa')
