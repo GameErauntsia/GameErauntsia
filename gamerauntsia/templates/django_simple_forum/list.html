@@ -73,6 +73,7 @@
                 </div>
             {% endfor %}
         </div>
+        {% if user.is_authenticated %}
         <div class="col-lg-12">
             <form action="/lastlogin/" method="POST">
                 {% csrf_token %}
@@ -80,6 +81,7 @@
                 <button type="submit" class="pull-right btn btn-default"><i class="glyphicon glyphicon-refresh"></i> Markatu foro guztiak irakurrita</button>
             </form>
         </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
