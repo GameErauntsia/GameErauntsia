@@ -14,11 +14,13 @@ def index(request):
 def txapelketa(request,slug):
     item = get_object_or_404(Txapelketa,slug=slug)
     
-    if item.mota = '0':
+    if item.mota == '0':
         partidak = Partida.objects.filter(txapelketa=item).order_by('jardunaldia')
-        kanporaketadatuak = ""
+        kanporaketadatuak = "["
         for partida in partidak:
-            for 
+            kanporaketadatuak += "["
+            for partaide in partida.partaideak.all:
+                kanporaketadatuak += "["
         kanporaketadatuak = "[[[{'name':'Urtzi','seed':1,'id':'urtzai'},{'name':'Jon','seed':2,'id':'jonny'}]],[[{'name':'Urtzi','seed':1,'id':'urtzai'}]]];"
     else:
         list_sailkapena = item.get_partaideak('points')
