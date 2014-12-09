@@ -2,8 +2,9 @@ from django.contrib import admin
 from gamerauntsia.txapelketak.models import Txapelketa, Partida, Partaidea
 from gamerauntsia.gamer.models import GamerUser
 from forms import PartidaInlineForm, TxapelketaAdminForm
+from mptt.admin import MPTTModelAdmin
 
-class PartidaAdmin(admin.ModelAdmin):
+class PartidaAdmin(MPTTModelAdmin):
 
     def get_partaideak(self, obj):
         return " VS ".join([p.get_izena() for p in obj.partaideak.all()])
