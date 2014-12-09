@@ -10,7 +10,7 @@ class PartidaAdmin(admin.ModelAdmin):
 
     list_display = ('txapelketa', 'jardunaldia','get_partaideak','emaitza', 'date')
     filter_horizontal = ('partaideak',)
-    raw_id_fields = ('parent_partida','txapelketa','gameplaya')
+    raw_id_fields = ('parent','txapelketa','gameplaya')
     search_fields = ['txapelketa__izena']
     ordering = ('-date',)
 
@@ -18,7 +18,7 @@ class PartidaAdmin(admin.ModelAdmin):
 
 class PartidaInline(admin.TabularInline):
     model = Partida
-    fields = ('jardunaldia','partaideak','emaitza','parent_partida','date')
+    fields = ('jardunaldia','partaideak','emaitza','parent','date')
     form = PartidaInlineForm
 
 class TxapelketaAdmin(admin.ModelAdmin):

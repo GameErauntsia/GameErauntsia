@@ -6,6 +6,7 @@ from gamerauntsia.jokoa.models import Jokoa
 from gamerauntsia.gameplaya.models import GamePlaya
 from datetime import datetime
 from django.template import defaultfilters as filters
+from mptt.models import MPTTModel, TreeForeignKey
 
 MOTA = (
     ('0','Kanporaketa'),
@@ -104,9 +105,9 @@ class Partaidea(models.Model):
     def __unicode__(self):
         return self.get_izena()
 
-class Partida(models.Model):  
+class Partida(MPTTModel):  
     partaideak = models.ManyToManyField(Partaidea,null=True,blank=True)
-    parent_partida = models.ForeignKey("Partida",null=True,blank=True)
+    parent = TreeForeignKey('self', null=True, blank=True, related_name='children')
     jardunaldia = models.IntegerField('Jardunaldia', default=1)
     emaitza = models.CharField(max_length=50,null=True,blank=True)
     
@@ -125,6 +126,9 @@ class Partida(models.Model):
             return " VS ".join([p.get_izena() for p in self.partaideak.all()])
         else:
             return u'???'
+
+    class MPTTMeta:
+        order_insertion_by = ['jardunaldia']
 
     class Meta:
         verbose_name = "Partida"
