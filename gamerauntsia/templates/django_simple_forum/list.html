@@ -8,12 +8,14 @@
         <div class="col-lg-12">
             <h1 class="page-header">Foroa <small>Denak</small></h1>
             <p>Game Erauntsian tratatuko diren gai ezberdinei buruz hitz egiteko txoko bat sortu da. Horretarako foro zerrenda bat proposatu dugu, denboran zehar aldatzen eta handitzen joango dena. <a href="{% url 'auth_login' %}">Hemen erregistratzen</a> den edonork parte har dezake beti ere besteekiko errespetuz jokatzen badu. Hala ez bada, hori ekiditeko neurriak hartuko dira. Bada, animatu eta parte hartu gure komunitatean!</p>
-        
+
+            {% if user.is_authenticated %}
             <form action="/lastlogin/" method="POST">
                 {% csrf_token %}
                 {{lastloginform.as_p}}
                 <button type="submit" class="pull-right btn btn-default"><i class="glyphicon glyphicon-refresh"></i> Markatu foro guztiak irakurrita</button>
             </form>
+            {% endif %}
         </div>
 
         <div class="col-lg-12">

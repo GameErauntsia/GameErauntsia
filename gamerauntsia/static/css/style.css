@@ -177,3 +177,7 @@ hr.dotted {
 .profileform ul {
   list-style: none;
 }
+
+table#id_body_tbl {
+  width: 100% !important;
+}

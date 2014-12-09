@@ -12,7 +12,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     (r'^robots.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: ", mimetype="text/plain")),
     url(r'^$', 'gamerauntsia.views.index', name='index'),
-    url(r'^lastlogin/$', 'gamerauntsia.gamer.views.lastlogin', name='gamer_lastlogin'), 
+    url(r'^lastlogin/$', 'gamerauntsia.gamer.views.lastlogin', name='gamer_lastlogin'),
     # GAMEPLAYAK
     url(r'^gameplayak/', include('gamerauntsia.gameplaya.urls')),
 
@@ -61,7 +61,7 @@ urlpatterns = patterns('',
 
     #MEZUAK
     (r'^mezuak/', include('django_messages.urls')),
-    
+
     #EGUTEGIA
     (r'^calendar/', include('django_bootstrap_calendar.urls')),
 
