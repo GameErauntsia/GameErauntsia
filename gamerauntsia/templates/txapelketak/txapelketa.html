@@ -99,6 +99,11 @@
                     </table>
                 </div>
                 {% endif %}
+                <!--<h2><span class="glyphicon glyphicon-tower"></span>Hurrengo partidak</h2>-->
+                {% if item.live_bideoa %}
+                <h2><span class="glyphicon glyphicon-play-circle"></span>Zuzenean</h2>
+                <div class="flex-video widescreen"><iframe width="700" height="394" src="//www.youtube.com/embed/{{item.live_bideoa}}" frameborder="0" allowfullscreen></iframe></div>
+                {% endif %}
             </div>
             {% endif %}
 
