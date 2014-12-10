@@ -37,6 +37,8 @@ class Txapelketa(models.Model):
     status = models.CharField(max_length=1, choices=EGOERA, default='0')
 
     jokalariak = models.ManyToManyField(GamerUser,related_name="jokalariak",verbose_name="Inskripzioa",null=True,blank=True)
+    irabazlea = models.ForeignKey(GamerUser,related_name="irabazlea",verbose_name="Irabazlea")
+
     jokoa = models.ForeignKey(Jokoa)
     erabiltzailea = models.ForeignKey(GamerUser,related_name="erabiltzailea",verbose_name="Egilea")
 
