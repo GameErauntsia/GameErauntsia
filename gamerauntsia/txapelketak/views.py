@@ -40,7 +40,7 @@ def txapelketa(request,slug):
                             graphdata += "],"
                     else:
                         gamer = part.partaideak.all()[0]
-                        graphdata += "{'name': '"+gamer.get_izena()+"', 'seed':"+str(gamer.id)+", 'id':"+str(gamer.id)+"},{'name': 'Deskalifikatuta', 'seed': '0', 'id': 0},{'name': '???', 'seed': '???', 'id': 0}]"
+                        graphdata += "{'name': '"+gamer.get_izena()+"', 'seed':"+str(gamer.id)+", 'id':"+str(gamer.id)+"}]"
                 else:
                     graphdata += "{'name': '???', 'seed': '???', 'id': 0},{'name': '???', 'seed': '???', 'id': 0}]"
             graphdata += "],"
