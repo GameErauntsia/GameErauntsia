@@ -9,7 +9,7 @@
     <script src="{{STATIC_URL}}js/txapelketa.js"></script>
     <script>
         $( document ).ready(function() {
-            var data = {{kanporaketadatuak|safe}}
+            var data = {{graphdata|safe}}
             $('#taula').gracket({
                 src : data
             });
