@@ -42,7 +42,7 @@ def txapelketa(request,slug):
                 graphdata += "]"
             else:
                 graphdata += "],"
-        if item.irabazlea:
+        if item.irabazlea != None:
             graphdata = "[{'name','"+item.irabazlea.get_izena()+"','seed':'"+str(item.irabazlea.id)+"','id':"+str(item.irabazlea.id)+"}]]"
         else:
             graphdata = "[{'name','???','seed':'???','id':0}]]"
