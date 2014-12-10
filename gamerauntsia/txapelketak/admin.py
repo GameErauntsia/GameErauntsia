@@ -13,6 +13,7 @@ class PartidaAdmin(MPTTModelAdmin):
     filter_horizontal = ('partaideak',)
     raw_id_fields = ('parent','txapelketa','gameplaya')
     search_fields = ['txapelketa__izena']
+    list_filter = ('txapelketa')
     ordering = ('-date',)
 
 
