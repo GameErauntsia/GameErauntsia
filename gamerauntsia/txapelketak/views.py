@@ -27,16 +27,19 @@ def txapelketa(request,slug):
             for j,part in enumerate(partidak):
                 graphdata += "["
                 if part.partaideak.all():
-                    last_gamer = len(part.partaideak.all()) - 1
-                    for i,gamer in enumerate(part.partaideak.all()):
-                        if i == last_gamer:
-                            graphdata += "{'name': '"+gamer.get_izena()+"', 'seed':"+str(gamer.id)+", 'id':"+str(gamer.id)+"}"
+                    if len(part.partaideak.all()) > 1:
+                        last_gamer = len(part.partaideak.all()) - 1
+                        for i,gamer in enumerate(part.partaideak.all()):
+                            if i == last_gamer:
+                                graphdata += "{'name': '"+gamer.get_izena()+"', 'seed':"+str(gamer.id)+", 'id':"+str(gamer.id)+"}"
+                            else:
+                                graphdata += "{'name': '"+gamer.get_izena()+"', 'seed':"+str(gamer.id)+", 'id':"+str(gamer.id)+"},"
+                        if j == last_part:
+                            graphdata += "]"
                         else:
-                            graphdata += "{'name': '"+gamer.get_izena()+"', 'seed':"+str(gamer.id)+", 'id':"+str(gamer.id)+"},"
-                    if j == last_part:
-                        graphdata += "]"
+                            graphdata += "],"
                     else:
-                        graphdata += "],"
+                        graphdata += "{'name': 'Deskalifikatuta', 'seed': '0', 'id': 0},{'name': '???', 'seed': '???', 'id': 0}]"
                 else:
                     graphdata += "{'name': '???', 'seed': '???', 'id': 0},{'name': '???', 'seed': '???', 'id': 0}]"
             graphdata += "],"
