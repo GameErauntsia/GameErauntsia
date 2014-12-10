@@ -31,7 +31,7 @@ class TxapelketaAdmin(admin.ModelAdmin):
     search_fields = ['izena','slug']
     ordering = ('-pub_date',)
     form = TxapelketaAdminForm
-    inlines = [PartidaInline]
+    #inlines = [PartidaInline]
 
 class PartaideakAdmin(admin.ModelAdmin):
 
