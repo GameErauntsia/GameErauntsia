@@ -38,7 +38,6 @@ class Txapelketa(models.Model):
     live_bideoa = models.CharField(max_length=100,null=True,blank=True, help_text="Eremu honetan bideoaren URL kodea itsatsi behar duzu. Adb.: c21XAuI3aMo")
 
     jokalariak = models.ManyToManyField(GamerUser,related_name="jokalariak",verbose_name="Inskripzioa",null=True,blank=True)
-    irabazlea = models.ForeignKey(Partaidea,null=True,blank=True,related_name="irabazlea",verbose_name="Irabazlea")
 
     jokoa = models.ForeignKey(Jokoa)
     erabiltzailea = models.ForeignKey(GamerUser,related_name="erabiltzailea",verbose_name="Egilea")
@@ -78,6 +77,7 @@ class Partaidea(models.Model):
     irudia = models.ForeignKey(Photo,null=True,blank=True)
 
     txapelketa = models.ForeignKey(Txapelketa)
+    irabazlea = models.BooleanField(default=False)
     jokalariak = models.ManyToManyField(GamerUser)
 
     win = models.IntegerField('Irabazitakoak', default=0)

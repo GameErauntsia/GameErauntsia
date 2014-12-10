@@ -41,7 +41,8 @@ def txapelketa(request,slug):
                     graphdata += "{'name': '???', 'seed': '???', 'id': 0},{'name': '???', 'seed': '???', 'id': 0}]"
             graphdata += "],"
         try:
-            graphdata += "[[{'name': '"+item.irabazlea.get_izena()+"','seed': '"+str(item.irabazlea.id)+"','id': "+str(item.irabazlea.id)+"}]]]"
+            irabazlea = Partaidea.objects.get(txapelketa=item,irabazlea=True)
+            graphdata += "[[{'name': '"+irabazlea.get_izena()+"','seed': '"+str(irabazlea.id)+"','id': "+str(item.irabazlea.id)+"}]]]"
         except:
             graphdata += "[[{'name': '???','seed': '???','id': 0}]]]"
 
