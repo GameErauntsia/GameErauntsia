@@ -40,9 +40,9 @@ def txapelketa(request,slug):
                     graphdata += "{'name': '???', 'seed': '???', 'id': 0},{'name': '???', 'seed': '???', 'id': 0}]"
             graphdata += "],"
         try:
-            graphdata += "[[{'name','"+item.irabazlea.get_izena()+"','seed':'"+str(item.irabazlea.id)+"','id':"+str(item.irabazlea.id)+"}]]]"
+            graphdata += "[[{'name': '"+item.irabazlea.get_izena()+"','seed': '"+str(item.irabazlea.id)+"','id': "+str(item.irabazlea.id)+"}]]]"
         except:
-            graphdata += "[[{'name','???','seed':'???','id':0}]]]"
+            graphdata += "[[{'name': '???','seed': '???','id': 0}]]]"
 
         #graphdata += "[[[{'name':'Urtzi','seed':1,'id':'urtzai'},{'name':'Jon','seed':2,'id':'jonny'}]],[[{'name':'Urtzi','seed':1,'id':'urtzai'}]]];"            
     else:
