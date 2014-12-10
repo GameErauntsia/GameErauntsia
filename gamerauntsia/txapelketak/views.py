@@ -29,9 +29,9 @@ def txapelketa(request,slug):
                     last_gamer = len(part.partaideak.all()) - 1
                     for i,gamer in enumerate(part.partaideak.all()):
                         if i == last_gamer:
-                            graphdata += "{'name':"+gamer.get_izena()+", 'seed':"+str(gamer.id)+", 'id':"+str(gamer.id)+"}"
+                            graphdata += "{'name': '"+gamer.get_izena()+"', 'seed':"+str(gamer.id)+", 'id':"+str(gamer.id)+"}"
                         else:
-                            graphdata += "{'name':"+gamer.get_izena()+", 'seed':"+str(gamer.id)+", 'id':"+str(gamer.id)+"},"
+                            graphdata += "{'name': '"+gamer.get_izena()+"', 'seed':"+str(gamer.id)+", 'id':"+str(gamer.id)+"},"
                     if j == last_part:
                         graphdata += "]"
                     else:
