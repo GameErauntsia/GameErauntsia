@@ -92,14 +92,36 @@
                                 <td>#{{partida.jardunaldia}}</td>
                                 <td>{{partida.get_partaide_list}}</td>
                                 <td>{% if partida.emaitza %}{{partida.emaitza}}{% else %}---{% endif %}</td>
-                                <td>{{partida.date}}</td>
+                                <td>{{partida.date|date:"Y/m/d H:i"}}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
                     </table>
                 </div>
                 {% endif %}
-                <!--<h2><span class="glyphicon glyphicon-tower"></span>Hurrengo partidak</h2>-->
+
+                {% if next_parts %}
+                <h2><span class="glyphicon glyphicon-tower"></span>Hurrengo partidak</h2>
+                {% for part in next_parts %}
+                <div class="col-md-4 text-center">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{part.jardunaldia}}. partida</h3>
+                        </div>
+                        <div class="panel-body">
+                            {% for partaide in part.partaideak.all %}
+                            <p><img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-circle"/> {{partaide.get_izena}}</p>
+                            {%if not forloop.last %}
+                            <p><img src="{{STATIC_URL}}img/versus.png"/></p>
+                            {% endif %}
+                            {% endfor %}
+                            <p>{{part.data|date:"Y/m/d H:i"}}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+
                 {% if item.live_bideoa %}
                 <h2><span class="glyphicon glyphicon-play-circle"></span>Zuzenean</h2>
                 <div class="flex-video widescreen"><iframe width="700" height="394" src="//www.youtube.com/embed/{{item.live_bideoa}}" frameborder="0" allowfullscreen></iframe></div>
@@ -151,7 +173,7 @@
                 {% else %}
                     <h3>Partaideak</h3>
                     {% for partaide in item.get_partaideak %}
-                        <p><img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-circle"/> {{partaide.get_izena}}</a></p>
+                        <p><img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-circle"/> {{partaide.get_izena}}</p>
                     {% empty %}
                     <p>Partaide/taldeak sortzeko daude. Laister izango dira ikusgai</p>
                     {% endfor %}

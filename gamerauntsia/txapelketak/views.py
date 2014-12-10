@@ -13,6 +13,7 @@ def index(request):
 
 def txapelketa(request,slug):
     item = get_object_or_404(Txapelketa,slug=slug)
+    next_parts = Partida.objects.filter(txapelketa=item, partaideak__isnull=False).order_by('date')
     
     if item.mota == '0':
         first_node = Partida.objects.get(txapelketa=item,jardunaldia=1)
