@@ -16,41 +16,43 @@ def txapelketa(request,slug):
     next_parts = Partida.objects.filter(txapelketa=item, partaideak__isnull=False).order_by('jardunaldia').distinct()
     
     if item.mota == '0':
-        first_node = Partida.objects.get(txapelketa=item,jardunaldia=1)
-        leaflvl = first_node.get_leafnodes(include_self=True)[0].get_level()
+        if Partida.objects.get(txapelketa=item,jardunaldia=1).exists():
+            first_node = Partida.objects.get(txapelketa=item,jardunaldia=1)
+            leaflvl = first_node.get_leafnodes(include_self=True)[0].get_level()
 
-        graphdata = "["
-        for x in range(leaflvl,-1,-1):
-            graphdata += "["
-            partidak = Partida.objects.filter(level=x,txapelketa=item)
-            last_part = len(partidak) - 1
-            for j,part in enumerate(partidak):
+            graphdata = "["
+            for x in range(leaflvl,-1,-1):
                 graphdata += "["
-                if part.partaideak.all():
-                    if len(part.partaideak.all()) > 1:
-                        last_gamer = len(part.partaideak.all()) - 1
-                        for i,gamer in enumerate(part.partaideak.all()):
-                            if i == last_gamer:
-                                graphdata += "{'name': '"+gamer.get_izena()+"', 'seed':"+str(gamer.id)+", 'id':"+str(gamer.id)+"}"
+                partidak = Partida.objects.filter(level=x,txapelketa=item)
+                last_part = len(partidak) - 1
+                for j,part in enumerate(partidak):
+                    graphdata += "["
+                    if part.partaideak.all():
+                        if len(part.partaideak.all()) > 1:
+                            last_gamer = len(part.partaideak.all()) - 1
+                            for i,gamer in enumerate(part.partaideak.all()):
+                                if i == last_gamer:
+                                    graphdata += "{'name': '"+gamer.get_izena()+"', 'seed':"+str(gamer.id)+", 'id':"+str(gamer.id)+"}"
+                                else:
+                                    graphdata += "{'name': '"+gamer.get_izena()+"', 'seed':"+str(gamer.id)+", 'id':"+str(gamer.id)+"},"
+                            if j == last_part:
+                                graphdata += "]"
                             else:
-                                graphdata += "{'name': '"+gamer.get_izena()+"', 'seed':"+str(gamer.id)+", 'id':"+str(gamer.id)+"},"
-                        if j == last_part:
-                            graphdata += "]"
+                                graphdata += "],"
                         else:
-                            graphdata += "],"
+                            gamer = part.partaideak.all()[0]
+                            graphdata += "{'name': '"+gamer.get_izena()+"', 'seed':"+str(gamer.id)+", 'id':"+str(gamer.id)+"},{'name': 'Deskalifikatuta', 'seed': '0', 'id': 0}]"
                     else:
-                        gamer = part.partaideak.all()[0]
-                        graphdata += "{'name': '"+gamer.get_izena()+"', 'seed':"+str(gamer.id)+", 'id':"+str(gamer.id)+"},{'name': 'Deskalifikatuta', 'seed': '0', 'id': 0}]"
-                else:
-                    graphdata += "{'name': '???', 'seed': '???', 'id': 0},{'name': '???', 'seed': '???', 'id': 0}]"
-            graphdata += "],"
-        try:
-            irabazlea = Partaidea.objects.get(txapelketa=item,irabazlea=True)
-            graphdata += "[[{'name': '"+irabazlea.get_izena()+"','seed': '"+str(irabazlea.id)+"','id': "+str(irabazlea.id)+"}]]]"
-        except:
-            graphdata += "[[{'name': '???','seed': '???','id': 0}]]]"
+                        graphdata += "{'name': '???', 'seed': '???', 'id': 0},{'name': '???', 'seed': '???', 'id': 0}]"
+                graphdata += "],"
+            try:
+                irabazlea = Partaidea.objects.get(txapelketa=item,irabazlea=True)
+                graphdata += "[[{'name': '"+irabazlea.get_izena()+"','seed': '"+str(irabazlea.id)+"','id': "+str(irabazlea.id)+"}]]]"
+            except:
+                graphdata += "[[{'name': '???','seed': '???','id': 0}]]]"
+        else:
+            graphdata = ""
 
-        #graphdata += "[[[{'name':'Urtzi','seed':1,'id':'urtzai'},{'name':'Jon','seed':2,'id':'jonny'}]],[[{'name':'Urtzi','seed':1,'id':'urtzai'}]]];"            
     else:
         list_sailkapena = item.get_partaideak('points')
 
