@@ -4,6 +4,7 @@ import datetime
 from django.db.models import Q
 from gamerauntsia.berriak.models import Berria
 from gamerauntsia.gameplaya.models import GamePlaya
+from gamerauntsia.txapelketak.models import Txapelketa
 from gamerauntsia.utils.social import post_social
 from datetime import timedelta
 
@@ -17,6 +18,10 @@ def social_share(minutuak):
     gpak=GamePlaya.objects.all().filter(Q(pub_date__gte=duela_x_ordu) 
                                                                      & Q(pub_date__lte=orain) & Q(publikoa_da=True) 
                                                                      & Q(shared=False)).order_by('-pub_date')
+
+    txak=Txapelketa.objects.all().filter(Q(pub_date__gte=duela_x_ordu) 
+                                                                     & Q(pub_date__lte=orain) & Q(publikoa_da=True) 
+                                                                     & Q(shared=False)).order_by('-pub_date')
   
     for berria in berriak:
         post_social(berria)
@@ -27,6 +32,11 @@ def social_share(minutuak):
         post_social(gp)
         gp.shared=True
         gp.save()
+
+    for tx in txak:
+        post_social(tx)
+        tx.shared=True
+        tx.save()
 
     return True
 

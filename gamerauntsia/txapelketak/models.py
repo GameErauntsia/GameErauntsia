@@ -46,6 +46,7 @@ class Txapelketa(models.Model):
     publikoa_da = models.BooleanField(default=True) 
     pub_date = models.DateTimeField('Publikazio data', default=datetime.now)
     insk_date = models.DateTimeField('Izen ematea', default=datetime.now)
+    shared = models.BooleanField(default=False)
 
     def get_partaideak(self,order=None):
         if order:
@@ -65,6 +66,12 @@ class Txapelketa(models.Model):
 
     def get_absolute_url(self):
         return '%stxapelketak/%s' % (settings.HOST, self.slug)
+
+    def getTwitText(self):
+        if self.erabiltzailea.twitter_id:
+            return self.izena + ' ' + self.get_absolute_url() + ' @%s 2dz' % (self.erabiltzailea.twitter_id)
+        else:
+            return self.izena + ' ' + self.get_absolute_url()
 
     class Meta:
         verbose_name = "Txapelketa"
