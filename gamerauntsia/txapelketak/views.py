@@ -16,7 +16,7 @@ def txapelketa(request,slug):
     next_parts = Partida.objects.filter(txapelketa=item, partaideak__isnull=False).order_by('jardunaldia').distinct()
     
     if item.mota == '0':
-        if Partida.objects.get(txapelketa=item,jardunaldia=1).exists():
+        if Partida.objects.filter(txapelketa=item,jardunaldia=1).exists():
             first_node = Partida.objects.get(txapelketa=item,jardunaldia=1)
             leaflvl = first_node.get_leafnodes(include_self=True)[0].get_level()
 
