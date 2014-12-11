@@ -8,7 +8,7 @@ from gamerauntsia.txapelketak.models import *
 from django.core.urlresolvers import reverse
 
 def index(request):
-    items = Txapelketa.objects.filter(publikoa_da=True)
+    items = Txapelketa.objects.filter(publikoa_da=True).order_by('-pub_date')
     return render_to_response('txapelketak/index.html', locals(),context_instance=RequestContext(request))
 
 def txapelketa(request,slug):
