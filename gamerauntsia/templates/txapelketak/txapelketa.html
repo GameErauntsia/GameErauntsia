@@ -35,8 +35,11 @@
             {% if user.is_superuser or user == item.erabiltzailea %}
             <div class="well">
                 <h3>Editatu txapelketa</h3>
-                <a class="btn btn-default" href="/kudeatu/txapelketak/txapelketa/{{item.id}}">Editatu</a>
-                <a class="btn btn-default" href="/kudeatu/txapelketak/partida/?txapelketa__id__exact={{item.id}}">Editatu partidak</a>
+                <div class="btn-group" role="group" aria-label="...">
+                    <a class="btn btn-default" href="/kudeatu/txapelketak/txapelketa/{{item.id}}">Txapelketa</a>
+                    <a class="btn btn-default" href="/kudeatu/txapelketak/partida/?txapelketa__id__exact={{item.id}}">Partidak</a>
+                    <a class="btn btn-default" href="/kudeatu/txapelketak/partaidea/?txapelketa__id__exact={{item.id}}">Partaideak</a>
+                </div>
             </div>
             {% endif %}
             {% endif %}
