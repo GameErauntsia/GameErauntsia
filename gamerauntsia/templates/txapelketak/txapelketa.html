@@ -122,6 +122,9 @@
                             {% endfor %}
                             <hr>
                             <p><small>{{part.date|date:"Y/m/d H:i"}}</small></p>
+                            {% if part.emaitza %}
+                            <p><span class="badge">{{part.emaitza}}</span></p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
