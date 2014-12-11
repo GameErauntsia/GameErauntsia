@@ -26,7 +26,7 @@
                         <img class="img-responsive" src="{{tx.irudia.get_gp_thumbnail_url}}">
                     </a>
                     <h3>
-                        <a href="{{tx.get_absolute_url}}">{{tx.izena}}</a> {% if tx.insk_date|irekita %}<div class="text-success"><span class="glyphicon glyphicon-plus-sign"></span></div>{% endif %}{% if tx.status == '1' %}<div class="text-warning"><span class="glyphicon glyphicon-question-sign"></span></div>{% endif %}{% if tx.status == '2' %}<div class="text-info"><span class="glyphicon glyphicon-ok-sign"></span></div>{% endif %}{% if tx.status == '3' %}<div>{% endif %}
+                        <a href="{{tx.get_absolute_url}}">{{tx.izena}}</a>{% if tx.insk_date|irekita %}<div class="text-success"><span class="glyphicon glyphicon-plus-sign"></span></div>{% endif %}{% if tx.status == '1' %}<div class="text-warning"><span class="glyphicon glyphicon-question-sign"></span></div>{% endif %}{% if tx.status == '2' %}<div class="text-info"><span class="glyphicon glyphicon-ok-sign"></span></div>{% endif %}{% if tx.status == '3' %}<div class="text-danger"><span class="glyphicon glyphicon-remove-sign"></span></div>{% endif %}
                     </h3>
                     <p><span class="glyphicon glyphicon-play"></span> {% if tx.jokoa.url %}<a href="{{tx.jokoa.url}}">{{tx.jokoa.izena}} {%if tx.jokoa.bertsioa %}{{tx.jokoa.bertsioa}}{% endif %}</a>{% else %}{{tx.jokoa}}{% endif%} | {{tx.get_mota_display}} | {{tx.get_modalitatea_display}}{% if comment_count %} | <a href="{{tx.get_absolute_url}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}</p>
                     <p>{{tx.get_desk_txikia|safe}}</p>
