@@ -104,6 +104,7 @@
                 </div>
                 {% endif %}
             </div>
+            {% endif %}
             <div class="col-lg-12">
                 {% if next_parts %}
                 <h2><span class="glyphicon glyphicon-tower"></span> Hurrengo partidak</h2>
@@ -135,7 +136,6 @@
                 <div class="flex-video widescreen"><iframe width="700" height="394" src="//www.youtube.com/embed/{{item.live_bideoa}}" frameborder="0" allowfullscreen></iframe></div>
                 {% endif %}
             </div>
-            {% endif %}
 
 
             {% render_comment_list for item %}
