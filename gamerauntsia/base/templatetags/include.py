@@ -123,3 +123,9 @@ def get_comment_object(comment):
 @register.filter
 def get_parent_title(comment):
     return get_comment_object(comment).izenburua
+
+@register.filter
+def irekita(value):
+    if value > timezone.now():
+        return True
+    return False
