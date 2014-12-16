@@ -181,3 +181,15 @@ hr.dotted {
 table#id_body_tbl {
   width: 100% !important;
 }
+
+#tweetstreaming {
+  border: 1px solid #efefef;
+  border-radius: 10px;
+  padding: 1em;
+}
+
+.tweet {
+  border-bottom: 1px solid #efefef;
+  margin-bottom: 10px;
+  padding-bottom: 1em;
+}

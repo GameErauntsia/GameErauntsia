@@ -6,6 +6,7 @@ from datetime import datetime
 from django.shortcuts import get_object_or_404
 from gamerauntsia.txapelketak.models import *
 from django.core.urlresolvers import reverse
+from gamerauntsia.utils.timeline import get_tweepy_api
 
 def index(request):
     items = Txapelketa.objects.filter(publikoa_da=True).order_by('-pub_date')
@@ -55,6 +56,10 @@ def txapelketa(request,slug):
 
     else:
         list_sailkapena = item.get_partaideak('points')
+
+    api = get_tweepy_api()
+    search = '#' + item.hashtag
+    tweets = api.search(q=search,count=25)
 
     return render_to_response('txapelketak/txapelketa.html', locals(),context_instance=RequestContext(request))
 
