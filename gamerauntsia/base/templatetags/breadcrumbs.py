@@ -1,5 +1,6 @@
 from django import template
 from django.utils.safestring import mark_safe
+from django.utils import timezone
 
 register = template.Library()
 
@@ -43,3 +44,9 @@ def get_range( value ):
     Instead of 3 one may use the variable set in the views
   """
   return range( value )
+
+@register.filter
+def irekita(value):
+    if value > timezone.now():
+        return True
+    return False

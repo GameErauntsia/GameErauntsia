@@ -110,12 +110,6 @@ def ken1(value):
     return value-1
 
 @register.filter
-def irekita(value):
-    if value > timezone.now():
-        return True
-    return False
-
-@register.filter
 def inbox_count_for(user):
     return Message.objects.filter(recipient=user, read_at__isnull=True, recipient_deleted_at__isnull=True).count()
 
