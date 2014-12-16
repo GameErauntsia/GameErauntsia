@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n emoticons_tags breadcrumbs comments tweets %}
+{% load i18n emoticons_tags breadcrumbs comments %}
 
 {% block title %}{{item.izena}} - {% endblock %}
 
@@ -205,7 +205,7 @@
                 <div id="tweetstreaming">
                 {% for status in tweets %}
                     <div class="tweet">
-                        {% include "status.html" with status=status%}
+                        {% include "status.html" with status=status %}
                     </div>
                 {% endfor %}
                 </div>
