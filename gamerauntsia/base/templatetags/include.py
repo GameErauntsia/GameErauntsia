@@ -15,8 +15,8 @@ def top_gameplayak():
     h = {}
     h['zerr_tutoriala'] = GamePlaya.objects.filter(publikoa_da=True).order_by('-pub_date')[:10]
     return h
- 
-@register.inclusion_tag('behe_blokeak.html') 
+
+@register.inclusion_tag('behe_blokeak.html')
 def azken_berriak():
     h = {}
     h['berriak'] = Berria.objects.all().order_by('-pub_date')[:5]
@@ -33,7 +33,7 @@ def mainmenu(url):
         selected_mainmenu=links[0]
     for link,title in mainmenulist:
         if selected_mainmenu==link and len(links)>1:
-            mainmenu.append('<li class="active"><a href="/%s" title="%s">%s</a></li>' % (link,title,title))      
+            mainmenu.append('<li class="active"><a href="/%s" title="%s">%s</a></li>' % (link,title,title))
         elif selected_mainmenu==link:
             mainmenu.append('<li class="active">%s</li>' % (title))
         else:
@@ -54,7 +54,7 @@ def tabmenu(url):
         selected_mainmenu=links[1]
     for link,title in mainmenulist:
         if selected_mainmenu==link:
-            mainmenu.append('<li class="selected">%s</li>' % (title))     
+            mainmenu.append('<li class="selected">%s</li>' % (title))
         else:
             if selected_mainmenu=='':
                 mainmenu.append('<li><a href="/sarrera/%s" title="%s">%s</a></li>' % (link,title,title))
@@ -122,7 +122,10 @@ def get_comment_object(comment):
 
 @register.filter
 def get_parent_title(comment):
-    return get_comment_object(comment).izenburua
+    if not get_comment_object(comment).__class__.__name__ == 'Txapelketa':
+        return get_comment_object(comment).izenburua
+    else:
+        return get_comment_object(comment).izena
 
 @register.filter
 def irekita(value):
