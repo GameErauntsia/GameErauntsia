@@ -12,7 +12,7 @@
     </div>
     <div class="col-lg-4">
         <h1>{{live_gp.izena}}</h1>
-        <p><span class="glyphicon glyphicon-play"></span> {% if live_gp.jokoa.url %}<a href="{{live_gp.jokoa.url}}">{{live_gp.jokoa.izena}} {%if live_gp.jokoa.bertsioa %}{{live_gp.jokoa.bertsioa}}{% endif %}</a>{% else %}{{live_gp.jokoa}}{% endif%}{% if comment_count %} | <a href="{{gp.get_absolute_url}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}</p>
+        <p><span class="glyphicon glyphicon-play"></span> {% if live_gp.jokoa.url %}<a href="{{live_gp.jokoa.url}}">{{live_gp.jokoa.izena}} {%if live_gp.jokoa.bertsioa %}{{live_gp.jokoa.bertsioa}}{% endif %}</a>{% else %}{{live_gp.jokoa}}{% endif%}{% if comment_count %} | <a href="{{live_gp.get_absolute_url}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}</p>
         <p>{{live_gp.get_desk_index|safe}}</p>
         <a class="btn btn-primary btn-lg" href="{{live_gp.get_absolute_url}}">Gehiago nahi? <span class="glyphicon glyphicon-play-circle"></span></a>
     </div>
