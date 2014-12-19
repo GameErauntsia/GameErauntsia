@@ -15,9 +15,9 @@ class Terminoa(models.Model):
     class Meta:
         verbose_name = "Terminoa"
         verbose_name_plural = "Terminoak"
-        
+
     def __unicode__(self):
-        return u'%s' % (self.term_eu) 
+        return u'%s' % (self.term_eu)
 
 
 def send_post_email(sender,instance,**kwargs):
@@ -46,6 +46,8 @@ def send_comment_email(sender,instance,**kwargs):
         obj = ct.get_object_for_this_type(pk=instance.object_pk)
         if obj.__class__.__name__ == 'Berria':
             message += '%sbloga/%s\n\n' % (settings.HOST,obj.slug)
+        elif obj.__class__.__name__ == 'Txapelketa':
+            message += '%stxapelketak/%s\n\n' % (settings.HOST,obj.slug)
         else:
             message += '%sgameplayak/%s\n\n' % (settings.HOST,obj.slug)
         creators = Comment.objects.filter(object_pk=instance.object_pk,content_type=instance.content_type).values('user__email').distinct()
