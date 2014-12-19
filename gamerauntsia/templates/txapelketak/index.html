@@ -19,7 +19,7 @@
 
             {% if not forloop.counter|divisibleby:2 %}
             <div class="row">
-            {% endif %}  
+            {% endif %}
 
                 <div class="col-md-6 portfolio-item">
                     <a href="{{tx.get_absolute_url}}">
@@ -46,9 +46,13 @@
         {% comment %}
             <div class="well">
                 <h3>Sortu berri bat</h3>
-                
+
             </div>
         {% endcomment %}
+            <div id="azkenErantzunak">
+            <h2>Azken erantzunak</h2>
+                {% azken_erantzunak 'Txapelketa' %}
+            </div>
         </div>
 </div>
 
