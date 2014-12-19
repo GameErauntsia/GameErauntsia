@@ -43,7 +43,7 @@ class Txapelketa(models.Model):
     jokoa = models.ForeignKey(Jokoa)
     erabiltzailea = models.ForeignKey(GamerUser,related_name="erabiltzailea",verbose_name="Egilea")
 
-    publikoa_da = models.BooleanField(default=True) 
+    publikoa_da = models.BooleanField(default=True)
     pub_date = models.DateTimeField('Publikazio data', default=datetime.now)
     insk_date = models.DateTimeField('Izen ematea', default=datetime.now)
     shared = models.BooleanField(default=False)
@@ -64,6 +64,11 @@ class Txapelketa(models.Model):
             return filters.striptags(self.desk)[:150]+'...'
         return filters.striptags(self.desk)
 
+    def get_desk_index(self):
+        if len(self.desk) > 400:
+            return filters.striptags(self.desk)[:400]+'...'
+        return filters.striptags(self.desk)
+
     def get_absolute_url(self):
         return '%stxapelketak/%s' % (settings.HOST, self.slug)
 
@@ -76,11 +81,11 @@ class Txapelketa(models.Model):
     class Meta:
         verbose_name = "Txapelketa"
         verbose_name_plural = "Txapelketak"
-        
+
     def __unicode__(self):
         return u'%s' % (self.izena)
 
-class Partaidea(models.Model):  
+class Partaidea(models.Model):
     izena = models.CharField(max_length=64,null=True,blank=True)
     irudia = models.ForeignKey(Photo,null=True,blank=True)
 
@@ -103,7 +108,7 @@ class Partaidea(models.Model):
                 return self.irudia
             else:
                 try:
-                    return Photo.objects.get(slug=GROUP_PHOTO_SLUG)    
+                    return Photo.objects.get(slug=GROUP_PHOTO_SLUG)
                 except:
                     return None
         else:
@@ -120,16 +125,16 @@ class Partaidea(models.Model):
     class Meta:
         verbose_name = "Partaidea"
         verbose_name_plural = "Partaideak"
-        
+
     def __unicode__(self):
         return self.get_izena()
 
-class Partida(MPTTModel):  
+class Partida(MPTTModel):
     partaideak = models.ManyToManyField(Partaidea,null=True,blank=True)
     parent = TreeForeignKey('self', null=True, blank=True, related_name='children')
     jardunaldia = models.IntegerField('Jardunaldia', default=1)
     emaitza = models.CharField(max_length=50,null=True,blank=True)
-    
+
     txapelketa = models.ForeignKey(Txapelketa)
     gameplaya = models.ForeignKey(GamePlaya,null=True,blank=True)
     date = models.DateTimeField('Data', default=datetime.now)
@@ -152,6 +157,6 @@ class Partida(MPTTModel):
     class Meta:
         verbose_name = "Partida"
         verbose_name_plural = "Partidak"
-        
+
     def __unicode__(self):
         return u'%s' % (self.get_izena())
