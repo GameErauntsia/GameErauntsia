@@ -5,7 +5,6 @@ from django.core.mail import send_mail
 from django.conf import settings
 from photologue.models import Photo
 from gamerauntsia.jokoa.models import Jokoa
-from gamerauntsia.zerbitzariak.models import MC_Whitelist
 from django.utils.translation import ugettext as _
 
 MEMBER_PHOTO_SLUG=getattr(settings,'PROFILE_PHOTO_DEFAULT_SLUG','no-profile-photo')
@@ -65,6 +64,7 @@ class GamerUser(CSAbstractSocialUser):
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
     def is_mc_gamer(self):
+        from gamerauntsia.zerbitzariak.models import MC_Whitelist
         return MC_Whitelist.objects.filter(user=self).exists()
 
     def __unicode__(self):
