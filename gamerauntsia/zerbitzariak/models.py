@@ -3,7 +3,7 @@ from gamerauntsia.gamer.models import GamerUser
 
 ROL = (
         ('n', 'Normal'),
-        ('v', 'VIP')
+        ('v', 'VIP'),
         ('a', 'Administrator'),
     )
 
