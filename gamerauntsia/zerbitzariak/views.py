@@ -6,7 +6,7 @@ from gamerauntsia.zerbitzariak.models import MC_Whitelist
 from gamerauntsia.gamer.models import JokuPlataforma
 
 def minecraft_server(request):
-	user = request.user
+    user = request.user
     return render_to_response('zerbitzariak/minecraft.html', locals(),context_instance=RequestContext(request))
 
 def minecraft_add(request):
