@@ -68,8 +68,7 @@ class GamerUser(CSAbstractSocialUser):
         return MC_Whitelist.objects.filter(user=self).exists()
 
     def has_mc_platform(self):
-        if self.plataforma_set.plataforma == 'minecraft':
-            return True
+        return self.plataforma_set.filter(plataforma='minecraft').exists()
 
     def __unicode__(self):
         return u'%s' % self.username
