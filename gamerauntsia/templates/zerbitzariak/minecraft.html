@@ -28,11 +28,15 @@
 			</ul>
 			<div class="well">
 			{% if user.is_authenticated %}
+			    {% if user.is_mc_gamer %}
+			    <p>Mila esker <strong>{{user.fullname}}!</strong> Zerbitzarian parte hartzeko zerrendan sartu zara. Ordu batzuren buruan jolasteko moduan izango zara! Beharrezko baimenak emateko lanean gabiltza. Eskerrik asko eta izan pazientzia pixkat!</p>
+			    {% else %}
 	        	<form action="{% url 'minecraft_add' %}" method="POST">
 			        {% csrf_token %} 
 	        		<p><label><input type="checkbox" name="accept"> Onartzen ditut Minecraft zerbitzariko araudi eta baldintzak.</label></p>
 	        		<input type="submit" class="btn btn-primary" value="Bidali" />
 	        	</form>
+	        	{% endif %}
         	{% else %}
                 <p>Zerbitzarian parte hartu ahal izateko lehendabizi Game Erauntsian izena eman behar duzu.</p>
                 <a class="btn btn-primary" href="{% url 'auth_login' %}?next={{request.path}}" title="Log in">{% trans 'Log in' %}</a>
