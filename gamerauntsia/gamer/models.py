@@ -68,7 +68,8 @@ class GamerUser(CSAbstractSocialUser):
         return MC_Whitelist.objects.filter(user=self).exists()
 
     def has_mc_platform(self):
-        return JokuPlataforma.objects.filter(user=self, plataforma='minecraft').exists()
+        if self.plataforma_set.plataforma == 'minecraft':
+            return True
 
     def __unicode__(self):
         return u'%s' % self.username
@@ -82,7 +83,7 @@ class GamerUser(CSAbstractSocialUser):
 class JokuPlataforma(models.Model):
     plataforma = models.CharField(max_length=10, choices=PLATFORM)
     nick = models.CharField(max_length=64)
-    user = models.ForeignKey(GamerUser)
+    user = models.ForeignKey(GamerUser,related_name='plataforma')
 
     def __unicode__(self):
         return u'%s - %s' % (self.plataforma,self.nick)
