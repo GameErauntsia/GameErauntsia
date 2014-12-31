@@ -12,6 +12,8 @@ class MC_Whitelist(models.Model):
     user = models.ForeignKey(GamerUser,null=True,blank=True)
     rol = models.CharField(max_length=1, default='n',choices=ROL)
 
+    created = models.DateTimeField('Sortze data', auto_now_add=True)
+
     class Meta:
         verbose_name = "MC Erabiltzailea"
         verbose_name_plural = "MC Erabiltzaileak"
