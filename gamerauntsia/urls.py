@@ -32,6 +32,9 @@ urlpatterns = patterns('',
     #TXAPELKETAK
     (r'^txapelketak/', include('gamerauntsia.txapelketak.urls')),
 
+    #MINECRAFT SERVER
+    (r'^minecraft/', include('gamerauntsia.zerbitzariak.urls')),
+
     # FOROA
     url(r'^foroa/', include('django_simple_forum.urls')),
 
