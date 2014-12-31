@@ -67,6 +67,9 @@ class GamerUser(CSAbstractSocialUser):
         from gamerauntsia.zerbitzariak.models import MC_Whitelist
         return MC_Whitelist.objects.filter(user=self).exists()
 
+    def has_mc_platform(self):
+        return JokuPlataforma.objects.filter(user=self, plataforma='minecraft').exists()
+
     def __unicode__(self):
         return u'%s' % self.username
   
