@@ -2,7 +2,6 @@ setup.cfg
 setup.py
 gamerauntsia/__init__.py
 gamerauntsia/context_processors.py
-gamerauntsia/local_settings.py
 gamerauntsia/settings.py
 gamerauntsia/tiny_mce_settings.py
 gamerauntsia/urls.py
@@ -23,6 +22,7 @@ gamerauntsia/auto_gameplay/admin.py
 gamerauntsia/auto_gameplay/forms.py
 gamerauntsia/auto_gameplay/models.py
 gamerauntsia/base/__init__.py
+gamerauntsia/base/admin.py
 gamerauntsia/base/feed.py
 gamerauntsia/base/models.py
 gamerauntsia/base/tests.py
@@ -35,6 +35,7 @@ gamerauntsia/base/management/commands/social_share.py
 gamerauntsia/base/templatetags/__init__.py
 gamerauntsia/base/templatetags/breadcrumbs.py
 gamerauntsia/base/templatetags/include.py
+gamerauntsia/base/templatetags/tweets.py
 gamerauntsia/berriak/__init__.py
 gamerauntsia/berriak/admin.py
 gamerauntsia/berriak/forms.py
@@ -65,10 +66,20 @@ gamerauntsia/kontaktua/__init__.py
 gamerauntsia/kontaktua/models.py
 gamerauntsia/kontaktua/tests.py
 gamerauntsia/kontaktua/views.py
+gamerauntsia/servers/__init__.py
+gamerauntsia/servers/admin.py
+gamerauntsia/servers/models.py
 gamerauntsia/templatetags/__init__.py
 gamerauntsia/templatetags/gamerauntsia.py
+gamerauntsia/txapelketak/__init__.py
+gamerauntsia/txapelketak/admin.py
+gamerauntsia/txapelketak/forms.py
+gamerauntsia/txapelketak/models.py
+gamerauntsia/txapelketak/urls.py
+gamerauntsia/txapelketak/views.py
 gamerauntsia/utils/__init__.py
 gamerauntsia/utils/images.py
 gamerauntsia/utils/slug.py
 gamerauntsia/utils/social.py
+gamerauntsia/utils/timeline.py
 gamerauntsia/utils/urls.py
