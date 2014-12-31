@@ -7,7 +7,7 @@ from gamerauntsia.gamer.models import JokuPlataforma
 
 def minecraft_server(request):
     user = request.user
-    mc_list = MC_Whitelist.objects.values('user').order_by('-created')[10]
+    mc_list = MC_Whitelist.objects.values('user').order_by('-created')[:10]
     mc_admin_list = MC_Whitelist.objects.filter(rol='a').values('user')
     mc_vip_list = MC_Whitelist.objects.filter(rol='v').values('user')
     return render_to_response('zerbitzariak/minecraft.html', locals(),context_instance=RequestContext(request))
