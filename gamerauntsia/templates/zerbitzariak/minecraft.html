@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load i18n emoticons_tags include %}
+
+<div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Minecraft zerbitzaria</h1>
+        </div>
+
+        <div class="col-lg-8">
+        	<h2>Araudi eta baldintzak</h2>
+        	<ul>
+        		<li>Zerbitzarira sartzeko ezinbestekoa da Gamerauntsia.eus orrialdean erregistratzea eta perfilean zure minecraft-eko erabiltzaile izena jartzea. Azken honetarako jarraitu pausu hauek:
+					<ul>
+						<li>Klikatu zure perfileko kudeatzeko botoia, ostean “Profila editatu” aukeran sakatu.</li>
+					    <li>Ireki berri den orrialdean “Plataformak” atalean, “Plataforma” ipintzen duen tokian Minecraft aukeratu eta “Nick” ipintzen duen tokian idatzi zure erabiltzaile izena.</li>
+					    <li>Sakatu “Gorde” botoia eta prest.</li>
+					<ul>
+				</li>
+				<li>Zerbitzarira sartzeko baimena GE webgunean eskatu beharko da. Behin eskaera eginda administratzaile batek errebisatu eta sartzeko baimena emango dizu. Eskaerak egunero eguneratuko ditugu. Momentuan ezin bazara sartu zerbitzarira, lasai egon, gehienez egun bat tardatuko baitugu.</li>
+				<li>Gogoratu Minecraft-eko lehen zerbitzari euskalduna dela, beraz txat-etik derrigorrezkoa da euskaraz hitz egitea.</li>
+				<li>Logikoa den bezala, txatetik ez dira onartuko beste jokalarienganako irainik, ezta hitz/esaldi arrazista, homofobo, sexistarik.</li>
+				<li>Txatetik spam-a, mezu berdina hainbatetan errepikatzea edo txat-aren erabilpen normala alteratzea debekatua dago. Web orri baterako esteka bat jarri nahi izanez gero, administratzaile bati eskatu beharko zaio baimena.</li>
+				<li>Mundu printzipalean (Ez dena jolasena, ez errekurtsoena) debekatuta dago eraikin publikoak modifikatu/suntsitzea, ez baduzu jaso administratzaile baten baimena hori egiteko noski.</li>
+				<li>Guztiz debekatua dago beste erabiltzaileak erasotzea. Arau hau ez da aplikatzen borroka egitea beharrezkoa den mini-jokoetan eta guneetan.</li>
+				<li>Mundu printzipalean soilik zuri esleituko zaizun partzelan eraiki dezakezu libreki. Partzela hau administratzaile bati eskatu ostean esleituko zaizu. Zure eraikinak ezingo du zabaleraz harrizko erdiblokeek mugatzen duten area (10x10) baino gehiago izan eta altueraz 15 bloke goruntz eta 5 bloke beheruntz baino gehiago izan.</li>
+				<li>Behin partzela esleitu eta eraikinetik minimo bat egin ostean, area limitatzen duten erdiblokeak kendu ahal izango dira nahi izanez gero.</li>
+			</ul>
+			{% if user.is_authenticated %}
+	        	<form action="{% url 'minecraft_add' %}" method="POST">
+			        {% csrf_token %} 
+	        		<input type="checkbox" name="accept" value="Irakurri eta onartzen ditut araudi eta baldintzak">
+	        		<input type="submit" class="btn btn-primary" value="Onartu" />
+	        	</form>
+        	{% else %}
+                <p>Zerbitzarian parte hartu ahal izateko lehendabizi Game Erauntsian izena eman behar duzu.</p>
+                <a class="btn btn-primary" href="{% url 'auth_login' %}?next={{request.path}}" title="Log in">{% trans 'Log in' %}</a>
+        	{% endif %}
+        </div>
+
+        <div class="col-lg-4">
+        </div>
+</div>
