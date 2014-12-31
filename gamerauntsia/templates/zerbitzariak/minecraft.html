@@ -45,8 +45,8 @@
         		<h2>Azken 10 erabiltzaileak</h2>
         		<div class="row">
                     <div class="col-lg-12">
-                        {% for user in mc_list %}
-                        <p><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.fullname}}</a></p>
+                        {% for mc in mc_list %}
+                        <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{mc.user.fullname}}</a></p>
                         {% endfor %}
                     </div>
                 </div>
@@ -55,8 +55,8 @@
         		<h2>VIP erabiltzaileak</h2>
         		<div class="row">
                     <div class="col-lg-12">
-                        {% for user in mc_vip_list %}
-                        <p><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.fullname}}</a></p>
+                        {% for mc in mc_vip_list %}
+                        <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{mc.user.fullname}}</a></p>
                         {% endfor %}
                     </div>
                 </div>
@@ -65,8 +65,8 @@
         		<h2>Administratzaileak</h2>
         		<div class="row">
                     <div class="col-lg-12">
-                        {% for user in mc_admin_list %}
-                        <p><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.fullname}}</a></p>
+                        {% for mc in mc_admin_list %}
+                        <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{mc.user.fullname}}</a></p>
                         {% endfor %}
                     </div>
                 </div>
