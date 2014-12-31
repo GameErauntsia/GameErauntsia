@@ -55,7 +55,7 @@
         		<div class="row">
                     <div class="col-lg-12">
                         {% for mc in mc_list %}
-                        <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{mc.user.fullname}}</a></p>
+                        <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{mc.user.getFullName}}</a></p>
                         {% endfor %}
                     </div>
                 </div>
@@ -65,7 +65,7 @@
         		<div class="row">
                     <div class="col-lg-12">
                         {% for mc in mc_vip_list %}
-                        <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{mc.user.fullname}}</a></p>
+                        <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{mc.user.getFullName}}</a></p>
                         {% endfor %}
                     </div>
                 </div>
@@ -75,7 +75,7 @@
         		<div class="row">
                     <div class="col-lg-12">
                         {% for mc in mc_admin_list %}
-                        <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{mc.user.fullname}}</a></p>
+                        <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{mc.user.getFullName}}</a></p>
                         {% endfor %}
                     </div>
                 </div>
