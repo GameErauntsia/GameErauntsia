@@ -41,6 +41,36 @@
         </div>
 
         <div class="col-lg-4">
+        	<div class="well">
+        		<h2>Azken 10 erabiltzaileak</h2>
+        		<div class="row">
+                    <div class="col-lg-12">
+                        {% for user in mc_list %}
+                        <p><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.fullname}}</a></p>
+                        {% endfor %}
+                    </div>
+                </div>
+        	</div>
+        	<div class="well">
+        		<h2>VIP erabiltzaileak</h2>
+        		<div class="row">
+                    <div class="col-lg-12">
+                        {% for user in mc_vip_list %}
+                        <p><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.fullname}}</a></p>
+                        {% endfor %}
+                    </div>
+                </div>
+        	</div>
+        	<div class="well">
+        		<h2>Administratzaileak</h2>
+        		<div class="row">
+                    <div class="col-lg-12">
+                        {% for user in mc_admin_list %}
+                        <p><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.fullname}}</a></p>
+                        {% endfor %}
+                    </div>
+                </div>
+        	</div>
         </div>
 </div>
 {% endblock %}
