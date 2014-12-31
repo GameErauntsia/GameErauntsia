@@ -26,16 +26,18 @@
 				<li>Mundu printzipalean soilik zuri esleituko zaizun partzelan eraiki dezakezu libreki. Partzela hau administratzaile bati eskatu ostean esleituko zaizu. Zure eraikinak ezingo du zabaleraz harrizko erdiblokeek mugatzen duten area (10x10) baino gehiago izan eta altueraz 15 bloke goruntz eta 5 bloke beheruntz baino gehiago izan.</li>
 				<li>Behin partzela esleitu eta eraikinetik minimo bat egin ostean, area limitatzen duten erdiblokeak kendu ahal izango dira nahi izanez gero.</li>
 			</ul>
+			<div class="well">
 			{% if user.is_authenticated %}
 	        	<form action="{% url 'minecraft_add' %}" method="POST">
 			        {% csrf_token %} 
-	        		<input type="checkbox" name="accept" value="Irakurri eta onartzen ditut araudi eta baldintzak">
-	        		<input type="submit" class="btn btn-primary" value="Onartu" />
+	        		<p><label><input type="checkbox" name="accept"> Onartzen ditut Minecraft zerbitzariko araudi eta baldintzak.</label></p>
+	        		<input type="submit" class="btn btn-primary" value="Bidali" />
 	        	</form>
         	{% else %}
                 <p>Zerbitzarian parte hartu ahal izateko lehendabizi Game Erauntsian izena eman behar duzu.</p>
                 <a class="btn btn-primary" href="{% url 'auth_login' %}?next={{request.path}}" title="Log in">{% trans 'Log in' %}</a>
         	{% endif %}
+            </div>
         </div>
 
         <div class="col-lg-4">
