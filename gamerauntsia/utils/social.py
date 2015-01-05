@@ -7,7 +7,7 @@ import logging
 from gamerauntsia.gamer.models import GamerUser
 
 def post_to_email(obj):
-    email_list = GamerUser.objects.values_list('email', flat=True).filter(is_active=True,is_staff=True,email_notification=True).exclude('urtzi.odriozola@gmail.com')
+    email_list = GamerUser.objects.values_list('email', flat=True).filter(is_active=True,is_staff=True,email_notification=True).exclude(username='urtzai')
     subject, text_content, html_content = obj.getEmailText()
     msg = EmailMultiAlternatives(subject, text_content, settings.DEFAULT_FROM_EMAIL, ['urtzi.odriozola@gmail.com'], bcc=email_list)
     msg.attach_alternative(html_content, "text/html")
