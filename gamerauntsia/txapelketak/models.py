@@ -7,6 +7,8 @@ from gamerauntsia.gameplaya.models import GamePlaya
 from datetime import datetime
 from django.template import defaultfilters as filters
 from mptt.models import MPTTModel, TreeForeignKey
+from django.template.loader import get_template
+from django.template import Context
 
 MOTA = (
     ('0','Kanporaketa'),
@@ -77,6 +79,22 @@ class Txapelketa(models.Model):
             return self.izena + ' ' + self.get_absolute_url() + ' @%s 2dz' % (self.erabiltzailea.twitter_id)
         else:
             return self.izena + ' ' + self.get_absolute_url()
+
+    def getEmailText(self):
+       htmly = get_template('buletina/buletina.html')
+       plaintext = get_template('buletina/buletina.txt')
+       d = Context(
+           {
+               'izenburua': self.izena,
+               'deskribapena': self.get_desk_txikia(),
+               'url': self.get_absolute_url(),
+               'img_url': settings.HOST + self.irudia.get_blog_url()
+           }
+       )
+       subject = settings.EMAIL_SUBJECT + ' ' + self.izena
+       text_content = plaintext.render(d)
+       html_content = htmly.render(d)
+       return subject, text_content, html_content
 
     class Meta:
         verbose_name = "Txapelketa"

@@ -5,6 +5,8 @@ from gamerauntsia.jokoa.models import Jokoa, Plataforma
 from gamerauntsia.gamer.models import GamerUser
 from datetime import datetime
 from django.template import defaultfilters as filters
+from django.template.loader import get_template
+from django.template import Context
 
 class Kategoria(models.Model):
     izena = models.CharField(max_length=64)
@@ -15,18 +17,18 @@ class Kategoria(models.Model):
     class Meta:
         verbose_name = "Kategoria"
         verbose_name_plural = "Kategoriak"
-        
+
     def __unicode__(self):
         return u'%s' % (self.izena)
-	
+
 class Zailtasuna(models.Model):
     izena = models.CharField(max_length=64)
     slug = models.SlugField(db_index=True, unique=True, help_text="Eremu honetan zailtasun honen URL helbidea zehazten ari zara.")
 
-    class Meta:    
+    class Meta:
         verbose_name = "zailtasuna"
         verbose_name_plural = "zailtasunak"
-        
+
     def __unicode__(self):
         return u'%s' % (self.izena)
 
@@ -39,14 +41,14 @@ class GamePlaya(models.Model):
 
     argazkia = models.ForeignKey(Photo)
     bideoa = models.CharField(max_length=100, help_text="Eremu honetan bideoaren URL kodea itsatsi behar duzu. Adb.: c21XAuI3aMo")
-    
+
     jokoa = models.ForeignKey(Jokoa, related_name='gameplay')
     plataforma = models.ForeignKey(Plataforma, related_name='gameplay')
     zailtasuna = models.ForeignKey(Zailtasuna, related_name='gameplay')
     kategoria = models.ManyToManyField(Kategoria, related_name='gameplay')
-    
+
     erabiltzailea = models.ForeignKey(GamerUser)
-    publikoa_da = models.BooleanField(default=True) 
+    publikoa_da = models.BooleanField(default=True)
     pub_date = models.DateTimeField('publikazio data', default=datetime.now)
     mod_date = models.DateTimeField('modifikazio data', default=datetime.now)
     shared = models.BooleanField(default=False, help_text="Lauki hau automatikoki markatuko da sistemak edukia sare sozialetan elkarbanatzean.")
@@ -55,7 +57,7 @@ class GamePlaya(models.Model):
     	if len(self.desk) > 400:
     	    return filters.striptags(self.desk)[:400]+'...'
         return filters.striptags(self.desk)
-    
+
     def get_desk_txikia(self):
     	if len(self.desk) > 150:
     	    return filters.striptags(self.desk)[:150]+'...'
@@ -68,7 +70,7 @@ class GamePlaya(models.Model):
 
     def get_rating(self):
         return int(self.get_puntuak()*2)
-    
+
     def get_url(self):
         url = ''
         if self.bideoa.startswith('http://vimeo.com'):
@@ -86,6 +88,22 @@ class GamePlaya(models.Model):
         else:
             return self.izenburua + ' ' + self.get_absolute_url()
 
+    def getEmailText(self):
+       htmly = get_template('buletina/buletina.html')
+       plaintext = get_template('buletina/buletina.txt')
+       d = Context(
+           {
+               'izenburua': self.izenburua,
+               'deskribapena': self.get_desk_txikia(),
+               'url': self.get_absolute_url(),
+               'img_url': settings.HOST + self.argazkia.get_blog_url()
+           }
+       )
+       subject = settings.EMAIL_SUBJECT + ' ' + self.izenburua
+       text_content = plaintext.render(d)
+       html_content = htmly.render(d)
+       return subject, text_content, html_content
+
     def save(self, *args, **kwargs):
         if not self.izenburua[0].isupper():
             self.izenburua[0].upper()
@@ -93,9 +111,9 @@ class GamePlaya(models.Model):
             self.desk[0].upper()
         super(GamePlaya,self).save(*args,**kwargs)
 
-    class Meta:    
+    class Meta:
         verbose_name = "gameplaya"
         verbose_name_plural = "gameplayak"
 
     def __unicode__(self):
-        return u'%s' % (self.izenburua)    
+        return u'%s' % (self.izenburua)
