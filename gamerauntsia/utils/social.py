@@ -1,21 +1,31 @@
 from django.conf import settings
 import tweepy
 from facebookpagewriter.utils import post
+from django.core.mail import EmailMultiAlternatives
 from django.template import defaultfilters as filters
 import logging
+from gamerauntsia.gamer.models import GamerUser
+
+def post_to_email(obj):
+    email_list = GamerUser.objects.values_list('email', flat=True).filter(is_active=True,is_staff=True,email_notification=True)
+    subject, text_content, html_content = obj.getEmailText()
+    msg = EmailMultiAlternatives(subject, text_content, settings.DEFAULT_FROM_EMAIL, email_list)
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
+    return True
 
 def post_to_twitter(item):
     textua = item.getTwitText()
     auth = tweepy.OAuthHandler(settings.TWITTER_API_KEY, settings.TWITTER_API_SECRET)
     auth.set_access_token(settings.TWITTER_ACCESS_TOKEN, settings.TWITTER_ACCESS_TOKEN_SECRET)
-    api = tweepy.API(auth)  
+    api = tweepy.API(auth)
     api.update_status(textua)
     return True
 
 
 def post_to_page(obj, data={}):
     PAGE_ID = getattr(settings, 'FB_PAGE_ID', None)
-    
+
     data['link'] = unicode(obj.get_absolute_url())
     data['name'] = obj.izenburua.encode('utf8')
     data['description'] = filters.striptags(obj.desk)[:150].encode('utf8')
@@ -32,6 +42,7 @@ def post_to_page(obj, data={}):
 
 def post_social(obj):
     logging.basicConfig(filename='debug.log',level=logging.ERROR)
+    post_to_email(obj)
     post_to_twitter(obj)
     post_to_page(obj)
     return True

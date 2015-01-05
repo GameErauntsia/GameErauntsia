@@ -4,6 +4,8 @@ from datetime import datetime
 from photologue.models import Photo
 from gamerauntsia.gamer.models import GamerUser
 from django.template import defaultfilters as filters
+from django.template.loader import get_template
+from django.template import Context
 
 STATUS = (
     ('0','Zirriborroa'),
@@ -19,7 +21,7 @@ class Gaia(models.Model):
     class Meta:
         verbose_name = "Gaia"
         verbose_name_plural = "Gaiak"
-        
+
     def __unicode__(self):
         return u'%s' % (self.izena)
 
@@ -29,7 +31,7 @@ class Berria(models.Model):
     desk = models.TextField(max_length=256)
 
     gaia = models.ManyToManyField(Gaia)
-    
+
     erabiltzailea = models.ForeignKey(GamerUser)
     argazkia = models.ForeignKey(Photo,null=True,blank=True)
 
@@ -50,9 +52,25 @@ class Berria(models.Model):
         if self.erabiltzailea.twitter_id:
             return self.izenburua + ' ' + self.get_absolute_url() + ' @%s 2dz' % (self.erabiltzailea.twitter_id)
         else:
-            return self.izenburua + ' ' + self.get_absolute_url() 
-    
-    class Meta:    
+            return self.izenburua + ' ' + self.get_absolute_url()
+
+    def getEmailText(self):
+       htmly = get_template('buletina/buletina.html')
+       plaintext = get_template('buletina/buletina.txt')
+       d = Context(
+           {
+               'izenburua': self.izenburua,
+               'deskribapena': self.get_desk_txikia(),
+               'url': self.get_absolute_url(),
+               'img_url': self.argazkia.get_blog_url()
+           }
+       )
+       subject = settings.EMAIL_SUBJECT + ' ' + self.izenburua
+       text_content = plaintext.render(d)
+       html_content = htmly.render(d)
+       return subject, text_content, html_content
+
+    class Meta:
         verbose_name = "berria"
         verbose_name_plural = "berriak"
 
