@@ -30,6 +30,16 @@
 				<li>Behin partzela esleitu eta eraikinetik minimo bat egin ostean, area limitatzen duten erdiblokeak kendu ahal izango dira nahi izanez gero.</li>
 			</ul>
 
+            <h2>Izan zaitez VIP!</h2>
+            <p>Euskal Minecraft zebitzariak hainbat gastu ditu mantenuan bakarrik. Horiek tapatzeko erabiltzaileen VIP sistema bat erabiltzen dugu. Oso erraza eta merkea da eta abantaila ugari lor ditzakezue:</p>
+            <ul>
+                <li>Zerbitzariak <strong>30 erabiltzaileko muga</strong> dauka oraingoz. Horrek esan nahi du, zerbitzarira konektatzen 32. erabiltzailea bazara eta ez baduzu VIP pasea, kanpoan geratuko zarela.</li>
+                <li>Jokua jendez gainezka baldin badago eta VIP erabiltzaileren bat konektatzen bada, erabiltzaile arrunt bat <strong>automatikoki kanporatua</strong> izango da.</li>
+                <li>VIP erabiltzaileak normalak baino <strong>maskota eta elementu gehiago ditu</strong> eskura jokoan.</li>
+                <li>Pribilegiodun erabiltzailea izan zaitezke <strong>soilik urteko 10€ ordainduz</strong>!</li>
+                <li>Egin ekarpena PayPal bidez eta <a href="{% url 'kontaktua' %}">jakinarazi guri</a></li>
+            </ul>
+
             <h2>Zerbitzarira konektatzeko pausoak</h2>
             <p>Zerbitzarira sartzeko pausoak honakoak dira:</p>
             <ul>
@@ -64,6 +74,16 @@
                     <a class="btn btn-primary" href="{% url 'auth_login' %}?next={{request.path}}" title="Log in">{% trans 'Log in' %}</a>
                 {% endif %}
             </div>
+            <div class="well">
+                <h2>Izan zaitez VIP</h2>
+                <p>Euskal Minecraft zerbitzaria martxan egon dadin esfortzu handia egiten dugu. <a href="#VIP">Izan zaitez VIP erabiltzaile</a> eta lagundu mantenu gastuak tapatzen!</p>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="BCPEUA4ZER92J">
+                    <input type="image" src="http://gamerauntsia.com/media/photologue/photos/paypal_1.jpg" border="0" name="submit" alt="PayPal. La forma rápida y segura de pagar en Internet.">
+                    <img alt="" border="0" src="https://www.paypalobjects.com/es_ES/i/scr/pixel.gif" width="1" height="1">
+                </form>
+            </div>
         	<div class="well">
         		<h2>Azken 10 erabiltzaileak</h2>
         		<div class="row">
@@ -94,16 +114,6 @@
                     </div>
                 </div>
         	</div>
-            <div class="well">
-                <h2>Dohaintza bat egin</h2>
-                <p>Euskal Minecraft zerbitzaria martxan egon dadin esfortzu handia egiten dugu. Izan zaitez VIP erabiltzaile eta lagundu mantenu gastuak tapatzen!</p>
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                    <input type="hidden" name="cmd" value="_s-xclick">
-                    <input type="hidden" name="hosted_button_id" value="BCPEUA4ZER92J">
-                    <input type="image" src="http://gamerauntsia.com/media/photologue/photos/paypal_1.jpg" border="0" name="submit" alt="PayPal. La forma rápida y segura de pagar en Internet.">
-                    <img alt="" border="0" src="https://www.paypalobjects.com/es_ES/i/scr/pixel.gif" width="1" height="1">
-                </form>
-            </div>
         </div>
 </div>
 {% endblock %}
