@@ -58,6 +58,9 @@ urlpatterns = patterns('',
     # COMMENTS
     (r'^comments/', include('django_comments.urls')),
 
+    # GRAPPELLI
+    (r'^grappelli/', include('grappelli.urls')),
+
     # KUDEATU
     url(r'^kudeatu/', include(admin.site.urls)),
     (r'^photologue/', include('photologue.urls')),
