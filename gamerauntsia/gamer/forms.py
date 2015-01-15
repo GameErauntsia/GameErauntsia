@@ -1,5 +1,5 @@
 from django import forms
-from gamerauntsia.berriak.models import Berria
+from gamerauntsia.berriak.models import Berria, Gaia
 from gamerauntsia.gamer.models import GamerUser, JokuPlataforma
 from gamerauntsia.jokoa.models import Jokoa
 from tinymce.widgets import TinyMCE
@@ -22,6 +22,8 @@ class NotifyForm(forms.ModelForm):
         fields = ('email_notification',)
 
 class ArticleForm(forms.ModelForm):
+
+    gaia = forms.ModelMultipleChoiceField(queryset=Gaia.objects.all(), widget=FilteredSelectMultiple("Gaiak", is_stacked=False))
 
     class Meta:
         model = Berria
