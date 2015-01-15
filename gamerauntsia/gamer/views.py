@@ -218,6 +218,7 @@ def add_article(request):
         articleform = ArticleForm(posta, instance=user)
         if articleform.is_valid():
             berria = Berria()
+            berria.izenburua = request.POST['izenburua']
             berria.desk = request.POST['desk']
             berria.erabiltzailea = user
             if request.FILES.get('argazkia',''):
