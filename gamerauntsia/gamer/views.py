@@ -225,6 +225,9 @@ def add_article(request):
                 photo = handle_uploaded_file(request.FILES['argazkia'], user.getFullName())
                 berria.argazkia = photo
             berria.save()
+            for gaia in request.POST.get('gaia',''):
+                berria.gaia.add(gaia)
+            berria.save()
             return HttpResponseRedirect(reverse('gamer_guestprofile', kwargs={'username': user.username}))
     else:
         articleform = ArticleForm()
