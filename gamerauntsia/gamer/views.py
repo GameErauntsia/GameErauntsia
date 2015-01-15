@@ -219,11 +219,12 @@ def add_article(request):
         if articleform.is_valid():
             berria = Berria()
             berria.desk = request.POST['desk']
-            berria.gaia.add(request.POST['gaia'])
             berria.erabiltzailea = user
             if request.FILES.get('argazkia',''):
                 photo = handle_uploaded_file(request.FILES['argazkia'], user.getFullName())
                 berria.argazkia = photo
+            berria.save()
+            berria.gaia.add(request.POST['gaia'])
             berria.save()
             return HttpResponseRedirect(reverse('gamer_guestprofile', kwargs={'username': user.username}))
     else:
