@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.admin.widgets import FilteredSelectMultiple
 from gamerauntsia.berriak.models import Berria, Gaia
 from gamerauntsia.gamer.models import GamerUser, JokuPlataforma
 from gamerauntsia.jokoa.models import Jokoa
