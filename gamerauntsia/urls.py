@@ -82,6 +82,7 @@ urlpatterns = patterns('',
 
 
 urlpatterns += patterns('gamerauntsia.gamer.views',
+    url(r'^komunitatea/gehitu-artikulua$','add_article', name='add_article'),
     url(r'^komunitatea/editatu-profil$','edit_profile', name='edit_profile'),
     url(r'^komunitatea/editatu-profil-jakin$','edit_notifications', name='edit_profile_noti'),
     url(r'^komunitatea/editatu-profil-plat$','edit_platform', name='edit_profile_plat'),

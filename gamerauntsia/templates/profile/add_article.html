@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="col-lg-12">
+    <h1>Gehitu artikulua</h1>
+    <form action="{{request.path}}" method="POST">
+        {% csrf_token %}
+        {{articleform.as_p}}
+        <input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
+    </form>
+</div>
+{% endblock %}

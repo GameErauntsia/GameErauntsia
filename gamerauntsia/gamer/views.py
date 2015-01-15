@@ -13,7 +13,7 @@ from gamerauntsia.utils.images import handle_uploaded_file
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from photologue.models import Photo
-from gamerauntsia.gamer.forms import NotifyForm,GameForm, GamerForm, TopForm, LastloginForm
+from gamerauntsia.gamer.forms import ArticleForm, NotifyForm,GameForm, GamerForm, TopForm, LastloginForm
 from django.utils.translation import ugettext as _
 from django.forms.models import modelformset_factory
 from datetime import datetime
@@ -204,6 +204,21 @@ def lastlogin(request):
         lastloginform = LastloginForm(instance=user)
 
     categories = Category.objects.all().order_by('order')
-    return render_to_response("django_simple_forum/list.html", {'categories': categories, 
-                                'user': request.user}, 
+    return render_to_response("django_simple_forum/list.html", {'categories': categories,
+                                'user': request.user},
                                 context_instance=RequestContext(request))
+
+
+@login_required
+def add_article(request):
+    """ """
+    user = request.user
+    if request.method == 'POST':
+         posta=request.POST.copy()
+         articleform = ArticleForm(posta, instance=user)
+         if articleform.is_valid():
+            articleform.save()
+            return HttpResponseRedirect(reverse('gamer_guestprofile', kwargs={'username': user.username}))
+    else:
+        articleform = ArticleForm(instance=user)
+    return render_to_response('profile/add_article.html', locals(), context_instance=RequestContext(request))
