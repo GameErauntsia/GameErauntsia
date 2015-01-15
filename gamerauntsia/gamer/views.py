@@ -221,6 +221,7 @@ def add_article(request):
                 photo = handle_uploaded_file(request.FILES['argazkia'], user.getFullName())
                 berria = Berria()
                 berria.desk = request.POST['desk']
+                berria.gaia.add(request.POST['gaia'])
                 berria.erabiltzailea = user
                 berria.argazkia = photo
                 berria.save()
