@@ -227,7 +227,7 @@ def add_article(request):
             berria.save()
             for gaia in request.POST.get('gaia',''):
                 berria.gaia.add(gaia)
-            berria.save()
+                berria.save()
             return HttpResponseRedirect(reverse('gamer_guestprofile', kwargs={'username': user.username}))
     else:
         articleform = ArticleForm()
