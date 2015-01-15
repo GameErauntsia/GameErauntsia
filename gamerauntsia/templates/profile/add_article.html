@@ -10,7 +10,15 @@
     <h1>Gehitu artikulua</h1>
     <form action="{{request.path}}" method="POST">
         {% csrf_token %}
-        {{articleform.as_p}}
+        {% for field in articleform %}
+            <p>
+                {% if field.name == 'gaia' %}
+                    {{field}} {{field.help_text}}
+                {% else %}
+                    {{field.label}} {{field}} {{field.help_text}}
+                {% endif %}
+            </p>
+        {% endfor %}
         <input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
     </form>
 </div>
