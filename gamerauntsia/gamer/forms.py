@@ -32,6 +32,10 @@ class ArticleForm(forms.ModelForm):
 
     class Meta:
         model = Berria
+        widgets = {
+            #Use localization and bootstrap 3
+            'datetime': DateTimeWidget(attrs={'id':"id_pub_date"}, usel10n = True, bootstrap_version=3)
+        }
         exclude = ('slug','erabiltzailea','publikoa_da','status','mod_date','shared')
 
 class TopForm(forms.ModelForm):
