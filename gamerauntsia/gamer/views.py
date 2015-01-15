@@ -1,4 +1,5 @@
 from gamerauntsia.gamer.models import GamerUser, JokuPlataforma, PLATFORM
+from django.template.defaultfilters import slugify
 from gamerauntsia.jokoa.models import Jokoa
 from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.berriak.models import Berria
@@ -219,6 +220,7 @@ def add_article(request):
         if articleform.is_valid():
             berria = Berria()
             berria.izenburua = request.POST['izenburua']
+            berria.slug = slugify(berria.izenburua)
             berria.desk = request.POST['desk']
             berria.erabiltzailea = user
             if request.FILES.get('argazkia',''):
