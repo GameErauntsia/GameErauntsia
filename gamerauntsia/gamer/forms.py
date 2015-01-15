@@ -29,11 +29,11 @@ class ArticleForm(forms.ModelForm):
     gaia = forms.ModelMultipleChoiceField(label='Gaiak', queryset=Gaia.objects.all(),
         widget=forms.SelectMultiple(attrs={'size':'15'}),help_text='Aukeratu artikuluarekin zer ikusia duen gai bat edo gehiago')
 
-    photo  = forms.ImageField(label='Nabarmendutako irudia', help_text='Onartutako formatuak: jpg, png, gif.',required=False)
+    argazkia  = forms.ImageField(label='Nabarmendutako irudia', help_text='Onartutako formatuak: jpg, png, gif.')
 
     class Meta:
         model = Berria
-        exclude = ('slug','argazkia','erabiltzailea','pub_date','publikoa_da','status','mod_date','shared')
+        exclude = ('slug','erabiltzailea','pub_date','publikoa_da','status','mod_date','shared')
 
 class TopForm(forms.ModelForm):
 
