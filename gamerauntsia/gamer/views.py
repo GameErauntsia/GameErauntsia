@@ -218,7 +218,7 @@ def add_article(request):
         posta=request.POST.copy()
         articleform = ArticleForm(posta, instance=user)
         if articleform.is_valid():
-            berria = Berria(**articleform)
+            berria = articleform.save()
             berria.slug = slugify(berria.izenburua)
             berria.erabiltzailea = user
             if request.FILES.get('argazkia',''):
