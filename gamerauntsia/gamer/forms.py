@@ -24,7 +24,8 @@ class NotifyForm(forms.ModelForm):
 
 class ArticleForm(forms.ModelForm):
 
-    gaia = forms.ModelMultipleChoiceField(queryset=Gaia.objects.all(), widget=FilteredSelectMultiple("Gaiak", is_stacked=False))
+    desk = forms.CharField(widget=TinyMCE(
+           attrs={'cols': 80, 'rows': 15,},mce_attrs=settings.TINYMCE_BODY_CONFIG))
 
     class Meta:
         model = Berria
