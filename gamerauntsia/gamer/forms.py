@@ -1,5 +1,5 @@
 from django import forms
-from django.forms.extras.widgets import SelectDateWidget
+from datetimewidget.widgets import DateTimeWidget
 from gamerauntsia.berriak.models import Berria, Gaia
 from gamerauntsia.gamer.models import GamerUser, JokuPlataforma
 from gamerauntsia.jokoa.models import Jokoa
@@ -28,7 +28,7 @@ class ArticleForm(forms.ModelForm):
            attrs={'cols': 80, 'rows': 15,},mce_attrs=settings.TINYMCE_BODY_CONFIG))
     argazkia  = forms.ImageField(label='Nabarmendutako irudia', help_text='Onartutako formatuak: jpg, png, gif.',required=False)
 
-    pub_date = forms.DateField(widget=SelectDateWidget())
+    pub_date = forms.DateField(widget=DateTimeWidget())
 
     class Meta:
         model = Berria
