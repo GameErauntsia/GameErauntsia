@@ -26,8 +26,8 @@ class ArticleForm(forms.ModelForm):
     desk = forms.CharField(label='',widget=TinyMCE(
            attrs={'cols': 80, 'rows': 15,},mce_attrs=settings.TINYMCE_BODY_CONFIG))
 
-    gaia = forms.ModelMultipleChoiceField(queryset=Gaia.objects.all(),
-        widget=forms.SelectMultiple(attrs={'size':'15'}),help_text='Aukeratu artikuluarekin zerikusia duen gai bat edo gehiago')
+    gaia = forms.ModelMultipleChoiceField(label='Gaiak', queryset=Gaia.objects.all(),
+        widget=forms.SelectMultiple(attrs={'size':'15'}),help_text='Aukeratu artikuluarekin zer ikusia duen gai bat edo gehiago')
 
     argazkia  = forms.ImageField(label='Nabarmendutako irudia', help_text='Onartutako formatuak: jpg, png, gif.',required=False)
 
