@@ -216,7 +216,7 @@ def add_article(request):
     user = request.user
     if request.method == 'POST':
         posta=request.POST.copy()
-        articleform = ArticleForm(posta, instance=user)
+        articleform = ArticleForm(posta)
         if articleform.is_valid():
             berria = articleform.save()
             berria.slug = slugify(berria.izenburua)
@@ -227,5 +227,5 @@ def add_article(request):
             berria.save()
             return HttpResponseRedirect(reverse('gamer_guestprofile', kwargs={'username': user.username}))
     else:
-        articleform = ArticleForm(instance=user)
+        articleform = ArticleForm()
     return render_to_response('profile/add_article.html', locals(), context_instance=RequestContext(request))
