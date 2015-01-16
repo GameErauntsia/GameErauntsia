@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="col-lg-12">
+    <h1>Artikulua bidalita!</h1>
+    <p class="bg-success"><strong>Mila esker!</strong> Zure artikulua jaso dugu! Orain gure editoreek pixka bat errepasatu eta ahal bezain laster argitaratuko dute.<br/>Idatzi dituzun eta argitaratu zaizkizun <a href="{% url 'gamer_guestprofile' user.username %}">artikulu guztiak</a> zure profilean ikus ditzakezu.</p>
+    <hr/>
+</div>
+{% endblock %}
