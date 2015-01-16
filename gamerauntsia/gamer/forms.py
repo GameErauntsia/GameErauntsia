@@ -21,7 +21,7 @@ class NotifyForm(forms.ModelForm):
         model = GamerUser
         fields = ('email_notification',)
 
-class ArticleForm(forms.ModelForm, clean_form):
+class ArticleForm(forms.ModelForm):
 
     desk = forms.CharField(label='',widget=TinyMCE(
            attrs={'cols': 80, 'rows': 15,},mce_attrs=settings.TINYMCE_BODY_CONFIG))
