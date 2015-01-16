@@ -38,30 +38,6 @@ class ArticleForm(forms.ModelForm):
             raise forms.ValidationError('Mezu hutsek ez dute balio. Mesedez, idatzi zerbait!')
         return self.cleaned_data['desk']
 
-    def clean_argazkia(self):
-        """ """
-        argazkia = self.cleaned_data['argazkia']
-        if not argazkia:
-            return None
-
-        name = argazkia.name
-        try:
-            name.encode('ascii')
-        except:
-            raise forms.ValidationError(u'Argazkiaren izenak (%s) karaktere arraroren bat du eta errorea ematen du. Aldatu argazkiari izena, mesedez!' % name)
-
-        if len(name)>90:
-            raise forms.ValidationError(u'Argazkiaren izena (%s) luzeegia da. Aldatu argazkiari izena, mesedez!' % name)
-
-
-        format = name.split('.')[-1]
-        if format.lower().strip() not in (u'jpg',u'png',u'gif'):
-            raise forms.ValidationError(u'Argazkiaren formatua ez da egokia. Aldatu formatua, mesedez!')
-
-        return argazkia
-
-
-
     class Meta:
         model = Berria
         exclude = ('slug','erabiltzailea','pub_date','publikoa_da','status','mod_date','shared')

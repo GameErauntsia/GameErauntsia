@@ -217,9 +217,7 @@ def add_article(request):
     if request.method == 'POST':
         articleform = ArticleForm(request.POST,request.FILES)
         if articleform.is_valid():
-            berria = Berria()
-            berria.izenburua = request.POST['izenburua']
-            berria.desk = request.POST['desk']
+            berria = articleform.save(commit=False)
             berria.slug = slugify(berria.izenburua)
             berria.erabiltzailea = user
             photo = handle_uploaded_file(request.FILES['argazkia'], user.getFullName())
