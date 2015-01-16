@@ -215,7 +215,7 @@ def add_article(request):
     """ """
     user = request.user
     if request.method == 'POST':
-        articleform = ArticleForm(request.POST)
+        articleform = ArticleForm(request.POST,request.FILES)
         if articleform.is_valid():
             berria = articleform.save(commit=False)
             berria.slug = slugify(berria.izenburua)
