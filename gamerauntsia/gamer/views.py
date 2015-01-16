@@ -217,12 +217,13 @@ def add_article(request):
     if request.method == 'POST':
         articleform = ArticleForm(request.POST,request.FILES)
         if articleform.is_valid():
-            berria = articleform.save(commit=False)
+            berria = Berria()
+            berria.izenburua = request.POST['izenburua']
+            berria.desk = request.POST['desk']
             berria.slug = slugify(berria.izenburua)
             berria.erabiltzailea = user
-            if request.FILES.get('argazkia',''):
-                photo = handle_uploaded_file(request.FILES['argazkia'], user.getFullName())
-                berria.argazkia = photo
+            photo = handle_uploaded_file(request.FILES['argazkia'], user.getFullName())
+            berria.argazkia = photo
             berria.save()
             articleform.save_m2m()
             return HttpResponseRedirect(reverse('gamer_guestprofile', kwargs={'username': user.username}))
