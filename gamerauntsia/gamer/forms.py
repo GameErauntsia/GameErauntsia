@@ -21,7 +21,7 @@ class NotifyForm(forms.ModelForm):
         model = GamerUser
         fields = ('email_notification',)
 
-class ArticleForm(forms.ModelForm):
+class ArticleForm(forms.ModelForm, clean_form):
 
     desk = forms.CharField(label='',widget=TinyMCE(
            attrs={'cols': 80, 'rows': 15,},mce_attrs=settings.TINYMCE_BODY_CONFIG))
@@ -30,6 +30,37 @@ class ArticleForm(forms.ModelForm):
         widget=forms.SelectMultiple(attrs={'size':'15'}),help_text='Aukeratu artikuluarekin zer ikusia duen gai bat edo gehiago')
 
     argazkia  = forms.ImageField(label='Nabarmendutako irudia', help_text='Onartutako formatuak: jpg, png, gif.',required=False)
+
+    def clean_desk(self):
+        """ """
+        desk = self.cleaned_data['desk'].strip()
+        if not desk:
+            raise forms.ValidationError('Mezu hutsek ez dute balio. Mesedez, idatzi zerbait!')
+        return self.cleaned_data['desk']
+
+    def clean_argazkia(self):
+        """ """
+        argazkia = self.cleaned_data['argazkia']
+        if not argazkia:
+            return None
+
+        name = argazkia.name
+        try:
+            name.encode('ascii')
+        except:
+            raise forms.ValidationError(u'Argazkiaren izenak (%s) karaktere arraroren bat du eta errorea ematen du. Aldatu argazkiari izena, mesedez!' % name)
+
+        if len(name)>90:
+            raise forms.ValidationError(u'Argazkiaren izena (%s) luzeegia da. Aldatu argazkiari izena, mesedez!' % name)
+
+
+        format = name.split('.')[-1]
+        if format.lower().strip() not in (u'jpg',u'png',u'gif'):
+            raise forms.ValidationError(u'Argazkiaren formatua ez da egokia. Aldatu formatua, mesedez!')
+
+        return argazkia
+
+
 
     class Meta:
         model = Berria
