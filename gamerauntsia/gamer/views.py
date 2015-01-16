@@ -225,7 +225,7 @@ def add_article(request):
                 berria.argazkia = photo
             berria.save()
             articleform.save_m2m()
-            return HttpResponseRedirect(reverse('gamer_guestprofile', kwargs={'username': user.username}))
+            return render_to_response('profile/article_sent.html', locals(), context_instance=RequestContext(request))
     else:
         articleform = ArticleForm()
     return render_to_response('profile/add_article.html', locals(), context_instance=RequestContext(request))
