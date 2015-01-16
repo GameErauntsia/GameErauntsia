@@ -13,10 +13,10 @@
         {% for field in articleform %}
             <p>
                 {% if field.name == 'gaia' %}
-                    {{ field.errors }}
+                    <span class="bg-danger">{{ field.errors }}</span>
                     <strong>{{field.label}}:</strong><br/>{{field}} <br/>{{field.help_text}}
                 {% else %}
-                    {{ field.errors }}
+                    <span class="bg-danger">{{ field.errors }}</span>
                     {% if field.label %}<strong>{{field.label}}:</strong>{% endif %} {{field}} {{field.help_text}}
                 {% endif %}
             </p>
