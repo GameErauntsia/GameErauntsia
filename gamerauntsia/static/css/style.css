@@ -193,3 +193,7 @@ table#id_body_tbl {
   margin-bottom: 10px;
   padding-bottom: 1em;
 }
+
+.tags {
+  margin-right: 5px;
+}
