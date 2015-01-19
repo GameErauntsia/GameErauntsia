@@ -26,7 +26,7 @@ class PartidaInline(admin.TabularInline):
 class TxapelketaAdmin(admin.ModelAdmin):
 
     def preview(self,obj):
-        return '<a href="/txapelketak/%d">%d</a>' % (obj.slug, obj.slug)
+        return '<a href="/txapelketak/%s">%s</a>' % (obj.slug, obj.slug)
     preview.allow_tags=True
 
     list_display = ('izena', 'preview','mota', 'modalitatea','jokoa','insk_date','pub_date', 'status', 'publikoa_da')
