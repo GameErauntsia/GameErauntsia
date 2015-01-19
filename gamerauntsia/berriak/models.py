@@ -70,6 +70,9 @@ class Berria(models.Model):
        html_content = htmly.render(d)
        return subject, text_content, html_content
 
+    def getFBinfo(self):
+        return self.izenburua, self.desk, self.argazkia
+
     class Meta:
         verbose_name = "berria"
         verbose_name_plural = "berriak"

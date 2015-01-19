@@ -96,6 +96,9 @@ class Txapelketa(models.Model):
        html_content = htmly.render(d)
        return subject, text_content, html_content
 
+    def getFBinfo(self):
+        return self.izena, self.desk, self.irudia
+
     class Meta:
         verbose_name = "Txapelketa"
         verbose_name_plural = "Txapelketak"

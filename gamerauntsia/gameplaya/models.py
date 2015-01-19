@@ -104,6 +104,9 @@ class GamePlaya(models.Model):
        html_content = htmly.render(d)
        return subject, text_content, html_content
 
+    def getFBinfo(self):
+        return self.izenburua, self.desk, self.argazkia
+
     def save(self, *args, **kwargs):
         if not self.izenburua[0].isupper():
             self.izenburua[0].upper()

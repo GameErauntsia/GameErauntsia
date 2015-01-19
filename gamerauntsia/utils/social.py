@@ -27,10 +27,13 @@ def post_to_page(obj, data={}):
     PAGE_ID = getattr(settings, 'FB_PAGE_ID', None)
 
     data['link'] = unicode(obj.get_absolute_url())
-    data['name'] = obj.izenburua.encode('utf8')
-    data['description'] = filters.striptags(obj.desk)[:150].encode('utf8')
-    if obj.argazkia:
-        data['picture'] = unicode(settings.HOST+obj.argazkia.get_blog_url()).encode('utf8')
+
+    name, desk, pic = obj.getFBinfo()
+
+    data['name'] = name.encode('utf8')
+    data['description'] = filters.striptags(desk)[:150].encode('utf8')
+    if pic:
+        data['picture'] = unicode(settings.HOST+pic.get_blog_url()).encode('utf8')
     else:
         data['picture'] = unicode(getattr(settings,'STATIC_URL')+u'img/fb_no_image.jpg').encode('utf8')
     component = u'feed'.encode('utf8')
