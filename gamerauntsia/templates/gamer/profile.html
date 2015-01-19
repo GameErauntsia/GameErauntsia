@@ -13,7 +13,7 @@
 					<p>{{user_prof.date_joined|date:"Y/m/d H:i"}}
 					{% if user.is_authenticated %}<br/><a href="{% url 'messages_compose_to' user_prof.username  %}"><span class="glyphicon glyphicon-envelope"></span></a>{% endif %}
 					</p>
-				</div><!--/col--> 
+				</div><!--/col-->
 				<div class="col-xs-12 col-sm-8">
 					<h2>{{user_prof.getFullName}}
 					{% if user_prof.twitter_id or user_prof.nickname %}
@@ -33,10 +33,10 @@
 					{% if categs or bcategs %}
 					<p><strong>Kategoriak: </strong>
 						{% for cat in categs %}
-						<span class="label label-info tags"><a href="{% url 'gameplay_category' cat.kategoria__izena|slugify %}">{{cat.kategoria__izena}}</a></span> 
+						<span class="label label-info"><a href="{% url 'gameplay_category' cat.kategoria__izena|slugify %}">{{cat.kategoria__izena}}</a></span>
 						{% endfor %}
 						{% for bcat in bcategs %}
-						<span class="label label-success tags">{{bcat.gaia__izena}}</span> 
+						<span class="label label-success">{{bcat.gaia__izena}}</span>
 						{% endfor %}
 					</p>
 					{% endif %}
@@ -68,7 +68,7 @@
 						{% endif %}
 					</p>
 					{% endif %}
-				</div>          
+				</div>
 				<div class="clearfix"></div>
 		  	</div>
 	    </div>
@@ -98,18 +98,18 @@
 			  		<div class="row">
 			  		{% if gp_count %}
 				    	<div class="col-lg-6 text-center">
-				    		{% if gp_count == 1 %}                  
+				    		{% if gp_count == 1 %}
 							<p><small>Game Play</small></p>
-							<h2><strong> {{gp_count}} </strong></h2>  
+							<h2><strong> {{gp_count}} </strong></h2>
 				    		{% else %}
-							<h2><strong> {{gp_count}} </strong></h2>                    
+							<h2><strong> {{gp_count}} </strong></h2>
 							<p><small>Game Play</small></p>
 							{% endif %}
 						</div>
 						<div class="col-lg-6">
 							{% for cat in categs %}
 							<p><strong>{{cat.count}}</strong> <span class="label label-info tags"><a href="{% url 'gameplay_category' cat.kategoria__izena|slugify %}">{{cat.kategoria__izena}}</a></span></p>
-							{% endfor %}                 
+							{% endfor %}
 						</div>
 					</div>
 					{% endif %}
@@ -117,18 +117,18 @@
 					{% if berri_count %}
 					<div class="row">
 						<div class="col-lg-6 text-center">
-				    		{% if berri_count == 1 %}                  
+				    		{% if berri_count == 1 %}
 							<p><small>Artikulu</small></p>
-							<h2><strong> {{berri_count}} </strong></h2>  
+							<h2><strong> {{berri_count}} </strong></h2>
 				    		{% else %}
-							<h2><strong> {{berri_count}} </strong></h2>                    
+							<h2><strong> {{berri_count}} </strong></h2>
 							<p><small>Artikulu</small></p>
 							{% endif %}
 						</div>
 						<div class="col-lg-6">
 							{% for bcat in bcategs %}
 							<p><strong>{{bcat.count}}</strong> <span class="label label-success tags">{{bcat.gaia__izena}}</span></p>
-							{% endfor %}                 
+							{% endfor %}
 						</div>
 					</div>
 					{% endif %}
