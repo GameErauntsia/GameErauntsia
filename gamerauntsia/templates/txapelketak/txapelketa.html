@@ -149,16 +149,44 @@
 
         <div class="col-lg-4">
             {% if item.insk_date|irekita %}
-                <div class="alert alert-success" role="alert"><span class="glyphicon glyphicon-plus-sign"></span> <strong>EGOERA:</strong><br/>Izen emate epea zabalik ({{item.insk_date|date:"Y/m/d H:i"}})</div>
+                <div class="alert alert-success" role="alert">
+                    <span class="glyphicon glyphicon-plus-sign"></span> <strong>EGOERA:</strong><br/>Izen emate epea zabalik ({{item.insk_date|date:"Y/m/d H:i"}})
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">
+                            <span class="sr-only">Izen ematea (%25)</span>
+                        </div>
+                    </div>
+                </div>
             {% endif %}
             {% if item.status == '1' %}
-                <div class="alert alert-warning" role="alert"><span class="glyphicon glyphicon-question-sign"></span> <strong>EGOERA:</strong><br/>Partidak sortzen</div>
+                <div class="alert alert-warning" role="alert">
+                    <span class="glyphicon glyphicon-question-sign"></span> <strong>EGOERA:</strong><br/>Partidak sortzen
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                            <span class="sr-only">Partidak sortzen (%50)</span>
+                        </div>
+                    </div>
+                </div>
             {% endif %}
             {% if item.status == '2' %}
-                <div class="alert alert-info" role="alert"><span class="glyphicon glyphicon-ok-sign"></span> <strong>EGOERA:</strong><br/>Txapelketa jokoan</div>
+                <div class="alert alert-info" role="alert">
+                    <span class="glyphicon glyphicon-ok-sign"></span> <strong>EGOERA:</strong><br/>Txapelketa jokoan
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
+                            <span class="sr-only">Txapelketa jokoan (%75)</span>
+                        </div>
+                    </div>
+                </div>
             {% endif %}
             {% if item.status == '3' %}
-                <div class="alert alert-danger" role="alert"><span class="glyphicon glyphicon-remove-sign"></span><strong> EGOERA:</strong><br/>Txapelketa amaituta</div>
+                <div class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-remove-sign"></span><strong> EGOERA:</strong><br/>Txapelketa amaituta
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                            <span class="sr-only">Amaituta (%100)</span>
+                        </div>
+                    </div>
+                </div>
             {% endif %}
             <div class="well">
                 {% if item.insk_date|irekita %}
