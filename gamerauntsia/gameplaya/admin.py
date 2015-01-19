@@ -17,7 +17,6 @@ class GamePlayAdmin(admin.ModelAdmin):
     def preview(self,obj):
         return '<a href="/gameplayak/%d">%d</a>' % (obj.slug, obj.slug)
     preview.allow_tags=True
-    show_info.allow_tags = True
 
     list_display = ('izenburua', 'preview','zailtasuna', 'jokoa','plataforma','pub_date', 'erabiltzailea','publikoa_da', 'admin_thumbnail')
     prepopulated_fields = {"slug": ("izenburua",)}

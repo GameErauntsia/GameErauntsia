@@ -28,7 +28,6 @@ class TxapelketaAdmin(admin.ModelAdmin):
     def preview(self,obj):
         return '<a href="/txapelketak/%d">%d</a>' % (obj.slug, obj.slug)
     preview.allow_tags=True
-    show_info.allow_tags = True
 
     list_display = ('izena', 'preview','mota', 'modalitatea','jokoa','insk_date','pub_date', 'status', 'publikoa_da')
     prepopulated_fields = {"slug": ("izena",)}
