@@ -13,7 +13,7 @@ class GamerForm(forms.ModelForm):
 
     class Meta:
         model = GamerUser
-        fields = ('fullname','bio','signature')
+        fields = ('fullname','bio','twitter_id','facebook_id','ytube_channel','signature')
 
 class NotifyForm(forms.ModelForm):
 
