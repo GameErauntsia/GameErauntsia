@@ -14,7 +14,12 @@ class GamePlayAdmin(admin.ModelAdmin):
     admin_thumbnail.short_description = 'Thumb'
     admin_thumbnail.allow_tags = True
 
-    list_display = ('izenburua', 'slug','zailtasuna', 'jokoa','plataforma','pub_date', 'erabiltzailea','publikoa_da', 'admin_thumbnail')
+    def preview(self,obj):
+        return '<a href="/gameplayak/%d">%d</a>' % (obj.slug, obj.slug)
+    preview.allow_tags=True
+    show_info.allow_tags = True
+
+    list_display = ('izenburua', 'preview','zailtasuna', 'jokoa','plataforma','pub_date', 'erabiltzailea','publikoa_da', 'admin_thumbnail')
     prepopulated_fields = {"slug": ("izenburua",)}
     filter_horizontal = ('kategoria',)
     raw_id_fields = ('argazkia','jokoa','plataforma','erabiltzailea')
@@ -29,12 +34,12 @@ class GamePlayAdmin(admin.ModelAdmin):
             return qs
         else:
             return qs.filter(erabiltzailea = request.user)
-    
+
     def save_model(self, request, obj, form, change):
         if not request.user.is_superuser:
             obj.erabiltzailea = request.user
         obj.save()
-    
+
     def has_change_permission(self, request, obj=None):
         if not obj:
             return True # So they can see the change list page
@@ -42,13 +47,13 @@ class GamePlayAdmin(admin.ModelAdmin):
             return True
         else:
             return False
-    
+
     has_delete_permission = has_change_permission
-    
+
 class KategoriaAdmin(admin.ModelAdmin):
     list_display = ('izena','slug')
     prepopulated_fields = {"slug": ("izena",)}
-    
+
 class ZailtasunAdmin(admin.ModelAdmin):
     list_display = ('izena',)
     prepopulated_fields = {"slug": ("izena",)}

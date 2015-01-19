@@ -12,7 +12,12 @@ class BerriakAdmin(admin.ModelAdmin):
     admin_thumbnail.short_description = 'Thumb'
     admin_thumbnail.allow_tags = True
 
-    list_display = ('izenburua', 'slug', 'erabiltzailea', 'pub_date', 'mod_date', 'status','admin_thumbnail')
+    def preview(self,obj):
+        return '<a href="/bloga/%d">%d</a>' % (obj.slug, obj.slug)
+    preview.allow_tags=True
+    show_info.allow_tags = True
+
+    list_display = ('izenburua', 'preview', 'erabiltzailea', 'pub_date', 'mod_date', 'status','admin_thumbnail')
     prepopulated_fields = {"slug": ("izenburua",)}
     filter_horizontal = ('gaia',)
     list_filter = ('erabiltzailea', 'status')
@@ -33,12 +38,12 @@ class BerriakAdmin(admin.ModelAdmin):
             return qs
         else:
             return qs.filter(erabiltzailea = request.user)
-    
+
     def save_model(self, request, obj, form, change):
         if not request.user.is_superuser:
             obj.erabiltzailea = request.user
         obj.save()
-    
+
     def has_change_permission(self, request, obj=None):
         if not obj:
             return True # So they can see the change list page
@@ -46,14 +51,14 @@ class BerriakAdmin(admin.ModelAdmin):
             return True
         else:
             return False
-    
+
     has_delete_permission = has_change_permission
-    
+
 
 class GaiaAdmin(admin.ModelAdmin):
     list_display = ('izena','slug')
     prepopulated_fields = {"slug": ("izena",)}
-    
 
-admin.site.register(Gaia, GaiaAdmin)	
+
+admin.site.register(Gaia, GaiaAdmin)
 admin.site.register(Berria, BerriakAdmin)
