@@ -8,31 +8,33 @@
 {% block perfil %}
 <div class="profileform">
 	<h2>{% trans "Your personal data" %}</h2>
-    <div class="col-lg-8">
-    	<form action="{{request.path}}" method="POST">
-    		{% csrf_token %}
-    		<fieldset>
-    			<div class="input-group">
-      				<input id="id_fullname" class="form-control" type="text" name="fullname" maxlength="60" placeholder="Zure izena" value="{{ profileform.fullname.value }}">
-      			</div>
-    			<br/><textarea id="id_bio" rows="5" name="bio" cols="80" placeholder="Zure biografia...">{{ profileform.bio.value }}</textarea><br/>
-    			<br/><label>Sare sozialak:</label>
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Youtube</span>
-                    <input id="id_youtube" class="form-control" type="text" name="ytube_channel" maxlength="60" placeholder="Youtube kanalaren URLa" value="{{ profileform.ytube_channel.value }}">
-                </div><br/>
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Twitter</span>
-                    <input id="id_twitter_id" class="form-control" type="text" name="twitter_id" maxlength="60" placeholder="Twitter izena" value="{{ profileform.twitter_id.value }}">
-                </div><br/>
-                <div class="input-group">
-                    <span class="input-group-addon" id="basic-addon1">Facebook</span>
-                    <input id="id_facebook_id" class="form-control" type="text" name="facebook_id" maxlength="60" placeholder="Facebook izena" value="{{ profileform.facebook_id.value }}">
+	<form action="{{request.path}}" method="POST">
+		{% csrf_token %}
+		<fieldset>
+			<div class="input-group">
+  				<input id="id_fullname" class="form-control" type="text" name="fullname" maxlength="60" placeholder="Zure izena" value="{{ profileform.fullname.value }}">
+  			</div>
+			<br/><textarea id="id_bio" rows="5" name="bio" cols="80" placeholder="Zure biografia...">{{ profileform.bio.value }}</textarea><br/>
+			<div class="row">
+                <div class="col-lg-8">
+                    <label>Sare sozialak:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Youtube</span>
+                        <input id="id_youtube" class="form-control" type="text" name="ytube_channel" maxlength="60" placeholder="Youtube kanalaren URLa" value="{{ profileform.ytube_channel.value }}">
+                    </div><br/>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Twitter</span>
+                        <input id="id_twitter_id" class="form-control" type="text" name="twitter_id" maxlength="60" placeholder="Twitter izena" value="{{ profileform.twitter_id.value }}">
+                    </div><br/>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Facebook</span>
+                        <input id="id_facebook_id" class="form-control" type="text" name="facebook_id" maxlength="60" placeholder="Facebook izena" value="{{ profileform.facebook_id.value }}">
+                    </div>
                 </div>
-                <br/><label for="id_signature">Foroko sinadura:</label>{{ profileform.signature }}<br/>
-    			<input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
-    	    </fieldset>
-    	</form>
-    </div>
+            </div>
+            <br/><label for="id_signature">Foroko sinadura:</label>{{ profileform.signature }}<br/>
+			<input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
+	    </fieldset>
+	</form>
 </div>
 {% endblock %}
