@@ -48,7 +48,7 @@
             <h2 class="featurette-heading"><a href="{% url 'txapelketa' txapelketa.slug %}">{{txapelketa.izena}}</a>
             <span class="text-muted"><small>{{txapelketa.get_status_display}}</small></span>
             </h2>
-            <p class="lead">{{txapelketa.get_desk_index|striptags|escape}}</p>
+            <p class="lead">{{txapelketa.get_desk_index|escape|striptags}}</p>
         </div>
     </div>
 </div>
