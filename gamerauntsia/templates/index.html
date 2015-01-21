@@ -42,13 +42,13 @@
 
 {% if txapelketa %}
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-4 col-lg-offset-4">
         <div class="featurette" id="about">
             <img class="featurette-image img-circle img-responsive pull-right" src="{{txapelketa.irudia.get_featurette_url}}">
             <h2 class="featurette-heading">{{txapelketa.izena}}
             <span class="text-muted">{{txapelketa.get_status_display}}</span>
             </h2>
-            <p class="lead">{{txapelketa.get_desk_txikia}}</p>
+            <p class="lead">{{txapelketa.get_desk_index}}</p>
         </div>
     </div>
 </div>
