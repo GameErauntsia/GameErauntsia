@@ -9,7 +9,7 @@ from datetime import datetime
 def index(request):
     gameplayak = GamePlaya.objects.filter(publikoa_da=True, pub_date__lt=datetime.now()).order_by('-pub_date')[:4]
     berriak = Berria.objects.filter(status='1', pub_date__lt=datetime.now()).order_by('-pub_date')[:8]
-    txapelketa = Txapelketa.objects.filter(publikoa_da=True,status__in=('1','2','3')).order_by('-pub_date')
+    txapelketa = Txapelketa.objects.filter(publikoa_da=True,status__in=('1','2','3')).order_by('-pub_date')[0]
 
 
     if Txapelketa.objects.filter(publikoa_da=True,pub_date__lt=datetime.now(),live_bideoa__isnull=False,status='2').exists():
