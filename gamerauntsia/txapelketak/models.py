@@ -22,7 +22,7 @@ MODALITATEA = (
 )
 
 EGOERA = (
-    ('0','Izen ematea'),
+    ('0','Izen ematea zabalik'),
     ('1','Partidak sortzen'),
     ('2','Txapelketa jokuan'),
     ('3','Bukatuta'),
