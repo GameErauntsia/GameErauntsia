@@ -44,11 +44,11 @@
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
         <div class="featurette" id="about">
-            <img class="featurette-image img-circle img-responsive pull-right" src="{{txapelketa.irudia.get_featurette_url}}">
-            <h2 class="featurette-heading">{{txapelketa.izena}}
+            <a href="{% url 'txapelketa' txapelketa.slug %}"><img class="featurette-image img-circle img-responsive pull-right" src="{{txapelketa.irudia.get_featurette_url}}"></a>
+            <h2 class="featurette-heading"><a href="{% url 'txapelketa' txapelketa.slug %}">{{txapelketa.izena}}</a>
             <span class="text-muted"><small>{{txapelketa.get_status_display}}</small></span>
             </h2>
-            <p class="lead">{{txapelketa.get_desk_index}}</p>
+            <p class="lead">{{txapelketa.get_desk_index|striptags|escape}}</p>
         </div>
     </div>
 </div>
