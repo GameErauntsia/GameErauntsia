@@ -68,15 +68,12 @@ def community(request):
 def edit_profile(request):
     """ """
     tab = 'personal'
-    user= request.user
-    profile = user
+    profile = request.user
     if request.method == 'POST':
-         posta=request.POST.copy()
-         profileform = GamerForm(posta, instance=profile)
+         profileform = GamerForm(request.POST, instance=profile)
          if profileform.is_valid():
             profileform.save()
             messages.add_message(request, messages.SUCCESS, _('New user data saved.'), fail_silently=True)
-            return HttpResponseRedirect(reverse('edit_profile'))
     else:
         profileform = GamerForm(instance=profile)
 
@@ -92,7 +89,6 @@ def edit_notifications(request):
          notifyform = NotifyForm(posta, instance=user)
          if notifyform.is_valid():
             notifyform.save()
-            return HttpResponseRedirect(reverse('edit_profile_noti'))
     else:
         notifyform = NotifyForm(instance=user)
 
