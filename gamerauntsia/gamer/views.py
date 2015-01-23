@@ -14,7 +14,7 @@ from gamerauntsia.utils.images import handle_uploaded_file
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from photologue.models import Photo
-from gamerauntsia.gamer.forms import ArticleForm, NotifyForm,GameForm, GamerForm, TopForm, LastloginForm
+from gamerauntsia.gamer.forms import *
 from django.utils.translation import ugettext as _
 from django.forms.models import modelformset_factory
 from datetime import datetime
