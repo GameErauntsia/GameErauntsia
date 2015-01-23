@@ -105,7 +105,7 @@
 				  	<div class="panel-body">
 
 	                    <div class="tab-content" id="myTabContent">
-						    <div id="stats" class="tab-pane fade in active" role="tabpanel">
+						    <div id="stats" class="tab-pane active" role="tabpanel">
 						        {% if gp_count %}
 							    	<div class="col-lg-6 text-center">
 							    		{% if gp_count == 1 %}
@@ -143,7 +143,7 @@
 								{% endif %}
 						    </div>
 					    </div>
-					    <div id="comp" class="tab-pane fade" role="tabpanel">
+					    <div id="comp" class="tab-pane" role="tabpanel">
 						        {% if user_prof.computer_data %}
 
 							        {% if user_prof.motherboard %}<p><strong>Txartel nagusia:</strong> {{user_prof.motherboard}}</p>{% endif %}
@@ -161,12 +161,6 @@
 						        	<p>Ordenagailuaren konfigurazio datuak bete gabe ditu...</p>
 						        {% endif %}
 						</div>
-						<script type="text/javascript">
-							$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-								e.target // newly activated tab
-								e.relatedTarget // previous active tab
-							})
-						</script>
 					</div>
 				</div>
 			</div>
