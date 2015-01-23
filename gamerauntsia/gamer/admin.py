@@ -65,6 +65,8 @@ class GamerUserAdmin(UserAdmin):
 
         ('Datuak',
         {'fields':('fullname','nickname','email', 'phone', 'photo','bio','signature')},),
+        ('Ordenagailua',
+        {'fields':('motherboard','processor','graphics','soundcard','ram','harddrive','harddrive2','mouse','keyboard','speakers')},),
         ('Jakinarazpenak',
         {'fields':('email_notification',)},),
         ('Sare sozialak',
@@ -72,9 +74,9 @@ class GamerUserAdmin(UserAdmin):
         (_('Permissions'), {'fields': ('is_active','is_gamer', 'is_staff', 'is_superuser',
                                        'groups', 'user_permissions','last_login'),
                             'classes': ['collapse',],}),
-                            
+
     )
-    
+
     restricted_fieldsets = (
         (None, {'fields': ('username', 'password')}),
 
@@ -83,8 +85,8 @@ class GamerUserAdmin(UserAdmin):
         ('Sare sozialak',
         {'fields':('ytube_channel','twitter_id', 'facebook_id', 'openid_id', 'googleplus_id'),'classes': ['collapse',],},),
     )
-    
-    
+
+
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
@@ -105,19 +107,19 @@ class GamerUserAdmin(UserAdmin):
             defaults['form'] = self.add_form
         defaults.update(kwargs)
         return super(GamerUserAdmin, self).get_form(request, obj, **defaults)
-        
+
     def queryset(self, request):
         qs = super(GamerUserAdmin, self).queryset(request)
         if request.user.is_superuser:
             return qs
         else:
             return qs.filter(id = request.user.id)
-            
+
     #def get_fieldsets(self, request, obj=None):
     #    if request.user.is_superuser:
     #        return self.fieldsets
     #    return self.restricted_fieldsets
-        
+
     def has_change_permission(self, request, obj=None):
         if not obj:
             return True # So they can see the change list page

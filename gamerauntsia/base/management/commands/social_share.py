@@ -12,17 +12,17 @@ def social_share(minutuak):
     minutuak=int(minutuak)
     orain = datetime.datetime.now()
     duela_x_ordu=orain - timedelta(minutes=minutuak)
-    berriak=Berria.objects.all().filter(Q(pub_date__gte=duela_x_ordu) 
-                                                                     & Q(pub_date__lte=orain) & Q(status='1') 
+    berriak=Berria.objects.all().filter(Q(pub_date__gte=duela_x_ordu)
+                                                                     & Q(pub_date__lte=orain) & Q(status='1')
                                                                      & Q(shared=False)).order_by('-pub_date')
-    gpak=GamePlaya.objects.all().filter(Q(pub_date__gte=duela_x_ordu) 
-                                                                     & Q(pub_date__lte=orain) & Q(publikoa_da=True) 
+    gpak=GamePlaya.objects.all().filter(Q(pub_date__gte=duela_x_ordu)
+                                                                     & Q(pub_date__lte=orain) & Q(publikoa_da=True)
                                                                      & Q(shared=False)).order_by('-pub_date')
 
-    txak=Txapelketa.objects.all().filter(Q(pub_date__gte=duela_x_ordu) 
-                                                                     & Q(pub_date__lte=orain) & Q(publikoa_da=True) 
+    txak=Txapelketa.objects.all().filter(Q(pub_date__gte=duela_x_ordu)
+                                                                     & Q(pub_date__lte=orain) & Q(publikoa_da=True)
                                                                      & Q(shared=False)).order_by('-pub_date')
-  
+
     for berria in berriak:
         post_social(berria)
         berria.shared=True
@@ -44,4 +44,4 @@ class Command(BaseCommand):
    help = 'Social share'
    def handle(self, *args, **options):
        minutuak=args[0]
-       social_share(minutuak)  
+       social_share(minutuak)

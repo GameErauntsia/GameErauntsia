@@ -30,6 +30,19 @@ class GamerUser(CSAbstractSocialUser):
     signature = models.TextField(verbose_name="Foro sinadura",null=True,blank=True)
     ytube_channel = models.CharField(max_length=150,null=True,blank=True)
     email_notification = models.BooleanField(default=True)
+
+    #ALTER TABLE `gamer_gameruser` ADD `motherboard` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `processor` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `graphics` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `soundcard` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `ram` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `harddrive` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `harddrive2` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `mouse` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `keyboard` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `speakers` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL ;
+    motherboard = models.CharField(max_length=150,null=True,blank=True)
+    processor = models.CharField(max_length=150,null=True,blank=True)
+    graphics = models.CharField(max_length=150,null=True,blank=True)
+    soundcard = models.CharField(max_length=150,null=True,blank=True)
+    ram = models.CharField(max_length=150,null=True,blank=True)
+    harddrive = models.CharField(max_length=150,null=True,blank=True)
+    harddrive2 = models.CharField(max_length=150,null=True,blank=True)
+    mouse = models.CharField(max_length=150,null=True,blank=True)
+    keyboard = models.CharField(max_length=150,null=True,blank=True)
+    speakers = models.CharField(max_length=150,null=True,blank=True)
+
     last_updated = models.DateTimeField(auto_now_add=True,editable=False)
     date_joined = models.DateTimeField(auto_now_add=True,editable=False,null=True,blank=True)
 
@@ -40,11 +53,11 @@ class GamerUser(CSAbstractSocialUser):
             return self.photo
         else:
             try:
-                return Photo.objects.get(slug=MEMBER_PHOTO_SLUG)    
+                return Photo.objects.get(slug=MEMBER_PHOTO_SLUG)
             except:
-                return None 
+                return None
 
-        
+
     def get_profile(self):
         return self
 
@@ -55,7 +68,7 @@ class GamerUser(CSAbstractSocialUser):
             return self.username
 
     def getplatforms(self):
-        return JokuPlataforma.objects.filter(user=self)  
+        return JokuPlataforma.objects.filter(user=self)
 
     def email_user(self, subject, message, from_email=None, **kwargs):
         """
@@ -72,11 +85,11 @@ class GamerUser(CSAbstractSocialUser):
 
     def __unicode__(self):
         return u'%s' % self.username
-  
-       
+
+
     class Meta:
         verbose_name = 'GE Erabiltzailea'
-        verbose_name_plural = 'GE Erabiltzaileak'     
+        verbose_name_plural = 'GE Erabiltzaileak'
 
 
 class JokuPlataforma(models.Model):
