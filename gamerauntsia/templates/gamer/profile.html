@@ -88,8 +88,6 @@
 			</div>
 		{% endif %}
 	    <div class="col-md-4">
-	    	{% if not gp_count and not berri_count %}
-	    	{% else %}
 	    	<div class="tabpanel">
 		  		<ul class="nav nav-tabs" role="tablist">
 		  			<li class="active" role="presentation">
@@ -102,7 +100,8 @@
 
                 <div class="tab-content" id="myTabContent">
 				    <div id="stats" class="tab-pane fade in active	" role="tabpanel">
-				        <p>
+				    	<p>
+				    	{% if gp_count or berri_count %}
 					        {% if gp_count %}
 						    	<div class="col-lg-6 text-center">
 						    		{% if gp_count == 1 %}
@@ -138,6 +137,9 @@
 								</div>
 							</div>
 							{% endif %}
+						{% else %}
+							<div class="alert alert-warning" role="alert">Ez daukazu artikulu edo gameplayrik...</div>
+						{% endif %}
 						</p>
 				    </div>
 				    <div id="comp" class="tab-pane fade" role="tabpanel">
@@ -162,7 +164,6 @@
 					</div>
 				</div>
 			</div>
-			{% endif %}
 	    </div>
 	</div>
 	<hr/>
