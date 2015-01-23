@@ -94,20 +94,16 @@
 			  	<div class="panel-heading">
 			  		<ul class="nav nav-tabs">
 			  			<li class="active" role="presentation">
-							<a aria-expanded="true" aria-controls="comp" data-toggle="tab" role="tab" id="comp-tab" href="#comp"><h3 class="panel-title">Ordenagailua</h3></a>
-						</li>
-						<li role="presentation">
 							<a id="stats-tab" aria-controls="stats" data-toggle="tab" role="tab" href="#stats" aria-expanded="false"><h3 class="panel-title">Estatistikak</h3></a>
+						</li>
+			  			<li role="presentation">
+							<a aria-expanded="true" aria-controls="comp" data-toggle="tab" role="tab" id="comp-tab" href="#comp"><h3 class="panel-title">Ordenagailua</h3></a>
 						</li>
 					</ul>
 			  	</div>
 			  	<div class="panel-body">
 
                     <div class="tab-content" id="myTabContent">
-					    <div aria-labelledby="comp-tab" id="comp" class="tab-pane fade active in" role="tabpanel">
-					        <p><strong>Txartel nagusia:</strong> {{user_prof.motherboard}}</p>
-					        <p><strong>Prozesagailua:</strong> {{user_prof.processor}}</p>
-					    </div>
 					    <div aria-labelledby="stats-tab" id="stats" class="tab-pane fade" role="tabpanel">
 					        {% if gp_count %}
 						    	<div class="col-lg-6 text-center">
@@ -146,6 +142,24 @@
 							{% endif %}
 					    </div>
 				    </div>
+				    <div aria-labelledby="comp-tab" id="comp" class="tab-pane fade active in" role="tabpanel">
+					        {% if user_prof.computer_data %}
+
+						        {% if user_prof.motherboard %}<p><strong>Txartel nagusia:</strong> {{user_prof.motherboard}}</p>{% endif %}
+						        {% if user_prof.processor %}<p><strong>Prozesagailua:</strong> {{user_prof.processor}}</p>{% endif %}
+						        {% if user_prof.graphics %}<p><strong>Txartel grafikoa:</strong> {{user_prof.graphics}}</p>{% endif %}
+						        {% if user_prof.soundcard %}<p><strong>Soinu txartela:</strong> {{user_prof.soundcard}}</p>{% endif %}
+						        {% if user_prof.ram %}<p><strong>RAM memoria:</strong> {{user_prof.ram}}</p>{% endif %}
+						        {% if user_prof.harddrive %}<p><strong>Disko gogorra:</strong> {{user_prof.harddrive}}</p>{% endif %}
+						        {% if user_prof.harddrive2 %}<p><strong>2. Disko gogorra:</strong> {{user_prof.harddrive2}}</p>{% endif %}
+						        {% if user_prof.mouse %}<p><strong>Sagua:</strong> {{user_prof.mouse}}</p>{% endif %}
+						        {% if user_prof.keyboard %}<p><strong>Teklatua:</strong> {{user_prof.keyboard}}</p>{% endif %}
+						        {% if user_prof.speakers %}<p><strong>Bozgorailuak:</strong> {{user_prof.speakers}}</p>{% endif %}
+
+					        {% else %}
+					        	<div class="alert alert-warning" role="alert">Ordenagailuaren konfigurazio datuak bete gabe ditu...</div>
+					        {% endif %}
+					    </div>
 
 				</div>
 			</div>

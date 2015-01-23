@@ -83,6 +83,12 @@ class GamerUser(CSAbstractSocialUser):
     def has_mc_platform(self):
         return self.plataforma.filter(plataforma='minecraft').exists()
 
+    def computer_data(self):
+        if motherboard or processor or graphics or soundcard or ram or harddrive or mouse or keyboard or speakers:
+            return True
+        else:
+            return False
+
     def __unicode__(self):
         return u'%s' % self.username
 
