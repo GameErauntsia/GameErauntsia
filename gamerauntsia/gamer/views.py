@@ -99,6 +99,23 @@ def edit_notifications(request):
     return render_to_response('profile/edit_notifications.html', locals(), context_instance=RequestContext(request))
 
 @login_required
+def edit_computer(request):
+    """ """
+    tab = 'computer'
+    user = request.user
+    if request.method == 'POST':
+         posta=request.POST.copy()
+         pcform = PCForm(posta, instance=user)
+         if pcform.is_valid():
+            pcform.save()
+            return HttpResponseRedirect(reverse('edit_profile_comp'))
+    else:
+        pcform = PCForm(instance=user)
+
+    return render_to_response('profile/edit_computer.html', locals(), context_instance=RequestContext(request))
+
+
+@login_required
 def edit_platform(request):
     """ """
     tab = 'platforms'

@@ -15,6 +15,13 @@ class GamerForm(forms.ModelForm):
         model = GamerUser
         fields = ('fullname','bio','twitter_id','facebook_id','ytube_channel','signature')
 
+class PCForm(forms.ModelForm):
+
+    class Meta:
+        model = GamerUser
+        fields = ('motherboard','processor','graphics','soundcard','ram','harddrive','harddrive2','mouse','keyboard','speakers')
+
+
 class NotifyForm(forms.ModelForm):
 
     class Meta:
