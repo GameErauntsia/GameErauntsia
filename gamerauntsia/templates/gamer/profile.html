@@ -92,19 +92,19 @@
 	    	{% else %}
 	    	<div class="panel panel-default">
 			  	<div class="panel-heading">
-			  		<ul class="nav nav-tabs">
+			  		<ul class="nav nav-tabs" role="tablist">
 			  			<li class="active" role="presentation">
-							<a aria-controls="stats" data-toggle="tab" role="tab" id="stats-tab" aria-expanded="true" href="#stats"><h3 class="panel-title">Estatistikak</h3></a>
+							<a aria-controls="stats" data-toggle="tab" role="tab" href="#stats"><h3 class="panel-title">Estatistikak</h3></a>
 						</li>
 			  			<li role="presentation">
-							<a aria-controls="comp" data-toggle="tab" role="tab" id="comp-tab" aria-expanded="false" href="#comp"><h3 class="panel-title">Ordenagailua</h3></a>
+							<a aria-controls="comp" data-toggle="tab" role="tab" href="#comp"><h3 class="panel-title">Ordenagailua</h3></a>
 						</li>
 					</ul>
 			  	</div>
 			  	<div class="panel-body">
 
                     <div class="tab-content" id="myTabContent">
-					    <div aria-labelledby="stats-tab" id="stats" class="tab-pane fade active in" role="tabpanel">
+					    <div id="stats" class="tab-pane fade active	" role="tabpanel">
 					        {% if gp_count %}
 						    	<div class="col-lg-6 text-center">
 						    		{% if gp_count == 1 %}
@@ -142,7 +142,7 @@
 							{% endif %}
 					    </div>
 				    </div>
-				    <div aria-labelledby="comp-tab" id="comp" class="tab-pane fade" role="tabpanel">
+				    <div id="comp" class="tab-pane fade" role="tabpanel">
 					        {% if user_prof.computer_data %}
 
 						        {% if user_prof.motherboard %}<p><strong>Txartel nagusia:</strong> {{user_prof.motherboard}}</p>{% endif %}
@@ -159,8 +159,17 @@
 					        {% else %}
 					        	<p>Ordenagailuaren konfigurazio datuak bete gabe ditu...</p>
 					        {% endif %}
-					    </div>
-
+					</div>
+					<script type="text/javascript">
+						$('#stats-tab a').click(function (e) {
+							e.preventDefault()
+							$(this).tab('show')
+						})
+						$('#comp-tab a').click(function (e) {
+							e.preventDefault()
+							$(this).tab('show')
+						})
+					</script>
 				</div>
 			</div>
 			{% endif %}
