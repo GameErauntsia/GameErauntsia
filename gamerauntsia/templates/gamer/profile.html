@@ -92,74 +92,70 @@
 	    	{% else %}
 	    	<div class="panel panel-default">
 	    		<div role="tabpanel">
-				  	<div class="panel-heading">
-				  		<ul class="nav nav-tabs" role="tablist">
-				  			<li class="active" role="presentation">
-								<a aria-controls="stats" data-toggle="tab" role="tab" href="#stats"><h3 class="panel-title">Estatistikak</h3></a>
-							</li>
-				  			<li role="presentation">
-								<a aria-controls="comp" data-toggle="tab" role="tab" href="#comp"><h3 class="panel-title">Ordenagailua</h3></a>
-							</li>
-						</ul>
-				  	</div>
-				  	<div class="panel-body">
+			  		<ul class="nav nav-tabs" role="tablist">
+			  			<li class="active" role="presentation">
+							<a aria-controls="stats" data-toggle="tab" role="tab" href="#stats"><h3 class="panel-title">Estatistikak</h3></a>
+						</li>
+			  			<li role="presentation">
+							<a aria-controls="comp" data-toggle="tab" role="tab" href="#comp"><h3 class="panel-title">Ordenagailua</h3></a>
+						</li>
+					</ul>
 
-	                    <div class="tab-content" id="myTabContent">
-						    <div id="stats" class="tab-pane active" role="tabpanel">
-						        {% if gp_count %}
-							    	<div class="col-lg-6 text-center">
-							    		{% if gp_count == 1 %}
-										<p><small>Game Play</small></p>
-										<h2><strong> {{gp_count}} </strong></h2>
-							    		{% else %}
-										<h2><strong> {{gp_count}} </strong></h2>
-										<p><small>Game Play</small></p>
-										{% endif %}
-									</div>
-									<div class="col-lg-6">
-										{% for cat in categs %}
-										<p><strong>{{cat.count}}</strong> <span class="label label-info tags"><a href="{% url 'gameplay_category' cat.kategoria__izena|slugify %}">{{cat.kategoria__izena}}</a></span></p>
-										{% endfor %}
-									</div>
-								{% endif %}
-								{% if gp_count and berri_count %}<hr/>{% endif %}
-								{% if berri_count %}
-								<div class="row">
-									<div class="col-lg-6 text-center">
-							    		{% if berri_count == 1 %}
-										<p><small>Artikulu</small></p>
-										<h2><strong> {{berri_count}} </strong></h2>
-							    		{% else %}
-										<h2><strong> {{berri_count}} </strong></h2>
-										<p><small>Artikulu</small></p>
-										{% endif %}
-									</div>
-									<div class="col-lg-6">
-										{% for bcat in bcategs %}
-										<p><strong>{{bcat.count}}</strong> <span class="label label-success tags">{{bcat.gaia__izena}}</span></p>
-										{% endfor %}
-									</div>
+                    <div class="tab-content" id="myTabContent">
+					    <div id="stats" class="tab-pane fade in active" role="tabpanel">
+					        {% if gp_count %}
+						    	<div class="col-lg-6 text-center">
+						    		{% if gp_count == 1 %}
+									<p><small>Game Play</small></p>
+									<h2><strong> {{gp_count}} </strong></h2>
+						    		{% else %}
+									<h2><strong> {{gp_count}} </strong></h2>
+									<p><small>Game Play</small></p>
+									{% endif %}
 								</div>
-								{% endif %}
-						    </div>
+								<div class="col-lg-6">
+									{% for cat in categs %}
+									<p><strong>{{cat.count}}</strong> <span class="label label-info tags"><a href="{% url 'gameplay_category' cat.kategoria__izena|slugify %}">{{cat.kategoria__izena}}</a></span></p>
+									{% endfor %}
+								</div>
+							{% endif %}
+							{% if gp_count and berri_count %}<hr/>{% endif %}
+							{% if berri_count %}
+							<div class="row">
+								<div class="col-lg-6 text-center">
+						    		{% if berri_count == 1 %}
+									<p><small>Artikulu</small></p>
+									<h2><strong> {{berri_count}} </strong></h2>
+						    		{% else %}
+									<h2><strong> {{berri_count}} </strong></h2>
+									<p><small>Artikulu</small></p>
+									{% endif %}
+								</div>
+								<div class="col-lg-6">
+									{% for bcat in bcategs %}
+									<p><strong>{{bcat.count}}</strong> <span class="label label-success tags">{{bcat.gaia__izena}}</span></p>
+									{% endfor %}
+								</div>
+							</div>
+							{% endif %}
 					    </div>
-					    <div id="comp" class="tab-pane" role="tabpanel">
-						        {% if user_prof.computer_data %}
+				    	<div id="comp" class="tab-pane fade" role="tabpanel">
+					        {% if user_prof.computer_data %}
 
-							        {% if user_prof.motherboard %}<p><strong>Txartel nagusia:</strong> {{user_prof.motherboard}}</p>{% endif %}
-							        {% if user_prof.processor %}<p><strong>Prozesagailua:</strong> {{user_prof.processor}}</p>{% endif %}
-							        {% if user_prof.graphics %}<p><strong>Txartel grafikoa:</strong> {{user_prof.graphics}}</p>{% endif %}
-							        {% if user_prof.soundcard %}<p><strong>Soinu txartela:</strong> {{user_prof.soundcard}}</p>{% endif %}
-							        {% if user_prof.ram %}<p><strong>RAM memoria:</strong> {{user_prof.ram}}</p>{% endif %}
-							        {% if user_prof.harddrive %}<p><strong>Disko gogorra:</strong> {{user_prof.harddrive}}</p>{% endif %}
-							        {% if user_prof.harddrive2 %}<p><strong>2. Disko gogorra:</strong> {{user_prof.harddrive2}}</p>{% endif %}
-							        {% if user_prof.mouse %}<p><strong>Sagua:</strong> {{user_prof.mouse}}</p>{% endif %}
-							        {% if user_prof.keyboard %}<p><strong>Teklatua:</strong> {{user_prof.keyboard}}</p>{% endif %}
-							        {% if user_prof.speakers %}<p><strong>Bozgorailuak:</strong> {{user_prof.speakers}}</p>{% endif %}
+						        {% if user_prof.motherboard %}<p><strong>Txartel nagusia:</strong> {{user_prof.motherboard}}</p>{% endif %}
+						        {% if user_prof.processor %}<p><strong>Prozesagailua:</strong> {{user_prof.processor}}</p>{% endif %}
+						        {% if user_prof.graphics %}<p><strong>Txartel grafikoa:</strong> {{user_prof.graphics}}</p>{% endif %}
+						        {% if user_prof.soundcard %}<p><strong>Soinu txartela:</strong> {{user_prof.soundcard}}</p>{% endif %}
+						        {% if user_prof.ram %}<p><strong>RAM memoria:</strong> {{user_prof.ram}}</p>{% endif %}
+						        {% if user_prof.harddrive %}<p><strong>Disko gogorra:</strong> {{user_prof.harddrive}}</p>{% endif %}
+						        {% if user_prof.harddrive2 %}<p><strong>2. Disko gogorra:</strong> {{user_prof.harddrive2}}</p>{% endif %}
+						        {% if user_prof.mouse %}<p><strong>Sagua:</strong> {{user_prof.mouse}}</p>{% endif %}
+						        {% if user_prof.keyboard %}<p><strong>Teklatua:</strong> {{user_prof.keyboard}}</p>{% endif %}
+						        {% if user_prof.speakers %}<p><strong>Bozgorailuak:</strong> {{user_prof.speakers}}</p>{% endif %}
 
-						        {% else %}
-						        	<p>Ordenagailuaren konfigurazio datuak bete gabe ditu...</p>
-						        {% endif %}
+					        {% else %}
+					        	<p>Ordenagailuaren konfigurazio datuak bete gabe ditu...</p>
+					        {% endif %}
 						</div>
 					</div>
 				</div>
