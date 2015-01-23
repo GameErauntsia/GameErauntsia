@@ -84,7 +84,7 @@ class GamerUser(CSAbstractSocialUser):
         return self.plataforma.filter(plataforma='minecraft').exists()
 
     def computer_data(self):
-        if motherboard or processor or graphics or soundcard or ram or harddrive or mouse or keyboard or speakers:
+        if self.motherboard or self.processor or self.graphics or self.soundcard or self.ram or self.harddrive or self.mouse or self.keyboard or self.speakers:
             return True
         else:
             return False
