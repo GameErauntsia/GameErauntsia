@@ -18,7 +18,7 @@
 					<h2>{{user_prof.getFullName}}
 					{% if user_prof.twitter_id or user_prof.nickname %}
 					<small>{% if user_prof.twitter_id %}@{{user_prof.twitter_id}}{% else %}{{user_prof.nickname}}{% endif %}</small>
-					{% endif %}{% if user_prof.get_karma %}<span class="pull-right"><i class="glyphicon glyphicon-flash" style="color:#E1E100"></i> <abbr title="Karma">{{user_prof.get_karma}}</abbr></span>{% endif %}
+					{% endif %}{% if user_prof.karma %}<span class="pull-right"><i class="glyphicon glyphicon-flash" style="color:#E1E100"></i> <abbr title="Karma">{{user_prof.karma}}</abbr></span>{% endif %}
 					</h2>
 					<p>{% if user_prof.bio%}{{user_prof.bio}}
 						{% else %}

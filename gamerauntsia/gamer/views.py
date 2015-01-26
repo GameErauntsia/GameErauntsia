@@ -61,7 +61,8 @@ def guestprofile(request,username):
 
 
 def community(request):
-    users = GamerUser.objects.filter(is_active=True).order_by('-date_joined')
+    users = GamerUser.objects.filter(is_active=True).order_by('-date_joined')[:9]
+    gurus = GamerUser.objects.filter(is_active=True).order_by('-karma','-date_joined')[:9]
     return render_to_response('gamer/community.html', locals(),context_instance=RequestContext(request))
 
 @login_required
