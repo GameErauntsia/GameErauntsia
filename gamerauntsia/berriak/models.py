@@ -32,7 +32,7 @@ class Berria(models.Model):
 
     gaia = models.ManyToManyField(Gaia)
 
-    erabiltzailea = models.ForeignKey(GamerUser)
+    erabiltzailea = models.ForeignKey(GamerUser,related_name='berriak')
     argazkia = models.ForeignKey(Photo,null=True,blank=True)
 
     publikoa_da = models.BooleanField(default=True)

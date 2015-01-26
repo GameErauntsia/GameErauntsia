@@ -91,6 +91,21 @@ class GamerUser(CSAbstractSocialUser):
         else:
             return False
 
+    def article_count(self):
+        return self.berriak.all().count()
+
+    def gp_count(self):
+        return self.gameplayak.all().count()
+
+    def post_count(self):
+        return self.creator.all().count()
+
+    def comment_count(self):
+        return self.comments_comments.all().count()
+
+    def tournament_count(self):
+        return self.jokalariak.all().count()
+
     def __unicode__(self):
         return u'%s' % self.username
 
