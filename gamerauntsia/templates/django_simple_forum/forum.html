@@ -27,10 +27,10 @@
                     <thead>
                         <tr>
                             <th>Gaiak</th>
-                            <th class="visible-sm-* visible-xs-*">Mezuak</th>
+                            <th class="hide">Mezuak</th>
                             <th>Azken mezua</th>
-                            <th class="visible-sm-* visible-xs-*">Egilea</th>
-                            <th class="visible-sm-* visible-xs-*">Noiz sortua</th>
+                            <th class="hide">Egilea</th>
+                            <th class="hide">Noiz sortua</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -41,7 +41,7 @@
                                 <div class="title"> <a href="{% url 'topic-detail' forum.slug topic.pk %}"><span class="{% if topic.block_top%}glyphicon glyphicon-envelope{% else %}{%if topic.closed %}glyphicon glyphicon-folder-close{% else %}glyphicon glyphicon-folder-open{% endif %}{% endif %}"></span> {{ topic.title }}</a>
                                 </div>
                             </td>
-                            <td class="visible-sm-* visible-xs-*">{{topic.num_posts}}</td>
+                            <td class="hide">{{topic.num_posts}}</td>
                             <td>
                                 {% if topic.last_post %}
                                 <div class="col-lg-2">
@@ -52,8 +52,8 @@
                                 </div>
                                 {% endif %}
                             </td>
-                            <td class="visible-sm-* visible-xs-*">{{topic.creator}}</td>
-                            <td class="visible-sm-* visible-xs-*">{{topic.created}}</td>
+                            <td class="hide">{{topic.creator}}</td>
+                            <td class="hide">{{topic.created}}</td>
                             <td>
                                 {% if topic.last_post.updated > user.last_login %}
                                     <strong class="text-success"><span aria-hidden="true" class="glyphicon glyphicon-star-empty"></span> BERRIA</strong>
