@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load comments pagination_tags %}
 
-{%block title%}{{user_prof.fullname}} - {%endblock%}
+{%block title%}{{user_prof.getFullName}} - {%endblock%}
 
 {% block content %}
 	<div class="row">
