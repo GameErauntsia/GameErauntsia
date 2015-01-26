@@ -43,7 +43,7 @@ class GamerUser(CSAbstractSocialUser):
     keyboard = models.CharField(verbose_name="Teklatua",max_length=150,null=True,blank=True)
     speakers = models.CharField(verbose_name="Bozgorailuak",max_length=150,null=True,blank=True)
 
-    karma = models.IntegerField(verbose_name="Karma")
+    karma = models.IntegerField(verbose_name="Karma",default=0)
 
     last_updated = models.DateTimeField(auto_now_add=True,editable=False)
     date_joined = models.DateTimeField(auto_now_add=True,editable=False,null=True,blank=True)
