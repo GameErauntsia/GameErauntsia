@@ -133,7 +133,7 @@ class GamerUser(CSAbstractSocialUser):
 
         if self.is_mc_gamer():
             karma += MC_KARMA
-        if computer_data:
+        if self.computer_data:
             karma += PC_KARMA
         if self.has_complete_profile():
             karma *= PROFILE_KARMA
