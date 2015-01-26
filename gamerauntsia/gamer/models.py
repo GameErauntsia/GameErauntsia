@@ -137,7 +137,7 @@ class GamerUser(CSAbstractSocialUser):
         #Puntuazio finkoa
         if self.is_mc_gamer():
             karma += MC_KARMA
-        if self.computer_data:
+        if self.computer_data():
             karma += PC_KARMA
         if self.is_staff:
             karma += STAFF_KARMA
