@@ -64,7 +64,7 @@ class GamerUserAdmin(UserAdmin):
         (None, {'fields': ('username', 'password')}),
 
         ('Datuak',
-        {'fields':('fullname','nickname','email', 'phone', 'photo','bio','signature')},),
+        {'fields':('fullname','nickname','karma','email','phone', 'photo','bio','signature')},),
         ('Ordenagailua',
         {'fields':('motherboard','processor','graphics','soundcard','ram','harddrive','harddrive2','mouse','keyboard','speakers')},),
         ('Jakinarazpenak',

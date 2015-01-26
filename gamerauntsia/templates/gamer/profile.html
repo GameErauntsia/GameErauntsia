@@ -18,7 +18,7 @@
 					<h2>{{user_prof.getFullName}}
 					{% if user_prof.twitter_id or user_prof.nickname %}
 					<small>{% if user_prof.twitter_id %}@{{user_prof.twitter_id}}{% else %}{{user_prof.nickname}}{% endif %}</small>
-					{% endif %}
+					{% endif %}{% if user_prof.karma %}<i class="glyphicon glyphicon-flash" style="color:#FFFF00"></i> {{user_prof.karma}}{% endif %}
 					</h2>
 					<p>{% if user_prof.bio%}{{user_prof.bio}}
 						{% else %}
