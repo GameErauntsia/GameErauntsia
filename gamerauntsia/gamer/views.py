@@ -46,9 +46,9 @@ def profile(request,username):
     user_prof = get_object_or_404(GamerUser,username=username)
     gameplayak = GamePlaya.objects.filter(publikoa_da=True,erabiltzailea=user_prof, pub_date__lt=datetime.now()).order_by('-pub_date')
     gp_count = len(gameplayak)
-    categs = GamePlaya.objects.filter(publikoa_da=True, erabiltzailea=user_prof).values('kategoria__izena',).annotate(count=Count('id'))
-    berriak = Berria.objects.filter(publikoa_da=True, status='1', erabiltzailea=user_prof).order_by('-pub_date')
-    bcategs = Berria.objects.filter(publikoa_da=True, erabiltzailea=user_prof).values('gaia__izena',).annotate(count=Count('id'))
+    categs = GamePlaya.objects.filter(publikoa_da=True, erabiltzailea=user_prof, pub_date__lt=datetime.now()).values('kategoria__izena',).annotate(count=Count('id'))
+    berriak = Berria.objects.filter(publikoa_da=True, status='1', erabiltzailea=user_prof,pub_date__lt=datetime.now()).order_by('-pub_date')
+    bcategs = Berria.objects.filter(publikoa_da=True, status='1', erabiltzailea=user_prof,pub_date__lt=datetime.now()).values('gaia__izena',).annotate(count=Count('id'))
     berri_count = len(berriak)
     side_berriak = berriak[:5]
     return render_to_response('gamer/profile.html', locals(),context_instance=RequestContext(request))
