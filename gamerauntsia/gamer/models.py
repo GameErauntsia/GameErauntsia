@@ -23,6 +23,16 @@ PLATFORM = (
     ('minecraft','Minecraft'),
 )
 
+ARTICLE_KARMA = 10
+GP_KARMA = 15
+POST_KARMA = 2
+COMMENT_KARMA = 1
+TOURNAMENT_KARMA = 10
+MC_KARMA = 30
+PC_KARMA = 5
+PROFILE_KARMA = 15
+STAFF_KARMA = 20
+
 class GamerUser(CSAbstractSocialUser):
     nickname = models.CharField(max_length=64,null=True,blank=True)
     is_gamer = models.BooleanField(default=False)
@@ -85,6 +95,14 @@ class GamerUser(CSAbstractSocialUser):
     def has_mc_platform(self):
         return self.plataforma.filter(plataforma='minecraft').exists()
 
+    def has_platforms(self):
+        return self.plataforma.all().exclude(plataforma='minecraft').exists()
+
+    def has_complete_profile(self):
+        if (self.photo.slug != MEMBER_PHOTO_SLUG) and self.has_platforms():
+            return True
+        return False
+
     def computer_data(self):
         if self.motherboard or self.processor or self.graphics or self.soundcard or self.ram or self.harddrive or self.mouse or self.keyboard or self.speakers:
             return True
@@ -98,13 +116,28 @@ class GamerUser(CSAbstractSocialUser):
         return self.gameplayak.all().count()
 
     def post_count(self):
-        return self.creator.all().count()
+        return self.post_posts.all().count()
 
     def comment_count(self):
-        return self.comments_comments.all().count()
+        return self.comment_comments.all().count()
 
     def tournament_count(self):
         return self.jokalariak.all().count()
+
+    def get_karma(self):
+        karma = (self.article_count() * ARTICLE_KARMA) + \
+                (self.gp_count() * GP_KARMA) + \
+                (self.post_count() * POST_KARMA) \
+                (self.comment_count() * COMMENT_KARMA) \
+                (self.tournament_count() * TOURNAMENT_KARMA) or 0
+
+        if self.is_mc_gamer():
+            karma += MC_KARMA
+        if computer_data:
+            karma += PC_KARMA
+        if self.has_complete_profile():
+            karma *= PROFILE_KARMA
+
 
     def __unicode__(self):
         return u'%s' % self.username
