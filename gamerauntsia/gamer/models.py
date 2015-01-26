@@ -138,6 +138,8 @@ class GamerUser(CSAbstractSocialUser):
         if self.has_complete_profile():
             karma *= PROFILE_KARMA
 
+        return karma
+
 
     def __unicode__(self):
         return u'%s' % self.username
