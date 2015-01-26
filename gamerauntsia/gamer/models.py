@@ -96,7 +96,7 @@ class GamerUser(CSAbstractSocialUser):
         return self.plataforma.filter(plataforma='minecraft').exists()
 
     def has_platforms(self):
-        return self.plataforma.all().exclude(plataforma='minecraft').exists()
+        return self.plataforma.all().exists()
 
     def has_complete_profile(self):
         if (self.photo and self.photo.slug != MEMBER_PHOTO_SLUG) and self.has_platforms():
