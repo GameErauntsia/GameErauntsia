@@ -34,7 +34,7 @@
         {% if user.is_authenticated %}
             {% render_comment_form for gp %}
         {% else %}
-            <p>Mesedez, <a href="{% url 'auth_login' %}">sartu</a> iruzkina utzi ahal izateko.</p>
+            <p>Mesedez, <a href="{% url 'auth_login' %}?next={{request.path}}">sartu</a> iruzkina utzi ahal izateko.</p>
         {% endif %}
     </div>
     <div class="col-lg-4">
