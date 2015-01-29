@@ -86,12 +86,6 @@ class GamePlayForm(forms.ModelForm):
 
     jokoa = forms.ModelChoiceField(label="Jokoa", queryset=Jokoa.objects.all().order_by('izena'))
 
-    def clean_argazkia(self):
-        argazkia = self.cleaned_data['argazkia']
-        if not argazkia:
-            raise forms.ValidationError('Argazkia jartzea derrigorrezkoa da. Mesedez, jarri argazki polit bat!')
-        return self.cleaned_data['argazkia']
-
     def clean_desk(self):
         """ """
         desk = self.cleaned_data['desk'].strip()
