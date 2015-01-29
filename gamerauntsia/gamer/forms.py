@@ -82,8 +82,6 @@ class GamePlayForm(forms.ModelForm):
     kategoria = forms.ModelMultipleChoiceField(label='Gaiak', queryset=Kategoria.objects.all(),
         widget=forms.SelectMultiple(attrs={'size':'15'}),help_text='Aukeratu artikuluarekin zer ikusia duen gai bat edo gehiago')
 
-    argazkia  = forms.ImageField(label='Nabarmendutako irudia', help_text='Onartutako formatuak: jpg, png, gif.', required=False)
-
     def clean_desk(self):
         """ """
         desk = self.cleaned_data['desk'].strip()
@@ -93,4 +91,4 @@ class GamePlayForm(forms.ModelForm):
 
     class Meta:
         model = GamePlaya
-        exclude = ('slug','erabiltzailea','pub_date','publikoa_da','status','mod_date','shared')
+        exclude = ('slug','erabiltzailea','pub_date','publikoa_da','status','mod_date','shared', 'argazkia')
