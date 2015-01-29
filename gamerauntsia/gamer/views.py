@@ -25,6 +25,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.template.response import TemplateResponse
 from django_simple_forum.models import Category
 from django.utils import timezone
+from django.forms.util import ErrorList
 
 def update_session_auth_hash(request, user):
     """
@@ -252,14 +253,14 @@ def add_gameplay(request):
         gameplayform = GamePlayForm(request.POST)
         if gameplayform.is_valid():
             if not request.FILES.get('argazkia',''):
-                gameplayform.ValidationError('Argazkia jartzea derrigorrezkoa da. Mesedez, jarri argazki polit bat!')
+                gameplayform._errors["argazkia"] = ErrorList([u"Argazkia jartzea derrigorrezkoa da. Mesedez, jarri argazki polit bat!"])
             else:
                 gp = gameplayform.save(commit=False)
                 gp.slug = slugify(gp.izenburua)
                 gp.erabiltzailea = user
                 gp.argazkia = handle_uploaded_file(request.FILES['argazkia'], user.getFullName())
                 gp.save()
-                gp.save_m2m()
+                gameplayform.save_m2m()
                 return render_to_response('profile/gameplay_sent.html', locals(), context_instance=RequestContext(request))
     else:
         gameplayform = GamePlayForm()
