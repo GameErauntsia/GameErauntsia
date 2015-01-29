@@ -249,8 +249,8 @@ def add_gameplay(request):
     """ """
     user = request.user
     if request.method == 'POST':
-        gameplayform = GamePlayForm(request.POST)
-        if gameplayform.is_valid() and request.FILES.get('argazkia',''):
+        gameplayform = GamePlayForm(request.POST,request.FILES)
+        if gameplayform.is_valid():
             gp = gameplayform.save(commit=False)
             gp.slug = slugify(gp.izenburua)
             gp.erabiltzailea = user
