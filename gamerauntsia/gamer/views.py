@@ -249,8 +249,7 @@ def add_gameplay(request):
     """ """
     user = request.user
     if request.method == 'POST':
-        photo = handle_uploaded_file(request.FILES['argazkia'], user.getFullName())
-        gameplayform = GamePlayForm(request.POST,photo)
+        gameplayform = GamePlayForm(request.POST)
         if gameplayform.is_valid():
             gp = GamePlayForm()
             gp.izenburua = form.cleaned_data['izenburua']
@@ -262,7 +261,7 @@ def add_gameplay(request):
             gp.jokoa = form.cleaned_data['jokoa']
             gp.plataforma = form.cleaned_data['plataforma']
             gp.zailtasuna = form.cleaned_data['zailtasuna']
-            gp.argazkia = photo
+            gp.argazkia = handle_uploaded_file(request.FILES['argazkia'], user.getFullName())
             gp.save()
             gp.save_m2m()
             return render_to_response('profile/gameplay_sent.html', locals(), context_instance=RequestContext(request))
