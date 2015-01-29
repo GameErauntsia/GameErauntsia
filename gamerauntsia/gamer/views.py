@@ -254,16 +254,9 @@ def add_gameplay(request):
             if not request.FILES.get('argazkia',''):
                 gameplayform.ValidationError('Argazkia jartzea derrigorrezkoa da. Mesedez, jarri argazki polit bat!')
             else:
-                gp = GamePlayForm()
-                gp.izenburua = form.cleaned_data['izenburua']
+                gp = gameplayform.save(commit=False)
                 gp.slug = slugify(gp.izenburua)
                 gp.erabiltzailea = user
-                gp.iraupena_min = form.cleaned_data['iraupena_min']
-                gp.iraupena_max = form.cleaned_data['iraupena_max']
-                gp.bideoa = form.cleaned_data['bideoa']
-                gp.jokoa = form.cleaned_data['jokoa']
-                gp.plataforma = form.cleaned_data['plataforma']
-                gp.zailtasuna = form.cleaned_data['zailtasuna']
                 gp.argazkia = handle_uploaded_file(request.FILES['argazkia'], user.getFullName())
                 gp.save()
                 gp.save_m2m()
