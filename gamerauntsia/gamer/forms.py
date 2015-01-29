@@ -1,6 +1,7 @@
 from django import forms
 from gamerauntsia.berriak.models import Berria, Gaia
-from gamerauntsia.gamer.models import GamerUser, JokuPlataforma, Kategoria
+from gamerauntsia.gamer.models import GamerUser, JokuPlataforma
+from gamerauntsia.gameplaya.models import Kategoria, GamePlaya
 from gamerauntsia.jokoa.models import Jokoa
 from tinymce.widgets import TinyMCE
 from django.conf import settings
@@ -91,5 +92,5 @@ class GamePlayForm(forms.ModelForm):
         return self.cleaned_data['desk']
 
     class Meta:
-        model = Berria
+        model = GamePlaya
         exclude = ('slug','erabiltzailea','pub_date','publikoa_da','status','mod_date','shared')
