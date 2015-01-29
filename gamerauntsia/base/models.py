@@ -7,6 +7,7 @@ from django.contrib.contenttypes.models import ContentType
 from django_comments.models import Comment
 from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.berriak.models import Berria
+from gamerauntsia.gameplaya.models import GamePlaya
 
 class Terminoa(models.Model):
     term_eu = models.CharField(max_length=64)
@@ -66,6 +67,10 @@ def send_article_email(sender,instance,**kwargs):
         message = 'Artikulu berri bat sortu dute: \n\n%skudeatu/berriak/berria/%s' % (settings.HOST,instance.id)
         mail_admins(instance.izenburua, message)
 
+def send_gp_email(sender,instance,**kwargs):
+    if kwargs['created']:
+        message = 'GamePlay berri bat sortu dute: \n\n%skudeatu/gameplaya/gameplaya/%s' % (settings.HOST,instance.id)
+        mail_admins(instance.izenburua, message)
 
 
 post_save.connect(send_topic_email, sender=Topic)
@@ -73,3 +78,4 @@ post_save.connect(send_post_email, sender=Post)
 post_save.connect(send_comment_email, sender=Comment)
 post_save.connect(send_newuser_email, sender=GamerUser)
 post_save.connect(send_article_email, sender=Berria)
+post_save.connect(send_gp_email, sender=GamePlaya)
