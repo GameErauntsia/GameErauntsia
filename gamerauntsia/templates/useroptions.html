@@ -10,9 +10,10 @@
 	<ul  class="dropdown-menu pull-right">
 		<li><a href="{% url 'gamer_profile' user.username  %}"><span class="glyphicon glyphicon-user"></span> {{user.getFullName}}</a></li>
         {% if user.is_staff or user.is_superuser %}<li><a href="/kudeatu"><span class="glyphicon glyphicon-cog"></span> Admin gunea</a></li>{% endif %}
-		<li><a href="{% url 'edit_profile' %}"><span class="glyphicon glyphicon-pencil"></span>  Profila editatu</a></li>
+		<li><a href="{% url 'edit_profile' %}"><span class="glyphicon glyphicon-pencil"></span> Profila editatu</a></li>
 		<li role="presentation" class="divider"></li>
-		<li><a href="{% url 'add_article' %}"><span class="glyphicon glyphicon-edit"></span>  Idatzi artikulua</a></li>
+		<li><a href="{% url 'add_gameplay' %}"><span class="glyphicon glyphicon-share"></span> Gehitu gameplaya</a></li>
+		<li><a href="{% url 'add_article' %}"><span class="glyphicon glyphicon-edit"></span> Idatzi artikulua</a></li>
 		<li role="presentation" class="divider"></li>
 		<li><a href="{% url 'messages_inbox' %}"><span class="glyphicon glyphicon-envelope"></span> Mezuak {% if user|inbox_count_for > 0 %}[{{ user|inbox_count_for }}]{% endif %}</a></li>
 		<li role="presentation" class="divider"></li>
