@@ -249,7 +249,7 @@ def add_gameplay(request):
     """ """
     user = request.user
     if request.method == 'POST':
-        gameplayform = GamePlayForm(request.POST)
+        gameplayform = GamePlayForm(request.POST,request.FILES)
         if gameplayform.is_valid():
             gp = GamePlayForm()
             gp.izenburua = form.cleaned_data['izenburua']
