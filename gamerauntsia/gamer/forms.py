@@ -85,7 +85,7 @@ class GamePlayForm(forms.ModelForm):
     argazkia  = forms.ImageField(label='Nabarmendutako irudia', help_text='Onartutako formatuak: jpg, png, gif.', required=False)
 
     def clean(self):
-        desk = self.cleaned_data['argazkia']
+        argazkia = self.cleaned_data['argazkia']
         if not argazkia:
             raise forms.ValidationError('Argazkia jartzea derrigorrezkoa da. Mesedez, jarri argazki polit bat!')
         return self.cleaned_data['argazkia']
