@@ -82,7 +82,7 @@ class GamePlayForm(forms.ModelForm):
     kategoria = forms.ModelMultipleChoiceField(label='Gaiak', queryset=Kategoria.objects.all(),
         widget=forms.SelectMultiple(attrs={'size':'15'}),help_text='Aukeratu artikuluarekin zer ikusia duen gai bat edo gehiago')
 
-    argazkia  = forms.ImageField(label='Nabarmendutako irudia', help_text='Onartutako formatuak: jpg, png, gif.', required=False)
+    argazkia  = forms.ImageField(label='Nabarmendutako irudia', help_text='Onartutako formatuak: jpg, png, gif.')
 
     def clean_desk(self):
         """ """
