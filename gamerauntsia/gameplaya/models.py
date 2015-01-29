@@ -8,6 +8,11 @@ from django.template import defaultfilters as filters
 from django.template.loader import get_template
 from django.template import Context
 
+STATUS = (
+    ('0','Zirriborroa'),
+    ('1','Publikoa'),
+)
+
 class Kategoria(models.Model):
     izena = models.CharField(max_length=64)
     slug = models.SlugField(db_index=True, unique=True, help_text="Eremu honetan kategoria honen URL helbidea zehazten ari zara.")
@@ -51,6 +56,7 @@ class GamePlaya(models.Model):
     publikoa_da = models.BooleanField(default=True)
     pub_date = models.DateTimeField('publikazio data', default=datetime.now)
     mod_date = models.DateTimeField('modifikazio data', default=datetime.now)
+    status = models.CharField(max_length=1, choices=STATUS, default='0')
     shared = models.BooleanField(default=False, help_text="Lauki hau automatikoki markatuko da sistemak edukia sare sozialetan elkarbanatzean.")
 
     def get_desk_index(self):
