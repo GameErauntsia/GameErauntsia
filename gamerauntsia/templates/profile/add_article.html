@@ -12,11 +12,10 @@
         {% csrf_token %}
         {% for field in articleform %}
             <p>
+                <div class="alert alert-error">{{ field.errors }}</div>
                 {% if field.name == 'gaia' %}
-                    <p class="bg-danger">{{ field.errors }}</p>
                     <strong>{{field.label}}:</strong><br/>{{field}} <br/>{{field.help_text}}
                 {% else %}
-                    <p class="bg-danger">{{ field.errors }}</p>
                     {% if field.label %}<strong>{{field.label}}:</strong>{% endif %} {{field}} {{field.help_text}}
                 {% endif %}
             </p>
