@@ -130,12 +130,17 @@ class GamerUser(CSAbstractSocialUser):
                 (self.comment_count() * COMMENT_KARMA) + \
                 (self.tournament_count() * TOURNAMENT_KARMA) or 0
 
-        if self.is_mc_gamer():
-            karma += MC_KARMA
-        if self.computer_data:
-            karma += PC_KARMA
+        #Puntuazio biderkatzailea
         if self.has_complete_profile():
             karma *= PROFILE_KARMA
+
+        #Puntuazio finkoa
+        if self.is_mc_gamer():
+            karma += MC_KARMA
+        if self.computer_data():
+            karma += PC_KARMA
+        if self.is_staff:
+            karma += STAFF_KARMA
 
         return karma
 

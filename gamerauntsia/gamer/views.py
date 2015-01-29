@@ -46,9 +46,9 @@ def profile(request,username):
     user_prof = get_object_or_404(GamerUser,username=username)
     gameplayak = GamePlaya.objects.filter(publikoa_da=True,erabiltzailea=user_prof, pub_date__lt=datetime.now()).order_by('-pub_date')
     gp_count = len(gameplayak)
-    categs = GamePlaya.objects.filter(publikoa_da=True, erabiltzailea=user_prof).values('kategoria__izena',).annotate(count=Count('id'))
-    berriak = Berria.objects.filter(publikoa_da=True, status='1', erabiltzailea=user_prof).order_by('-pub_date')
-    bcategs = Berria.objects.filter(publikoa_da=True, erabiltzailea=user_prof).values('gaia__izena',).annotate(count=Count('id'))
+    categs = GamePlaya.objects.filter(publikoa_da=True, erabiltzailea=user_prof, pub_date__lt=datetime.now()).values('kategoria__izena',).annotate(count=Count('id'))
+    berriak = Berria.objects.filter(publikoa_da=True, status='1', erabiltzailea=user_prof,pub_date__lt=datetime.now()).order_by('-pub_date')
+    bcategs = Berria.objects.filter(publikoa_da=True, status='1', erabiltzailea=user_prof,pub_date__lt=datetime.now()).values('gaia__izena',).annotate(count=Count('id'))
     berri_count = len(berriak)
     side_berriak = berriak[:5]
     return render_to_response('gamer/profile.html', locals(),context_instance=RequestContext(request))
@@ -61,7 +61,8 @@ def guestprofile(request,username):
 
 
 def community(request):
-    users = GamerUser.objects.filter(is_active=True).order_by('-date_joined')
+    users = GamerUser.objects.filter(is_active=True).order_by('-date_joined')[:9]
+    gurus = GamerUser.objects.filter(is_active=True,is_staff=False).order_by('-karma','-date_joined')[:9]
     return render_to_response('gamer/community.html', locals(),context_instance=RequestContext(request))
 
 @login_required
@@ -153,7 +154,7 @@ def edit_top_games(request):
             return HttpResponseRedirect(reverse('edit_profile_top'))
     else:
         topform = TopForm(instance=user)
-        lagunak = GamerUser.objects.filter(top_jokoak__in=user.top_jokoak.all()).exclude(id=user.id).distinct()
+        lagunak = GamerUser.objects.filter(top_jokoak__in=user.top_jokoak.all()).exclude(id=user.id).distinct().order_by('-karma')[:15]
         topjokoak = GamerUser.objects.values('top_jokoak__izena').annotate(Count('top_jokoak')).order_by('-top_jokoak__count','-top_jokoak__izena')[:10]
 
     return render_to_response('profile/edit_top_games.html', locals(), context_instance=RequestContext(request))

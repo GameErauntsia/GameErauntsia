@@ -9,7 +9,7 @@ from django.utils.translation import ugettext as _
 class GamerForm(forms.ModelForm):
 
     signature = forms.CharField(widget=TinyMCE(
-           attrs={'cols': 80, 'rows': 15,},mce_attrs=settings.TINYMCE_SMALL_BODY_CONFIG))
+           attrs={'cols': 80, 'rows': 15,},mce_attrs=settings.TINYMCE_SMALL_BODY_CONFIG),required=False)
 
     class Meta:
         model = GamerUser
