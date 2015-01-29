@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block morejs %}
+    <script type="text/javascript" src="{{ STATIC_URL }}tiny_mce/tiny_mce.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="col-lg-12">
+    <h1>Gehitu gameplaya</h1>
+    <form action="{{request.path}}" method="POST" ENCTYPE="multipart/form-data">
+        {% csrf_token %}
+        {% for field in gameplayform %}
+            <p>
+                {% if field.name == 'kategoria' %}
+                    <p class="bg-danger">{{ field.errors }}</p>
+                    <strong>{{field.label}}:</strong><br/>{{field}} <br/>{{field.help_text}}
+                {% else %}
+                    <p class="bg-danger">{{ field.errors }}</p>
+                    {% if field.label %}<strong>{{field.label}}:</strong>{% endif %} {{field}} {{field.help_text}}
+                {% endif %}
+            </p>
+        {% endfor %}
+        <input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
+    </form>
+    <hr/>
+</div>
+{% endblock %}

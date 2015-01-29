@@ -1,6 +1,6 @@
 from django import forms
 from gamerauntsia.berriak.models import Berria, Gaia
-from gamerauntsia.gamer.models import GamerUser, JokuPlataforma
+from gamerauntsia.gamer.models import GamerUser, JokuPlataforma, Kategoria
 from gamerauntsia.jokoa.models import Jokoa
 from tinymce.widgets import TinyMCE
 from django.conf import settings
@@ -71,3 +71,25 @@ class LastloginForm(forms.ModelForm):
     class Meta:
         model = GamerUser
         fields = ('last_login',)
+
+
+class GamePlayForm(forms.ModelForm):
+
+    desk = forms.CharField(label='',widget=TinyMCE(
+           attrs={'cols': 80, 'rows': 15,},mce_attrs=settings.TINYMCE_SMALL_BODY_CONFIG))
+
+    kategoria = forms.ModelMultipleChoiceField(label='Gaiak', queryset=Kategoria.objects.all(),
+        widget=forms.SelectMultiple(attrs={'size':'15'}),help_text='Aukeratu artikuluarekin zer ikusia duen gai bat edo gehiago')
+
+    argazkia  = forms.ImageField(label='Nabarmendutako irudia', help_text='Onartutako formatuak: jpg, png, gif.', required=False)
+
+    def clean_desk(self):
+        """ """
+        desk = self.cleaned_data['desk'].strip()
+        if not desk:
+            raise forms.ValidationError('Mezu hutsek ez dute balio. Mesedez, idatzi zerbait!')
+        return self.cleaned_data['desk']
+
+    class Meta:
+        model = Berria
+        exclude = ('slug','erabiltzailea','pub_date','publikoa_da','status','mod_date','shared')

@@ -242,3 +242,23 @@ def add_article(request):
     else:
         articleform = ArticleForm()
     return render_to_response('profile/add_article.html', locals(), context_instance=RequestContext(request))
+
+@login_required
+def add_gameplay(request):
+    """ """
+    user = request.user
+    if request.method == 'POST':
+        gameplayform = GamePlayForm(request.POST)
+        if gameplayform.is_valid():
+            gp = gameplayform.save(commit=False)
+            gp.slug = slugify(gp.izenburua)
+            gp.erabiltzailea = user
+            if request.FILES.get('argazkia',''):
+                photo = handle_uploaded_file(request.FILES['argazkia'], user.getFullName())
+                gp.argazkia = photo
+            gp.save()
+            gameplayform.save_m2m()
+            return render_to_response('profile/gameplay_sent.html', locals(), context_instance=RequestContext(request))
+    else:
+        gameplayform = GamePlayForm()
+    return render_to_response('profile/add_gameplay.html', locals(), context_instance=RequestContext(request))
