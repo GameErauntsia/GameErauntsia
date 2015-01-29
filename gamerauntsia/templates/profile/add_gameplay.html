@@ -11,14 +11,12 @@
     <form action="{{request.path}}" method="POST" ENCTYPE="multipart/form-data">
         {% csrf_token %}
         {% for field in gameplayform %}
-            <p>
-                <div class="alert alert-error">{{ field.errors }}</div>
-                {% if field.name == 'kategoria' %}
-                    <strong>{{field.label}}:</strong><br/>{{field}} <br/>{{field.help_text}}
-                {% else %}
-                    {% if field.label %}<strong>{{field.label}}:</strong>{% endif %} {{field}} {{field.help_text}}
-                {% endif %}
-            </p>
+            <div class="alert alert-error">{{ field.errors }}</div>
+            {% if field.name == 'kategoria' %}
+                <strong>{{field.label}}:</strong><br/>{{field}} <br/>{{field.help_text}}
+            {% else %}
+                {% if field.label %}<strong>{{field.label}}:</strong>{% endif %} {{field}} {{field.help_text}}
+            {% endif %}
         {% endfor %}
         <input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
     </form>
