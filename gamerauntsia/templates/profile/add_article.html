@@ -14,9 +14,9 @@
         <p>
             {% if field.errors %}<div class="alert alert-error">{{ field.errors.as_text }}</div>{% endif %}
             {% if field.name == 'gaia' %}
-                <strong>{{field.label}}:</strong><br/>{{field}} <br/>{{field.help_text}}
+                <strong>{{field.label}}:</strong><br/>{{field}} <br/><span class="helptext">{{field.help_text}}</span>
             {% else %}
-                {% if field.label %}<strong>{{field.label}}:</strong>{% endif %} {{field}} {{field.help_text}}
+                {% if field.label %}<strong>{{field.label}}:</strong>{% endif %} {{field}} <span class="helptext">{{field.help_text}}</span>
             {% endif %}
         </p>
         {% endfor %}
