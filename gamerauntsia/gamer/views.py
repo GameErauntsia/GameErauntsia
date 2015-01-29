@@ -249,8 +249,8 @@ def add_gameplay(request):
     """ """
     user = request.user
     if request.method == 'POST':
-        gameplayform = GamePlayForm(request.POST,request.FILES['argazkia'])
-        if gameplayform.is_valid():
+        gameplayform = GamePlayForm(request.POST)
+        if gameplayform.is_valid() and request.FILES.get('argazkia',''):
             gp = GamePlayForm()
             gp.izenburua = form.cleaned_data['izenburua']
             gp.slug = slugify(gp.izenburua)
