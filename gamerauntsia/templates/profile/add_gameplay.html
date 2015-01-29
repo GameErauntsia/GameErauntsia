@@ -10,7 +10,6 @@
     <h1>Gehitu gameplaya</h1>
     <form action="{{request.path}}" method="POST" ENCTYPE="multipart/form-data">
         {% csrf_token %}
-        {{gameplayform.errors}}
         {% for field in gameplayform %}
             <p>
                 {% if field.name == 'kategoria' %}
