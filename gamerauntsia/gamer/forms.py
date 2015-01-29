@@ -101,4 +101,4 @@ class GamePlayForm(forms.ModelForm):
 
     class Meta:
         model = GamePlaya
-        exclude = ('slug','erabiltzailea','pub_date','publikoa_da','status','mod_date','shared', 'argazkia')
+        exclude = ('slug','erabiltzailea','pub_date','publikoa_da','status','mod_date','shared')
