@@ -84,7 +84,7 @@ class GamePlayForm(forms.ModelForm):
 
     argazkia  = forms.ImageField(label='Nabarmendutako irudia', help_text='Onartutako formatuak: jpg, png, gif.', required=False)
 
-    jokoa = forms.ModelChoiceField(label="Jokoa", queryset=Jokoa.objects.all().order_by('name'))
+    jokoa = forms.ModelChoiceField(label="Jokoa", queryset=Jokoa.objects.all().order_by('izena'))
 
     def clean_argazkia(self):
         argazkia = self.cleaned_data['argazkia']
