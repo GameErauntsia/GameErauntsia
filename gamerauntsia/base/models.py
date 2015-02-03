@@ -27,7 +27,7 @@ def send_post_email(sender,instance,**kwargs):
         recipient_list = []
         message = 'Mezu berri bat utzi dute zuk idatzitako gai hauetan: \n\n'
         for forum in instance.topic.forums.all():
-        	message += '%sforoa/%s/%s\n\n' % (settings.HOST,forum.slug,instance.topic.id)
+        	message += '%sforoa/%s%s\n\n' % (settings.HOST,forum.slug,instance.get_absolute_url())
         creators = Post.objects.filter(topic=instance.topic).values('creator__email').distinct()
         for creator in creators:
             if not instance.creator.email == creator['creator__email'] and instance.creator.email_notification:
