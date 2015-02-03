@@ -11,6 +11,9 @@
         <p class="breadcrumb"><a href="/foroa">Denak</a>-><a href="{% url 'forum-detail' forum.slug %}">{{forum.title}}</a>-><strong>{{topic.title}}</strong></p>
         <div id="list">
             {% autopaginate posts 10 %}
+
+            {% paginate %}
+
             {% for post in posts %}
                 <div class="row">
                     <div class="col-xs-12 col-sm-2 text-center">
