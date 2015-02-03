@@ -25,7 +25,7 @@
         {% endfor %}
         {% if page_obj.has_next %}
             <li><a href="?page={{ page_obj.next_page_number }}{{ getvars }}">Hurrengoa <i class="glyphicon glyphicon-chevron-right"></i></a></li>
-            <li><a href="?page={{ pages.count }}{{ getvars }}"><i class="glyphicon glyphicon-step-forward"></i></a></li>
+            <li><a href="?page={{ page_obj.count }}{{ getvars }}"><i class="glyphicon glyphicon-step-forward"></i></a></li>
         {% else %}
             <li class="disabled" ><a href="#">Hurrengoa <i class="glyphicon glyphicon-chevron-right"></i></a></li>
             <li class="disabled" ><a href="#"><i class="glyphicon glyphicon-step-forward"></i></a></li>
