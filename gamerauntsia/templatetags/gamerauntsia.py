@@ -23,5 +23,5 @@ register.simple_tag(regform)
 
 def steam_panel():
     steam_group = dict(dict(get_urlxml('http://steamcommunity.com/groups/gamerauntsia/memberslistxml/')['memberList'])['groupDetails'])
-
+    return {'steam_group': steam_group}
 register.inclusion_tag('steam_panel.html')(steam_panel)
