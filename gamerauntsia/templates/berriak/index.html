@@ -56,13 +56,15 @@
     </div>
 
     <div class="col-lg-4">
-        <h2>Egutegia</h2>
-        <div id="calendar"></div>
+        {% steam_panel %}
         <div id="azkenErantzunak">
-        <h2>Azken erantzunak</h2>
+            <h2>Azken erantzunak</h2>
             {% azken_erantzunak %}
         </div>
-        {% steam_panel %}
+        <div id="egutegia">
+            <h2>Egutegia</h2>
+            <div id="calendar"></div>
+        </div>
         <div class="well commentform">
             <div class="fb-like-box" data-href="https://www.facebook.com/Gamerauntsia" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
         </div>
