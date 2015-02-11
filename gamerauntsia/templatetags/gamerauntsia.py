@@ -1,5 +1,6 @@
 from django import template
 from registration.forms import RegistrationForm
+from gamerauntsia.utils.urls import get_urlxml
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
