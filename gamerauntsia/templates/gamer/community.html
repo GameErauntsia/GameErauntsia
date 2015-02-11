@@ -74,14 +74,16 @@
         {% if forloop.last %}</div><hr/>{% endif %}
         {% endfor %}
     </div>
-    <div class="col-lg-4 text-center">
-        <div class="row">
-            <img class="img-responsive img-center" src="{{STATIC_URL}}img/steam-logo.jpg" />
-        </div>
-        <div class="row">
-            <div class="col-lg-4"><h3>{{steam_group.memberCount}}<br>Kide</h3></div>
-            <div class="col-lg-4"><h3>{{steam_group.membersInGame}}<br>Jolasten</h3></div>
-            <div class="col-lg-4"><h3>{{steam_group.membersOnline}}<br>Online</h3></div>
+    <div class="col-lg-4">
+        <div class="well text-center">
+            <div class="row">
+                <img class="img-responsive img-center" src="{{STATIC_URL}}img/steam-logo.jpg" />
+            </div>
+            <div class="row">
+                <div class="col-lg-4"><h3>{{steam_group.memberCount}}<br>Kide</h3></div>
+                <div class="col-lg-4"><h3>{{steam_group.membersInGame}}<br>Jolasten</h3></div>
+                <div class="col-lg-4"><h3>{{steam_group.membersOnline}}<br>Online</h3></div>
+            </div>
         </div>
     </div>
 </div>
