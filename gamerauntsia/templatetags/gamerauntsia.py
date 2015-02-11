@@ -1,6 +1,8 @@
 from django import template
 from registration.forms import RegistrationForm
 from django import forms
+import urllib2
+import xmltodict
 from django.utils.translation import ugettext_lazy as _
 
 register = template.Library()
