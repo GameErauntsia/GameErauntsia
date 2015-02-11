@@ -41,7 +41,6 @@ def update_session_auth_hash(request, user):
         request.session[HASH_SESSION_KEY] = user.get_session_auth_hash()
 
 def index(request):
-    steam_group = dict(dict(get_urlxml('http://steamcommunity.com/groups/gamerauntsia/memberslistxml/')['memberList'])['groupDetails'])
     users = GamerUser.objects.filter(is_active=True,is_staff=True).order_by('-date_joined')
     return render_to_response('gamer/index.html', locals(),context_instance=RequestContext(request))
 
@@ -65,7 +64,6 @@ def guestprofile(request,username):
 
 
 def community(request):
-    steam_group = dict(dict(get_urlxml('http://steamcommunity.com/groups/gamerauntsia/memberslistxml/')['memberList'])['groupDetails'])
     users = GamerUser.objects.filter(is_active=True).order_by('-date_joined')[:9]
     gurus = GamerUser.objects.filter(is_active=True,is_staff=False).order_by('-karma','-date_joined')[:9]
     return render_to_response('gamer/community.html', locals(),context_instance=RequestContext(request))

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load gamerauntsia %}
 
 {%block title%}Nor gara - {%endblock%}
 
@@ -44,16 +45,7 @@
     </div>
 
     <div class="col-lg-4">
-        <div class="well text-center commentform">
-            <div class="row">
-                <img class="img-responsive center-block" src="{{STATIC_URL}}img/steam-logo.png" />
-            </div>
-            <div class="row">
-                <div class="col-lg-4 text-muted"><h3><strong>{{steam_group.memberCount}}</strong><br>Kide</h3></div>
-                <div class="col-lg-4 text-primary"><h3><strong>{{steam_group.membersInGame}}</strong><br>Jolasten</h3></div>
-                <div class="col-lg-4 text-success"><h3><strong>{{steam_group.membersOnline}}</strong><br>Online</h3></div>
-            </div>
-        </div>
+        {% steam_panel.html %}
         <div class="well commentform">
             <div class="fb-like-box" data-href="https://www.facebook.com/Gamerauntsia" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
         </div>

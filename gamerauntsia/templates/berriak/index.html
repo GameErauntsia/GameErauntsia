@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load pagination_tags include comments bootstrap_calendar %}
+{% load gamerauntsia pagination_tags include comments bootstrap_calendar %}
 
 {% block morejs %}
 <div id="fb-root"></div>
@@ -29,7 +29,7 @@
     <div class="col-lg-8">
 
         {% block container %}
-   
+
         {% autopaginate zerr_berriak 5 %}
         {% for berria in zerr_berriak %}
         {% get_comment_count for berria as comment_count %}
@@ -62,6 +62,7 @@
         <h2>Azken erantzunak</h2>
             {% azken_erantzunak %}
         </div>
+        {% steam_panel %}
         <div class="well commentform">
             <div class="fb-like-box" data-href="https://www.facebook.com/Gamerauntsia" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
         </div>

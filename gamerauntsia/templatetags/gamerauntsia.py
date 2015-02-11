@@ -10,4 +10,8 @@ def regform(request):
     return forma.as_p()
 
 register.simple_tag(regform)
-    
+
+def steam_panel(request):
+    steam_group = dict(dict(get_urlxml('http://steamcommunity.com/groups/gamerauntsia/memberslistxml/')['memberList'])['groupDetails'])
+
+register.inclusion_tag('steam_panel.html')(steam_panel)
