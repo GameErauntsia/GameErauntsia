@@ -15,5 +15,5 @@ def get_urlxml(url):
     raw_data = urllib2.urlopen(url)
     data = raw_data.read()
     raw_data.close()
-    stream = xmltodict.parse(data)
+    stream = dict(xmltodict.parse(data))
     return stream
