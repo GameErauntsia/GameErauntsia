@@ -205,3 +205,55 @@ table#id_body_tbl {
   font-size: 80%;
   font-style: italic;
 }
+
+.steam-group-button {
+font: normal normal normal 11px/18px 'Helvetica Neue',Arial,sans-serif;
+height: 28px;
+border-radius: 4px;
+color: #FFF;
+font-size: 13px;
+line-height: 26px;
+outline: none;
+text-decoration: none;
+position: relative;
+font-weight: bold;
+display: inline-block;
+vertical-align: top;
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+-ms-box-sizing: border-box;
+box-sizing: border-box;
+border: #333 solid 1px;
+background-color: #4D4B48;
+background-image: -webkit-gradient(linear,left top,left bottom,from(#4D4B48),to(#111));
+background-image: -moz-linear-gradient(top,#4D4B48,#111);
+background-image: linear-gradient(top,#4D4B48,#111);
+}
+
+.steam-group-button:focus, .steam-group-button:hover, .steam-group-button:active {
+color: #FFF;
+border-color: #111;
+background-color: #333;
+background-image: -webkit-gradient(linear,left top,left bottom,from(#444),to(#111));
+background-image: -moz-linear-gradient(top,#444,#111);
+background-image: linear-gradient(top,#444,#111);
+box-shadow: none;
+}
+
+.steam-group-button:active {
+box-shadow: inset 0 3px 7px rgba(255,255,255,0.15);
+}
+
+.steam-group-icon {
+width: 16px;
+height: 16px;
+left: 4px;
+margin-top: -8px;
+position: absolute;
+top: 50%;
+background: transparent url('http://cdn.steampowered.com/favicon.ico') 0 0 no-repeat;
+}
+
+.steam-group-label {
+padding: 0 7px 0 26px;
+}
