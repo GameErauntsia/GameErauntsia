@@ -26,6 +26,7 @@ from django.template.response import TemplateResponse
 from django_simple_forum.models import Category
 from django.utils import timezone
 from django.forms.util import ErrorList
+from gamerauntsia.utils.urls import get_urlxml
 
 def update_session_auth_hash(request, user):
     """
@@ -61,7 +62,9 @@ def guestprofile(request,username):
     return render_to_response('gamer/profile.html', locals(),context_instance=RequestContext(request))
 
 
+
 def community(request):
+    steam_group = get_urlxml('http://steamcommunity.com/groups/gamerauntsia/memberslistxml/')
     users = GamerUser.objects.filter(is_active=True).order_by('-date_joined')[:9]
     gurus = GamerUser.objects.filter(is_active=True,is_staff=False).order_by('-karma','-date_joined')[:9]
     return render_to_response('gamer/community.html', locals(),context_instance=RequestContext(request))
