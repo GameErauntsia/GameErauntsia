@@ -13,73 +13,76 @@
     <p>Kuxkuxeatu, eztabaidatu, gurekin jolastu, iritzia eman, agian bilatu jokorako zure lagun berriak edota aurkaririk gogorrenak!! Parte hartu eta zorte on!!</p>
 </div>
 
-<div class="col-lg-8">
-    <h2>Komunitateko guruak</h2>
-    {% for user_prof in gurus %}
-    {% if forloop.first %}<div class="row">{% endif %}
-    <div class="col-md-4 portfolio-item">
-	    <div class="row">
-	        <div class="col-xs-12 col-sm-4 text-center">
-				<a href="{% url 'gamer_guestprofile' user_prof.username %}"><img src="{{user_prof.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive"></a>
-			</div>
-			<div class="col-xs-12 col-sm-8">
-				<h2>
-					<a href="{% url 'gamer_guestprofile' user_prof.username %}">{{user_prof.getFullName}}
-					</a>
-				</h2>
-                <p>
-                    {% if user_prof.karma %}<i class="glyphicon glyphicon-flash" style="color:#E1E100"></i> <abbr title="Karma">{{user_prof.karma}}</abbr>{% endif %}
-                	{% if user_prof.twitter_id or user_prof.nickname %}
-                	<span class="nickname">
-					{% if user_prof.twitter_id %}@{{user_prof.twitter_id}}{% else %}{{user_prof.nickname}}{% endif %}
-				    </span>
-				    {% endif %}
-                	{% if user.is_authenticated %}<a href="{% url 'messages_compose_to' user_prof.username  %}"><span class="glyphicon glyphicon-envelope"></span></a>{% endif %}
-			    </p>
-			</div>
-	  	</div>
-    </div>
-    {% if forloop.counter|divisibleby:3 %}</div><hr/><div class="row">{% endif %}
-    {% if forloop.last %}</div><hr/>{% endif %}
-    {% endfor %}
 
-    <h2>Taldera sartu diren azkenak</h2>
-    {% for user_prof in users %}
-    {% if forloop.first %}<div class="row">{% endif %}
-    <div class="col-md-4 portfolio-item">
-	    <div class="row">
-	        <div class="col-xs-12 col-sm-4 text-center">
-				<a href="{% url 'gamer_guestprofile' user_prof.username %}"><img src="{{user_prof.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive"></a>
-			</div>
-			<div class="col-xs-12 col-sm-8">
-				<h2>
-					<a href="{% url 'gamer_guestprofile' user_prof.username %}">{{user_prof.getFullName}}
-					</a>
-				</h2>
-                <p>
-                    {% if user_prof.karma %}<i class="glyphicon glyphicon-flash" style="color:#E1E100"></i> <abbr title="Karma">{{user_prof.karma}}</abbr>{% endif %}
-                	{% if user_prof.twitter_id or user_prof.nickname %}
-                	<span class="nickname">
-					{% if user_prof.twitter_id %}@{{user_prof.twitter_id}}{% else %}{{user_prof.nickname}}{% endif %}
-				    </span>
-				    {% endif %}
-                	{% if user.is_authenticated %}<a href="{% url 'messages_compose_to' user_prof.username  %}"><span class="glyphicon glyphicon-envelope"></span></a>{% endif %}
-			    </p>
-			</div>
-	  	</div>
+<div class="col-lg-12">
+    <div class="col-lg-8">
+        <h2>Komunitateko guruak</h2>
+        {% for user_prof in gurus %}
+        {% if forloop.first %}<div class="row">{% endif %}
+        <div class="col-md-4 portfolio-item">
+    	    <div class="row">
+    	        <div class="col-xs-12 col-sm-4 text-center">
+    				<a href="{% url 'gamer_guestprofile' user_prof.username %}"><img src="{{user_prof.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive"></a>
+    			</div>
+    			<div class="col-xs-12 col-sm-8">
+    				<h2>
+    					<a href="{% url 'gamer_guestprofile' user_prof.username %}">{{user_prof.getFullName}}
+    					</a>
+    				</h2>
+                    <p>
+                        {% if user_prof.karma %}<i class="glyphicon glyphicon-flash" style="color:#E1E100"></i> <abbr title="Karma">{{user_prof.karma}}</abbr>{% endif %}
+                    	{% if user_prof.twitter_id or user_prof.nickname %}
+                    	<span class="nickname">
+    					{% if user_prof.twitter_id %}@{{user_prof.twitter_id}}{% else %}{{user_prof.nickname}}{% endif %}
+    				    </span>
+    				    {% endif %}
+                    	{% if user.is_authenticated %}<a href="{% url 'messages_compose_to' user_prof.username  %}"><span class="glyphicon glyphicon-envelope"></span></a>{% endif %}
+    			    </p>
+    			</div>
+    	  	</div>
+        </div>
+        {% if forloop.counter|divisibleby:3 %}</div><hr/><div class="row">{% endif %}
+        {% if forloop.last %}</div><hr/>{% endif %}
+        {% endfor %}
+
+        <h2>Taldera sartu diren azkenak</h2>
+        {% for user_prof in users %}
+        {% if forloop.first %}<div class="row">{% endif %}
+        <div class="col-md-4 portfolio-item">
+    	    <div class="row">
+    	        <div class="col-xs-12 col-sm-4 text-center">
+    				<a href="{% url 'gamer_guestprofile' user_prof.username %}"><img src="{{user_prof.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive"></a>
+    			</div>
+    			<div class="col-xs-12 col-sm-8">
+    				<h2>
+    					<a href="{% url 'gamer_guestprofile' user_prof.username %}">{{user_prof.getFullName}}
+    					</a>
+    				</h2>
+                    <p>
+                        {% if user_prof.karma %}<i class="glyphicon glyphicon-flash" style="color:#E1E100"></i> <abbr title="Karma">{{user_prof.karma}}</abbr>{% endif %}
+                    	{% if user_prof.twitter_id or user_prof.nickname %}
+                    	<span class="nickname">
+    					{% if user_prof.twitter_id %}@{{user_prof.twitter_id}}{% else %}{{user_prof.nickname}}{% endif %}
+    				    </span>
+    				    {% endif %}
+                    	{% if user.is_authenticated %}<a href="{% url 'messages_compose_to' user_prof.username  %}"><span class="glyphicon glyphicon-envelope"></span></a>{% endif %}
+    			    </p>
+    			</div>
+    	  	</div>
+        </div>
+        {% if forloop.counter|divisibleby:3 %}</div><hr/><div class="row">{% endif %}
+        {% if forloop.last %}</div><hr/>{% endif %}
+        {% endfor %}
     </div>
-    {% if forloop.counter|divisibleby:3 %}</div><hr/><div class="row">{% endif %}
-    {% if forloop.last %}</div><hr/>{% endif %}
-    {% endfor %}
-</div>
-<div class="col-lg-4">
-    <div class="row">
-        <img class="img-responsive" src="{{STATIC_URL}}img/steam-logo.jpg" />
-    </div>
-    <div class="row">
-        <div class="col-lg-4"><h3>{{steam_group.memberCount}}</h3><br>Kideak</div>
-        <div class="col-lg-4"><h3>{{steam_group.membersInGame}}</h3><br>Jolasten</div>
-        <div class="col-lg-4"><h3>{{steam_group.membersOnline}}</h3><br>Online</div>
+    <div class="col-lg-4 text-center">
+        <div class="row">
+            <img class="img-responsive" src="{{STATIC_URL}}img/steam-logo.jpg" />
+        </div>
+        <div class="row">
+            <div class="col-lg-4"><h3>{{steam_group.memberCount}}<br>Kideak</h3></div>
+            <div class="col-lg-4"><h3>{{steam_group.membersInGame}}<br>Jolasten</h3></div>
+            <div class="col-lg-4"><h3>{{steam_group.membersOnline}}<br>Online</h3></div>
+        </div>
     </div>
 </div>
 {% endblock %}
