@@ -1,10 +1,17 @@
 from django import template
 from registration.forms import RegistrationForm
-from gamerauntsia.utils.urls import get_urlxml
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 register = template.Library()
+
+def get_urlxml(url):
+    stream = []
+    raw_data = urllib2.urlopen(url)
+    data = raw_data.read()
+    raw_data.close()
+    stream = dict(xmltodict.parse(data))
+    return stream
 
 def regform(request):
     forma=RegistrationForm()
