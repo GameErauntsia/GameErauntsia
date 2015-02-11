@@ -55,11 +55,11 @@
         </div>
 
         <div class="col-lg-4">
-            {% steam_panel %}
             <div id="azkenErantzunak">
                 <h2>Azken erantzunak</h2>
                 {% azken_erantzunak 'GamePlaya' %}
             </div>
+            {% steam_panel %}
             <div class="well commentform">
                 <h3>Bilaketa filtroak</h3>
                 <hr/>
@@ -105,7 +105,7 @@
                 </div>
                 <a class="btn btn-default" href="{% url 'gameplay_index' %}">Denak</a>
             </div>
-            <div class="well">
+<!--             <div class="well">
                 <h3>Jokalariak</h3>
                 <hr/>
                 <div class="row">
@@ -115,7 +115,7 @@
                         {% endfor %}
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
 </div>
 
