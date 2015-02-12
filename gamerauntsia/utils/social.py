@@ -9,7 +9,7 @@ from gamerauntsia.gamer.models import GamerUser
 def post_to_email(obj):
     email_list = GamerUser.objects.values_list('email', flat=True).filter(is_active=True,email_notification=True).exclude(username='urtzai')
     subject, text_content, html_content = obj.getEmailText()
-    msg = EmailMultiAlternatives(subject, filters.safe(filters.striptags(text_content)), settings.DEFAULT_FROM_EMAIL, ['urtzi.odriozola@gmail.com'], bcc=email_list)
+    msg = EmailMultiAlternatives(subject, filters.safe(filters.striptags(text_content)), settings.BULETIN_FROM_EMAIL, ['gamerauntsia@gmail.com'], bcc=email_list)
     msg.attach_alternative(html_content, "text/html")
     msg.send()
     return True
