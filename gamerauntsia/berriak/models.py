@@ -35,7 +35,7 @@ class Berria(models.Model):
     erabiltzailea = models.ForeignKey(GamerUser,related_name='berriak')
     argazkia = models.ForeignKey(Photo,null=True,blank=True)
 
-    publikoa_da = models.BooleanField(default=True)
+    publikoa_da = models.BooleanField(default=False)
 
     status = models.CharField(max_length=1, choices=STATUS, default='0')
     pub_date = models.DateTimeField('publikazio data', default=datetime.now)

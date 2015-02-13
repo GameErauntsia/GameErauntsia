@@ -53,7 +53,7 @@ class GamePlaya(models.Model):
     kategoria = models.ManyToManyField(Kategoria, related_name='gameplay')
 
     erabiltzailea = models.ForeignKey(GamerUser,related_name='gameplayak')
-    publikoa_da = models.BooleanField(default=True)
+    publikoa_da = models.BooleanField(default=False)
     pub_date = models.DateTimeField('publikazio data', default=datetime.now)
     mod_date = models.DateTimeField('modifikazio data', default=datetime.now)
     status = models.CharField(max_length=1, choices=STATUS, default='0')
