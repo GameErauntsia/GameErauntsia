@@ -1,5 +1,6 @@
 from gamerauntsia.berriak.models import Berria, Gaia
 from django.contrib import admin
+from django.conf import settings
 from gamerauntsia.berriak.forms import BerriaAdminForm
 
 class BerriakAdmin(admin.ModelAdmin):
@@ -26,7 +27,7 @@ class BerriakAdmin(admin.ModelAdmin):
     form = BerriaAdminForm
 
     def get_readonly_fields(self, request, obj=None):
-        if request.user.is_superuser:
+        if request.user.is_superuser or user.belongs_group(settings.NEWS_GROUP):
             return super(BerriakAdmin, self).get_readonly_fields(request, obj)
         else:
             return ('status',)

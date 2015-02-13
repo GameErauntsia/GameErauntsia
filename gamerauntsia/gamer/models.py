@@ -144,6 +144,13 @@ class GamerUser(CSAbstractSocialUser):
 
         return karma
 
+    def belongs_group(user, group_name):
+        group = Group.objects.get(name=group_name)
+        if group in user.groups.all():
+            return True
+        else:
+            return False
+
 
     def __unicode__(self):
         return u'%s' % self.username

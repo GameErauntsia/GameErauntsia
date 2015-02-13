@@ -1,5 +1,6 @@
 from gamerauntsia.gameplaya.models import GamePlaya, Kategoria, Zailtasuna
 from django.contrib import admin
+from django.conf import settings
 from gamerauntsia.gameplaya.forms import GamePlayAdminForm
 from datetime import datetime
 from django.utils import timezone
@@ -26,6 +27,12 @@ class GamePlayAdmin(admin.ModelAdmin):
     search_fields = ['erabiltzailea__fullname','erabiltzailea__username','izenburua']
     ordering = ('-pub_date',)
     form = GamePlayAdminForm
+
+    def get_readonly_fields(self, request, obj=None):
+        if request.user.is_superuser or user.belongs_group(settings.GP_GROUP):
+            return super(GamePlayAdmin, self).get_readonly_fields(request, obj)
+        else:
+            return ('status',)
 
     def queryset(self, request):
         qs = super(GamePlayAdmin, self).queryset(request)
