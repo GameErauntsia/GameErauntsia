@@ -240,6 +240,7 @@ def add_article(request):
             berria = articleform.save(commit=False)
             berria.slug = slugify(berria.izenburua)
             berria.erabiltzailea = user
+            berria.publikoa_da = True
             if request.FILES.get('argazkia',''):
                 photo = handle_uploaded_file(request.FILES['argazkia'], user.getFullName())
                 berria.argazkia = photo
@@ -263,6 +264,7 @@ def add_gameplay(request):
                 gp = gameplayform.save(commit=False)
                 gp.slug = slugify(gp.izenburua)
                 gp.erabiltzailea = user
+                gp.publikoa_da = True
                 gp.argazkia = handle_uploaded_file(request.FILES['argazkia'], user.getFullName())
                 gp.save()
                 gameplayform.save_m2m()
