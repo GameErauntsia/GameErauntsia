@@ -32,12 +32,12 @@ class BerriakAdmin(admin.ModelAdmin):
         else:
             return ('status',)
 
-    def queryset(self, request):
-        qs = super(BerriakAdmin, self).queryset(request)
-        if request.user.is_superuser or not request.user.belongs_group(settings.NEWS_GROUP):
-            return qs
-        else:
-            return qs.filter(erabiltzailea = request.user)
+    # def queryset(self, request):
+    #     qs = super(BerriakAdmin, self).queryset(request)
+    #     if request.user.is_superuser or request.user.belongs_group(settings.NEWS_GROUP):
+    #         return qs
+    #     else:
+    #         return qs.filter(erabiltzailea = request.user)
 
     def save_model(self, request, obj, form, change):
         if not request.user.is_superuser:
@@ -47,7 +47,7 @@ class BerriakAdmin(admin.ModelAdmin):
     def has_change_permission(self, request, obj=None):
         if not obj:
             return True # So they can see the change list page
-        if request.user.is_superuser or obj.erabiltzailea == request.user:
+        if request.user.is_superuser or obj.erabiltzailea == request.user or request.user.belongs_group(settings.NEWS_GROUP):
             return True
         else:
             return False
