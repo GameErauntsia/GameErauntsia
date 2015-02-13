@@ -7,7 +7,10 @@ def get_urljson(url):
     req = urllib2.Request(url)
     opener = urllib2.build_opener()
     f = opener.open(req)
-    stream = json.load(f)
+    try:
+        stream = json.load(f)
+    except:
+        return None
     return stream
 
 def get_urlxml(url):

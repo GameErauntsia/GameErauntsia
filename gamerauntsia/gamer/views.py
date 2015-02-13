@@ -27,6 +27,7 @@ from django_simple_forum.models import Category
 from django.utils import timezone
 from django.forms.util import ErrorList
 from gamerauntsia.utils.urls import get_urlxml
+from gamerauntsia.zerbitzariak.views import set_user_whitelist
 
 def update_session_auth_hash(request, user):
     """
@@ -134,6 +135,8 @@ def edit_platform(request):
                     else:
                         platform = form.save(commit=False)
                         platform.user = user
+                        if platform.plataforma == 'minecraft':
+                            set_user_whitelist(user,platform.nick)
                         platform.save()
             return HttpResponseRedirect(reverse('edit_profile_plat'))
     else:
