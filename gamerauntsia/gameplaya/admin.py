@@ -29,7 +29,7 @@ class GamePlayAdmin(admin.ModelAdmin):
     form = GamePlayAdminForm
 
     def get_readonly_fields(self, request, obj=None):
-        if request.user.is_superuser or user.belongs_group(settings.GP_GROUP):
+        if request.user.is_superuser or (request.user != obj.erabiltzailea and request.user.belongs_group(settings.GP_GROUP)):
             return super(GamePlayAdmin, self).get_readonly_fields(request, obj)
         else:
             return ('status',)
@@ -42,7 +42,7 @@ class GamePlayAdmin(admin.ModelAdmin):
             return qs.filter(erabiltzailea = request.user)
 
     def save_model(self, request, obj, form, change):
-        if not request.user.is_superuser:
+        if not request.user.is_superuser or not request.user.belongs_group(settings.GP_GROUP):
             obj.erabiltzailea = request.user
         obj.save()
 
