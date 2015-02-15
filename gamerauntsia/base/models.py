@@ -63,7 +63,7 @@ def send_newuser_email(sender,instance,**kwargs):
         mail_admins(instance.username+' erabiltzailea', message)
 
 def send_article_email(sender,instance,**kwargs):
-    if instance.publikoa_da:
+    if instance.publikoa_da and instance.status == '0':
         message = 'Artikulu berri bat sortu dute: \n\n%skudeatu/berriak/berria/%s' % (settings.HOST,instance.id)
         editors = GamerUser.objects.filter(groups__name=settings.GP_GROUP)
         for editor in editors:
@@ -71,7 +71,7 @@ def send_article_email(sender,instance,**kwargs):
                 send_mail('[Game Erauntsia - '+instance.izenburua+']', message, settings.DEFAULT_FROM_EMAIL, [editor.email])
 
 def send_gp_email(sender,instance,**kwargs):
-    if instance.publikoa_da:
+    if instance.publikoa_da and instance.status == '0':
         message = 'GamePlay berri bat sortu dute: \n\n%skudeatu/gameplaya/gameplaya/%s' % (settings.HOST,instance.id)
         editors = GamerUser.objects.filter(groups__name=settings.GP_GROUP)
         for editor in editors:
