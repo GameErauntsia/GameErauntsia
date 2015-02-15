@@ -9,7 +9,7 @@ from gamerauntsia.utils.urls import get_urljson
 def set_user_whitelist(user,nick=None):
     if user:
         if MC_Whitelist.objects.get(user=user).exists() and nick:
-            ml = MC_Whitelist.objects.get(user=user,plataforma='minecraft')
+            ml = MC_Whitelist.objects.get(user=user)
             ml.mc_user = nick
         else:
             if JokuPlataforma.objects.filter(user=user, plataforma='minecraft').exists():
