@@ -257,3 +257,15 @@ background: transparent url('http://cdn.steampowered.com/favicon.ico') 0 0 no-re
 .steam-group-label {
 padding: 0 7px 0 26px;
 }
+
+.agenda {
+    border: 1px solid #CCC;
+    position: relative;
+    margin-top: 1em;
+}
+.item {
+    border-bottom: 1px dotted #727273;
+    margin-bottom: 2em;
+    clear: both;
+    padding-bottom: 1em;
+}
