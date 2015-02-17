@@ -35,6 +35,9 @@ urlpatterns = patterns('',
     #MINECRAFT SERVER
     (r'^minecraft/', include('gamerauntsia.zerbitzariak.urls')),
 
+    #AGENDA
+    (r'^agenda/', include('gamerauntsia.agenda.urls')),
+
     # FOROA
     url(r'^foroa/', include('django_simple_forum.urls')),
 

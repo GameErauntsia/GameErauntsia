@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load gamerauntsia pagination_tags include comments bootstrap_calendar %}
+
+{% block morejs %}
+
+{% bootstrap_calendar_css %}
+{% bootstrap_calendar_js language="eu-ES"  %}
+
+{% endblock %}
+
+{% block title %}Agenda - {% endblock %}
+
+{% block content%}
+<div class="row">
+    <div class="col-lg-8">
+
+        {% block container %}
+
+
+        {% endblock %}
+
+    </div>
+
+    <div class="col-lg-4">
+        <div id="egutegia">
+            <h2>Egutegia</h2>
+            <div id="calendar"></div>
+        </div>
+        {% steam_panel %}
+    </div>
+</div>
+
+{%endblock%}
+
+{% block footerjs %}
+{% bootstrap_calendar_init language="eu-ES" %}
+{% endblock %}
