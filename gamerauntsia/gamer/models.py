@@ -126,6 +126,7 @@ class GamerUser(CSAbstractSocialUser):
 
     def get_karma(self):
         karma = (self.article_count() * ARTICLE_KARMA) + \
+                (self.gp_count() * GP_KARMA) + \
                 (self.post_count() * POST_KARMA) + \
                 (self.comment_count() * COMMENT_KARMA) + \
                 (self.tournament_count() * TOURNAMENT_KARMA) or 0
