@@ -18,7 +18,7 @@
 
         {% for event in events %}
         <div class="row-fluid">
-            <h3><a href="">{{event.title}}</a></h3>
+            <h3>{{event.title}}</h3>
             <p class="lead"><i class="glyphicon glyphicon-calendar"></i> {{event.start|date:"Y/m/d H:i"}}</p>
             <p><i class="glyphicon glyphicon-link"></i> {{event.url|urlize}}</p>
             <hr>
