@@ -27,7 +27,7 @@ class BerriakAdmin(admin.ModelAdmin):
     form = BerriaAdminForm
 
     def get_readonly_fields(self, request, obj=None):
-        if request.user.is_superuser or (request.user != obj.erabiltzailea and request.user.belongs_group(settings.NEWS_GROUP)):
+        if request.user.is_superuser or (obj and request.user != obj.erabiltzailea and request.user.belongs_group(settings.NEWS_GROUP)):
             return super(BerriakAdmin, self).get_readonly_fields(request, obj)
         else:
             return ('status',)
