@@ -46,7 +46,9 @@ def index(request):
     return render_to_response('gamer/index.html', locals(),context_instance=RequestContext(request))
 
 def profile(request,username):
-    user_prof = get_object_or_404(GamerUser,username=username)
+    user_prof = get_object_or_404(GamerUser,username=username,is_active=True)
+    if user_prof.is_staff:
+        return HttpResponseRedirect('/nor-gara/'+username)
     gameplayak = GamePlaya.objects.filter(publikoa_da=True,status='1', erabiltzailea=user_prof, pub_date__lt=datetime.now()).order_by('-pub_date')
     gp_count = len(gameplayak)
     categs = GamePlaya.objects.filter(publikoa_da=True, status='1', erabiltzailea=user_prof, pub_date__lt=datetime.now()).values('kategoria__izena',).annotate(count=Count('id'))
@@ -55,13 +57,6 @@ def profile(request,username):
     berri_count = len(berriak)
     side_berriak = berriak[:5]
     return render_to_response('gamer/profile.html', locals(),context_instance=RequestContext(request))
-
-def guestprofile(request,username):
-    user_prof = get_object_or_404(GamerUser,username=username,is_active=True)
-    if user_prof.is_staff:
-        return HttpResponseRedirect('/nor-gara/'+username)
-    return render_to_response('gamer/profile.html', locals(),context_instance=RequestContext(request))
-
 
 
 def community(request):
