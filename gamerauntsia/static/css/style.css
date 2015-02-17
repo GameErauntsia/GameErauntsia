@@ -269,3 +269,17 @@ padding: 0 7px 0 26px;
     clear: both;
     padding-bottom: 1em;
 }
+
+body.agenda .agenda p.date, .item.agenda.in_article p.date {
+    background: url("http://goiena.tok-st.com/img/agenda.png?3c86a4966b3b") no-repeat scroll 5px 9px #666;
+    color: #CCC;
+    font-size: 130%;
+    padding: 5px 10px 5px 30px;
+    left: -11px;
+    top: -10px;
+    position: absolute;
+}
+
+body.agenda .agenda p, body.agenda .agenda h3 {
+    margin: 0px 10px;
+}
