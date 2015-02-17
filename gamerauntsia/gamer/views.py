@@ -47,8 +47,6 @@ def index(request):
 
 def profile(request,username):
     user_prof = get_object_or_404(GamerUser,username=username,is_active=True)
-    if user_prof.is_staff:
-        return HttpResponseRedirect('/nor-gara/'+username)
     gameplayak = GamePlaya.objects.filter(publikoa_da=True,status='1', erabiltzailea=user_prof, pub_date__lt=datetime.now()).order_by('-pub_date')
     gp_count = len(gameplayak)
     categs = GamePlaya.objects.filter(publikoa_da=True, status='1', erabiltzailea=user_prof, pub_date__lt=datetime.now()).values('kategoria__izena',).annotate(count=Count('id'))
