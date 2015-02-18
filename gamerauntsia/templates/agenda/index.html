@@ -21,7 +21,7 @@
 
         {% for event in events %}
         <div class="featurette row-fluid">
-            <a href="{% url 'txapelketa' txapelketa.slug %}"><img class="featurette-image img-circle img-responsive" src="{{STATIC_URL}}img/events/{{event.css_class}}.jpg"></a>
+            <img class="featurette-image img-circle img-responsive" src="{{STATIC_URL}}img/events/{{event.css_class}}.jpg"/>
             <h3 class="featurette-heading">{{event.title}}</h3>
             <p class="lead"><i class="glyphicon glyphicon-calendar"></i> {{event.start|date:"Y/m/d H:i"}}</p>
             <p><i class="glyphicon glyphicon-link"></i> {{event.url|urlize}}</p>
