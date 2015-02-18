@@ -21,10 +21,14 @@
 
         {% for event in events %}
         <div class="featurette row-fluid">
-            <img class="featurette-image img-circle img-responsive" src="{{STATIC_URL}}img/events/{{event.css_class}}.jpg"/>
-            <h3 class="featurette-heading">{{event.title}}</h3>
-            <p class="lead"><i class="glyphicon glyphicon-calendar"></i> {{event.start|date:"Y/m/d H:i"}}</p>
-            <p><i class="glyphicon glyphicon-link"></i> {{event.url|urlize}}</p>
+            <div class="col-sm-4">
+                <img class="featurette-image img-circle img-responsive" src="{{STATIC_URL}}img/events/{{event.css_class}}.jpg"/>
+            </div>
+            <div class="col-sm-8">
+                <h3 class="featurette-heading">{{event.title}}</h3>
+                <p class="lead"><i class="glyphicon glyphicon-calendar"></i> {{event.start|date:"Y/m/d H:i"}}</p>
+                <p><i class="glyphicon glyphicon-link"></i> {{event.url|urlize}}</p>
+            </div>
             <hr>
         </div>
         {% endfor %}
