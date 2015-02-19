@@ -8,6 +8,7 @@ from gamerauntsia.utils.urls import get_urljson
 
 def set_user_whitelist(user,nick=None):
     if user:
+        ml = None
         if MC_Whitelist.objects.filter(user=user).exists() and nick:
             ml = MC_Whitelist.objects.get(user=user)
             ml.mc_user = nick
