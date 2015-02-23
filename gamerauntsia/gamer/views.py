@@ -275,5 +275,7 @@ def add_event(request):
         if eventform.is_valid():
             eventform.save()
             return HttpResponseRedirect(reverse('agenda_index'))
+
+    else:
         eventform = EventForm()
     return render_to_response('profile/add_event.html', locals(), context_instance=RequestContext(request))
