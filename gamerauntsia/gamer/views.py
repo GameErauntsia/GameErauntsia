@@ -265,3 +265,15 @@ def add_gameplay(request):
     else:
         gameplayform = GamePlayForm()
     return render_to_response('profile/add_gameplay.html', locals(), context_instance=RequestContext(request))
+
+@login_required
+def add_event(request):
+    """ """
+    user = request.user
+    if request.method == 'POST':
+        eventform = EventForm(request.POST)
+        if eventform.is_valid():
+            eventform.save()
+            return HttpResponseRedirect(reverse('agenda_index'))
+        eventform = EventForm()
+    return render_to_response('profile/add_event.html', locals(), context_instance=RequestContext(request))
