@@ -5,7 +5,6 @@ from gamerauntsia.gameplaya.models import Kategoria, GamePlaya
 from gamerauntsia.jokoa.models import Jokoa
 from tinymce.widgets import TinyMCE
 from django.conf import settings
-from django.utils.translation import ugettext as _
 
 class GamerForm(forms.ModelForm):
 
