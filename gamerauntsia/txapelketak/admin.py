@@ -31,7 +31,7 @@ class TxapelketaAdmin(admin.ModelAdmin):
 
     list_display = ('izena', 'preview','mota', 'modalitatea','jokoa','insk_date','pub_date', 'status', 'publikoa_da')
     prepopulated_fields = {"slug": ("izena",)}
-    filter_horizontal = ('jokalariak',)
+    filter_horizontal = ('jokalariak','adminak')
     raw_id_fields = ('irudia','jokoa')
     list_filter = ('mota','modalitatea', 'publikoa_da')
     search_fields = ['izena','slug']
