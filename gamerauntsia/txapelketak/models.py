@@ -43,7 +43,6 @@ class Txapelketa(models.Model):
     jokalariak = models.ManyToManyField(GamerUser,related_name="jokalariak",verbose_name="Inskripzioa",null=True,blank=True)
 
     jokoa = models.ForeignKey(Jokoa)
-    erabiltzailea = models.ForeignKey(GamerUser,related_name="erabiltzailea",verbose_name="Egilea")
     adminak = models.ManyToManyField(GamerUser,related_name="adminak",verbose_name="Egileak")
 
     publikoa_da = models.BooleanField(default=True)

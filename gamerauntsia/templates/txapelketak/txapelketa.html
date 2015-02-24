@@ -224,8 +224,10 @@
                 {{item.arauak|safe}}
             </div>
             <div class="well">
-                <h3>Antolatzailea</h3>
-                <img src="{{item.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{item.erabiltzailea.getFullName}}</a>
+                <h3>Antolatzaileak</h3>
+                {% for admin in item.adminak.all %}
+                <p><a href="{% url 'gamer_profile' admin.username %}"><img src="{{admin.get_photo.get_profilesmall_url}}" class="img-circle"/> {{admin.getFullName}}</a></p>
+                {% endfor %}
             </div>
             {% if item.hashtag %}
             <div class="well">
