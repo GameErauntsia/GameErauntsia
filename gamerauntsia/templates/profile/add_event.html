@@ -8,7 +8,7 @@
 {% block content %}
 <div class="col-sm-12">
     <h1>Gehitu ekitaldia</h1>
-    <div class="col-sm-8">
+    <div class="col-sm-4">
         <form action="{{request.path}}" method="POST">
             {% csrf_token %}
             {% for field in eventform %}
@@ -20,7 +20,7 @@
             <input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
         </form>
     </div>
-    <div class="col-sm-4"></div>
+    <div class="col-sm-8"></div>
     <hr/>
 </div>
 {% endblock %}
