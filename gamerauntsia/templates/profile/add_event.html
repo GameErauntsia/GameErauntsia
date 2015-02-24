@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block morejs %}
+    {{ eventform.media }}
+{% endblock %}
+
 {% block content %}
 <div class="col-lg-12">
     <h1>Gehitu ekitaldia</h1>
