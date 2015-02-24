@@ -57,9 +57,9 @@ def txapelketa(request,slug):
     else:
         list_sailkapena = item.get_partaideak('points')
 
-    api = get_tweepy_api()
-    search = '#' + item.hashtag
-    tweets = api.search(q=search,count=25)
+    #api = get_tweepy_api()
+    #search = '#' + item.hashtag
+    #tweets = api.search(q=search,count=25)
 
     return render_to_response('txapelketak/txapelketa.html', locals(),context_instance=RequestContext(request))
 
