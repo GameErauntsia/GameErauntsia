@@ -4,8 +4,8 @@ from datetimewidget.widgets import DateTimeWidget
 
 class EventForm(forms.ModelForm):
 
-    start_date = forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3))
-    end_date = forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3))
+    start = forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3))
+    end = forms.DateTimeField(widget=DateTimeWidget(usel10n=True, bootstrap_version=3))
 
     class Meta:
         model = CalendarEvent
