@@ -44,6 +44,7 @@ class Txapelketa(models.Model):
 
     jokoa = models.ForeignKey(Jokoa)
     erabiltzailea = models.ForeignKey(GamerUser,related_name="erabiltzailea",verbose_name="Egilea")
+    adminak = models.ManyToManyField(GamerUser,related_name="adminak",verbose_name="Egileak")
 
     publikoa_da = models.BooleanField(default=True)
     pub_date = models.DateTimeField('Publikazio data', default=datetime.now)
