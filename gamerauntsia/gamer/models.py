@@ -39,8 +39,8 @@ class GamerUser(CSAbstractSocialUser):
     top_jokoak = models.ManyToManyField(Jokoa,null=True,blank=True)
     signature = models.TextField(verbose_name="Foro sinadura",null=True,blank=True)
     ytube_channel = models.CharField(max_length=150,null=True,blank=True)
-    email_notification = models.BooleanField(default=True)
-    buletin_notification = models.BooleanField(default=True)
+    email_notification = models.BooleanField(default=True, verbose_name="Eztabaida jakinarazpenak")
+    buletin_notification = models.BooleanField(default=True, verbose_name="Buletin jakinarazpenak")
 
     #ALTER TABLE `gamer_gameruser` ADD `motherboard` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `processor` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `graphics` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `soundcard` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `ram` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `harddrive` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `harddrive2` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `mouse` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `keyboard` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `speakers` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL ;
     motherboard = models.CharField(verbose_name="Txartel nagusia",max_length=150,null=True,blank=True)
