@@ -68,7 +68,7 @@ class GamerUserAdmin(UserAdmin):
         ('Ordenagailua',
         {'fields':('motherboard','processor','graphics','soundcard','ram','harddrive','harddrive2','mouse','keyboard','speakers')},),
         ('Jakinarazpenak',
-        {'fields':('email_notification',)},),
+        {'fields':('email_notification','buletin_notification')},),
         ('Sare sozialak',
         {'fields':('ytube_channel','twitter_id', 'facebook_id', 'openid_id', 'googleplus_id'),'classes': ['collapse',],},),
         (_('Permissions'), {'fields': ('is_active','is_gamer', 'is_staff', 'is_superuser',
