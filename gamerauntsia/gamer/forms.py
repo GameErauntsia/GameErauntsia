@@ -26,7 +26,7 @@ class NotifyForm(forms.ModelForm):
 
     class Meta:
         model = GamerUser
-        fields = ('email_notification',)
+        fields = ('email_notification','buletin_notification')
 
 class ArticleForm(forms.ModelForm):
 
