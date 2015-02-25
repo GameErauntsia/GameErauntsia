@@ -40,7 +40,7 @@ How to use the code
 
 1. Download the code
 
-    > git clone git@github.com:urtzai/gamerauntsia.git
+    > git clone git@github.com:GameErauntsia/gamerauntsia.git
     
 2. Edit settings.py file
 
