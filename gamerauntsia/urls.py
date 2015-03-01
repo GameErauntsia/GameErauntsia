@@ -74,8 +74,8 @@ urlpatterns = patterns('',
     #EGUTEGIA
     (r'^calendar/', include('django_bootstrap_calendar.urls')),
 
-    #TODO
-    (r'^todo/', include('todo.urls')),
+    #API
+    (r'^api/', include('gamerauntsia.api.urls')),
 
     #ERABILERA ETA PRIBATUTASUNA
     (r'^erabilera-baldintzak/$', TemplateView.as_view(template_name='erabilera_baldintzak.html')),
