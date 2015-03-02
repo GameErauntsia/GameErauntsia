@@ -7,46 +7,14 @@ You will find our web page in [gamerauntsia.eus](http://gamerauntsia.eus).
 This project is 100% open-source project where everybody it's up to use, distribute/share or even modify under the 
 [AGPL v3.0](http://www.gnu.org/licenses/agpl-3.0.html#content) licence.
 
-Pre-requisites
+How to contribute
 --------------
-
-Dependencies for the installation are the following:
-
-* MySQL-python
-* pillow
-* django-extensions
-* akismet
-* lxml
-* django-photologue
-* django-tinymce
-* django-pagination
-* html5lib
-* django-tagging
-* django-social-auth
-* django-registration
-* python-twitter
-* gunicorn
-
-All these packages are available in [PyPi](http://pypi.python.org/pypi) repositories. It's also strongly recommended 
-to use [Buildout](http://www.buildout.org/) for the project construction.
+[Getting started](https://github.com/GameErauntsia/gamerauntsia/wiki)
 
 Screenshot
 ----------
 
 ![Azaleko irudia](https://github.com/urtzai/gamerauntsia/blob/master/gamerauntsia/static/img/gamerauntsia.png "Azaleko irudia")
-
-How to use the code
--------------------
-
-1. Download the code
-
-    > git clone git@github.com:GameErauntsia/gamerauntsia.git
-    
-2. Edit settings.py file
-
-    > cd gamerauntsia/gamerauntsia
-      
-    > nano settings.py
 
 Contact
 -------
