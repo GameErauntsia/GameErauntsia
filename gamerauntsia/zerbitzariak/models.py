@@ -9,7 +9,7 @@ ROL = (
 
 class MC_Whitelist(models.Model):
     mc_user = models.CharField(max_length=64,verbose_name='MC Erabiltzailea')
-    uuid = models.CharField(max_length=64, verbose_name='UUID')
+    uuid = models.CharField(max_length=64, verbose_name='UUID',null=True,blank=True)
     user = models.ForeignKey(GamerUser,verbose_name='GE Erabiltzailea',null=True,blank=True)
     rol = models.CharField(max_length=1, default='n',choices=ROL)
 
