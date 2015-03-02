@@ -52,6 +52,39 @@
         </div>
     </div>
 </div>
+{% endif %}
+{% if txapelketak %}
+<div class="row">
+
+<div class="row carousel-holder">
+    <div class="col-md-12">
+        <div id="carousel-tx-generic" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                {% for tx in txapelketak %}
+                <li data-target="#carousel-tx-generic" data-slide-to="{{forloop.counter0}}" {% if forloop.first %}class="active"{% endif %}></li>
+                {% endfor %}
+            </ol>
+            <div class="carousel-inner">
+                    {% for tx in txapelketak %}
+                    <div class="item {% if forloop.first %}active{% endif %} col-lg-8 col-lg-offset-2">
+                        <a href="{% url 'txapelketa' tx.slug %}"><img class="featurette-image img-circle img-responsive pull-right" src="{{tx.irudia.get_featurette_url}}"></a>
+                        <h2 class="featurette-heading"><a href="{% url 'txapelketa' tx.slug %}">{{tx.izena}}</a>
+                        <br/><span class="text-muted"><small>{{tx.get_status_display}}</small></span>
+                        </h2>
+                        <p class="lead">{{tx.get_desk_index|safe|striptags}}</p>
+                    </div>
+                    {% endfor %}
+            </div>  
+            <a class="left carousel-control" href="#carousel-tx-generic" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-tx-generic" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div>  
+    </div>
+</div>
+</div>
 
 <hr>
 {% endif %}
