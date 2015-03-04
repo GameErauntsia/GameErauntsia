@@ -139,11 +139,7 @@
 
             {% render_comment_list for item %}
 
-            {% if user.is_authenticated %}
-                {% render_comment_form for item %}
-            {% else %}
-                <p>Mesedez, <a href="{% url 'auth_login' %}?next={{request.path}}">sartu</a> iruzkina utzi ahal izateko.</p>
-            {% endif %}
+            {% render_comment_form for item %}
 
         </div>
 
