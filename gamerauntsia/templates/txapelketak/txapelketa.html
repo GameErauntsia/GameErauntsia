@@ -212,7 +212,7 @@
                     <h3>Partaideak</h3>
                     {% for partaide in item.get_partaideak %}
                         <p>
-                            <img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-circle"/> {{partaide.get_izena}}
+                            {% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-circle"/> {% endif %}{{partaide.get_izena}}
                             {% for j in partaide.jokalariak.all %}<a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_profilesmall_url}}" class="img-circle"/></a>{% endfor %}        
                         </p>
                     {% empty %}
