@@ -196,7 +196,7 @@
                         {% endif %}
                     {% endif %}
                 {% else %}
-                    {% if item.jokalariak.all and item.status == '2' %}
+                    {% if item.jokalariak.all and item.status in ('1','2') %}
                     <h3>Izen emateak ({{item.jokalariak_count}})</h3>
                     <div class="row">
                         {% for user in item.jokalariak.all %}
@@ -212,7 +212,7 @@
                     <h3>Partaideak</h3>
                     {% for partaide in item.get_partaideak %}
                         <p>
-                            {% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-circle"/> {% endif %}{{partaide.get_izena}}
+                            {% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-circle"/> {% endif %}{{partaide.get_izena}}<br/>
                             {% for j in partaide.jokalariak.all %}<a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_profilesmall_url}}" class="img-circle"/></a>{% endfor %}        
                         </p>
                     {% empty %}
