@@ -196,7 +196,8 @@
                         {% endif %}
                     {% endif %}
                 {% else %}
-                    {% if item.jokalariak.all and item.status = '2' or item.status = '3' %}
+                    {% if item.status = '2' or item.status = '3' %}
+                    {% if item.jokalariak.all %}
                     <h3>Izen emateak ({{item.jokalariak_count}})</h3>
                     <div class="row">
                         {% for user in item.jokalariak.all %}
@@ -208,6 +209,7 @@
                             {% if forloop.last %}</ul></div>{% endif %}
                         {% endfor %}
                     </div>
+                    {% endif %}
                     {% endif %}
                     <h3>Partaideak</h3>
                     {% for partaide in item.get_partaideak %}
