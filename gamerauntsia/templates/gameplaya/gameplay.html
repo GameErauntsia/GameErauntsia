@@ -31,11 +31,7 @@
         <p><a class="twitter popup" href="http://twitter.com/share?text={{gp.izenburua|urlencode}}"><img src="{{STATIC_URL}}img/twitter.png"/></a> <a href="https://www.facebook.com/dialog/share?app_id={{FB_APP_ID}}&display=popup&href={{gp.get_absolute_url|urlencode:''}}&redirect_uri={{gp.get_absolute_url|urlencode:''}}"><img src="{{STATIC_URL}}img/facebook.png"/></a></p>
         {% render_comment_list for gp %}
 
-        {% if user.is_authenticated %}
-            {% render_comment_form for gp %}
-        {% else %}
-            <p>Mesedez, <a href="{% url 'auth_login' %}?next={{request.path}}">sartu</a> iruzkina utzi ahal izateko.</p>
-        {% endif %}
+        {% render_comment_form for gp %}
     </div>
     <div class="col-lg-4">
         <h3>Fitxa teknikoa</h3>
