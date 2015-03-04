@@ -195,7 +195,8 @@
                         <a class="btn btn-primary" href="{% url 'auth_login' %}?next={{item.get_absolute_url}}" title="Log in">{% trans 'Log in' %}</a>
                         {% endif %}
                     {% endif %}
-                    {% if item.jokalariak.all %}
+                {% else %}
+                    {% if item.jokalariak.all and item.status == '2' %}
                     <h3>Izen emateak ({{item.jokalariak_count}})</h3>
                     <div class="row">
                         {% for user in item.jokalariak.all %}
@@ -208,7 +209,6 @@
                         {% endfor %}
                     </div>
                     {% endif %}
-                {% else %}
                     <h3>Partaideak</h3>
                     {% for partaide in item.get_partaideak %}
                         <p><img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-circle"/> {{partaide.get_izena}}</p>
