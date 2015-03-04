@@ -197,9 +197,16 @@
                     {% endif %}
                     {% if item.jokalariak.all %}
                     <h3>Izen emateak ({{item.jokalariak_count}})</h3>
-                    {% for user in item.jokalariak.all %}
-                    <p><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.getFullName}}</a></p>
-                    {% endfor %}
+                    <div class="row">
+                        {% for user in item.jokalariak.all %}
+                            {% if forloop.first %}
+                            <div class="col-lg-6"><ul class="list-unstyled">
+                            {%endif%}
+                                <li><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.getFullName}}</a></li>
+                            {% if forloop.counter|divisibleby:4 %}</ul></div><div class="col-lg-6"><ul class="list-unstyled">{% endif %}
+                            {% if forloop.last %}</ul></div>{% endif %}
+                        {% endfor %}
+                    </div>
                     {% endif %}
                 {% else %}
                     <h3>Partaideak</h3>
