@@ -211,10 +211,15 @@
                     {% endif %}
                     <h3>Partaideak</h3>
                     {% for partaide in item.get_partaideak %}
-                        <p>
-                            {% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-circle"/> {% endif %}{{partaide.get_izena}}<br/>
-                            {% for j in partaide.jokalariak.all %}<a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_profilesmall_url}}" class="img-circle"/></a>{% endfor %}        
-                        </p>
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                {% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-circle"/> {% endif %}
+                                <h3 class="panel-title">{{partaide.get_izena}}</h3>
+                            </div>
+                            <div class="panel-body">
+                                {% for j in partaide.jokalariak.all %}<a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_profilesmall_url}}" class="img-circle"/></a>{% endfor %}
+                            </div>
+                        </div>
                     {% empty %}
                     <p>Partaide/taldeak sortzeko daude. Laister izango dira ikusgai</p>
                     {% endfor %}
