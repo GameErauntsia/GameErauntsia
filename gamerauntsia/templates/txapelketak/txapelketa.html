@@ -202,7 +202,7 @@
                             {% if forloop.first %}
                             <div class="col-lg-6"><ul class="list-unstyled">
                             {%endif%}
-                                <li><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.getFullName|truncatechar:12}}</a></li>
+                                <li><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.getFullName|truncatechars:12}}</a></li>
                             {% if forloop.counter|divisibleby:4 %}</ul></div><div class="col-lg-6"><ul class="list-unstyled">{% endif %}
                             {% if forloop.last %}</ul></div>{% endif %}
                         {% endfor %}
