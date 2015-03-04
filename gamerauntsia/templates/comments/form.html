@@ -1,22 +1,26 @@
 {% load comments i18n %}
 <div class="well commentform">
-	<h4><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.getFullName}}</a> utzi iruzkina:</h4>
-	<form action="{% comment_form_target %}" method="post">{% csrf_token %}
-		<div><input type="hidden" name="next" value="{{request.path}}" /></div>
-		{% for field in form %}
-			{% if field.is_hidden %}
-				<div>{{ field }}</div>
-			{% else %}
-				{% if field.errors %}{{ field.errors }}{% endif %}
-			{% endif %}
-		{% endfor %}
-		<div class="form-group">
-		<textarea class="form-control" cols="40" id="id_comment" name="comment" rows="10"></textarea>
-		</div>
-        <p  style="display:none;">
-			<input id="id_honeypot" name="honeypot" type="text" />
-		</p>
-		<button type="submit" name="post" class="btn btn-primary">Bidali</button>
-		<!-- <input type="submit" name="preview" class="submit-preview" value="{% trans "Preview" %}" /> -->
-	</form>
+	{% if user.is_authenticated %}
+		<h4><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.getFullName}}</a> utzi iruzkina:</h4>
+		<form action="{% comment_form_target %}" method="post">{% csrf_token %}
+			<div><input type="hidden" name="next" value="{{request.path}}" /></div>
+			{% for field in form %}
+				{% if field.is_hidden %}
+					<div>{{ field }}</div>
+				{% else %}
+					{% if field.errors %}{{ field.errors }}{% endif %}
+				{% endif %}
+			{% endfor %}
+			<div class="form-group">
+			<textarea class="form-control" cols="40" id="id_comment" name="comment" rows="10"></textarea>
+			</div>
+	        <p  style="display:none;">
+				<input id="id_honeypot" name="honeypot" type="text" />
+			</p>
+			<button type="submit" name="post" class="btn btn-primary">Bidali</button>
+			<!-- <input type="submit" name="preview" class="submit-preview" value="{% trans "Preview" %}" /> -->
+		</form>
+	{% else %}
+		<p>Mesedez, <a href="{% url 'auth_login' %}?next={{request.path}}">sartu</a> iruzkina utzi ahal izateko.</p>
+	{% endif %}
 </div>
