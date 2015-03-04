@@ -196,7 +196,7 @@
                         {% endif %}
                     {% endif %}
                     {% if item.jokalariak.all %}
-                    <h3>Izen emateak <span class="badge">{{item.jokalariak_count}}</span></h3>
+                    <h3>Izen emateak ({{item.jokalariak_count}})</h3>
                     <div class="row">
                         {% for user in item.jokalariak.all %}
                             {% if forloop.first %}
