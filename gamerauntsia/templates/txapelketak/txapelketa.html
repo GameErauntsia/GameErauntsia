@@ -196,7 +196,7 @@
                         {% endif %}
                     {% endif %}
                 {% else %}
-                    {% if item.jokalariak.all and item.status in '1','2' %}
+                    {% if item.jokalariak.all and (item.status == '2' or item.status == '3') %}
                     <h3>Izen emateak ({{item.jokalariak_count}})</h3>
                     <div class="row">
                         {% for user in item.jokalariak.all %}
