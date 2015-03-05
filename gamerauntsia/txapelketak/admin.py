@@ -1,8 +1,20 @@
 from django.contrib import admin
+from django import forms
 from gamerauntsia.txapelketak.models import Txapelketa, Partida, Partaidea
 from gamerauntsia.gamer.models import GamerUser
 from forms import PartidaInlineForm, TxapelketaAdminForm
 from mptt.admin import MPTTModelAdmin
+
+class PartidaForm(forms.ModelForm): 
+    def __init__(self, *args, **kwargs):
+        super(PartidaForm, self).__init__(*args, **kwargs)
+        wtf = Partaidea.objects.filter(pk=self.instance.txapelketa_id);
+        w = self.fields['partaideak'].widget
+        choices = []
+        for choice in wtf:
+            choices.append((choice.id, choice.name))
+        w.choices = choices
+
 
 class PartidaAdmin(MPTTModelAdmin):
 
@@ -15,11 +27,7 @@ class PartidaAdmin(MPTTModelAdmin):
     search_fields = ['txapelketa__izena']
     list_filter = ('txapelketa',)
     ordering = ('-date',)
-
-    def formfield_for_manytomany(self, db_field, request, **kwargs):
-        if db_field.name == "partaideak":
-            kwargs["queryset"] = Partaidea.objects.filter(txapelketa=self.instance.txapelketa_id)
-        return super(PartidaAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
+    form = PartidaForm
 
 
 
