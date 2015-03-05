@@ -8,7 +8,7 @@ from mptt.admin import MPTTModelAdmin
 class PartidaForm(forms.ModelForm): 
     def __init__(self, *args, **kwargs):
         super(PartidaForm, self).__init__(*args, **kwargs)
-        wtf = Partaidea.objects.filter(pk=self.instance.txapelketa_id);
+        wtf = Partaidea.objects.filter(txapelketa=self.instance.txapelketa_id);
         w = self.fields['partaideak'].widget
         choices = []
         for choice in wtf:
