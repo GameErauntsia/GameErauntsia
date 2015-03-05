@@ -16,6 +16,11 @@ class PartidaAdmin(MPTTModelAdmin):
     list_filter = ('txapelketa',)
     ordering = ('-date',)
 
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "partaideak":
+             kwargs["queryset"] = Partaidea.objects.filter(txapelketa=self.txapelketa)
+        return super(PartidaAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
+
 
 
 class PartidaInline(admin.TabularInline):
