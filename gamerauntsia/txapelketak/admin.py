@@ -12,7 +12,7 @@ class PartidaForm(forms.ModelForm):
         w = self.fields['partaideak'].widget
         choices = []
         for choice in wtf:
-            choices.append((choice.id, choice.name))
+            choices.append((choice.id, choice.get_izena()))
         w.choices = choices
 
 
