@@ -16,9 +16,9 @@ class PartidaAdmin(MPTTModelAdmin):
     list_filter = ('txapelketa',)
     ordering = ('-date',)
 
-    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
         if db_field.name == "partaideak":
-             kwargs["queryset"] = Partaidea.objects.filter(txapelketa=self.txapelketa)
+            kwargs["queryset"] = Partaidea.objects.filter(txapelketa=self.txapelketa)
         return super(PartidaAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
 
