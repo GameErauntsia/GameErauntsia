@@ -195,8 +195,8 @@
                         <a class="btn btn-primary" href="{% url 'auth_login' %}?next={{item.get_absolute_url}}" title="Log in">{% trans 'Log in' %}</a>
                         {% endif %}
                     {% endif %}
-                {% else %}
-                    {% if item.insk_date|irekita or item.status == '1' or item.status == '2' %}
+                {% endif %}
+                {% if item.insk_date|irekita or item.status == '1' or item.status == '2' %}
                     {% if item.jokalariak.all %}
                     <h3>Izen emateak ({{item.jokalariak_count}})</h3>
                     <div class="row">
@@ -210,7 +210,8 @@
                         {% endfor %}
                     </div>
                     {% endif %}
-                    {% endif %}
+                {% endif %}
+                {% if not item.insk_date|irekita %}
                     <h3>Partaideak</h3>
                     {% for partaide in item.get_partaideak %}
                         {% if partaide.is_group %}
