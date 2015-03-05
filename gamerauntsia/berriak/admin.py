@@ -17,10 +17,10 @@ class BerriakAdmin(admin.ModelAdmin):
         return '<a href="/bloga/%s">%s</a>' % (obj.slug, obj.slug)
     preview.allow_tags=True
 
-    list_display = ('izenburua', 'preview', 'erabiltzailea', 'pub_date', 'mod_date', 'status','admin_thumbnail')
+    list_display = ('izenburua', 'preview', 'erabiltzailea', 'pub_date', 'mod_date', 'publikoa_da','status','admin_thumbnail')
     prepopulated_fields = {"slug": ("izenburua",)}
     filter_horizontal = ('gaia',)
-    list_filter = ('erabiltzailea', 'status')
+    list_filter = ('publikoa_da', 'status')
     search_fields = ['erabiltzailea__username','erabiltzailea__fullname','izenburua']
     raw_id_fields = ('argazkia','erabiltzailea')
     ordering = ('-pub_date',)
