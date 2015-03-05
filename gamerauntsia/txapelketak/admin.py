@@ -18,8 +18,8 @@ class PartidaAdmin(MPTTModelAdmin):
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         if db_field.name == "partaideak":
-            kwargs["queryset"] = Partaidea.objects.filter(txapelketa=self.txapelketa)
-        return super(PartidaAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
+            kwargs["queryset"] = Partaidea.objects.filter(txapelketa=self.instance.txapelketa_id)
+        return super(PartidaAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
 
 
 
