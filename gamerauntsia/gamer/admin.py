@@ -53,8 +53,8 @@ class GamerUserAdmin(UserAdmin):
     change_password_form = AdminPasswordChangeForm
 
     list_display = ('username','fullname','get_email','is_gamer','is_staff','is_active','date_joined')
-
     list_display_links = ('fullname','username')
+    list_filter = ('is_staff', 'is_superuser', 'is_active', 'buletin_notification', 'groups')
     search_fields = ['email','username','fullname']
     raw_id_fields = ('photo',)
 
