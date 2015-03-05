@@ -52,6 +52,16 @@ class TxapelketaAdmin(admin.ModelAdmin):
     form = TxapelketaAdminForm
     #inlines = [PartidaInline]
 
+class PartaideakForm(forms.ModelForm): 
+    def __init__(self, *args, **kwargs):
+        super(PartaideakForm, self).__init__(*args, **kwargs)
+        wtf = GamerUser.objects.filter(jokalariak=self.instance.txapelketa_id);
+        w = self.fields['jokalariak'].widget
+        choices = []
+        for choice in wtf:
+            choices.append((choice.id, choice.getFullName()))
+        w.choices = choices
+
 class PartaideakAdmin(admin.ModelAdmin):
 
     def get_izena(self, obj):
@@ -67,6 +77,7 @@ class PartaideakAdmin(admin.ModelAdmin):
     raw_id_fields = ('irudia',)
     search_fields = ['izena']
     ordering = ('-id',)
+    form = PartaideakForm
 
 admin.site.register(Txapelketa,TxapelketaAdmin)
 admin.site.register(Partida,PartidaAdmin)
