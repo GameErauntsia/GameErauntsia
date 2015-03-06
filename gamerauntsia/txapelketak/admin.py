@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django import forms
 from gamerauntsia.txapelketak.models import Txapelketa, Partida, Partaidea
-from gamerauntsia.gamer.models import GamerUser
 from forms import PartidaInlineForm, TxapelketaAdminForm
 from mptt.admin import MPTTModelAdmin
 
@@ -55,7 +54,9 @@ class TxapelketaAdmin(admin.ModelAdmin):
 class PartaideakForm(forms.ModelForm): 
     def __init__(self, *args, **kwargs):
         super(PartaideakForm, self).__init__(*args, **kwargs)
-        wtf = GamerUser.objects.filter(jokalariak=self.instance.txapelketa_id);
+        wtf = []
+        if Txapelketa.objects.filter(id=self.instance.txapelketa_id).exists():
+            wtf = Txapelketa.objects.get(id=self.instance.txapelketa_id).get_jokalariak()
         w = self.fields['jokalariak'].widget
         choices = []
         for choice in wtf:
