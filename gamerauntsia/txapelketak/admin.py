@@ -75,7 +75,7 @@ class PartaideakAdmin(admin.ModelAdmin):
 
     list_display = ('txapelketa', 'get_izena', 'win','lose', 'points')
     filter_horizontal = ('jokalariak',)
-    raw_id_fields = ('irudia',)
+    raw_id_fields = ('irudia','txapelketa')
     search_fields = ['izena']
     ordering = ('-id',)
     form = PartaideakForm
