@@ -50,8 +50,11 @@ class Txapelketa(models.Model):
     insk_date = models.DateTimeField('Izen ematea', default=datetime.now)
     shared = models.BooleanField(default=False)
 
+    def get_jokalariak(self):
+        return self.jokalariak.all()
+
     def jokalariak_count(self):
-        return self.jokalariak.all().count()
+        return self.get_jokalariak().count()
 
     def get_partaideak(self,order=None):
         if order:
