@@ -196,7 +196,7 @@
                         {% endif %}
                     {% endif %}
                 {% endif %}
-                {% if item.insk_date|irekita or item.status == '1' or item.status == '2' %}
+                {% if item.insk_date|irekita or item.status == '1' %}
                     {% if item.jokalariak.all %}
                     <h3>Izen emateak ({{item.jokalariak_count}})</h3>
                     <div class="row">
