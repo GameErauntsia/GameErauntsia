@@ -28,7 +28,7 @@
 	{% if forloop.counter == commentlist|length|add:-5 and comment_list|length > 5 %}
 	</div>
 	{% else %}
-	{% if forloop.first %}
+	{% if forloop.last %}
 	</div>
 	{% endif %}
 	{% endif %}
