@@ -5,7 +5,7 @@
 	<a id="collapse" class="pull-right" href="#more-comments">Erakutsi denak</a>
 	<h3>Iruzkinak</h3>
 	{% for comment in comment_list %}
-	{% if forloop.counter == forloop.last-5 and comment_list > 5 %}
+	{% if forloop.counter == commentlist|length-5 and comment_list|length > 5 %}
 	<div id="last-comments" style="display:none">
 	{% else %}
 	{% if forloop.first %}
@@ -25,7 +25,7 @@
 		    </div>
 		</div>
 	
-	{% if forloop.counter == forloop.last-5 and comment_list > 5 %}
+	{% if forloop.counter == commentlist|length-5 and comment_list|length > 5 %}
 	</div>
 	{% else %}
 	{% if forloop.first %}
