@@ -2,7 +2,7 @@
 
 <div id="comments">
 	<p id="iruzkinak"></p>
-	{% if comment_list|length > 5 %}<a id="collapse" class="pull-right" href="#more-comments">Erakutsi denak</a>{% endif %}
+	{% if comment_list|length > 5 %}<i class="glyphicon glyphicon-comment pull-right"></i> </i><a id="collapse" class="pull-right" href="#more-comments">Erakutsi denak</a>{% endif %}
 	<h3>Iruzkinak {% if comment_list %}({{comment_list|length}}){% endif %}</h3>
 	{% for comment in comment_list %}
 	{% if forloop.counter == comment_list|length|add:-5 and comment_list|length > 5 %}
