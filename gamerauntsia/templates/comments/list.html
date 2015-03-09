@@ -6,7 +6,7 @@
 	<h3>Iruzkinak</h3>
 	{% for comment in comment_list %}
 	{% if forloop.counter == comment_list|length|add:-5 and comment_list|length > 5 %}
-	<div id="last-comments" style="display:none">
+	<div id="last-comments">
 	{% else %}
 	{% if forloop.first and comment_list|length > 5 %}
 	<div id="more-comments" style="display:none">
@@ -25,12 +25,8 @@
 		    </div>
 		</div>
 	
-	{% if forloop.counter == comment_list|length|add:-5 and comment_list|length > 5 %}
-	</div>
-	{% else %}
 	{% if forloop.last and comment_list|length > 5 %}
-	</div>
-	{% endif %}
+	</div></div>
 	{% endif %}
 	{% endfor %}
 	
