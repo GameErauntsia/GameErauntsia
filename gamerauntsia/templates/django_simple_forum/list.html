@@ -59,7 +59,7 @@
                                     <td>{{forum.get_visits}}</td>
                                     <td>{{forum.created}}</td>
                                     <td>
-                                        {% if not forum|args:user|call:"has_seen" %}
+                                        {% if user.is_authenticated and not forum|args:user|call:"has_seen" %}
                                             <strong class="text-success"><span aria-hidden="true" class="glyphicon glyphicon-star-empty"></span> BERRIA</strong>
                                         {% endif %}
                                     </td>
