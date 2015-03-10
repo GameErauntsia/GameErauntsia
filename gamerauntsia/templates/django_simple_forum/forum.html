@@ -54,7 +54,7 @@
                         <td>{{topic.visits}}</td>
                         <td>{{topic.created}}</td>
                         <td>
-                            {% if topic.last_post.updated > user.last_login %}
+                            {% if topic|args:user|call:"has_seen" %}
                                 <strong class="text-success"><span aria-hidden="true" class="glyphicon glyphicon-star-empty"></span> BERRIA</strong>
                             {% endif %}
                         </td>
