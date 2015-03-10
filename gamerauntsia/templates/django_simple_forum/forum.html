@@ -54,7 +54,7 @@
                         <td>{{topic.visits}}</td>
                         <td>{{topic.created}}</td>
                         <td>
-                            {% if user.is_authenticated and not topic|args:user|call:"has_seen" %}
+                            {% if user.is_authenticated and not topic|args:user.id|call:"has_seen" %}
                                 <strong class="text-success"><span aria-hidden="true" class="glyphicon glyphicon-star-empty"></span> BERRIA</strong>
                             {% endif %}
                         </td>
