@@ -28,7 +28,7 @@
                         <th>Gaiak</th>
                         <th data-hide="phone">Mezuak</th>
                         <th>Azken mezua</th>
-                        <th data-hide="phone">Egilea</th>
+                        <th data-hide="phone">Bisitak</th>
                         <th data-hide="phone">Noiz sortua</th>
                         <th></th>
                     </tr>
@@ -51,7 +51,7 @@
                             </div>
                             {% endif %}
                         </td>
-                        <td>{{topic.creator}}</td>
+                        <td>{{topic.visits}}</td>
                         <td>{{topic.created}}</td>
                         <td>
                             {% if topic.last_post.updated > user.last_login %}
