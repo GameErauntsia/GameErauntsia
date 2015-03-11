@@ -62,7 +62,8 @@
         </div>
         <form action="{% url 'reset_topics' %}" method="POST">
             {% csrf_token %}
-            <input type="submit" class="btn btn-primary" value="Markatu foro guztiak irakurrita">
+            <input type="hidden" name="user" value="{{user.id}}"/>
+            <input type="submit" class="btn btn-default pull-right" value="Markatu foro guztiak irakurrita">
         </form>
         </div>
 </div>
