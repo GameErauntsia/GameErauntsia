@@ -208,14 +208,13 @@ def password_change_done(request,
 
 @login_required
 def reset_topics(request):
-    """ """
     user = request.user
     if request.method == 'POST':
         for t in Topic.objects.all():
             if t.user_lst:
                 lst = t.user_lst.split(',')
                 if str(user.id) not in lst:
-                    t.user_lst = lst+','+str(user.id)
+                    t.user_lst += ','+str(user.id)
             else:
                 t.user_lst = str(user.id)
             t.save()

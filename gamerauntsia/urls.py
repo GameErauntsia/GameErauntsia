@@ -39,7 +39,7 @@ urlpatterns = patterns('',
     (r'^agenda/', include('gamerauntsia.agenda.urls')),
 
     # FOROA
-    url(r'^foroa/reset-topics$', 'reset_topics', name='reset_topics'),
+    url(r'^foroa/reset-topics$', 'gamerauntsia.gamer.views.reset_topics', name='reset_topics'),
     url(r'^foroa/', include('django_simple_forum.urls')),
 
     # KONTAKTUA
