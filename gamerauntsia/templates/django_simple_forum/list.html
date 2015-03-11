@@ -24,13 +24,12 @@
                                     <th data-hide="phone">Mezuak</th>
                                     <th>Azken mezua</th>
                                     <th data-hide="phone">Bisitak</th>
-                                    <th data-hide="phone">Noiz sortua</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for forum in cat.get_forums %}
-                                <tr {% if forum.last_post.updated > user.last_login %}class="bg-success"{% endif %}>
+                                <tr {% if forum|check_seen:user %}class="bg-success"{% endif %}>
                                     <td>
                                         <div class="title">
                                             <img class="img-rounded" src="{{forum.icon.get_forum_thumbnail_url}}"/> <a href="{% url 'forum-detail' forum.slug %}">{{ forum.title }}</a>
@@ -49,9 +48,8 @@
                                         {% endif %}
                                     </td>
                                     <td>{{forum.get_visits}}</td>
-                                    <td>{{forum.created}}</td>
                                     <td>
-                                        {% if user.is_authenticated and not forum|args:user.id|call:"has_seen" %}
+                                        {% if forum|check_seen:user %}
                                             <strong class="text-success"><span aria-hidden="true" class="glyphicon glyphicon-star-empty"></span> BERRIA</strong>
                                         {% endif %}
                                     </td>

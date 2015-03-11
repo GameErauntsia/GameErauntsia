@@ -47,6 +47,7 @@
 
             {% paginate %}
         </div>
+        <p class="breadcrumb"><a href="/foroa">Denak</a>-><a href="{% url 'forum-detail' forum.slug %}">{{forum.title}}</a>-><strong>{{topic.title}}</strong></p>
 
         {% if request.user.is_authenticated %}
         <div class="row">
