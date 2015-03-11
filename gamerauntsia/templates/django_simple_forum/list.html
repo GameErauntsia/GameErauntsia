@@ -60,7 +60,10 @@
                     </div>
             {% endfor %}
         </div>
-    </div>
+        <form action="{% url 'reset_topics' %}" method="POST">
+            <input type="submit" class="btn btn-primary" value="Markatu foro guztiak irakurrita">
+        </form>
+        </div>
 </div>
 <script type="text/javascript">
 $(function () {

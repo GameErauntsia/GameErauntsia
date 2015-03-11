@@ -12,7 +12,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     (r'^robots.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: ", mimetype="text/plain")),
     url(r'^$', 'gamerauntsia.views.index', name='index'),
-    url(r'^lastlogin/$', 'gamerauntsia.gamer.views.lastlogin', name='gamer_lastlogin'),
+
     # GAMEPLAYAK
     url(r'^gameplayak/', include('gamerauntsia.gameplaya.urls')),
 
@@ -39,6 +39,7 @@ urlpatterns = patterns('',
     (r'^agenda/', include('gamerauntsia.agenda.urls')),
 
     # FOROA
+    url(r'^foroa/reset-topics$', 'reset_topics', name='reset_topics'),
     url(r'^foroa/', include('django_simple_forum.urls')),
 
     # KONTAKTUA

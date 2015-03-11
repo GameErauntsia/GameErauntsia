@@ -24,8 +24,7 @@ from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.forms import PasswordChangeForm
 from django.template.response import TemplateResponse
-from django_simple_forum.models import Category
-from django.utils import timezone
+from django_simple_forum.models import Category,Topic
 from django.forms.util import ErrorList
 from gamerauntsia.utils.urls import get_urlxml
 from gamerauntsia.zerbitzariak.views import set_user_whitelist
@@ -208,15 +207,19 @@ def password_change_done(request,
                             current_app=current_app)
 
 @login_required
-def lastlogin(request):
+def reset_topics(request):
     """ """
     user = request.user
     if request.method == 'POST':
-        user.last_login = timezone.now()
-        user.save(update_fields=['last_login'])
+        for t in Topic.objects.all():
+            if t.user_lst:
+                lst = t.user_lst.split(',')
+                if str(user.id) not in lst:
+                    t.user_lst += ','+str(user.id)
+            else:
+                t.user_lst = str(user.id)
+            t.save()
         return HttpResponseRedirect(reverse('forum-index'))
-    else:
-        lastloginform = LastloginForm(instance=user)
 
     categories = Category.objects.all().order_by('order')
     return render_to_response("django_simple_forum/list.html", {'categories': categories,
