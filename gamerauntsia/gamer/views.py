@@ -215,7 +215,7 @@ def reset_topics(request):
             if t.user_lst:
                 lst = t.user_lst.split(',')
                 if str(user.id) not in lst:
-                    t.user_lst += ','+str(user.id)
+                    t.user_lst = lst+','+str(user.id)
             else:
                 t.user_lst = str(user.id)
             t.save()
