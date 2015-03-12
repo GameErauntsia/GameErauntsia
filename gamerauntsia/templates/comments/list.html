@@ -2,13 +2,13 @@
 
 <div id="comments">
 	<p id="iruzkinak"></p>
-	{% if comment_list|length > 5 %}</i><a id="collapse" class="pull-right" href="#more-comments"><i class="glyphicon glyphicon-comment"></i> Erakutsi denak</a>{% endif %}
+	{% if comment_list|length > 6 %}</i><a id="collapse" class="pull-right" href="#more-comments"><i class="glyphicon glyphicon-comment"></i> Erakutsi denak</a>{% endif %}
 	<h3>Iruzkinak {% if comment_list %}({{comment_list|length}}){% endif %}</h3>
 	{% for comment in comment_list %}
-	{% if forloop.counter == comment_list|length|add:-5 and comment_list|length > 5 %}
+	{% if forloop.counter == comment_list|length|add:-5 and comment_list|length > 6 %}
 	</div><div id="last-comments">
 	{% else %}
-	{% if forloop.first and comment_list|length > 5 %}
+	{% if forloop.first and comment_list|length > 6 %}
 	<div id="more-comments" style="display:none">
 	{% endif %}
 	{% endif %}
@@ -47,5 +47,5 @@
 	        }
 	    });
 	});
-        </script>
+    </script>
 </div>
