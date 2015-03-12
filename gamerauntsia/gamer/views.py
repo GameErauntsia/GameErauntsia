@@ -296,8 +296,8 @@ def get_jokoak(request):
         for joko in jokoak:
             joko_json = {}
             joko_json['id'] = joko.id
-            joko_json['label'] = joko.izena + joko.bertsioa
-            joko_json['value'] = joko.izena + joko.bertsioa
+            joko_json['label'] = joko.izena + ' ' + joko.bertsioa
+            joko_json['value'] = joko.izena + ' ' + joko.bertsioa
             results.append(joko_json)
         data = json.dumps(results)
     else:
