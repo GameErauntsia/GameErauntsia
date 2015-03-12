@@ -22,10 +22,13 @@
             <hr>
             <div class="col-lg-12">
             {% for joko in user.top_jokoak.all %}
+                {% if forloop.first %}<div class="row">{% endif %}
                 <div class="col-lg-3 text-center">
                     <img class="img-responsive center-block" src="{{joko.get_photo.get_newsprofile_url}}" alt="" />
                     <h3>{{joko.izena}} {{joko.bertsioa}}</h3>
                 </div>
+                {% if forloop.counter|divisibleby:4 %}</div><div class="row">{% endif %}
+                {% if forloop.last %}</div>{% endif %}
             {% empty %}
             {% endfor %}
             </div>
