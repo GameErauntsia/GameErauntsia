@@ -178,9 +178,9 @@ hr.dotted {
   list-style: none;
 }
 
-table#id_body_tbl {
+/*table#id_body_tbl {
   width: 100% !important;
-}
+}*/
 
 #tweetstreaming {
   border: 1px solid #efefef;

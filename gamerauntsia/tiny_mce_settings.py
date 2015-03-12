@@ -9,7 +9,7 @@ TINYMCE_BODY_CONFIG = {
     "theme_advanced_buttons3" : "",
     "theme_advanced_toolbar_location" : "top",
     "theme_advanced_toolbar_align" : "left",
-    "plugins" : "paste",
+    "plugins" : "paste, autoresize",
     "paste_auto_cleanup_on_paste" : True,
     "paste_use_dialog" : False,
     "forced_root_block" : "",
@@ -17,8 +17,9 @@ TINYMCE_BODY_CONFIG = {
     "force_p_newlines" : False,
     "content_css" : "/static/css/stylehtmleditor.css",
     "extended_valid_elements" : "object[width|height|classid|codebase],param[name|value],embed[src|type|width|height|flashvars|wmode],iframe[src|name|width|height|align|frameborder|marginwidth|marginheight|scrolling],audio[controls=],source[src|type]",
-    "width" : 1000,
-    "height" : 900,
+    "width" : '100%',
+    "height" : '100%',
+    'theme_advanced_resizing' : True,
 }
 
 TINYMCE_SMALL_BODY_CONFIG = {
@@ -32,7 +33,7 @@ TINYMCE_SMALL_BODY_CONFIG = {
     "theme_advanced_buttons3" : "",
     "theme_advanced_toolbar_location" : "top",
     "theme_advanced_toolbar_align" : "left",
-    "plugins" : "paste",
+    "plugins" : "paste, autoresize",
     "paste_auto_cleanup_on_paste" : True,
     "paste_use_dialog" : False,
     "forced_root_block" : "",
@@ -40,4 +41,5 @@ TINYMCE_SMALL_BODY_CONFIG = {
     "force_p_newlines" : False,
     "content_css" : "/static/css/stylehtmleditor.css",
     "extended_valid_elements" : "object[width|height|classid|codebase],param[name|value],embed[src|type|width|height|flashvars|wmode],iframe[src|name|width|height|align|frameborder|marginwidth|marginheight|scrolling],audio[controls=],source[src|type]",
+    'theme_advanced_resizing' : True,
 }
