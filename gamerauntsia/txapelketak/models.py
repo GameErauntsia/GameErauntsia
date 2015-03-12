@@ -56,6 +56,21 @@ class Txapelketa(models.Model):
     def jokalariak_count(self):
         return self.get_jokalariak().count()
 
+    def get_single_gamers(self):
+        singles = []
+        gamers = self.get_jokalariak()
+        teams = self.get_partaideak()
+        for gamer in gamers:
+            has_team = False
+            for team in teams:
+                if gamer in team.jokalariak.all():
+                    has_team = True
+                if has_team:
+                    break
+            if not has_team:
+                singles.append(gamer)
+        return singles
+
     def get_partaideak(self,order=None):
         if order:
             return Partaidea.objects.filter(txapelketa=self).order_by(order)
