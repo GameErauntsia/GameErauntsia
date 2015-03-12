@@ -28,6 +28,9 @@ from django_simple_forum.models import Category,Topic
 from django.forms.util import ErrorList
 from gamerauntsia.utils.urls import get_urlxml
 from gamerauntsia.zerbitzariak.views import set_user_whitelist
+from django.http import HttpResponse
+import json
+
 
 def update_session_auth_hash(request, user):
     """
@@ -282,3 +285,22 @@ def add_event(request):
     else:
         eventform = EventForm()
     return render_to_response('profile/add_event.html', locals(), context_instance=RequestContext(request))
+
+
+def get_jokoak(request):
+    if request.is_ajax():
+        q = request.GET.get('term', '')
+        jokoak = Jokoa.objects.filter(izena__contains = q )[:20]
+        # jokoak = Jokoa.objects.all().order_by('izena')
+        results = []
+        for joko in jokoak:
+            joko_json = {}
+            joko_json['id'] = joko.id
+            joko_json['label'] = joko.izena
+            joko_json['value'] = joko.izena
+            results.append(joko_json)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)
