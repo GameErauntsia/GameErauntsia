@@ -14,7 +14,8 @@
                     {% csrf_token %}
                     <div class="ui-widget">
                         <label for="game-picker">Jokoa: </label>
-                        <input id="game-picker" value="" name="top_jokoak"></input>
+                        <input id="game-picker"></input>
+                        <input type="hidden" id="balioa" value="" name="top_jokoak"></input>
                     </div>
                     {{topform.as_p}}
                     <input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
