@@ -24,11 +24,13 @@ from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.forms import PasswordChangeForm
 from django.template.response import TemplateResponse
-from django_simple_forum.models import Category
-from django.utils import timezone
+from django_simple_forum.models import Category,Topic
 from django.forms.util import ErrorList
 from gamerauntsia.utils.urls import get_urlxml
 from gamerauntsia.zerbitzariak.views import set_user_whitelist
+from django.http import HttpResponse
+import json
+
 
 def update_session_auth_hash(request, user):
     """
@@ -154,9 +156,10 @@ def edit_top_games(request):
             return HttpResponseRedirect(reverse('edit_profile_top'))
     else:
         topform = TopForm(instance=user)
-        lagunak = GamerUser.objects.filter(top_jokoak__in=user.top_jokoak.all()).exclude(id=user.id).distinct().order_by('-karma')[:15]
-        topjokoak = GamerUser.objects.values('top_jokoak__izena').annotate(Count('top_jokoak')).order_by('-top_jokoak__count','-top_jokoak__izena')[:10]
 
+    lagunak = GamerUser.objects.filter(top_jokoak__in=user.top_jokoak.all()).exclude(id=user.id).distinct().order_by('-karma')[:10]
+    topjokoak = GamerUser.objects.values('top_jokoak__izena').annotate(Count('top_jokoak')).order_by('-top_jokoak__count','-top_jokoak__izena')[:10]
+    jokoak = user.top_jokoak.all().count()
     return render_to_response('profile/edit_top_games.html', locals(), context_instance=RequestContext(request))
 
 @sensitive_post_parameters()
@@ -208,15 +211,18 @@ def password_change_done(request,
                             current_app=current_app)
 
 @login_required
-def lastlogin(request):
-    """ """
+def reset_topics(request):
     user = request.user
     if request.method == 'POST':
-        user.last_login = timezone.now()
-        user.save(update_fields=['last_login'])
+        for t in Topic.objects.all():
+            if t.user_lst:
+                lst = t.user_lst.split(',')
+                if str(user.id) not in lst:
+                    t.user_lst += ','+str(user.id)
+            else:
+                t.user_lst = str(user.id)
+            t.save()
         return HttpResponseRedirect(reverse('forum-index'))
-    else:
-        lastloginform = LastloginForm(instance=user)
 
     categories = Category.objects.all().order_by('order')
     return render_to_response("django_simple_forum/list.html", {'categories': categories,
@@ -280,3 +286,22 @@ def add_event(request):
     else:
         eventform = EventForm()
     return render_to_response('profile/add_event.html', locals(), context_instance=RequestContext(request))
+
+
+def get_jokoak(request):
+    if request.is_ajax():
+        q = request.GET.get('term', '')
+        jokoak = Jokoa.objects.filter(izena__icontains = q )[:20]
+        # jokoak = Jokoa.objects.all().order_by('izena')
+        results = []
+        for joko in jokoak:
+            joko_json = {}
+            joko_json['id'] = joko.id
+            joko_json['label'] = joko.izena + ' ' + joko.bertsioa
+            joko_json['value'] = joko.izena + ' ' + joko.bertsioa
+            results.append(joko_json)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)

@@ -12,7 +12,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     (r'^robots.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: ", mimetype="text/plain")),
     url(r'^$', 'gamerauntsia.views.index', name='index'),
-    url(r'^lastlogin/$', 'gamerauntsia.gamer.views.lastlogin', name='gamer_lastlogin'),
+
     # GAMEPLAYAK
     url(r'^gameplayak/', include('gamerauntsia.gameplaya.urls')),
 
@@ -39,6 +39,7 @@ urlpatterns = patterns('',
     (r'^agenda/', include('gamerauntsia.agenda.urls')),
 
     # FOROA
+    url(r'^foroa/reset-topics$', 'gamerauntsia.gamer.views.reset_topics', name='reset_topics'),
     url(r'^foroa/', include('django_simple_forum.urls')),
 
     # KONTAKTUA
@@ -80,6 +81,9 @@ urlpatterns = patterns('',
     #ERABILERA ETA PRIBATUTASUNA
     (r'^erabilera-baldintzak/$', TemplateView.as_view(template_name='erabilera_baldintzak.html')),
     (r'^pribatutasun-politika/$', TemplateView.as_view(template_name='pribatutasun_politika.html')),
+
+    url(r'^api/get_jokoak/', 'gamerauntsia.gamer.views.get_jokoak', name='get_jokoak'),
+
 )
 
 
