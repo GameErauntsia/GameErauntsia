@@ -291,7 +291,7 @@ def get_jokoak(request):
     if request.is_ajax():
         q = request.GET.get('term', '')
         jokoak = Jokoa.objects.filter(izena__contains = q )[:20]
-        # jokoak = Jokoa.objects.all().order_by('izena')
+
         results = []
         for joko in jokoak:
             joko_json = {}
