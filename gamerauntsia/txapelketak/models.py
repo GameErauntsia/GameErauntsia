@@ -33,6 +33,7 @@ class Txapelketa(models.Model):
     slug = models.SlugField(db_index=True, unique=True, help_text="Eremu honetan kategoria honen URL helbidea zehazten ari zara.")
     desk = models.TextField(max_length=256,null=True,blank=True)
     arauak = models.TextField(max_length=256,null=True,blank=True)
+    saria = models.TextField(max_length=256,null=True,blank=True)
     irudia = models.ForeignKey(Photo,null=True,blank=True)
     mota = models.CharField(max_length=1, choices=MOTA, default='0')
     modalitatea = models.CharField(max_length=1, choices=MODALITATEA, default='0')

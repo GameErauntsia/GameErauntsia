@@ -219,7 +219,7 @@
                                     <div class="panel panel-success">
                                         <div class="panel-heading">
                                             <h3 class="panel-title">
-                                            {% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-thumbnail"/> {% endif %}
+                                            {% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-thumbnail  "/> {% endif %}
                                             {{partaide.get_izena}}
                                             </h3>
                                         </div>
@@ -272,6 +272,16 @@
                 <p><i class="glyphicon glyphicon-align-justify"></i> <strong>{{item.get_mota_display}}</strong></p>
                 <p><i class="glyphicon glyphicon-dashboard"></i> {{item.get_modalitatea_display}}</p>
             </div>
+
+            <div class="well">
+                <h3>Saria</h3>
+                {% if item.saria %}
+                <p>{{item.saria|safe}}</p>
+                {% else %}
+                <p>Oraingo honetan ez dago saririk...</p>
+                {% endif %}
+            </div>
+
             <div class="well">
                 <h3>Arauak</h3>
                 {{item.arauak|safe}}
