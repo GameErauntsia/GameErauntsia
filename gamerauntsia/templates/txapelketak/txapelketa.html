@@ -116,7 +116,7 @@
                         </div>
                         <div class="panel-body">
                             {% for partaide in part.partaideak.all %}
-                            <p><img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-circle"/> {{partaide.get_izena}}</p>
+                            <p>{% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-circle"/> {% endif %}{{partaide.get_izena}}</p>
                             {%if not forloop.last %}
                             <p><img src="{{STATIC_URL}}img/versus.png"/></p>
                             {% endif %}
@@ -196,7 +196,6 @@
                         {% endif %}
                     {% endif %}
                 {% endif %}
-
 
                 <h3>Partaideak ({{item.jokalariak_count}})</h3>
                 {% if item.modalitatea == '1' %}

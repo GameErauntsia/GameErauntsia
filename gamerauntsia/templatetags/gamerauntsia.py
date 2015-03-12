@@ -22,6 +22,14 @@ def regform(request):
 register.simple_tag(regform)
 
 def steam_panel():
-    steam_group = dict(dict(get_urlxml('http://steamcommunity.com/groups/gamerauntsia/memberslistxml/')['memberList'])['groupDetails'])
-    return {'steam_group': steam_group}
+    try:
+        steam_group = dict(dict(get_urlxml('http://steamcommunity.com/groups/gamerauntsia/memberslistxml/')['memberList'])['groupDetails'])
+        return {'steam_group': steam_group}
+    except:
+        return {'steam_group': None}
 register.inclusion_tag('steam_panel.html')(steam_panel)
+
+@register.filter
+def check_seen(obj,user):
+    return obj.has_seen(user)
+

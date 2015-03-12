@@ -9,12 +9,28 @@
     </div>
     <div class="col-lg-12">
         <div class="col-lg-8">
-            <div class="profileform">
-                <form class="form-horizontal" action="{{request.path}}" method="POST">
+            <div class="col-lg-12">
+                <form class="pull-right" action="{{request.path}}" method="POST">
                     {% csrf_token %}
+                    <div class="ui-widget">
+                        <input placeholder="Bilatu jokoa" id="game-picker"></input>
+                        <input type="submit" class="btn btn-primary" value="{% trans 'Save' %}"></input>
+                    </div>
                     {{topform.as_p}}
-                    <input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
                 </form>
+            </div>
+            <hr>
+            <div class="col-lg-12">
+            {% for joko in user.top_jokoak.all %}
+                {% if forloop.first %}<div class="row">{% endif %}
+                <div class="col-lg-3 text-center">
+                    <img class="img-responsive center-block" src="{{joko.get_photo.get_newsprofile_url}}" alt="" />
+                    <h3>{{joko.izena}} {{joko.bertsioa}}</h3>
+                </div>
+                {% if forloop.counter|divisibleby:4 %}</div><div class="row">{% endif %}
+                {% if forloop.last %}</div>{% endif %}
+            {% empty %}
+            {% endfor %}
             </div>
         </div>
         <div class="col-lg-4">
@@ -45,4 +61,17 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+$(function() {
+    $("#game-picker").autocomplete({
+        source: "/api/get_jokoak/",
+        minLength: 2,
+        select: function(event, ui) {
+            // $('#balioa').val( $(ui).val());
+            $('<input type="hidden" value="'+ui.item.id+'" name="top_jokoak" id="id_top_jokoak_{{jokoak}}">').insertAfter('#id_top_jokoak_{{jokoak|add:-1}}');
+        }
+    });
+});
+</script>
+
 {% endblock %}

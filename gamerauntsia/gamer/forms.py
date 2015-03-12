@@ -54,7 +54,7 @@ class TopForm(forms.ModelForm):
     top_jokoak = forms.ModelMultipleChoiceField(queryset=Jokoa.objects.all().order_by('izena','bertsioa'),
                                           label='',
                                           required=False,
-                                          widget=forms.CheckboxSelectMultiple())
+                                          widget=forms.MultipleHiddenInput())
 
     class Meta:
         model = GamerUser
@@ -65,12 +65,6 @@ class GameForm(forms.ModelForm):
     class Meta:
         model = JokuPlataforma
         fields = ('plataforma','nick')
-
-class LastloginForm(forms.ModelForm):
-
-    class Meta:
-        model = GamerUser
-        fields = ('last_login',)
 
 
 class GamePlayForm(forms.ModelForm):
