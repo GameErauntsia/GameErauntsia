@@ -7,15 +7,15 @@
         <h2>Joko gustokoenak</h2>
         <p>Zehaztu hemen zein diren zure joko gustukoenak edo gehien erabiltzen dituzunak. Datu hauek erabiliko ditugu zure interes berdinak dituzten jokalariak aurkezteko.</p>
     </div>
-    <div class="ui-widget">
-  <label for="drugs">Jokoa: </label>
-  <input id="drugs">
-</div>
     <div class="col-lg-12">
         <div class="col-lg-8">
             <div class="profileform">
                 <form class="form-horizontal" action="{{request.path}}" method="POST">
                     {% csrf_token %}
+                    <div class="ui-widget">
+                        <label for="game-picker">Jokoa: </label>
+                        <input id="game-picker" value="" name="top_jokoak"></input>
+                    </div>
                     {{topform.as_p}}
                     <input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
                 </form>
@@ -51,8 +51,7 @@
 </div>
 <script type="text/javascript">
 $(function() {
-    console.log("xie");
-  $("#drugs").autocomplete({
+  $("#game-picker").autocomplete({
     source: "/api/get_jokoak/",
     minLength: 2,
   });
