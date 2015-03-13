@@ -117,7 +117,7 @@
                 <h2>Izen ematea</h2>
                 {% if user.is_authenticated %}
                     {% if user.is_mc_gamer %}
-                        <p class="text-success">Mila esker <strong>{{user.getFullName}}!</strong> Zerbitzarian parte hartzeko zerrendan sartu zara. Ordu batzuren buruan jolasteko moduan izango zara! Beharrezko baimenak emateko lanean gabiltza. Eskerrik asko eta izan pazientzia pixkat!</p>
+                        <p class="text-success">Mila esker <strong>{{user.getFullName}}!</strong> Zerbitzarian parte hartzeko zerrendan sartu zara. Hemendik aurrera jolasteko moduan izango zara! Eskerrik asko parte hartzeagatik! Arazoren bat baduzu, <a href="{% url 'kontaktua' %}">jarri gurekin harremanetan</a>.</p>
                     {% else %}
                         {% if user.has_mc_platform %}
                         <form action="{% url 'minecraft_add' %}" method="POST">
