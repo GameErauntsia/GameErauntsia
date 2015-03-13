@@ -36,10 +36,10 @@
     				<a href="{% url 'gamer_guestprofile' user_prof.username %}"><img src="{{user_prof.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive"></a>
     			</div>
     			<div class="col-xs-12 col-sm-8">
-    				<h2>
+    				<h4>
     					<a href="{% url 'gamer_guestprofile' user_prof.username %}">{{user_prof.getFullName}}
     					</a>
-    				</h2>
+    				</h4>
                     <p>
                         {% if user_prof.karma %}<i class="glyphicon glyphicon-flash" style="color:#E1E100"></i> <abbr title="Karma">{{user_prof.karma}}</abbr>{% endif %}
                     	{% if user_prof.twitter_id or user_prof.nickname %}
@@ -65,10 +65,10 @@
     				<a href="{% url 'gamer_guestprofile' user_prof.username %}"><img src="{{user_prof.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive"></a>
     			</div>
     			<div class="col-xs-12 col-sm-8">
-    				<h2>
+    				<h4>
     					<a href="{% url 'gamer_guestprofile' user_prof.username %}">{{user_prof.getFullName}}
     					</a>
-    				</h2>
+    				</h4>
                     <p>
                         {% if user_prof.karma %}<i class="glyphicon glyphicon-flash" style="color:#E1E100"></i> <abbr title="Karma">{{user_prof.karma}}</abbr>{% endif %}
                     	{% if user_prof.twitter_id or user_prof.nickname %}
