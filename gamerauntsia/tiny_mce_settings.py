@@ -17,9 +17,9 @@ TINYMCE_BODY_CONFIG = {
     "force_p_newlines" : False,
     "content_css" : "/static/css/stylehtmleditor.css",
     "extended_valid_elements" : "object[width|height|classid|codebase],param[name|value],embed[src|type|width|height|flashvars|wmode],iframe[src|name|width|height|align|frameborder|marginwidth|marginheight|scrolling],audio[controls=],source[src|type]",
-    "width" : '100%',
-    "height" : '100%',
-    'theme_advanced_resizing' : True,
+    "theme_advanced_resizing" : True,
+    "editor_selector" : "my_tinymce",
+    "height" : "300px"
 }
 
 TINYMCE_SMALL_BODY_CONFIG = {
