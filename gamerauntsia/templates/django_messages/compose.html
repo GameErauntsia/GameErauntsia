@@ -37,4 +37,18 @@
       </div>
   </form>
 </div>
+
+<script type="text/javascript">
+$(function() {
+    $("#id_recipient").autocomplete({
+        source: "{% url 'messages_ajaxuser' %}",
+        minLength: 2,
+        select: function(event, ui) {
+            $('#id_recipient').val(ui.item.value);
+        }
+    });
+});
+</script>
+
+{% endblock %}
 {% endblock %}
