@@ -25,9 +25,14 @@
                         <a id="{{post.id}}"></a>
                         <h3><a href="/foroa/{{forum.slug}}{{post.get_absolute_url}}">#</a> {{post.title}}
                         {% if request.user.is_authenticated %}
-                        {% if not topic.closed %}
-                        <a class="btn btn-default pull-right" href="{% url 'reply' forum.slug pk %}?author={{post.creator}}&quote={{post.body|truncatewords:30}}">Zitatu</a>
+                        <div class="btn-group pull-right" role="group" aria-label="...">
+                        {% if request.user.is_superuser %}
+                        <a class="btn btn-default" href="/kudeatu/django_simple_forum/post/{{post.id}}">Editatu</a>
                         {% endif %}
+                        {% if not topic.closed %}
+                        <a class="btn btn-default" href="{% url 'reply' forum.slug pk %}?author={{post.creator}}&quote={{post.body|truncatewords:30}}">Zitatu</a>
+                        {% endif %}
+                        </div>
                         {% endif %}
                         </h3>
                         <p>{{post.body|safe|urlize|emoticons}}</p>
