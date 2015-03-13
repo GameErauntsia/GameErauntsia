@@ -82,7 +82,7 @@ urlpatterns = patterns('',
     (r'^erabilera-baldintzak/$', TemplateView.as_view(template_name='erabilera_baldintzak.html')),
     (r'^pribatutasun-politika/$', TemplateView.as_view(template_name='pribatutasun_politika.html')),
 
-    url(r'^api/get_jokoak/', 'gamerauntsia.gamer.views.get_jokoak', name='get_jokoak'),
+    url(r'^ajax/get_jokoak/', 'gamerauntsia.gamer.views.get_jokoak', name='get_jokoak'),
 
 )
 
