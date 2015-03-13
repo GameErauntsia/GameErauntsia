@@ -15,6 +15,7 @@ class JokoaAdmin(admin.ModelAdmin):
 
     list_display = ('izena','bertsioa','url','slug', 'admin_thumbnail' )
     prepopulated_fields = {"slug": ("izena","bertsioa")}
+    search_fields = ['izena',]
     ordering = ('izena','bertsioa')
 
     fieldsets = (
