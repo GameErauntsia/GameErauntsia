@@ -8,6 +8,7 @@ from django.template import RequestContext
 from django.shortcuts import get_object_or_404
 from django.conf import settings
 from django.db.models import Count
+from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from gamerauntsia.utils.images import handle_uploaded_file
@@ -61,7 +62,8 @@ def profile(request,username):
 
 
 def community(request):
-    users = GamerUser.objects.filter(is_active=True).order_by('-date_joined')[:9]
+    users = GamerUser.objects.filter(is_active=True).order_by('-date_joined')
+    user_rows = int(round(len(users) / 3))
     gurus = GamerUser.objects.filter(is_active=True,is_staff=False).order_by('-karma','-date_joined')[:9]
     return render_to_response('gamer/community.html', locals(),context_instance=RequestContext(request))
 
@@ -300,6 +302,27 @@ def get_jokoak(request):
             joko_json['label'] = joko.izena + ' ' + joko.bertsioa
             joko_json['value'] = joko.izena + ' ' + joko.bertsioa
             results.append(joko_json)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)
+
+def get_user(request):
+    if request.is_ajax():
+        q = request.GET.get('term', '')
+        users = GamerUser.objects.filter(Q(username__icontains = q)|Q(fullname__icontains=q)|Q(twitter_id__icontains=q)|Q(nickname__icontains=q))[:20]
+        results = []
+        for user in users:
+            user_json = {}
+            user_json['id'] = user.id
+            if user.fullname:
+                label = user.fullname+' ('+user.username+')'
+            else:
+                label = user.username
+            user_json['label'] = label
+            user_json['value'] = user.username
+            results.append(user_json)
         data = json.dumps(results)
     else:
         data = 'fail'

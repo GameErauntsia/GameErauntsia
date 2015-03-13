@@ -51,9 +51,24 @@
         {% if forloop.last %}</div>{% endif %}
         {% endfor %}
 
-        <h2>Taldera sartu diren azkenak</h2>
+        <h2 id="community-title">Taldera sartu diren azkenak</h2>
+        <div class="col-md-12">
+            {% if user_rows > 6 %}<a id="collapse" class="pull-right" href="#more-comments"><i class="glyphicon glyphicon-eye-open"></i> Erakutsi denak</a>{% endif %}
+        </div>
+
         {% for user_prof in users %}
+
+        {% if forloop.counter == 10 and user_rows > 6 %}
+        </div></div><div id="more-comments" style="display:none"><div class="row">
+        {% else %}
+        {% if forloop.first and user_rows > 6 %}
+        <div id="last-comments">
+        {% endif %}
+        {% endif %}
+
         {% if forloop.first %}<div class="row">{% endif %}
+
+
         <div class="col-md-4 portfolio-item">
     	    <div class="row">
     	        <div class="col-xs-4 text-center">
@@ -72,11 +87,53 @@
     	  	</div>
         </div>
         {% if forloop.counter|divisibleby:3 %}</div><hr/><div class="row">{% endif %}
-        {% if forloop.last %}</div>{% endif %}
+
+        {% if forloop.last and user_rows > 6 %}
+        </div></div>
+        {% endif %}
+
         {% endfor %}
     </div>
+    <script>
+        $('#collapse').click(function () {
+            //get collapse content selector
+            var collapse_content_selector = $(this).attr('href');
+
+            //make the collapse content to be shown or hide
+            var toggle_switch = $(this);
+            $(collapse_content_selector).toggle(function () {
+                if ($(this).css('display') == 'none') {
+                    //change the button label to be 'Show'
+                    $('#community-title').html('<h2 id="community-title">Taldera sartu diren azkenak</h2>');
+                    toggle_switch.html('<i class="glyphicon glyphicon-eye-open"></i> Erakutsi denak');
+                } else {
+                    //change the button label to be 'Hide'
+                    $('#community-title').html('<h2 id="community-title">Komunitate osoa ({{users|length}})</h2>');
+                    toggle_switch.html('<i class="glyphicon glyphicon-eye-close"></i> Ezkutatu gehienak');
+                }
+            });
+        });
+    </script>
     <div class="col-lg-4">
         {% steam_panel %}
+        <div class="well">
+            <h2>Bilatu jokalaria</h2>
+            <form id="findgamer" action="">
+                <input type="text" id="gamer" placeholder="Bilatu jokalaria"/>
+                <input type="submit" class="btn btn-default" value="Bilatu" />
+            </form>
+            <script type="text/javascript">
+            $(function() {
+                $("#gamer").autocomplete({
+                    source: "{% url 'ajax_user' %}",
+                    minLength: 2,
+                    select: function(event, ui) {
+                        $('#findgamer').attr("action","/komunitatea/"+ui.item.value);
+                    }
+                });
+            });
+            </script>
+        </div>
         <div class="well commentform">
             <div class="fb-like-box" data-href="https://www.facebook.com/Gamerauntsia" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
         </div>
