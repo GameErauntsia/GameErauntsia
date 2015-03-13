@@ -32,10 +32,10 @@
         {% if forloop.first %}<div class="row">{% endif %}
         <div class="col-md-4 portfolio-item">
     	    <div class="row">
-    	        <div class="col-xs-12 col-sm-4 text-center">
+    	        <div class="col-xs-4 text-center">
     				<a href="{% url 'gamer_guestprofile' user_prof.username %}"><img src="{{user_prof.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive"></a>
     			</div>
-    			<div class="col-xs-12 col-sm-8">
+    			<div class="col-xs-8">
     				<h4>
     					<a href="{% url 'gamer_guestprofile' user_prof.username %}">{{user_prof.getFullName}}
     					</a>
@@ -56,10 +56,10 @@
         {% if forloop.first %}<div class="row">{% endif %}
         <div class="col-md-4 portfolio-item">
     	    <div class="row">
-    	        <div class="col-xs-12 col-sm-4 text-center">
+    	        <div class="col-sm-4 text-center">
     				<a href="{% url 'gamer_guestprofile' user_prof.username %}"><img src="{{user_prof.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive"></a>
     			</div>
-    			<div class="col-xs-12 col-sm-8">
+    			<div class="col-xs-8">
     				<h4>
     					<a href="{% url 'gamer_guestprofile' user_prof.username %}">{{user_prof.getFullName}}
     					</a>
