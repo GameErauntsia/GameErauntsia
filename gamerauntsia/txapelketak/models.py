@@ -33,6 +33,7 @@ class Txapelketa(models.Model):
     slug = models.SlugField(db_index=True, unique=True, help_text="Eremu honetan kategoria honen URL helbidea zehazten ari zara.")
     desk = models.TextField(max_length=256,null=True,blank=True)
     arauak = models.TextField(max_length=256,null=True,blank=True)
+    saria = models.TextField(max_length=256,null=True,blank=True)
     irudia = models.ForeignKey(Photo,null=True,blank=True)
     mota = models.CharField(max_length=1, choices=MOTA, default='0')
     modalitatea = models.CharField(max_length=1, choices=MODALITATEA, default='0')
@@ -55,6 +56,21 @@ class Txapelketa(models.Model):
 
     def jokalariak_count(self):
         return self.get_jokalariak().count()
+
+    def get_single_gamers(self):
+        singles = []
+        gamers = self.get_jokalariak()
+        teams = self.get_partaideak()
+        for gamer in gamers:
+            has_team = False
+            for team in teams:
+                if gamer in team.jokalariak.all():
+                    has_team = True
+                if has_team:
+                    break
+            if not has_team:
+                singles.append(gamer)
+        return singles
 
     def get_partaideak(self,order=None):
         if order:
@@ -164,7 +180,7 @@ class Partida(MPTTModel):
 
     txapelketa = models.ForeignKey(Txapelketa)
     gameplaya = models.ForeignKey(GamePlaya,null=True,blank=True)
-    date = models.DateTimeField('Data', default=datetime.now)
+    date = models.DateTimeField('Data',null=True,blank=True)
 
     def get_izena(self):
         if self.partaideak.all():
