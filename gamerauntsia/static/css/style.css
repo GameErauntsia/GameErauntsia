@@ -257,3 +257,6 @@ background: transparent url('http://cdn.steampowered.com/favicon.ico') 0 0 no-re
 .steam-group-label {
 padding: 0 7px 0 26px;
 }
+.my_tinymce {
+  height: 150px;
+}
