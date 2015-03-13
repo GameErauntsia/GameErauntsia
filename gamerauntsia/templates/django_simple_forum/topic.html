@@ -61,6 +61,9 @@
                 <div class="alert alert-warning pull-right" role="alert"><strong>Berandu!</strong> Gai hau dagoeneko itxita dago...</div>
                 {% else %}
                 <a class="btn btn-primary pull-right" href="{% url 'reply' forum.slug pk %}">Erantzun</a>
+                {% if user.is_superuser %}
+                <a class="btn btn-default pull-right" href="{% url 'close-topic' forum.slug pk %}">Itxi gaia</a>
+                {% endif %}
                 {% endif %}
             </div>
         </div>
