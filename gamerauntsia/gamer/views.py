@@ -156,9 +156,10 @@ def edit_top_games(request):
             return HttpResponseRedirect(reverse('edit_profile_top'))
     else:
         topform = TopForm(instance=user)
-        lagunak = GamerUser.objects.filter(top_jokoak__in=user.top_jokoak.all()).exclude(id=user.id).distinct().order_by('-karma')[:15]
-        topjokoak = GamerUser.objects.values('top_jokoak__izena').annotate(Count('top_jokoak')).order_by('-top_jokoak__count','-top_jokoak__izena')[:10]
 
+    lagunak = GamerUser.objects.filter(top_jokoak__in=user.top_jokoak.all()).exclude(id=user.id).distinct().order_by('-karma')[:10]
+    topjokoak = GamerUser.objects.values('top_jokoak__izena').annotate(Count('top_jokoak')).order_by('-top_jokoak__count','-top_jokoak__izena')[:10]
+    jokoak = user.top_jokoak.all().count()
     return render_to_response('profile/edit_top_games.html', locals(), context_instance=RequestContext(request))
 
 @sensitive_post_parameters()
@@ -290,14 +291,14 @@ def add_event(request):
 def get_jokoak(request):
     if request.is_ajax():
         q = request.GET.get('term', '')
-        jokoak = Jokoa.objects.filter(izena__contains = q )[:20]
-
+        jokoak = Jokoa.objects.filter(izena__icontains = q )[:20]
+        # jokoak = Jokoa.objects.all().order_by('izena')
         results = []
         for joko in jokoak:
             joko_json = {}
             joko_json['id'] = joko.id
-            joko_json['label'] = joko.izena
-            joko_json['value'] = joko.izena
+            joko_json['label'] = joko.izena + ' ' + joko.bertsioa
+            joko_json['value'] = joko.izena + ' ' + joko.bertsioa
             results.append(joko_json)
         data = json.dumps(results)
     else:
