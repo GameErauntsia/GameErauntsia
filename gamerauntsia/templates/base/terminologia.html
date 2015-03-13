@@ -14,9 +14,16 @@
     <p>Jolasten gabiltzan einean askotan zalantzak sortzen zaizkigu hitz batzuek euskaraz nola esan beharko genituzkeen. Bada, txoko honetan, gure taldean eztabaidatu ondoren adostutako terminoak bilduko ditugu. Izan gaitezen aitzindariak eta sor dezagun euskal jokalarientzako erreferentziazko hiztegi bat!</p>
 </div>
 
-<div class="row">
-    <div class="col-lg-12">
-        <div id="list">
+<div class="col-sm-12">
+    <form class="pull-right" method="get" action="{% url 'search_term' %}">
+        <input id="search_term" value="" name="term" placeholder="Bilatu terminoa"/>
+        <input type="submit" value="Bilatu" class="btn btn-default"/>
+    </form>
+</div>
+
+<div class="col-lg-12">
+    <div id="content">
+        <div class="col-sm-12">
             <div class="table-responsive">
                 <table class="table table-condensed table-hover">
                     <thead>

@@ -48,6 +48,7 @@ urlpatterns = patterns('',
 
     # TERMINOLOGIA
     url(r'^terminologia/$', 'gamerauntsia.base.views.index', name='terminologia'),
+    url(r'^terminologia/bilatu', 'gamerauntsia.base.views.search_term', name='search_term'),
 
     # BILAKETA
     url(r'^bilaketa?(?P<bilatu>[-\w]+)/$', 'gamerauntsia.views.bilaketa', name='bilaketa'),
@@ -82,9 +83,9 @@ urlpatterns = patterns('',
     (r'^erabilera-baldintzak/$', TemplateView.as_view(template_name='erabilera_baldintzak.html')),
     (r'^pribatutasun-politika/$', TemplateView.as_view(template_name='pribatutasun_politika.html')),
 
+    #AJAX ESKAERAK
     url(r'^ajax/get_jokoak/', 'gamerauntsia.gamer.views.get_jokoak', name='ajax_jokoak'),
     url(r'^ajax/get_erabiltzaileak/', 'gamerauntsia.gamer.views.get_user', name='ajax_user'),
-
 )
 
 
