@@ -6,6 +6,7 @@ from django.db.models.signals import post_save
 from django.contrib.contenttypes.models import ContentType
 from django_comments.models import Comment
 from gamerauntsia.gamer.models import GamerUser
+from gamerauntsia.jokoa.models import Jokoa
 from gamerauntsia.berriak.models import Berria
 from gamerauntsia.gameplaya.models import GamePlaya
 
@@ -13,6 +14,7 @@ class Terminoa(models.Model):
     term_eu = models.CharField(max_length=64)
     term_es = models.CharField(max_length=64,null=True,blank=True)
     term_en = models.CharField(max_length=64,null=True,blank=True)
+    jokoa = models.ForeignKey(Jokoa)
 
     class Meta:
         verbose_name = "Terminoa"
