@@ -12,5 +12,5 @@ def index(request):
 
 def search_term(request):
     q = request.GET.get('term', '')
-    items = Terminoa.objects.filter(Q(term_eu__icontains = q)|Q(term_es__icontains=q)|Q(term_en__icontains=q))[:20]
+    items = Terminoa.objects.filter(Q(term_eu__icontains = q)|Q(term_es__icontains=q)|Q(term_en__icontains=q)|Q(jokoa__izena__icontains=q))[:20]
     return render_to_response('base/terminologia.html', locals(),context_instance=RequestContext(request))
