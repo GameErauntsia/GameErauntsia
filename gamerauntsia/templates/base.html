@@ -59,7 +59,7 @@
                     <li {% if request.path|contains:"/foroa/" %}class="active"{% endif %}><a href="/foroa" title="Foroa">Foroa</a></li>
                     <li {% if request.path|contains:"/minecraft/" %}class="active"{% endif %}><a href="{% url 'minecraft_index' %}" title="Minecraft">Minecraft</a></li>
                     <li {% if request.path|contains:"/txapelketak/" or request.path|contains:"/agenda/" %}class="active"{% endif %}>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'agenda_index' %}" title="Agenda">Agenda <b class="caret"></b></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'agenda_index' %}" title="Agenda">Ekintzak <b class="caret"></b></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{% url 'agenda_index' %}" title="Nor gara">Agenda</a></li>
                             <li role="presentation" class="divider"></li>
