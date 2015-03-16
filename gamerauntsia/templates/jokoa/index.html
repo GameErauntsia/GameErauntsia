@@ -1,0 +1,42 @@
+{% extends "profile/base.html" %}
+{% load i18n include %}
+
+{% block title %}Jokoak - {% endblock %}
+
+{% block content%}
+<div class="row">
+
+    <div class="col-lg-12">
+            <h1 class="page-header">Jokoen katalogoa</h1>
+        </div>
+
+    <div class="col-lg-8">
+        <div class="col-lg-12">
+        {% for joko in jokoak %}
+            {% if forloop.first %}<div class="row">{% endif %}
+            <div class="col-lg-3 text-center">
+                <img class="img-responsive center-block" src="{{joko.get_photo.get_newsprofile_url}}" alt="" />
+                <h3>{{joko.izena}} {{joko.bertsioa}}</h3>
+            </div>
+            {% if forloop.counter|divisibleby:4 %}</div><div class="row">{% endif %}
+            {% if forloop.last %}</div>{% endif %}
+        {% empty %}
+        {% endfor %}
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="well">
+            <h3>Jokuen Top-a:</h3>
+            <hr/>
+            <ul class="list-unstyled">
+                {% for k in topjokoak %}
+                    {% if k.top_jokoak__count %}
+                    <li>{{k.top_jokoak__izena}} ({{k.top_jokoak__count}})</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -20,6 +20,9 @@ urlpatterns = patterns('',
     url(r'^berriak/(?P<slug>[-\w]+)/$', lambda x, slug: HttpResponseRedirect(reverse('berria', args=[slug]))),
     url(r'^bloga/', include('gamerauntsia.berriak.urls'), name='bloga'),
 
+    # JOKOAK
+    url(r'^jokoak/', include('gamerauntsia.jokoa.urls'), name='jokoak'),
+
     # JOKALARIAK
     url(r'^nor-gara/', include('gamerauntsia.gamer.urls')),
     url(r'^komunitatea/$', 'gamerauntsia.gamer.views.community', name='komunitatea'),
