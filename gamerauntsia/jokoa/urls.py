@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 from gamerauntsia import settings
 
 urlpatterns = patterns('',
-    url(r'^$', 'gamerauntsia.jokoa.views.index', name='aplikazioak_index'),
+    url(r'^$', 'gamerauntsia.jokoa.views.index', name='game_index'),
 )
 
 if settings.DEBUG:
