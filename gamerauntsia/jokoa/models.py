@@ -30,6 +30,8 @@ class Jokoa(models.Model):
     url = models.CharField(max_length=64, help_text="Eremu honetan joko honen atariko URL helbidea zehazten ari zara." )
     wiki = models.CharField(max_length=64, null=True, blank=True, help_text="Eremu honetan joko honen wikipediako URL helbidea zehaztu mesedez." )
 
+    publikoa_da = models.BooleanField(default=True)
+  
     def get_photo(self):
         if self.logoa:
             return self.logoa
