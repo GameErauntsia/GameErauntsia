@@ -12,7 +12,7 @@
 
     <div class="col-sm-12">
         <div class="col-sm-6">
-            <img class="img-responsive img-thumbnail pull-right" src="{{jokoa.logoa.get_gp_thumbnail_url}}"/>
+            <img class="img-responsive img-thumbnail pull-right" src="{{jokoa.logoa.get_newsprofile_url}}"/>
             <p>{{jokoa.desk}}</p>
             <p><i class="glyphicon glyphicon-file"></i> {{jokoa.get_lizentzia_display}}</p>
             <p><i class="glyphicon glyphicon-globe"></i> <a href="{{jokoa.url}}">Webgunea</a></p>
@@ -42,6 +42,7 @@
         </div>
     </div>
     <hr/>
+    {% if users %}
     <div class="col-sm-12">
         <h2><i class="glyphicon glyphicon-user"></i> Jokalari izarrak</h2>
         <div class="row well">
@@ -64,6 +65,7 @@
             {% endfor %}
         </div>
     </div>
+    {% endif %}
     <div col="col-sm-12">
         <div class="col-sm-6">
             {% if gameplayak %}
@@ -72,7 +74,7 @@
                 {% get_comment_count for gp as comment_count %}
                 <div class="row">
                     <div class="col-sm-4">
-                        <a href="{{gp.get_absolute_url}}"><img src="{{gp.argazkia.get_videoprofile_url}}" alt="" /></a>
+                        <a href="{{gp.get_absolute_url}}"><img class="img-responsive" src="{{gp.argazkia.get_videoprofile_url}}" alt="" /></a>
                     </div>
                     <div class="col-sm-8">
                         <h3><a href="{{gp.get_absolute_url}}">{{gp.izenburua}}</a></h3>
