@@ -111,14 +111,14 @@
         </div>
         <div class="col-sm-4">
             <h2><i class="glyphicon glyphicon-font"></i> Terminologia</h2>
-            <ul>
+            <ul class="unstyled-list">
             {% for term in terminoak %}
             <li><a href="{% url 'search_term' %}?term={{term.term_eu}}">{{term.term_eu}}</a></li>
             {% empty %}
             <li>Ez da hiztegirik garatu...</li>
             {% endfor %}
             </ul>
-            <p class="pull-right"><a href="{% url 'search_term' %}?term={{jokoa.izena}}">Ikusi gehiago</a></p>
+            {% if terminoak %}<p class="pull-right"><a href="{% url 'search_term' %}?term={{jokoa.izena}}">Ikusi gehiago</a></p>{% endif %}
         </div>
     </div>
 </div>
