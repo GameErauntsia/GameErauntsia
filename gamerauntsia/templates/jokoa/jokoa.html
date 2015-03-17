@@ -88,7 +88,7 @@
         </div>
         {% if steam_json.screenshots %}
         <div class="col-sm-6">
-            <div class="row carousel-holder">
+            <div id="game_carousel" class="row carousel-holder">
                 <div id="carousel-game-generic" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         {% for img in steam_json.screenshots %}
