@@ -28,6 +28,29 @@
     </div>
     <hr/>
     <div class="col-sm-12">
+        <h2>Jokalari izarrak</h2>
+        {% for user_prof in users %}
+        <div class="col-md-2 portfolio-item">
+            <div class="row">
+                <div class="col-xs-4 text-center">
+                    <a href="{% url 'gamer_guestprofile' user_prof.username %}"><img src="{{user_prof.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive"></a>
+                </div>
+                <div class="col-xs-8">
+                    <h4>
+                        <a href="{% url 'gamer_guestprofile' user_prof.username %}">{{user_prof.getFullName}}
+                        </a>
+                    </h4>
+                    <p>
+                        {% if user_prof.karma %}<i class="glyphicon glyphicon-flash" style="color:#E1E100"></i> <abbr title="Karma">{{user_prof.karma}}</abbr>{% endif %}
+                        {% if user.is_authenticated %}<a href="{% url 'messages_compose_to' user_prof.username  %}"><span class="glyphicon glyphicon-envelope"></span></a>{% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <hr/>
+    <div class="col-sm-12">
         {% if gameplayak %}
             <div class="col-sm-8">
                 <h2>Azken Game Playak</h2>
@@ -88,35 +111,13 @@
             <h2>Terminologia</h2>
             <ul>
             {% for term in terminoak %}
-            <li><a href="{% url 'terminologia' %}?term={{term.term_eu}}">{{term.term_eu}}</a></li>
+            <li><a href="{% url 'search_term' %}?term={{term.term_eu}}">{{term.term_eu}}</a></li>
             {% empty %}
             <li>Ez da hiztegirik garatu...</li>
             {% endfor %}
             </ul>
-            <p class="pull-right"><a href="{% url 'terminologia' %}?term={{jokoa.izena}}">Ikusi gehiago</a></p>
+            <p class="pull-right"><a href="{% url 'search_term' %}?term={{jokoa.izena}}">Ikusi gehiago</a></p>
         </div>
-    </div>
-    <div class="col-sm-12">
-        <h2>Jokalari izarrak</h2>
-        {% for user_prof in users %}
-        <div class="col-md-2 portfolio-item">
-            <div class="row">
-                <div class="col-xs-4 text-center">
-                    <a href="{% url 'gamer_guestprofile' user_prof.username %}"><img src="{{user_prof.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive"></a>
-                </div>
-                <div class="col-xs-8">
-                    <h4>
-                        <a href="{% url 'gamer_guestprofile' user_prof.username %}">{{user_prof.getFullName}}
-                        </a>
-                    </h4>
-                    <p>
-                        {% if user_prof.karma %}<i class="glyphicon glyphicon-flash" style="color:#E1E100"></i> <abbr title="Karma">{{user_prof.karma}}</abbr>{% endif %}
-                        {% if user.is_authenticated %}<a href="{% url 'messages_compose_to' user_prof.username  %}"><span class="glyphicon glyphicon-envelope"></span></a>{% endif %}
-                    </p>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
     </div>
 </div>
 
