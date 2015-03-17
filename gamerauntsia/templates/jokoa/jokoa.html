@@ -11,19 +11,34 @@
         </div>
 
     <div class="col-sm-12">
-        <div class="col-sm-4">
-        <img class="img-responsive img-thumbnail pull-right" src="{{jokoa.logoa.get_gp_thumbnail_url}}"/>
-        </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
+            <img class="img-responsive img-thumbnail pull-right" src="{{jokoa.logoa.get_gp_thumbnail_url}}"/>
             <p>{{jokoa.desk}}</p>
             <p><i class="glyphicon glyphicon-file"></i> {{jokoa.get_lizentzia_display}}</p>
             <p><i class="glyphicon glyphicon-globe"></i> <a href="{{jokoa.url}}">Webgunea</a></p>
             {% if jokoa.wiki %}<p><i class="glyphicon glyphicon-info-sign"></i> <a href="{{jokoa.wiki}}">Wikipedia</a></p>{% endif %}
+            {% if steam_json %}
+            <p><i class="glyphicon glyphicon-cog"></i> {{steam_json.developers.0}}</p>
+            <p class="bg-success">{% if steam_json.platforms.windows %}<img src="{{STATIC_URL}}img/icon_platform_win.png"/>{% endif %}{% if steam_json.platforms.mac %}<img src="{{STATIC_URL}}img/icon_platform_mac.png"/>{% endif %}{% if steam_json.platforms.linux %}<img src="{{STATIC_URL}}img/icon_platform_linux.png"/>{% endif %}</p>
+            <p><i class="glyphicon glyphicon-time"></i> {{steam_json.release_date.date}}</p>
+            <div class="pull-right text-right">
+                <h3><strong>{% widthratio steam_json.price_overview.final 100.0 1 %} €</strong><br/>
+                <strong>{{steam_json.metacritic.score}}/100</strong></h3>
+                <a href="{{steam_json.metacritic.url}}">Metacritic balorazioa</a>
+            </div>
+            {%endif %}
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
+            {% if steam_json.movies %}
+             <video width="560" height="315" controls poster="{{steam_json.movies.0.thumbnail}}">
+                <source src="{{steam_json.movies.0.webm.480}}" type="video/mp4">
+                Zure nabigatzaileak ez du HTML5 erreproduktorea onartzen.
+            </video> 
+            {% else %}
             <div class="flex-video widescreen">
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/U4nDldzcR8Q?showinfo=0" frameborder="0" allowfullscreen></iframe>
             </div>
+            {% endif %}
         </div>
     </div>
     <hr/>
@@ -49,10 +64,9 @@
             {% endfor %}
         </div>
     </div>
-    <hr/>
-    <div class="col-sm-12">
-        {% if gameplayak %}
-            <div class="col-sm-8">
+    <div col="col-sm-12">
+        <div class="col-sm-6">
+            {% if gameplayak %}
                 <h2><i class="glyphicon glyphicon-film"></i> Game Playak</h2>
                 {% for gp in gameplayak %}
                 {% get_comment_count for gp as comment_count %}
@@ -68,44 +82,39 @@
                 </div>
                 <hr/>
                 {% endfor %}
-            </div>
-            {% if berriak %}
-            <div class="col-sm-4">
-                <h2><i class="glyphicon glyphicon-book"></i> Berriak</h2>
-                {% for berri in side_berriak %}
-                <div class="row bloglist">
-                    <div class="col-sm-4">
-                        <a href="{% url 'berria' berri.slug %}"><img src="{{berri.argazkia.get_newsprofile_url}}" alt="" /></a>
-                    </div>
-                    <div class="col-sm-8">
-                        <p><strong><a href="{% url 'berria' berri.slug %}">{{berri.izenburua}}</strong></a><p>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
             {% endif %}
-        {% else %}
-            {% if berriak %}
-            <div class="col-sm-8">
-                <h2><i class="glyphicon glyphicon-book"></i> Berriak</h2>
-                {% for berri in berriak %}
-                <div class="row bloglist">
-                    <div class="col-sm-4">
-                        <a href="{% url 'berria' berri.slug %}"><img src="{{berri.argazkia.get_videoprofile_url}}" alt="" /></a>
+        </div>
+        {% if steam_json.screenshots %}
+        <div class="col-sm-6">
+            <div class="row carousel-holder">
+                <div id="carousel-game-generic" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        {% for img in steam_json.screenshots %}
+                        <div class="item {% if forloop.first %}active{% endif %}">
+                            <img class="slide-image" src="{{img.path_thumbnail}}" />
+                        </div>
+                        {% endfor %}
                     </div>
-                    <div class="col-sm-8">
-                        <h3><a href="{% url 'berria' berri.slug %}">{{berri.izenburua}}</a></h3>
-                        <p><span class="glyphicon glyphicon-time"></span> {{berri.pub_date|date:"Y/m/d H:i"}} {% for gai in berri.gaia.all %}<span class="label label-success tags">{{gai.izena}}</span>{% endfor %}</p>
-                        <p>{{berri.get_desk_txikia|safe}}</p>
-                    </div>
+                    <a class="left carousel-control" href="#carousel-game-generic" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-game-generic" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
                 </div>
-                <hr/>
-                {% endfor %}
             </div>
-            {% endif %}
+        </div>
         {% endif %}
+    </div>
+    <hr/>
+    <div class="col-sm-12">
+        <div class="col-sm-8">
+        {% render_comment_list for jokoa %}
+
+        {% render_comment_form for jokoa %}
+        </div>
         <div class="col-sm-4">
-            <h2><i class="glyphicon glyphicon-calendar"></i> Agenda</h2>
+                <h2><i class="glyphicon glyphicon-calendar"></i> Agenda</h2>
         </div>
         <div class="col-sm-4">
             <h2><i class="glyphicon glyphicon-font"></i> Terminologia</h2>
@@ -119,10 +128,6 @@
             {% if terminoak %}<p class="pull-right"><a href="{% url 'search_term' %}?term={{jokoa.izena}}">Ikusi gehiago</a></p>{% endif %}
         </div>
     </div>
-    <hr/>
-    {% render_comment_list for jokoa %}
-
-    {% render_comment_form for jokoa %}
 </div>
 
 {% endblock %}
