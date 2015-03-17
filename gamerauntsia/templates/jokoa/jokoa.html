@@ -49,7 +49,7 @@
             {% for user_prof in users %}
             <div class="col-md-2 portfolio-item">
                 <div class="col-xs-4 text-center">
-                    <a href="{% url 'gamer_guestprofile' user_prof.username %}"><img src="{{user_prof.get_photo.get_comment_url}}" alt="" class="center-block img-circle"></a>
+                    <a href="{% url 'gamer_guestprofile' user_prof.username %}"><img src="{{user_prof.get_photo.get_forum_thumbnail_url}}" alt="" class="center-block img-circle"></a>
                 </div>
                 <div class="col-xs-8">
                     <h4>
