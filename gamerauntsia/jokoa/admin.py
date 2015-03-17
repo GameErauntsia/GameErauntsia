@@ -22,7 +22,7 @@ class JokoaAdmin(admin.ModelAdmin):
         ('Datu orokorrak',
         {'fields':('izena','bertsioa','slug', 'desk','publikoa_da')},),
         ('Osagarriak',
-        {'fields':('steam_id','lizentzia','url', 'logoa', 'wiki')},),
+        {'fields':('steam_id','trailer','lizentzia','url', 'logoa', 'wiki')},),
     )
 
 class PlataformaAdmin(admin.ModelAdmin):
