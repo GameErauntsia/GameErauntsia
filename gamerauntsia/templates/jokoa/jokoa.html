@@ -1,0 +1,49 @@
+{% extends "profile/base.html" %}
+{% load i18n include %}
+
+{% block title %}{{jokoa.izena}} {{jokoa.bertsioa}} - {% endblock %}
+
+{% block content%}
+<div class="row">
+
+    <div class="col-sm-12">
+            <h1 class="page-header">{{jokoa.izena}} {{jokoa.bertsioa}}</h1>
+        </div>
+
+    <div class="col-sm-12">
+        <div class="col-sm-6">
+        <img class="img-responsive img-thumbnail" src="{{jokoa.logoa.get_profile_url}}"/>
+        </div>
+        <div class="col-sm-6">
+            <p>{{jokoa.desk}}</p>
+            <p><i class="glyphicon glyphicon-file"></i> {{jokoa.get_lizentzia_display}}</p>
+            <p><i class="glyphicon glyphicon-globe"></i> <a href="{{jokoa.url}}">Webgunea</a></p>
+            {% if jokoa.wiki %}<p><i class="glyphicon glyphicon-info-sign"></i> <a href="{{jokoa.wiki}}">Wikipedia</a></p>{% endif %}
+        </div>
+    </div>
+    <hr/>
+    <div class="col-sm-12">
+        <h2>Jokalari izarrak</h2>
+        {% for user_prof in users %}
+        <div class="col-md-2 portfolio-item">
+            <div class="row">
+                <div class="col-xs-4 text-center">
+                    <a href="{% url 'gamer_guestprofile' user_prof.username %}"><img src="{{user_prof.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive"></a>
+                </div>
+                <div class="col-xs-8">
+                    <h4>
+                        <a href="{% url 'gamer_guestprofile' user_prof.username %}">{{user_prof.getFullName}}
+                        </a>
+                    </h4>
+                    <p>
+                        {% if user_prof.karma %}<i class="glyphicon glyphicon-flash" style="color:#E1E100"></i> <abbr title="Karma">{{user_prof.karma}}</abbr>{% endif %}
+                        {% if user.is_authenticated %}<a href="{% url 'messages_compose_to' user_prof.username  %}"><span class="glyphicon glyphicon-envelope"></span></a>{% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
