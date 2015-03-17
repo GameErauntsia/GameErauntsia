@@ -27,8 +27,8 @@
         </div>
     </div>
     <hr/>
-    <div class="col-sm-12">
-        <h2>Jokalari izarrak</h2>
+    <div class="col-sm-12 well">
+        <h2><i class="glyphicon glyphicon-user"></i> Jokalari izarrak</h2>
         {% for user_prof in users %}
         <div class="col-md-2 portfolio-item">
             <div class="row">
@@ -53,7 +53,7 @@
     <div class="col-sm-12">
         {% if gameplayak %}
             <div class="col-sm-8">
-                <h2>Azken Game Playak</h2>
+                <h2><i class="glyphicon glyphicon-film"></i> Game Playak</h2>
                 {% for gp in gameplayak %}
                 {% get_comment_count for gp as comment_count %}
                 <div class="row">
@@ -71,7 +71,7 @@
             </div>
             {% if berriak %}
             <div class="col-sm-4">
-                <h2>Azken berriak</h2>
+                <h2><i class="glyphicon glyphicon-book"></i> Berriak</h2>
                 {% for berri in side_berriak %}
                 <div class="row bloglist">
                     <div class="col-sm-4">
@@ -87,7 +87,7 @@
         {% else %}
             {% if berriak %}
             <div class="col-sm-8">
-                <h2>Azken berriak</h2>
+                <h2><i class="glyphicon glyphicon-book"></i> Berriak</h2>
                 {% for berri in berriak %}
                 <div class="row bloglist">
                     <div class="col-sm-4">
@@ -105,10 +105,10 @@
             {% endif %}
         {% endif %}
         <div class="col-sm-4">
-            <h2>Agenda</h2>
+            <h2><i class="glyphicon glyphicon-calendar"></i> Agenda</h2>
         </div>
         <div class="col-sm-4">
-            <h2>Terminologia</h2>
+            <h2><i class="glyphicon glyphicon-font"></i> Terminologia</h2>
             <ul>
             {% for term in terminoak %}
             <li><a href="{% url 'search_term' %}?term={{term.term_eu}}">{{term.term_eu}}</a></li>
