@@ -41,7 +41,7 @@
             </video> 
             {% else %}
             <div class="flex-video widescreen">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{jokoa.trailer}}?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{jokoa.trailer}}" frameborder="0" allowfullscreen></iframe>
             </div>
             {% endif %}
         </div>
@@ -120,9 +120,11 @@
 
         {% render_comment_form for jokoa %}
         </div>
+        {% if ekintzak %}
         <div class="col-sm-4">
                 <h2><i class="glyphicon glyphicon-calendar"></i> Agenda</h2>
         </div>
+        {% endif %}
         <div class="col-sm-4">
             <h2><i class="glyphicon glyphicon-font"></i> Terminologia</h2>
             <ul class="list-unstyled">
