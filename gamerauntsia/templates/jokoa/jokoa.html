@@ -12,7 +12,7 @@
 
     <div class="col-sm-12">
         <div class="col-sm-6">
-            <img class="img-responsive img-thumbnail pull-right" src="{{jokoa.logoa.get_newsprofile_url}}"/>
+            <img class="img-responsive img-thumbnail pull-right" src="{{jokoa.logoa.get_videoprofile_url}}"/>
             <p>{{jokoa.desk}}</p>
             <p><i class="glyphicon glyphicon-file"></i> {{jokoa.get_lizentzia_display}}</p>
             <p><i class="glyphicon glyphicon-globe"></i> <a href="{{jokoa.url}}">Webgunea</a></p>
@@ -36,7 +36,7 @@
             </video> 
             {% else %}
             <div class="flex-video widescreen">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/U4nDldzcR8Q?showinfo=0" frameborder="0" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{jokoa.trailer}}?showinfo=0" frameborder="0" allowfullscreen></iframe>
             </div>
             {% endif %}
         </div>
