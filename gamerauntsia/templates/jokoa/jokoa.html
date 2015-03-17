@@ -29,23 +29,21 @@
     <hr/>
     <div class="col-sm-12">
         <h2><i class="glyphicon glyphicon-user"></i> Jokalari izarrak</h2>
-        <div class="well">
+        <div class="row well">
             {% for user_prof in users %}
             <div class="col-md-2 portfolio-item">
-                <div class="row">
-                    <div class="col-xs-4 text-center">
-                        <a href="{% url 'gamer_guestprofile' user_prof.username %}"><img src="{{user_prof.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive"></a>
-                    </div>
-                    <div class="col-xs-8">
-                        <h4>
-                            <a href="{% url 'gamer_guestprofile' user_prof.username %}">{{user_prof.getFullName}}
-                            </a>
-                        </h4>
-                        <p>
-                            {% if user_prof.karma %}<i class="glyphicon glyphicon-flash" style="color:#E1E100"></i> <abbr title="Karma">{{user_prof.karma}}</abbr>{% endif %}
-                            {% if user.is_authenticated %}<a href="{% url 'messages_compose_to' user_prof.username  %}"><span class="glyphicon glyphicon-envelope"></span></a>{% endif %}
-                        </p>
-                    </div>
+                <div class="col-xs-4 text-center">
+                    <a href="{% url 'gamer_guestprofile' user_prof.username %}"><img src="{{user_prof.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive"></a>
+                </div>
+                <div class="col-xs-8">
+                    <h4>
+                        <a href="{% url 'gamer_guestprofile' user_prof.username %}">{{user_prof.getFullName}}
+                        </a>
+                    </h4>
+                    <p>
+                        {% if user_prof.karma %}<i class="glyphicon glyphicon-flash" style="color:#E1E100"></i> <abbr title="Karma">{{user_prof.karma}}</abbr>{% endif %}
+                        {% if user.is_authenticated %}<a href="{% url 'messages_compose_to' user_prof.username  %}"><span class="glyphicon glyphicon-envelope"></span></a>{% endif %}
+                    </p>
                 </div>
             </div>
             {% endfor %}
@@ -111,7 +109,7 @@
         </div>
         <div class="col-sm-4">
             <h2><i class="glyphicon glyphicon-font"></i> Terminologia</h2>
-            <ul class="unstyled-list">
+            <ul class="list-unstyled">
             {% for term in terminoak %}
             <li><a href="{% url 'search_term' %}?term={{term.term_eu}}">{{term.term_eu}}</a></li>
             {% empty %}
@@ -121,6 +119,10 @@
             {% if terminoak %}<p class="pull-right"><a href="{% url 'search_term' %}?term={{jokoa.izena}}">Ikusi gehiago</a></p>{% endif %}
         </div>
     </div>
+    <hr/>
+    {% render_comment_list for item %}
+
+    {% render_comment_form for item %}
 </div>
 
 {% endblock %}
