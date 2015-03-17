@@ -27,6 +27,11 @@
                 <a href="{{steam_json.metacritic.url}}">Metacritic balorazioa</a>
             </div>
             {%endif %}
+            {% if request.user.is_authenticated %}
+            {% if request.user.is_superuser %}
+            <a class="btn btn-default" href="/kudeatu/jokoa/jokoa/{{jokoa.id}}">Editatu</a>
+            {% endif %}
+            {% endif %}
         </div>
         <div class="col-sm-6">
             {% if steam_json.movies %}
