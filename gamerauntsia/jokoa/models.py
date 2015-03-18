@@ -26,7 +26,7 @@ class Jokoa(models.Model):
     bertsioa = models.CharField(max_length=64,null=True,blank=True)
     lizentzia = models.CharField(max_length=2, default='C',choices=SOFTWARE_AUKERAK)
     
-    logoa = models.ForeignKey(Photo,null=True,blank=True)
+    logoa = models.ForeignKey(Photo)
     steam_id = models.IntegerField(null=True,blank=True)
     trailer = models.CharField(max_length=64,null=True,blank=True)
     url = models.CharField(max_length=64, help_text="Eremu honetan joko honen atariko URL helbidea zehazten ari zara." )
