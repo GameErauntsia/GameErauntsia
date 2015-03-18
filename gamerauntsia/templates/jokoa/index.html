@@ -15,8 +15,10 @@
         {% for joko in jokoak %}
             {% if forloop.first %}<div class="row">{% endif %}
             <div class="col-lg-3 text-center">
-                <img class="img-responsive center-block" src="{{joko.get_photo.get_newsprofile_url}}" alt="" />
-                <h3>{{joko.izena}} {{joko.bertsioa}}</h3>
+                <a href="{% url 'game' joko.slug %">
+                    <img class="img-responsive center-block" src="{{joko.get_photo.get_newsprofile_url}}" alt="" />
+                    <h3>{{joko.izena}} {{joko.bertsioa}}</h3>
+                </a>
             </div>
             {% if forloop.counter|divisibleby:4 %}</div><div class="row">{% endif %}
             {% if forloop.last %}</div>{% endif %}
