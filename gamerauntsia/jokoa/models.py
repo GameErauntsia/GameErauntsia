@@ -28,7 +28,7 @@ class Jokoa(models.Model):
     
     logoa = models.ForeignKey(Photo,null=True,blank=True)
     steam_id = models.IntegerField(null=True,blank=True)
-    trailer = models.CharField(max_length=64)
+    trailer = models.CharField(max_length=64,null=True,blank=True)
     url = models.CharField(max_length=64, help_text="Eremu honetan joko honen atariko URL helbidea zehazten ari zara." )
     wiki = models.CharField(max_length=64, null=True, blank=True, help_text="Eremu honetan joko honen wikipediako URL helbidea zehaztu mesedez." )
 
