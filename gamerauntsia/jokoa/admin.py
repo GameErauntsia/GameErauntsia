@@ -13,7 +13,7 @@ class JokoaAdmin(admin.ModelAdmin):
     admin_thumbnail.short_description = 'Thumb'
     admin_thumbnail.allow_tags = True
 
-    list_display = ('izena','bertsioa','url','slug', 'publikoa_da','admin_thumbnail' )
+    list_display = ('izena','bertsioa','url','slug','steam_id', 'publikoa_da','admin_thumbnail' )
     prepopulated_fields = {"slug": ("izena","bertsioa")}
     search_fields = ['izena',]
     ordering = ('izena','bertsioa')
