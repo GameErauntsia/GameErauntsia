@@ -12,8 +12,10 @@
 
     <div class="col-sm-12">
         <div class="col-sm-6">
-            <img class="img-responsive img-thumbnail pull-right" src="{{jokoa.logoa.get_videoprofile_url}}"/>
-            <p>{{jokoa.desk}}</p>
+            <div class="pull-right">
+                <img class="img-responsive img-thumbnail" src="{{jokoa.logoa.get_videoprofile_url}}"/>
+                <p>{{jokoa.desk}}</p>
+            </div>
             <p><i class="glyphicon glyphicon-file"></i> {{jokoa.get_lizentzia_display}}</p>
             <p><i class="glyphicon glyphicon-globe"></i> <a href="{{jokoa.url}}">Webgunea</a></p>
             {% if jokoa.wiki %}<p><i class="glyphicon glyphicon-info-sign"></i> <a href="{{jokoa.wiki}}">Wikipedia</a></p>{% endif %}
@@ -38,7 +40,7 @@
              <video width="560" height="315" controls poster="{{steam_json.movies.0.thumbnail}}">
                 <source src="{{steam_json.movies.0.webm.480}}" type="video/mp4">
                 Zure nabigatzaileak ez du HTML5 erreproduktorea onartzen.
-            </video> 
+            </video>
             {% else %}
             <div class="flex-video widescreen">
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/{{jokoa.trailer}}" frameborder="0" allowfullscreen></iframe>
