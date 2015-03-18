@@ -24,7 +24,7 @@
             {% for joko in user.top_jokoak.all %}
                 {% if forloop.first %}<div class="row">{% endif %}
                 <div class="col-lg-3 text-center">
-                    <a href="{% url 'game' joko.slug %">
+                    <a href="{% url 'game' joko.slug %}">
                         <img class="img-responsive center-block" src="{{joko.get_photo.get_newsprofile_url}}" alt="" />
                         <h3>{{joko.izena}} {{joko.bertsioa}}</h3>
                     </a>
