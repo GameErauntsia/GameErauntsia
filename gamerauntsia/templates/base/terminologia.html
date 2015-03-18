@@ -8,7 +8,7 @@
     <h1 class="page-header">
         Terminologia
         <small>
-        
+
         </small>
     </h1>
     <p>Jolasten gabiltzan einean askotan zalantzak sortzen zaizkigu hitz batzuek euskaraz nola esan beharko genituzkeen. Bada, txoko honetan, gure taldean eztabaidatu ondoren adostutako terminoak bilduko ditugu. Izan gaitezen aitzindariak eta sor dezagun euskal jokalarientzako erreferentziazko hiztegi bat!</p>
@@ -40,7 +40,7 @@
                             <td><strong>{{item.term_eu}}</strong></td>
                             <td>{{item.term_es}}</td>
                             <td>{{item.term_en}}</td>
-                            <td>{{item.jokoa.izena}}</td>
+                            <td><a href="{% url 'game' item.jokoa.slug %">{{item.jokoa.izena}}</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
