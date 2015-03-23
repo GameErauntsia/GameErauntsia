@@ -22,7 +22,7 @@ class BerriakAdmin(admin.ModelAdmin):
     filter_horizontal = ('gaia',)
     list_filter = ('publikoa_da', 'status')
     search_fields = ['erabiltzailea__username','erabiltzailea__fullname','izenburua']
-    raw_id_fields = ('argazkia','erabiltzailea')
+    raw_id_fields = ('argazkia','erabiltzailea','jokoa')
     ordering = ('-pub_date',)
     form = BerriaAdminForm
 
