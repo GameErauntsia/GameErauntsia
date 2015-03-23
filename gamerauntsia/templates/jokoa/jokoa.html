@@ -49,6 +49,20 @@
         </div>
     </div>
     <hr/>
+    <div class="col-sm-12">
+        {% for berria in berriak %}
+        {% get_comment_count for berria as comment_count %}
+        {% if not forloop.first %}
+        <div class="col-lg-4">
+            <a href="{{berria.get_absolute_url}}"><img class="img-responsive" src="{{berria.argazkia.get_gp_thumbnail_url}}"></a>
+            <h2>{{berria.izenburua}}</h2>
+            <p><a href="{% url 'gamer_profile' berria.erabiltzailea.username %}"><img src="{{berria.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{berria.erabiltzailea.getFullName}}</a> | <span class="glyphicon glyphicon-time"></span> {{berria.pub_date|date:"Y/m/d H:i"}} {% for gai in berria.gaia.all %}<span class="label label-success tags">{{gai.izena}}</span>{% endfor %}</p>
+            <p>{{berria.get_desk_txikia|safe}}</p>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <hr/>
     {% if users %}
     <div class="col-sm-12">
         <h2><i class="glyphicon glyphicon-user"></i> Jokalari izarrak</h2>
@@ -114,6 +128,22 @@
             </div>
         </div>
         {% endif %}
+    </div>
+    <hr/>
+    <div class="col-sm-12">
+    {% for tx in txapelketak %}
+        {% get_comment_count for tx as comment_count %}
+        <div class="col-sm-4">
+            <a href="{{tx.get_absolute_url}}">
+                <img class="img-responsive" src="{{tx.irudia.get_gp_thumbnail_url}}">
+            </a>
+            <h3>
+                <a href="{{tx.get_absolute_url}}">{{tx.izena}}</a> {% if tx.insk_date|irekita %}<span class="pull-right text-success glyphicon glyphicon-plus-sign"></span>{% endif %}{% if tx.status == '1' %}<span class="pull-right text-warning glyphicon glyphicon-question-sign"></span>{% endif %}{% if tx.status == '2' %}<span class="pull-right text-info glyphicon glyphicon-ok-sign"></span>{% endif %}{% if tx.status == '3' %}<span class="pull-right text-danger glyphicon glyphicon-remove-sign"></span>{% endif %}
+            </h3>
+            <p><span class="glyphicon glyphicon-play"></span> <a href="{% url 'game' tx.jokoa.slug %}">{{tx.jokoa.izena}} {%if tx.jokoa.bertsioa %}{{tx.jokoa.bertsioa}}{% endif %}</a> | {{tx.get_mota_display}} | {{tx.get_modalitatea_display}}{% if comment_count %} | <a href="{{tx.get_absolute_url}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}</p>
+            <p>{{tx.get_desk_txikia|safe}}</p>
+        </div>
+    {% endfor %}
     </div>
     <hr/>
     <div class="col-sm-12">
