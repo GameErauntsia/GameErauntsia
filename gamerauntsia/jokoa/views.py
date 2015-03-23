@@ -2,6 +2,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404
 from django.db.models import Count
+from datetime import datetime
 from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.base.models import Terminoa
