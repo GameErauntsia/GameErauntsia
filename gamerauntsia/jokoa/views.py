@@ -8,6 +8,7 @@ from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.base.models import Terminoa
 from gamerauntsia.jokoa.models import Jokoa
 from gamerauntsia.berriak.models import Berria
+from gamerauntsia.txapelketak.models import Txapelketa
 from gamerauntsia.utils.urls import get_urljson
 
 def index(request):
