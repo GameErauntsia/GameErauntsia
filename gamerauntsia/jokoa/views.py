@@ -31,6 +31,6 @@ def jokoa(request,slug):
         gameplayak = gameplayak[:4]
     users = GamerUser.objects.filter(top_jokoak=jokoa,is_staff=False).order_by("-karma")[:6]
     terminoak = Terminoa.objects.filter(jokoa=jokoa).order_by("?")[:10]
-    berriak = Berria.objects.filter(jokoa=jokoa,status='1', pub_date__lt=datetime.now()).order_by('-pub_date')[:3]
+    berriak = Berria.objects.filter(jokoa=jokoa, status='1', pub_date__lt=datetime.now()).order_by('-pub_date')[:3]
     txapelketak = Txapelketa.objects.filter(jokoa=jokoa,publikoa_da=True).order_by('-pub_date')[:3]
     return render_to_response('jokoa/jokoa.html', locals(),context_instance=RequestContext(request))
