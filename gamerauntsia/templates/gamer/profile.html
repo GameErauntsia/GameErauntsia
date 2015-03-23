@@ -215,12 +215,14 @@
 				<h2>Gustuko jokoak</h2>
 				{% for joko in user_prof.top_jokoak.all %}
 				<div class="row bloglist">
+				    <a href="{% url 'game' joko.slug %}">
 					<div class="col-lg-4">
 					    <img src="{{joko.get_photo.get_newsprofile_url}}" alt="" />
 					</div>
-				    <div class="col-lg-8">
-				        <p><strong>{{joko.izena}} {{joko.bertsioa}}</strong></p>
-				    </div>
+					<div class="col-lg-8">
+					    <p><strong>{{joko.izena}} {{joko.bertsioa}}</strong></p>
+					</div>
+				    </a>
 				</div>
 				{% endfor %}
 			</div>
