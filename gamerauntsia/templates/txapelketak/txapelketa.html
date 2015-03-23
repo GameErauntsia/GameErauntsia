@@ -70,7 +70,7 @@
                             {% for partaide in list_sailkapena %}
                             <tr>
                                 <td>#{{forloop.counter}}</td>
-                                <td>{% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-circle"/> {% endif %}{{partaide.get_izena}}</a></td>
+                                <td>{% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-thumbnail"/> {% endif %}{{partaide.get_izena}}</a></td>
                                 <td>{{partaide.win}}</td>
                                 <td>{{partaide.lose}}</td>
                                 <td>{{partaide.points}}</td>
@@ -116,7 +116,7 @@
                         </div>
                         <div class="panel-body">
                             {% for partaide in part.partaideak.all %}
-                            <p>{% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-circle"/> {% endif %}{{partaide.get_izena}}</p>
+                            <p>{% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="{% if partaide.is_group %}img-thumbnail{% else %}img-circle{% endif %}"/> {% endif %}{{partaide.get_izena}}</p>
                             {%if not forloop.last %}
                             <p><img src="{{STATIC_URL}}img/versus.png"/></p>
                             {% endif %}
