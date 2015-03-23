@@ -17,6 +17,7 @@ def index(request):
     return render_to_response('jokoa/index.html', locals(),context_instance=RequestContext(request))
 
 def jokoa(request,slug):
+    steam_json = None
     jokoa = get_object_or_404(Jokoa, publikoa_da=True,slug=slug)
     try:
     	if jokoa.steam_id:
