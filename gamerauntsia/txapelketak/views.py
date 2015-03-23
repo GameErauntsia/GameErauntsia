@@ -3,6 +3,7 @@ from django.template import RequestContext
 from django.http import Http404, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
+from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from gamerauntsia.txapelketak.models import *
 from django.core.urlresolvers import reverse
@@ -14,7 +15,7 @@ def index(request):
 
 def txapelketa(request,slug):
     item = get_object_or_404(Txapelketa,slug=slug)
-    next_parts = Partida.objects.filter(txapelketa=item, partaideak__isnull=False).order_by('jardunaldia').distinct()
+    next_parts = Partida.objects.filter(Q(txapelketa=item), Q(partaideak__isnull=False),Q(emaitza__isnull=True) | Q(emaitza__iexact='')).order_by('jardunaldia').distinct()
 
     if item.mota == '0':
         if Partida.objects.filter(txapelketa=item,jardunaldia=1).exists():
@@ -55,7 +56,7 @@ def txapelketa(request,slug):
             graphdata = ""
 
     else:
-        list_sailkapena = item.get_partaideak('points')
+        list_sailkapena = item.get_partaideak(['-points','-win','lose'])
 
     #api = get_tweepy_api()
     #search = '#' + item.hashtag

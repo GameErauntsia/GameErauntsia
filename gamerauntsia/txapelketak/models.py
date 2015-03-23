@@ -74,7 +74,7 @@ class Txapelketa(models.Model):
 
     def get_partaideak(self,order=None):
         if order:
-            return Partaidea.objects.filter(txapelketa=self).order_by(order)
+            return Partaidea.objects.filter(txapelketa=self).order_by(*order)
         return Partaidea.objects.filter(txapelketa=self)
 
     def partaideak_count(self):
