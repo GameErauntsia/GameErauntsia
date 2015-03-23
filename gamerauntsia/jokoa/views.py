@@ -23,8 +23,12 @@ def jokoa(request,slug):
     	    steam_json = get_urljson("http://store.steampowered.com/api/appdetails?appids="+str(jokoa.steam_id))[str(jokoa.steam_id)]['data']
     except:
     	pass
+    gameplayak = GamePlaya.objects.filter(jokoa=jokoa, publikoa_da=True, status='1')
+    if steam_json:
+        gameplayak = gameplayak[:2]
+    else:
+        gameplayak = gameplayak[:4]
     users = GamerUser.objects.filter(top_jokoak=jokoa,is_staff=False).order_by("-karma")[:6]
-    gameplayak = GamePlaya.objects.filter(jokoa=jokoa, publikoa_da=True, status='1')[:2]
     terminoak = Terminoa.objects.filter(jokoa=jokoa).order_by("?")[:10]
     berriak = Berria.objects.filter(jokoa=jokoa,status='1', pub_date__lt=datetime.now()).order_by('-pub_date')[:3]
     txapelketak = Txapelketa.objects.filter(jokoa=jokoa,publikoa_da=True).order_by('-pub_date')[:3]
