@@ -156,6 +156,8 @@
     </div>
     <hr/>
     <div class="col-sm-12">
+    {% if txapelketak %}
+    <h2><i class="glyphicon glyphicon-tower"></i> Txapelketak</h2>
     {% for tx in txapelketak %}
         {% get_comment_count for tx as comment_count %}
         <div class="col-sm-4">
@@ -169,6 +171,7 @@
             <p>{{tx.get_desk_txikia|safe}}</p>
         </div>
     {% endfor %}
+    {% endif %}
     </div>
     <hr/>
     <div class="col-sm-12">
