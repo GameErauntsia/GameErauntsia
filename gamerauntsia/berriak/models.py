@@ -3,6 +3,7 @@ from django.conf import settings
 from datetime import datetime
 from photologue.models import Photo
 from gamerauntsia.gamer.models import GamerUser
+from gamerauntsia.jokoa.models import Jokoa
 from django.template import defaultfilters as filters
 from django.template.loader import get_template
 from django.template import Context
@@ -34,6 +35,7 @@ class Berria(models.Model):
 
     erabiltzailea = models.ForeignKey(GamerUser,related_name='berriak')
     argazkia = models.ForeignKey(Photo,null=True,blank=True)
+    jokoa = models.ForeignKey(Jokoa,null=True,blank=True, help_text="Artikulu honek joko zehaz batekin loturarik badu, adierazi hemen.")
 
     publikoa_da = models.BooleanField(default=False,verbose_name="Publikatzeko prest")
 
