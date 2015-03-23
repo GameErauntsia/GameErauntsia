@@ -70,7 +70,7 @@
                             {% for partaide in list_sailkapena %}
                             <tr>
                                 <td>#{{forloop.counter}}</td>
-                                <td><img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-circle"/> {{partaide.get_izena}}</a></td>
+                                <td>{% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-circle"/> {% endif %}{{partaide.get_izena}}</a></td>
                                 <td>{{partaide.win}}</td>
                                 <td>{{partaide.lose}}</td>
                                 <td>{{partaide.points}}</td>
