@@ -15,9 +15,13 @@
             <div class="col-sm-6 pull-right text-right">
                 <img class="img-responsive img-thumbnail" src="{{jokoa.logoa.get_videoprofile_url}}"/>
                 <p>{{jokoa.desk}}</p>
-                <h3><strong>{% widthratio steam_json.price_overview.final 100.0 1 %} €</strong><br/>
-                <strong>{{steam_json.metacritic.score}}/100</strong></h3>
-                <a href="{{steam_json.metacritic.url}}">Metacritic balorazioa</a>
+                {% if steam_json %}
+                    <h3><strong>{% widthratio steam_json.price_overview.final 100.0 1 %} €</strong><br/>
+                    {% if steam_json.metacritic %}
+                    <strong>{{steam_json.metacritic.score}}/100</strong></h3>
+                    <a href="{{steam_json.metacritic.url}}">Metacritic balorazioa</a>
+                    {% endif %}
+                {% endif %}
             </div>
             <div class="col-sm-6">
                 <p><i class="glyphicon glyphicon-file"></i> {{jokoa.get_lizentzia_display}}</p>
