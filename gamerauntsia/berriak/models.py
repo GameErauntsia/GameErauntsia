@@ -34,7 +34,7 @@ class Berria(models.Model):
     gaia = models.ManyToManyField(Gaia)
 
     erabiltzailea = models.ForeignKey(GamerUser,related_name='berriak')
-    argazkia = models.ForeignKey(Photo)
+    argazkia = models.ForeignKey(Photo,null=True,blank=True)
     jokoa = models.ForeignKey(Jokoa,null=True,blank=True, help_text="Artikulu honek joko zehaz batekin loturarik badu, adierazi hemen.")
 
     publikoa_da = models.BooleanField(default=False,verbose_name="Publikatzeko prest")
