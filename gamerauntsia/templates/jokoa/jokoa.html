@@ -16,10 +16,15 @@
                 <img class="img-responsive img-thumbnail" src="{{jokoa.logoa.get_videoprofile_url}}"/>
                 <p>{{jokoa.desk}}</p>
                 {% if steam_json %}
-                    <h3><strong>{% widthratio steam_json.price_overview.final 100.0 1 %} €</strong><br/>
+                    <h3>
+                    {% if steam_json.price_overview %}
+                    <strong>{% widthratio steam_json.price_overview.final 100.0 1 %} €</strong>
+                    {% endif %}
                     {% if steam_json.metacritic %}
-                    <strong>{{steam_json.metacritic.score}}/100</strong></h3>
+                    <br/><strong>{{steam_json.metacritic.score}}/100</strong></h3>
                     <a href="{{steam_json.metacritic.url}}">Metacritic balorazioa</a>
+                    {% else %}
+                    </h3>
                     {% endif %}
                 {% endif %}
             </div>
