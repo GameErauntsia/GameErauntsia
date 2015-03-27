@@ -297,7 +297,7 @@ def add_favorite_game(request,slug):
         game = Jokoa.objects.get(slug=slug)
         user.top_jokoak.add(game)
         user.save()
-    return HttpResponseRedirect(reverse('game', args({'slug':slug})))
+    return HttpResponseRedirect(reverse('game', args=slug))
 
 def get_jokoak(request):
     if request.is_ajax():
