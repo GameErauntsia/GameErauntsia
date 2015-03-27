@@ -4,11 +4,13 @@ from django.core.mail import send_mail, mail_admins
 from django_simple_forum.models import Post, Topic
 from django.db.models.signals import post_save
 from django.contrib.contenttypes.models import ContentType
+from gamerauntsia.utils.social import post_to_twitter
 from django_comments.models import Comment
 from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.jokoa.models import Jokoa
 from gamerauntsia.berriak.models import Berria
 from gamerauntsia.gameplaya.models import GamePlaya
+from django_bootstrap_calendar.models import CalendarEvent
 
 class Terminoa(models.Model):
     term_eu = models.CharField(max_length=64)
@@ -81,9 +83,14 @@ def send_gp_email(sender,instance,**kwargs):
                 send_mail('[Game Erauntsia - '+instance.izenburua+']', message, settings.DEFAULT_FROM_EMAIL, [editor.email])
 
 
+def send_agenda_tweet(sender,instance,**kwargs):
+    if kwargs['created']:
+        post_to_twitter(instance)
+
 post_save.connect(send_topic_email, sender=Topic)
 post_save.connect(send_post_email, sender=Post)
 post_save.connect(send_comment_email, sender=Comment)
 post_save.connect(send_newuser_email, sender=GamerUser)
 post_save.connect(send_article_email, sender=Berria)
 post_save.connect(send_gp_email, sender=GamePlaya)
+post_save.connect(send_agenda_tweet, sender=CalendarEvent)
