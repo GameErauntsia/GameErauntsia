@@ -33,6 +33,9 @@
                 <p><i class="glyphicon glyphicon-time"></i> {{steam_json.release_date.date}}</p>
                 {%endif %}
                 {% if request.user.is_authenticated %}
+                <p>
+                    <a href="{% url 'gamer_add_favorite_game' jokoa.slug %}"><i class="glyphicon glyphicon-heart"></i> Gogoko dut</a>
+                </p>
                 {% if request.user.is_superuser %}
                 <a class="btn btn-default" href="/kudeatu/jokoa/jokoa/{{jokoa.id}}">Editatu</a>
                 {% endif %}
