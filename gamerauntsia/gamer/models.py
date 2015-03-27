@@ -83,6 +83,11 @@ class GamerUser(CSAbstractSocialUser):
     def getplatforms(self):
         return JokuPlataforma.objects.filter(user=self)
 
+    def likes_game(self,game):
+        if game in self.top_jokoak.all():
+            return True
+        return False
+
     def email_user(self, subject, message, from_email=None, **kwargs):
         """
         Sends an email to this User.
