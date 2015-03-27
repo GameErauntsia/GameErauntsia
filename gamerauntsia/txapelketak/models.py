@@ -88,6 +88,12 @@ class Txapelketa(models.Model):
             return filters.striptags(self.desk)[:150]+'...'
         return filters.striptags(self.desk)
 
+    def get_next_match(self):
+        matches = self.partida_set.filter(Q(emaitza__isnull=True)|Q(emaitza__iexact='')).order_by("-date")
+        if matches:
+            return matches[0].date
+        return None
+
     def get_desk_index(self):
         if len(self.desk) > 400:
             return filters.striptags(self.desk)[:400]+'...'
