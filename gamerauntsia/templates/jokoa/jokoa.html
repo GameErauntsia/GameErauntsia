@@ -16,10 +16,15 @@
                 <img class="img-responsive img-thumbnail" src="{{jokoa.logoa.get_videoprofile_url}}"/>
                 <p>{{jokoa.desk}}</p>
                 {% if steam_json %}
-                    <h3><strong>{% widthratio steam_json.price_overview.final 100.0 1 %} €</strong><br/>
+                    <h3>
+                    {% if steam_json.price_overview %}
+                    <strong>{% widthratio steam_json.price_overview.final 100.0 1 %} €</strong>
+                    {% endif %}
                     {% if steam_json.metacritic %}
-                    <strong>{{steam_json.metacritic.score}}/100</strong></h3>
+                    <br/><strong>{{steam_json.metacritic.score}}/100</strong></h3>
                     <a href="{{steam_json.metacritic.url}}">Metacritic balorazioa</a>
+                    {% else %}
+                    </h3>
                     {% endif %}
                 {% endif %}
             </div>
@@ -93,9 +98,8 @@
     </div>
     {% endif %}
     <div col="col-sm-12">
-        {% if steam_json.screenshots %}
+        {% if steam_json.screenshots and gameplayak %}
         <div class="col-sm-6">
-            {% if gameplayak %}
                 <h2><i class="glyphicon glyphicon-film"></i> Game Playak</h2>
                 {% for gp in gameplayak %}
                 {% get_comment_count for gp as comment_count %}
@@ -111,7 +115,6 @@
                 </div>
                 <hr/>
                 {% endfor %}
-            {% endif %}
         </div>
         <div class="col-sm-6">
             <div id="game_carousel" class="row carousel-holder">
