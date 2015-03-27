@@ -20,7 +20,8 @@ def jokoa(request,slug):
     steam_json = None
     user = request.user
     jokoa = get_object_or_404(Jokoa, publikoa_da=True,slug=slug)
-    fav_game = user.likes_game(jokoa)
+    if user.is_authenticated():
+        fav_game = user.likes_game(jokoa)
     try:
     	if jokoa.steam_id:
     	    steam_json = get_urljson("http://store.steampowered.com/api/appdetails?appids="+str(jokoa.steam_id))[str(jokoa.steam_id)]['data']
