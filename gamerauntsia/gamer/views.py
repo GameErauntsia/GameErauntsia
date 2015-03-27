@@ -293,7 +293,7 @@ def add_event(request):
 @login_required
 def add_favorite_game(request,slug):
     user = request.user
-    if request.method == 'POST':
+    if Jokoa.objects.filter(slug=slug).exists():
         game = Jokoa.objects.get(slug=slug)
         user.top_jokoak.add(game)
         user.save()
