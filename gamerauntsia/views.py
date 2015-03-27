@@ -17,7 +17,10 @@ def index(request):
             txapelketa = list_tx[0]
 
     if Txapelketa.objects.filter(publikoa_da=True,pub_date__lt=datetime.now(),live_bideoa__isnull=False,status='2').exists():
-        live_gp = Txapelketa.objects.filter(publikoa_da=True,pub_date__lt=datetime.now(),live_bideoa__isnull=False,status='2')[0]
+        tx = Txapelketa.objects.filter(publikoa_da=True,pub_date__lt=datetime.now(),live_bideoa__isnull=False,status='2')[0]
+        match = tx.get_next_match()
+        if match and match<datetime.now():
+            live_gp = tx
     return render_to_response('index.html', locals(),context_instance=RequestContext(request))
 
 def bilaketa(request,bilatu):
