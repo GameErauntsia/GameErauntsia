@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.db.models import Q
 from photologue.models import Photo
 from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.jokoa.models import Jokoa
