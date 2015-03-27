@@ -290,6 +290,15 @@ def add_event(request):
     return render_to_response('profile/add_event.html', locals(), context_instance=RequestContext(request))
 
 
+@login_required
+def add_favorite_game(request,slug):
+    user = request.user
+    if request.method == 'POST':
+        game = Jokoa.objects.get(slug=slug)
+        user.top_jokoak.add(game)
+        user.save()
+    return HttpResponseRedirect(reverse('game', args({'slug':slug})))
+
 def get_jokoak(request):
     if request.is_ajax():
         q = request.GET.get('term', '')
