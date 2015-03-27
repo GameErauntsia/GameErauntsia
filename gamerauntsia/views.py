@@ -1,6 +1,7 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import Http404, HttpResponseRedirect
+from django.utils import timezone
 from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.berriak.models import Berria
 from gamerauntsia.txapelketak.models import Txapelketa
@@ -19,7 +20,7 @@ def index(request):
     if Txapelketa.objects.filter(publikoa_da=True,pub_date__lt=datetime.now(),live_bideoa__isnull=False,status='2').exists():
         tx = Txapelketa.objects.filter(publikoa_da=True,pub_date__lt=datetime.now(),live_bideoa__isnull=False,status='2')[0]
         match = tx.get_next_match()
-        if match and match<datetime.now():
+        if match and match<timezone.now():
             live_gp = tx
     return render_to_response('index.html', locals(),context_instance=RequestContext(request))
 
