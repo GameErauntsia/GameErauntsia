@@ -195,7 +195,7 @@
                     {% endif %}
                 {% endif %}
 
-                <h3>Partaideak ({{item.jokalariak_count}})</h3>
+                <h3>Partaideak {% if item.jokalariak_count %}({{item.jokalariak_count}}){% endif %}</h3>
                 {% if item.modalitatea == '1' %}
                 <div class="tabpanel">
                     <ul class="nav nav-tabs" role="tablist">
