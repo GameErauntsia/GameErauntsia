@@ -16,15 +16,16 @@
                 <img class="img-responsive img-thumbnail" src="{{jokoa.logoa.get_videoprofile_url}}"/>
                 <p>{{jokoa.desk}}</p>
                 {% if steam_json %}
-                    <h3>
                     {% if steam_json.price_overview %}
-                    <strong>{% widthratio steam_json.price_overview.final 100.0 1 %} €</strong>
+                    <h3><a href="http://store.steampowered.com/app/{{steam_json.steam_appid}}"><strong>{% widthratio steam_json.price_overview.final 100.0 1 %} €</strong> <img src="{{STATIC_URL}}img/steam.png" width="40"/></a></h3>
                     {% endif %}
                     {% if steam_json.metacritic %}
-                    <br/><strong>{{steam_json.metacritic.score}}/100</strong></h3>
-                    <a href="{{steam_json.metacritic.url}}">Metacritic balorazioa</a>
-                    {% else %}
-                    </h3>
+                    <div class="well">
+                        <img src="{{STATIC_URL}}img/metacritic.png" height="50"/>
+                        <h3>
+                        <strong>{{steam_json.metacritic.score}}/100</strong></h3>
+                        <a href="{{steam_json.metacritic.url}}">Metacritic balorazioa</a>
+                    </div>
                     {% endif %}
                 {% endif %}
             </div>
