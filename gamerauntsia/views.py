@@ -23,7 +23,7 @@ def index(request):
         for tx in txs:
             if not match:
                 match = tx.get_next_match()
-            elif match>tx.get_next_match()
+            elif match>tx.get_next_match():
                 match = tx.get_next_match()
         if match and match<timezone.now():
             live_gp = tx
