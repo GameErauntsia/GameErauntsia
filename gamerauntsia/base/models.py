@@ -57,7 +57,7 @@ def send_comment_email(sender,instance,**kwargs):
                 message += 'txapelketa honetan: \n\n%stxapelketak/%s\n\n' % (settings.HOST,obj.slug)
             elif obj.__class__.__name__ == 'GamePlaya':
                 message += 'gameplay honetan: \n\n%sgameplayak/%s\n\n' % (settings.HOST,obj.slug)
-            creators = Comment.objects.filter(object_pk=instance.object_pk,content_type=instance.content_type).values_list('user__username','user__email').distinct()
+            creators = Comment.objects.filter(object_pk=instance.object_pk,content_type=instance.content_type).values('user__email').distinct()
             for creator in creators:
                 if not instance.user.email == creator['user__email'] and instance.user.email_notification:
                     send_mail('[Game Erauntsia - Iruzkin berria]', message, settings.DEFAULT_FROM_EMAIL, [creator['user__email']])
