@@ -62,8 +62,7 @@ def send_comment_email(sender,instance,**kwargs):
                 if not instance.user.email == creator['user__email'] and instance.user.email_notification:
                     send_mail('[Game Erauntsia - Iruzkin berria]', message, settings.DEFAULT_FROM_EMAIL, [creator['user__email']])
         except:
-            
-            send_mail('[Game Erauntsia]', str(instance.id)+' iruzkina ezin izan da bidali!', settings.DEFAULT_FROM_EMAIL, ['urtzi.odriozola@gmail.com'])
+            send_mail('[Game Erauntsia]', str(instance.id)+' iruzkina ezin izan da bidali!\n\nMezua honako hau zen: "'+message+'"', settings.DEFAULT_FROM_EMAIL, ['urtzi.odriozola@gmail.com'])
 
 def send_newuser_email(sender,instance,**kwargs):
     if kwargs['created']:
