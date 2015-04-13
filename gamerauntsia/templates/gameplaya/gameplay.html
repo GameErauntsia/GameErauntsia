@@ -41,7 +41,7 @@
             <p><span class="glyphicon glyphicon-fire"></span> <a href="{% url 'gameplay_level' gp.zailtasuna.slug %}">{{gp.zailtasuna.izena}}</a></p>
             <p><span class="glyphicon glyphicon-time"></span> {{gp.iraupena_min}}min {{gp.iraupena_seg}}seg</p>
             <p><img src="{{gp.plataforma.icon.get_profilesmall_url}}"/> {{gp.plataforma.izena}}</p>
-            <p><a href="{% url 'gamer_profile' gp.erabiltzailea.username %}"><img src="{{gp.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{gp.erabiltzailea.fullname}}</a></p>
+            <p><a href="{% url 'gamer_profile' gp.erabiltzailea.username %}"><img src="{{gp.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{gp.erabiltzailea.getFullName}}</a></p>
         </div>
         {% if user.is_authenticated %}
             {% if user.is_superuser or user == gp.erabiltzailea %}
