@@ -78,6 +78,14 @@ class GamePlayForm(forms.ModelForm):
     argazkia  = forms.ImageField(label='Nabarmendutako irudia', help_text='Onartutako formatuak: jpg, png, gif.', required=False)
 
     jokoa = forms.ModelChoiceField(label="Jokoa", queryset=Jokoa.objects.all().order_by('izena'))
+    
+    lizentzia = forms.BooleanField(label="Lizentzia")
+    
+    def clean_lizentzia(self):
+        lizentzia = self.cleaned_data['lizentzia']
+        if not lizentzia:
+            raise forms.ValidationError('Gameplaya igotzeko arauak onartzea beharrezkoa da. Mesedez, irakurri eta onartu arauak.')
+        return self.cleaned_data['lizentzia']
 
     def clean_iraupena_min(self):
         minutu = self.cleaned_data['iraupena_min']
