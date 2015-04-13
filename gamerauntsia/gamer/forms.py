@@ -85,6 +85,19 @@ class GamePlayForm(forms.ModelForm):
         if not desk:
             raise forms.ValidationError('Mezu hutsek ez dute balio. Mesedez, idatzi zerbait!')
         return self.cleaned_data['desk']
+        
+    def clean_min(self):
+        minutu = self.cleaned_data['iraupena_min']
+        seg = self.cleaned_data['iraupena_seg']
+        if minutu == 0 and seg == 0:
+            raise forms.ValidationError('Bideoaren iraupena zehaztea garrantzitsua da. Mesedez, sartu denbora!')
+        return self.cleaned_data['iraupena_min']
+        
+    def clean_bideoa(self):
+        bideoa = self.cleaned_data['bideoa']
+        if len(bideoa) > 15 or "/" in bideoa:
+            raise forms.ValidationError('Bideoaren Youtube kodea bakarrik jarri behar da. Mesedez, ikusi adibidea eta zuzendu kodea!')
+        return self.cleaned_data['bideoa']
 
     class Meta:
         model = GamePlaya
