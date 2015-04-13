@@ -79,7 +79,7 @@ class GamePlayForm(forms.ModelForm):
 
     jokoa = forms.ModelChoiceField(label="Jokoa", queryset=Jokoa.objects.all().order_by('izena'))
     
-    lizentzia = forms.BooleanField(label="Lizentzia")
+    lizentzia = forms.BooleanField(label="")
     
     def clean_lizentzia(self):
         lizentzia = self.cleaned_data['lizentzia']
