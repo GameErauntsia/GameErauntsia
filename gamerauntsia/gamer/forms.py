@@ -86,7 +86,7 @@ class GamePlayForm(forms.ModelForm):
             raise forms.ValidationError('Mezu hutsek ez dute balio. Mesedez, idatzi zerbait!')
         return self.cleaned_data['desk']
         
-    def clean_min(self):
+    def clean_iraupena_min(self):
         minutu = self.cleaned_data['iraupena_min']
         seg = self.cleaned_data['iraupena_seg']
         if minutu == 0 and seg == 0:
