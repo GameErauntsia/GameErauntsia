@@ -16,6 +16,9 @@
             {% if field.name == 'kategoria' %}
                 <strong>{{field.label}}:</strong><br/>{{field}} <br/><span class="helptext">{{field.help_text}}</span>
             {% else %}
+                {% if field.name == 'lizentzia' %}
+                <label for="id_lizentzia">Irakurri eta onartzen ditut <a href="/gameplay-arauak">gameplayak igotzeko arauak</a>.</label>
+                {% endif %}
                 {% if field.label %}<strong>{{field.label}}:</strong>{% endif %} {{field}} <span class="helptext">{{field.help_text}}</span>
             {% endif %}
         </p>
