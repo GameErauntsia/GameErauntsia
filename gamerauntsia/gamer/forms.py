@@ -79,19 +79,19 @@ class GamePlayForm(forms.ModelForm):
 
     jokoa = forms.ModelChoiceField(label="Jokoa", queryset=Jokoa.objects.all().order_by('izena'))
 
+    def clean(self):
+        minutu = self.cleaned_data['iraupena_min']
+        seg = self.cleaned_data['iraupena_seg']
+        if minutu == 0 and seg == 0:
+            raise forms.ValidationError('Bideoaren iraupena zehaztea garrantzitsua da. Mesedez, sartu denbora!')
+        return self.cleaned_data
+
     def clean_desk(self):
         """ """
         desk = self.cleaned_data['desk'].strip()
         if not desk:
             raise forms.ValidationError('Mezu hutsek ez dute balio. Mesedez, idatzi zerbait!')
         return self.cleaned_data['desk']
-        
-    def clean_iraupena_min(self):
-        minutu = self.cleaned_data['iraupena_min']
-        seg = self.cleaned_data['iraupena_seg']
-        if minutu == 0 and seg == 0:
-            raise forms.ValidationError('Bideoaren iraupena zehaztea garrantzitsua da. Mesedez, sartu denbora!')
-        return self.cleaned_data['iraupena_min']
         
     def clean_bideoa(self):
         bideoa = self.cleaned_data['bideoa']
