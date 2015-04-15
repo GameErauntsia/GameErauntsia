@@ -1,6 +1,7 @@
 from django.contrib.syndication.views import Feed
 from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.berriak.models import Berria
+from datetime import datetime
 
 class LatestEntriesFeed(Feed):
     title = "Gamerauntsia harpidetza"
@@ -8,7 +9,7 @@ class LatestEntriesFeed(Feed):
     description = "Gamerauntsian argitaratzen diren gameplayak"
 
     def items(self):
-        return GamePlaya.objects.order_by('-pub_date')[:20]
+        return GamePlaya.objects.filter(status='1',publikoa_da=True, pub_date__lt=datetime.now()).order_by('-pub_date')[:20]
 
     def item_title(self, item):
         return item.izenburua
@@ -22,7 +23,7 @@ class LatestNewsFeed(Feed):
     description = "Gamerauntsian argitaratzen diren berriak"
 
     def items(self):
-        return Berria.objects.order_by('-pub_date')[:20]
+        return Berria.objects.filter(status='1', pub_date__lt=datetime.now()).order_by('-pub_date')[:20]
 
     def item_title(self, item):
         return item.izenburua
