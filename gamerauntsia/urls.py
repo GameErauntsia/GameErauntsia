@@ -1,11 +1,11 @@
 from django.conf.urls import patterns, include, url
-from gamerauntsia import settings
 from django.contrib import admin
-from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from django.views.generic.base import RedirectView
-from gamerauntsia.base.feed import LatestEntriesFeed, LatestNewsFeed
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView
+from django.views.generic.base import RedirectView
+from gamerauntsia import settings
+from gamerauntsia.base.feed import LatestEntriesFeed, LatestNewsFeed
 
 admin.autodiscover()
 
@@ -36,7 +36,7 @@ urlpatterns = patterns('',
     (r'^txapelketak/', include('gamerauntsia.txapelketak.urls')),
 
     #MINECRAFT SERVER
-    (r'^minecraft/', include('gamerauntsia.zerbitzariak.urls')),
+    (r'^zerbitzariak/', include('gamerauntsia.zerbitzariak.urls')),
 
     #AGENDA
     (r'^agenda/', include('gamerauntsia.agenda.urls')),
