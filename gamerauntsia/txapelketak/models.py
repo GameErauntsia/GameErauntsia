@@ -221,13 +221,13 @@ class Partida(MPTTModel):
 
 def update_classification(sender,instance,**kwargs):
     if not kwargs['created']:
-        if instance.emaitza and instance.txapelketa.modalitatea == '1':
+        if instance.emaitza and instance.txapelketa.modalitatea == '150':
             for parta in instance.partaideak.all():
                 irabazi = 0
                 galdu = 0
                 berdindu = 0
                 jokatuta = 0
-                partidak = Partida.objects.filter(Q(txapelketa=instance.txapelketa),Q(partaideak=parta),Q(emaitza__isnull=False)|Q(emaitza__iexact="")).order_by("date")
+                partidak = Partida.objects.filter(txapelketa=instance.txapelketa,partaideak=parta,emaitza__isnull=False).exclude(emaitza__iexact="").order_by("date")
                 for parti in partidak:
                     emaitza = parti.emaitza.split("-")
                     e1 = emaitza[0].strip()
