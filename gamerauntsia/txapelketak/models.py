@@ -10,6 +10,7 @@ from django.template import defaultfilters as filters
 from mptt.models import MPTTModel, TreeForeignKey
 from django.template.loader import get_template
 from django.template import Context
+from django.db.models.signals import post_save
 
 MOTA = (
     ('0','Kanporaketa'),
@@ -46,6 +47,10 @@ class Txapelketa(models.Model):
 
     jokoa = models.ForeignKey(Jokoa)
     adminak = models.ManyToManyField(GamerUser,related_name="adminak",verbose_name="Egileak")
+
+    irabazi = models.IntegerField('Puntuak irabaztean', default=0)
+    galdu = models.IntegerField('Puntuak galtzean', default=0)
+    berdinketa = models.IntegerField('Puntuak berdinketan', default=0)
 
     publikoa_da = models.BooleanField(default=True)
     pub_date = models.DateTimeField('Publikazio data', default=datetime.now)
@@ -145,6 +150,8 @@ class Partaidea(models.Model):
 
     win = models.IntegerField('Irabazitakoak', default=0)
     lose = models.IntegerField('Galdutakoak', default=0)
+    draw = models.IntegerField('Berdindutakoak', default=0)
+    matches = models.IntegerField('Jokatutakoak', default=0)
     points = models.IntegerField('Puntuak', default=0)
 
     def is_group(self):
@@ -210,3 +217,41 @@ class Partida(MPTTModel):
 
     def __unicode__(self):
         return u'%s' % (self.get_izena())
+
+
+def update_classification(sender,instance,**kwargs):
+    if not kwargs['created']:
+        if instance.emaitza:
+            for parta in instance.partaideak.all():
+                irabazi = 0
+                galdu = 0
+                berdindu = 0
+                jokatuta = 0
+                partidak = Partida.objects.filter(Q(txapelketa=instance.txapelketa),Q(partaideak=parta),Q(emaitza__isnull=False)|Q(emaitza__iexact="")).order_by("date")
+                for parti in partidak:
+                    emaitza = parti.emaitza.split("-")
+                    e1 = emaitza[0].strip()
+                    e2 = emaitza[1].strip()
+                    kontra = parti.partaideak.all().exclude(parta)
+                    if parta.id > kontra.id:
+                        etxeko = kontra
+                        kanpo = parta
+                    else:
+                        etxeko = parta
+                        kanpo = kontra
+                    if e1 > e2 and etxeko == parta:
+                        irabazi += 1
+                    if e1 < e2 and kanpo == parta:
+                        galdu += 1
+                    if e1 == e2:
+                        berdindu += 1
+                    jokatuta =+ 1
+                ##PUNTUAKETA
+                parta.win = irabazi
+                parta.lose = galdu
+                parta.draw = berdindu
+                parta.points = irabazi * instance.txapelketa.irabazi + galdu * instance.txapelketa.galdu + berdindu * instance.txapelketa.berdinketa
+                parta.matches = jokatuta
+                parta.save()
+
+post_save.connect(update_classification, sender=Partida)
