@@ -234,10 +234,16 @@ def update_classification(sender,instance,**kwargs):
                     e2 = emaitza[1].strip()
                     etxeko = parti.partaideak.all()[0]
                     kanpo = parti.partaideak.all()[1]
-                    if e1 > e2 and etxeko == parta:
-                        irabazi += 1
-                    if e1 < e2 and kanpo == parta:
-                        galdu += 1
+                    if e1 > e2:
+                        if etxeko == parta:
+                            irabazi += 1
+                        else:
+                            galdu += 1
+                    if e1 < e2:
+                        if etxeko == parta:
+                            galdu += 1
+                        else:
+                            irabazi += 1
                     if e1 == e2:
                         berdindu += 1
                     jokatuta += 1
