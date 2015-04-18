@@ -62,7 +62,9 @@
                                 <th></th>
                                 <th>Partaidea</th>
                                 <th>Irabazitakoak</th>
+                                <th>Berdindutakoak</th>
                                 <th>Galdutakoak</th>
+                                <th>Jokatutakoak</th>
                                 <th>Puntuak</th>
                             </tr>
                         </thead>
@@ -72,7 +74,9 @@
                                 <td>#{{forloop.counter}}</td>
                                 <td>{% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-thumbnail"/> {% endif %}{{partaide.get_izena}}</a></td>
                                 <td>{{partaide.win}}</td>
+                                <td>{{partaide.draw}}</td>
                                 <td>{{partaide.lose}}</td>
+                                <td>{{partaide.matches}}</td>
                                 <td>{{partaide.points}}</td>
                             </tr>
                             {% endfor %}
