@@ -221,7 +221,7 @@ class Partida(MPTTModel):
 
 def update_classification(sender,instance,**kwargs):
     if not kwargs['created']:
-        if instance.emaitza:
+        if instance.emaitza and instance.txapelketa.modalitatea == '1':
             for parta in instance.partaideak.all():
                 irabazi = 0
                 galdu = 0
@@ -232,7 +232,7 @@ def update_classification(sender,instance,**kwargs):
                     emaitza = parti.emaitza.split("-")
                     e1 = emaitza[0].strip()
                     e2 = emaitza[1].strip()
-                    kontra = parti.partaideak.exclude(id=parta.id)
+                    kontra = parti.partaideak.filter(~Q(id = parta.id))[0]
                     if parta.id > kontra.id:
                         etxeko = kontra
                         kanpo = parta
