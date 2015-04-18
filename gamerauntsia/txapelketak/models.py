@@ -232,7 +232,7 @@ def update_classification(sender,instance,**kwargs):
                     emaitza = parti.emaitza.split("-")
                     e1 = emaitza[0].strip()
                     e2 = emaitza[1].strip()
-                    kontra = parti.partaideak.all().exclude(parta)
+                    kontra = parti.partaideak.all().exclude(id=parta.id)
                     if parta.id > kontra.id:
                         etxeko = kontra
                         kanpo = parta
