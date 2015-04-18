@@ -232,13 +232,8 @@ def update_classification(sender,instance,**kwargs):
                     emaitza = parti.emaitza.split("-")
                     e1 = emaitza[0].strip()
                     e2 = emaitza[1].strip()
-                    kontra = parti.partaideak.filter(~Q(id = parta.id))[0]
-                    if parta.id > kontra.id:
-                        etxeko = kontra
-                        kanpo = parta
-                    else:
-                        etxeko = parta
-                        kanpo = kontra
+                    etxeko = parti.partaideak.all()[0]
+                    kanpo = parti.partaideak.all()[1]
                     if e1 > e2 and etxeko == parta:
                         irabazi += 1
                     if e1 < e2 and kanpo == parta:
