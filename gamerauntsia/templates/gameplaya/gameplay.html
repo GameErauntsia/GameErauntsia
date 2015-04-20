@@ -25,7 +25,13 @@
 
 <div class="row">
     <div class="col-lg-8">
-        <div class="flex-video widescreen"><iframe width="700" height="394" src="//www.youtube.com/embed/{{gp.bideoa}}" frameborder="0" allowfullscreen></iframe></div>
+        <div class="flex-video widescreen">
+            {% if gp.bideoa %}
+            <iframe width="700" height="394" src="//www.youtube.com/embed/{{gp.bideoa}}" frameborder="0" allowfullscreen></iframe>
+            {% else %}
+            <iframe src="http://www.twitch.tv/gamerauntsia/embed" frameborder="0" scrolling="no" height="378" width="620"></iframe>
+            {% endif %}
+        </div>
         <h1>{{gp.izenburua}}</h1>
         <p>{{gp.desk|safe|emoticons}}</p>
         <p><a class="twitter popup" href="http://twitter.com/share?text={{gp.izenburua|urlencode}}"><img src="{{STATIC_URL}}img/twitter.png"/></a> <a href="https://www.facebook.com/dialog/share?app_id={{FB_APP_ID}}&display=popup&href={{gp.get_absolute_url|urlencode:''}}&redirect_uri={{gp.get_absolute_url|urlencode:''}}"><img src="{{STATIC_URL}}img/facebook.png"/></a></p>
@@ -50,6 +56,15 @@
                 <a class="btn btn-default" href="/kudeatu/gameplaya/gameplaya/{{gp.id}}">Editatu</a>
             </div>
             {% endif %}
+        {% endif %}
+        
+        {% if not gp.bideoa %}
+            <h3>GamePlay +</h3>
+            <div class="well">
+                <div class="flex-video widescreen">
+                    <iframe src="http://www.twitch.tv/gamerauntsia/chat?popout=" frameborder="0" scrolling="no" height="500" width="350"></iframe>
+                </div>
+            </div>
         {% endif %}
 
         {% if related_gps %}
