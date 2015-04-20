@@ -45,7 +45,7 @@ class GamePlaya(models.Model):
     iraupena_seg = models.IntegerField(max_length=2, null=False,blank=False,default=0)
 
     argazkia = models.ForeignKey(Photo)
-    bideoa = models.CharField(max_length=100, ,null=True,blank=True, help_text="Eremu honetan Youtube bideoaren URL kodea itsatsi behar duzu. Adb.: c21XAuI3aMo")
+    bideoa = models.CharField(max_length=100,null=True,blank=True,help_text="Eremu honetan Youtube bideoaren URL kodea itsatsi behar duzu. Adb.: c21XAuI3aMo")
 
     jokoa = models.ForeignKey(Jokoa, related_name='gameplay')
     plataforma = models.ForeignKey(Plataforma, related_name='gameplay')
