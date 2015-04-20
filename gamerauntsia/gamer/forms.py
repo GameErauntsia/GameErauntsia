@@ -102,7 +102,7 @@ class GamePlayForm(forms.ModelForm):
         
     def clean_bideoa(self):
         bideoa = self.cleaned_data['bideoa']
-        if len(bideoa) > 15 or "/" in bideoa:
+        if len(bideoa) > 15 or "/" in bideoa or not bideoa:
             raise forms.ValidationError('Bideoaren Youtube kodea bakarrik jarri behar da. Mesedez, ikusi adibidea eta zuzendu kodea!')
         return self.cleaned_data['bideoa']
 
