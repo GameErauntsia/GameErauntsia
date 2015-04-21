@@ -73,7 +73,7 @@ class PartaideakAdmin(admin.ModelAdmin):
                 return ", ".join([p.username for p in obj.jokalariak.all()])
         return obj.izena
 
-    list_display = ('txapelketa', 'get_izena', 'win','lose', 'points')
+    list_display = ('txapelketa', 'get_izena', 'win','lose', 'matches','points')
     filter_horizontal = ('jokalariak',)
     raw_id_fields = ('irudia','txapelketa')
     search_fields = ['izena']

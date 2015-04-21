@@ -40,8 +40,8 @@
                     <a class="btn btn-default" href="/kudeatu/txapelketak/partida/?txapelketa__id__exact={{item.id}}">Partidak</a>
                     <a class="btn btn-default" href="/kudeatu/txapelketak/partaidea/?txapelketa__id__exact={{item.id}}">Partaideak</a>
                     
-                    {% if item.modalitatea == '0' %}
-                    <a href="{% url 'sortu_partaideak' item.slug %}" class="btn btn-default pull-right">Sortu partaideak</a>
+                    {% if item.modalitatea == '0' and item.partaideak_count == 0 %}
+                    <a href="{% url 'sortu_partaideak' item.slug %}" class="btn btn-warning pull-right">Sortu partaideak</a>
                     {% endif %}
                 </div>
             </div>
