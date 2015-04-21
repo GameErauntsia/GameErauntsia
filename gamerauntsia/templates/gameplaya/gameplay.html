@@ -35,20 +35,19 @@
         <h1>{{gp.izenburua}}</h1>
         <p>{{gp.desk|safe|emoticons}}</p>
         <p><a class="twitter popup" href="http://twitter.com/share?text={{gp.izenburua|urlencode}}"><img src="{{STATIC_URL}}img/twitter.png"/></a> <a href="https://www.facebook.com/dialog/share?app_id={{FB_APP_ID}}&display=popup&href={{gp.get_absolute_url|urlencode:''}}&redirect_uri={{gp.get_absolute_url|urlencode:''}}"><img src="{{STATIC_URL}}img/facebook.png"/></a></p>
-        {% if not gp.bideoa %}
-            <h3>Zuzeneko txata</h3>
-            <div class="well">
-                <div class="flex-video widescreen">
-                    <iframe src="http://www.twitch.tv/gamerauntsia/chat?popout=" frameborder="0" scrolling="no" height="500" width="100%"></iframe>
-                </div>
-            </div>
-        {% endif %}
-        
         {% render_comment_list for gp %}
 
         {% render_comment_form for gp %}
     </div>
     <div class="col-lg-4">
+        {% if not gp.bideoa %}
+            <h3>Zuzeneko txata</h3>
+            <div class="well">
+                <div class="flex-video widescreen">
+                    <iframe src="http://www.twitch.tv/gamerauntsia/chat?popout=" frameborder="0" height="500" width="100%"></iframe>
+                </div>
+            </div>
+        {% endif %}
         <h3>Fitxa teknikoa</h3>
         <div class="well">
             <p><span class="glyphicon glyphicon-play"></span> <strong><a href="{% url 'game' gp.jokoa.slug %}">{{gp.jokoa.izena}} {%if gp.jokoa.bertsioa %}{{gp.jokoa.bertsioa}}{% endif %}</a></strong></p>
