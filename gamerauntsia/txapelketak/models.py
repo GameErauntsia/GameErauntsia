@@ -173,7 +173,7 @@ class Partaidea(models.Model):
 
     def get_izena(self):
         if not self.izena:
-            if len(self.jokalariak.all()) == 1:
+            if not self.is_group:
                 return u'%s' % (self.jokalariak.all()[0].getFullName())
             else:
                 return u'%s' % (", ".join([p.getFullName() for p in self.jokalariak.all()]))
