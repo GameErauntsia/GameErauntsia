@@ -194,7 +194,7 @@ class Partida(MPTTModel):
 
     txapelketa = models.ForeignKey(Txapelketa)
     gameplaya = models.ForeignKey(GamePlaya,null=True,blank=True)
-    date = models.DateTimeField('Data',null=True,blank=True)
+    date = models.DateTimeField('Data', null=True,blank=True)
 
     def get_izena(self):
         if self.partaideak.all():
