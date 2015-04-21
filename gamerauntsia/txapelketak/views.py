@@ -77,10 +77,10 @@ def sortu_partaideak(request,slug):
     user = request.user
     item = get_object_or_404(Txapelketa,slug=slug)
 
-    for partaide in item.jokalariak.all():
+    for partai in item.jokalariak.all():
         part = Partaidea()
         part.txapelketa = item
-        part.jokalariak.add(partaide)
+        part.jokalariak.add(partai)
         part.save()
 
     return HttpResponseRedirect(reverse("txapelketa", kwargs={'slug':slug}))
