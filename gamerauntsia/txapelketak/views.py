@@ -80,6 +80,7 @@ def sortu_partaideak(request,slug):
     for partai in item.jokalariak.all():
         part = Partaidea()
         part.txapelketa = item
+        part.save()
         part.jokalariak.add(partai)
         part.save()
 
