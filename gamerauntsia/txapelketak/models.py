@@ -158,6 +158,12 @@ class Partaidea(models.Model):
         if len(self.jokalariak.all()) > 1:
             return True
         return False
+        
+    def get_absolute_url(self):
+        if self.is_group():
+            return None
+        else:
+            return "%s" % (self.jokalariak.all()[0].get_absolute_url())
 
     def get_photo(self):
         if self.is_group():
