@@ -123,7 +123,7 @@
                         </div>
                         <div class="panel-body">
                             {% for partaide in part.partaideak.all %}
-                            <p>{% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="{% if partaide.is_group %}img-thumbnail{% else %}img-circle{% endif %}"/> {% endif %}{{partaide.get_izena}}</p>
+                            <p>{% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="{% if partaide.is_group %}img-thumbnail{% else %}img-circle{% endif %}"/> {% endif %}{% if partaide.get_absolute_url %}<a href="{{partaide.get_absolute_url}}">{{partaide.get_izena}}</a>{% else %}{{partaide.get_izena}}{% endif %}</p>
                             {%if not forloop.last %}
                             <p><img src="{{STATIC_URL}}img/versus.png"/></p>
                             {% endif %}
