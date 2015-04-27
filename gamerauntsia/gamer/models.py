@@ -158,6 +158,8 @@ class GamerUser(CSAbstractSocialUser):
         else:
             return False
 
+    def get_absolute_url(self):
+        return "/komunitatea/%s" % (self.username)
 
     def __unicode__(self):
         return u'%s' % self.username
