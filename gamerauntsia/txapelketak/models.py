@@ -223,7 +223,7 @@ class Partida(MPTTModel):
 
 def update_classification(sender,instance,**kwargs):
     if not kwargs['created']:
-        if instance.emaitza and instance.txapelketa.modalitatea == '1':
+        if instance.emaitza:
             for parta in instance.partaideak.all():
                 irabazi = 0
                 galdu = 0
