@@ -18,15 +18,18 @@ def index(request):
             txapelketa = list_tx[0]
 
     if Txapelketa.objects.filter(publikoa_da=True,pub_date__lt=datetime.now(),live_bideoa__isnull=False,status='2').exists():
-        txs = Txapelketa.objects.filter(publikoa_da=True,pub_date__lt=datetime.now(),live_bideoa__isnull=False,status='2')
+        txs = Txapelketa.objects.filter(publikoa_da=True,pub_date__lt=datetime.now(),live_bideoa__isnull=False,status='2').exclude(live_bideoa__iexact="")
         match = None
+        last_tx = None
         for tx in txs:
             if not match:
                 match = tx.get_next_match()
+                last_tx = tx
             elif match and tx.get_next_match() and match>tx.get_next_match():
                 match = tx.get_next_match()
+                last_tx = tx
         if match and match>timezone.now():
-            live_gp = match.txapelketa
+            live_gp = last_tx
     return render_to_response('index.html', locals(),context_instance=RequestContext(request))
 
 def bilaketa(request,bilatu):
