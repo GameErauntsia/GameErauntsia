@@ -6,6 +6,7 @@ from django.db.models.signals import post_save
 from django.contrib.contenttypes.models import ContentType
 from gamerauntsia.utils.social import post_to_twitter
 from django_comments.models import Comment
+from django.db.models import Count
 from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.jokoa.models import Jokoa
 from gamerauntsia.berriak.models import Berria
@@ -32,7 +33,7 @@ def send_post_email(sender,instance,**kwargs):
         message = 'Mezu berri bat utzi dute zuk idatzitako gai hauetan: \n\n'
         for forum in instance.topic.forums.all():
         	message += '%sforoa/%s%s\n\n' % (settings.HOST,forum.slug,instance.get_absolute_url())
-        creators = Post.objects.filter(topic=instance.topic).values('creator__email').distinct()
+        creators = Post.objects.filter(topic=instance.topic).values('creator__email').annotate(n=Count("creator__id"))
         for creator in creators:
             if not instance.creator.email == creator['creator__email'] and instance.creator.email_notification:
                 send_mail('[Game Erauntsia - '+instance.topic.title+']', message, settings.DEFAULT_FROM_EMAIL, [creator['creator__email']])
@@ -57,7 +58,7 @@ def send_comment_email(sender,instance,**kwargs):
                 message += 'txapelketa honetan: \n\n%stxapelketak/%s\n\n' % (settings.HOST,obj.slug)
             elif obj.__class__.__name__ == 'GamePlaya':
                 message += 'gameplay honetan: \n\n%sgameplayak/%s\n\n' % (settings.HOST,obj.slug)
-            creators = Comment.objects.filter(object_pk=instance.object_pk,content_type=instance.content_type).values('user__email').distinct()
+            creators = Comment.objects.filter(object_pk=instance.object_pk,content_type=instance.content_type).values('user__email').annotate(n=Count("user__id"))
             for creator in creators:
                 if not instance.user.email == creator['user__email'] and instance.user.email_notification:
                     send_mail('[Game Erauntsia - Iruzkin berria]', message, settings.DEFAULT_FROM_EMAIL, [creator['user__email']])
