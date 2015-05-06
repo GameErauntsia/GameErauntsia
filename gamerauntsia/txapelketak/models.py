@@ -199,7 +199,7 @@ class Partida(MPTTModel):
     parent = TreeForeignKey('self', null=True, blank=True, related_name='children')
     jardunaldia = models.IntegerField('Jardunaldia', default=1)
     emaitza = models.CharField(max_length=50,null=True,blank=True)
-    itzulera = models.BooleanField('Itzulerakoa',default=False)
+    is_return = models.BooleanField('Itzulerakoa',default=False)
 
     txapelketa = models.ForeignKey(Txapelketa)
     gameplaya = models.ForeignKey(GamePlaya,null=True,blank=True)
