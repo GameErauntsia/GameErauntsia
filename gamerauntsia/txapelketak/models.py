@@ -213,9 +213,17 @@ class Partida(MPTTModel):
 
     def get_partaide_list(self):
         if self.partaideak.all():
-            return " VS ".join([p.get_izena() for p in self.partaideak.all()])
+            if self.is_return:
+                return " VS ".join([p.get_izena() for p in self.partaideak.all().reverse()])
+            else:
+                return " VS ".join([p.get_izena() for p in self.partaideak.all()])
         else:
             return u'???'
+            
+    def get_partaideak(self):
+        if self.is_return:
+            return self.partaideak.all().reverse()
+        return self.partaideak.all()
 
     class MPTTMeta:
         order_insertion_by = ['jardunaldia']
