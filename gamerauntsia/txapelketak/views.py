@@ -65,7 +65,9 @@ def txapelketa(request,slug):
     return render_to_response('txapelketak/txapelketa.html', locals(),context_instance=RequestContext(request))
 
 def partaidea(request,slug,part_id):
+    item = get_object_or_404(Txapelketa,slug=slug)
     partaidea = get_object_or_404(Partaidea,id=part_id)
+    next_parts = Partida.objects.filter(Q(txapelketa=item), Q(partaideak=partaidea),Q(emaitza__isnull=True) | Q(emaitza__iexact='')).order_by('date','jardunaldia').distinct()
     return render_to_response('txapelketak/partaidea.html', locals(),context_instance=RequestContext(request))
 
 @login_required
