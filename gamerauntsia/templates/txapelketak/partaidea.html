@@ -7,13 +7,13 @@
 <div class="row">
 
         <div class="col-lg-12">
-            <h1 class="page-header">{% if partaidea.get_photo %}<img src="{{partaidea.get_photo.get_profile_url}}" class="img-thumbnail"/> {% endif %}{{partaidea.izena}}</h1>
+            <h1 class="page-header">{% if partaidea.get_photo %}<img src="{{partaidea.get_photo.get_forum_profile_url}}" class="img-thumbnail"/> {% endif %}{{partaidea.izena}}</h1>
         </div>
 
         <div class="col-lg-8">
             <h2>Jokalariak</h2>
             {% for j in partaidea.jokalariak.all %}
-            <a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_profilesmall_url}}" class="img-circle" title="{{j.getFullName}}"/></a>
+            <a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{j.getFullName}}"/></a>
             {% endfor %}
             <h2>Jardunaldiak</h2>
             <h2>Hurrengo partida</h2>
