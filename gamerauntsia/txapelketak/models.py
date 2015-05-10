@@ -17,7 +17,7 @@ MOTA = (
     ('1','Liga'),
     ('2','Konbinatua'),
 )
-º
+
 MODALITATEA = (
     ('0','Bakarka'),
     ('1','Taldeka'),
