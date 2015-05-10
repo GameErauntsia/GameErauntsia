@@ -64,6 +64,10 @@ def txapelketa(request,slug):
 
     return render_to_response('txapelketak/txapelketa.html', locals(),context_instance=RequestContext(request))
 
+def partaidea(request,part_id):
+    partaidea = get_object_or_404(Partaidea,id=part_id)
+    return render_to_response('txapelketak/partaidea.html', locals(),context_instance=RequestContext(request))
+
 @login_required
 def txapelketa_insk(request,slug):
     user = request.user
