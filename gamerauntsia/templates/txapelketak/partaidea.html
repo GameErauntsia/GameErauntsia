@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n emoticons_tags include %}
+
+{% block title %}{{partaidea.izena}} - {% endblock %}
+
+{% block content %}
+<div class="row">
+
+        <div class="col-lg-12">
+            <h1 class="page-header">{% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profile_url}}" class="img-thumbnail"/> {% endif %}{{partaidea.izena}}</h1>
+        </div>
+
+        <div class="col-lg-8">
+            <h2>Jokalariak</h2>
+            {% for j in partaide.jokalariak.all %}
+            <a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_profilesmall_url}}" class="img-circle" title="{{j.getFullName}}"/></a>
+            {% endfor %}
+            <h2>Jardunaldiak</h2>
+            <h2>Hurrengo partida</h2>
+        </div>
+
+        <div class="col-lg-4">
+            <h2>Kapitaina</h2>
+            <h2>Sailkapen puntuak</h2>
+        </div>
+</div>

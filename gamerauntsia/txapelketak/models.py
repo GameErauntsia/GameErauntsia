@@ -152,6 +152,7 @@ class Partaidea(models.Model):
     lose = models.IntegerField('Galdutakoak', default=0)
     draw = models.IntegerField('Berdindutakoak', default=0)
     matches = models.IntegerField('Jokatutakoak', default=0)
+    average = models.FloatField('Gorabeherakoa', default=0)
     points = models.IntegerField('Puntuak', default=0)
 
     def is_group(self):
@@ -199,6 +200,7 @@ class Partida(MPTTModel):
     parent = TreeForeignKey('self', null=True, blank=True, related_name='children')
     jardunaldia = models.IntegerField('Jardunaldia', default=1)
     emaitza = models.CharField(max_length=50,null=True,blank=True)
+    average = models.CharField(max_length=50,null=True,blank=True)
 
     txapelketa = models.ForeignKey(Txapelketa)
     gameplaya = models.ForeignKey(GamePlaya,null=True,blank=True)
@@ -235,11 +237,16 @@ def update_classification(sender,instance,**kwargs):
                 galdu = 0
                 berdindu = 0
                 jokatuta = 0
+                average = 0
                 partidak = Partida.objects.filter(txapelketa=instance.txapelketa,partaideak=parta,emaitza__isnull=False).exclude(emaitza__exact="").order_by("date")
                 for parti in partidak:
                     emaitza = parti.emaitza.split("-")
                     e1 = emaitza[0].strip()
                     e2 = emaitza[1].strip()
+                    if parti.average:
+                        average = parti.average.split("-")
+                    a1 = average[0].strip()
+                    a2 = average[1].strip()
                     etxeko = parti.partaideak.all()[0]
                     if e1 > e2:
                         if etxeko == parta:
@@ -253,6 +260,11 @@ def update_classification(sender,instance,**kwargs):
                             irabazi += 1
                     if e1 == e2:
                         berdindu += 1
+
+                    if average and etxeko == parta:
+                        average += a1
+                    else:
+                        average += a2
                     jokatuta += 1
                 ##PUNTUAKETA
                 parta.win = irabazi
@@ -260,6 +272,7 @@ def update_classification(sender,instance,**kwargs):
                 parta.draw = berdindu
                 parta.points = irabazi * instance.txapelketa.irabazi + galdu * instance.txapelketa.galdu + berdindu * instance.txapelketa.berdinketa
                 parta.matches = jokatuta
+                parta.average = average / jokatuta
                 parta.save()
 
 post_save.connect(update_classification, sender=Partida)
