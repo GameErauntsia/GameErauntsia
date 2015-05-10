@@ -288,6 +288,8 @@ def update_classification(sender,instance,**kwargs):
                 parta.matches = jokatuta
                 if bb:
                     parta.average = bb / jokatuta
+                else:
+                    parta.average = bb
                 parta.save()
 
 post_save.connect(update_classification, sender=Partida)
