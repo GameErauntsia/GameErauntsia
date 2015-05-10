@@ -257,10 +257,10 @@ def update_classification(sender,instance,**kwargs):
                     e2 = emaitza[1].strip()
                     if parti.average:
                         average = parti.average.split("-")
+                        a1 = average[0].strip()
+                        a2 = average[1].strip()
                     else:
                         average = None
-                    a1 = average[0].strip()
-                    a2 = average[1].strip()
                     etxeko = parti.get_partaideak()[0]
                     if e1 > e2:
                         if etxeko == parta:
@@ -286,7 +286,8 @@ def update_classification(sender,instance,**kwargs):
                 parta.draw = berdindu
                 parta.points = irabazi * instance.txapelketa.irabazi + galdu * instance.txapelketa.galdu + berdindu * instance.txapelketa.berdinketa
                 parta.matches = jokatuta
-                parta.average = bb / jokatuta
+                if bb:
+                    parta.average = bb / jokatuta
                 parta.save()
 
 post_save.connect(update_classification, sender=Partida)
