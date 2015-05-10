@@ -56,7 +56,7 @@ def txapelketa(request,slug):
             graphdata = ""
 
     else:
-        list_sailkapena = item.get_partaideak(['-points','-win','lose'])
+        list_sailkapena = item.get_partaideak(['-points','-win','lose','average'])
 
     #api = get_tweepy_api()
     #search = '#' + item.hashtag
