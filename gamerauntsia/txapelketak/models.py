@@ -188,6 +188,9 @@ class Partaidea(models.Model):
                 return u'%s' % (", ".join([p.getFullName() for p in self.jokalariak.all()]))
         return u'%s' %(self.izena)
 
+    def get_partidak(self):
+        return self.partida_set.all()
+
     class Meta:
         verbose_name = "Partaidea"
         verbose_name_plural = "Partaideak"
