@@ -276,9 +276,9 @@ def update_classification(sender,instance,**kwargs):
                         berdindu += 1
 
                     if average and etxeko == parta:
-                        bb += a1
+                        bb += float(a1)
                     else:
-                        bb += a2
+                        bb += float(a2)
                     jokatuta += 1
                 ##PUNTUAKETA
                 parta.win = irabazi
