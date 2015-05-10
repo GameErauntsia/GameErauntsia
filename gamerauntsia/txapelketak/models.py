@@ -17,7 +17,7 @@ MOTA = (
     ('1','Liga'),
     ('2','Konbinatua'),
 )
-
+º
 MODALITATEA = (
     ('0','Bakarka'),
     ('1','Taldeka'),
@@ -249,7 +249,7 @@ def update_classification(sender,instance,**kwargs):
                 galdu = 0
                 berdindu = 0
                 jokatuta = 0
-                average = 0
+                average = 0.0
                 partidak = Partida.objects.filter(txapelketa=instance.txapelketa,partaideak=parta,emaitza__isnull=False).exclude(emaitza__exact="").order_by("date")
                 for parti in partidak:
                     emaitza = parti.emaitza.split("-")
