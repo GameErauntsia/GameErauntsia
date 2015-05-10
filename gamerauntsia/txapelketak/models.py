@@ -148,7 +148,7 @@ class Partaidea(models.Model):
     irabazlea = models.BooleanField(default=False)
 
     jokalariak = models.ManyToManyField(GamerUser,null=True,blank=True)
-    kapitaina = models.ForeignkeyField(GamerUser, related_name="kapitaina", null=True,blank=True)
+    kapitaina = models.ForeignKey(GamerUser, related_name="kapitaina", null=True,blank=True)
 
     win = models.IntegerField('Irabazitakoak', default=0)
     lose = models.IntegerField('Galdutakoak', default=0)
