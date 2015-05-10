@@ -64,12 +64,12 @@
                             <tr>
                                 <th></th>
                                 <th>Partaidea</th>
-                                <th><abbr title="Irabazitakoak">Ira.</abbr></th>
-                                <th><abbr title="Berdindutakoak">Ber.</abbr></th>
-                                <th><abbr title="Galdutakoak">Gal.</abbr></th>
-                                <th><abbr title="Bataz bestekoa">Bb.</abbr></th>
-                                <th><abbr title="Jokatutakoak">Jok.</abbr></th>
-                                <th><abbr title="Puntuak">Punt.</abbr></th>
+                                <th class="text-right"><abbr title="Irabazitakoak">Ira.</abbr></th>
+                                <th class="text-right"><abbr title="Berdindutakoak">Ber.</abbr></th>
+                                <th class="text-right"><abbr title="Galdutakoak">Gal.</abbr></th>
+                                <th class="text-right"><abbr title="Bataz bestekoa">Bb.</abbr></th>
+                                <th class="text-right"><abbr title="Jokatutakoak">Jok.</abbr></th>
+                                <th class="text-right"><abbr title="Puntuak">Punt.</abbr></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -80,7 +80,7 @@
                                 <td class="text-right">{{partaide.win}}</td>
                                 <td class="text-right">{{partaide.draw}}</td>
                                 <td class="text-right">{{partaide.lose}}</td>
-                                <td class="text-right">{{partaide.average}}</td>
+                                <td class="text-right">{{partaide.average|floatformat:1}}</td>
                                 <td class="text-right">{{partaide.matches}}</td>
                                 <td class="text-right"><strong>{{partaide.points}}</strong></td>
                             </tr>
