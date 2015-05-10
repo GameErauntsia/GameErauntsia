@@ -201,6 +201,7 @@ class Partida(MPTTModel):
     jardunaldia = models.IntegerField('Jardunaldia', default=1)
     emaitza = models.CharField(max_length=50,null=True,blank=True)
     average = models.CharField(max_length=50,null=True,blank=True)
+    is_return = models.BooleanField('Itzulerakoa',default=False)
 
     txapelketa = models.ForeignKey(Txapelketa)
     gameplaya = models.ForeignKey(GamePlaya,null=True,blank=True)
@@ -208,15 +209,26 @@ class Partida(MPTTModel):
 
     def get_izena(self):
         if self.partaideak.all():
-            return " VS ".join([p.get_izena() for p in self.partaideak.all()])
+            if self.is_return:
+                return " VS ".join([p.get_izena() for p in self.partaideak.all().order_by("-id")])
+            else:
+                return " VS ".join([p.get_izena() for p in self.partaideak.all()])
         else:
             return u'%d jardunaldia' % (self.jardunaldia)
 
     def get_partaide_list(self):
         if self.partaideak.all():
-            return " VS ".join([p.get_izena() for p in self.partaideak.all()])
+            if self.is_return:
+                return " VS ".join([p.get_izena() for p in self.partaideak.all().order_by("-id")])
+            else:
+                return " VS ".join([p.get_izena() for p in self.partaideak.all()])
         else:
             return u'???'
+            
+    def get_partaideak(self):
+        if self.is_return:
+            return self.partaideak.all().order_by("-id")
+        return self.partaideak.all()
 
     class MPTTMeta:
         order_insertion_by = ['jardunaldia']
@@ -247,7 +259,7 @@ def update_classification(sender,instance,**kwargs):
                         average = parti.average.split("-")
                     a1 = average[0].strip()
                     a2 = average[1].strip()
-                    etxeko = parti.partaideak.all()[0]
+                    etxeko = parti.get_partaideak()[0]
                     if e1 > e2:
                         if etxeko == parta:
                             irabazi += 1
