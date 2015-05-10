@@ -249,7 +249,7 @@ def update_classification(sender,instance,**kwargs):
                 galdu = 0
                 berdindu = 0
                 jokatuta = 0
-                bb = 0.0
+                bb = 0.00
                 partidak = Partida.objects.filter(txapelketa=instance.txapelketa,partaideak=parta,emaitza__isnull=False).exclude(emaitza__exact="").order_by("date")
                 for parti in partidak:
                     emaitza = parti.emaitza.split("-")
@@ -287,7 +287,7 @@ def update_classification(sender,instance,**kwargs):
                 parta.points = irabazi * instance.txapelketa.irabazi + galdu * instance.txapelketa.galdu + berdindu * instance.txapelketa.berdinketa
                 parta.matches = jokatuta
                 if bb:
-                    parta.average = bb / jokatuta
+                    parta.average = float(bb) / jokatuta
                 else:
                     parta.average = bb
                 parta.save()
