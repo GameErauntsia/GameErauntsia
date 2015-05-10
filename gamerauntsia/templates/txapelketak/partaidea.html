@@ -11,11 +11,11 @@
         </div>
 
         <div class="col-lg-8">
-            <h2>Jokalari titularrak</h2>
+            <h2><span class="glyphicon glyphicon-user"></span> Jokalari titularrak</h2>
             {% for j in partaidea.jokalariak.all %}
             <a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{j.getFullName}}"/></a>
             {% endfor %}
-            <h2>Ordezko jokalariak</h2>
+            <h2><span class="glyphicon glyphicon-user"></span> Ordezko jokalariak</h2>
             {% for j in partaidea.jokalariak.all %}
             <a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{j.getFullName}}"/></a>
             {% endfor %}
@@ -67,8 +67,13 @@
         </div>
 
         <div class="col-lg-4">
-            <h2>Kapitaina</h2>
-            <h2>Sailkapen puntuak</h2>
+            <h2><span class="glyphicon glyphicon-star"></span> Kapitaina</h2>
+            <h2><span class="glyphicon glyphicon-align-justify"></span> Sailkapen puntuak</h2>
+            <div class="row">
+                <div class="col-lg-4 text-success"><h3><strong>{{partaidea.win}}</strong><br>Irabazi</h3></div>
+                <div class="col-lg-4 text-danger"><h3><strong>{{partaidea.lose}}</strong><br>Galdu</h3></div>
+                <div class="col-lg-4"><h3><strong>{{partaidea.points}}</strong><br>Puntuak</h3></div>
+            </div>
         </div>
 </div>
 {% endblock %}
