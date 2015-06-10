@@ -12,7 +12,7 @@ from gamerauntsia.txapelketak.models import Txapelketa
 from gamerauntsia.utils.urls import get_urljson
 
 def index(request):
-    topjokoak = GamerUser.objects.values('top_jokoak__izena','logoa').annotate(Count('top_jokoak')).order_by('-top_jokoak__count','-top_jokoak__izena')[:10]
+    topjokoak = GamerUser.objects.values('top_jokoak__izena','top_jokoak__bertsioa','top_jokoak__logoa').annotate(Count('top_jokoak')).order_by('-top_jokoak__count','-top_jokoak__izena')[:10]
     jokoak = Jokoa.objects.filter(publikoa_da=True).order_by("izena","bertsioa")
     last_jokoak = Jokoa.objects.filter(publikoa_da=True).order_by("-id")[:10]
     return render_to_response('jokoa/index.html', locals(),context_instance=RequestContext(request))
