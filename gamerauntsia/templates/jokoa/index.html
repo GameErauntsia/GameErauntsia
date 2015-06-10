@@ -34,7 +34,7 @@
 	            	<div class="row bloglist">
 			    <a href="{% url 'game' k.top_jokoak__slug %}">
 				<div class="col-lg-4">
-				    {{k.top_jokoak__logoa}}
+				    <img src="{{k.top_jokoak__logoa|get_photo_url}}" alt=""/>
 				</div>
 				<div class="col-lg-8">
 				    <p><strong>{{k.top_jokoak__izena}} {{k.top_jokoak__bertsioa}} ({{k.top_jokoak__count}})</strong></p>
