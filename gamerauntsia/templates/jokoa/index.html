@@ -39,19 +39,18 @@
             </ul>
         </div>
         <div class="well">
-            <h2>Gustuko jokoak</h2>
-				{% for joko in last_jokoak %}
-				<div class="row bloglist">
-				    <a href="{% url 'game' joko.slug %}">
-					<div class="col-lg-4">
-					    <img src="{{joko.get_photo.get_newsprofile_url}}" alt="" />
-					</div>
-					<div class="col-lg-8">
-					    <p><strong>{{joko.izena}} {{joko.bertsioa}}</strong></p>
-					</div>
-				    </a>
-				</div>
-        </div>
+            	<h2>Katalogoko azkenak</h2>
+		{% for joko in last_jokoak %}
+		<div class="row bloglist">
+		    <a href="{% url 'game' joko.slug %}">
+			<div class="col-lg-4">
+			    <img src="{{joko.get_photo.get_newsprofile_url}}" alt="" />
+			</div>
+			<div class="col-lg-8">
+			    <p><strong>{{joko.izena}} {{joko.bertsioa}}</strong></p>
+			</div>
+		    </a>
+		</div>
         </div>
         <div class="well">
             <p>Zure gustuko jokoa gure katalogoan ez badago, <a href="{% url 'kontaktua' %}">idatziguzu</a> eta ahalik eta lasterren jarriko dugu!</p>
