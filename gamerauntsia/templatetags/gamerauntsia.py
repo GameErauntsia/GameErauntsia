@@ -1,5 +1,6 @@
 from django import template
 from registration.forms import RegistrationForm
+from photologue.models import Photo
 from django import forms
 import urllib2
 import xmltodict
@@ -33,3 +34,6 @@ register.inclusion_tag('steam_panel.html')(steam_panel)
 def check_seen(obj,user):
     return obj.has_seen(user)
 
+@register.filter
+def get_photo_url(obj_id):
+    return Photo.objects.get(id=obj_id).get_newsprofile_url()
