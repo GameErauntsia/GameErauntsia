@@ -84,6 +84,13 @@
                         </a>
                     </li>
                     {% endif %}
+                    <li role="presentation">
+                        <a aria-controls="parta" data-toggle="tab" role="tab" href="#parta">
+                            <h4 class="panel-title">
+                                <i class="glyphicon glyphicon-user"></i> Partaideak {% if item.jokalariak_count %}({{item.jokalariak_count}}){% endif %}
+                            </h4>
+                        </a>
+                    </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div id="desk" class="tab-pane fade in active  " role="tabpanel">
@@ -175,6 +182,76 @@
                         {% endif %}
                     </div>
                     {% endif %}
+                    <div id="parta" class="tab-pane fade" role="tabpanel">
+                        {% if item.modalitatea == '1' %}
+                        <div class="tabpanel">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="active" role="presentation">
+                                    <a aria-controls="team" data-toggle="tab" role="tab" href="#team"><h4 class="panel-title"><i class="glyphicon glyphicon-user"></i><i class="glyphicon glyphicon-user"></i> Taldeak</h4></a>
+                                </li>
+                                {% if item.get_single_gamers %}
+                                <li role="presentation">
+                                    <a aria-controls="single" data-toggle="tab" role="tab" href="#single"><h4 class="panel-title"><i class="glyphicon glyphicon-user"></i> Talderik gabe</h4></a>
+                                </li>
+                                {% endif %}
+                            </ul>
+        
+                            <div class="tab-content" id="myTabContent">
+                                <div id="team" class="tab-pane fade in active  " role="tabpanel">
+                                    <p>
+                                        {% for partaide in item.get_partaideak %}
+                                            {% if partaide.is_group %}
+                                            <div class="panel panel-success">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">
+                                                    {% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-thumbnail  "/> {% endif %}
+                                                    {{partaide.get_izena}}
+                                                    </h3>
+                                                </div>
+                                                <div class="panel-body">
+                                                    {% for j in partaide.jokalariak.all %}<a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_profilesmall_url}}" class="img-circle" title="{{j.getFullName}}"/></a>{% endfor %}
+                                                </div>
+                                            </div>
+                                            {% endif %}
+                                        {% empty %}
+                                        <p>Taldeak sortzeko daude. Laister izango dira ikusgai</p>
+                                        {% endfor %}
+                                    </p>
+                                </div>
+                                {% if item.get_single_gamers %}
+                                <div id="single" class="tab-pane fade" role="tabpanel">
+                                    <div class="row">
+                                    <br>
+                                    {% for user in item.get_single_gamers %}
+                                        {% if forloop.first %}
+                                        <div class="col-lg-6"><ul class="list-unstyled">
+                                        {%endif%}
+                                            <li><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.getFullName|truncatechars:14}}</a></li>
+                                        {% if forloop.counter|divisibleby:4 %}</ul></div><div class="col-lg-6"><ul class="list-unstyled">{% endif %}
+                                        {% if forloop.last %}</ul></div>{% endif %}
+                                    {% endfor %}
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="row">
+                            {% if item.jokalariak.all %}
+                                {% for user in item.jokalariak.all %}
+                                    {% if forloop.first %}
+                                    <div class="col-lg-6"><ul class="list-unstyled">
+                                    {%endif%}
+                                        <li><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.getFullName|truncatechars:14}}</a></li>
+                                    {% if forloop.counter|divisibleby:4 %}</ul></div><div class="col-lg-6"><ul class="list-unstyled">{% endif %}
+                                    {% if forloop.last %}</ul></div>{% endif %}
+                                {% endfor %}
+                            {% else %}
+                            <p>Taldeak sortzeko daude. Laister izango dira ikusgai</p>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
             
@@ -225,89 +302,17 @@
                     </div>
                 </div>
             {% endif %}
+            {% if item.insk_date|irekita and user not in item.jokalariak.all %}
             <div class="well">
-                {% if item.insk_date|irekita %}
-                    {% if user not in item.jokalariak.all %}
-                        <h3>Izena eman</h3>
-                        {% if user.is_authenticated %}
-                        <a href="{% url 'txapelketa_insk' item.slug %}" class="btn btn-default">Parte hartu!</a>
-                        {% else %}
-                        <p>Txapelketetan parte hartu ahal izateko lehendabizi Game Erauntsian izena eman behar duzu.</p>
-                        <a class="btn btn-primary" href="{% url 'auth_login' %}?next={{item.get_absolute_url}}" title="Log in">{% trans 'Log in' %}</a>
-                        {% endif %}
-                    {% endif %}
-                {% endif %}
-
-                <h3>Partaideak {% if item.jokalariak_count %}({{item.jokalariak_count}}){% endif %}</h3>
-                {% if item.modalitatea == '1' %}
-                <div class="tabpanel">
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li class="active" role="presentation">
-                            <a aria-controls="team" data-toggle="tab" role="tab" href="#team"><h4 class="panel-title"><i class="glyphicon glyphicon-user"></i><i class="glyphicon glyphicon-user"></i> Taldeak</h4></a>
-                        </li>
-                        {% if item.get_single_gamers %}
-                        <li role="presentation">
-                            <a aria-controls="single" data-toggle="tab" role="tab" href="#single"><h4 class="panel-title"><i class="glyphicon glyphicon-user"></i> Talderik gabe</h4></a>
-                        </li>
-                        {% endif %}
-                    </ul>
-
-                    <div class="tab-content" id="myTabContent">
-                        <div id="team" class="tab-pane fade in active  " role="tabpanel">
-                            <p>
-                                {% for partaide in item.get_partaideak %}
-                                    {% if partaide.is_group %}
-                                    <div class="panel panel-success">
-                                        <div class="panel-heading">
-                                            <h3 class="panel-title">
-                                            {% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-thumbnail  "/> {% endif %}
-                                            {{partaide.get_izena}}
-                                            </h3>
-                                        </div>
-                                        <div class="panel-body">
-                                            {% for j in partaide.jokalariak.all %}<a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_profilesmall_url}}" class="img-circle" title="{{j.getFullName}}"/></a>{% endfor %}
-                                        </div>
-                                    </div>
-                                    {% endif %}
-                                {% empty %}
-                                <p>Taldeak sortzeko daude. Laister izango dira ikusgai</p>
-                                {% endfor %}
-                            </p>
-                        </div>
-                        {% if item.get_single_gamers %}
-                        <div id="single" class="tab-pane fade" role="tabpanel">
-                            <div class="row">
-                            <br>
-                            {% for user in item.get_single_gamers %}
-                                {% if forloop.first %}
-                                <div class="col-lg-6"><ul class="list-unstyled">
-                                {%endif%}
-                                    <li><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.getFullName|truncatechars:14}}</a></li>
-                                {% if forloop.counter|divisibleby:4 %}</ul></div><div class="col-lg-6"><ul class="list-unstyled">{% endif %}
-                                {% if forloop.last %}</ul></div>{% endif %}
-                            {% endfor %}
-                            </div>
-                        </div>
-                        {% endif %}
-                    </div>
-                </div>
+                <h3>Izena eman</h3>
+                {% if user.is_authenticated %}
+                <a href="{% url 'txapelketa_insk' item.slug %}" class="btn btn-default">Parte hartu!</a>
                 {% else %}
-                <div class="row">
-                    {% if item.jokalariak.all %}
-                        {% for user in item.jokalariak.all %}
-                            {% if forloop.first %}
-                            <div class="col-lg-6"><ul class="list-unstyled">
-                            {%endif%}
-                                <li><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.getFullName|truncatechars:14}}</a></li>
-                            {% if forloop.counter|divisibleby:4 %}</ul></div><div class="col-lg-6"><ul class="list-unstyled">{% endif %}
-                            {% if forloop.last %}</ul></div>{% endif %}
-                        {% endfor %}
-                    {% else %}
-                    <p>Taldeak sortzeko daude. Laister izango dira ikusgai</p>
-                    {% endif %}
-                </div>
+                <p>Txapelketetan parte hartu ahal izateko lehendabizi Game Erauntsian izena eman behar duzu.</p>
+                <a class="btn btn-primary" href="{% url 'auth_login' %}?next={{item.get_absolute_url}}" title="Log in">{% trans 'Log in' %}</a>
                 {% endif %}
             </div>
+            {% endif %}
             <div class="well">
                 <h3>Modalitatea</h3>
                 <p><i class="glyphicon glyphicon-align-justify"></i> <strong>{{item.get_mota_display}}</strong></p>
