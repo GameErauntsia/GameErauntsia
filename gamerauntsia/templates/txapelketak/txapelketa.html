@@ -46,6 +46,47 @@
             </div>
             {% endif %}
             {% endif %}
+            
+            <div class="col-lg-12">
+                {% if item.live_bideoa %}
+                <h2><span class="glyphicon glyphicon-play-circle"></span> Zuzenean</h2>
+                <div class="flex-video widescreen"><iframe width="700" height="394" src="//www.youtube.com/embed/{{item.live_bideoa}}" frameborder="0" allowfullscreen></iframe></div>
+                {% endif %}
+            </div>
+            
+            <div class="tabpanel">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="active" role="presentation">
+                            <a aria-controls="desk" data-toggle="tab" role="tab" href="#desk"><h4 class="panel-title"><i class="glyphicon glyphicon-user"></i></i> Deskribapena</h4></a>
+                        </li>
+                        {% if not item.insk_date|irekita and item.status = '2' or item.status = '3' %}
+                        <li role="presentation">
+                            <a aria-controls="sailk" data-toggle="tab" role="tab" href="#sailk">
+                                <h4 class="panel-title">
+                                    <i class="glyphicon glyphicon-align-justify"></i> {% if item.mota == '0' %}Kanporaketa{% else %}Sailkapena{% endif %}
+                                </h4>
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a aria-controls="egu" data-toggle="tab" role="tab" href="#egu">
+                                <h4 class="panel-title">
+                                    <i class="glyphicon glyphicon-calendar"></i> Egutegia
+                                </h4>
+                            </a>
+                        </li>
+                        {% endif %}
+                        {% if next_parts %}
+                        <li role="presentation">
+                            <a aria-controls="part" data-toggle="tab" role="tab" href="#part">
+                                <h4 class="panel-title">
+                                    <i class="glyphicon glyphicon-tower"></i> Hurrengo partidak
+                                </h4>
+                            </a>
+                        </li>
+                        {% endif %}
+                    </ul>
+            </div>
+            
             <p class="lead">{{item.desk|safe|emoticons}}</p>
 
 
@@ -136,12 +177,6 @@
                     </div>
                 </div>
                 {% endfor %}
-                {% endif %}
-            </div>
-            <div class="col-lg-12">
-                {% if item.live_bideoa %}
-                <h2><span class="glyphicon glyphicon-play-circle"></span> Zuzenean</h2>
-                <div class="flex-video widescreen"><iframe width="700" height="394" src="//www.youtube.com/embed/{{item.live_bideoa}}" frameborder="0" allowfullscreen></iframe></div>
                 {% endif %}
             </div>
             <div class="col-lg-12">
