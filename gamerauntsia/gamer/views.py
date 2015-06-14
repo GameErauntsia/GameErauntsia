@@ -113,7 +113,6 @@ def edit_computer(request):
 
     return render_to_response('profile/edit_computer.html', locals(), context_instance=RequestContext(request))
 
-
 @login_required
 def edit_platform(request):
     """ """
@@ -163,6 +162,27 @@ def edit_top_games(request):
     topjokoak = GamerUser.objects.values('top_jokoak__izena').annotate(Count('top_jokoak')).order_by('-top_jokoak__count','-top_jokoak__izena')[:10]
     jokoak = user.top_jokoak.all().count()
     return render_to_response('profile/edit_top_games.html', locals(), context_instance=RequestContext(request))
+
+@login_required
+def edit_finished_games(request):
+    """ """
+    tab = 'finished_games'
+    user = request.user
+    if request.method == 'POST':
+         posta=request.POST.copy()
+         finishedform = FinishedForm(posta, instance=user)
+         if FinishedForm.is_valid():
+            FinishedForm.save()
+            return HttpResponseRedirect(reverse('edit_finished_games'))
+    else:
+        finishedform = FinishedForm(instance=user)
+
+    lagunak = GamerUser.objects.filter(top_jokoak__in=user.top_jokoak.all()).exclude(id=user.id).distinct().order_by('-karma')[:10]
+    topjokoak = GamerUser.objects.values('top_jokoak__izena').annotate(Count('top_jokoak')).order_by('-top_jokoak__count','-top_jokoak__izena')[:10]
+    jokoak = user.top_jokoak.all().count()
+    return render_to_response('profile/edit_top_finished.html', locals(), context_instance=RequestContext(request))
+
+
 
 @sensitive_post_parameters()
 @csrf_protect

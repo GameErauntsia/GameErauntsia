@@ -11,6 +11,7 @@ from gamerauntsia.jokoa.models import Jokoa
 from gamerauntsia.berriak.models import Berria
 from gamerauntsia.gameplaya.models import GamePlaya
 from django_bootstrap_calendar.models import CalendarEvent
+from gamerauntsia.log.models import Log
 
 class Terminoa(models.Model):
     term_eu = models.CharField(max_length=64)
@@ -48,21 +49,30 @@ def send_comment_email(sender,instance,**kwargs):
     if kwargs['created']:
         recipient_list = []
         message = 'Iruzkin berri bat utzi dute zuk iruzkindutako '
+        messagelog = 'Iruzkin berria egin dute '
         ct = ContentType.objects.get_for_id(instance.content_type.id)
         obj = ct.get_object_for_this_type(pk=instance.object_pk)
         try:
             if obj.__class__.__name__ == 'Berria':
                 message += 'artikulu honetan: \n\n%sbloga/%s\n\n' % (settings.HOST,obj.slug)
+                messagelog += 'artikulu honetan: \n\n%sbloga/%s\n\n' % (settings.HOST,obj.slug)
             elif obj.__class__.__name__ == 'Txapelketa':
                 message += 'txapelketa honetan: \n\n%stxapelketak/%s\n\n' % (settings.HOST,obj.slug)
+                messagelog += 'txapelketa honetan: \n\n%stxapelketak/%s\n\n' % (settings.HOST,obj.slug)
             elif obj.__class__.__name__ == 'GamePlaya':
                 message += 'gameplay honetan: \n\n%sgameplayak/%s\n\n' % (settings.HOST,obj.slug)
+                messagelog += 'gameplay honetan: \n\n%sgameplayak/%s\n\n' % (settings.HOST,obj.slug)
             creators = Comment.objects.filter(object_pk=instance.object_pk,content_type=instance.content_type).values('user__email').distinct()
+            l = Log()
+            l.mota = 'Iruzkin'
+            l.tituloa = "Iruzkin berria"
+            l.deskripzioa = messagelog
+            l.save()
             for creator in creators:
                 if not instance.user.email == creator['user__email'] and instance.user.email_notification:
                     send_mail('[Game Erauntsia - Iruzkin berria]', message, settings.DEFAULT_FROM_EMAIL, [creator['user__email']])
         except:
-            send_mail('[Game Erauntsia]', str(instance.id)+' iruzkina ezin izan da bidali!\n\nMezua honako hau zen: "'+message+'"', settings.DEFAULT_FROM_EMAIL, ['urtzi.odriozola@gmail.com'])
+            send_mail('[Game Erauntsia]', str(instance.id)+' iruzkina ezin izan da bidali!\n\nMezua honako hau zen: "'+message+'"', settings.DEFAULT_FROM_EMAIL, ['ikerib@gmail.com'])
 
 def send_newuser_email(sender,instance,**kwargs):
     if kwargs['created']:
