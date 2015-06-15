@@ -16,7 +16,7 @@ class GamerForm(forms.ModelForm):
         fields = ('fullname','bio','twitter_id','facebook_id','ytube_channel','signature')
 
 class PCForm(forms.ModelForm):
-
+    froga = forms.CharField()
     class Meta:
         model = GamerUser
         fields = ('motherboard','processor','graphics','soundcard','ram','harddrive','harddrive2','mouse','keyboard','speakers')
@@ -59,6 +59,15 @@ class TopForm(forms.ModelForm):
     class Meta:
         model = GamerUser
         fields = ('top_jokoak',)
+
+class FinishedForm(forms.ModelForm):
+
+    jokoa = forms.CharField(label='',widget=TinyMCE(
+           attrs={'cols': 80, 'rows': 15,},mce_attrs=settings.TINYMCE_SMALL_BODY_CONFIG))
+
+    class Meta:
+        model = GamerUser
+        fields = ('jokoa',)        
 
 class GameForm(forms.ModelForm):
 
