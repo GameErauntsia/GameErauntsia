@@ -23,6 +23,9 @@ urlpatterns = patterns('',
     # JOKOAK
     url(r'^jokoak/', include('gamerauntsia.jokoa.urls'), name='jokoak'),
 
+    # DENBORA LERROA
+    url(r'^denboralerroa/', include('gamerauntsia.log.urls'), name='log'),
+
     # JOKALARIAK
     url(r'^nor-gara/', include('gamerauntsia.gamer.urls')),
     url(r'^komunitatea/$', 'gamerauntsia.gamer.views.community', name='komunitatea'),
@@ -90,6 +93,7 @@ urlpatterns = patterns('',
     #AJAX ESKAERAK
     url(r'^ajax/get_jokoak/', 'gamerauntsia.gamer.views.get_jokoak', name='ajax_jokoak'),
     url(r'^ajax/get_erabiltzaileak/', 'gamerauntsia.gamer.views.get_user', name='ajax_user'),
+    url(r'^ajax/post_finished/', 'gamerauntsia.finished.views.add_finished', name='ajax_finished')
 )
 
 
@@ -103,6 +107,7 @@ urlpatterns += patterns('gamerauntsia.gamer.views',
     url(r'^komunitatea/editatu-profil-ord$','edit_computer', name='edit_profile_comp'),
     url(r'^komunitatea/editatu-profil-plat$','edit_platform', name='edit_profile_plat'),
     url(r'^komunitatea/editatu-profil-top$','edit_top_games', name='edit_profile_top'),
+    url(r'^komunitatea/editatu-profil-finished$','edit_finished_games', name='edit_profile_finished'),
     url(r'^komunitatea/editatu-profil-pass/$','password_change', name='edit_profile_pass'),
     url(r'^komunitatea/editatu-profil-pass-done/$','password_change_done', name='edit_profile_pass_done'),
     url(r'^komunitatea/(?P<username>[-\w]+)$', 'profile', name='gamer_guestprofile'),
