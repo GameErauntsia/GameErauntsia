@@ -6,6 +6,7 @@ from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.berriak.models import Berria
 from gamerauntsia.txapelketak.models import Txapelketa
 from datetime import datetime
+from django.db.models import Q
 
 def index(request):
     gameplayak = GamePlaya.objects.filter(status='1', publikoa_da=True, pub_date__lt=datetime.now()).order_by('-pub_date')[:4]
@@ -17,8 +18,8 @@ def index(request):
         else:
             txapelketa = list_tx[0]
 
-    if Txapelketa.objects.filter(publikoa_da=True,pub_date__lt=datetime.now(),live_bideoa__isnull=False,status='2').exists():
-        txs = Txapelketa.objects.filter(publikoa_da=True,pub_date__lt=datetime.now(),live_bideoa__isnull=False,status='2').exclude(live_bideoa__iexact="")
+    if Txapelketa.objects.filter(Q(publikoa_da=True),Q(pub_date__lt=datetime.now()),Q(live_bideoa__isnull=False)|Q(twitch=True),Q(status='2').exists():
+        txs = Txapelketa.objects.filter(Q(publikoa_da=True),Q(pub_date__lt=datetime.now()),Q(live_bideoa__isnull=False)|Q(twitch=True),Q(status='2').exclude(live_bideoa__iexact="")
         match = None
         last_tx = None
         for tx in txs:
