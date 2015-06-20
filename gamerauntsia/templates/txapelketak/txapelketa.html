@@ -48,9 +48,15 @@
             {% endif %}
             
             <div class="col-lg-12">
-                {% if item.live_bideoa %}
+                {% if item.live_bideoa or item.twitch%}
                 <h2><span class="glyphicon glyphicon-play-circle"></span> Zuzenean</h2>
-                <div class="flex-video widescreen"><iframe width="700" height="394" src="//www.youtube.com/embed/{{item.live_bideoa}}" frameborder="0" allowfullscreen></iframe></div>
+                <div class="flex-video widescreen">
+                    {% if item.live_bideoa %}
+                    <iframe width="700" height="394" src="//www.youtube.com/embed/{{item.live_bideoa}}" frameborder="0" allowfullscreen></iframe>
+                    {% else %}
+                    <iframe src="http://www.twitch.tv/gamerauntsia/embed" frameborder="0" scrolling="no" height="378" width="620"></iframe>
+                    {% endif %}
+                </div>
                 {% endif %}
             </div>
             
@@ -305,6 +311,12 @@
                 <p>Txapelketetan parte hartu ahal izateko lehendabizi Game Erauntsian izena eman behar duzu.</p>
                 <a class="btn btn-primary" href="{% url 'auth_login' %}?next={{item.get_absolute_url}}" title="Log in">{% trans 'Log in' %}</a>
                 {% endif %}
+            </div>
+            {% endif %}
+            {% if item.twitch %}
+            <div class="well">
+                <h3>Zuzeneko txata</h3>
+                <iframe src="http://www.twitch.tv/gamerauntsia/chat?popout=" frameborder="0" height="500" width="100%"></iframe>
             </div>
             {% endif %}
             <div class="well">
