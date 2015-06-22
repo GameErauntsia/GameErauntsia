@@ -41,6 +41,7 @@ class Txapelketa(models.Model):
     modalitatea = models.CharField(max_length=1, choices=MODALITATEA, default='0')
     status = models.CharField(max_length=1, choices=EGOERA, default='0')
     live_bideoa = models.CharField(max_length=100,null=True,blank=True, help_text="Eremu honetan bideoaren URL kodea itsatsi behar duzu. Adb.: c21XAuI3aMo")
+    twitch = models.BooleanField(default=False)
     hashtag = models.CharField(max_length=100,null=True,blank=True)
 
     jokalariak = models.ManyToManyField(GamerUser,related_name="jokalariak",verbose_name="Inskripzioa",null=True,blank=True)
@@ -146,12 +147,15 @@ class Partaidea(models.Model):
 
     txapelketa = models.ForeignKey(Txapelketa)
     irabazlea = models.BooleanField(default=False)
+
     jokalariak = models.ManyToManyField(GamerUser,null=True,blank=True)
+    kapitaina = models.ForeignKey(GamerUser, related_name="kapitaina", null=True,blank=True)
 
     win = models.IntegerField('Irabazitakoak', default=0)
     lose = models.IntegerField('Galdutakoak', default=0)
     draw = models.IntegerField('Berdindutakoak', default=0)
     matches = models.IntegerField('Jokatutakoak', default=0)
+    average = models.FloatField('Gorabeherakoa', default=0)
     points = models.IntegerField('Puntuak', default=0)
 
     def is_group(self):
@@ -161,7 +165,7 @@ class Partaidea(models.Model):
         
     def get_absolute_url(self):
         if self.is_group():
-            return None
+            return "%stxapelketak/%s/taldea/%d" % (settings.HOST, self.txapelketa.slug,self.id)
         else:
             return "%s" % (self.jokalariak.all()[0].get_absolute_url())
 
@@ -187,6 +191,19 @@ class Partaidea(models.Model):
                 return u'%s' % (", ".join([p.getFullName() for p in self.jokalariak.all()]))
         return u'%s' %(self.izena)
 
+    def render_izena(self):
+        if not self.izena:
+            if not self.jokalariak.all():
+                return u'%s' %(self.izena)
+            elif not self.is_group:
+                return u'%s' % (self.jokalariak.all()[0].getFullName())
+            else:
+                return u'%s' % (", ".join([p.getFullName() for p in self.jokalariak.all()]))
+        return u'%s' %(self.izena)
+
+    def get_partidak(self):
+        return self.partida_set.all()
+
     class Meta:
         verbose_name = "Partaidea"
         verbose_name_plural = "Partaideak"
@@ -199,6 +216,8 @@ class Partida(MPTTModel):
     parent = TreeForeignKey('self', null=True, blank=True, related_name='children')
     jardunaldia = models.IntegerField('Jardunaldia', default=1)
     emaitza = models.CharField(max_length=50,null=True,blank=True)
+    average = models.CharField(max_length=50,null=True,blank=True)
+    is_return = models.BooleanField('Itzulerakoa',default=False)
 
     txapelketa = models.ForeignKey(Txapelketa)
     gameplaya = models.ForeignKey(GamePlaya,null=True,blank=True)
@@ -206,15 +225,35 @@ class Partida(MPTTModel):
 
     def get_izena(self):
         if self.partaideak.all():
-            return " VS ".join([p.get_izena() for p in self.partaideak.all()])
+            if self.is_return:
+                return " VS ".join([p.get_izena() for p in self.partaideak.all().order_by("-id")])
+            else:
+                return " VS ".join([p.get_izena() for p in self.partaideak.all()])
         else:
             return u'%d jardunaldia' % (self.jardunaldia)
 
-    def get_partaide_list(self):
+    def render_izena(self):
         if self.partaideak.all():
-            return " VS ".join([p.get_izena() for p in self.partaideak.all()])
+            if self.is_return:
+                return " <img src='/static/img/versus.png'/> ".join([p.get_izena() for p in self.partaideak.all().order_by("-id")])
+            else:
+                return " <img src='/static/img/versus.png'/> ".join([p.get_izena() for p in self.partaideak.all()])
         else:
             return u'???'
+
+    def get_partaide_list(self):
+        if self.partaideak.all():
+            if self.is_return:
+                return " VS ".join([p.get_izena() for p in self.partaideak.all().order_by("-id")])
+            else:
+                return " VS ".join([p.get_izena() for p in self.partaideak.all()])
+        else:
+            return u'???'
+            
+    def get_partaideak(self):
+        if self.is_return:
+            return self.partaideak.all().order_by("-id")
+        return self.partaideak.all()
 
     class MPTTMeta:
         order_insertion_by = ['jardunaldia']
@@ -235,12 +274,20 @@ def update_classification(sender,instance,**kwargs):
                 galdu = 0
                 berdindu = 0
                 jokatuta = 0
+                bb = 0.0
                 partidak = Partida.objects.filter(txapelketa=instance.txapelketa,partaideak=parta,emaitza__isnull=False).exclude(emaitza__exact="").order_by("date")
                 for parti in partidak:
                     emaitza = parti.emaitza.split("-")
                     e1 = emaitza[0].strip()
                     e2 = emaitza[1].strip()
-                    etxeko = parti.partaideak.all()[0]
+                    if parti.average:
+                        average = parti.average.split("-")
+                        a1 = average[0].strip()
+                        a2 = average[1].strip()
+                    else:
+                        a1 = 0
+                        a2 = 0
+                    etxeko = parti.get_partaideak()[0]
                     if e1 > e2:
                         if etxeko == parta:
                             irabazi += 1
@@ -253,6 +300,11 @@ def update_classification(sender,instance,**kwargs):
                             irabazi += 1
                     if e1 == e2:
                         berdindu += 1
+
+                    if etxeko == parta:
+                        bb += float(a1)
+                    else:
+                        bb += float(a2)
                     jokatuta += 1
                 ##PUNTUAKETA
                 parta.win = irabazi
@@ -260,6 +312,10 @@ def update_classification(sender,instance,**kwargs):
                 parta.draw = berdindu
                 parta.points = irabazi * instance.txapelketa.irabazi + galdu * instance.txapelketa.galdu + berdindu * instance.txapelketa.berdinketa
                 parta.matches = jokatuta
+                if bb:
+                    parta.average = float(bb) / jokatuta
+                else:
+                    parta.average = bb
                 parta.save()
 
 post_save.connect(update_classification, sender=Partida)

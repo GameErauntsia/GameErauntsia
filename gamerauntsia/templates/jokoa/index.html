@@ -1,5 +1,5 @@
 {% extends "profile/base.html" %}
-{% load i18n include %}
+{% load i18n include gamerauntsia %}
 
 {% block title %}Jokoak - {% endblock %}
 
@@ -29,14 +29,35 @@
     <div class="col-lg-4">
         <div class="well">
             <h3>Jokuen Top 10</h3>
-            <hr/>
-            <ul class="list-unstyled">
-                {% for k in topjokoak %}
-                    {% if k.top_jokoak__count %}
-                    <li>{{k.top_jokoak__izena}} ({{k.top_jokoak__count}})</li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
+	        {% for k in topjokoak %}
+	            {% if k.top_jokoak__count %}
+	            	<div class="row bloglist">
+			    <a href="{% url 'game' k.top_jokoak__slug %}">
+				<div class="col-lg-4">
+				    <img src="{{k.top_jokoak__logoa|get_photo_url}}" alt=""/>
+				</div>
+				<div class="col-lg-8">
+				    <p><strong>{{k.top_jokoak__izena}} {{k.top_jokoak__bertsioa}} ({{k.top_jokoak__count}})</strong></p>
+				</div>
+			    </a>
+			</div>
+	            {% endif %}
+	        {% endfor %}
+        </div>
+        <div class="well">
+            	<h2>Katalogoko azkenak</h2>
+		{% for joko in last_jokoak %}
+		<div class="row bloglist">
+		    <a href="{% url 'game' joko.slug %}">
+			<div class="col-lg-4">
+			    <img src="{{joko.get_photo.get_newsprofile_url}}" alt="" />
+			</div>
+			<div class="col-lg-8">
+			    <p><strong>{{joko.izena}} {{joko.bertsioa}}</strong></p>
+			</div>
+		    </a>
+		</div>
+		{% endfor %}
         </div>
         <div class="well">
             <p>Zure gustuko jokoa gure katalogoan ez badago, <a href="{% url 'kontaktua' %}">idatziguzu</a> eta ahalik eta lasterren jarriko dugu!</p>

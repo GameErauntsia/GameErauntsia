@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load i18n emoticons_tags include %}
+
+{% block title %}{{partida.get_izena}} - {% endblock %}
+
+{% block content %}
+<div class="row">
+
+        <div class="col-lg-12">
+            <h1 class="page-header">{% if partaidea.get_photo %}<img src="{{partaidea.get_photo.get_forum_profile_url}}" class="img-thumbnail"/> {% endif %}{{partaidea.izena}}</h1>
+        </div>
+
+        <div class="col-lg-8">
+            <h2><span class="glyphicon glyphicon-user"></span> Jokalari titularrak</h2>
+            {% for j in partaidea.jokalariak.all %}
+            <a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{j.getFullName}}"/></a>
+            {% endfor %}
+            <h2><span class="glyphicon glyphicon-user"></span> Ordezko jokalariak</h2>
+            {% for j in partaidea.jokalariak.all %}
+            <a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{j.getFullName}}"/></a>
+            {% endfor %}
+            <h2><span class="glyphicon glyphicon-calendar"></span> Jardunaldiak</h2>
+            <div class="table-responsive">
+                <table class="table table-condensed table-hover">
+                    <thead>
+                        <tr>
+                            <th>Jardunaldia</th>
+                            <th>Partaideak</th>
+                            <th>Emaitza</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for partida in partaidea.get_partidak %}
+                        <tr>
+                            <td>#{{partida.jardunaldia}}</td>
+                            <td>{{partida.get_partaide_list}}</td>
+                            <td>{% if partida.emaitza %}{{partida.emaitza}}{% else %}---{% endif %}</td>
+                            <td>{{partida.date|date:"Y/m/d H:i"}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% if next_parts %}
+                <h2><span class="glyphicon glyphicon-tower"></span> Partida gehiago</h2>
+                {% for part in next_parts %}
+                <div class="col-md-4 text-center">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{part.jardunaldia}}. partida {% if user.is_authenticated %}{% if user.is_superuser or user == item.erabiltzailea %}<a class="btn btn-default" href="/kudeatu/txapelketak/partida/{{part.id}}">Edit</a>{% endif %}{% endif %}</h3>
+                        </div>
+                        <div class="panel-body">
+                            {% for partaide in part.get_partaideak %}
+                            <p>{% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="{% if partaide.is_group %}img-thumbnail{% else %}img-circle{% endif %}"/> {% endif %}{% if partaide.get_absolute_url %}<a href="{{partaide.get_absolute_url}}">{{partaide.get_izena}}</a>{% else %}{{partaide.get_izena}}{% endif %}</p>
+                            {%if not forloop.last %}
+                            <p><img src="{{STATIC_URL}}img/versus.png"/></p>
+                            {% endif %}
+                            {% endfor %}
+                            <hr>
+                            <p>{% if part.emaitza %}<span class="badge">{{part.emaitza}}</span>{% endif %}<br/><small>{{part.date|date:"Y/m/d H:i"}}</small></p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="col-lg-4">
+            <h2><span class="glyphicon glyphicon-star"></span> Kapitaina</h2>
+            <a href="{% url 'gamer_profile' partaidea.kapitaina %}"><img src="{{partaidea.kapitaina.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{partaidea.kapitaina.getFullName}}"/></a>
+            <h2><span class="glyphicon glyphicon-align-justify"></span> Sailkapen puntuak</h2>
+            <div class="row text-center">
+                <div class="col-lg-4 text-success"><h3><strong>{{partaidea.win}}</strong><br>Irabazi</h3></div>
+                <div class="col-lg-4 text-danger"><h3><strong>{{partaidea.lose}}</strong><br>Galdu</h3></div>
+                <div class="col-lg-4"><h3><strong>{{partaidea.points}}</strong><br>Puntuak</h3></div>
+            </div>
+        </div>
+</div>
+{% endblock %}
