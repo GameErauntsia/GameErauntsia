@@ -235,9 +235,9 @@ class Partida(MPTTModel):
     def render_izena(self):
         if self.partaideak.all():
             if self.is_return:
-                return " <img src='"+settings.STATIC_URL+"img/versus.png'/> ".join([p.get_izena() for p in self.partaideak.all().order_by("-id")])
+                return " <img src='static/img/versus.png'/> ".join([p.get_izena() for p in self.partaideak.all().order_by("-id")])
             else:
-                return " <img src='"+settings.STATIC_URL+"img/versus.png'/> ".join([p.get_izena() for p in self.partaideak.all()])
+                return " <img src='static/img/versus.png'/> ".join([p.get_izena() for p in self.partaideak.all()])
         else:
             return u'???'
 
