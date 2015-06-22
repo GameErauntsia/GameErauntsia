@@ -15,12 +15,10 @@
             {% for j in partaidea.jokalariak.all %}
             <a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{j.getFullName}}"/></a>
             {% endfor %}
-            {% if partaidea.ordezkoak.all %}
             <h2><span class="glyphicon glyphicon-user"></span> Ordezko jokalariak</h2>
             {% for j in partaidea.jokalariak.all %}
             <a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{j.getFullName}}"/></a>
             {% endfor %}
-            {% endif %}
             <h2><span class="glyphicon glyphicon-calendar"></span> Jardunaldiak</h2>
             <div class="table-responsive">
                 <table class="table table-condensed table-hover">
@@ -45,7 +43,7 @@
                 </table>
             </div>
             {% if next_parts %}
-                <h2><span class="glyphicon glyphicon-tower"></span> Hurrengo partidak</h2>
+                <h2><span class="glyphicon glyphicon-tower"></span> Partida gehiago</h2>
                 {% for part in next_parts %}
                 <div class="col-md-4 text-center">
                     <div class="panel panel-default">
@@ -69,16 +67,13 @@
         </div>
 
         <div class="col-lg-4">
-            <a class="fancybox" href="{{part.txapelketa.irudia.image.url}}">
-                <img src="{{part.txapelketa.irudia.get_news_thumbnail_url}}" class="img-responsive"/>
-            </a>
             <h2><span class="glyphicon glyphicon-star"></span> Kapitaina</h2>
             <a href="{% url 'gamer_profile' partaidea.kapitaina %}"><img src="{{partaidea.kapitaina.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{partaidea.kapitaina.getFullName}}"/></a>
             <h2><span class="glyphicon glyphicon-align-justify"></span> Sailkapen puntuak</h2>
             <div class="row text-center">
                 <div class="col-lg-4 text-success"><h3><strong>{{partaidea.win}}</strong><br>Irabazi</h3></div>
                 <div class="col-lg-4 text-danger"><h3><strong>{{partaidea.lose}}</strong><br>Galdu</h3></div>
-                <div class="col-lg-4"><h3><strong>{{partaidea.points}}</strong><br>Puntu</h3></div>
+                <div class="col-lg-4"><h3><strong>{{partaidea.points}}</strong><br>Puntuak</h3></div>
             </div>
         </div>
 </div>
