@@ -8,6 +8,9 @@
 
         <div class="col-lg-12">
             <h1 class="page-header">{% if partaidea.get_photo %}<img src="{{partaidea.get_photo.get_forum_profile_url}}" class="img-thumbnail"/> {% endif %}{{partaidea.izena}}</h1>
+            {% if user.is_authenticated and user.is_superuser %}
+            <a class="btn btn-default pull-right" href="/kudeatu/txapelketak/partaidea/{{partaidea.id}}">Editatu</a>
+            {% endif %}
         </div>
 
         <div class="col-lg-8">
