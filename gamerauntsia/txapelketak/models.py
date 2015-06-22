@@ -239,7 +239,7 @@ class Partida(MPTTModel):
             else:
                 return " <img src='"+settings.STATIC_URL+"img/versus.png'/> ".join([p.get_izena() for p in self.partaideak.all()])
         else:
-            return u'%d jardunaldia' % (self.jardunaldia)
+            return u'???'
 
     def get_partaide_list(self):
         if self.partaideak.all():
