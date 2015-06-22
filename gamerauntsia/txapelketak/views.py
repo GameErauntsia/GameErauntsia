@@ -56,13 +56,25 @@ def txapelketa(request,slug):
             graphdata = ""
 
     else:
-        list_sailkapena = item.get_partaideak(['-points','-win','lose'])
+        list_sailkapena = item.get_partaideak(['-points','-win','lose','-average'])
 
     #api = get_tweepy_api()
     #search = '#' + item.hashtag
     #tweets = api.search(q=search,count=25)
 
     return render_to_response('txapelketak/txapelketa.html', locals(),context_instance=RequestContext(request))
+
+def partaidea(request,slug,part_id):
+    item = get_object_or_404(Txapelketa,slug=slug)
+    partaidea = get_object_or_404(Partaidea,id=part_id)
+    next_parts = Partida.objects.filter(Q(txapelketa=item), Q(partaideak=partaidea),Q(emaitza__isnull=True) | Q(emaitza__iexact='')).order_by('date','jardunaldia').distinct()
+    return render_to_response('txapelketak/partaidea.html', locals(),context_instance=RequestContext(request))
+
+def partida(request,slug,partida):
+    item = get_object_or_404(Txapelketa,slug=slug)
+    partida = get_object_or_404(Partida,id=partida)
+    other_parts = Partida.objects.filter(txapelketa=item).exclude(id=partida.id,emaitza__isnull=False).order_by('date','jardunaldia').distinct()
+    return render_to_response('txapelketak/partida.html', locals(),context_instance=RequestContext(request))
 
 @login_required
 def txapelketa_insk(request,slug):

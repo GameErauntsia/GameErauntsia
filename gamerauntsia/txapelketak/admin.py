@@ -20,7 +20,7 @@ class PartidaAdmin(MPTTModelAdmin):
     def get_partaideak(self, obj):
         return " VS ".join([p.get_izena() for p in obj.partaideak.all()])
 
-    list_display = ('txapelketa', 'jardunaldia','get_partaideak','emaitza', 'date')
+    list_display = ('txapelketa', 'jardunaldia','get_partaideak','emaitza', 'average', 'date')
     filter_horizontal = ('partaideak',)
     raw_id_fields = ('parent','txapelketa','gameplaya')
     search_fields = ['txapelketa__izena']
