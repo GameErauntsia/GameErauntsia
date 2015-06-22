@@ -138,7 +138,7 @@
                                     {% for partaide in list_sailkapena %}
                                     <tr>
                                         <td>#{{forloop.counter}}</td>
-                                        <td>{% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-thumbnail"/> {% endif %}{% if partaide.get_absolute_url %}<a href="{{partaide.get_absolute_url}}">{{partaide.get_izena}}</a>{% else %}{{partaide.get_izena}}{% endif %}</a></td>
+                                        <td>{% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-thumbnail"/> {% endif %}{% if partaide.get_absolute_url %}<a href="{{partaide.get_absolute_url}}">{{partaide.render_izena}}</a>{% else %}{{partaide.render_izena}}{% endif %}</a></td>
                                         <td class="text-right">{{partaide.win}}</td>
                                         <td class="text-right">{{partaide.draw}}</td>
                                         <td class="text-right">{{partaide.lose}}</td>
