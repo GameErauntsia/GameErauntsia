@@ -165,7 +165,7 @@ class Partaidea(models.Model):
         
     def get_absolute_url(self):
         if self.is_group():
-            return "%stxapelketak/%s/%d" % (settings.HOST, self.txapelketa.slug,self.id)
+            return "%stxapelketak/%s/taldea/%d" % (settings.HOST, self.txapelketa.slug,self.id)
         else:
             return "%s" % (self.jokalariak.all()[0].get_absolute_url())
 
