@@ -165,7 +165,7 @@ class Partaidea(models.Model):
         
     def get_absolute_url(self):
         if self.is_group():
-            return None
+            return "%stxapelketak/%s/%d" % (settings.HOST, self.txapelketa.slug,self.id)
         else:
             return "%s" % (self.jokalariak.all()[0].get_absolute_url())
 
@@ -182,6 +182,16 @@ class Partaidea(models.Model):
             return self.jokalariak.all()[0].get_photo()
 
     def get_izena(self):
+        if not self.izena:
+            if not self.jokalariak.all():
+                return u'%s' %(self.izena)
+            elif not self.is_group:
+                return u'%s' % (self.jokalariak.all()[0].getFullName())
+            else:
+                return u'%s' % (", ".join([p.getFullName() for p in self.jokalariak.all()]))
+        return u'%s' %(self.izena)
+
+    def render_izena(self):
         if not self.izena:
             if not self.jokalariak.all():
                 return u'%s' %(self.izena)
