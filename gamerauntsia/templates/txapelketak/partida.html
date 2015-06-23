@@ -42,6 +42,9 @@
                     </div>
                     {% endif %}
                 {% endfor %}
+                {% if user.is_authenticated and user.is_superuser or user in partaidea.txapelketa.adminak.all %}
+                <a class="btn btn-default pull-right" href="/kudeatu/txapelketak/partida/{{partida.id}}">Editatu</a>
+                {% endif %}
             </div>
         </div>
 </div>
