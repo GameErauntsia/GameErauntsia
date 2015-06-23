@@ -255,6 +255,11 @@ class Partida(MPTTModel):
             return self.partaideak.all().order_by("-id")
         return self.partaideak.all()
 
+    def has_video(self):
+        if self.bideoa:
+            return True
+        return False
+
     def get_absolute_url(self):
         return "%stxapelketak/%s/partida/%d" % (settings.HOST, self.txapelketa.slug,self.id)
 
