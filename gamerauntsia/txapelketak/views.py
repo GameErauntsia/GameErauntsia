@@ -72,7 +72,8 @@ def partaidea(request,slug,part_id):
 
 def partida(request,slug,partida):
     item = get_object_or_404(Txapelketa,slug=slug)
-    partida = get_object_or_404(Partida,id=partida,emaitza__isnull=False)
+    queryset = Partida.objects.filter(emaitza__isnull=False).exclude(emaitza__iexact="")
+    partida = get_object_or_404(queryset,id=partida)
     other_parts = Partida.objects.filter(txapelketa=item).exclude(id=partida.id,emaitza__isnull=False).order_by('date','jardunaldia').distinct()
     return render_to_response('txapelketak/partida.html', locals(),context_instance=RequestContext(request))
 
