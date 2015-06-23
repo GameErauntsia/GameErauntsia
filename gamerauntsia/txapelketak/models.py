@@ -220,7 +220,7 @@ class Partida(MPTTModel):
     is_return = models.BooleanField('Itzulerakoa',default=False)
 
     txapelketa = models.ForeignKey(Txapelketa)
-    gameplaya = models.ForeignKey(GamePlaya,null=True,blank=True)
+    bideoa = models.CharField(max_length=150,null=True,blank=True)
     date = models.DateTimeField('Data', null=True,blank=True)
 
     def get_izena(self):
