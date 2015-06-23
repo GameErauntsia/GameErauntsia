@@ -217,26 +217,28 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div id="dropdown1" class="tab-pane fade active" aria-labelledby="dropdown1-tab" role="tabpanel">
-                        {% for partaide in item.get_partaideak %}
-                            {% if partaide.is_group %}
-                            <div class="panel panel-success">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">
-                                    <a href="{{partaide.get_absolute_url}}">
-                                    {% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-thumbnail  "/> {% endif %}
-                                    {{partaide.get_izena}}
-                                    </a>
-                                    </h3>
+                    <div id="dropdown1" class="tab-pane fade" aria-labelledby="dropdown1-tab" role="tabpanel">
+                        <p>
+                            {% for partaide in item.get_partaideak %}
+                                {% if partaide.is_group %}
+                                <div class="panel panel-success">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">
+                                        <a href="{{partaide.get_absolute_url}}">
+                                        {% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-thumbnail  "/> {% endif %}
+                                        {{partaide.get_izena}}
+                                        </a>
+                                        </h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        {% for j in partaide.jokalariak.all %}<a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_profilesmall_url}}" class="img-circle" title="{{j.getFullName}}"/></a>{% endfor %}
+                                    </div>
                                 </div>
-                                <div class="panel-body">
-                                    {% for j in partaide.jokalariak.all %}<a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_profilesmall_url}}" class="img-circle" title="{{j.getFullName}}"/></a>{% endfor %}
-                                </div>
-                            </div>
-                            {% endif %}
-                        {% empty %}
-                        <p>Taldeak sortzeko daude. Laister izango dira ikusgai</p>
-                        {% endfor %}
+                                {% endif %}
+                            {% empty %}
+                            <p>Taldeak sortzeko daude. Laister izango dira ikusgai</p>
+                            {% endfor %}
+                        </p>
                     </div>
                     {% if item.get_single_gamers %}
                     <div id="dropdown2" class="tab-pane fade" aria-labelledby="dropdown2-tab" role="tabpanel">
