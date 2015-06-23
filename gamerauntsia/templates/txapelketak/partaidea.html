@@ -30,6 +30,7 @@
                             <th>Partaideak</th>
                             <th>Emaitza</th>
                             <th>Data</th>
+                            <th>Ikusi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,6 +40,7 @@
                             <td>{{partida.render_izena|safe}}</td>
                             <td>{% if partida.emaitza %}{{partida.emaitza}}{% else %}---{% endif %}</td>
                             <td>{{partida.date|date:"Y/m/d H:i"}}</td>
+                            <td>{% if partida.has_video %}<a href="{{partida.get_absolute_url}}"><i class="glyphicon glyphicon-play-circle"></i></a>{% endif %}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
