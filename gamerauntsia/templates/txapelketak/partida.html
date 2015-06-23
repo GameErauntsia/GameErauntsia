@@ -18,6 +18,23 @@
             <a href="{{partida.txapelketa.get_absolute_url}}">
                 <img src="{{partida.txapelketa.irudia.get_gp_thumbnail_url}}" class="img-responsive"/>
             </a>
+            {% for partaide in partida.get_partaideak %}
+                {% if partaide.is_group %}
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                        <a href="{{partaide.get_absolute_url}}">
+                        {% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-thumbnail  "/> {% endif %}
+                        {{partaide.get_izena}}
+                        </a>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        {% for j in partaide.jokalariak.all %}<a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_profilesmall_url}}" class="img-circle" title="{{j.getFullName}}"/></a>{% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
         </div>
 </div>
 {% endblock %}
