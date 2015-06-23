@@ -22,7 +22,7 @@ class PartidaAdmin(MPTTModelAdmin):
 
     list_display = ('txapelketa', 'jardunaldia','get_partaideak','emaitza', 'average', 'date')
     filter_horizontal = ('partaideak',)
-    raw_id_fields = ('parent','txapelketa','gameplaya')
+    raw_id_fields = ('parent','txapelketa')
     search_fields = ['txapelketa__izena']
     list_filter = ('txapelketa',)
     ordering = ('-date',)
