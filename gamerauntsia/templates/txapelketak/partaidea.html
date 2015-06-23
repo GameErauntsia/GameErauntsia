@@ -72,17 +72,19 @@
             <a href="{{partaidea.txapelketa.get_absolute_url}}">
                 <img src="{{partaidea.txapelketa.irudia.get_gp_thumbnail_url}}" class="img-responsive"/>
             </a>
-            <h2><span class="glyphicon glyphicon-star"></span> Kapitaina</h2>
-            <a href="{% url 'gamer_profile' partaidea.kapitaina %}"><img src="{{partaidea.kapitaina.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{partaidea.kapitaina.getFullName}}"/></a>
-            <h2><span class="glyphicon glyphicon-align-justify"></span> Sailkapen puntuak</h2>
-            <div class="row text-center">
-                <div class="col-lg-4 text-success"><h3><strong>{{partaidea.win}}</strong><br>Irabazi</h3></div>
-                <div class="col-lg-4 text-danger"><h3><strong>{{partaidea.lose}}</strong><br>Galdu</h3></div>
-                <div class="col-lg-4"><h3><strong>{{partaidea.points}}</strong><br>Puntu</h3></div>
+            <div class="well">
+                <h2><span class="glyphicon glyphicon-star"></span> Kapitaina</h2>
+                <a href="{% url 'gamer_profile' partaidea.kapitaina %}"><img src="{{partaidea.kapitaina.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{partaidea.kapitaina.getFullName}}"/></a>
+                <h2><span class="glyphicon glyphicon-align-justify"></span> Sailkapen puntuak</h2>
+                <div class="row text-center">
+                    <div class="col-lg-4 text-success"><h3><strong>{{partaidea.win}}</strong><br>Irabazi</h3></div>
+                    <div class="col-lg-4 text-danger"><h3><strong>{{partaidea.lose}}</strong><br>Galdu</h3></div>
+                    <div class="col-lg-4"><h3><strong>{{partaidea.points}}</strong><br>Puntu</h3></div>
+                </div>
+                {% if user.is_authenticated and user.is_superuser or user in partaidea.txapelketa.adminak.all %}
+                <a class="btn btn-default pull-right" href="/kudeatu/txapelketak/partaidea/{{partaidea.id}}">Editatu</a>
+                {% endif %}
             </div>
-            {% if user.is_authenticated and user.is_superuser or user in partaidea.txapelketa.adminak.all %}
-            <a class="btn btn-default pull-right" href="/kudeatu/txapelketak/partaidea/{{partaidea.id}}">Editatu</a>
-            {% endif %}
         </div>
 </div>
 {% endblock %}
