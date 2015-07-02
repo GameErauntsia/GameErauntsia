@@ -59,10 +59,6 @@ class BerriakAdmin(admin.ModelAdmin):
 
     has_delete_permission = has_change_permission
 
-    class Admin:
-        js = ('js/tinymce/tinymce.min.js',
-        )
-
 
 class GaiaAdmin(admin.ModelAdmin):
     list_display = ('izena','slug')
