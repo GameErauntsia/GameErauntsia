@@ -1,4 +1,5 @@
 from django import forms
+from django.conf import settings
 from gamerauntsia.gameplaya.models import GamePlaya
 from tinymce.widgets import TinyMCE
 
