@@ -45,9 +45,10 @@ class GamePlayAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         if not request.user.is_superuser:
             obj.erabiltzailea = request.user
-        l = Log(mota='GP',tituloa='Gameplay berria',deskripzioa="GP Berria",user=obj.erabiltzailea)
-        l.save()            
         obj.save()
+        l = Log(mota='GP',tituloa='Gameplay berria',deskripzioa="GP Berria",user=obj.erabiltzailea, gameplaya=obj)
+        l.save()            
+        
 
     def has_change_permission(self, request, obj=None):
         if not obj:
