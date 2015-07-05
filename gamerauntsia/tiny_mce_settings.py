@@ -1,5 +1,6 @@
 TINYMCE_BODY_CONFIG = {
     "selector": "textarea",
+    "language" : 'eu',
     "theme": "modern",
     "plugins": [
             "advlist autolink lists link image charmap print preview anchor",
@@ -12,6 +13,7 @@ TINYMCE_BODY_CONFIG = {
 
 TINYMCE_SMALL_BODY_CONFIG = {
     "selector": "textarea",
+    "language" : 'eu',
     "theme": "modern",
     "plugins": [
             "advlist autolink lists link image charmap print preview anchor",
