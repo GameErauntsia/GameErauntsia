@@ -276,7 +276,7 @@ class Partida(MPTTModel):
 
 def update_classification(sender,instance,**kwargs):
     if not kwargs['created']:
-        if instance.emaitza and instance.get_partaideak().count() > 2:
+        if instance.emaitza and instance.get_partaideak().count() == 2:
             for parta in instance.partaideak.all():
                 irabazi = 0
                 galdu = 0
