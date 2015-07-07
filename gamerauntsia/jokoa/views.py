@@ -15,6 +15,11 @@ def index(request):
     topjokoak = GamerUser.objects.values('top_jokoak__izena','top_jokoak__bertsioa','top_jokoak__logoa','top_jokoak__slug').annotate(Count('top_jokoak')).order_by('-top_jokoak__count','-top_jokoak__izena')[:10]
     jokoak = Jokoa.objects.filter(publikoa_da=True).order_by("izena","bertsioa")
     last_jokoak = Jokoa.objects.filter(publikoa_da=True).order_by("-id")[:10]
+    try:
+    	if last_jokoak[0].steam_id:
+    	    steam_json = get_urljson("http://store.steampowered.com/api/appdetails?appids="+str(jokoa.steam_id))[str(jokoa.steam_id)]['data']
+    except:
+    	pass
     return render_to_response('jokoa/index.html', locals(),context_instance=RequestContext(request))
 
 def jokoa(request,slug):
