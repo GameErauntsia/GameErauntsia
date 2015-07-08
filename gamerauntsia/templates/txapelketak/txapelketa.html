@@ -62,11 +62,13 @@
             
             <div class="tabpanel">
                 <ul class="nav nav-tabs" role="tablist">
+                    {% if item.insk_date|irekita and not item.status = '2' or not item.status = '3' %}
                     <li class="active" role="presentation">
                         <a aria-controls="desk" data-toggle="tab" role="tab" href="#desk"><h4 class="panel-title"><i class="glyphicon glyphicon-info-sign"></i></i> Deskribapena</h4></a>
                     </li>
+                    {% endif %}
                     {% if not item.insk_date|irekita and item.status = '2' or item.status = '3' %}
-                    <li role="presentation">
+                    <li class="active" role="presentation">
                         <a aria-controls="sailk" data-toggle="tab" role="tab" href="#sailk">
                             <h4 class="panel-title">
                                 <i class="glyphicon glyphicon-align-justify"></i> {% if item.mota == '0' %}Kanporaketa{% else %}Sailkapena{% endif %}
@@ -107,6 +109,11 @@
                                 <i class="glyphicon glyphicon-user"></i> Partaideak {% if item.jokalariak_count %}({{item.jokalariak_count}}){% endif %}
                             </h4>
                         </a>
+                    </li>
+                    {% endif %}
+                    {% if not item.insk_date|irekita and item.status = '2' or item.status = '3' %}
+                    <li role="presentation">
+                        <a aria-controls="desk" data-toggle="tab" role="tab" href="#desk"><h4 class="panel-title"><i class="glyphicon glyphicon-info-sign"></i></i> Deskribapena</h4></a>
                     </li>
                     {% endif %}
                 </ul>
