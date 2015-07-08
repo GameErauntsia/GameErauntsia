@@ -62,7 +62,7 @@
             
             <div class="tabpanel">
                 <ul class="nav nav-tabs" role="tablist">
-                    {% if item.insk_date|irekita and not item.status = '2' or not item.status = '3' %}
+                    {% if item.insk_date|irekita and item.status < '2' %}
                     <li class="active" role="presentation">
                         <a aria-controls="desk" data-toggle="tab" role="tab" href="#desk"><h4 class="panel-title"><i class="glyphicon glyphicon-info-sign"></i></i> Deskribapena</h4></a>
                     </li>
