@@ -90,6 +90,17 @@ class PartaideakAdmin(admin.ModelAdmin):
     search_fields = ['izena']
     ordering = ('-id',)
     form = PartaideakForm
+    
+    fieldsets = (
+        ('Datu orokorrak',
+        {'fields':('izena','irudia','txapelketa')},),
+        ('Jokalariak',
+        {'fields':('kapitaina','jokalariak')},),
+        ('Puntuazioa',
+        {'fields':('win','lose','draw','matches','average','points')},),
+        ('Txapelketaren irabazlea',
+        {'fields':('irabazlea')},),
+    )
 
 admin.site.register(Txapelketa,TxapelketaAdmin)
 admin.site.register(Partida,PartidaAdmin)
