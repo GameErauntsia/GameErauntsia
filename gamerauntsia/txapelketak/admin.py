@@ -36,7 +36,7 @@ class PartidaAdmin(MPTTModelAdmin):
         ('Emaitza',
         {'fields':('emaitza','average')},),
         ('Bideoa',
-        {'fields':('bideoa','start','end'},),
+        {'fields':('bideoa','start','end')},),
     )
 
 
