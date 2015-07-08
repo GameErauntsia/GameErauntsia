@@ -221,6 +221,8 @@ class Partida(MPTTModel):
 
     txapelketa = models.ForeignKey(Txapelketa)
     bideoa = models.CharField(max_length=150,null=True,blank=True)
+    start = models.IntegerField('Hasiera',null=True,blank=True)
+    end = models.IntegerField('Bukaera', null=True,blank=True)
     date = models.DateTimeField('Data', null=True,blank=True)
 
     def get_izena(self):
