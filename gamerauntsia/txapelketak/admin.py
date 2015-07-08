@@ -99,7 +99,7 @@ class PartaideakAdmin(admin.ModelAdmin):
         ('Puntuazioa',
         {'fields':('win','lose','draw','matches','average','points')},),
         ('Txapelketaren irabazlea',
-        {'fields':('irabazlea')},),
+        {'fields':('irabazlea',)},),
     )
 
 admin.site.register(Txapelketa,TxapelketaAdmin)
