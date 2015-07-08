@@ -119,11 +119,11 @@
                 </ul>
                 <br/>
                 <div class="tab-content" id="myTabContent">
-                    <div id="desk" class="tab-pane fade in active  " role="tabpanel">
+                    <div id="desk" class="tab-pane fade in {% if item.insk_date|irekita and item.status < '2' %}active{% endif %}" role="tabpanel">
                         <p class="lead">{{item.desk|safe|emoticons}}</p>
                     </div>
                     {% if not item.insk_date|irekita and item.status = '2' or item.status = '3' %}
-                    <div id="sailk" class="tab-pane fade" role="tabpanel">
+                    <div id="sailk" class="tab-pane fade active" role="tabpanel">
                         {% if item.mota == '0' %}
                         <div id="taula"></div>
         
