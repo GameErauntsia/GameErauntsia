@@ -27,6 +27,17 @@ class PartidaAdmin(MPTTModelAdmin):
     list_filter = ('txapelketa',)
     ordering = ('-date',)
     form = PartidaForm
+    
+    fieldsets = (
+        ('Datu orokorrak',
+        {'fields':('jardunaldia','txapelketa')},),
+        ('Konfigurazioa',
+        {'fields':('partaideak','parent','is_return','date')},),
+        ('Emaitza',
+        {'fields':('emaitza','average')},),
+        ('Bideoa',
+        {'fields':('bideoa','start','end'},),
+    )
 
 
 
