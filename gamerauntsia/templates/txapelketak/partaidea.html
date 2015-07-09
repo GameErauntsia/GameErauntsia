@@ -13,7 +13,7 @@
         <div class="col-lg-8">
             <h2><span class="glyphicon glyphicon-user"></span> Jokalari titularrak</h2>
             {% for j in partaidea.jokalariak.all %}
-            <a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{j.getFullName}}"/></a>
+            <a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{j.getFullName}}"/></a><span class="badge">{{j.getFullName}}</span>
             {% endfor %}
             {% if partaidea.ordezkoak.all %}
             <h2><span class="glyphicon glyphicon-user"></span> Ordezko jokalariak</h2>
