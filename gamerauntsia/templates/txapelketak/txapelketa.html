@@ -243,7 +243,7 @@
                                         <div class="col-sm-12">
                                             {% for j in partaide.jokalariak.all %}
                                             <div class="player col-sm-2">
-                                                <a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_profilesmall_url}}" class="img-circle" title="{{j.getFullName}}"/></a>
+                                                <a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{j.getFullName}}"/><span class="badge userpic">{{j.getFullName}}</span></a>
                                             </div>
                                             {% endfor %}
                                         </div>
