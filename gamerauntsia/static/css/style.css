@@ -271,9 +271,9 @@ padding: 0 7px 0 26px;
 }
 
 .userpic {
-  left: -75px;
+  left: 5px;
   position: relative;
   text-align: center;
-  top: 25px;
+  top: -25px;
   width: 70px;
 }
