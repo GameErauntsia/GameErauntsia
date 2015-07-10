@@ -70,6 +70,13 @@ def partaidea(request,slug,part_id):
     next_parts = Partida.objects.filter(Q(txapelketa=item), Q(partaideak=partaidea),Q(emaitza__isnull=True) | Q(emaitza__iexact='')).order_by('date','jardunaldia').distinct()
     return render_to_response('txapelketak/partaidea.html', locals(),context_instance=RequestContext(request))
 
+def partida(request,slug,partida):
+    item = get_object_or_404(Txapelketa,slug=slug)
+    queryset = Partida.objects.filter(emaitza__isnull=False).exclude(emaitza__iexact="")
+    partida = get_object_or_404(queryset,id=partida)
+    other_parts = Partida.objects.filter(txapelketa=item).exclude(id=partida.id,emaitza__isnull=False).order_by('date','jardunaldia').distinct()
+    return render_to_response('txapelketak/partida.html', locals(),context_instance=RequestContext(request))
+
 @login_required
 def txapelketa_insk(request,slug):
     user = request.user

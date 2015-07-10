@@ -48,9 +48,15 @@
             {% endif %}
             
             <div class="col-lg-12">
-                {% if item.live_bideoa %}
+                {% if item.live_bideoa or item.twitch%}
                 <h2><span class="glyphicon glyphicon-play-circle"></span> Zuzenean</h2>
-                <div class="flex-video widescreen"><iframe width="700" height="394" src="//www.youtube.com/embed/{{item.live_bideoa}}" frameborder="0" allowfullscreen></iframe></div>
+                <div class="flex-video widescreen">
+                    {% if item.live_bideoa %}
+                    <iframe width="700" height="394" src="//www.youtube.com/embed/{{item.live_bideoa}}" frameborder="0" allowfullscreen></iframe>
+                    {% else %}
+                    <iframe src="http://www.twitch.tv/gamerauntsia/embed" frameborder="0" scrolling="no" height="378" width="620"></iframe>
+                    {% endif %}
+                </div>
                 {% endif %}
             </div>
             
@@ -79,7 +85,7 @@
                     <li role="presentation">
                         <a aria-controls="part" data-toggle="tab" role="tab" href="#part">
                             <h4 class="panel-title">
-                                <i class="glyphicon glyphicon-tower"></i> Hurrengo partidak
+                                <i class="glyphicon glyphicon-tower"></i> Partida +
                             </h4>
                         </a>
                     </li>
@@ -104,6 +110,7 @@
                     </li>
                     {% endif %}
                 </ul>
+                <br/>
                 <div class="tab-content" id="myTabContent">
                     <div id="desk" class="tab-pane fade in active  " role="tabpanel">
                         <p class="lead">{{item.desk|safe|emoticons}}</p>
@@ -132,7 +139,7 @@
                                     {% for partaide in list_sailkapena %}
                                     <tr>
                                         <td>#{{forloop.counter}}</td>
-                                        <td>{% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-thumbnail"/> {% endif %}{% if partaide.get_absolute_url %}<a href="{{partaide.get_absolute_url}}">{{partaide.get_izena}}</a>{% else %}{{partaide.get_izena}}{% endif %}</a></td>
+                                        <td>{% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-thumbnail"/> {% endif %}{% if partaide.get_absolute_url %}<a href="{{partaide.get_absolute_url}}">{{partaide.render_izena}}</a>{% else %}{{partaide.render_izena}}{% endif %}</a></td>
                                         <td class="text-right">{{partaide.win}}</td>
                                         <td class="text-right">{{partaide.draw}}</td>
                                         <td class="text-right">{{partaide.lose}}</td>
@@ -155,15 +162,17 @@
                                         <th>Partaideak</th>
                                         <th>Emaitza</th>
                                         <th>Data</th>
+                                        <th>Ikusi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {% for partida in item.get_partidak %}
                                     <tr>
                                         <td>#{{partida.jardunaldia}}</td>
-                                        <td>{{partida.get_partaide_list}}</td>
+                                        <td>{{partida.render_izena|safe}}</td>
                                         <td>{% if partida.emaitza %}{{partida.emaitza}}{% else %}---{% endif %}</td>
                                         <td>{{partida.date|date:"Y/m/d H:i"}}</td>
+                                        <td>{% if partida.has_video %}<a href="{{partida.get_absolute_url}}"><i class="glyphicon glyphicon-play-circle"></i></a>{% endif %}</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
@@ -210,15 +219,17 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div id="dropdown1" class="tab-pane fade active" aria-labelledby="dropdown1-tab" role="tabpanel">
+                    <div id="dropdown1" class="tab-pane fade" aria-labelledby="dropdown1-tab" role="tabpanel">
                         <p>
                             {% for partaide in item.get_partaideak %}
                                 {% if partaide.is_group %}
                                 <div class="panel panel-success">
                                     <div class="panel-heading">
                                         <h3 class="panel-title">
+                                        <a href="{{partaide.get_absolute_url}}">
                                         {% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-thumbnail  "/> {% endif %}
                                         {{partaide.get_izena}}
+                                        </a>
                                         </h3>
                                     </div>
                                     <div class="panel-body">
@@ -305,6 +316,12 @@
                 <p>Txapelketetan parte hartu ahal izateko lehendabizi Game Erauntsian izena eman behar duzu.</p>
                 <a class="btn btn-primary" href="{% url 'auth_login' %}?next={{item.get_absolute_url}}" title="Log in">{% trans 'Log in' %}</a>
                 {% endif %}
+            </div>
+            {% endif %}
+            {% if item.twitch %}
+            <div class="well">
+                <h3>Zuzeneko txata</h3>
+                <iframe src="http://www.twitch.tv/gamerauntsia/chat?popout=" frameborder="0" height="500" width="100%"></iframe>
             </div>
             {% endif %}
             <div class="well">

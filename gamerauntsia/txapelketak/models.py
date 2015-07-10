@@ -41,6 +41,7 @@ class Txapelketa(models.Model):
     modalitatea = models.CharField(max_length=1, choices=MODALITATEA, default='0')
     status = models.CharField(max_length=1, choices=EGOERA, default='0')
     live_bideoa = models.CharField(max_length=100,null=True,blank=True, help_text="Eremu honetan bideoaren URL kodea itsatsi behar duzu. Adb.: c21XAuI3aMo")
+    twitch = models.BooleanField(default=False)
     hashtag = models.CharField(max_length=100,null=True,blank=True)
 
     jokalariak = models.ManyToManyField(GamerUser,related_name="jokalariak",verbose_name="Inskripzioa",null=True,blank=True)
@@ -164,7 +165,7 @@ class Partaidea(models.Model):
         
     def get_absolute_url(self):
         if self.is_group():
-            return None
+            return "%stxapelketak/%s/taldea/%d" % (settings.HOST, self.txapelketa.slug,self.id)
         else:
             return "%s" % (self.jokalariak.all()[0].get_absolute_url())
 
@@ -181,6 +182,16 @@ class Partaidea(models.Model):
             return self.jokalariak.all()[0].get_photo()
 
     def get_izena(self):
+        if not self.izena:
+            if not self.jokalariak.all():
+                return u'%s' %(self.izena)
+            elif not self.is_group:
+                return u'%s' % (self.jokalariak.all()[0].getFullName())
+            else:
+                return u'%s' % (", ".join([p.getFullName() for p in self.jokalariak.all()]))
+        return u'%s' %(self.izena)
+
+    def render_izena(self):
         if not self.izena:
             if not self.jokalariak.all():
                 return u'%s' %(self.izena)
@@ -209,7 +220,7 @@ class Partida(MPTTModel):
     is_return = models.BooleanField('Itzulerakoa',default=False)
 
     txapelketa = models.ForeignKey(Txapelketa)
-    gameplaya = models.ForeignKey(GamePlaya,null=True,blank=True)
+    bideoa = models.CharField(max_length=150,null=True,blank=True)
     date = models.DateTimeField('Data', null=True,blank=True)
 
     def get_izena(self):
@@ -220,6 +231,15 @@ class Partida(MPTTModel):
                 return " VS ".join([p.get_izena() for p in self.partaideak.all()])
         else:
             return u'%d jardunaldia' % (self.jardunaldia)
+
+    def render_izena(self):
+        if self.partaideak.all():
+            if self.is_return:
+                return " <img src='/static/img/versus.png'/> ".join([p.get_izena() for p in self.partaideak.all().order_by("-id")])
+            else:
+                return " <img src='/static/img/versus.png'/> ".join([p.get_izena() for p in self.partaideak.all()])
+        else:
+            return u'???'
 
     def get_partaide_list(self):
         if self.partaideak.all():
@@ -234,6 +254,14 @@ class Partida(MPTTModel):
         if self.is_return:
             return self.partaideak.all().order_by("-id")
         return self.partaideak.all()
+
+    def has_video(self):
+        if self.bideoa:
+            return True
+        return False
+
+    def get_absolute_url(self):
+        return "%stxapelketak/%s/partida/%d" % (settings.HOST, self.txapelketa.slug,self.id)
 
     class MPTTMeta:
         order_insertion_by = ['jardunaldia']
