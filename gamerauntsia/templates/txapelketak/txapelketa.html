@@ -31,6 +31,17 @@
             </a>
             <hr>
             {% endif %}
+            
+            <div class="col-sm-12">
+                {% for v in video_parts %}
+                <div class="col-sm-4">
+                    <a href="{% url 'partida' v.id %}">
+                        <img class="img-resposive" src="http://img.youtube.com/vi/{{v.bideoa}}/maxresdefault.jpg"/>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            
             {% if user.is_authenticated %}
             {% if user.is_superuser or user in item.adminak.all %}
             <div class="well">
