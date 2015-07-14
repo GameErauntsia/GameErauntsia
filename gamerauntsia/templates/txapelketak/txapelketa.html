@@ -33,10 +33,10 @@
             {% endif %}
             
             <div class="col-sm-12">
-                {% for v in video_parts %}
+                {% for partida in video_parts %}
                 <div class="col-sm-4">
-                    <a href="{% url 'partida' v.id %}">
-                        <img class="img-resposive" src="http://img.youtube.com/vi/{{v.bideoa}}/maxresdefault.jpg"/>
+                    <a href="{{partida.get_absolute_url}}">
+                        <img class="img-resposive" src="http://img.youtube.com/vi/{{partida.bideoa}}/maxresdefault.jpg"/>
                     </a>
                 </div>
                 {% endfor %}
