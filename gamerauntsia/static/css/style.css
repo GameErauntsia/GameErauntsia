@@ -277,3 +277,10 @@ padding: 0 7px 0 26px;
   top: -25px;
   width: 70px;
 }
+
+.play {
+  max-width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+}
