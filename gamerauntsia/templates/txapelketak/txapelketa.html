@@ -42,22 +42,6 @@
                 {% endfor %}
             </div>
             
-            {% if user.is_authenticated %}
-            {% if user.is_superuser or user in item.adminak.all %}
-            <div class="well">
-                <h3>Editatu txapelketa</h3>
-                <div class="btn-group" role="group" aria-label="...">
-                    <a class="btn btn-default" href="/kudeatu/txapelketak/txapelketa/{{item.id}}">Txapelketa</a>
-                    <a class="btn btn-default" href="/kudeatu/txapelketak/partida/?txapelketa__id__exact={{item.id}}">Partidak</a>
-                    <a class="btn btn-default" href="/kudeatu/txapelketak/partaidea/?txapelketa__id__exact={{item.id}}">Partaideak</a>
-                </div>
-                {% if item.modalitatea == '0' and item.partaideak_count == 0 %}
-                    <a href="{% url 'sortu_partaideak' item.slug %}" class="btn btn-warning pull-right">Sortu partaideak</a>
-                {% endif %}
-            </div>
-            {% endif %}
-            {% endif %}
-            
             <div class="col-lg-12">
                 {% if item.live_bideoa or item.twitch%}
                 <h2><span class="glyphicon glyphicon-play-circle"></span> Zuzenean</h2>
@@ -373,6 +357,21 @@
                 <p><a href="{% url 'gamer_profile' admin.username %}"><img src="{{admin.get_photo.get_profilesmall_url}}" class="img-circle"/> {{admin.getFullName}}</a></p>
                 {% endfor %}
             </div>
+            {% if user.is_authenticated %}
+            {% if user.is_superuser or user in item.adminak.all %}
+            <div class="well">
+                <h3>Editatu txapelketa</h3>
+                <div class="btn-group" role="group" aria-label="...">
+                    <a class="btn btn-default" href="/kudeatu/txapelketak/txapelketa/{{item.id}}">Txapelketa</a>
+                    <a class="btn btn-default" href="/kudeatu/txapelketak/partida/?txapelketa__id__exact={{item.id}}">Partidak</a>
+                    <a class="btn btn-default" href="/kudeatu/txapelketak/partaidea/?txapelketa__id__exact={{item.id}}">Partaideak</a>
+                </div>
+                {% if item.modalitatea == '0' and item.partaideak_count == 0 %}
+                    <a href="{% url 'sortu_partaideak' item.slug %}" class="btn btn-warning pull-right">Sortu partaideak</a>
+                {% endif %}
+            </div>
+            {% endif %}
+            {% endif %}
         </div>
 </div>
 
