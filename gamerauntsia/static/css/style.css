@@ -279,8 +279,9 @@ padding: 0 7px 0 26px;
 }
 
 .play {
+  left: 70px;
   max-width: 100%;
   position: absolute;
-  top: 0;
+  top: 9px;
   z-index: 2;
 }
