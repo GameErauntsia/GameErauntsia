@@ -4,21 +4,20 @@ import time
 
 TOKEN = '107547414:AAEXaH2tSNcnaehNq_7NNbNKb1VfDbaa6Qs'
 
+def listener(messages):
+    """
+    When new messages arrive TeleBot will call this function.
+    """
+    for m in messages:
+        chatid = m.chat.id
+        if m.content_type == 'text':
+            if 'Kaixo' in m.text:
+                text = 'Kaixo!'
+                tb.send_message(chatid, text)
+
+
 
 def start_telebot():
-
-    def listener(messages):
-        """
-        When new messages arrive TeleBot will call this function.
-        """
-        for m in messages:
-            chatid = m.chat.id
-            if m.content_type == 'text':
-                if 'Kaixo' in m.text:
-                    text = 'Kaixo %s!' % (m.chat.firts_name)
-                    tb.send_message(chatid, text)
-
-
     tb = telebot.TeleBot(TOKEN)
     tb.set_update_listener(listener) #register listener
     tb.polling()
