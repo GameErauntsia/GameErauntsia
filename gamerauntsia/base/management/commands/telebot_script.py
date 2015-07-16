@@ -13,7 +13,7 @@ def start_telebot():
             chatid = m.chat.id
             if m.content_type == 'text':
                 if 'Kaixo' in m.text:
-                	print m
+                    print m
                     text = 'Kaixo!'
                     tb.send_message(chatid, text)
 
