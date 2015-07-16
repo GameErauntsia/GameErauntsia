@@ -14,7 +14,7 @@ def start_telebot():
             chatid = m.chat.id
             if m.content_type == 'text':
                 if 'Kaixo' in m.text:
-                	text = 'Kaixo %s!' % (m.chat.firts_name)
+                    text = 'Kaixo %s!' % (m.chat.firts_name)
                     tb.send_message(chatid, text)
 
 
