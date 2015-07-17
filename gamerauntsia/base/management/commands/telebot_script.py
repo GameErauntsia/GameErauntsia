@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from django_simple_forum.models import Category
+from django_simple_forum.models import Category, Forum, Topic
 import telebot
 import time
 import re
@@ -24,14 +24,33 @@ def start_telebot():
 
     @tb.message_handler(commands=['kaixo', 'foroa', 'laguntza'])
     def command_list(message):
-        if 'kaixo' in message.text:
+        text = message.text
+        if 'kaixo' in text:
             tb.send_message(message.chat.id, "Kaixo %s!" % (message.from_user.first_name))
-        elif 'foroa' in message.text:
-            if not '-k' or '-f' or '-t' in message.text:
-                msg = 'Kategoriak:'
-                categories = "\n".join(f.title for f in Category.objects.all().order_by('title'))
-                msg += categories
-                
+        elif 'foroa' in text:
+            msg = 'Gaia zuzenean bilatzeko:\n /foroa -bilatu <bilaketa>\n\n'
+            msg += 'Gaien traolak jakiteko:\n /foroa -k <kategoria> -f <foroa>\n\n'
+            if '-bilatu' in text:
+                msg = 'Bilaketa emaitza:\n'
+                find = text[text.find('-bilatu')+8:].strip()
+                topics = "\n".join('#GE'+str(t.id)+' - '+t.title for t in Topic.objects.filter(title__icontains=find).order_by('title'))
+                msg += topics or 'Ez da ezer aurkitu...'
+            elif not '-k' in text and not '-f' in text:
+                msg += 'Kategoriak:\n'
+                categories = "\n".join('#'+c.title.replace(' ','_') for c in Category.objects.all().order_by('title'))
+                msg += categories or 'Ez da ezer aurkitu...'
+            elif '-k' in text  and not '-f' in text:
+                msg += 'Foroak:\n'
+                cat = text[text.find('-k')+3:].replace('#','').replace('_',' ').strip()
+                forums = "\n".join('#'+f.title.replace(' ','_') for f in Forum.objects.filter(category__title=cat).order_by('title'))
+                msg += forums or 'Ez da ezer aurkitu...'
+            elif '-f' in text:
+                msg = 'Gaiak:\n'
+                foru = text[text.find('-f')+3:].replace('#','').replace('_',' ').strip()
+                topics = "\n".join('#GE'+str(t.id)+' - '+t.title for t in Topic.objects.filter(forums__title=foru).order_by('title'))
+                msg += topics or 'Ez da ezer aurkitu...'
+            else:
+                msg = 'Komando okerra! Saiatu berriz...'
             tb.send_message(message.chat.id, msg)
         else:
             cmd_lst = ''
