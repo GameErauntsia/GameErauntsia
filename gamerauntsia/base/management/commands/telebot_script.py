@@ -33,8 +33,11 @@ def start_telebot():
             if '-bilatu' in text:
                 msg = 'Bilaketa emaitza:\n'
                 find = text[text.find('-bilatu')+8:].strip()
-                topics = "\n".join('#GE'+str(t.id)+' - '+t.title for t in Topic.objects.filter(title__icontains=find).order_by('title'))
-                msg += topics or 'Ez da ezer aurkitu...'
+                if not len(find)<3:
+                    topics = "\n".join('#GE'+str(t.id)+' - '+t.title for t in Topic.objects.filter(title__icontains=find).order_by('title'))
+                    msg += topics or 'Ez da ezer aurkitu...'
+                else:
+                    msg = 'Mesedez, sartu 3 hizkitik gorako bilaketa!'
             elif not '-k' in text and not '-f' in text:
                 msg += 'Kategoriak:\n'
                 categories = "\n".join('#'+c.title.replace(' ','_') for c in Category.objects.all().order_by('title'))
