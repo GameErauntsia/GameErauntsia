@@ -1,10 +1,9 @@
 from django.core.management.base import BaseCommand
 from django_simple_forum.models import Category, Forum, Topic
+from django.conf import settings
 import telebot
 import time
 import re
-
-TOKEN = '107547414:AAEXaH2tSNcnaehNq_7NNbNKb1VfDbaa6Qs'
 
 COMMANDS = (
     ('kaixo', 'Kaixo mundua!'),
@@ -15,7 +14,7 @@ COMMANDS = (
 
 def start_telebot():
 
-    tb = telebot.TeleBot(TOKEN)
+    tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
 
     @tb.message_handler(func=lambda message: '#' in message.text)
     def command_hashtag(message):
