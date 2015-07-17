@@ -43,18 +43,15 @@ class MCTelebotHandler(BaseHandler):
         
        if username:
            try:
-	       mc = base.get(mc_user=username)
-	       tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
-	       msg = '[%s] %s-(r)en laguntza eskaera:\n%s' % (mc.get_rol_display(),username,request.GET.get('text', 'Mezurik gabe...'))
+               tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
+	       if base.filter(mc_user=username).exists():
+	           mc = base.get(mc_user=username)
+	           msg = '[%s] %s-(r)en laguntza eskaera:\n%s' % (mc.get_rol_display(),username,request.GET.get('text', 'Mezurik gabe...'))
+	       else:
+	           msg = '[Anonimoa] %s-(r)en laguntza eskaera:\n%s' % (username,request.GET.get('text', 'Mezurik gabe...'))
 	       tb.send_message(settings.MC_CHAT_ID, msg)
 	       return True
 	   except:
 	       return False
        else:
-           try:
-                tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
-                msg = 'Anonimo baten laguntza eskaera:\n%s' % (request.GET.get('text', 'Mezurik gabe...'))
-                tb.send_message(settings.MC_CHAT_ID, msg)
-                return True
-            except:
-	        return False
+           return False
