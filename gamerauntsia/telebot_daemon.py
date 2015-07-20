@@ -68,7 +68,7 @@ def start_telebot():
     tb.polling(none_stop=True)
     # Interval setup. Sleep 3 secs between request new message.
     #tb.polling(interval=3)
-    while True: # Don't let the main Thread end.
+    while true: # Don't let the main Thread end.
         pass
 
 
