@@ -44,7 +44,7 @@ def start_telebot():
 
             tb.send_message(message.chat.id, "Aupa %s! Mezua jasota :+1:" % (message.from_user.first_name))
         except:
-            tb.send_message(message.chat.id, ":sob: Barkatu %s, ez dut zure mezua ulertu" % (message.from_user.first_name))
+            tb.send_message(message.chat.id, "\U00001F622 Barkatu %s, ez dut zure mezua ulertu" % (message.from_user.first_name))
 
     @tb.message_handler(commands=['kaixo', 'foroa', 'laguntza'])
     def command_list(message):
