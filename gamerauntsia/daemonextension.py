@@ -61,7 +61,7 @@ from django.core.management.base import BaseCommand
 from optparse import make_option
 
 import daemon
-from daemon import pidlockfile
+from lockfile import pidlockfile
 
 class DaemonCommand(BaseCommand):
         
