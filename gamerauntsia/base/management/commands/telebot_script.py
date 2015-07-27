@@ -69,4 +69,4 @@ class Command(DaemonCommand):
     
     def loop_callback(self):
         start_telebot()
-        time.sleep(1.5)        
+        time.sleep(2.5)        
