@@ -4,8 +4,7 @@ from django.conf import settings
 import telebot
 import time
 import re
-from daemonextension import DaemonCommand
-import os
+from daemon_command import DaemonCommand
 
 COMMANDS = (
     ('kaixo', 'Kaixo mundua!'),
@@ -62,17 +61,12 @@ def start_telebot():
             tb.send_message(message.chat.id, "Komando zerrenda:\n"+cmd_lst)
 
     #Use none_stop flag let polling will not stop when get new message occur error.
-    tb.polling(none_stop=True)
+    tb.polling()
     # Interval setup. Sleep 3 secs between request new message.
     #tb.polling(interval=3)
-    while true: # Don't let the main Thread end.
-        pass
 
 class Command(DaemonCommand):
     
-    stdout = os.path.join(settings.DIRNAME, "log/telebot.out")
-    stderr = os.path.join(settings.DIRNAME, "log/telebot.err")
-    pidfile = os.path.join(settings.DIRNAME, "pid/telebot_link.pid")
-    
-    def handle_daemon(self, *args, **options):
+    def loop_callback(self):
         start_telebot()
+        time.sleep(1.5)        
