@@ -4,13 +4,14 @@ from django.conf import settings
 import telebot
 import time
 import re
+from daemonextension import DaemonCommand
+import os
 
 COMMANDS = (
     ('kaixo', 'Kaixo mundua!'),
     ('foroa', 'Foroko aurkibidea ikusteko'),
     ('laguntza', 'Laguntzeko prest naukazu!'),
 )
-
 
 def start_telebot():
 
@@ -67,7 +68,11 @@ def start_telebot():
     while true: # Don't let the main Thread end.
         pass
 
-class Command(BaseCommand):
-   help = 'Telebot'
-   def handle(self, *args, **options):
-       start_telebot()
+class Command(DaemonCommand):
+    
+    stdout = os.path.join(settings.DIRNAME, "log/telebot.out")
+    stderr = os.path.join(settings.DIRNAME, "log/telebot.err")
+    pidfile = os.path.join(settings.DIRNAME, "pid/telebot_link.pid")
+    
+    def handle_daemon(self, *args, **options):
+        start_telebot()
