@@ -29,7 +29,7 @@ def start_telebot():
                 try:
                     user = GamerUser.get(username=message.from_user.username)
                 except:
-                    tb.send_message(message.chat.id, ":sweat_smile: Barkatu... nor zara? Konfiguratu zure Telegram erabiltzaile izena eta saiatu berriz!" % (message.from_user.first_name))
+                    tb.send_message(message.chat.id, u"Barkatu... nor zara? \U0001F605\nKonfiguratu zure Telegram erabiltzaile izena eta saiatu berriz!" % (message.from_user.first_name))
 
             post_title = topic.title
             if topic.last_post():
@@ -42,9 +42,9 @@ def start_telebot():
             post.creator = user
             post.save()
 
-            tb.send_message(message.chat.id, "Aupa %s! Mezua jasota :+1:" % (message.from_user.first_name))
+            tb.send_message(message.chat.id, u"Aupa %s! Mezua jasota \U0001F44D" % (message.from_user.first_name))
         except:
-            tb.send_message(message.chat.id, u"\U0001F622 Barkatu %s, ez dut zure mezua ulertu" % (message.from_user.first_name))
+            tb.send_message(message.chat.id, u"Barkatu %s, ez dut zure mezua ulertu \U0001F62D" % (message.from_user.first_name))
 
     @tb.message_handler(commands=['kaixo', 'foroa', 'laguntza'])
     def command_list(message):
