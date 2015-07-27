@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
-from django_simple_forum.models import Category, Forum, Topic
+from django_simple_forum.models import Category, Forum, Topic, Post
+from gamerauntsia.gamer.models import GamerUser
 from django.conf import settings
 import telebot
 import time
@@ -18,8 +19,30 @@ def start_telebot():
 
     @tb.message_handler(func=lambda message: '#' in message.text)
     def command_hashtag(message):
-        hashtags = ", ".join(re.findall(r"(?i)\#\w+", message.text))
-        tb.send_message(message.chat.id, "Fororako gai hauek aipatu dituzu: "+hashtags)
+        hashtag = re.match(r"(?i)\#\w+", message.text)
+        try:
+            topic_id = int(hashtag.replace("#GE",""))
+            topic = Topic.objects.get(id=topic_id)
+            text = message.text.replace(hashtag,"").replace("@ge_bot","").strip()
+
+            if message.from_user.username:
+                try:
+                    user = GamerUser.get(username=message.from_user.username)
+                except:
+                    tb.send_message(message.chat.id, ":sweat_smile: Barkatu... nor zara? Konfiguratu zure Telegram erabiltzaile izena eta saiatu berriz!" % (message.from_user.first_name))
+
+            post_title = topic.title
+            if topic.last_post():
+                post_title = 'Re: ' + topic.last_post().title.replace('Re: ','')
+            
+            post = Post()
+            post.topic = topic
+            post.title = post_title
+            post.body = text
+            post.creator = user
+            post.save()
+        except:
+            tb.send_message(message.chat.id, ":sob: Barkatu %s, ez dut zure mezua ulertu" % (message.from_user.first_name))
 
     @tb.message_handler(commands=['kaixo', 'foroa', 'laguntza'])
     def command_list(message):
