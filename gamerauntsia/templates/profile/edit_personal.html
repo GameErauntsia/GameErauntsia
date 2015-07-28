@@ -12,27 +12,27 @@
 		{% csrf_token %}
 		<fieldset>
 			<div class="input-group">
-  				<input id="id_fullname" class="form-control" type="text" name="fullname" maxlength="60" placeholder="Zure izena" value="{{ profileform.fullname.value }}" />
+  				<input id="id_fullname" class="form-control" type="text" name="fullname" maxlength="60" placeholder="Zure izena" value="{{ profileform.fullname.value|default_if_none:"" }}" />
   			</div>
-			<br/><textarea id="id_bio" rows="5" name="bio" cols="80" placeholder="Zure biografia...">{{ profileform.bio.value }}</textarea><br/>
+			<br/><textarea id="id_bio" rows="5" name="bio" cols="80" placeholder="Zure biografia...">{{ profileform.bio.value|default_if_none:"" }}</textarea><br/>
 			<div class="row">
                 <div class="col-lg-4">
                     <label>Sare sozialak:</label>
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">Youtube</span>
-                        <input id="id_youtube" class="form-control" type="text" name="ytube_channel" maxlength="60" placeholder="Youtube kanalaren URLa" value="{{ profileform.ytube_channel.value }}" />
+                        <input id="id_youtube" class="form-control" type="text" name="ytube_channel" maxlength="60" placeholder="Youtube kanalaren URLa" value="{{ profileform.ytube_channel.value|default_if_none:"" }}" />
                     </div><br/>
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">Twitter</span>
-                        <input id="id_twitter_id" class="form-control" type="text" name="twitter_id" maxlength="60" placeholder="Twitter izena" value="{{ profileform.twitter_id.value }}" />
+                        <input id="id_twitter_id" class="form-control" type="text" name="twitter_id" maxlength="60" placeholder="Twitter izena" value="{{ profileform.twitter_id.value|default_if_none:"" }}" />
                     </div><br/>
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">Facebook</span>
-                        <input id="id_facebook_id" class="form-control" type="text" name="facebook_id" maxlength="60" placeholder="Facebook izena" value="{{ profileform.facebook_id.value }}" />
+                        <input id="id_facebook_id" class="form-control" type="text" name="facebook_id" maxlength="60" placeholder="Facebook izena" value="{{ profileform.facebook_id.value|default_if_none:"" }}" />
                     </div><br/>
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">Telegram</span>
-                        <input id="id_telegram_id" class="form-control" type="text" name="telegram_id" maxlength="11" placeholder="Telegram kodea" value="{{ profileform.telegram_id.value }}" />
+                        <input id="id_telegram_id" class="form-control" type="text" name="telegram_id" maxlength="11" placeholder="Telegram kodea" value="{{ profileform.telegram_id.value|default_if_none:"" }}" />
                     </div>
                 </div>
             </div>
