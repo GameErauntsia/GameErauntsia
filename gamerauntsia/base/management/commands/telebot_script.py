@@ -9,6 +9,7 @@ from daemon_command import DaemonCommand
 
 COMMANDS = (
     ('kaixo', 'Kaixo mundua!'),
+    ('kodea', 'Zure Game Erauntsiko profilarekin lotzeko kodea'),
     ('foroa', 'Foroko aurkibidea ikusteko'),
     ('laguntza', 'Laguntzeko prest naukazu!'),
 )
@@ -25,8 +26,8 @@ def start_telebot():
             topic = Topic.objects.get(id=topic_id)
             text = message.text.replace(hashtag,"").replace("@ge_bot","").strip()
 
-            if message.from_user.username and GamerUser.objects.filter(username=message.from_user.username).exists():
-                user = GamerUser.objects.get(username=message.from_user.username)
+            if message.from_user.username and GamerUser.objects.filter(telegram_id=message.from_user.id).exists():
+                user = GamerUser.objects.get(telegram_id=message.from_user.id)
                 post_title = topic.title
                 if topic.last_post():
                     post_title = 'Re: ' + topic.last_post().title.replace('Re: ','')
@@ -36,17 +37,17 @@ def start_telebot():
                 post.title = post_title
                 post.body = text
                 post.creator = user
-                post.telebot_id = str(message.from_user.id)
+                post.telegram_id = str(message.from_user.id)
                 post.save()
 
                 tb.send_message(message.chat.id, u"Aupa %s! Mezua jasota \U0001F44D" % (message.from_user.first_name))
             else:
-                tb.send_message(message.chat.id, u"Barkatu... nor zara? \U0001F605\nKonfiguratu zure Telegram erabiltzaile izena eta saiatu berriz!")
+                tb.send_message(message.chat.id, u"Barkatu... nor zara? \U0001F605\nKonfiguratu zure Telegram /kodea eta saiatu berriz!")
 
         except:
             tb.send_message(message.chat.id, u"Barkatu %s, ez dut zure mezua ulertu \U0001F62D" % (message.from_user.first_name))
 
-    @tb.message_handler(commands=['kaixo', 'foroa', 'laguntza'])
+    @tb.message_handler(commands=['kaixo', 'foroa', 'kodea', 'laguntza'])
     def command_list(message):
         text = message.text
         if 'kaixo' in text:
@@ -79,6 +80,11 @@ def start_telebot():
             else:
                 msg = 'Komando okerra! Saiatu berriz...'
             tb.send_message(message.chat.id, msg)
+        elif 'kodea' in text:
+            if message.chat.id < 0:
+                tb.send_message(message.chat.id, "Mesedez %s, eskatu zure kodea niri zuzenean. Ez erabili taldeak horretarako" % (message.from_user.first_name))
+            else:
+                tb.send_message(message.chat.id, "Zure kodea: %d\n\nGorde zenbaki hau zure Game Erauntsiko profilean" % (message.from_user.id))
         else:
             cmd_lst = ''
             for cmd in COMMANDS:
