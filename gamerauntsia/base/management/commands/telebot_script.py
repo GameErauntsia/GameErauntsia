@@ -26,7 +26,7 @@ def start_telebot():
             topic = Topic.objects.get(id=topic_id)
             text = message.text.replace(hashtag,"").replace("@ge_bot","").strip()
 
-            if message.from_user.username and GamerUser.objects.filter(telegram_id=message.from_user.id).exists():
+            if message.from_user.id and GamerUser.objects.filter(telegram_id=message.from_user.id).exists():
                 user = GamerUser.objects.get(telegram_id=message.from_user.id)
                 post_title = topic.title
                 if topic.last_post():
