@@ -30,6 +30,10 @@
                         <span class="input-group-addon" id="basic-addon1">Facebook</span>
                         <input id="id_facebook_id" class="form-control" type="text" name="facebook_id" maxlength="60" placeholder="Facebook izena" value="{{ profileform.facebook_id.value }}" />
                     </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Telegram</span>
+                        <input id="id_telegram_id" class="form-control" type="text" name="telegram_id" maxlength="11" placeholder="Telegram kodea" value="{{ profileform.telegram_id.value }}" />
+                    </div>
                 </div>
             </div>
             <br/><label for="id_signature">Foroko sinadura:</label>{{ profileform.signature }}<br/>
