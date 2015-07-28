@@ -19,30 +19,30 @@ def start_telebot():
 
     @tb.message_handler(func=lambda message: '#' in message.text)
     def command_hashtag(message):
-        hashtag = re.match(r"(?i)\#\w+", message.text)
+        hashtag = re.findall(r"(?i)\#\w+", message.text)[0]
         try:
             topic_id = int(hashtag.replace("#GE",""))
             topic = Topic.objects.get(id=topic_id)
             text = message.text.replace(hashtag,"").replace("@ge_bot","").strip()
 
-            if message.from_user.username:
-                try:
-                    user = GamerUser.get(username=message.from_user.username)
-                except:
-                    tb.send_message(message.chat.id, u"Barkatu... nor zara? \U0001F605\nKonfiguratu zure Telegram erabiltzaile izena eta saiatu berriz!" % (message.from_user.first_name))
+            if message.from_user.username and GamerUser.objects.filter(username=message.from_user.username).exists():
+                user = GamerUser.objects.get(username=message.from_user.username)
+                post_title = topic.title
+                if topic.last_post():
+                    post_title = 'Re: ' + topic.last_post().title.replace('Re: ','')
 
-            post_title = topic.title
-            if topic.last_post():
-                post_title = 'Re: ' + topic.last_post().title.replace('Re: ','')
-            
-            post = Post()
-            post.topic = topic
-            post.title = post_title
-            post.body = text
-            post.creator = user
-            post.save()
+                post = Post()
+                post.topic = topic
+                post.title = post_title
+                post.body = text
+                post.creator = user
+                post.telebot_id = str(message.from_user.id)
+                post.save()
 
-            tb.send_message(message.chat.id, u"Aupa %s! Mezua jasota \U0001F44D" % (message.from_user.first_name))
+                tb.send_message(message.chat.id, u"Aupa %s! Mezua jasota \U0001F44D" % (message.from_user.first_name))
+            else:
+                tb.send_message(message.chat.id, u"Barkatu... nor zara? \U0001F605\nKonfiguratu zure Telegram erabiltzaile izena eta saiatu berriz!")
+
         except:
             tb.send_message(message.chat.id, u"Barkatu %s, ez dut zure mezua ulertu \U0001F62D" % (message.from_user.first_name))
 
@@ -91,6 +91,9 @@ def start_telebot():
     #tb.polling(interval=3)
 
 class Command(DaemonCommand):
+
+    STDOUT = '../log/telebot.err'
+    STDERR = STDOUT
     
     def loop_callback(self):
         start_telebot()
