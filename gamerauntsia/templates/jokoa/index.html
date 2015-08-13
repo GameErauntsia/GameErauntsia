@@ -1,5 +1,5 @@
 {% extends "profile/base.html" %}
-{% load i18n include gamerauntsia %}
+{% load i18n include gamerauntsia pagination_tags %}
 
 {% block title %}Jokoak - {% endblock %}
 
@@ -12,6 +12,16 @@
 
     <div class="col-lg-8">
         <div class="col-lg-12">
+        {% if steam_json.movies %}
+             <a href="{% url 'game' last_jokoak.0.slug %}">
+             <video width="100%" autoplay loop muted>
+                <source src="{{steam_json.movies.0.webm.480}}" type="video/mp4">
+                Zure nabigatzaileak ez du HTML5 erreproduktorea onartzen.
+            </video>
+            </a>
+            <hr/>
+        {% endif %}
+        {% autopaginate jokoak 32 %}
         {% for joko in jokoak %}
             {% if forloop.first %}<div class="row">{% endif %}
             <div class="col-lg-3 text-center">
@@ -25,6 +35,7 @@
         {% empty %}
         {% endfor %}
         </div>
+        {% paginate %}
     </div>
     <div class="col-lg-4">
         <div class="well">

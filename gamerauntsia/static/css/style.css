@@ -269,3 +269,19 @@ padding: 0 7px 0 26px;
     float: left;
     margin: 5px 5px 0px 0px;
 }
+
+.userpic {
+  left: 5px;
+  position: relative;
+  text-align: center;
+  top: -25px;
+  width: 70px;
+}
+
+.play {
+  left: 70px;
+  max-width: 100%;
+  position: absolute;
+  top: 9px;
+  z-index: 2;
+}

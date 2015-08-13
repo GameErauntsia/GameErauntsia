@@ -5,7 +5,7 @@ version = '0.01'
 
 setup(name='gamerauntsia',
       version=version,
-      description="Gameerauntsia web page project",
+      description="Game Erauntsia web page project",
       long_description=open("README.md").read(),
       classifiers=[],
       keywords='',
@@ -17,6 +17,7 @@ setup(name='gamerauntsia',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
+            'django_simple_forum',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

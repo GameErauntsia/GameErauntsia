@@ -12,15 +12,21 @@
 
         <div class="col-lg-8">
             <h2><span class="glyphicon glyphicon-user"></span> Jokalari titularrak</h2>
-            {% for j in partaidea.jokalariak.all %}
-            <a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{j.getFullName}}"/></a>
-            {% endfor %}
-            {% if partaidea.ordezkoak.all %}
-            <h2><span class="glyphicon glyphicon-user"></span> Ordezko jokalariak</h2>
-            {% for j in partaidea.jokalariak.all %}
-            <a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{j.getFullName}}"/></a>
-            {% endfor %}
-            {% endif %}
+            <div class="col-sm-12">
+                {% for j in partaidea.jokalariak.all %}
+                <div class="player col-sm-2">
+                    <a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{j.getFullName}}"/><span class="badge userpic">{{j.getFullName}}</span></a>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="col-sm-12">
+                {% if partaidea.ordezkoak.all %}
+                <h2><span class="glyphicon glyphicon-user"></span> Ordezko jokalariak</h2>
+                {% for j in partaidea.jokalariak.all %}
+                <a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{j.getFullName}}"/></a>
+                {% endfor %}
+                {% endif %}
+            </div>
             <h2><span class="glyphicon glyphicon-calendar"></span> Jardunaldiak</h2>
             <div class="table-responsive">
                 <table class="table table-condensed table-hover">
@@ -76,7 +82,11 @@
             </a>
             <div class="well">
                 <h2><span class="glyphicon glyphicon-star"></span> Kapitaina</h2>
-                <a href="{% url 'gamer_profile' partaidea.kapitaina %}"><img src="{{partaidea.kapitaina.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{partaidea.kapitaina.getFullName}}"/></a>
+                <div class="col-sm-12">
+                    <div class="player col-sm-2">
+                        <a href="{% url 'gamer_profile' partaidea.kapitaina %}"><img src="{{partaidea.kapitaina.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{partaidea.kapitaina.getFullName}}"/><span class="badge userpic">{{partaidea.kapitaina.getFullName}}</span></a>
+                    </div>
+                </div>
                 <h2><span class="glyphicon glyphicon-align-justify"></span> Sailkapen puntuak</h2>
                 <div class="row text-center">
                     <div class="col-lg-4 text-success"><h3><strong>{{partaidea.win}}</strong><br>Irabazi</h3></div>

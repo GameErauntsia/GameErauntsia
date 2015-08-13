@@ -30,7 +30,7 @@
                         {% for item in items %}
                         <tr>
                             <td><a href="{% url 'aurkezpena' item.slug %}">{{item.izena}}</a></td>
-                            <td>{{item.abstract}}</td>
+                            <td>{{item.abstract|safe}}</td>
                             <td>{{item.pub_date}}</td>
                         </tr>
                         {% endfor %}
