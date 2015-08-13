@@ -1,7 +1,6 @@
 from django.db import models
 from django.conf import settings
 from django.core.mail import send_mail, mail_admins
-from django_simple_forum.models import Post, Topic
 from django.db.models.signals import post_save
 from django.contrib.contenttypes.models import ContentType
 from gamerauntsia.utils.social import post_to_twitter
@@ -27,24 +26,6 @@ class Terminoa(models.Model):
     def __unicode__(self):
         return u'%s' % (self.term_eu)
 
-
-def send_post_email(sender,instance,**kwargs):
-    if kwargs['created']:
-        recipient_list = []
-        message = 'Mezu berri bat utzi dute zuk idatzitako gai hauetan: \n\n'
-        for forum in instance.topic.forums.all():
-        	message += '%sforoa/%s%s\n\n' % (settings.HOST,forum.slug,instance.get_absolute_url())
-        creators = Post.objects.filter(topic=instance.topic).values('creator__email').annotate(n=Count("creator__id"))
-        for creator in creators:
-            if not instance.creator.email == creator['creator__email'] and instance.creator.email_notification:
-                send_mail('[Game Erauntsia - '+instance.topic.title+']', message, settings.DEFAULT_FROM_EMAIL, [creator['creator__email']])
-
-def send_topic_email(sender,instance,**kwargs):
-    if kwargs['created']:
-        message = 'Gai berri bat sortu dute: \n\n%skudeatu/django_simple_forum/topic/%s' % (settings.HOST,instance.id)
-        for forum in instance.forums.all():
-            creator = forum.creator
-            creator.email_user(subject='[Game Erauntsia - '+instance.title+']', message=message, from_email=settings.DEFAULT_FROM_EMAIL)
 
 def send_comment_email(sender,instance,**kwargs):
     if kwargs['created']:
@@ -102,8 +83,6 @@ def send_agenda_tweet(sender,instance,**kwargs):
     if kwargs['created']:
         post_to_twitter(instance)
 
-post_save.connect(send_topic_email, sender=Topic)
-post_save.connect(send_post_email, sender=Post)
 post_save.connect(send_comment_email, sender=Comment)
 post_save.connect(send_newuser_email, sender=GamerUser)
 post_save.connect(send_article_email, sender=Berria)

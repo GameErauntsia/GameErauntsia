@@ -31,21 +31,6 @@
             </a>
             <hr>
             {% endif %}
-            {% if user.is_authenticated %}
-            {% if user.is_superuser or user in item.adminak.all %}
-            <div class="well">
-                <h3>Editatu txapelketa</h3>
-                <div class="btn-group" role="group" aria-label="...">
-                    <a class="btn btn-default" href="/kudeatu/txapelketak/txapelketa/{{item.id}}">Txapelketa</a>
-                    <a class="btn btn-default" href="/kudeatu/txapelketak/partida/?txapelketa__id__exact={{item.id}}">Partidak</a>
-                    <a class="btn btn-default" href="/kudeatu/txapelketak/partaidea/?txapelketa__id__exact={{item.id}}">Partaideak</a>
-                </div>
-                {% if item.modalitatea == '0' and item.partaideak_count == 0 %}
-                    <a href="{% url 'sortu_partaideak' item.slug %}" class="btn btn-warning pull-right">Sortu partaideak</a>
-                {% endif %}
-            </div>
-            {% endif %}
-            {% endif %}
             
             <div class="col-lg-12">
                 {% if item.live_bideoa or item.twitch%}
@@ -60,13 +45,27 @@
                 {% endif %}
             </div>
             
+            <div class="col-lg-12">
+                {% for partida in video_parts %}
+                <div class="col-sm-4 player">
+                    <a href="{{partida.get_absolute_url}}">
+                        <img class="img-responsive" src="http://img.youtube.com/vi/{{partida.bideoa}}/maxresdefault.jpg"/>
+                        <img src="{{STATIC_URL}}img/play_white.png" class="play">
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            <br/>
+            
             <div class="tabpanel">
                 <ul class="nav nav-tabs" role="tablist">
+                    {% if item.insk_date|irekita and item.status < '2' %}
                     <li class="active" role="presentation">
                         <a aria-controls="desk" data-toggle="tab" role="tab" href="#desk"><h4 class="panel-title"><i class="glyphicon glyphicon-info-sign"></i></i> Deskribapena</h4></a>
                     </li>
+                    {% endif %}
                     {% if not item.insk_date|irekita and item.status = '2' or item.status = '3' %}
-                    <li role="presentation">
+                    <li class="active" role="presentation">
                         <a aria-controls="sailk" data-toggle="tab" role="tab" href="#sailk">
                             <h4 class="panel-title">
                                 <i class="glyphicon glyphicon-align-justify"></i> {% if item.mota == '0' %}Kanporaketa{% else %}Sailkapena{% endif %}
@@ -109,14 +108,19 @@
                         </a>
                     </li>
                     {% endif %}
+                    {% if not item.insk_date|irekita and item.status = '2' or item.status = '3' %}
+                    <li role="presentation">
+                        <a aria-controls="desk" data-toggle="tab" role="tab" href="#desk"><h4 class="panel-title"><i class="glyphicon glyphicon-info-sign"></i></i> Deskribapena</h4></a>
+                    </li>
+                    {% endif %}
                 </ul>
                 <br/>
                 <div class="tab-content" id="myTabContent">
-                    <div id="desk" class="tab-pane fade in active  " role="tabpanel">
+                    <div id="desk" class="tab-pane fade {% if item.insk_date|irekita and item.status < '2' %}in active{% endif %}" role="tabpanel">
                         <p class="lead">{{item.desk|safe|emoticons}}</p>
                     </div>
                     {% if not item.insk_date|irekita and item.status = '2' or item.status = '3' %}
-                    <div id="sailk" class="tab-pane fade" role="tabpanel">
+                    <div id="sailk" class="tab-pane fade in active" role="tabpanel">
                         {% if item.mota == '0' %}
                         <div id="taula"></div>
         
@@ -233,7 +237,13 @@
                                         </h3>
                                     </div>
                                     <div class="panel-body">
-                                        {% for j in partaide.jokalariak.all %}<a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_profilesmall_url}}" class="img-circle" title="{{j.getFullName}}"/></a>{% endfor %}
+                                        <div class="col-sm-12">
+                                            {% for j in partaide.jokalariak.all %}
+                                            <div class="player col-sm-2">
+                                                <a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{j.getFullName}}"/><span class="badge userpic">{{j.getFullName}}</span></a>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
                                     </div>
                                 </div>
                                 {% endif %}
@@ -349,6 +359,21 @@
                 <p><a href="{% url 'gamer_profile' admin.username %}"><img src="{{admin.get_photo.get_profilesmall_url}}" class="img-circle"/> {{admin.getFullName}}</a></p>
                 {% endfor %}
             </div>
+            {% if user.is_authenticated %}
+            {% if user.is_superuser or user in item.adminak.all %}
+            <div class="well">
+                <h3>Editatu txapelketa</h3>
+                <div class="btn-group" role="group" aria-label="...">
+                    <a class="btn btn-default" href="/kudeatu/txapelketak/txapelketa/{{item.id}}">Txapelketa</a>
+                    <a class="btn btn-default" href="/kudeatu/txapelketak/partida/?txapelketa__id__exact={{item.id}}">Partidak</a>
+                    <a class="btn btn-default" href="/kudeatu/txapelketak/partaidea/?txapelketa__id__exact={{item.id}}">Partaideak</a>
+                </div>
+                {% if item.modalitatea == '0' and item.partaideak_count == 0 %}
+                    <a href="{% url 'sortu_partaideak' item.slug %}" class="btn btn-warning pull-right">Sortu partaideak</a>
+                {% endif %}
+            </div>
+            {% endif %}
+            {% endif %}
         </div>
 </div>
 

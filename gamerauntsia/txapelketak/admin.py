@@ -27,6 +27,17 @@ class PartidaAdmin(MPTTModelAdmin):
     list_filter = ('txapelketa',)
     ordering = ('-date',)
     form = PartidaForm
+    
+    fieldsets = (
+        ('Datu orokorrak',
+        {'fields':('jardunaldia','txapelketa')},),
+        ('Konfigurazioa',
+        {'fields':('partaideak','parent','is_return','date')},),
+        ('Emaitza',
+        {'fields':('emaitza','average')},),
+        ('Bideoa',
+        {'fields':('bideoa','start','end')},),
+    )
 
 
 
@@ -79,6 +90,17 @@ class PartaideakAdmin(admin.ModelAdmin):
     search_fields = ['izena']
     ordering = ('-id',)
     form = PartaideakForm
+    
+    fieldsets = (
+        ('Datu orokorrak',
+        {'fields':('izena','irudia','txapelketa')},),
+        ('Jokalariak',
+        {'fields':('kapitaina','jokalariak')},),
+        ('Puntuazioa',
+        {'fields':('win','lose','draw','matches','average','points')},),
+        ('Txapelketaren irabazlea',
+        {'fields':('irabazlea',)},),
+    )
 
 admin.site.register(Txapelketa,TxapelketaAdmin)
 admin.site.register(Partida,PartidaAdmin)

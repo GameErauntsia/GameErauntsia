@@ -15,6 +15,7 @@ def index(request):
 
 def txapelketa(request,slug):
     item = get_object_or_404(Txapelketa,slug=slug)
+    video_parts = Partida.objects.filter(Q(txapelketa=item),Q(bideoa__isnull=False)).exclude(bideoa__iexact='').order_by('-date')[:3]
     next_parts = Partida.objects.filter(Q(txapelketa=item), Q(partaideak__isnull=False),Q(emaitza__isnull=True) | Q(emaitza__iexact='')).order_by('date','jardunaldia').distinct()
 
     if item.mota == '0':

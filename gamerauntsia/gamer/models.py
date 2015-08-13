@@ -35,6 +35,7 @@ STAFF_KARMA = 20
 
 class GamerUser(CSAbstractSocialUser):
     nickname = models.CharField(max_length=64,null=True,blank=True)
+    telegram_id = models.IntegerField(verbose_name="Telegram kodea",null=True,blank=True)
     is_gamer = models.BooleanField(default=False)
     top_jokoak = models.ManyToManyField(Jokoa,null=True,blank=True)
     signature = models.TextField(verbose_name="Foro sinadura",null=True,blank=True)

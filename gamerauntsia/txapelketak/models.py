@@ -221,6 +221,8 @@ class Partida(MPTTModel):
 
     txapelketa = models.ForeignKey(Txapelketa)
     bideoa = models.CharField(max_length=150,null=True,blank=True)
+    start = models.IntegerField('Hasiera',null=True,blank=True)
+    end = models.IntegerField('Bukaera', null=True,blank=True)
     date = models.DateTimeField('Data', null=True,blank=True)
 
     def get_izena(self):
@@ -276,7 +278,7 @@ class Partida(MPTTModel):
 
 def update_classification(sender,instance,**kwargs):
     if not kwargs['created']:
-        if instance.emaitza:
+        if instance.emaitza and instance.get_partaideak().count() == 2:
             for parta in instance.partaideak.all():
                 irabazi = 0
                 galdu = 0
