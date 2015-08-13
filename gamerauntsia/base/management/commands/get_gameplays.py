@@ -17,6 +17,7 @@ def get_gameplays():
     for gamer in gamers:
         user = gamer.ytube_channel[gamer.ytube_channel.rfind('/')+1:]
         channel = u'http://gdata.youtube.com/feeds/api/users/'+user+'/uploads?v=2&alt=json'
+        print(channel)
         data = get_urljson(channel)
 
         for video in data['feed']['entry'][:5]:

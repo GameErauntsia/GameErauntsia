@@ -4,7 +4,6 @@ from django.conf import settings
 from gamerauntsia.gameplaya.forms import GamePlayAdminForm
 from datetime import datetime
 from django.utils import timezone
-from gamerauntsia.log.models import Log
 
 class GamePlayAdmin(admin.ModelAdmin):
 
@@ -46,8 +45,6 @@ class GamePlayAdmin(admin.ModelAdmin):
         if not request.user.is_superuser:
             obj.erabiltzailea = request.user
         obj.save()
-        l = Log(mota='GP',tituloa='Gameplay berria',deskripzioa="GP Berria",user=obj.erabiltzailea, gameplaya=obj)
-        l.save()            
         
 
     def has_change_permission(self, request, obj=None):
