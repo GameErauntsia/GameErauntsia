@@ -2,7 +2,6 @@ from gamerauntsia.berriak.models import Berria, Gaia
 from django.contrib import admin
 from django.conf import settings
 from gamerauntsia.berriak.forms import BerriaAdminForm
-from gamerauntsia.log.models import Log
 
 class BerriakAdmin(admin.ModelAdmin):
 
@@ -44,9 +43,6 @@ class BerriakAdmin(admin.ModelAdmin):
         if not request.user.is_superuser:
             obj.erabiltzailea = request.user
 
-        #Log
-        l = Log(mota='Albistea',tituloa='Albiste berria',deskripzioa="Sortua izan da.",user=obj.erabiltzailea)
-        l.save()
         obj.save()
 
     def has_change_permission(self, request, obj=None):
