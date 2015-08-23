@@ -1,4 +1,4 @@
-from gamerauntsia.gamer.models import GamerUser, JokuPlataforma, PLATFORM
+from gamerauntsia.gamer.models import GamerUser, JokuPlataforma, AmaitutakoJokoak, PLATFORM
 from django.template.defaultfilters import slugify
 from gamerauntsia.jokoa.models import Jokoa
 from gamerauntsia.gameplaya.models import GamePlaya
@@ -60,7 +60,6 @@ def profile(request,username):
     side_berriak = berriak[:5]
     return render_to_response('gamer/profile.html', locals(),context_instance=RequestContext(request))
 
-
 def community(request):
     users = GamerUser.objects.filter(is_active=True).order_by('-date_joined')
     user_rows = int(round(len(users) / 3))
@@ -116,7 +115,7 @@ def edit_computer(request):
 @login_required
 def edit_platform(request):
     """ """
-    tab = 'platforms'
+    tab = 'finished_games'
     user = request.user
     GameFormSet = modelformset_factory(JokuPlataforma, form=GameForm, can_delete=True)
     if request.method == 'POST':
@@ -143,6 +142,33 @@ def edit_platform(request):
 
     return render_to_response('profile/edit_platform.html', locals(), context_instance=RequestContext(request))
 
+@login_required
+def edit_amaitutakoak(request):
+    """ """
+    tab = 'tab_amaitutakoak'
+    user = request.user
+    AmaitutaFormSet = modelformset_factory(AmaitutakoJokoak, form=AmaitutaForm, can_delete=True)
+    if request.method == 'POST':
+        posta=request.POST.copy()
+        amaitutaformset = AmaitutaFormSet(posta)
+        if amaitutaformset.is_valid():
+            marked_for_delete = amaitutaformset.deleted_forms
+            for form in amaitutaformset:
+                if form.is_valid() and form.has_changed():
+                    if form['id'].value() in [deleted_record['id'].value() for deleted_record in marked_for_delete]:
+                        platform = form.save(commit=False)
+                        platform.delete()
+                    else:
+                        platform = form.save(commit=False)
+                        platform.user = user                        
+                        platform.save()
+            return HttpResponseRedirect(reverse('edit_profile_amaitutakoak'))
+        
+    else:
+        qset = AmaitutakoJokoak.objects.filter(user=user)
+        gameformset = AmaitutaFormSet(queryset=qset)
+
+    return render_to_response('profile/edit_amaitutakoak.html', locals(), context_instance=RequestContext(request))
 
 @login_required
 def edit_top_games(request):
@@ -162,27 +188,6 @@ def edit_top_games(request):
     topjokoak = GamerUser.objects.values('top_jokoak__izena','top_jokoak__bertsioa','top_jokoak__logoa','top_jokoak__slug').annotate(Count('top_jokoak')).order_by('-top_jokoak__count','-top_jokoak__izena')[:10]
     jokoak = user.top_jokoak.all().count()
     return render_to_response('profile/edit_top_games.html', locals(), context_instance=RequestContext(request))
-
-@login_required
-def edit_finished_games(request):
-    """ """
-    tab = 'finished_games'
-    user = request.user
-    if request.method == 'POST':
-         posta=request.POST.copy()
-         finishedform = FinishedForm(posta, instance=user)
-         if FinishedForm.is_valid():
-            FinishedForm.save()
-            return HttpResponseRedirect(reverse('edit_finished_games'))
-    else:
-        finishedform = FinishedForm(instance=user)
-
-    lagunak = GamerUser.objects.filter(top_jokoak__in=user.top_jokoak.all()).exclude(id=user.id).distinct().order_by('-karma')[:10]
-    topjokoak = GamerUser.objects.values('top_jokoak__izena').annotate(Count('top_jokoak')).order_by('-top_jokoak__count','-top_jokoak__izena')[:10]
-    jokoak = user.top_jokoak.all().count()
-    return render_to_response('profile/edit_top_finished.html', locals(), context_instance=RequestContext(request))
-
-
 
 @sensitive_post_parameters()
 @csrf_protect
