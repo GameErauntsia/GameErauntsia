@@ -57,7 +57,7 @@ class GamePlaya(models.Model):
     pub_date = models.DateTimeField('publikazio data', default=datetime.now)
     mod_date = models.DateTimeField('modifikazio data', default=datetime.now)
     status = models.CharField(max_length=1, choices=STATUS, default='0')
-    shared = models.BooleanField(default=False, help_text="Lauki hau automatikoki markatuko da sistemak edukia sare sozialetan elkarbanatzean.")
+    shared = models.BooleanField(default=False, help_text="Lauki hau automatikoki markatuko da sistemak edukia sare sozialetan elkarbanatzean.",null=True,blank=True)
 
     def get_desk_index(self):
     	if len(self.desk) > 400:
