@@ -1,6 +1,6 @@
 from django import forms
 from gamerauntsia.berriak.models import Berria, Gaia
-from gamerauntsia.gamer.models import GamerUser, JokuPlataforma
+from gamerauntsia.gamer.models import GamerUser, JokuPlataforma, AmaitutakoJokoak
 from gamerauntsia.gameplaya.models import Kategoria, GamePlaya
 from gamerauntsia.jokoa.models import Jokoa
 from tinymce.widgets import TinyMCE
@@ -20,7 +20,6 @@ class PCForm(forms.ModelForm):
     class Meta:
         model = GamerUser
         fields = ('motherboard','processor','graphics','soundcard','ram','harddrive','harddrive2','mouse','keyboard','speakers')
-
 
 class NotifyForm(forms.ModelForm):
 
@@ -60,20 +59,18 @@ class TopForm(forms.ModelForm):
         model = GamerUser
         fields = ('top_jokoak',)
 
-class FinishedForm(forms.ModelForm):
-
-    jokoa = forms.CharField(label='',widget=TinyMCE(
-           attrs={'cols': 80, 'rows': 15,},mce_attrs=settings.TINYMCE_SMALL_BODY_CONFIG))
-
-    class Meta:
-        model = GamerUser
-        fields = ('jokoa',)        
-
 class GameForm(forms.ModelForm):
 
     class Meta:
         model = JokuPlataforma
         fields = ('plataforma','nick')
+
+class AmaitutaForm(forms.ModelForm):
+
+    class Meta:
+        model = AmaitutakoJokoak
+        fields = ('izenburua','urtea')
+        
 
 
 class GamePlayForm(forms.ModelForm):

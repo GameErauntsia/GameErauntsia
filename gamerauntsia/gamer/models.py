@@ -6,6 +6,7 @@ from django.conf import settings
 from photologue.models import Photo
 from gamerauntsia.jokoa.models import Jokoa
 from django.utils.translation import ugettext as _
+from datetime import datetime
 
 MEMBER_PHOTO_SLUG=getattr(settings,'PROFILE_PHOTO_DEFAULT_SLUG','no-profile-photo')
 
@@ -83,6 +84,9 @@ class GamerUser(CSAbstractSocialUser):
 
     def getplatforms(self):
         return JokuPlataforma.objects.filter(user=self)
+
+    def getamaitutakoak(self):
+        return AmaitutakoJokoak.objects.filter(user=self)
 
     def likes_game(self,game):
         if game in self.top_jokoak.all():
@@ -170,7 +174,6 @@ class GamerUser(CSAbstractSocialUser):
         verbose_name = 'GE Erabiltzailea'
         verbose_name_plural = 'GE Erabiltzaileak'
 
-
 class JokuPlataforma(models.Model):
     plataforma = models.CharField(max_length=10, choices=PLATFORM)
     nick = models.CharField(max_length=64)
@@ -182,3 +185,18 @@ class JokuPlataforma(models.Model):
     class Meta:
         verbose_name = 'Plataforma'
         verbose_name_plural = 'Plataformak'
+
+class AmaitutakoJokoak(models.Model):
+    izenburua = models.CharField(max_length=150)
+    urtea = models.IntegerField(blank=True, null=True)
+    user = models.ForeignKey(GamerUser,related_name='amaitutakoak')
+    pub_date = models.DateTimeField('publikazio data', default=datetime.now)
+    mod_date = models.DateTimeField('modifikazio data', default=datetime.now)
+
+    def __unicode__(self):
+        return u'%s' % (self.izenburua)
+
+    class Meta:
+        verbose_name = 'Amaiatutakoak'
+        verbose_name_plural = 'Amaiatutakoak'
+
