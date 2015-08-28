@@ -6,6 +6,6 @@ from tinymce.widgets import TinyMCE
 class GamePlayAdminForm(forms.ModelForm):
     desk = forms.CharField(widget=TinyMCE(
                attrs={'cols': 80, 'rows': 50,},mce_attrs=settings.TINYMCE_BODY_CONFIG))
-
+    shared = forms.BooleanField(label="Sare sozialetan elkarbanatuta",readonly=True)
     class Meta:
         model = GamePlaya	
