@@ -20,11 +20,11 @@ urlpatterns = patterns('',
     url(r'^berriak/(?P<slug>[-\w]+)/$', lambda x, slug: HttpResponseRedirect(reverse('berria', args=[slug]))),
     url(r'^bloga/', include('gamerauntsia.berriak.urls'), name='bloga'),
 
-    # JOKOAK
-    url(r'^jokoak/', include('gamerauntsia.jokoa.urls'), name='jokoak'),
-
     # DENBORA LERROA
     url(r'^denboralerroa/', include('gamerauntsia.log.urls'), name='log'),
+
+    # JOKOAK
+    url(r'^jokoak/', include('gamerauntsia.jokoa.urls'), name='jokoak'),
 
     # JOKALARIAK
     url(r'^nor-gara/', include('gamerauntsia.gamer.urls')),
