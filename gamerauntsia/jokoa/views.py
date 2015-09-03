@@ -33,7 +33,7 @@ def jokoa(request,slug):
     	    steam_json = get_urljson("http://store.steampowered.com/api/appdetails?appids="+str(jokoa.steam_id))[str(jokoa.steam_id)]['data']
     except:
     	pass
-    gameplayak = GamePlaya.objects.filter(jokoa=jokoa, publikoa_da=True, status='1').order_by('-pub_date')
+    gameplayak = GamePlaya.objects.filter(jokoa=jokoa, publikoa_da=True, status='1',pub_date__lt=datetime.now()).order_by('-pub_date')
     if steam_json:
         gameplayak = gameplayak[:2]
     else:
