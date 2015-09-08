@@ -59,7 +59,7 @@ class TxapelketaAdmin(admin.ModelAdmin):
     list_filter = ('mota','modalitatea', 'publikoa_da')
     search_fields = ['izena','slug']
     ordering = ('-pub_date',)
-    #form = TxapelketaAdminForm
+    form = TxapelketaAdminForm
     #inlines = [PartidaInline]
 
 class PartaideakForm(forms.ModelForm): 
