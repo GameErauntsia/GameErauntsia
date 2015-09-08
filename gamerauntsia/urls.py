@@ -13,6 +13,9 @@ urlpatterns = patterns('',
     (r'^robots.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: ", mimetype="text/plain")),
     url(r'^$', 'gamerauntsia.views.index', name='index'),
 
+    # GETB
+    url(r'^getb/', include('gamerauntsia.getb.urls')),
+
     # GAMEPLAYAK
     url(r'^gameplayak/', include('gamerauntsia.gameplaya.urls')),
 
