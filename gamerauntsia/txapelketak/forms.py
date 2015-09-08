@@ -18,6 +18,8 @@ class TxapelketaAdminForm(forms.ModelForm):
                attrs={'cols': 80, 'rows': 30,},mce_attrs=settings.TINYMCE_BODY_CONFIG))
     saria = forms.CharField(widget=TinyMCE(
                attrs={'cols': 80, 'rows': 30,},mce_attrs=settings.TINYMCE_BODY_CONFIG))
+               
+    shared = forms.BooleanField(label="Sare sozialetan elkarbanatuta",help_text="Lauki hau automatikoki markatuko da sistemak edukia sare sozialetan elkarbanatzean.", widget = forms.CheckboxInput(attrs={'readonly':'readonly'}),required=False)
 
     class Meta:
         model = Txapelketa
