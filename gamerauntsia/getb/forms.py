@@ -1,6 +1,6 @@
 from django import forms
 from django.conf import settings
-from gamerauntsia.gameplaya.models import Atala
+from gamerauntsia.getb.models import Atala
 from tinymce.widgets import TinyMCE
 
 class AtalaAdminForm(forms.ModelForm):
