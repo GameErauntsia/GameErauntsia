@@ -16,6 +16,8 @@ class TxapelketaAdminForm(forms.ModelForm):
                attrs={'cols': 80, 'rows': 30,},mce_attrs=settings.TINYMCE_BODY_CONFIG))
     arauak = forms.CharField(widget=TinyMCE(
                attrs={'cols': 80, 'rows': 30,},mce_attrs=settings.TINYMCE_BODY_CONFIG))
+    saria = forms.CharField(widget=TinyMCE(
+               attrs={'cols': 80, 'rows': 30,},mce_attrs=settings.TINYMCE_BODY_CONFIG))
 
     class Meta:
         model = Txapelketa
