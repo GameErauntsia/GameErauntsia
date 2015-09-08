@@ -1,4 +1,4 @@
-from gamerauntsia.gameplaya.models import Atala
+from gamerauntsia.getb.models import Atala
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render_to_response

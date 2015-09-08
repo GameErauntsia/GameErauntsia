@@ -1,4 +1,4 @@
-from gamerauntsia.gameplaya.models import Atala
+from gamerauntsia.getb.models import Atala
 from django.contrib import admin
 from django.conf import settings
 from gamerauntsia.getb.forms import AtalaAdminForm
