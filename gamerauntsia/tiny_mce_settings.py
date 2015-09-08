@@ -11,7 +11,6 @@ TINYMCE_BODY_CONFIG = {
 }
 
 TINYMCE_SMALL_BODY_CONFIG = {
-    "selector": "textarea",
     "language" : 'eu',
     "theme": "modern",
     "plugins": [
