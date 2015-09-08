@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load pagination_tags include comments gamerauntsia %}
+
+{% block title %}Game playak - {% endblock %}
+
+{% block content %}
+<div class="row">
+
+        <div class="col-lg-12">
+            <h1 class="page-header">GETB
+                <small>
+                    Bideojokoei buruzko telebista
+                </small>
+            </h1>
+        </div>
+
+        <div class="col-lg-8">
+            {% autopaginate atalak 8 %}
+            {% for atala in atalak %}
+            {% get_comment_count for atala as comment_count %}
+
+            {% if not forloop.counter|divisibleby:2 %}
+            <div class="row">
+            {% endif %}
+
+                <div class="col-md-6 portfolio-item">
+                    <a href="{{atala.get_absolute_url}}">
+                        <img class="img-responsive" src="{{atala.argazkia.get_gp_thumbnail_url}}">
+                    </a>
+                    <h3><a href="{{atala.get_absolute_url}}">{{atala.izenburua}}</a></h3>
+                    <p><span class="glyphicon glyphicon-time"></span> {{atala.iraupena_min}}min {{atala.iraupena_seg}}seg{% if comment_count %} | <a href="{{atala.get_absolute_url}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}</p>
+                    <p>{{atala.get_desk_txikia|safe}}</p>
+                </div>
+
+            {% if forloop.counter|divisibleby:2 or forloop.last %}
+            </div>
+            {% endif %}
+            {% endfor %}
+
+            <hr>
+
+            {% paginate %}
+        </div>
+
+        <div class="col-lg-4">
+            <div id="azkenErantzunak">
+                <h2>Azken erantzunak</h2>
+                {% azken_erantzunak 'Atala' %}
+            </div>
+            {% steam_panel %}
+        </div>
+</div>
+
+{% endblock %}
