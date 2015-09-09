@@ -50,7 +50,7 @@
         {% if atal_gehio %}
             <h3>Atal +</h3>
             <div class="well">
-            {% for atal in atal_gehio %}
+            {% for atal in related_atalak %}
                 <div class="row bloglist">
                     <div class="col-lg-4">
                         <a href="{{atal.get_absolute_url}}"><img src="{{atal.argazkia.get_newsprofile_url}}" /></a>
