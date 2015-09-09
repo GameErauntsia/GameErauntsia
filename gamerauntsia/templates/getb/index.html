@@ -27,13 +27,11 @@
             {% get_comment_count for atala as comment_count %}
 
             <div class="row">
-                <div class="col-md-4 portfolio-item">
-                    <a href="{{atala.get_absolute_url}}">
-                        <img class="img-responsive" src="{{atala.argazkia.get_gp_thumbnail_url}}">
-                    </a>
-                    <h3><a href="{{atala.get_absolute_url}}">{{atala.izenburua}}</a></h3>
-                    <p><span class="glyphicon glyphicon-time"></span> {{atala.iraupena_min}}min {{atala.iraupena_seg}}seg{% if comment_count %} | <a href="{{atala.get_absolute_url}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}</p>
-                </div>
+                <a href="{{atala.get_absolute_url}}">
+                    <img class="img-responsive" src="{{atala.argazkia.get_gp_thumbnail_url}}">
+                </a>
+                <h3><a href="{{atala.get_absolute_url}}">{{atala.izenburua}}</a></h3>
+                <p><span class="glyphicon glyphicon-time"></span> {{atala.iraupena_min}}min {{atala.iraupena_seg}}seg{% if comment_count %} | <a href="{{atala.get_absolute_url}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}</p>
             </div>
             {% endfor %}
 
