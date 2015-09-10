@@ -92,6 +92,7 @@ urlpatterns = patterns('',
     (r'^erabilera-baldintzak/$', TemplateView.as_view(template_name='erabilera_baldintzak.html')),
     (r'^pribatutasun-politika/$', TemplateView.as_view(template_name='pribatutasun_politika.html')),
     (r'^gameplay-arauak/$', TemplateView.as_view(template_name='upload_gp.html')),
+    (r'^cookie/$', TemplateView.as_view(template_name='cookie.html')),
 
     #AJAX ESKAERAK
     url(r'^ajax/get_jokoak/', 'gamerauntsia.gamer.views.get_jokoak', name='ajax_jokoak'),
