@@ -26,7 +26,7 @@ def social_share(minutuak):
                                                                      & Q(shared=False)).order_by('-pub_date')
 
     txak = Txapelketa.objects.all().filter(Q(pub_date__gte=duela_x_ordu)
-                                                                    & Q(pub_date__lte=orain) & Q(publikoa_da=False)
+                                                                    & Q(pub_date__lte=orain) & Q(publikoa_da=True)
                                                                     & Q(shared=False)).order_by('-pub_date')
     for berria in berriak:
         post_social(berria)
