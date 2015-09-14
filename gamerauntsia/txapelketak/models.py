@@ -110,8 +110,9 @@ class Txapelketa(models.Model):
         return '%stxapelketak/%s' % (settings.HOST, self.slug)
 
     def getTwitText(self):
-        if self.erabiltzailea.twitter_id:
-            return self.izena + ' ' + self.get_absolute_url() + ' @%s 2dz' % (self.erabiltzailea.twitter_id)
+        twitter_ids = " ".join(erab.twitter_id for erab in self.adminak.all()) 
+        if twitter_ids:
+            return self.izena + ' ' + self.get_absolute_url() + ' @%s 2dz' % (twitter_ids)
         else:
             return self.izena + ' ' + self.get_absolute_url()
 
