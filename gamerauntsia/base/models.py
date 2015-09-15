@@ -59,7 +59,7 @@ def send_comment_email(sender,instance,**kwargs):
             send_mail('[Game Erauntsia]', str(instance.id)+' iruzkina ezin izan da bidali!\n\nMezua honako hau zen: "'+message+'"', settings.DEFAULT_FROM_EMAIL, ['ikerib@gmail.com'])
 
 def send_newuser_email(sender,instance,**kwargs):
-    if kwargs['created']:
+    if instance.is_active:
         tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
         message = '[Erabiltzailea]\n%skudeatu/gamer/gameruser/%s' % (settings.HOST,instance.id)
         tb.send_message(settings.EDITOR_CHAT_ID, message)
