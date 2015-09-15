@@ -62,14 +62,14 @@ def send_newuser_email(sender,instance,**kwargs):
     if kwargs['created']:
         tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
         message = '[Erabiltzailea]\n%skudeatu/gamer/gameruser/%s' % (settings.HOST,instance.id)
-        tb.send_message(settings.EDITOR_CHAT_ID, msg)
+        tb.send_message(settings.EDITOR_CHAT_ID, message)
         #mail_admins(instance.username+' erabiltzailea', message)
 
 def send_article_email(sender,instance,**kwargs):
     if instance.publikoa_da and instance.status == '0':
         tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
         message = '[Artikulua]\n%skudeatu/berriak/berria/%s' % (settings.HOST,instance.id)
-        tb.send_message(settings.EDITOR_CHAT_ID, msg)
+        tb.send_message(settings.EDITOR_CHAT_ID, message)
         #editors = GamerUser.objects.filter(groups__name=settings.GP_GROUP)
         #for editor in editors:
         #    if not instance.erabiltzailea == editor:
@@ -79,7 +79,7 @@ def send_gp_email(sender,instance,**kwargs):
     if instance.publikoa_da and instance.status == '0':
         tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
         message = '[GamePlaya]\n%skudeatu/gameplaya/gameplaya/%s' % (settings.HOST,instance.id)
-        tb.send_message(settings.EDITOR_CHAT_ID, msg)
+        tb.send_message(settings.EDITOR_CHAT_ID, message)
         #editors = GamerUser.objects.filter(groups__name=settings.GP_GROUP)
         #for editor in editors:
         #    if not instance.erabiltzailea == editor:
