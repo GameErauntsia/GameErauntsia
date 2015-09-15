@@ -26,7 +26,7 @@
     {% if item.abstract %}
     <p class="abstract">
       <strong>Abstract: </strong>
-       {{item.abstract}}
+       {{item.abstract|safe}}
     </p>
     {% endif %}
   </aside>
