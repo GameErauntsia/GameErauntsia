@@ -12,6 +12,7 @@ from gamerauntsia.berriak.models import Berria
 from gamerauntsia.gameplaya.models import GamePlaya
 from django_bootstrap_calendar.models import CalendarEvent
 from gamerauntsia.log.models import Log
+import telebot
 
 class Terminoa(models.Model):
     term_eu = models.CharField(max_length=64)
@@ -59,24 +60,30 @@ def send_comment_email(sender,instance,**kwargs):
 
 def send_newuser_email(sender,instance,**kwargs):
     if kwargs['created']:
-        message = 'Erabiltzaile bat sortu dute: \n\n%skudeatu/gamer/gameruser/%s' % (settings.HOST,instance.id)
-        mail_admins(instance.username+' erabiltzailea', message)
+        tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
+        message = '[Erabiltzailea]\n%skudeatu/gamer/gameruser/%s' % (settings.HOST,instance.id)
+        tb.send_message(settings.ADMIN_CHAT_ID, msg)
+        #mail_admins(instance.username+' erabiltzailea', message)
 
 def send_article_email(sender,instance,**kwargs):
     if instance.publikoa_da and instance.status == '0':
-        message = 'Artikulu berri bat sortu dute: \n\n%skudeatu/berriak/berria/%s' % (settings.HOST,instance.id)
-        editors = GamerUser.objects.filter(groups__name=settings.GP_GROUP)
-        for editor in editors:
-            if not instance.erabiltzailea == editor:
-                send_mail('[Game Erauntsia - '+instance.izenburua+']', message, settings.DEFAULT_FROM_EMAIL, [editor.email])
+        tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
+        message = '[Artikulua]\n%skudeatu/berriak/berria/%s' % (settings.HOST,instance.id)
+        tb.send_message(settings.ADMIN_CHAT_ID, msg)
+        #editors = GamerUser.objects.filter(groups__name=settings.GP_GROUP)
+        #for editor in editors:
+        #    if not instance.erabiltzailea == editor:
+        #        send_mail('[Game Erauntsia - '+instance.izenburua+']', message, settings.DEFAULT_FROM_EMAIL, [editor.email])
 
 def send_gp_email(sender,instance,**kwargs):
     if instance.publikoa_da and instance.status == '0':
-        message = 'GamePlay berri bat sortu dute: \n\n%skudeatu/gameplaya/gameplaya/%s' % (settings.HOST,instance.id)
-        editors = GamerUser.objects.filter(groups__name=settings.GP_GROUP)
-        for editor in editors:
-            if not instance.erabiltzailea == editor:
-                send_mail('[Game Erauntsia - '+instance.izenburua+']', message, settings.DEFAULT_FROM_EMAIL, [editor.email])
+        tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
+        message = '[GamePlaya]\n%skudeatu/gameplaya/gameplaya/%s' % (settings.HOST,instance.id)
+        tb.send_message(settings.ADMIN_CHAT_ID, msg)
+        #editors = GamerUser.objects.filter(groups__name=settings.GP_GROUP)
+        #for editor in editors:
+        #    if not instance.erabiltzailea == editor:
+        #        send_mail('[Game Erauntsia - '+instance.izenburua+']', message, settings.DEFAULT_FROM_EMAIL, [editor.email])
 
 
 def send_agenda_tweet(sender,instance,**kwargs):
