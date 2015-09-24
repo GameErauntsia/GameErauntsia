@@ -80,16 +80,9 @@
                             <li><a href="{% url 'txapelketak_index' %}" title="Komunitatea">Txapelketak</a></li>
                             <li role="presentation" class="divider"></li>
                             <li><a href="{% url 'minecraft_index' %}" title="Minecraft">Minecraft Zerbitzaria</a></li>
+                            <li><a href="{% url 'mumble_index' %}" title="Mumble">Mumble</a></li>
                             <li><a href="{% url 'game_index' %}" title="Jokoen katalogoa">Jokoen katalogoa</a></li>
                             <li><a href="{% url 'terminologia' %}" title="Terminologia">Terminologia</a></li>
-                        </ul>
-                    </li>
-                    <li {% if request.path|contains:"/agenda/" or request.path|contains:"/mumble/" %}class="active"{% endif %}>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'agenda_index' %}" title="Agenda">Ekintzak <b class="caret"></b></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{% url 'agenda_index' %}" title="Nor gara">Agenda</a></li>
-                            <li role="presentation" class="divider"></li>
-                            <li><a href="{% url 'mumble_index' %}" title="Mumble">Mumble</a></li>
                         </ul>
                     </li>
                     <li class="{% if request.path|contains:"/nor-gara/" or request.path|contains:"/komunitatea/" or request.path|contains:"/aurkezpenak/" %}active{% endif %}">
