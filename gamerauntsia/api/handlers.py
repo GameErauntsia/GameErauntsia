@@ -8,17 +8,32 @@ class MCHandler(BaseHandler):
    model = MC_Whitelist  
    fields = ('mc_user','created','uuid','rol') 
 
-   def read(self, request, username=None):
+   def read(self, request):
        """
        Returns a single post if `blogpost_id` is given,
        otherwise a subset.
 
        """
        base = MC_Whitelist.objects
+       username = request.GET.get("username","") 
+       uuid = request.GET.get("uuid","")
         
        if username:
            try:
 	       mc = base.get(mc_user=username)
+	       data = {
+	           'user': mc.user.username,
+	           'mc_user': mc.mc_user,
+	           'created': mc.created.strftime("%Y-%m-%d %H:%M:%S"),
+	           'rol': mc.get_rol_display(),
+	           'uuid': mc.uuid,
+	       }
+	       return data
+	   except:
+	       return False
+       elif uuid:
+           try:
+	       mc = base.get(uuid=uuid)
 	       data = {
 	           'user': mc.user.username,
 	           'mc_user': mc.mc_user,
