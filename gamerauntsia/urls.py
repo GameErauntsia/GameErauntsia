@@ -6,6 +6,8 @@ from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
 from gamerauntsia import settings
 from gamerauntsia.base.feed import LatestEntriesFeed, LatestNewsFeed
+from registration.views import register
+from registration.forms import RegistrationFormUniqueEmail
 
 admin.autodiscover()
 
@@ -33,6 +35,10 @@ urlpatterns = patterns('',
     url(r'^nor-gara/', include('gamerauntsia.gamer.urls')),
     url(r'^komunitatea/$', 'gamerauntsia.gamer.views.community', name='komunitatea'),
     (r'^komunitatea/', include('cssocialuser.urls')),
+    url(r'^register/$',
+       register,
+       {'backend': 'registration.backends.default.DefaultBackend','form_class': RegistrationFormUniqueEmail},
+       name='registration_register'),
     (r'^komunitatea/', include('registration.urls')),
 
     #AURKEZPENAK
