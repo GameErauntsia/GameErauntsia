@@ -9,5 +9,5 @@ mc_handler = Resource(MCHandler)
 mc_telebot_handler = Resource(MCTelebotHandler)
 urlpatterns = patterns('',
     url(r'^get_minecraft_user$', mc_handler),
-    url(r'^send_mctelebot_msg/(?P<username>[-\w_]+)/$', mc_telebot_handler),
+    url(r'^send_mctelebot_msg/(?P<username>[-\w]+)/$', mc_telebot_handler),
 )
