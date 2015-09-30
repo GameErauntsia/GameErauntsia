@@ -34,11 +34,11 @@ urlpatterns = patterns('',
     # JOKALARIAK
     url(r'^nor-gara/', include('gamerauntsia.gamer.urls')),
     url(r'^komunitatea/$', 'gamerauntsia.gamer.views.community', name='komunitatea'),
-    (r'^komunitatea/', include('cssocialuser.urls')),
     url(r'^komunitatea/register/$',
        register,
        {'backend': 'registration.backends.default.DefaultBackend','form_class': RegistrationFormUniqueEmail},
        name='registration_register'),
+    (r'^komunitatea/', include('cssocialuser.urls')),
     (r'^komunitatea/', include('registration.urls')),
 
     #AURKEZPENAK
