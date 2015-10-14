@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{%block title%}Kontaktua - {%endblock%}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+    	<h1>Kontaktua</h1>
+		<p>Gurekin harremanetan jarri nahi izanez gero, bete itzazu hurrengo datuak.<br>
+		Ahalik eta azkarren erantzuten saiatuko gara. Eskerrik asko!</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-4">
+		<div id="contactForm" class="inline">
+			<form action="bidali/" method="POST">
+			{% csrf_token %}
+			<fieldset>
+				<div class="input-group">
+  					<span class="input-group-addon">@</span><input type="text" name="eposta" class="form-control" placeholder="nire@helbidea.com"/>
+  				</div>
+  				<br/>
+  				<div class="input-group">
+  					<input type="text" name="gaia" class="form-control" placeholder="Zeri buruz ari zara?"/>
+  				</div>
+				<br/>
+			    <textarea name="iruzkina" class="epostamezua" cols="50" rows="15"/></textarea><br/>
+				<input class="btn btn-primary" type="submit" value="Bidali" />
+			</fieldset>
+			</form>
+		</div>
+	</div>
+
+</div>
+{% endblock %}

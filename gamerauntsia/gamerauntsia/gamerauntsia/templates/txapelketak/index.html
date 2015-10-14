@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load pagination_tags include comments gamerauntsia %}
+
+{% block title %}Txapelketak - {% endblock %}
+
+{% block content %}
+<div class="row">
+
+        <div class="col-lg-12">
+            <h1 class="page-header">Txapelketak
+            <small>BETA</small>
+            </h1>
+        </div>
+
+        <div class="col-lg-8">
+            {% autopaginate items 8 %}
+            {% for tx in items %}
+            {% get_comment_count for tx as comment_count %}
+
+            {% if not forloop.counter|divisibleby:2 %}
+            <div class="row">
+            {% endif %}
+
+                <div class="col-md-6 portfolio-item">
+                    <a href="{{tx.get_absolute_url}}">
+                        <img class="img-responsive" src="{{tx.irudia.get_gp_thumbnail_url}}">
+                    </a>
+                    <h3>
+                        <a href="{{tx.get_absolute_url}}">{{tx.izena}}</a> {% if tx.insk_date|irekita %}<span class="pull-right text-success glyphicon glyphicon-plus-sign"></span>{% endif %}{% if tx.status == '1' %}<span class="pull-right text-warning glyphicon glyphicon-question-sign"></span>{% endif %}{% if tx.status == '2' %}<span class="pull-right text-info glyphicon glyphicon-ok-sign"></span>{% endif %}{% if tx.status == '3' %}<span class="pull-right text-danger glyphicon glyphicon-remove-sign"></span>{% endif %}
+                    </h3>
+                    <p><span class="glyphicon glyphicon-play"></span> <a href="{% url 'game' tx.jokoa.slug %}">{{tx.jokoa.izena}} {%if tx.jokoa.bertsioa %}{{tx.jokoa.bertsioa}}{% endif %}</a> | {{tx.get_mota_display}} | {{tx.get_modalitatea_display}}{% if comment_count %} | <a href="{{tx.get_absolute_url}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}</p>
+                    <p>{{tx.get_desk_txikia|safe}}</p>
+                </div>
+
+            {% if forloop.counter|divisibleby:2 or forloop.last %}
+            </div>
+            {% endif %}
+            {% endfor %}
+
+            <hr>
+
+            {% paginate %}
+        </div>
+
+        <div class="col-lg-4">
+            <div id="azkenErantzunak">
+                <h2>Azken erantzunak</h2>
+                {% azken_erantzunak 'Txapelketa' %}
+            </div>
+            {% steam_panel %}
+        </div>
+</div>
+
+{% endblock %}

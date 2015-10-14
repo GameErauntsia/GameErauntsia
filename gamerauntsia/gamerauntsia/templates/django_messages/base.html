@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load url from future %}
+{% block bodyclass %}about{% endblock %}
+{% block content %}
+<!-- Single button -->
+<div class="btn-group">
+    <a href="{% url 'messages_inbox' %} " class="btn btn-default btn-sm active" role="button">{% trans "Sarrerako ontzia" %}</a>
+    <a href="{% url 'messages_outbox' %} " class="btn btn-info btn-sm" role="button">{% trans "Bidalitakoen ontzia" %}</a>
+    <a href="{% url 'messages_compose' %} " class="btn btn-success btn-sm" role="button">{% trans "Mezu berria" %}</a>
+    <a href="{% url 'messages_trash' %} " class="btn btn-danger btn-sm" role="button">{% trans "Zabor ontzia" %}</a>
+</div>
+{% endblock %}
+{% block sidebar %}
+
+{% endblock %}
