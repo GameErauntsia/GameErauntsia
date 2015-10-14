@@ -85,15 +85,10 @@ def contains(value, arg):
   {% endif %}
   """
   return value and arg in value or False
-  if arg in value:
-    return True
-  return False
 
 @register.filter
 def isequal(value, arg):
-  if arg == value:
-    return True
-  return False
+  return value and arg == value or False
 
 @register.filter
 def urlfriend(value):
@@ -130,6 +125,4 @@ def get_parent_title(comment):
 
 @register.filter
 def irekita(value):
-    if value > timezone.now():
-        return True
-    return False
+    return value and value > timezone.now() or False
