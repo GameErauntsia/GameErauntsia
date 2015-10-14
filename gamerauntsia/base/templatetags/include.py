@@ -84,6 +84,7 @@ def contains(value, arg):
   Not a link.
   {% endif %}
   """
+  return value and arg in value or False
   if arg in value:
     return True
   return False
