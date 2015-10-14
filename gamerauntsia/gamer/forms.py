@@ -6,10 +6,13 @@ from gamerauntsia.jokoa.models import Jokoa
 from tinymce.widgets import TinyMCE
 from django.conf import settings
 
+TINYMCE_SMALL_BODY_CONFIG = getattr(settings, 'TINYMCE_SMALL_BODY_CONFIG', {})
+TINYMCE_BODY_CONFIG = getattr(settings, 'TINYMCE_BODY_CONFIG', {})
+
 class GamerForm(forms.ModelForm):
 
     signature = forms.CharField(widget=TinyMCE(
-           attrs={'cols': 80, 'rows': 15,},mce_attrs=settings.TINYMCE_SMALL_BODY_CONFIG),required=False)
+           attrs={'cols': 80, 'rows': 15,},mce_attrs=TINYMCE_SMALL_BODY_CONFIG),required=False)
 
     class Meta:
         model = GamerUser
@@ -30,7 +33,7 @@ class NotifyForm(forms.ModelForm):
 class ArticleForm(forms.ModelForm):
 
     desk = forms.CharField(label='',widget=TinyMCE(
-           attrs={'cols': 80, 'rows': 15,},mce_attrs=settings.TINYMCE_BODY_CONFIG))
+           attrs={'cols': 80, 'rows': 15,},mce_attrs=TINYMCE_BODY_CONFIG))
 
     gaia = forms.ModelMultipleChoiceField(label='Gaiak', queryset=Gaia.objects.all(),
         widget=forms.SelectMultiple(attrs={'size':'15'}),help_text='Aukeratu artikuluarekin zer ikusia duen gai bat edo gehiago')
@@ -76,7 +79,7 @@ class AmaitutaForm(forms.ModelForm):
 class GamePlayForm(forms.ModelForm):
 
     desk = forms.CharField(label='',widget=TinyMCE(
-           attrs={'cols': 80, 'rows': 15,},mce_attrs=settings.TINYMCE_SMALL_BODY_CONFIG))
+           attrs={'cols': 80, 'rows': 15,},mce_attrs=TINYMCE_SMALL_BODY_CONFIG))
 
     kategoria = forms.ModelMultipleChoiceField(label='Gaiak', queryset=Kategoria.objects.all(),
         widget=forms.SelectMultiple(attrs={'size':'15'}),help_text='Aukeratu artikuluarekin zer ikusia duen gai bat edo gehiago')
