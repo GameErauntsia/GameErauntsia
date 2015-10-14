@@ -120,6 +120,6 @@ urlpatterns += patterns('gamerauntsia.gamer.views',
 
 if getattr(settings, 'DEBUG', False):
     urlpatterns += patterns('',
-        (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_DOC_ROOT}),
-        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_DOC_ROOT}),
+        (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': getattr(settings, 'STATIC_DOC_ROOT', '')}),
+        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': getattr(settings, 'MEDIA_DOC_ROOT', '')}),
     )
