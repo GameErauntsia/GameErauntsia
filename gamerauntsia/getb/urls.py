@@ -1,5 +1,4 @@
 from django.conf.urls import patterns, include, url
-from gamerauntsia import settings
 
 urlpatterns = patterns('gamerauntsia.getb.views',
 	url(r'^$', 'index', name='getb_index'),
