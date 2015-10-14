@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from gamerauntsia import settings
+from django.conf import settings
 
 urlpatterns = patterns('',
 	url(r'^$', 'gamerauntsia.gameplaya.views.index', name='gameplay_index'),
@@ -10,8 +10,8 @@ urlpatterns = patterns('',
     url(r'^(?P<slug>[-\w]+)$', 'gamerauntsia.gameplaya.views.gameplaya', name='gameplay'),
 )
 
-if settings.DEBUG:
+if getattr(settings, 'DEBUG', False):
     urlpatterns += patterns('',
         (r'^media/(?P<path>.*)$', 'django.views.static.serve',  
-         {'document_root':     settings.MEDIA_ROOT}),
+         {'document_root': getattr(settings, 'MEDIA_ROOT', '')}),
     )

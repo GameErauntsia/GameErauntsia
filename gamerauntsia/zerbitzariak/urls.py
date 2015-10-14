@@ -1,6 +1,5 @@
 from django.conf.urls import patterns, include, url
 from django.views.generic import TemplateView
-from gamerauntsia import settings
 
 urlpatterns = patterns('',
     url(r'^minecraft$', 'gamerauntsia.zerbitzariak.views.minecraft_server', name='minecraft_index'),
