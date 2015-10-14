@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
-from gamerauntsia import settings
+from django.conf import settings
 from gamerauntsia.base.feed import LatestEntriesFeed, LatestNewsFeed
 
 admin.autodiscover()
@@ -118,8 +118,8 @@ urlpatterns += patterns('gamerauntsia.gamer.views',
 )
 
 
-if settings.DEBUG:
+if getattr(settings, 'DEBUG', False):
     urlpatterns += patterns('',
-        (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_DOC_ROOT}),
-        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_DOC_ROOT}),
+        (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': getattr(settings, 'STATIC_DOC_ROOT', '')}),
+        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': getattr(settings, 'MEDIA_DOC_ROOT', '')}),
     )
