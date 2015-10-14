@@ -1,0 +1,15 @@
+/*body {
+	margin-top: 125px;  adjust this if the height of the menu bar changes 
+}*/
+
+.navbar-fixed-top .nav {
+	padding: 15px 0;
+}
+
+.search-query {
+    margin-top: 10px;
+}
+
+footer {
+	padding: 30px 0;	
+}
