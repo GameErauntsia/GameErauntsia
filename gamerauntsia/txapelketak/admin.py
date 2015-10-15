@@ -23,8 +23,8 @@ class PartidaAdmin(MPTTModelAdmin):
     list_display = ('txapelketa', 'jardunaldia','get_partaideak','emaitza', 'average', 'date')
     filter_horizontal = ('partaideak',)
     raw_id_fields = ('parent','txapelketa')
-    search_fields = ['txapelketa__izena','is_playoff']
-    list_filter = ('txapelketa',)
+    search_fields = ['txapelketa__izena',]
+    list_filter = ('txapelketa','is_playoff')
     ordering = ('-date',)
     form = PartidaForm
     
