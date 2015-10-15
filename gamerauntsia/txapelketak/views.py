@@ -18,9 +18,9 @@ def txapelketa(request,slug):
     video_parts = Partida.objects.filter(Q(txapelketa=item),Q(bideoa__isnull=False)).exclude(bideoa__iexact='').order_by('-date')[:3]
     next_parts = Partida.objects.filter(Q(txapelketa=item), Q(partaideak__isnull=False),Q(emaitza__isnull=True) | Q(emaitza__iexact='')).order_by('date','jardunaldia').distinct()
 
-    if item.mota == '0':
-        if Partida.objects.filter(txapelketa=item,jardunaldia=1).exists():
-            first_node = Partida.objects.get(txapelketa=item,jardunaldia=1)
+    if item.mota == '0' or item.mota == '2':
+        if Partida.objects.filter(Q(txapelketa=item),Q(parent__isnull=True),Q(txapelketa__mota='0')|Q(txapelketa__mota='2'),Q(txapelketa=item),Q(parent__isnull=True),Q(playoff=True)).exists():
+            first_node = Partida.objects.get(txapelketa=item,parent__isnull=True)
             leaflvl = first_node.get_leafnodes(include_self=True)[0].get_level()
 
             graphdata = "["
@@ -55,6 +55,9 @@ def txapelketa(request,slug):
                 graphdata += "[[{'name': '???','seed': '???','id': 0}]]]"
         else:
             graphdata = ""
+            
+        if item.mota == '2':
+            list_sailkapena = item.get_partaideak(['-points','-win','lose','-average'])
 
     else:
         list_sailkapena = item.get_partaideak(['-points','-win','lose','-average'])
