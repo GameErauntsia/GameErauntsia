@@ -32,7 +32,7 @@ class PartidaAdmin(MPTTModelAdmin):
         ('Datu orokorrak',
         {'fields':('jardunaldia','txapelketa')},),
         ('Konfigurazioa',
-        {'fields':('partaideak','parent','is_return','date')},),
+        {'fields':('partaideak','parent','is_return','is_playoff','date')},),
         ('Emaitza',
         {'fields':('emaitza','average')},),
         ('Bideoa',
