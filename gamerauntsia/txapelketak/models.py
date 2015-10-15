@@ -219,6 +219,7 @@ class Partida(MPTTModel):
     emaitza = models.CharField(max_length=50,null=True,blank=True)
     average = models.CharField(max_length=50,null=True,blank=True)
     is_return = models.BooleanField('Itzulerakoa',default=False)
+    is_playoff = models.BooleanField('Playoff motakoa',default=False,help_text='Markatu hau txapelketa konbinatu bateko playoff-aren partida bat bada')
 
     txapelketa = models.ForeignKey(Txapelketa)
     bideoa = models.CharField(max_length=150,null=True,blank=True)
