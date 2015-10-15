@@ -19,11 +19,9 @@ def txapelketa(request,slug):
     next_parts = Partida.objects.filter(Q(txapelketa=item), Q(partaideak__isnull=False),Q(emaitza__isnull=True) | Q(emaitza__iexact='')).order_by('date','jardunaldia').distinct()
 
     if item.mota == '0' or item.mota == '2':
-        if Partida.objects.filter(Q(txapelketa=item),Q(parent__isnull=True),Q(txapelketa__mota='0')|Q(txapelketa__mota='2',is_playoff=True)).exists():
-            if item.mota == '0':
-                first_node = Partida.objects.get(txapelketa=item,parent__isnull=True)
-            else:
-                first_node = Partida.objects.get(txapelketa=item,parent__isnull=True,is_playoff=True)
+        root_exists = Partida.objects.filter(Q(txapelketa=item),Q(parent__isnull=True),Q(txapelketa__mota='0')|Q(txapelketa__mota='2',is_playoff=True))
+        if root_exists:
+            first_node = root_exists[0]
             leaflvl = first_node.get_leafnodes(include_self=True)[0].get_level()
 
             graphdata = "["
