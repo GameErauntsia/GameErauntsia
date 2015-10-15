@@ -27,7 +27,7 @@ def txapelketa(request,slug):
             graphdata = "["
             for x in range(leaflvl,-1,-1):
                 graphdata += "["
-                partidak = Partida.objects.filter(Q(level=x),Q(txapelketa=item),Q(parent__isnull=True),Q(txapelketa__mota='0')|Q(txapelketa__mota='2',is_playoff=True))
+                partidak = Partida.objects.filter(Q(level=x),Q(txapelketa=item),Q(txapelketa__mota='0')|Q(txapelketa__mota='2',is_playoff=True))
                 last_part = len(partidak) - 1
                 for j,part in enumerate(partidak):
                     graphdata += "["
