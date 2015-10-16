@@ -62,7 +62,7 @@ def send_newuser_email(sender,instance,**kwargs):
     if kwargs['created']:
         tb = telebot.TeleBot(getattr(settings, 'TELEBOT_TOKEN', ''))
         message = '[Erabiltzailea]\n%skudeatu/gamer/gameruser/%s' % (getattr(settings, 'HOST', ''),instance.id)
-        tb.send_message(getattr(settings, 'EDITOR_CHAT_ID', ''), message)
+        tb.send_message(int(getattr(settings, 'EDITOR_CHAT_ID', 0)), message)
         #mail_admins(instance.username+' erabiltzailea', message)
 
 def send_article_email(sender,instance,**kwargs):
