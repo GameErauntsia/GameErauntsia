@@ -124,7 +124,7 @@ class Txapelketa(models.Model):
                'izenburua': self.izena,
                'deskribapena': self.get_desk_txikia(),
                'url': self.get_absolute_url(),
-               'img_url': settings.HOST + self.irudia.get_blog_url()
+               'img_url': settings.HOST + self.irudia.get_buletin_url()
            }
        )
        subject = settings.EMAIL_SUBJECT + ' ' + self.izena
