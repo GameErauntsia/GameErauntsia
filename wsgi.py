@@ -18,5 +18,6 @@ os.environ['TWITTER_ACCESS_TOKEN_SECRET'] = 'ZmwQ82fbfIGWY8voHbzfIYKmkT8egMcSOIW
 os.environ['FB_APP_ID'] = '1466131240329239'
 os.environ['FB_APP_SECRET'] = '69cf0d955b37aa12cb0f30857e250fc4'
 os.environ['FB_PAGE_ID'] = '326435330850157'
+os.environ['SMTP_SERVER'] = 'smtp1.dc2.gpaas.net'
 # End Environment
 application = get_wsgi_application()
