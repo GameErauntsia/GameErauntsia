@@ -69,10 +69,12 @@ class PartaideakForm(forms.ModelForm):
         if Txapelketa.objects.filter(id=self.instance.txapelketa_id).exists():
             wtf = Txapelketa.objects.get(id=self.instance.txapelketa_id).get_jokalariak()
         w = self.fields['jokalariak'].widget
+        k = self.fields['kapitaina'].widget
         choices = []
         for choice in wtf:
             choices.append((choice.id, choice.getFullName()))
         w.choices = choices
+        k.choices = choices
 
 class PartaideakAdmin(admin.ModelAdmin):
 
@@ -86,7 +88,7 @@ class PartaideakAdmin(admin.ModelAdmin):
 
     list_display = ('txapelketa', 'get_izena', 'win','lose', 'matches','points')
     filter_horizontal = ('jokalariak',)
-    raw_id_fields = ('irudia','txapelketa')
+    raw_id_fields = ('irudia','txapelketa','kapitaina')
     search_fields = ['izena']
     ordering = ('-id',)
     form = PartaideakForm
