@@ -68,13 +68,12 @@ class PartaideakForm(forms.ModelForm):
         wtf = []
         if Txapelketa.objects.filter(id=self.instance.txapelketa_id).exists():
             wtf = Txapelketa.objects.get(id=self.instance.txapelketa_id).get_jokalariak()
+        self.fields['kapitaina'].queryset = wtf
         w = self.fields['jokalariak'].widget
-        k = self.fields['kapitaina'].widget
         choices = []
         for choice in wtf:
             choices.append((choice.id, choice.getFullName()))
         w.choices = choices
-        k.choices = choices
 
 class PartaideakAdmin(admin.ModelAdmin):
 
