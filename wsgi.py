@@ -9,7 +9,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "gamerauntsia.settings")
 # Environment
 os.environ['TELEBOT_TOKEN'] = '107547414:AAEXaH2tSNcnaehNq_7NNbNKb1VfDbaa6Qs'
 os.environ['MC_CHAT_ID'] = '-31046360'
-os.environ['EDITOR_CHAT_ID'] = '18452263'
+os.environ['EDITOR_CHAT_ID'] = '-18452263'
 os.environ['TWITTER_API_KEY'] = 'QMPvaez5H2KpBWP9CwnfYTU2M'
 os.environ['TWITTER_API_SECRET'] = 'PIqjFcoSLiaB8RE20KcUjrqI4RAYb8RwzGIfHy43D8zhJttqcc'
 os.environ['TWITTER_USERNAME'] = 'gamerauntsia'
