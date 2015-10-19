@@ -26,7 +26,7 @@ class MCHandler(BaseHandler):
 	           'mc_user': mc.mc_user,
 	           'created': mc.created.strftime("%Y-%m-%d %H:%M:%S"),
 	           'rol': mc.get_rol_display(),
-	           'uuid': mc.uuid or None,
+	           'uuid': mc.uuid != '' and mc.uuid or None,
 	       }
 	       return data
 	   except:
@@ -39,7 +39,7 @@ class MCHandler(BaseHandler):
 	           'mc_user': mc.mc_user,
 	           'created': mc.created.strftime("%Y-%m-%d %H:%M:%S"),
 	           'rol': mc.get_rol_display(),
-	           'uuid': mc.uuid or None,
+	           'uuid': mc.uuid != '' and mc.uuid or None,
 	       }
 	       return data
 	   except:
