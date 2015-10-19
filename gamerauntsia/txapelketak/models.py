@@ -96,7 +96,7 @@ class Txapelketa(models.Model):
         return filters.striptags(self.desk)
 
     def get_next_match(self):
-        matches = self.partida_set.filter(Q(emaitza__isnull=True)|Q(emaitza__iexact='')).order_by("-date")
+        matches = self.partida_set.filter(Q(emaitza__isnull=True)|Q(emaitza__iexact=''),date__isnull=False).order_by("-date")
         if matches:
             return matches[0].date
         return None
