@@ -112,10 +112,10 @@ def sortu_taldea(request,slug):
     if request.method == 'POST':
         teamform = TaldeaForm(request.POST)
         if teamform.is_valid():
-                team = teamform.save(commit=False) 
-                team.kapitaina = kapitaina
-                team.save()
-                teamform.save_m2m()
+            team = teamform.save(commit=False) 
+            team.kapitaina = kapitaina
+            team.save()
+            teamform.save_m2m()
             return HttpResponseRedirect(reverse("partaidea", kwargs={'part_id':team.id}))
     else:
         teamform = TaldeaForm()
