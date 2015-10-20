@@ -120,4 +120,4 @@ def sortu_taldea(request,slug):
             return HttpResponseRedirect(reverse("partaidea", kwargs={'part_id':team.id}))
     else:
         teamform = TaldeaForm()
-    return render_to_response('txapelketak/'+slug+'/taldea/gehitu-taldea', locals(), context_instance=RequestContext(request))
+    return render_to_response('txapelketak/'+slug+'/taldea/sortu_taldea.html', locals(), context_instance=RequestContext(request))
