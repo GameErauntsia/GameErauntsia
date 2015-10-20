@@ -6,6 +6,7 @@ from datetime import datetime
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from gamerauntsia.txapelketak.models import *
+from gamerauntsia.txapelketak.forms import *
 from django.core.urlresolvers import reverse
 from gamerauntsia.utils.timeline import get_tweepy_api
 
