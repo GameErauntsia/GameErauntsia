@@ -103,3 +103,20 @@ def sortu_partaideak(request,slug):
         part.save()
 
     return HttpResponseRedirect(reverse("txapelketa", kwargs={'slug':slug}))
+
+@login_required
+def sortu_taldea(request,slug):
+    kapitaina = request.user
+    txapelketa = get_object_or_404(Txapelketa,slug=slug)
+
+    if request.method == 'POST':
+        teamform = TaldeaForm(request.POST)
+        if teamform.is_valid():
+                team = teamform.save(commit=False) 
+                team.kapitaina = kapitaina
+                team.save()
+                teamform.save_m2m()
+            return HttpResponseRedirect(reverse("partaidea", kwargs={'part_id':team.id}))
+    else:
+        teamform = TaldeaForm()
+    return render_to_response('txapelketak/'+slug+'/taldea/gehitu-taldea', locals(), context_instance=RequestContext(request))
