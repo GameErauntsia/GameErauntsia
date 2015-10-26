@@ -18,8 +18,8 @@ def index(request):
         else:
             txapelketa = list_tx[0]
 
-    if Txapelketa.objects.filter(Q(publikoa_da=True),Q(pub_date__lt=datetime.now()),Q(live_bideoa__isnull=False),Q(live_bideoa__gt='')|Q(twitch=True),Q(status='2')).exists():
-        txs = Txapelketa.objects.filter(Q(publikoa_da=True),Q(pub_date__lt=datetime.now()),Q(live_bideoa__isnull=False),Q(live_bideoa__gt='')|Q(twitch=True),Q(status='2'))
+    if Txapelketa.objects.filter(Q(publikoa_da=True),Q(twitch=True),Q(status='2')).exists():
+        txs = Txapelketa.objects.filter(Q(publikoa_da=True),Q(twitch=True),Q(status='2'))
         match = None
         last_tx = None
         for tx in txs:

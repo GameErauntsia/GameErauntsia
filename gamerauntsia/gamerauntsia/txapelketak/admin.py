@@ -23,8 +23,8 @@ class PartidaAdmin(MPTTModelAdmin):
     list_display = ('txapelketa', 'jardunaldia','get_partaideak','emaitza', 'average', 'date')
     filter_horizontal = ('partaideak',)
     raw_id_fields = ('parent','txapelketa')
-    search_fields = ['txapelketa__izena']
-    list_filter = ('txapelketa',)
+    search_fields = ['txapelketa__izena',]
+    list_filter = ('txapelketa','is_playoff')
     ordering = ('-date',)
     form = PartidaForm
     
@@ -32,7 +32,7 @@ class PartidaAdmin(MPTTModelAdmin):
         ('Datu orokorrak',
         {'fields':('jardunaldia','txapelketa')},),
         ('Konfigurazioa',
-        {'fields':('partaideak','parent','is_return','date')},),
+        {'fields':('partaideak','parent','is_return','is_playoff','date')},),
         ('Emaitza',
         {'fields':('emaitza','average')},),
         ('Bideoa',
@@ -68,6 +68,7 @@ class PartaideakForm(forms.ModelForm):
         wtf = []
         if Txapelketa.objects.filter(id=self.instance.txapelketa_id).exists():
             wtf = Txapelketa.objects.get(id=self.instance.txapelketa_id).get_jokalariak()
+        self.fields['kapitaina'].queryset = wtf
         w = self.fields['jokalariak'].widget
         choices = []
         for choice in wtf:
@@ -86,7 +87,7 @@ class PartaideakAdmin(admin.ModelAdmin):
 
     list_display = ('txapelketa', 'get_izena', 'win','lose', 'matches','points')
     filter_horizontal = ('jokalariak',)
-    raw_id_fields = ('irudia','txapelketa')
+    raw_id_fields = ('irudia','txapelketa','kapitaina')
     search_fields = ['izena']
     ordering = ('-id',)
     form = PartaideakForm

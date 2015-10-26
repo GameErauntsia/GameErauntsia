@@ -55,7 +55,6 @@
 		                </div>
 					</p>
 					{% endif %}
-					{% if user_prof.is_staff %}
 					<p>
 						{% if user_prof.ytube_channel %}
 						<a href="{{user_prof.ytube_channel}}"><img src="{{STATIC_URL}}img/youtube.png" /></a>
@@ -67,7 +66,6 @@
 						<a href="http://facebook.com/{{user_prof.facebook_id}}"><img src="{{STATIC_URL}}img/facebook.png" /></a>
 						{% endif %}
 					</p>
-					{% endif %}
 				</div>
 				<div class="clearfix"></div>
 		  	</div>
