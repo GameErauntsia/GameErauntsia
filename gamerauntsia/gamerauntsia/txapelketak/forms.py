@@ -25,3 +25,12 @@ class TxapelketaAdminForm(forms.ModelForm):
 
     class Meta:
         model = Txapelketa
+
+
+class TaldeaForm(forms.ModelForm):
+
+    irudia  = forms.ImageField(label='Nabarmendutako irudia', help_text='Onartutako formatuak: jpg, png, gif.', required=False)
+    
+    class Meta:
+        model = Partaidea
+        fields = ("izena","irudia","txapelketa","jokalariak","ordezkoak",)

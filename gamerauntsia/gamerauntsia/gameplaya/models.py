@@ -102,7 +102,7 @@ class GamePlaya(models.Model):
                'izenburua': self.izenburua,
                'deskribapena': self.get_desk_txikia(),
                'url': self.get_absolute_url(),
-               'img_url': settings.HOST + self.argazkia.get_blog_url()
+               'img_url': settings.HOST + self.argazkia.get_buletin_url()
            }
        )
        subject = settings.EMAIL_SUBJECT + ' ' + self.izenburua

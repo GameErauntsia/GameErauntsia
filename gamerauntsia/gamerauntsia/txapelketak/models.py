@@ -96,7 +96,7 @@ class Txapelketa(models.Model):
         return filters.striptags(self.desk)
 
     def get_next_match(self):
-        matches = self.partida_set.filter(Q(emaitza__isnull=True)|Q(emaitza__iexact='')).order_by("-date")
+        matches = self.partida_set.filter(Q(emaitza__isnull=True)|Q(emaitza__iexact=''),date__isnull=False).order_by("-date")
         if matches:
             return matches[0].date
         return None
@@ -124,7 +124,7 @@ class Txapelketa(models.Model):
                'izenburua': self.izena,
                'deskribapena': self.get_desk_txikia(),
                'url': self.get_absolute_url(),
-               'img_url': settings.HOST + self.irudia.get_blog_url()
+               'img_url': settings.HOST + self.irudia.get_buletin_url()
            }
        )
        subject = settings.EMAIL_SUBJECT + ' ' + self.izena
@@ -149,7 +149,8 @@ class Partaidea(models.Model):
     txapelketa = models.ForeignKey(Txapelketa)
     irabazlea = models.BooleanField(default=False)
 
-    jokalariak = models.ManyToManyField(GamerUser,null=True,blank=True)
+    jokalariak = models.ManyToManyField(GamerUser,null=True,blank=True,verbose_name="Titularrak")
+    ordezkoak = models.ManyToManyField(GamerUser,related_name="ordezkoak", null=True,blank=True,verbose_name="Ordezkoak")
     kapitaina = models.ForeignKey(GamerUser, related_name="kapitaina", null=True,blank=True)
 
     win = models.IntegerField('Irabazitakoak', default=0)
@@ -219,6 +220,7 @@ class Partida(MPTTModel):
     emaitza = models.CharField(max_length=50,null=True,blank=True)
     average = models.CharField(max_length=50,null=True,blank=True)
     is_return = models.BooleanField('Itzulerakoa',default=False)
+    is_playoff = models.BooleanField('Playoff motakoa',default=False,help_text='Markatu hau txapelketa konbinatu bateko playoff-aren partida bat bada')
 
     txapelketa = models.ForeignKey(Txapelketa)
     bideoa = models.CharField(max_length=150,null=True,blank=True)

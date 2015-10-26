@@ -6,6 +6,7 @@ from datetime import datetime
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from gamerauntsia.txapelketak.models import *
+from gamerauntsia.txapelketak.forms import *
 from django.core.urlresolvers import reverse
 from gamerauntsia.utils.timeline import get_tweepy_api
 
@@ -18,15 +19,16 @@ def txapelketa(request,slug):
     video_parts = Partida.objects.filter(Q(txapelketa=item),Q(bideoa__isnull=False)).exclude(bideoa__iexact='').order_by('-date')[:3]
     next_parts = Partida.objects.filter(Q(txapelketa=item), Q(partaideak__isnull=False),Q(emaitza__isnull=True) | Q(emaitza__iexact='')).order_by('date','jardunaldia').distinct()
 
-    if item.mota == '0':
-        if Partida.objects.filter(txapelketa=item,jardunaldia=1).exists():
-            first_node = Partida.objects.get(txapelketa=item,jardunaldia=1)
+    if item.mota == '0' or item.mota == '2':
+        root_exists = Partida.objects.filter(Q(txapelketa=item),Q(parent__isnull=True),Q(txapelketa__mota='0')|Q(txapelketa__mota='2',is_playoff=True))
+        if root_exists:
+            first_node = root_exists[0]
             leaflvl = first_node.get_leafnodes(include_self=True)[0].get_level()
 
             graphdata = "["
             for x in range(leaflvl,-1,-1):
                 graphdata += "["
-                partidak = Partida.objects.filter(level=x,txapelketa=item)
+                partidak = Partida.objects.filter(Q(level=x),Q(txapelketa=item),Q(txapelketa__mota='0')|Q(txapelketa__mota='2',is_playoff=True))
                 last_part = len(partidak) - 1
                 for j,part in enumerate(partidak):
                     graphdata += "["
@@ -55,6 +57,9 @@ def txapelketa(request,slug):
                 graphdata += "[[{'name': '???','seed': '???','id': 0}]]]"
         else:
             graphdata = ""
+            
+        if item.mota == '2':
+            list_sailkapena = item.get_partaideak(['-points','-win','lose','-average'])
 
     else:
         list_sailkapena = item.get_partaideak(['-points','-win','lose','-average'])
@@ -99,3 +104,20 @@ def sortu_partaideak(request,slug):
         part.save()
 
     return HttpResponseRedirect(reverse("txapelketa", kwargs={'slug':slug}))
+
+@login_required
+def sortu_taldea(request,slug):
+    kapitaina = request.user
+    txapelketa = get_object_or_404(Txapelketa,slug=slug)
+
+    if request.method == 'POST':
+        teamform = TaldeaForm(request.POST)
+        if teamform.is_valid():
+            team = teamform.save(commit=False) 
+            team.kapitaina = kapitaina
+            team.save()
+            teamform.save_m2m()
+            return HttpResponseRedirect(reverse("partaidea", kwargs={'part_id':team.id}))
+    else:
+        teamform = TaldeaForm()
+    return render_to_response('txapelketak/sortu_taldea.html', locals(), context_instance=RequestContext(request))

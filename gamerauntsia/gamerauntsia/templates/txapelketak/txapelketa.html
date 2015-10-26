@@ -121,10 +121,11 @@
                     </div>
                     {% if not item.insk_date|irekita and item.status = '2' or item.status = '3' %}
                     <div id="sailk" class="tab-pane fade in active" role="tabpanel">
-                        {% if item.mota == '0' %}
+                        {% if item.mota == '0' or item.mota == '2' %}
                         <div id="taula"></div>
-        
-                        {% else %}
+                        {% endif %}
+                        
+                        {% if item.mota == '1' or item.mota == '2'  %}
                         <div class="table-responsive">
                             <table class="table table-condensed table-hover">
                                 <thead>
