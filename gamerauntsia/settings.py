@@ -20,9 +20,9 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'gamerauntsia',                      # Or path to database file if using sqlite3.
-        'USER': 'game_user',                      # Not used with sqlite3.
-        'PASSWORD': 'game_pass',                  # Not used with sqlite3.
+        'NAME': os.environ.get('DB_NAME'),                      # Or path to database file if using sqlite3.
+        'USER': os.environ.get('DB_USER'),                      # Not used with sqlite3.
+        'PASSWORD': os.environ.get('DB_PASSWORD'),                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -56,7 +56,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = '/home/csmant/django/gamerauntsia/media/'
+MEDIA_ROOT = '/srv/data/web/vhosts/default/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -67,7 +67,7 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/home/csmant/django/gamerauntsia/static/'
+STATIC_ROOT = '/srv/data/web/vhosts/default/static/'
 
 STATIC_DOC_ROOT = STATIC_ROOT
 MEDIA_DOC_ROOT = MEDIA_ROOT
@@ -123,7 +123,6 @@ INSTALLED_APPS = (
     'django_bootstrap_calendar',
     'django_messages',
     'django.contrib.admin',
-    'gunicorn',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -222,26 +221,25 @@ TINYMCE_JS_URL = STATIC_URL + "js/tinymce/tinymce.min.js"
 
 #TELEGRAM BOT
 DIRNAME = '/home/csmant/django/gamerauntsia/'
-TELEBOT_TOKEN = '107547414:AAEXaH2tSNcnaehNq_7NNbNKb1VfDbaa6Qs'
-PYSSTELEBOT_TOKEN = '146912848:AAGiEnIM8eEOLZaVOwjyzNXF-B-W6wM0P1s'
-MC_CHAT_ID = -31046360
-EDITOR_CHAT_ID = -18452263 
+TELEBOT_TOKEN = os.environ.get('TELEBOT_TOKEN')
+MC_CHAT_ID = os.environ.get('MC_CHAT_ID')
+EDITOR_CHAT_ID = os.environ.get('EDITOR_CHAT_ID') 
 
 #Twitter API
-TWITTER_API_KEY = 'QMPvaez5H2KpBWP9CwnfYTU2M'
-TWITTER_API_SECRET = 'PIqjFcoSLiaB8RE20KcUjrqI4RAYb8RwzGIfHy43D8zhJttqcc'
+TWITTER_API_KEY = os.environ.get('TWITTER_API_KEY')
+TWITTER_API_SECRET = os.environ.get('TWITTER_API_SECRET')
 TWITTER_CONSUMER_KEY = TWITTER_API_KEY
 TWITTER_CONSUMER_SECRET = TWITTER_API_SECRET
 TWITTER_USERNAME = 'gamerauntsia'
-TWITTER_ACCESS_TOKEN = '2663678179-XsYD1snwUqvc7VJryppOPJFbAwO3iFGLsNsaMkE'
-TWITTER_ACCESS_TOKEN_SECRET = 'ZmwQ82fbfIGWY8voHbzfIYKmkT8egMcSOIWGlGE8cZeyD'
+TWITTER_ACCESS_TOKEN = os.environ.get('TWITTER_ACCESS_TOKEN')
+TWITTER_ACCESS_TOKEN_SECRET = os.environ.get('TWITTER_ACCESS_TOKEN_SECRET')
 TWITTER_MAXLENGTH = 140
 
 #Facebook API
-FB_APP_ID = '1466131240329239'
+FB_APP_ID = os.environ.get('FB_APP_ID')
 FACEBOOK_APP_ID = FB_APP_ID
-FB_APP_SECRET = '69cf0d955b37aa12cb0f30857e250fc4'
-FB_PAGE_ID = '326435330850157'
+FB_APP_SECRET = os.environ.get('FB_APP_SECRET')
+FB_PAGE_ID = os.environ.get('FB_PAGE_ID')
 
 FACEBOOK_EXTENDED_PERMISSIONS = [
     'publish_stream',
@@ -256,7 +254,7 @@ HOST = 'http://gamerauntsia.eus/'
 
 USE_X_FORWARDED_HOST = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'gamerauntsia.eus']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'www.gamerauntsia.eus','gamerauntsia.eus']
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
