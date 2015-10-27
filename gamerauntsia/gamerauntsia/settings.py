@@ -25,7 +25,8 @@ DATABASES = {
         'PASSWORD': os.environ.get('DB_PASSWORD'),                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
+    },
+    'DEFAULT_DB_ALIAS': 'default_db',
 }
 
 # Local time zone for this installation. Choices can be found here:
