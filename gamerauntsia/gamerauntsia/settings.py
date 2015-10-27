@@ -123,7 +123,6 @@ INSTALLED_APPS = (
     'django_bootstrap_calendar',
     'django_messages',
     'django.contrib.admin',
-    'gunicorn',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
