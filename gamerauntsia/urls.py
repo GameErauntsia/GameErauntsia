@@ -11,6 +11,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^robots.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: ", mimetype="text/plain")),
+    (r'^3dedcce0621f78db1fdf62d2bb02148e.txt$', lambda r: HttpResponse("3dedcce0621f78db1fdf62d2bb02148e", mimetype="text/plain")),
+
     url(r'^$', 'gamerauntsia.views.index', name='index'),
 
     # GETB
