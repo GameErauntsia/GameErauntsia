@@ -7,6 +7,9 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__),
                                                     'gamerauntsia')))
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "gamerauntsia.settings")
 # Environment
+os.environ['DB_NAME'] = 'default_db'
+os.environ['DB_USER'] = 'root'
+os.environ['DB_PASSWORD'] = ''
 os.environ['TELEBOT_TOKEN'] = '107547414:AAEXaH2tSNcnaehNq_7NNbNKb1VfDbaa6Qs'
 os.environ['MC_CHAT_ID'] = '-31046360'
 os.environ['EDITOR_CHAT_ID'] = '-18452263'
