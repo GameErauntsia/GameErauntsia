@@ -36,7 +36,7 @@
             {% endif %}
 
                 <div class="col-md-6 portfolio-item">
-                    <a href="{{gp.get_absolute_url}}">
+                    <a href="{% url 'gameplay' gp.slug %}">
                         <img class="img-responsive" src="{{gp.argazkia.get_gp_thumbnail_url}}">
                     </a>
                     <h3><a href="{% url 'gameplay' gp.slug %}">{{gp.izenburua}}</a></h3>
