@@ -11,6 +11,9 @@ EMAIL_SUBJECT_PREFIX = '[Game Erauntsia] '
 DEFAULT_TO_EMAIL = 'Game Erauntsia <kontaktua@gamerauntsia.eus>'
 EMAIL_SUBJECT = EMAIL_SUBJECT_PREFIX
 
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+
+
 ADMINS = (
     ('Urtzi Odriozola', 'urtzi.odriozola@gmail.com'),
 )
