@@ -22,7 +22,7 @@
             {% endif %}
 
                 <div class="col-md-6 portfolio-item">
-                    <a href="{{tx.get_absolute_url}}">
+                    <a href="{% 'txapelketa' tx.slug %}">
                         <img class="img-responsive" src="{{tx.irudia.get_gp_thumbnail_url}}">
                     </a>
                     <h3>
