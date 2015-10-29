@@ -16,7 +16,7 @@ django-tagging == 0.3.2
 facebook-sdk == 0.4.0
 python-twitter == 2.0
 django-social-auth == 0.7.18
-cssocialuser == 0.28
+cssocialuser == 0.42
 django-grappelli == 2.4.5 
 git+git://github.com/mwieler/django-registration-1.5.git#egg=django-registration
 git+git://github.com/GameErauntsia/django-simple-forum.git#egg=django-simple-forum
