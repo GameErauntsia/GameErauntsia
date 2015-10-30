@@ -70,10 +70,12 @@ class PartaideakForm(forms.ModelForm):
             wtf = Txapelketa.objects.get(id=self.instance.txapelketa_id).get_jokalariak()
         self.fields['kapitaina'].queryset = wtf
         w = self.fields['jokalariak'].widget
+        w2 = self.fields['ordezkoak'].widget
         choices = []
         for choice in wtf:
             choices.append((choice.id, choice.getFullName()))
         w.choices = choices
+        w2.choices = choices
 
 class PartaideakAdmin(admin.ModelAdmin):
 
@@ -86,7 +88,7 @@ class PartaideakAdmin(admin.ModelAdmin):
         return obj.izena
 
     list_display = ('txapelketa', 'get_izena', 'win','lose', 'matches','points')
-    filter_horizontal = ('jokalariak',)
+    filter_horizontal = ('jokalariak','ordezkoak')
     raw_id_fields = ('irudia','txapelketa','kapitaina')
     search_fields = ['izena']
     ordering = ('-id',)
@@ -96,7 +98,7 @@ class PartaideakAdmin(admin.ModelAdmin):
         ('Datu orokorrak',
         {'fields':('izena','irudia','txapelketa')},),
         ('Jokalariak',
-        {'fields':('kapitaina','jokalariak')},),
+        {'fields':('kapitaina','jokalariak','ordezkoak')},),
         ('Puntuazioa',
         {'fields':('win','lose','draw','matches','average','points')},),
         ('Txapelketaren irabazlea',
