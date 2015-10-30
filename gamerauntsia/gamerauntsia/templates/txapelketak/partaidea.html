@@ -29,6 +29,7 @@
                 {% endfor %}
                 {% endif %}
             </div>
+            {% if partaidea.get_partidak %}
             <h2><span class="glyphicon glyphicon-calendar"></span> Jardunaldiak</h2>
             <div class="table-responsive">
                 <table class="table table-condensed table-hover">
@@ -54,6 +55,7 @@
                     </tbody>
                 </table>
             </div>
+            {% endif %}
             {% if next_parts %}
                 <h2><span class="glyphicon glyphicon-tower"></span> Partida +</h2>
                 {% for part in next_parts %}
