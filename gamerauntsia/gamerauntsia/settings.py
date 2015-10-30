@@ -120,7 +120,7 @@ INSTALLED_APPS = (
     'gamerauntsia.txapelketak',
     'gamerauntsia.getb',
     'gamerauntsia.zerbitzariak',
-    'gamerauntsia.finished'
+    'gamerauntsia.finished',
     'gamerauntsia.log',
     'grappelli',
     'datetimewidget',
