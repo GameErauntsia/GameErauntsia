@@ -73,6 +73,8 @@ class Txapelketa(models.Model):
             for team in teams:
                 if gamer in team.jokalariak.all():
                     has_team = True
+                elif gamer in team.ordezkoak.all():
+                    has_team = True
                 if has_team:
                     break
             if not has_team:
