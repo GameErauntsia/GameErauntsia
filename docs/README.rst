@@ -1,5 +1,9 @@
+##############
 Game Erauntsia
-==============
+##############
+
+.. image:: https://readthedocs.org/projects/game-erauntsia/badge/?version=latest
+    :target: http://game-erauntsia.readthedocs.org/en/latest/
 
 This is a Django *Game Erauntsia web page project*. Game Erauntsia was founded to fill the gap encountered in Basque gameplay videos. The final goal is to promote basque language creating and sharing modern game play videos. 
 You will find our web page in gamerauntsia.eus_.
