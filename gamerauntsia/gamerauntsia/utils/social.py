@@ -3,7 +3,6 @@ import tweepy
 from facebookpagewriter.utils import post
 from django.core.mail import EmailMultiAlternatives
 from django.template import defaultfilters as filters
-import logging
 from gamerauntsia.gamer.models import GamerUser
 
 def post_to_email(obj):
@@ -41,10 +40,9 @@ def post_to_page(obj, data={}):
     try:
         post(PAGE_ID, component, message, **data)
     except Exception, e:
-        logging.error('post_to_page, ERROR: %(error)s' % {'error': e})
+        pass
 
 def post_social(obj):
-    logging.basicConfig(filename='debug.log',level=logging.ERROR)
     post_to_email(obj)
     post_to_twitter(obj)
     post_to_page(obj)
