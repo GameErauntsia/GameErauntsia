@@ -11,7 +11,7 @@ EMAIL_SUBJECT_PREFIX = '[Game Erauntsia] '
 DEFAULT_TO_EMAIL = 'Game Erauntsia <kontaktua@gamerauntsia.eus>'
 EMAIL_SUBJECT = EMAIL_SUBJECT_PREFIX
 
-EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_HOST = 'smtp1.dc2.gpaas.net'
 
 
 ADMINS = (
@@ -23,9 +23,9 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': os.environ.get('DB_NAME'),                      # Or path to database file if using sqlite3.
-        'USER': os.environ.get('DB_USER'),                      # Not used with sqlite3.
-        'PASSWORD': os.environ.get('DB_PASSWORD'),                  # Not used with sqlite3.
+        'NAME': 'default_db',                      # Or path to database file if using sqlite3.
+        'USER': 'root',                      # Not used with sqlite3.
+        'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -225,25 +225,25 @@ TINYMCE_JS_URL = STATIC_URL + "js/tinymce/tinymce.min.js"
 
 #TELEGRAM BOT
 DIRNAME = '/home/csmant/django/gamerauntsia/'
-TELEBOT_TOKEN = os.environ.get('TELEBOT_TOKEN')
-MC_CHAT_ID = os.environ.get('MC_CHAT_ID')
-EDITOR_CHAT_ID = os.environ.get('EDITOR_CHAT_ID') 
+TELEBOT_TOKEN = '107547414:AAEXaH2tSNcnaehNq_7NNbNKb1VfDbaa6Qs'
+MC_CHAT_ID = '-31046360'
+EDITOR_CHAT_ID = '-18452263'
 
 #Twitter API
-TWITTER_API_KEY = os.environ.get('TWITTER_API_KEY')
-TWITTER_API_SECRET = os.environ.get('TWITTER_API_SECRET')
+TWITTER_API_KEY = 'QMPvaez5H2KpBWP9CwnfYTU2M'
+TWITTER_API_SECRET = 'PIqjFcoSLiaB8RE20KcUjrqI4RAYb8RwzGIfHy43D8zhJttqcc'
 TWITTER_CONSUMER_KEY = TWITTER_API_KEY
 TWITTER_CONSUMER_SECRET = TWITTER_API_SECRET
 TWITTER_USERNAME = 'gamerauntsia'
-TWITTER_ACCESS_TOKEN = os.environ.get('TWITTER_ACCESS_TOKEN')
-TWITTER_ACCESS_TOKEN_SECRET = os.environ.get('TWITTER_ACCESS_TOKEN_SECRET')
+TWITTER_ACCESS_TOKEN = '2663678179-XsYD1snwUqvc7VJryppOPJFbAwO3iFGLsNsaMkE'
+TWITTER_ACCESS_TOKEN_SECRET = 'ZmwQ82fbfIGWY8voHbzfIYKmkT8egMcSOIWGlGE8cZeyD'
 TWITTER_MAXLENGTH = 140
 
 #Facebook API
-FB_APP_ID = os.environ.get('FB_APP_ID')
+FB_APP_ID = '1466131240329239'
 FACEBOOK_APP_ID = FB_APP_ID
-FB_APP_SECRET = os.environ.get('FB_APP_SECRET')
-FB_PAGE_ID = os.environ.get('FB_PAGE_ID')
+FB_APP_SECRET = '69cf0d955b37aa12cb0f30857e250fc4'
+FB_PAGE_ID = '326435330850157'
 
 FACEBOOK_EXTENDED_PERMISSIONS = [
     'publish_stream',
