@@ -41,9 +41,7 @@
 <hr/>
 <div class="row">
     <h2>Atal gehiago</h2>
-    {% autopaginate atalak 7 %}
-    {% for atala in atalak %}
-        {% if forloop.counter > 3 %}
+    {% for atala in atalgehiago %}
         {% get_comment_count for atala as comment_count %}
         <div class="col-sm-3">
             <a href="{{atala.get_absolute_url}}">
@@ -53,7 +51,6 @@
             <p><span class="glyphicon glyphicon-time"></span> {{atala.iraupena_min}}min {{atala.iraupena_seg}}seg{% if comment_count %} | <a href="{{atala.get_absolute_url}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}</p>
             <hr>
         </div>
-        {% endif %}
     {% endfor %}
 </div>
 
