@@ -34,8 +34,9 @@
                 <p><span class="glyphicon glyphicon-time"></span> {{atala.iraupena_min}}min {{atala.iraupena_seg}}seg{% if comment_count %} | <a href="{{atala.get_absolute_url}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}</p>
             </div>
             {% endfor %}
-
+            {% if not forloop.last %}
             <hr>
+            {% endif %}
         </div>
 </div>
 <hr/>
