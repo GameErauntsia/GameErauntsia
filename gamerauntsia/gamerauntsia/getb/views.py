@@ -10,7 +10,7 @@ from datetime import datetime
 def index(request):
     atal_nab = Atala.objects.filter(publikoa_da=True, pub_date__lt=datetime.now()).order_by('-pub_date')[0]
     atalak = Atala.objects.filter(publikoa_da=True, pub_date__lt=datetime.now()).exclude(id=atal_nab.id).order_by('-pub_date')
-    atalagehiago = atalak[4:8]
+    atalgehiago = atalak[4:8]
     return render_to_response('getb/index.html', locals(),context_instance=RequestContext(request))
 
 def atala(request,slug):
