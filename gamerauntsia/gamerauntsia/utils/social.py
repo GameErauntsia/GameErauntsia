@@ -43,7 +43,7 @@ def post_to_page(obj, data={}):
         pass
 
 def post_social(obj):
-    post_to_email(obj)
+    #post_to_email(obj)
     post_to_twitter(obj)
     post_to_page(obj)
     return True
