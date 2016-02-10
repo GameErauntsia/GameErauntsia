@@ -41,8 +41,8 @@ class GamePlaya(models.Model):
     izenburua = models.CharField(max_length=64)
     slug = models.SlugField(unique=True,db_index=True, help_text="Eremu honetan game play honen URL helbidea zehazten ari zara.")
     desk = models.TextField(max_length=256)
-    iraupena_min = models.IntegerField(max_length=2,default=0)
-    iraupena_seg = models.IntegerField(max_length=2, null=False,blank=False,default=0)
+    iraupena_min = models.IntegerField(default=0)
+    iraupena_seg = models.IntegerField(null=False,blank=False,default=0)
 
     argazkia = models.ForeignKey(Photo)
     bideoa = models.CharField(max_length=100,null=True,blank=True,help_text="Eremu honetan Youtube bideoaren URL kodea itsatsi behar duzu. Adb.: c21XAuI3aMo")

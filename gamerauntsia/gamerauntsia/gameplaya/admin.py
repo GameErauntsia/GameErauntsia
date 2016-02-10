@@ -19,7 +19,7 @@ class GamePlayAdmin(admin.ModelAdmin):
         return '<a href="/gameplayak/%s">%s</a>' % (obj.slug, obj.slug)
     preview.allow_tags=True
 
-    list_display = ('izenburua', 'preview','zailtasuna', 'jokoa','plataforma','pub_date', 'erabiltzailea','publikoa_da', 'status','admin_thumbnail')
+    list_display = ('izenburua', 'preview','zailtasuna', 'jokoa','plataforma','pub_date', 'erabiltzailea','publikoa_da', 'status','shared','admin_thumbnail')
     prepopulated_fields = {"slug": ("izenburua",)}
     filter_horizontal = ('kategoria',)
     raw_id_fields = ('argazkia','jokoa','plataforma','erabiltzailea')

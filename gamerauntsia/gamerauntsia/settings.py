@@ -103,7 +103,6 @@ INSTALLED_APPS = (
     'emoticons',
     'cssocialuser',
     'registration',
-    'social_auth',
     'django_simple_forum',
     'django_comments',
     'facebookpagewriter',
@@ -126,6 +125,7 @@ INSTALLED_APPS = (
     'datetimewidget',
     'django_bootstrap_calendar',
     'django_messages',
+    'social.apps.django_app.default',
     'django.contrib.admin',
 )
 
@@ -137,6 +137,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.contrib.messages.context_processors.messages',
     'django.core.context_processors.request',
+    'social.apps.django_app.context_processors.backends',
+    'social.apps.django_app.context_processors.login_redirect',
     'gamerauntsia.context_processors.fb_app_id',
 )
 
@@ -162,7 +164,6 @@ SECRET_KEY = '5^!cvi0%23pm%3jo6cu1kmhv=am$3+@_+g@q%sx=mej#2_h41z'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -171,11 +172,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    #'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     'pagination.middleware.PaginationMiddleware',
     'django.middleware.locale.LocaleMiddleware'
-    # Uncomment the next line for simple clickjacking protection:
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
 # Python dotted path to the WSGI application used by Django's runserver.
@@ -199,24 +197,13 @@ ACCOUNT_ACTIVATION_DAYS = 7
 # Custom social user model
 AUTH_USER_MODEL = 'gamer.GamerUser'
 PROFILE_PHOTO_DEFAULT_SLUG = 'default-user'
+SOCIAL_AUTH_USER_MODEL = AUTH_USER_MODEL
 
 #SOCIAL REGISTRATION
 AUTHENTICATION_BACKENDS = (
-    'social_auth.backends.twitter.TwitterBackend',
-    'social_auth.backends.facebook.FacebookBackend',
-    'social_auth.backends.OpenIDBackend',
+    'social.backends.twitter.TwitterOAuth',
+    'social.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
-)
-
-SOCIAL_AUTH_PIPELINE = (
-    'social_auth.backends.pipeline.social.social_auth_user',
-    'social_auth.backends.pipeline.associate.associate_by_email',
-    'social_auth.backends.pipeline.user.get_username',
-    'social_auth.backends.pipeline.user.create_user',
-    'social_auth.backends.pipeline.social.associate_user',
-    'social_auth.backends.pipeline.user.update_user_details',
-    'social_auth.backends.pipeline.social.load_extra_data',
-    'cssocialuser.models.get_user_data',
 )
 
 #TINYMCE PATH
