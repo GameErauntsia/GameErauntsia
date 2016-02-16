@@ -26,7 +26,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.forms import PasswordChangeForm
 from django.template.response import TemplateResponse
 from django_simple_forum.models import Category,Topic
-from django.forms.util import ErrorList
+from django.forms.utils import ErrorList
 from gamerauntsia.utils.urls import get_urlxml
 from gamerauntsia.zerbitzariak.views import set_user_whitelist
 from django.http import HttpResponse
