@@ -26,7 +26,7 @@ django-emoticons == 1.1.2
 django-contrib-comments == 1.6.2
 git+git://github.com/GameErauntsia/django-datetime-widget#egg=django-datetime-widget
 git+git://github.com/GameErauntsia/django-messages#egg=django-messages
-facebookpagewriter == 0.5
+facebookpagewriter == 0.6
 git+git://github.com/danielroseman/django-initd#egg=django-initd
 pyTelegramBotAPI == 0.2.7
 git+git://github.com/GameErauntsia/gamerauntsia.git#egg=gamerauntsia
