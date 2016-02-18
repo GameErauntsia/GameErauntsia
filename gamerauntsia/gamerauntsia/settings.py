@@ -98,7 +98,7 @@ INSTALLED_APPS = (
     'mptt',
     'tagging',
     'photologue',
-    'pagination',
+    'pagination_bootstrap',
     'tinymce',
     'emoticons',
     'cssocialuser',
