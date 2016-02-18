@@ -121,7 +121,7 @@ INSTALLED_APPS = (
     'gamerauntsia.zerbitzariak',
     'gamerauntsia.finished',
     'gamerauntsia.log',
-    'grappelli',
+    #'grappelli',
     'datetimewidget',
     'django_bootstrap_calendar',
     'django_messages',
