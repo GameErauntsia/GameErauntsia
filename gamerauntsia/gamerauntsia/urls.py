@@ -79,7 +79,7 @@ urlpatterns = patterns('',
 
     # KUDEATU
     url(r'^kudeatu/', include(admin.site.urls)),
-    (r'^photologue/', include('photologue.urls')),
+    url(r'^photologue/', include('photologue.urls', namespace='photologue')),
 
     #MEZUAK
     (r'^mezuak/', include('django_messages.urls')),
