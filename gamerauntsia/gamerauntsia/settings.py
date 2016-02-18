@@ -172,7 +172,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'pagination.middleware.PaginationMiddleware',
+    'pagination_bootstrap.middleware.PaginationMiddleware',
     'django.middleware.locale.LocaleMiddleware'
 )
 
