@@ -6,10 +6,13 @@ from gamerauntsia.berriak.forms import BerriaAdminForm
 class BerriakAdmin(admin.ModelAdmin):
 
     def admin_thumbnail(self,obj):
-        if obj.argazkia:
-            return u'<img src="%s" />' % (obj.argazkia.get_admin_thumbnail_url())
-        else:
-            return u'(Irudirik ez)'
+        try:
+            if obj.argazkia:
+                return u'<img src="%s" />' % (obj.argazkia.get_admin_thumbnail_url())
+            else:
+                return u'(Irudirik ez)'
+        except:
+            return '%s' % (obj.argazkia.title)
     admin_thumbnail.short_description = 'Thumb'
     admin_thumbnail.allow_tags = True
 
@@ -17,7 +20,7 @@ class BerriakAdmin(admin.ModelAdmin):
         return '<a href="/bloga/%s">%s</a>' % (obj.slug, obj.slug)
     preview.allow_tags=True
 
-    list_display = ('izenburua', 'preview', 'erabiltzailea', 'pub_date', 'mod_date', 'publikoa_da','status')
+    list_display = ('izenburua', 'preview', 'erabiltzailea', 'pub_date', 'mod_date', 'publikoa_da','status','admin_thumbnail')
     prepopulated_fields = {"slug": ("izenburua",)}
     filter_horizontal = ('gaia',)
     list_filter = ('publikoa_da', 'status')
