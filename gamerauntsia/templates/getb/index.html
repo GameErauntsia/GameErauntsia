@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load pagination_tags include comments gamerauntsia %}
+
+{% block title %}GETB - {% endblock %}
+
+{% block content %}
+<div class="row">
+
+        <div class="col-lg-12">
+            <h1 class="page-header">GETB
+                <small>
+                    Bideojokoen telebista
+                </small>
+            </h1>
+        </div>
+
+        <div class="col-sm-10">
+            <div class="flex-video widescreen">
+                <iframe width="1000" src="//www.youtube.com/embed/{{atal_nab.bideoa}}" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <h2><a href="{{atal_nab.get_absolute_url}}">{{atal_nab.izenburua}}</a></h2>
+        </div>
+
+        <div class="col-sm-2">
+            {% autopaginate atalak 8 %}
+            {% for atala in atalak %}
+            {% get_comment_count for atala as comment_count %}
+
+            <div class="row">
+                <a href="{{atala.get_absolute_url}}">
+                    <img class="img-responsive" src="{{atala.argazkia.get_gp_thumbnail_url}}">
+                </a>
+                <h4><a href="{{atala.get_absolute_url}}">{{atala.izenburua}}</a></h4>
+                <p><span class="glyphicon glyphicon-time"></span> {{atala.iraupena_min}}min {{atala.iraupena_seg}}seg{% if comment_count %} | <a href="{{atala.get_absolute_url}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}</p>
+            </div>
+            {% endfor %}
+
+            <hr>
+
+            {% paginate %}
+        </div>
+</div>
+
+{% endblock %}
