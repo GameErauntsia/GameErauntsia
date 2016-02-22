@@ -1,12 +1,6 @@
 from django import forms
 from django.conf import settings
+from captcha.fields import ReCaptchaField
 
-class ContactForm(forms.ModelForm):
-    email = forms.EmailField()
-    subject = forms.CharField()
-    text = forms.CharField(widget=TextArea())
-
-
-    class Meta:
-        model = Berria
-        fields = '__all__'
+class ContactForm(forms.Form):
+    captcha = ReCaptchaField(label="")

@@ -11,22 +11,25 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-8">
 		<div id="contactForm" class="inline">
 			<form action="bidali/" method="POST">
-			{% csrf_token %}
-			<fieldset>
-				<div class="input-group">
-  					<span class="input-group-addon">@</span><input type="text" name="eposta" class="form-control" placeholder="nire@helbidea.com"/>
-  				</div>
-  				<br/>
-  				<div class="input-group">
+				{% csrf_token %}
+				<div class="form-group">
+					<div class="input-group">
+	  					<div class="input-group-addon">@</div><input type="text" name="eposta" class="form-control" placeholder="nire@helbidea.com"/>
+	  				</div>
+	  			</div>
+  				<div class="form-group">
   					<input type="text" name="gaia" class="form-control" placeholder="Zeri buruz ari zara?"/>
   				</div>
-				<br/>
-			    <textarea name="iruzkina" class="epostamezua" cols="50" rows="15"/></textarea><br/>
+				<div class="form-group">
+			    	<textarea name="iruzkina" class="form-control" cols="50" rows="15"/></textarea>
+			    </div>
+			    <div class="form-group">
+  					{{form}}
+  				</div>
 				<input class="btn btn-primary" type="submit" value="Bidali" />
-			</fieldset>
 			</form>
 		</div>
 	</div>
