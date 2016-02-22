@@ -10,8 +10,8 @@ from gamerauntsia.base.feed import LatestEntriesFeed, LatestNewsFeed
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    (r'^robots.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: ", mimetype="text/plain")),
-    (r'^3dedcce0621f78db1fdf62d2bb02148e.txt$', lambda r: HttpResponse("3dedcce0621f78db1fdf62d2bb02148e", mimetype="text/plain")),
+    (r'^robots.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: ", content_type="text/plain")),
+    (r'^3dedcce0621f78db1fdf62d2bb02148e.txt$', lambda r: HttpResponse("3dedcce0621f78db1fdf62d2bb02148e", content_type="text/plain")),
 
     url(r'^$', 'gamerauntsia.views.index', name='index'),
 
@@ -74,21 +74,15 @@ urlpatterns = patterns('',
     # COMMENTS
     (r'^comments/', include('django_comments.urls')),
 
-    # GRAPPELLI
-    (r'^grappelli/', include('grappelli.urls')),
-
     # KUDEATU
     url(r'^kudeatu/', include(admin.site.urls)),
-    (r'^photologue/', include('photologue.urls')),
+    url(r'^photologue/', include('photologue.urls', namespace='photologue')),
 
     #MEZUAK
     (r'^mezuak/', include('django_messages.urls')),
 
     #EGUTEGIA
     (r'^calendar/', include('django_bootstrap_calendar.urls')),
-
-    #API
-    (r'^api/', include('gamerauntsia.api.urls')),
 
     #ERABILERA ETA PRIBATUTASUNA
     (r'^erabilera-baldintzak/$', TemplateView.as_view(template_name='erabilera_baldintzak.html')),
@@ -99,7 +93,9 @@ urlpatterns = patterns('',
     #AJAX ESKAERAK
     url(r'^ajax/get_jokoak/', 'gamerauntsia.gamer.views.get_jokoak', name='ajax_jokoak'),
     url(r'^ajax/get_erabiltzaileak/', 'gamerauntsia.gamer.views.get_user', name='ajax_user'),
-    url(r'^ajax/post_finished/', 'gamerauntsia.finished.views.add_finished', name='ajax_finished')
+    url(r'^ajax/post_finished/', 'gamerauntsia.finished.views.add_finished', name='ajax_finished'),
+
+    url('', include('social.apps.django_app.urls', namespace='social'))
 )
 
 

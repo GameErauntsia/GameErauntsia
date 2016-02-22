@@ -38,13 +38,11 @@ class GamerUser(CSAbstractSocialUser):
     nickname = models.CharField(max_length=64,null=True,blank=True)
     telegram_id = models.IntegerField(verbose_name="Telegram kodea",null=True,blank=True)
     is_gamer = models.BooleanField(default=False)
-    top_jokoak = models.ManyToManyField(Jokoa,null=True,blank=True)
+    top_jokoak = models.ManyToManyField(Jokoa, blank=True)
     signature = models.TextField(verbose_name="Foro sinadura",null=True,blank=True)
     ytube_channel = models.CharField(max_length=150,null=True,blank=True)
     email_notification = models.BooleanField(default=True, verbose_name="Eztabaidak")
     buletin_notification = models.BooleanField(default=True, verbose_name="Buletinak")
-
-    #ALTER TABLE `gamer_gameruser` ADD `motherboard` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `processor` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `graphics` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `soundcard` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `ram` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `harddrive` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `harddrive2` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `mouse` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `keyboard` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL , ADD `speakers` VARCHAR(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL ;
     motherboard = models.CharField(verbose_name="Txartel nagusia",max_length=150,null=True,blank=True)
     processor = models.CharField(verbose_name="Prozesagailua",max_length=150,null=True,blank=True)
     graphics = models.CharField(verbose_name="Txartel grafikoa",max_length=150,null=True,blank=True)

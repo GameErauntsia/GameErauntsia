@@ -21,6 +21,6 @@
 		<li><a href="{% url 'auth_logout' %}?next=/"><span class="glyphicon glyphicon-off"></span> Irten</a></li>
 	</ul>
 {%else%}
-    <a class="login btn btn-primary" href="{% url 'auth_login' %}?next={{request.path}}" title="Log in">
-		{% trans 'Log in' %}</a>
+    <a class="login btn btn-primary" href="{% url 'auth_login' %}?next={{request.path}}" title="Sartu">
+		Sartu</a>
 {%endif%}

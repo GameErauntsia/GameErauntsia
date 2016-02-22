@@ -11,3 +11,4 @@ class AurkezpenaAdminForm(forms.ModelForm):
 
     class Meta:
         model = Aurkezpena
+        fields = '__all__'

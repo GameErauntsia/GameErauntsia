@@ -12,3 +12,4 @@ class BerriaAdminForm(forms.ModelForm):
 
     class Meta:
         model = Berria
+        fields = '__all__'

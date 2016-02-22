@@ -6,10 +6,13 @@ from datetime import datetime
 class JokoaAdmin(admin.ModelAdmin):
 
     def admin_thumbnail(self,obj):
-        if obj.logoa:
-            return u'<img src="%s" />' % obj.logoa.get_admin_thumbnail_url()
-        else:
-            return '(Irudirik ez)'
+        try:
+            if obj.logoa:
+                return u'<img src="%s" />' % (obj.logoa.get_admin_thumbnail_url())
+            else:
+                return u'(Irudirik ez)'
+        except:
+            return '%s' % (obj.logoa.title)
     admin_thumbnail.short_description = 'Thumb'
     admin_thumbnail.allow_tags = True
 

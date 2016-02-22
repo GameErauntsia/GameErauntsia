@@ -19,3 +19,4 @@ class EventForm(forms.ModelForm):
 
     class Meta:
         model = CalendarEvent
+        fields = "__all__"

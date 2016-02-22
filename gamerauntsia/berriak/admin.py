@@ -6,10 +6,13 @@ from gamerauntsia.berriak.forms import BerriaAdminForm
 class BerriakAdmin(admin.ModelAdmin):
 
     def admin_thumbnail(self,obj):
-        if obj.argazkia:
-            return u'<img src="%s" />' % (obj.argazkia.get_admin_thumbnail_url())
-        else:
-            return u'(Irudirik ez)'
+        try:
+            if obj.argazkia:
+                return u'<img src="%s" />' % (obj.argazkia.get_admin_thumbnail_url())
+            else:
+                return u'(Irudirik ez)'
+        except:
+            return '%s' % (obj.argazkia.title)
     admin_thumbnail.short_description = 'Thumb'
     admin_thumbnail.allow_tags = True
 

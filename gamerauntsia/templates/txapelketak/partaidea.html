@@ -22,11 +22,14 @@
             <div class="col-sm-12">
                 {% if partaidea.ordezkoak.all %}
                 <h2><span class="glyphicon glyphicon-user"></span> Ordezko jokalariak</h2>
-                {% for j in partaidea.jokalariak.all %}
-                <a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{j.getFullName}}"/></a>
+                {% for j in partaidea.ordezkoak.all %}
+                <div class="player col-sm-2">
+                    <a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{j.getFullName}}"/><span class="badge userpic">{{j.getFullName}}</span></a>
+                </div>
                 {% endfor %}
                 {% endif %}
             </div>
+            {% if partaidea.get_partidak %}
             <h2><span class="glyphicon glyphicon-calendar"></span> Jardunaldiak</h2>
             <div class="table-responsive">
                 <table class="table table-condensed table-hover">
@@ -52,6 +55,7 @@
                     </tbody>
                 </table>
             </div>
+            {% endif %}
             {% if next_parts %}
                 <h2><span class="glyphicon glyphicon-tower"></span> Partida +</h2>
                 {% for part in next_parts %}
