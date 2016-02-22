@@ -105,6 +105,7 @@ INSTALLED_APPS = (
     'django_comments',
     'facebookpagewriter',
     'bootstrapform',
+    'captcha',
     'gamerauntsia',
     'gamerauntsia.gameplaya',
     'gamerauntsia.base',
