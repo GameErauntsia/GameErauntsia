@@ -20,5 +20,5 @@ def bidali(request):
             iruzkina = request.POST.get('iruzkina')
             tmpl = loader.render_to_string('kontaktua/email_tmpl.html',{'email':eposta,'body': iruzkina})
             send_mail(settings.EMAIL_SUBJECT+' '+gaia, tmpl, settings.DEFAULT_FROM_EMAIL,[settings.DEFAULT_TO_EMAIL], fail_silently=False)
-        return render_to_response('kontaktua/bidalita.html', h,context_instance=RequestContext(request))
+        	return render_to_response('kontaktua/bidalita.html', h,context_instance=RequestContext(request))
     return render_to_response('kontaktua/index.html', locals(), context_instance=RequestContext(request))
