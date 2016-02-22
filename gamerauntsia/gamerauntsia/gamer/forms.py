@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.safestring import mark_safe
 from gamerauntsia.berriak.models import Berria, Gaia
 from gamerauntsia.gamer.models import GamerUser, JokuPlataforma, AmaitutakoJokoak
 from gamerauntsia.gameplaya.models import Kategoria, GamePlaya
@@ -88,7 +89,7 @@ class GamePlayForm(forms.ModelForm):
 
     jokoa = forms.ModelChoiceField(label="Jokoa", queryset=Jokoa.objects.all().order_by('izena'))
     
-    lizentzia = forms.BooleanField(label="")
+    lizentzia = forms.BooleanField(label="Irakurri eta onartzen ditut gameplayak igotzeko arauak", help_text=mark_safe('Informazioa gehiago <a href="/gameplay-arauak">gameplay arauetan</a>.'))
     
     def clean_lizentzia(self):
         lizentzia = self.cleaned_data['lizentzia']

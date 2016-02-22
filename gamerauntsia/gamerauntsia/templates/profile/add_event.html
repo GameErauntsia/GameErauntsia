@@ -1,22 +1,17 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n bootstrap %}
 
 {% block morejs %}
     {{ eventform.media }}
 {% endblock %}
 
 {% block content %}
-<div class="col-sm-12">
+<div class="row">
     <h1>Gehitu ekitaldia</h1>
-    <div class="col-sm-4">
+    <div class="col-sm-8">
         <form action="{{request.path}}" method="POST">
             {% csrf_token %}
-            {% for field in eventform %}
-            <p>
-                {% if field.errors %}<div class="alert alert-danger">{{ field.errors.as_text }}</div>{% endif %}
-                {% if field.label %}<strong>{{field.label}}:</strong>{% endif %} {{field}} <span class="helptext">{{field.help_text}}</span>
-            </p>
-            {% endfor %}
+            {{eventform|bootstrap}}
             <input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
         </form>
     </div>
