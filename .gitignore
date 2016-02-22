@@ -1,3 +1,3 @@
 *.pyc
 local_settings.py
-server_settings.py
+#server_settings.py
