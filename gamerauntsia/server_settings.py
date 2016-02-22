@@ -34,8 +34,6 @@ DATABASES = {
 MEDIA_ROOT = '/srv/data/web/vhosts/default/media/'
 STATIC_ROOT = '/srv/data/web/vhosts/default/static/'
 
-
-
 #TELEGRAM BOT
 DIRNAME = '/home/csmant/django/gamerauntsia/'
 TELEBOT_TOKEN = '107547414:AAEXaH2tSNcnaehNq_7NNbNKb1VfDbaa6Qs'
