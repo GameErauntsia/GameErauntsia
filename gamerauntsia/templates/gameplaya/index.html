@@ -36,10 +36,10 @@
             {% endif %}
 
                 <div class="col-md-6 portfolio-item">
-                    <a href="{{gp.get_absolute_url}}">
+                    <a href="{% url 'gameplay' gp.slug %}">
                         <img class="img-responsive" src="{{gp.argazkia.get_gp_thumbnail_url}}">
                     </a>
-                    <h3><a href="{{gp.get_absolute_url}}">{{gp.izenburua}}</a></h3>
+                    <h3><a href="{% url 'gameplay' gp.slug %}">{{gp.izenburua}}</a></h3>
                     <p><span class="glyphicon glyphicon-play"></span> <a href="{% url 'game' gp.jokoa.slug %}">{{gp.jokoa.izena}} {%if gp.jokoa.bertsioa %}{{gp.jokoa.bertsioa}}{% endif %}</a> | <span class="glyphicon glyphicon-time"></span> {{gp.iraupena_min}}min {{gp.iraupena_seg}}seg | <img src="{{gp.plataforma.icon.get_profilesmall_url}}" alt="{{gp.plataforma.izena}}" caption="{{gp.plataforma.izena}}"/>{% if comment_count %} | <a href="{{gp.get_absolute_url}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}</p>
                     <p>{{gp.get_desk_txikia|safe}}</p>
                 </div>

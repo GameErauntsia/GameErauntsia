@@ -44,7 +44,7 @@ class Txapelketa(models.Model):
     twitch = models.BooleanField(default=False)
     hashtag = models.CharField(max_length=100,null=True,blank=True)
 
-    jokalariak = models.ManyToManyField(GamerUser,related_name="jokalariak",verbose_name="Inskripzioa",null=True,blank=True)
+    jokalariak = models.ManyToManyField(GamerUser,related_name="jokalariak",verbose_name="Inskripzioa", blank=True)
 
     jokoa = models.ForeignKey(Jokoa)
     adminak = models.ManyToManyField(GamerUser,related_name="adminak",verbose_name="Egileak")
@@ -72,6 +72,8 @@ class Txapelketa(models.Model):
             has_team = False
             for team in teams:
                 if gamer in team.jokalariak.all():
+                    has_team = True
+                elif gamer in team.ordezkoak.all():
                     has_team = True
                 if has_team:
                     break
@@ -149,8 +151,8 @@ class Partaidea(models.Model):
     txapelketa = models.ForeignKey(Txapelketa)
     irabazlea = models.BooleanField(default=False)
 
-    jokalariak = models.ManyToManyField(GamerUser,null=True,blank=True,verbose_name="Titularrak")
-    ordezkoak = models.ManyToManyField(GamerUser,related_name="ordezkoak", null=True,blank=True,verbose_name="Ordezkoak")
+    jokalariak = models.ManyToManyField(GamerUser, blank=True,verbose_name="Titularrak")
+    ordezkoak = models.ManyToManyField(GamerUser,related_name="ordezkoak", blank=True,verbose_name="Ordezkoak")
     kapitaina = models.ForeignKey(GamerUser, related_name="kapitaina", null=True,blank=True)
 
     win = models.IntegerField('Irabazitakoak', default=0)
@@ -214,7 +216,7 @@ class Partaidea(models.Model):
         return self.get_izena()
 
 class Partida(MPTTModel):
-    partaideak = models.ManyToManyField(Partaidea,null=True,blank=True)
+    partaideak = models.ManyToManyField(Partaidea, blank=True)
     parent = TreeForeignKey('self', null=True, blank=True, related_name='children')
     jardunaldia = models.IntegerField('Jardunaldia', default=1)
     emaitza = models.CharField(max_length=50,null=True,blank=True)

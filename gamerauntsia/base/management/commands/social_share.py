@@ -1,5 +1,4 @@
 from django.core.management.base import BaseCommand
-from django.conf import settings
 import datetime
 from django.db.models import Q
 from gamerauntsia.berriak.models import Berria
@@ -63,6 +62,10 @@ def social_share(minutuak):
 
 class Command(BaseCommand):
    help = 'Social share'
+
+   def add_arguments(self, parser):
+        parser.add_argument('minutuak', type=int)
+
    def handle(self, *args, **options):
-       minutuak=args[0]
+       minutuak = options.get('minutuak', 0)
        social_share(minutuak)

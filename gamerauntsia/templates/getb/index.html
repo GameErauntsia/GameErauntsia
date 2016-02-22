@@ -22,7 +22,7 @@
         </div>
 
         <div class="col-sm-2">
-            {% autopaginate atalak 8 %}
+            {% autopaginate atalak 3 %}
             {% for atala in atalak %}
             {% get_comment_count for atala as comment_count %}
 
@@ -34,11 +34,25 @@
                 <p><span class="glyphicon glyphicon-time"></span> {{atala.iraupena_min}}min {{atala.iraupena_seg}}seg{% if comment_count %} | <a href="{{atala.get_absolute_url}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}</p>
             </div>
             {% endfor %}
-
+            {% if not forloop.last %}
             <hr>
-
-            {% paginate %}
+            {% endif %}
         </div>
+</div>
+<hr/>
+<div class="row">
+    <h2>Atal gehiago</h2>
+    {% for atala in atalgehiago %}
+        {% get_comment_count for atala as comment_count %}
+        <div class="col-sm-3">
+            <a href="{{atala.get_absolute_url}}">
+                <img class="img-responsive" src="{{atala.argazkia.get_gp_thumbnail_url}}">
+            </a>
+            <h4><a href="{{atala.get_absolute_url}}">{{atala.izenburua}}</a></h4>
+            <p><span class="glyphicon glyphicon-time"></span> {{atala.iraupena_min}}min {{atala.iraupena_seg}}seg{% if comment_count %} | <a href="{{atala.get_absolute_url}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}</p>
+            <hr>
+        </div>
+    {% endfor %}
 </div>
 
 {% endblock %}

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n bootstrap %}
 
 {% block morejs %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/tinymce/tinymce.min.js"></script>
@@ -10,19 +10,7 @@
     <h1>Gehitu gameplaya</h1>
     <form action="{{request.path}}" method="POST" ENCTYPE="multipart/form-data">
         {% csrf_token %}
-        {% for field in gameplayform %}
-        <p>
-            {% if field.errors %}<div class="alert alert-danger">{{ field.errors.as_text }}</div>{% endif %}
-            {% if field.name == 'kategoria' %}
-                <strong>{{field.label}}:</strong><br/>{{field}} <br/><span class="helptext">{{field.help_text}}</span>
-            {% else %}
-                {% if field.name == 'lizentzia' %}
-                <label for="id_lizentzia">Irakurri eta onartzen ditut <a href="/gameplay-arauak">gameplayak igotzeko arauak</a>.</label>
-                {% endif %}
-                {% if field.label %}<strong>{{field.label}}:</strong>{% endif %} {{field}} <span class="helptext">{{field.help_text}}</span>
-            {% endif %}
-        </p>
-        {% endfor %}
+        {{gameplayform|bootstrap}}
         <input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
     </form>
     <hr/>

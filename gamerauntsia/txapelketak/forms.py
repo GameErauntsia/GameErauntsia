@@ -25,6 +25,7 @@ class TxapelketaAdminForm(forms.ModelForm):
 
     class Meta:
         model = Txapelketa
+        fields = '__all__'
 
 
 class TaldeaForm(forms.ModelForm):
