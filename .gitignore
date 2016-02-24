@@ -2,8 +2,8 @@
 wsgi.py
 local_settings.py
 /**/*settings.py
-gamerauntsia/**/settings.py
-gamerauntsia//**/server_settings.py
+gamerauntsia/gamerauntsia/settings.py
+gamerauntsia/gamerauntsia/server_settings.py
 
 #server_settings.py
 /media
