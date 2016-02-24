@@ -4,6 +4,7 @@ local_settings.py
 /media
 /static
 
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
