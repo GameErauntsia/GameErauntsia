@@ -2,7 +2,7 @@
 
 import os
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 DEFAULT_FROM_EMAIL = 'Game Erauntsia <no-reply@gamerauntsia.eus>'
 BULETIN_FROM_EMAIL = DEFAULT_FROM_EMAIL
@@ -23,9 +23,9 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'default_db',                      # Or path to database file if using sqlite3.
+        'NAME': 'gamerauntsia',                      # Or path to database file if using sqlite3.
         'USER': 'root',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
+        'PASSWORD': '!Admin1234',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -59,7 +59,8 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = '/srv/data/web/vhosts/default/media/'
+#MEDIA_ROOT = '/srv/data/web/vhosts/default/media/'
+MEDIA_ROOT = '/Users/ikerib/django/gamedev/gamerauntsia/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -70,7 +71,8 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/srv/data/web/vhosts/default/static/'
+#STATIC_ROOT = '/srv/data/web/vhosts/default/static/'
+STATIC_ROOT = '/Users/ikerib/django/gamedev/gamerauntsia/static/'
 
 STATIC_DOC_ROOT = STATIC_ROOT
 MEDIA_DOC_ROOT = MEDIA_ROOT
@@ -213,25 +215,25 @@ TINYMCE_JS_URL = STATIC_URL + "js/tinymce/tinymce.min.js"
 
 #TELEGRAM BOT
 DIRNAME = '/home/csmant/django/gamerauntsia/'
-TELEBOT_TOKEN = '107547414:AAEXaH2tSNcnaehNq_7NNbNKb1VfDbaa6Qs'
+TELEBOT_TOKEN = '107547414:1111'
 MC_CHAT_ID = '-31046360'
 EDITOR_CHAT_ID = '-18452263'
 
 #Twitter API
-TWITTER_API_KEY = 'QMPvaez5H2KpBWP9CwnfYTU2M'
-TWITTER_API_SECRET = 'PIqjFcoSLiaB8RE20KcUjrqI4RAYb8RwzGIfHy43D8zhJttqcc'
+TWITTER_API_KEY = '111'
+TWITTER_API_SECRET = '111'
 TWITTER_CONSUMER_KEY = TWITTER_API_KEY
 TWITTER_CONSUMER_SECRET = TWITTER_API_SECRET
 TWITTER_USERNAME = 'gamerauntsia'
-TWITTER_ACCESS_TOKEN = '2663678179-XsYD1snwUqvc7VJryppOPJFbAwO3iFGLsNsaMkE'
-TWITTER_ACCESS_TOKEN_SECRET = 'ZmwQ82fbfIGWY8voHbzfIYKmkT8egMcSOIWGlGE8cZeyD'
+TWITTER_ACCESS_TOKEN = '11111'
+TWITTER_ACCESS_TOKEN_SECRET = '1111'
 TWITTER_MAXLENGTH = 140
 
 #Facebook API
-FB_APP_ID = '1466131240329239'
+FB_APP_ID = '11'
 FACEBOOK_APP_ID = FB_APP_ID
-FB_APP_SECRET = '69cf0d955b37aa12cb0f30857e250fc4'
-FB_PAGE_ID = '326435330850157'
+FB_APP_SECRET = '11'
+FB_PAGE_ID = '111'
 
 FACEBOOK_EXTENDED_PERMISSIONS = [
     'publish_stream',
