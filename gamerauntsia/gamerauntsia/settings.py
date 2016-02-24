@@ -2,20 +2,17 @@
 
 import os
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
-DEFAULT_FROM_EMAIL = 'Game Erauntsia <no-reply@gamerauntsia.eus>'
+DEFAULT_FROM_EMAIL = ''
 BULETIN_FROM_EMAIL = DEFAULT_FROM_EMAIL
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
 EMAIL_SUBJECT_PREFIX = '[Game Erauntsia] '
-DEFAULT_TO_EMAIL = 'Game Erauntsia <kontaktua@gamerauntsia.eus>'
+DEFAULT_TO_EMAIL = ''
 EMAIL_SUBJECT = EMAIL_SUBJECT_PREFIX
 
-EMAIL_HOST = 'smtp1.dc2.gpaas.net'
-
-
 ADMINS = (
-    ('Urtzi Odriozola', 'urtzi.odriozola@gmail.com'),
+    ('Admin', 'admin@domain.com'),
 )
 
 MANAGERS = ADMINS
@@ -23,9 +20,9 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'gamerauntsia',                      # Or path to database file if using sqlite3.
-        'USER': 'root',                      # Not used with sqlite3.
-        'PASSWORD': '!Admin1234',                  # Not used with sqlite3.
+        'NAME': '',                      # Or path to database file if using sqlite3.
+        'USER': '',                      # Not used with sqlite3.
+        'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -59,8 +56,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-#MEDIA_ROOT = '/srv/data/web/vhosts/default/media/'
-MEDIA_ROOT = '/Users/ikerib/django/gamedev/gamerauntsia/media/'
+MEDIA_ROOT = ''
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -71,8 +67,7 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-#STATIC_ROOT = '/srv/data/web/vhosts/default/static/'
-STATIC_ROOT = '/Users/ikerib/django/gamedev/gamerauntsia/static/'
+STATIC_ROOT = ''
 
 STATIC_DOC_ROOT = STATIC_ROOT
 MEDIA_DOC_ROOT = MEDIA_ROOT
@@ -109,6 +104,8 @@ INSTALLED_APPS = (
     'django_simple_forum',
     'django_comments',
     'facebookpagewriter',
+    'bootstrapform',
+    'captcha',
     'gamerauntsia',
     'gamerauntsia.gameplaya',
     'gamerauntsia.base',
@@ -124,7 +121,6 @@ INSTALLED_APPS = (
     'gamerauntsia.zerbitzariak',
     'gamerauntsia.finished',
     'gamerauntsia.log',
-    #'grappelli',
     'datetimewidget',
     'django_bootstrap_calendar',
     'django_messages',
@@ -215,25 +211,25 @@ TINYMCE_JS_URL = STATIC_URL + "js/tinymce/tinymce.min.js"
 
 #TELEGRAM BOT
 DIRNAME = '/home/csmant/django/gamerauntsia/'
-TELEBOT_TOKEN = '107547414:1111'
-MC_CHAT_ID = '-31046360'
-EDITOR_CHAT_ID = '-18452263'
+TELEBOT_TOKEN = ''
+MC_CHAT_ID = ''
+EDITOR_CHAT_ID = ''
 
 #Twitter API
-TWITTER_API_KEY = '111'
-TWITTER_API_SECRET = '111'
+TWITTER_API_KEY = ''
+TWITTER_API_SECRET = ''
 TWITTER_CONSUMER_KEY = TWITTER_API_KEY
 TWITTER_CONSUMER_SECRET = TWITTER_API_SECRET
 TWITTER_USERNAME = 'gamerauntsia'
-TWITTER_ACCESS_TOKEN = '11111'
-TWITTER_ACCESS_TOKEN_SECRET = '1111'
+TWITTER_ACCESS_TOKEN = ''
+TWITTER_ACCESS_TOKEN_SECRET = ''
 TWITTER_MAXLENGTH = 140
 
 #Facebook API
-FB_APP_ID = '11'
+FB_APP_ID = ''
 FACEBOOK_APP_ID = FB_APP_ID
-FB_APP_SECRET = '11'
-FB_PAGE_ID = '111'
+FB_APP_SECRET = ''
+FB_PAGE_ID = ''
 
 FACEBOOK_EXTENDED_PERMISSIONS = [
     'publish_stream',
@@ -280,11 +276,17 @@ LOGGING = {
 }
 
 try:
-   from tiny_mce_settings import *
+    from tiny_mce_settings import *
 except:
-   pass
+    pass
+
+try:
+    from server_settings import *
+except:
+    pass
 
 try:
     from local_settings import *
 except:
     pass
+
