@@ -6,7 +6,8 @@ from gamerauntsia.zerbitzariak.models import MC_Whitelist
 from gamerauntsia.gamer.models import JokuPlataforma
 from gamerauntsia.utils.urls import get_urljson
 
-def set_user_whitelist(user,nick=None):
+
+def set_user_whitelist(user, nick=None):
     if user:
         ml = None
         if MC_Whitelist.objects.filter(user=user).exists() and nick:
@@ -19,19 +20,21 @@ def set_user_whitelist(user,nick=None):
                 ml.user = user
 
         if ml:
-            uuid = get_urljson('https://api.mojang.com/users/profiles/minecraft/'+ml.mc_user)
+            uuid = get_urljson('https://api.mojang.com/users/profiles/minecraft/' + ml.mc_user)
             if uuid:
                 ml.uuid = uuid['id']
             ml.save()
             return True
     return False
 
+
 def minecraft_server(request):
     user = request.user
     mc_list = MC_Whitelist.objects.all().order_by('-created')[:10]
     mc_admin_list = MC_Whitelist.objects.filter(rol='a')
     mc_vip_list = MC_Whitelist.objects.filter(rol='v')
-    return render_to_response('zerbitzariak/minecraft.html', locals(),context_instance=RequestContext(request))
+    return render_to_response('zerbitzariak/minecraft.html', locals(), context_instance=RequestContext(request))
+
 
 def minecraft_add(request):
     user = request.user

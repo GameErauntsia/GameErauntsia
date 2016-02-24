@@ -1,6 +1,6 @@
 *.pyc
 local_settings.py
-gamerauntsia/gamerauntsia/server_settings.py
+server_settings.py
 gamerauntsia/gamerauntsia/settings.py
 #server_settings.py
 /media
