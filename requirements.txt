@@ -32,5 +32,4 @@ git+git://github.com/GameErauntsia/django-messages#egg=django-messages
 facebookpagewriter == 0.6
 git+git://github.com/danielroseman/django-initd#egg=django-initd
 pyTelegramBotAPI == 0.2.7
-git+git://github.com/GameErauntsia/GameErauntsia.git#egg=gamerauntsia
 tweepy == 2.3.0
