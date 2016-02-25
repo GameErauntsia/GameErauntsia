@@ -1,6 +1,7 @@
 from django import template
-from registration.forms import RegistrationForm
+from registration.forms import RegistrationFormUniqueEmail
 from photologue.models import Photo
+from bootstrapform.templatetags.bootstrap import bootstrap
 from django import forms
 import urllib2
 import xmltodict
@@ -17,8 +18,8 @@ def get_urlxml(url):
     return stream
 
 def regform(request):
-    forma=RegistrationForm()
-    return forma.as_p()
+    forma = RegistrationFormUniqueEmail()
+    return bootstrap(forma)
 
 register.simple_tag(regform)
 

@@ -24,7 +24,7 @@
 {% block content %}
 
 <div class="row">
-    <div class="col-lg-8">
+    <div class="col-sm-8">
         <div class="flex-video widescreen">
             {% if atala.bideoa %}
             <iframe width="700" height="394" src="//www.youtube.com/embed/{{atala.bideoa}}" frameborder="0" allowfullscreen></iframe>
@@ -37,7 +37,7 @@
 
         {% render_comment_form for atala %}
     </div>
-    <div class="col-lg-4">
+    <div class="col-sm-4">
         {% if user.is_authenticated %}
             {% if user.is_superuser %}
             <div class="well">
@@ -52,10 +52,10 @@
             <div class="well">
             {% for atal in related_atalak %}
                 <div class="row bloglist">
-                    <div class="col-lg-4">
+                    <div class="col-sm-4">
                         <a href="{{atal.get_absolute_url}}"><img src="{{atal.argazkia.get_newsprofile_url}}" /></a>
                     </div>
-                    <div class="col-lg-8">
+                    <div class="col-sm-8">
                         <p><strong><a href="{{atal.get_absolute_url}}">{{atal.izenburua}}</strong></a><p>
                     </div>
                 </div>

@@ -35,7 +35,7 @@ urlpatterns = patterns('',
     url(r'^nor-gara/', include('gamerauntsia.gamer.urls')),
     url(r'^komunitatea/$', 'gamerauntsia.gamer.views.community', name='komunitatea'),
     (r'^komunitatea/', include('cssocialuser.urls')),
-    (r'^komunitatea/', include('registration.urls')),
+    (r'^komunitatea/', include('registration.backends.default.urls')),
 
     #AURKEZPENAK
     (r'^aurkezpenak/', include('gamerauntsia.aurkezpenak.urls')),

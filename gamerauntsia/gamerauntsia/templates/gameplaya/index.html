@@ -6,7 +6,7 @@
 {% block content %}
 <div class="row">
 
-        <div class="col-lg-12">
+        <div class="col-sm-12">
             <h1 class="page-header">Game Playak
                 <small>
                 {% if kategoria %}
@@ -26,7 +26,7 @@
             </h1>
         </div>
 
-        <div class="col-lg-8">
+        <div class="col-sm-8">
             {% autopaginate gameplayak 8 %}
             {% for gp in gameplayak %}
             {% get_comment_count for gp as comment_count %}
@@ -54,7 +54,7 @@
             {% paginate %}
         </div>
 
-        <div class="col-lg-4">
+        <div class="col-sm-4">
             <div id="azkenErantzunak">
                 <h2>Azken erantzunak</h2>
                 {% azken_erantzunak 'GamePlaya' %}
@@ -65,7 +65,7 @@
                 <hr/>
                 <h4><span class="glyphicon glyphicon-tag"></span> Kategoriak</h4>
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-sm-12">
                         <ul class="list-unstyled">
                             {% for kategoria in kategoriak %}
                             <li><a href="{% url 'gameplay_category' kategoria.slug %}">{{kategoria.izena}}</a></li>
@@ -75,7 +75,7 @@
                 </div>
                 <h4><span class="glyphicon glyphicon-play"></span> Jokoa</h4>
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-sm-12">
                         <ul class="list-unstyled">
                             {% for jokoa in jokoak %}
                             <li><a href="{% url 'gameplay_game' jokoa.slug %}">{{jokoa.izena}} {%if jokoa.bertsioa %}{{jokoa.bertsioa}}{% endif %}</a></li>
@@ -85,7 +85,7 @@
                 </div>
                 <h4><span class="glyphicon glyphicon-phone"></span> Plataforma</h4>
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-sm-12">
                         <ul class="list-unstyled">
                             {% for plat in plataformak %}
                             <li><a href="{% url 'gameplay_platform' plat.slug %}"><img src="{{plat.icon.get_profilesmall_url}}"/> {{plat.izena}}</a></li>
@@ -95,7 +95,7 @@
                 </div>
                 <h4><span class="glyphicon glyphicon-fire"></span> Zailtasuna</h4>
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-sm-6">
                         <ul class="list-unstyled">
                             {% for zaila in zailtasunak %}
                             <li><a href="{% url 'gameplay_level' zaila.slug %}">{{zaila.izena}}</a></li>
@@ -109,7 +109,7 @@
                 <h3>Jokalariak</h3>
                 <hr/>
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-sm-12">
                         {% for user in users %}
                         <p><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.fullname}}</a></p>
                         {% endfor %}

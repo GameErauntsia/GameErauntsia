@@ -25,7 +25,7 @@ class MyUserCreationForm(ModelForm):
 
     class Meta:
         model = GamerUser
-        fields = '__all__'
+        exclude = '__all__'
 
     def clean_password2(self):
         # Check that the two password entries match

@@ -3,11 +3,11 @@
 
 {% block content %}
 <div class="row">
-        <div class="col-lg-12">
+        <div class="col-sm-12">
             <h1 class="page-header">Minecraft zerbitzaria</h1>
         </div>
 
-        <div class="col-lg-8">
+        <div class="col-sm-8">
 
             <div class="row carousel-holder">
                 <div class="col-md-12">
@@ -106,7 +106,7 @@
 
         </div>
 
-        <div class="col-lg-4">
+        <div class="col-sm-4">
             <div class="well">
                 <h2>Izen ematea</h2>
                 {% if user.is_authenticated %}
@@ -141,7 +141,7 @@
         	<div class="well">
         		<h2>Azken 10 erabiltzaileak</h2>
         		<div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-sm-12">
                         {% for mc in mc_list %}
                         <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{mc.user.getFullName}}</a></p>
                         {% endfor %}
@@ -151,7 +151,7 @@
         	<div class="well">
         		<h2>VIP erabiltzaileak</h2>
         		<div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-sm-12">
                         {% for mc in mc_vip_list %}
                         <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{mc.user.getFullName}}</a></p>
                         {% endfor %}
@@ -161,7 +161,7 @@
         	<div class="well">
         		<h2>Administratzaileak</h2>
         		<div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-sm-12">
                         {% for mc in mc_admin_list %}
                         <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{mc.user.getFullName}}</a></p>
                         {% endfor %}

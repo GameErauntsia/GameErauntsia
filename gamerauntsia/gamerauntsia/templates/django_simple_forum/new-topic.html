@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-sm-12">
 		<h1>Gai berria gehitu</h1>
 		<form action="{% url 'new-topic' forum.slug %}" method="POST">
 		    {% csrf_token %}

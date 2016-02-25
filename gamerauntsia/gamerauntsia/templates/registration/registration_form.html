@@ -1,18 +1,16 @@
-{% load gamerauntsia %}
-<script type="text/javascript" src="{{STATIC_URL}}/js/ajax_login.js"></script>
+{% extends "base.html" %}
+{% load i18n bootstrap %}
 
-<h2>Sortu kontu berria</h2>
-<form action="/komunitatea/accounts/register/" id="register_form" method="POST">
-{% csrf_token %}
-
-<div id="valid">{% if request.POST.email %}{% if form.errors %}
-<ul class="errorlist"><li>Sartutako datuak ez dira zuzenak. Saiatu berriro!</li></ul>
-{%endif%}{%else%}{%endif%}</div>
-
-{% regform request %}
-
-<p>
-<input type="submit" value="Sortu" id="submita" class="btn btn-default" />
-</p>
-</form>
+{% block content %}
+	<div class="row">
+		<div class="col-sm-4 col-sm-offset-4 text-left">
+		    <h2>Sortu kontu berria</h2>
+			<form method="post" action="{{request.path}}">
+			    {% csrf_token %}
+				{{form|bootstrap}}
+				<input type="submit" value="Sortu" class="btn btn-primary btn-lg" />
+			</form>
+		</div>
+	</div>
+{% endblock %}
 

@@ -1,22 +1,24 @@
 {% extends "base.html" %}
-
+{% load bootstrap %}
 
 {% block content %}
 <div class="row">
 	{% if user.is_authenticated %}
-	<div class="col-lg-12">
+	<div class="col-sm-12">
 		<div class="alert alert-warning" role="alert"><strong>ADI!</strong> Saioa hasita daukazu dagoeneko</div>
 	</div>
 	{% else %}
-	<div class="col-lg-6">
-		<h2>Login</h2>
-		{%include 'registration/login_form.html'%}
-		<ul class="list-unstyled">
-			<li><a href="{% url 'auth_password_reset' %}">Pasahitza ahaztu zait</a></li>
-		</ul>
-	</div>
-	<div class="col-lg-6">
-		{% include 'registration/registration_form.html'%}
+	<div class="col-sm-4 col-sm-offset-4 text-center">
+		<h2>Sartu</h2>
+		<form method="post" action="{% url 'auth_login' %}">
+			{% csrf_token %}
+			{{form|bootstrap}}
+			<input type="hidden" name="next" value="{{ next }}" />
+			<input class="btn btn-primary btn-lg" type="submit" value="Sartu" class="submit" /> <a href="{% url 'auth_password_reset' %}">Pasahitza ahaztu zait</a>
+		</form>
+		<hr/>
+		<h3>Sortu kontu berria</h3>
+		<a class="btn btn-default" href="{% url "registration_register" %}">Sortu kontua</a>
 	</div>
 	{% endif %}
 </div>

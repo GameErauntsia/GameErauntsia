@@ -24,7 +24,7 @@
 {% block content %}
 
 <div class="row">
-    <div class="col-lg-8">
+    <div class="col-sm-8">
         <div class="flex-video widescreen">
             {% if gp.bideoa %}
             <iframe width="700" height="394" src="//www.youtube.com/embed/{{gp.bideoa}}" frameborder="0" allowfullscreen></iframe>
@@ -39,7 +39,7 @@
 
         {% render_comment_form for gp %}
     </div>
-    <div class="col-lg-4">
+    <div class="col-sm-4">
         {% if not gp.bideoa %}
             <h3>Zuzeneko txata</h3>
             <iframe src="http://www.twitch.tv/gamerauntsia/chat?popout=" frameborder="0" height="500" width="100%"></iframe>
@@ -67,10 +67,10 @@
             <div class="well">
             {% for rgp in related_gps %}
                 <div class="row bloglist">
-                    <div class="col-lg-4">
+                    <div class="col-sm-4">
                         <a href="{{rgp.get_absolute_url}}"><img src="{{rgp.argazkia.get_newsprofile_url}}" /></a>
                     </div>
-                    <div class="col-lg-8">
+                    <div class="col-sm-8">
                         <p><strong><a href="{{rgp.get_absolute_url}}">{{rgp.izenburua}}</strong></a><p>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
 </div>
 
 <!-- <div class="row">
-    <div class="col-lg-8">
+    <div class="col-sm-8">
 
     </div>
 </div>
@@ -89,7 +89,7 @@
 <hr>
 
 <div class="row">
-    <div class="col-lg-8">
+    <div class="col-sm-8">
 
     </div>
 </div> -->

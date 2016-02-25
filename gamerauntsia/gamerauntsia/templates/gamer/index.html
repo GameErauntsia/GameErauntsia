@@ -16,7 +16,7 @@
 
 {% block content %}
 
-<div class="col-lg-12">
+<div class="col-sm-12">
     <h1 class="page-header">Nor gara
         <small>Pozten gara zu ezagutzeaz!</small>
     </h1>
@@ -24,13 +24,13 @@
     <p>Bideo jokoak gustuko dituzula? Zeren zain zaude! Hemen denetarik aurkituko duzu eta gainera euskaraz! Gozatu gure komunitatean parte hartuz eta animatzen bazara zuk ere zure txoko propioa izan dezakezu gure taldean! Zer animatzen?</p>
 </div>
 
-<div class="col-lg-12">
-    <div class="col-lg-8">
+<div class="col-sm-12">
+    <div class="col-sm-8">
         <h2>Gure taldea</h2>
         {% for user in users %}
         {% if user.is_staff and user.is_active %}
             {% if forloop.first %}<div class="row">{% endif %}
-                <div class="col-lg-4 col-sm-6">
+                <div class="col-sm-4 col-sm-6">
                     <a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profile_url}}" class="img-circle img-responsive"></a>
                     <h3><a href="{% url 'gamer_profile' user.username %}">{{user.fullname}}</a>
                         <small>{% if user.twitter_id %}@{{user.twitter_id}}{% else %}{{user.nickname}}{% endif %}</small>
@@ -44,7 +44,7 @@
         {% endfor %}
     </div>
 
-    <div class="col-lg-4">
+    <div class="col-sm-4">
         {% steam_panel %}
         <div class="well commentform">
             <div class="fb-like-box" data-href="https://www.facebook.com/Gamerauntsia" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>

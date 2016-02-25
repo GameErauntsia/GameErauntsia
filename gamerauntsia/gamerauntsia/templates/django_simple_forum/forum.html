@@ -12,14 +12,14 @@
 
 {% if request.user.is_authenticated %}
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-sm-12">
         <a id="new_topic" class="btn btn-primary" href="{% url 'new-topic' forum.slug %}">Gai berria hasi</a>
     </div>
 </div>
 {% endif %}
 
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-sm-12">
         <div id="list">
             {% autopaginate topics 20 %}
             <table class="table table-condensed table-hover footable">
@@ -42,10 +42,10 @@
                         <td>{{topic.num_posts}}</td>
                         <td>
                             {% if topic.last_post %}
-                            <div class="col-lg-2">
+                            <div class="col-sm-2">
                                 <img src="{{topic.last_post.creator.get_photo.get_profilesmall_url}}" class="img-circle"/>
                             </div>
-                            <div class="col-lg-10">
+                            <div class="col-sm-10">
                             <a href="/foroa/{{forum.slug}}{{topic.last_post.get_absolute_url}}">{{topic.last_post.short|linebreaksbr}}</a>
                             </div>
                             {% endif %}

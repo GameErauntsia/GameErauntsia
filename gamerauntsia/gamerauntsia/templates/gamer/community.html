@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-lg-12">
+<div class="col-sm-12">
     <h1 class="page-header">Komunitatea
         <small>Hau da jende pila!</small>
     </h1>
@@ -25,8 +25,8 @@
 </div>
 
 
-<div class="col-lg-12">
-    <div class="col-lg-8">
+<div class="col-sm-12">
+    <div class="col-sm-8">
         <h2>Komunitateko guruak</h2>
         {% for user_prof in gurus %}
         {% if forloop.first %}<div class="row">{% endif %}
@@ -114,7 +114,7 @@
             });
         });
     </script>
-    <div class="col-lg-4">
+    <div class="col-sm-4">
         {% steam_panel %}
         <div class="well">
             <h2>Bilatu jokalaria</h2>
