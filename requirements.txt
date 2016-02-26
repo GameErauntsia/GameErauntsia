@@ -33,3 +33,8 @@ facebookpagewriter == 0.6
 git+git://github.com/danielroseman/django-initd#egg=django-initd
 pyTelegramBotAPI == 0.2.7
 tweepy == 2.3.0
+Markdown == 2.6.5
+django-filter == 0.12.0
+django-crispy-forms == 1.6.0 
+django-guardian == 1.4.1
+djangorestframework == 3.3.2
