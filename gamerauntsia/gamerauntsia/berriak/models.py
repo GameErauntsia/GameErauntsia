@@ -7,7 +7,7 @@ from gamerauntsia.jokoa.models import Jokoa
 from django.template import defaultfilters as filters
 from django.template.loader import get_template
 from django.template import Context
-from bitakora.utils.text import make_responsive
+from gamerauntsia.utils.text import make_responsive
 
 STATUS = (
     ('0','Zirriborroa'),
