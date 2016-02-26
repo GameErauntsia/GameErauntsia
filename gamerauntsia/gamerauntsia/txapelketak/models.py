@@ -118,6 +118,9 @@ class Txapelketa(models.Model):
         else:
             return self.izena + ' ' + self.get_absolute_url()
 
+    def getTelegramText(self):
+        return self.izena + ' ' + self.get_absolute_url()
+
     def getEmailText(self):
        htmly = get_template('buletina/buletina.html')
        plaintext = get_template('buletina/buletina.txt')

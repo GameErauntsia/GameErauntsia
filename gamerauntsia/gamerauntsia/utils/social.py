@@ -1,5 +1,6 @@
 from django.conf import settings
 import tweepy
+import telebot
 from facebookpagewriter.utils import post
 from django.core.mail import EmailMultiAlternatives
 from django.template import defaultfilters as filters
@@ -11,6 +12,11 @@ def post_to_email(obj):
     msg = EmailMultiAlternatives(subject, filters.safe(filters.striptags(text_content)), settings.BULETIN_FROM_EMAIL, bcc=email_list)
     msg.attach_alternative(html_content, "text/html")
     msg.send()
+    return True
+
+def post_to_telegram(item):
+    tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
+    tb.send_message(settings.PUBLIC_CHAT_ID, item.getTelegramText())
     return True
 
 def post_to_twitter(item):
@@ -46,4 +52,5 @@ def post_social(obj):
     #post_to_email(obj)
     post_to_twitter(obj)
     post_to_page(obj)
+    post_to_telegram(obj)
     return True
