@@ -1,8 +1,14 @@
 {% extends "base.html" %}
 {% load i18n bootstrap %}
 
+{% block extracss %}
+    <link href="{{STATIC_URL}}js/select2/css/select2.css" rel="stylesheet"/>
+{% endblock %}
+
 {% block morejs %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/tinymce/tinymce.min.js"></script>
+    {{ gameplayform.media }}
+    <script src="{{STATIC_URL}}js/select2/js/select2.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/select2/js/i18n/eu.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -15,4 +21,25 @@
     </form>
     <hr/>
 </div>
+{% endblock %}
+
+{% block footerjs %}
+<script type="text/javascript">
+	$('#id_kategoria').select2({
+        language: "eu",
+        placeholder: "Aukeratu erlazionaturiko gaiak",
+    });
+    $('#id_jokoa').select2({
+        language: "eu",
+        placeholder: "Aukeratu jokoa",
+    });
+    $('#id_zailtasuna').select2({
+        language: "eu",
+        placeholder: "Aukeratu zailtasuna",
+    });
+    $('#id_plataforma').select2({
+        language: "eu",
+        placeholder: "Aukeratu plataforma",
+    });
+</script>
 {% endblock %}

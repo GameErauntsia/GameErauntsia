@@ -1,8 +1,14 @@
 {% extends "base.html" %}
 {% load i18n bootstrap %}
 
+{% block extracss %}
+    <link href="{{STATIC_URL}}js/select2/css/select2.css" rel="stylesheet"/>
+{% endblock %}
+
 {% block morejs %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/tinymce/tinymce.min.js"></script>
+    {{ articleform.media }}
+    <script src="{{STATIC_URL}}js/select2/js/select2.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/select2/js/i18n/eu.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -11,18 +17,21 @@
     <form action="{{request.path}}" method="POST" ENCTYPE="multipart/form-data">
         {% csrf_token %}
         {{articleform|bootstrap}}
-        <!-- {% for field in articleform %}
-        <p>
-            {% if field.errors %}<div class="alert alert-danger">{{ field.errors.as_text }}</div>{% endif %}
-            {% if field.name == 'gaia' %}
-                <strong>{{field.label}}:</strong><br/>{{field}} <br/><span class="helptext">{{field.help_text}}</span>
-            {% else %}
-                {% if field.label %}<strong>{{field.label}}:</strong>{% endif %} {{field}} <span class="helptext">{{field.help_text}}</span>
-            {% endif %}
-        </p>
-        {% endfor %} -->
         <input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
     </form>
     <hr/>
 </div>
+{% endblock %}
+
+{% block footerjs %}
+<script type="text/javascript">
+	$('#id_gaia').select2({
+        language: "eu",
+        placeholder: "Aukeratu erlazionaturiko gaiak",
+    });
+    $('#id_jokoa').select2({
+        language: "eu",
+        placeholder: "Aukeratu jokoa",
+    });
+</script>
 {% endblock %}

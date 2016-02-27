@@ -8,7 +8,7 @@ from tinymce.widgets import TinyMCE
 from django.conf import settings
 
 TINYMCE_SMALL_BODY_CONFIG = getattr(settings, 'TINYMCE_SMALL_BODY_CONFIG', {})
-TINYMCE_BODY_CONFIG = getattr(settings, 'TINYMCE_BODY_CONFIG', {})
+TINYMCE_DEFAULT_CONFIG = getattr(settings, 'TINYMCE_DEFAULT_CONFIG', {})
 
 class GamerForm(forms.ModelForm):
 
@@ -34,7 +34,7 @@ class NotifyForm(forms.ModelForm):
 class ArticleForm(forms.ModelForm):
 
     desk = forms.CharField(label='',widget=TinyMCE(
-           attrs={'cols': 80, 'rows': 15,},mce_attrs=TINYMCE_BODY_CONFIG))
+           attrs={'cols': 80, 'rows': 15,},mce_attrs=TINYMCE_DEFAULT_CONFIG))
 
     gaia = forms.ModelMultipleChoiceField(label='Gaiak', queryset=Gaia.objects.all(),
         widget=forms.SelectMultiple(attrs={'size':'15'}),help_text='Aukeratu artikuluarekin zer ikusia duen gai bat edo gehiago')
