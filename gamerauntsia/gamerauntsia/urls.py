@@ -88,7 +88,7 @@ urlpatterns = patterns('',
     (r'^tinymce/', include('tinymce.urls')),
 
     #APIA
-    url(r'^api/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api/2.0/', include('gamerauntsia.api.urls')),
 
     #ERABILERA ETA PRIBATUTASUNA
     (r'^erabilera-baldintzak/$', TemplateView.as_view(template_name='erabilera_baldintzak.html')),
