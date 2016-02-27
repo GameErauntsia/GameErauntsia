@@ -17,12 +17,6 @@ def get_urlxml(url):
     stream = dict(xmltodict.parse(data))
     return stream
 
-def regform(request):
-    forma = RegistrationFormUniqueEmail()
-    return bootstrap(forma)
-
-register.simple_tag(regform)
-
 def steam_panel():
     try:
         steam_group = dict(dict(get_urlxml('http://steamcommunity.com/groups/gamerauntsia/memberslistxml/')['memberList'])['groupDetails'])
