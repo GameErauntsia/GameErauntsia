@@ -1,129 +1,134 @@
+from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView
-from django.views.generic.base import RedirectView
-from django.conf import settings
+
 from gamerauntsia.base.feed import LatestEntriesFeed, LatestNewsFeed
 
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    (r'^robots.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: ", content_type="text/plain")),
-    (r'^3dedcce0621f78db1fdf62d2bb02148e.txt$', lambda r: HttpResponse("3dedcce0621f78db1fdf62d2bb02148e", content_type="text/plain")),
+                       (
+                           r'^robots.txt$',
+                           lambda r: HttpResponse("User-agent: *\nDisallow: ", content_type="text/plain")),
+                       (r'^3dedcce0621f78db1fdf62d2bb02148e.txt$',
+                        lambda r: HttpResponse("3dedcce0621f78db1fdf62d2bb02148e", content_type="text/plain")),
 
-    url(r'^$', 'gamerauntsia.views.index', name='index'),
+                       url(r'^$', 'gamerauntsia.views.index', name='index'),
 
-    # GETB
-    url(r'^getb/', include('gamerauntsia.getb.urls')),
+                       # GETB
+                       url(r'^getb/', include('gamerauntsia.getb.urls')),
 
-    # GAMEPLAYAK
-    url(r'^gameplayak/', include('gamerauntsia.gameplaya.urls')),
+                       # GAMEPLAYAK
+                       url(r'^gameplayak/', include('gamerauntsia.gameplaya.urls')),
 
-    # BERRIAK
-    url(r'^berriak/(?P<slug>[-\w]+)/$', lambda x, slug: HttpResponseRedirect(reverse('berria', args=[slug]))),
-    url(r'^bloga/', include('gamerauntsia.berriak.urls'), name='bloga'),
+                       # BERRIAK
+                       url(r'^berriak/(?P<slug>[-\w]+)/$',
+                           lambda x, slug: HttpResponseRedirect(reverse('berria', args=[slug]))),
+                       url(r'^bloga/', include('gamerauntsia.berriak.urls'), name='bloga'),
 
-    # DENBORA LERROA
-    url(r'^denboralerroa/', include('gamerauntsia.log.urls'), name='log'),
+                       # DENBORA LERROA
+                       url(r'^denboralerroa/', include('gamerauntsia.log.urls'), name='log'),
 
-    # JOKOAK
-    url(r'^jokoak/', include('gamerauntsia.jokoa.urls'), name='jokoak'),
+                       # JOKOAK
+                       url(r'^jokoak/', include('gamerauntsia.jokoa.urls'), name='jokoak'),
 
-    # JOKALARIAK
-    url(r'^nor-gara/', include('gamerauntsia.gamer.urls')),
-    url(r'^komunitatea/$', 'gamerauntsia.gamer.views.community', name='komunitatea'),
-    (r'^komunitatea/', include('cssocialuser.urls')),
-    (r'^komunitatea/', include('registration.backends.default.urls')),
+                       # JOKALARIAK
+                       url(r'^nor-gara/', include('gamerauntsia.gamer.urls')),
+                       url(r'^komunitatea/$', 'gamerauntsia.gamer.views.community', name='komunitatea'),
+                       (r'^komunitatea/', include('cssocialuser.urls')),
+                       (r'^komunitatea/', include('registration.backends.default.urls')),
 
-    #AURKEZPENAK
-    (r'^aurkezpenak/', include('gamerauntsia.aurkezpenak.urls')),
+                       # AURKEZPENAK
+                       (r'^aurkezpenak/', include('gamerauntsia.aurkezpenak.urls')),
 
-    #TXAPELKETAK
-    (r'^txapelketak/', include('gamerauntsia.txapelketak.urls')),
+                       # TXAPELKETAK
+                       (r'^txapelketak/', include('gamerauntsia.txapelketak.urls')),
 
-    #MINECRAFT SERVER
-    (r'^zerbitzariak/', include('gamerauntsia.zerbitzariak.urls')),
+                       # MINECRAFT SERVER
+                       (r'^zerbitzariak/', include('gamerauntsia.zerbitzariak.urls')),
 
-    #AGENDA
-    (r'^agenda/', include('gamerauntsia.agenda.urls')),
+                       # AGENDA
+                       (r'^agenda/', include('gamerauntsia.agenda.urls')),
 
-    # FOROA
-    url(r'^foroa/reset-topics$', 'gamerauntsia.gamer.views.reset_topics', name='reset_topics'),
-    url(r'^foroa/', include('django_simple_forum.urls')),
+                       # FOROA
+                       url(r'^foroa/reset-topics$', 'gamerauntsia.gamer.views.reset_topics', name='reset_topics'),
+                       url(r'^foroa/', include('django_simple_forum.urls')),
 
-    # KONTAKTUA
-    url(r'^kontaktua/$', 'gamerauntsia.kontaktua.views.index', name='kontaktua'),
-    url(r'^kontaktua/bidali/$', 'gamerauntsia.kontaktua.views.bidali', name='kontaktua_bidali'),
+                       # KONTAKTUA
+                       url(r'^kontaktua/$', 'gamerauntsia.kontaktua.views.index', name='kontaktua'),
+                       url(r'^kontaktua/bidali/$', 'gamerauntsia.kontaktua.views.bidali', name='kontaktua_bidali'),
 
-    # TERMINOLOGIA
-    url(r'^terminologia/$', 'gamerauntsia.base.views.index', name='terminologia'),
-    url(r'^terminologia/bilatu', 'gamerauntsia.base.views.search_term', name='search_term'),
+                       # TERMINOLOGIA
+                       url(r'^terminologia/$', 'gamerauntsia.base.views.index', name='terminologia'),
+                       url(r'^terminologia/bilatu', 'gamerauntsia.base.views.search_term', name='search_term'),
 
-    # BILAKETA
-    url(r'^bilaketa?(?P<bilatu>[-\w]+)/$', 'gamerauntsia.views.bilaketa', name='bilaketa'),
+                       # BILAKETA
+                       url(r'^bilaketa?(?P<bilatu>[-\w]+)/$', 'gamerauntsia.views.bilaketa', name='bilaketa'),
 
-    #RSS FEED
-    url(r'^rss/gameplayak$', LatestEntriesFeed()),
-    url(r'^rss/bloga$', LatestNewsFeed()),
+                       # RSS FEED
+                       url(r'^rss/gameplayak$', LatestEntriesFeed()),
+                       url(r'^rss/bloga$', LatestNewsFeed()),
 
-    #FB
-    url(r'^2b27b83ad50e677714b2dd832b42acc3', include('facebookpagewriter.urls')),
+                       # FB
+                       url(r'^2b27b83ad50e677714b2dd832b42acc3', include('facebookpagewriter.urls')),
 
-    # COMMENTS
-    (r'^comments/', include('django_comments.urls')),
+                       # COMMENTS
+                       (r'^comments/', include('django_comments.urls')),
 
-    # KUDEATU
-    url(r'^kudeatu/', include(admin.site.urls)),
-    url(r'^photologue/', include('photologue.urls', namespace='photologue')),
+                       # KUDEATU
+                       url(r'^kudeatu/', include(admin.site.urls)),
+                       url(r'^photologue/', include('photologue.urls', namespace='photologue')),
 
-    #MEZUAK
-    (r'^mezuak/', include('django_messages.urls')),
+                       # MEZUAK
+                       (r'^mezuak/', include('django_messages.urls')),
 
-    #EGUTEGIA
-    (r'^calendar/', include('django_bootstrap_calendar.urls')),
+                       # EGUTEGIA
+                       (r'^calendar/', include('django_bootstrap_calendar.urls')),
 
-    #TINYMCE
-    (r'^tinymce/', include('tinymce.urls')),
+                       # TINYMCE
+                       (r'^tinymce/', include('tinymce.urls')),
 
-    #APIA
-    url(r'^api/1.0/', include('gamerauntsia.api.urls')),
+                       # APIA
+                       url(r'^api/1.0/', include('gamerauntsia.api.urls')),
 
-    #ERABILERA ETA PRIBATUTASUNA
-    (r'^erabilera-baldintzak/$', TemplateView.as_view(template_name='erabilera_baldintzak.html')),
-    (r'^pribatutasun-politika/$', TemplateView.as_view(template_name='pribatutasun_politika.html')),
-    (r'^gameplay-arauak/$', TemplateView.as_view(template_name='upload_gp.html')),
-    (r'^cookie/$', TemplateView.as_view(template_name='cookie.html')),
+                       # ERABILERA ETA PRIBATUTASUNA
+                       (r'^erabilera-baldintzak/$', TemplateView.as_view(template_name='erabilera_baldintzak.html')),
+                       (r'^pribatutasun-politika/$', TemplateView.as_view(template_name='pribatutasun_politika.html')),
+                       (r'^gameplay-arauak/$', TemplateView.as_view(template_name='upload_gp.html')),
+                       (r'^cookie/$', TemplateView.as_view(template_name='cookie.html')),
 
-    #AJAX ESKAERAK
-    url(r'^ajax/get_jokoak/', 'gamerauntsia.gamer.views.get_jokoak', name='ajax_jokoak'),
-    url(r'^ajax/get_erabiltzaileak/', 'gamerauntsia.gamer.views.get_user', name='ajax_user'),
-    url(r'^ajax/post_finished/', 'gamerauntsia.finished.views.add_finished', name='ajax_finished'),
+                       # AJAX ESKAERAK
+                       url(r'^ajax/get_jokoak/', 'gamerauntsia.gamer.views.get_jokoak', name='ajax_jokoak'),
+                       url(r'^ajax/get_erabiltzaileak/', 'gamerauntsia.gamer.views.get_user', name='ajax_user'),
+                       url(r'^ajax/post_finished/', 'gamerauntsia.finished.views.add_finished', name='ajax_finished'),
 
-    url('', include('social.apps.django_app.urls', namespace='social'))
-)
-
-
+                       url('', include('social.apps.django_app.urls', namespace='social'))
+                       )
 
 urlpatterns += patterns('gamerauntsia.gamer.views',
-    url(r'^komunitatea/gehitu-artikulua$','add_article', name='add_article'),
-    url(r'^komunitatea/gehitu-gameplaya$','add_gameplay', name='add_gameplay'),
-    url(r'^komunitatea/gehitu-ekitaldia$','add_event', name='add_event'),
-    url(r'^komunitatea/editatu-profil$','edit_profile', name='edit_profile'),
-    url(r'^komunitatea/editatu-profil-jakin$','edit_notifications', name='edit_profile_noti'),
-    url(r'^komunitatea/editatu-profil-ord$','edit_computer', name='edit_profile_comp'),
-    url(r'^komunitatea/editatu-profil-plat$','edit_platform', name='edit_profile_plat'),
-    url(r'^komunitatea/editatu-profil-top$','edit_top_games', name='edit_profile_top'),
-    url(r'^komunitatea/editatu-profil-amaitutakoak$','edit_amaitutakoak', name='edit_profile_amaitutakoak'),
-    url(r'^komunitatea/editatu-profil-pass/$','password_change', name='edit_profile_pass'),
-    url(r'^komunitatea/editatu-profil-pass-done/$','password_change_done', name='edit_profile_pass_done'),
-    url(r'^komunitatea/(?P<username>[-\w]+)$', 'profile', name='gamer_guestprofile'),
-)
-
+                        url(r'^komunitatea/gehitu-artikulua$', 'add_article', name='add_article'),
+                        url(r'^komunitatea/gehitu-gameplaya$', 'add_gameplay', name='add_gameplay'),
+                        url(r'^komunitatea/gehitu-ekitaldia$', 'add_event', name='add_event'),
+                        url(r'^komunitatea/editatu-profil$', 'edit_profile', name='edit_profile'),
+                        url(r'^komunitatea/editatu-profil-jakin$', 'edit_notifications', name='edit_profile_noti'),
+                        url(r'^komunitatea/editatu-profil-ord$', 'edit_computer', name='edit_profile_comp'),
+                        url(r'^komunitatea/editatu-profil-plat$', 'edit_platform', name='edit_profile_plat'),
+                        url(r'^komunitatea/editatu-profil-top$', 'edit_top_games', name='edit_profile_top'),
+                        url(r'^komunitatea/editatu-profil-amaitutakoak$', 'edit_amaitutakoak',
+                            name='edit_profile_amaitutakoak'),
+                        url(r'^komunitatea/editatu-profil-pass/$', 'password_change', name='edit_profile_pass'),
+                        url(r'^komunitatea/editatu-profil-pass-done/$', 'password_change_done',
+                            name='edit_profile_pass_done'),
+                        url(r'^komunitatea/(?P<username>[-\w]+)$', 'profile', name='gamer_guestprofile'),
+                        )
 
 if getattr(settings, 'DEBUG', False):
     urlpatterns += patterns('',
-        (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': getattr(settings, 'STATIC_DOC_ROOT', '')}),
-        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': getattr(settings, 'MEDIA_DOC_ROOT', '')}),
-    )
+                            (r'^static/(?P<path>.*)$', 'django.views.static.serve',
+                             {'document_root': getattr(settings, 'STATIC_DOC_ROOT', '')}),
+                            (r'^media/(?P<path>.*)$', 'django.views.static.serve',
+                             {'document_root': getattr(settings, 'MEDIA_DOC_ROOT', '')}),
+                            )
