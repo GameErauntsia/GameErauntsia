@@ -4,7 +4,7 @@ local_settings.py
 /**/*settings.py
 gamerauntsia/gamerauntsia/settings.py
 gamerauntsia/gamerauntsia/server_settings.py
-
+gamerauntsia/manage.py
 #server_settings.py
 /media
 /static
@@ -19,6 +19,7 @@ __pycache__/
 *.so
 
 # Distribution / packaging
+.idea/
 .Python
 .idea/
 env/
