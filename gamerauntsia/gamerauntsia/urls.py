@@ -5,6 +5,10 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView
 
+from rest_framework.routers import DefaultRouter
+from gamerauntsia.app.authentication.viewsets import UsersViewSet
+router = DefaultRouter()
+
 from gamerauntsia.base.feed import LatestEntriesFeed, LatestNewsFeed
 
 admin.autodiscover()
@@ -94,6 +98,9 @@ urlpatterns = patterns('',
                        # APIA
                        url(r'^api/1.0/', include('gamerauntsia.api.urls')),
 
+                       # APP
+                       # url(r'^app/v1/', include('gamerauntsia.app.authentication.urls')),
+
                        # ERABILERA ETA PRIBATUTASUNA
                        (r'^erabilera-baldintzak/$', TemplateView.as_view(template_name='erabilera_baldintzak.html')),
                        (r'^pribatutasun-politika/$', TemplateView.as_view(template_name='pribatutasun_politika.html')),
@@ -106,7 +113,10 @@ urlpatterns = patterns('',
                        url(r'^ajax/post_finished/', 'gamerauntsia.finished.views.add_finished', name='ajax_finished'),
 
                        url('', include('social.apps.django_app.urls', namespace='social'))
+
                        )
+
+router.register(r'profile', UsersViewSet)
 
 urlpatterns += patterns('gamerauntsia.gamer.views',
                         url(r'^komunitatea/gehitu-artikulua$', 'add_article', name='add_article'),
@@ -123,6 +133,8 @@ urlpatterns += patterns('gamerauntsia.gamer.views',
                         url(r'^komunitatea/editatu-profil-pass-done/$', 'password_change_done',
                             name='edit_profile_pass_done'),
                         url(r'^komunitatea/(?P<username>[-\w]+)$', 'profile', name='gamer_guestprofile'),
+                        # url(r'^app/', include(router.urls)),
+
                         )
 
 if getattr(settings, 'DEBUG', False):

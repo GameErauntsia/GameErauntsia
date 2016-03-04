@@ -1,27 +1,28 @@
-from cssocialuser.models import CSAbstractSocialUser
-from django.db import models
-from django.contrib.auth.models import UserManager, Group
-from django.core.mail import send_mail
-from django.conf import settings
-from photologue.models import Photo
-from gamerauntsia.jokoa.models import Jokoa
-from django.utils.translation import ugettext as _
 from datetime import datetime
 
-MEMBER_PHOTO_SLUG=getattr(settings,'PROFILE_PHOTO_DEFAULT_SLUG','no-profile-photo')
+from cssocialuser.models import CSAbstractSocialUser
+from django.conf import settings
+from django.contrib.auth.models import UserManager, Group
+from django.core.mail import send_mail
+from django.db import models
+from photologue.models import Photo
+
+from gamerauntsia.jokoa.models import Jokoa
+
+MEMBER_PHOTO_SLUG = getattr(settings, 'PROFILE_PHOTO_DEFAULT_SLUG', 'no-profile-photo')
 
 PLATFORM = (
-    ('steam','Steam'),
-    ('origin','Origin'),
-    ('lol','League of Legends'),
-    ('uplay','Uplay'),
-    ('xbox','XBOX'),
-    ('ps4','PS4'),
-    ('wii','Wii'),
-    ('archeage','Archeage'),
-    ('wow','World of Warcraft'),
-    ('bnet','Battlenet'),
-    ('minecraft','Minecraft'),
+    ('steam', 'Steam'),
+    ('origin', 'Origin'),
+    ('lol', 'League of Legends'),
+    ('uplay', 'Uplay'),
+    ('xbox', 'XBOX'),
+    ('ps4', 'PS4'),
+    ('wii', 'Wii'),
+    ('archeage', 'Archeage'),
+    ('wow', 'World of Warcraft'),
+    ('bnet', 'Battlenet'),
+    ('minecraft', 'Minecraft'),
 )
 
 ARTICLE_KARMA = 10
@@ -34,30 +35,31 @@ PC_KARMA = 5
 PROFILE_KARMA = 15
 STAFF_KARMA = 20
 
+
 class GamerUser(CSAbstractSocialUser):
-    nickname = models.CharField(max_length=64,null=True,blank=True)
-    telegram_id = models.IntegerField(verbose_name="Telegram kodea",null=True,blank=True)
+    nickname = models.CharField(max_length=64, null=True, blank=True)
+    telegram_id = models.IntegerField(verbose_name="Telegram kodea", null=True, blank=True)
     is_gamer = models.BooleanField(default=False)
     top_jokoak = models.ManyToManyField(Jokoa, blank=True)
-    signature = models.TextField(verbose_name="Foro sinadura",null=True,blank=True)
-    ytube_channel = models.CharField(max_length=150,null=True,blank=True)
+    signature = models.TextField(verbose_name="Foro sinadura", null=True, blank=True)
+    ytube_channel = models.CharField(max_length=150, null=True, blank=True)
     email_notification = models.BooleanField(default=True, verbose_name="Eztabaidak")
     buletin_notification = models.BooleanField(default=True, verbose_name="Buletinak")
-    motherboard = models.CharField(verbose_name="Txartel nagusia",max_length=150,null=True,blank=True)
-    processor = models.CharField(verbose_name="Prozesagailua",max_length=150,null=True,blank=True)
-    graphics = models.CharField(verbose_name="Txartel grafikoa",max_length=150,null=True,blank=True)
-    soundcard = models.CharField(verbose_name="Soinu txartela",max_length=150,null=True,blank=True)
-    ram = models.CharField(verbose_name="RAM Memoria",max_length=150,null=True,blank=True)
-    harddrive = models.CharField(verbose_name="Disko gogorra",max_length=150,null=True,blank=True)
-    harddrive2 = models.CharField(verbose_name="Bigarren disko gogorra",max_length=150,null=True,blank=True)
-    mouse = models.CharField(verbose_name="Sagua",max_length=150,null=True,blank=True)
-    keyboard = models.CharField(verbose_name="Teklatua",max_length=150,null=True,blank=True)
-    speakers = models.CharField(verbose_name="Bozgorailuak",max_length=150,null=True,blank=True)
+    motherboard = models.CharField(verbose_name="Txartel nagusia", max_length=150, null=True, blank=True)
+    processor = models.CharField(verbose_name="Prozesagailua", max_length=150, null=True, blank=True)
+    graphics = models.CharField(verbose_name="Txartel grafikoa", max_length=150, null=True, blank=True)
+    soundcard = models.CharField(verbose_name="Soinu txartela", max_length=150, null=True, blank=True)
+    ram = models.CharField(verbose_name="RAM Memoria", max_length=150, null=True, blank=True)
+    harddrive = models.CharField(verbose_name="Disko gogorra", max_length=150, null=True, blank=True)
+    harddrive2 = models.CharField(verbose_name="Bigarren disko gogorra", max_length=150, null=True, blank=True)
+    mouse = models.CharField(verbose_name="Sagua", max_length=150, null=True, blank=True)
+    keyboard = models.CharField(verbose_name="Teklatua", max_length=150, null=True, blank=True)
+    speakers = models.CharField(verbose_name="Bozgorailuak", max_length=150, null=True, blank=True)
 
-    karma = models.IntegerField(verbose_name="Karma",default=0)
+    karma = models.IntegerField(verbose_name="Karma", default=0)
 
-    last_updated = models.DateTimeField(auto_now_add=True,editable=False)
-    date_joined = models.DateTimeField(auto_now_add=True,editable=False,null=True,blank=True)
+    last_updated = models.DateTimeField(auto_now_add=True, editable=False)
+    date_joined = models.DateTimeField(auto_now_add=True, editable=False, null=True, blank=True)
 
     objects = UserManager()
 
@@ -69,7 +71,6 @@ class GamerUser(CSAbstractSocialUser):
                 return Photo.objects.get(slug=MEMBER_PHOTO_SLUG)
             except:
                 return None
-
 
     def get_profile(self):
         return self
@@ -86,7 +87,7 @@ class GamerUser(CSAbstractSocialUser):
     def getamaitutakoak(self):
         return AmaitutakoJokoak.objects.filter(user=self)
 
-    def likes_game(self,game):
+    def likes_game(self, game):
         if game in self.top_jokoak.all():
             return True
         return False
@@ -140,11 +141,11 @@ class GamerUser(CSAbstractSocialUser):
                 (self.comment_count() * COMMENT_KARMA) + \
                 (self.tournament_count() * TOURNAMENT_KARMA) or 0
 
-        #Puntuazio biderkatzailea
+        # Puntuazio biderkatzailea
         if self.has_complete_profile():
             karma *= PROFILE_KARMA
 
-        #Puntuazio finkoa
+        # Puntuazio finkoa
         if self.is_mc_gamer():
             karma += MC_KARMA
         if self.computer_data():
@@ -167,27 +168,28 @@ class GamerUser(CSAbstractSocialUser):
     def __unicode__(self):
         return u'%s' % self.username
 
-
     class Meta:
         verbose_name = 'GE Erabiltzailea'
         verbose_name_plural = 'GE Erabiltzaileak'
 
+
 class JokuPlataforma(models.Model):
     plataforma = models.CharField(max_length=10, choices=PLATFORM)
     nick = models.CharField(max_length=64)
-    user = models.ForeignKey(GamerUser,related_name='plataforma')
+    user = models.ForeignKey(GamerUser, related_name='plataforma')
 
     def __unicode__(self):
-        return u'%s - %s' % (self.plataforma,self.nick)
+        return u'%s - %s' % (self.plataforma, self.nick)
 
     class Meta:
         verbose_name = 'Plataforma'
         verbose_name_plural = 'Plataformak'
 
+
 class AmaitutakoJokoak(models.Model):
     izenburua = models.CharField(max_length=150)
     urtea = models.IntegerField(blank=True, null=True)
-    user = models.ForeignKey(GamerUser,related_name='amaitutakoak')
+    user = models.ForeignKey(GamerUser, related_name='amaitutakoak')
     pub_date = models.DateTimeField('publikazio data', default=datetime.now)
     mod_date = models.DateTimeField('modifikazio data', default=datetime.now)
 
@@ -197,4 +199,3 @@ class AmaitutakoJokoak(models.Model):
     class Meta:
         verbose_name = 'Amaiatutakoak'
         verbose_name_plural = 'Amaiatutakoak'
-
