@@ -7,7 +7,7 @@ from rest_framework.response import Response
 # import models
 from gamerauntsia.gamer.models import GamerUser
 # import serializers
-from app.authentication.serializers import UsersListSerializer, UsersCreateSerializer, UsersUpdateSerializer
+from gamerauntsia.app.authentication.serializers import UsersListSerializer, UsersCreateSerializer, UsersUpdateSerializer
 
 
 class CustomModelViewSet(viewsets.ModelViewSet):

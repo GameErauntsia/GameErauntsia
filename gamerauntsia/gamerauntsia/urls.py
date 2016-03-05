@@ -99,7 +99,7 @@ urlpatterns = patterns('',
                        url(r'^api/1.0/', include('gamerauntsia.api.urls')),
 
                        # APP
-                       # url(r'^app/v1/', include('gamerauntsia.app.authentication.urls')),
+                       url(r'^app/v1/', include('gamerauntsia.app.authentication.urls')),
 
                        # ERABILERA ETA PRIBATUTASUNA
                        (r'^erabilera-baldintzak/$', TemplateView.as_view(template_name='erabilera_baldintzak.html')),
