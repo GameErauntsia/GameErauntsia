@@ -1,5 +1,6 @@
 import json
 import simplejson
+from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import make_password
 from django.http import HttpResponse
@@ -101,6 +102,12 @@ def userLogout(request):
         }, status=405)
 
 
-def json_response(value, **kwargs):
-    kwargs.setdefault('content_type', 'text/javascript; charset=UTF-8')
-    return HttpResponse(simplejson.dumps(value), **kwargs)
+# def json_response(value, **kwargs):
+#     kwargs.setdefault('content_type', 'text/javascript; charset=UTF-8')
+#     return HttpResponse(simplejson.dumps(value), **kwargs)
+
+def json_response(response_dict, status=200):
+    response = HttpResponse(json.dumps(response_dict), content_type="application/json", status=status)
+    response['Access-Control-Allow-Origin'] = '*'
+    response['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
+    return response

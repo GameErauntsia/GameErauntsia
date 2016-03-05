@@ -9,7 +9,7 @@ gamerauntsia/manage.py
 /media
 /static
  gamerauntsia/static/
-../.idea/
+.idea/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
