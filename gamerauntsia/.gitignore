@@ -8,7 +8,8 @@ gamerauntsia/manage.py
 #server_settings.py
 /media
 /static
-
+ gamerauntsia/static/
+.idea/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

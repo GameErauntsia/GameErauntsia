@@ -1,3 +1,4 @@
+
 *.pyc
 wsgi.py
 local_settings.py
@@ -79,3 +80,4 @@ target/
 
 # pyenv
 .python-version
+
