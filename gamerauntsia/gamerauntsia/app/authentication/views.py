@@ -1,17 +1,11 @@
 import json
-import simplejson
-from django.http import HttpResponse
+
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.hashers import make_password
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from gamerauntsia.app.authentication.models import *
-from functools import wraps
-from django.contrib.auth import authenticate, login
-from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotAllowed
-from django.views.decorators.csrf import csrf_exempt
 
 
 @csrf_exempt
@@ -62,6 +56,12 @@ def userLogin(request):
     }
     return HttpResponse(json.dumps(data))
 
+
+@csrf_exempt
+def checkuser (request):
+    return json_response({
+                'hello': "world!"
+            })
 
 def token_required(func):
     def inner(request, *args, **kwargs):

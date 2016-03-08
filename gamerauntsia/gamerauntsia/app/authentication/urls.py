@@ -4,7 +4,7 @@ from django.conf import settings
 urlpatterns = patterns('',
     url(r'^login/$', 'gamerauntsia.app.authentication.views.userLogin', name='login'),
     url(r'^register/$', 'gamerauntsia.app.authentication.views.register', name='register'),
-    # url(r'^checkuser/$', 'gamerauntsia.app.authentication.views.checkuser', name='checkuser'),
+    url(r'^checkuser/$', 'gamerauntsia.app.authentication.views.checkuser', name='checkuser'),
 )
 
 if getattr(settings, 'DEBUG', False):
