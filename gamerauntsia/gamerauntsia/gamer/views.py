@@ -25,11 +25,12 @@ from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.forms import PasswordChangeForm
 from django.template.response import TemplateResponse
-from django_simple_forum.models import Category,Topic
+from django_simple_forum.models import Category, Topic
 from django.forms.utils import ErrorList
 from gamerauntsia.utils.urls import get_urlxml
 from gamerauntsia.zerbitzariak.views import set_user_whitelist
 from django.http import HttpResponse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import json
 
 
@@ -45,26 +46,41 @@ def update_session_auth_hash(request, user):
     if hasattr(user, 'get_session_auth_hash') and request.user == user:
         request.session[HASH_SESSION_KEY] = user.get_session_auth_hash()
 
-def index(request):
-    users = GamerUser.objects.filter(is_active=True,is_staff=True).order_by('-date_joined')
-    return render_to_response('gamer/index.html', locals(),context_instance=RequestContext(request))
 
-def profile(request,username):
-    user_prof = get_object_or_404(GamerUser,username=username,is_active=True)
-    gameplayak = GamePlaya.objects.filter(publikoa_da=True,status='1', erabiltzailea=user_prof, pub_date__lt=datetime.now()).order_by('-pub_date')
+def index(request):
+    users = GamerUser.objects.filter(is_active=True, is_staff=True).order_by('-date_joined')
+    return render_to_response('gamer/index.html', locals(), context_instance=RequestContext(request))
+
+
+def youtuberrak(request):
+    users = GamerUser.objects.filter(is_active=True).exclude(ytube_channel__isnull=True).exclude(
+        ytube_channel__exact='').order_by('-karma')
+    return render_to_response('gamer/youtuberrak.html', locals(), context_instance=RequestContext(request))
+
+
+def profile(request, username):
+    user_prof = get_object_or_404(GamerUser, username=username, is_active=True)
+    gameplayak = GamePlaya.objects.filter(publikoa_da=True, status='1', erabiltzailea=user_prof,
+                                          pub_date__lt=datetime.now()).order_by('-pub_date')
     gp_count = len(gameplayak)
-    categs = GamePlaya.objects.filter(publikoa_da=True, status='1', erabiltzailea=user_prof, pub_date__lt=datetime.now()).values('kategoria__izena',).annotate(count=Count('id'))
-    berriak = Berria.objects.filter(publikoa_da=True, status='1', erabiltzailea=user_prof,pub_date__lt=datetime.now()).order_by('-pub_date')
-    bcategs = Berria.objects.filter(publikoa_da=True, status='1', erabiltzailea=user_prof,pub_date__lt=datetime.now()).values('gaia__izena',).annotate(count=Count('id'))
+    categs = GamePlaya.objects.filter(publikoa_da=True, status='1', erabiltzailea=user_prof,
+                                      pub_date__lt=datetime.now()).values('kategoria__izena', ).annotate(
+        count=Count('id'))
+    berriak = Berria.objects.filter(publikoa_da=True, status='1', erabiltzailea=user_prof,
+                                    pub_date__lt=datetime.now()).order_by('-pub_date')
+    bcategs = Berria.objects.filter(publikoa_da=True, status='1', erabiltzailea=user_prof,
+                                    pub_date__lt=datetime.now()).values('gaia__izena', ).annotate(count=Count('id'))
     berri_count = len(berriak)
     side_berriak = berriak[:5]
-    return render_to_response('gamer/profile.html', locals(),context_instance=RequestContext(request))
+    return render_to_response('gamer/profile.html', locals(), context_instance=RequestContext(request))
+
 
 def community(request):
     users = GamerUser.objects.filter(is_active=True).order_by('-date_joined')
     user_rows = int(round(len(users) / 3))
-    gurus = GamerUser.objects.filter(is_active=True,is_staff=False).order_by('-karma','-date_joined')[:9]
-    return render_to_response('gamer/community.html', locals(),context_instance=RequestContext(request))
+    gurus = GamerUser.objects.filter(is_active=True, is_staff=False).order_by('-karma', '-date_joined')[:9]
+    return render_to_response('gamer/community.html', locals(), context_instance=RequestContext(request))
+
 
 @login_required
 def edit_profile(request):
@@ -72,8 +88,8 @@ def edit_profile(request):
     tab = 'personal'
     profile = request.user
     if request.method == 'POST':
-         profileform = GamerForm(request.POST, instance=profile)
-         if profileform.is_valid():
+        profileform = GamerForm(request.POST, instance=profile)
+        if profileform.is_valid():
             profileform.save()
             messages.add_message(request, messages.SUCCESS, _('New user data saved.'), fail_silently=True)
     else:
@@ -81,20 +97,22 @@ def edit_profile(request):
 
     return render_to_response('profile/edit_personal.html', locals(), context_instance=RequestContext(request))
 
+
 @login_required
 def edit_notifications(request):
     """ """
     tab = 'notifications'
     user = request.user
     if request.method == 'POST':
-         posta=request.POST.copy()
-         notifyform = NotifyForm(posta, instance=user)
-         if notifyform.is_valid():
+        posta = request.POST.copy()
+        notifyform = NotifyForm(posta, instance=user)
+        if notifyform.is_valid():
             notifyform.save()
     else:
         notifyform = NotifyForm(instance=user)
 
     return render_to_response('profile/edit_notifications.html', locals(), context_instance=RequestContext(request))
+
 
 @login_required
 def edit_computer(request):
@@ -102,15 +120,16 @@ def edit_computer(request):
     tab = 'computer'
     user = request.user
     if request.method == 'POST':
-         posta=request.POST.copy()
-         pcform = PCForm(posta, instance=user)
-         if pcform.is_valid():
+        posta = request.POST.copy()
+        pcform = PCForm(posta, instance=user)
+        if pcform.is_valid():
             pcform.save()
             return HttpResponseRedirect(reverse('edit_profile_comp'))
     else:
         pcform = PCForm(instance=user)
 
     return render_to_response('profile/edit_computer.html', locals(), context_instance=RequestContext(request))
+
 
 @login_required
 def edit_platform(request):
@@ -119,9 +138,9 @@ def edit_platform(request):
     user = request.user
     GameFormSet = modelformset_factory(JokuPlataforma, form=GameForm, can_delete=True)
     if request.method == 'POST':
-         posta=request.POST.copy()
-         gameformset = GameFormSet(posta)
-         if gameformset.is_valid():
+        posta = request.POST.copy()
+        gameformset = GameFormSet(posta)
+        if gameformset.is_valid():
             marked_for_delete = gameformset.deleted_forms
             for form in gameformset:
                 if form.is_valid() and form.has_changed():
@@ -132,7 +151,7 @@ def edit_platform(request):
                         platform = form.save(commit=False)
                         platform.user = user
                         if platform.plataforma == 'minecraft':
-                            set_user_whitelist(user,platform.nick)
+                            set_user_whitelist(user, platform.nick)
                         platform.save()
             return HttpResponseRedirect(reverse('edit_profile_plat'))
     else:
@@ -142,6 +161,7 @@ def edit_platform(request):
 
     return render_to_response('profile/edit_platform.html', locals(), context_instance=RequestContext(request))
 
+
 @login_required
 def edit_amaitutakoak(request):
     """ """
@@ -149,7 +169,7 @@ def edit_amaitutakoak(request):
     user = request.user
     AmaitutaFormSet = modelformset_factory(AmaitutakoJokoak, form=AmaitutaForm, can_delete=True)
     if request.method == 'POST':
-        posta=request.POST.copy()
+        posta = request.POST.copy()
         amaitutaformset = AmaitutaFormSet(posta)
         if amaitutaformset.is_valid():
             marked_for_delete = amaitutaformset.deleted_forms
@@ -160,15 +180,16 @@ def edit_amaitutakoak(request):
                         platform.delete()
                     else:
                         platform = form.save(commit=False)
-                        platform.user = user                        
+                        platform.user = user
                         platform.save()
             return HttpResponseRedirect(reverse('edit_profile_amaitutakoak'))
-        
+
     else:
         qset = AmaitutakoJokoak.objects.filter(user=user)
         gameformset = AmaitutaFormSet(queryset=qset)
 
     return render_to_response('profile/edit_amaitutakoak.html', locals(), context_instance=RequestContext(request))
+
 
 @login_required
 def edit_top_games(request):
@@ -176,18 +197,22 @@ def edit_top_games(request):
     tab = 'top_games'
     user = request.user
     if request.method == 'POST':
-         posta=request.POST.copy()
-         topform = TopForm(posta, instance=user)
-         if topform.is_valid():
+        posta = request.POST.copy()
+        topform = TopForm(posta, instance=user)
+        if topform.is_valid():
             topform.save()
             return HttpResponseRedirect(reverse('edit_profile_top'))
     else:
         topform = TopForm(instance=user)
 
-    lagunak = GamerUser.objects.filter(top_jokoak__in=user.top_jokoak.all()).exclude(id=user.id).distinct().order_by('-karma')[:10]
-    topjokoak = GamerUser.objects.values('top_jokoak__izena','top_jokoak__bertsioa','top_jokoak__logoa','top_jokoak__slug').annotate(Count('top_jokoak')).order_by('-top_jokoak__count','-top_jokoak__izena')[:10]
+    lagunak = GamerUser.objects.filter(top_jokoak__in=user.top_jokoak.all()).exclude(id=user.id).distinct().order_by(
+        '-karma')[:10]
+    topjokoak = GamerUser.objects.values('top_jokoak__izena', 'top_jokoak__bertsioa', 'top_jokoak__logoa',
+                                         'top_jokoak__slug').annotate(Count('top_jokoak')).order_by(
+        '-top_jokoak__count', '-top_jokoak__izena')[:10]
     jokoak = user.top_jokoak.all().count()
     return render_to_response('profile/edit_top_games.html', locals(), context_instance=RequestContext(request))
+
 
 @sensitive_post_parameters()
 @csrf_protect
@@ -237,6 +262,7 @@ def password_change_done(request,
     return TemplateResponse(request, template_name, context,
                             current_app=current_app)
 
+
 @login_required
 def reset_topics(request):
     user = request.user
@@ -245,7 +271,7 @@ def reset_topics(request):
             if t.user_lst:
                 lst = t.user_lst.split(',')
                 if str(user.id) not in lst:
-                    t.user_lst += ','+str(user.id)
+                    t.user_lst += ',' + str(user.id)
             else:
                 t.user_lst = str(user.id)
             t.save()
@@ -253,8 +279,8 @@ def reset_topics(request):
 
     categories = Category.objects.all().order_by('order')
     return render_to_response("django_simple_forum/list.html", {'categories': categories,
-                                'user': request.user},
-                                context_instance=RequestContext(request))
+                                                                'user': request.user},
+                              context_instance=RequestContext(request))
 
 
 @login_required
@@ -268,7 +294,7 @@ def add_article(request):
             berria.slug = slugify(berria.izenburua)
             berria.erabiltzailea = user
             berria.publikoa_da = True
-            if request.FILES.get('argazkia',''):
+            if request.FILES.get('argazkia', ''):
                 photo = handle_uploaded_file(request.FILES['argazkia'], user.getFullName())
                 berria.argazkia = photo
             berria.save()
@@ -278,6 +304,7 @@ def add_article(request):
         articleform = ArticleForm()
     return render_to_response('profile/add_article.html', locals(), context_instance=RequestContext(request))
 
+
 @login_required
 def add_gameplay(request):
     """ """
@@ -285,8 +312,9 @@ def add_gameplay(request):
     if request.method == 'POST':
         gameplayform = GamePlayForm(request.POST)
         if gameplayform.is_valid():
-            if not request.FILES.get('argazkia',''):
-                gameplayform._errors["argazkia"] = ErrorList([u"Argazkia jartzea derrigorrezkoa da. Mesedez, jarri argazki polit bat!"])
+            if not request.FILES.get('argazkia', ''):
+                gameplayform._errors["argazkia"] = ErrorList(
+                    [u"Argazkia jartzea derrigorrezkoa da. Mesedez, jarri argazki polit bat!"])
             else:
                 gp = gameplayform.save(commit=False)
                 gp.slug = slugify(gp.izenburua)
@@ -295,10 +323,12 @@ def add_gameplay(request):
                 gp.argazkia = handle_uploaded_file(request.FILES['argazkia'], user.getFullName())
                 gp.save()
                 gameplayform.save_m2m()
-                return render_to_response('profile/gameplay_sent.html', locals(), context_instance=RequestContext(request))
+                return render_to_response('profile/gameplay_sent.html', locals(),
+                                          context_instance=RequestContext(request))
     else:
         gameplayform = GamePlayForm()
     return render_to_response('profile/add_gameplay.html', locals(), context_instance=RequestContext(request))
+
 
 @login_required
 def add_event(request):
@@ -316,18 +346,19 @@ def add_event(request):
 
 
 @login_required
-def add_favorite_game(request,slug):
+def add_favorite_game(request, slug):
     user = request.user
     if Jokoa.objects.filter(slug=slug).exists():
         game = Jokoa.objects.get(slug=slug)
         user.top_jokoak.add(game)
         user.save()
-    return HttpResponseRedirect(reverse('game', kwargs={'slug':slug}))
+    return HttpResponseRedirect(reverse('game', kwargs={'slug': slug}))
+
 
 def get_jokoak(request):
     if request.is_ajax():
         q = request.GET.get('term', '')
-        jokoak = Jokoa.objects.filter(izena__icontains = q )[:20]
+        jokoak = Jokoa.objects.filter(izena__icontains=q)[:20]
         # jokoak = Jokoa.objects.all().order_by('izena')
         results = []
         for joko in jokoak:
@@ -342,16 +373,19 @@ def get_jokoak(request):
     mimetype = 'application/json'
     return HttpResponse(data, mimetype)
 
+
 def get_user(request):
     if request.is_ajax():
         q = request.GET.get('term', '')
-        users = GamerUser.objects.filter(Q(username__icontains = q)|Q(fullname__icontains=q)|Q(twitter_id__icontains=q)|Q(nickname__icontains=q))[:20]
+        users = GamerUser.objects.filter(
+            Q(username__icontains=q) | Q(fullname__icontains=q) | Q(twitter_id__icontains=q) | Q(
+                nickname__icontains=q))[:20]
         results = []
         for user in users:
             user_json = {}
             user_json['id'] = user.id
             if user.fullname:
-                label = user.fullname+' ('+user.username+')'
+                label = user.fullname + ' (' + user.username + ')'
             else:
                 label = user.username
             user_json['label'] = label

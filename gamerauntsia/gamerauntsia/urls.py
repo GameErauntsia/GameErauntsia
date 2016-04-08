@@ -41,6 +41,7 @@ urlpatterns = patterns('',
 
                        # JOKALARIAK
                        url(r'^nor-gara/', include('gamerauntsia.gamer.urls')),
+                       url(r'^youtuberrak/', 'gamerauntsia.gamer.views.youtuberrak', name='youtuberrak'),
                        url(r'^komunitatea/$', 'gamerauntsia.gamer.views.community', name='komunitatea'),
                        (r'^komunitatea/', include('cssocialuser.urls')),
                        (r'^komunitatea/', include('registration.backends.default.urls')),
