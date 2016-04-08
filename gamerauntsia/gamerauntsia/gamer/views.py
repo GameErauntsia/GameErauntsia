@@ -54,7 +54,8 @@ def index(request):
 
 def youtuberrak(request):
     users = GamerUser.objects.filter(is_active=True).exclude(ytube_channel__isnull=True).exclude(
-        ytube_channel__exact='').order_by('-karma')
+        ytube_channel__exact='').annotate(num_gp=Count('gameplayak')) \
+                .order_by('-num_gp')
     return render_to_response('gamer/youtuberrak.html', locals(), context_instance=RequestContext(request))
 
 
