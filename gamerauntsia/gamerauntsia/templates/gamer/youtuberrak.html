@@ -1,8 +1,7 @@
 {% extends "base.html" %}
-{% load gamerauntsia %}
 {% load pagination_tags include comments gamerauntsia %}
 
-{%block title%}Gure Youtuberrak - {%endblock%}
+{%block title%}Youtuberrak - {%endblock%}
 
 {% block morejs %}
 <div id="fb-root"></div>
@@ -18,7 +17,7 @@
 {% block content %}
 
 <div class="col-sm-12">
-    <h1 class="page-header">Gure Youtuberrak
+    <h1 class="page-header">Youtuberrak
         <small>Harpidetu zaitez euren kanaletara!</small>
     </h1>
 </div>
@@ -34,7 +33,7 @@
                     <h3><a href="{% url 'gamer_profile' user.username %}">{{user.fullname}}</a>
                         <small>{% if user.twitter_id %}@{{user.twitter_id}}{% else %}{{user.nickname}}{% endif %}</small>
                     </h3>
-                    <p>{{user.bio}}</p>
+                    <p>{{user.bio|striptags}}</p>
                 </div>
 
             {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}

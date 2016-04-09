@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load gamerauntsia %}
+
+{%block title%}Talde motorra - {%endblock%}
+
+{% block morejs %}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/eu_ES/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+{% endblock %}
+
+{% block content %}
+
+<div class="col-sm-12">
+    <h1 class="page-header">Talde motorra
+        <small>Pozten gara zu ezagutzeaz!</small>
+    </h1>
+    <p>Zaletasun berdin batek bildu gaituen komunitate bat gara. Bideo jokoak ditugu gustuko eta horien inguruan sortzen diren albiste eta berrikuntzak ditugu gustuko. Euskal jokalari taldea gara gu, <span class="text-success">Game Erauntsia</span>.</p>
+    <p>Bideo jokoak gustuko dituzula? Zeren zain zaude! Hemen denetarik aurkituko duzu eta gainera euskaraz! Gozatu gure komunitatean parte hartuz eta animatzen bazara zuk ere zure txoko propioa izan dezakezu gure taldean! Zer animatzen?</p>
+</div>
+
+<div class="col-sm-12">
+    <div class="col-sm-8">
+        <h2>Erabaki taldea</h2>
+        {% for user in users %}
+        {% if user.is_staff and user.is_active %}
+            {% if forloop.first %}<div class="row">{% endif %}
+                <div class="col-sm-4 col-sm-6">
+                    <a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profile_url}}" class="img-circle img-responsive"></a>
+                    <h3><a href="{% url 'gamer_profile' user.username %}">{{user.fullname}}</a>
+                        <small>{% if user.twitter_id %}@{{user.twitter_id}}{% else %}{{user.nickname}}{% endif %}</small>
+                    </h3>
+                    <p>{{user.bio|striptags}}</p>
+                </div>
+
+            {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
+            {% if forloop.last %}</div>{% endif %}
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="col-sm-4">
+        {% steam_panel %}
+        <div class="well commentform">
+            <div class="fb-like-box" data-href="https://www.facebook.com/Gamerauntsia" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
+        </div>
+        <div class="well">
+            <a class="twitter-timeline"  href="https://twitter.com/Gamerauntsia"  data-widget-id="493804561870491649">@Gamerauntsia(r)en Txioak</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+        <div class="well">
+            <h2>Dohaintza bat egin</h2>
+            <p>Game Erauntsia martxan egon dadin giza esfortzu handia egin dugu. Taldeko norbanako bakoitzak bere denbora libreko orduak jartzen baititu Game Erauntsia aurrera atera dadin. Baina proiektu honen mantenuak, batez ere webgune hau ostatzen duen zerbitzuak eta domeinuak kostu bat suposatzen du, non proiektua martxan jarri genuen taldeko kide batzuon gain hartzen dugun.</p>
+            <p>Game Erauntsiaren infraestruktura epe luze batean bideragarria izan dadin eta ekimen eta ideia berriak martxan jar daitezen asko eskertuko genuke dohaintza bat egingo bazenigu. Bertan lortutako diruarekin proiektu honi indarra emateaz gain, bideojokuei buruzko azpi proiektu berriak martxan jartzeko adorea ematen diguzu.</p>
+            <p>Mila esker!</p>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="BCPEUA4ZER92J">
+                <input class="img-responsive center-block" type="image" src="{{MEDIA_URL}}photologue/photos/paypal_1.jpg" border="0" name="submit" alt="PayPal. La forma rápida y segura de pagar en Internet.">
+                <img alt="" border="0" src="https://www.paypalobjects.com/es_ES/i/scr/pixel.gif" width="1" height="1">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

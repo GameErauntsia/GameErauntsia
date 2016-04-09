@@ -46,18 +46,28 @@ def update_session_auth_hash(request, user):
     if hasattr(user, 'get_session_auth_hash') and request.user == user:
         request.session[HASH_SESSION_KEY] = user.get_session_auth_hash()
 
-
-def index(request):
-    users = GamerUser.objects.filter(is_active=True, is_staff=True).order_by('-date_joined')
-    return render_to_response('gamer/index.html', locals(), context_instance=RequestContext(request))
-
+def community(request):
+    users = GamerUser.objects.filter(is_active=True).order_by('-date_joined')
+    user_rows = int(round(len(users) / 3))
+    gurus = GamerUser.objects.filter(is_active=True).order_by('-karma')[:9]
+    return render_to_response('gamer/community.html', locals(), context_instance=RequestContext(request))
 
 def youtuberrak(request):
     users = GamerUser.objects.filter(is_active=True).exclude(ytube_channel__isnull=True).exclude(
-        ytube_channel__exact='').annotate(num_gp=Count('gameplayak')) \
-                .order_by('-num_gp')
+        ytube_channel__exact='').annotate(num_gp=Count('gameplayak')).exclude(num_gp=0).order_by('-num_gp')
     return render_to_response('gamer/youtuberrak.html', locals(), context_instance=RequestContext(request))
 
+def idazleak(request):
+    users = GamerUser.objects.filter(is_active=True).annotate(num_art=Count('berriak')).exclude(num_art=0).order_by('-num_art')
+    return render_to_response('gamer/idazleak.html', locals(), context_instance=RequestContext(request))
+
+def guruak(request):
+    users = GamerUser.objects.filter(is_active=True).order_by('-karma')
+    return render_to_response('gamer/guruak.html', locals(), context_instance=RequestContext(request))
+
+def talde_motorra(request):
+    users = GamerUser.objects.filter(is_active=True, is_staff=True).order_by('-date_joined')
+    return render_to_response('gamer/talde_motorra.html', locals(), context_instance=RequestContext(request))
 
 def profile(request, username):
     user_prof = get_object_or_404(GamerUser, username=username, is_active=True)
@@ -74,13 +84,6 @@ def profile(request, username):
     berri_count = len(berriak)
     side_berriak = berriak[:5]
     return render_to_response('gamer/profile.html', locals(), context_instance=RequestContext(request))
-
-
-def community(request):
-    users = GamerUser.objects.filter(is_active=True).order_by('-date_joined')
-    user_rows = int(round(len(users) / 3))
-    gurus = GamerUser.objects.filter(is_active=True, is_staff=False).order_by('-karma', '-date_joined')[:9]
-    return render_to_response('gamer/community.html', locals(), context_instance=RequestContext(request))
 
 
 @login_required
