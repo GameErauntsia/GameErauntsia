@@ -21,7 +21,7 @@
 		        <h4 class="media-heading"><a href="{% url 'gamer_guestprofile' comment.user.username %}">{{ comment.name }}</a>
 		        <small><a href="{{comment.get_absolute_url}}">{{ comment.submit_date }}</a></small>
 		        </h4>
-		        {{comment.comment|urlize|linebreaks|emoticons|safe}}
+		        {{comment.comment|linebreaks|emoticons|safe}}
 		    </div>
 		</div>
 	

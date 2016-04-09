@@ -30,10 +30,10 @@
         <div class="col-xs-12 col-sm-10">
           <a id="{{post.id}}"></a>
           <h4><a href="/foroa/{{forum.slug}}{{post.get_absolute_url}}">#</a> {{post.title}}</h4>
-          <p>{{post.body|safe|urlize|emoticons}}</p>
+          <p>{{post.body|safe|emoticons}}</p>
           {% if post.creator.signature %}
                 <hr class="dotted" />
-                <p>{{post.creator.signature|safe|urlize|emoticons}}</p>
+                <p>{{post.creator.signature|safe|emoticons}}</p>
           {% endif %}
         </div>
       </div>
