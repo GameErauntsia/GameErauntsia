@@ -104,6 +104,9 @@ urlpatterns = patterns('',
      (r'^gameplay-arauak/$', TemplateView.as_view(template_name='upload_gp.html')),
      (r'^cookie/$', TemplateView.as_view(template_name='cookie.html')),
 
+     # SITEMAP
+     url(r'^sitemap.xml', include('static_sitemaps.urls')),
+
      # AJAX ESKAERAK
      url(r'^ajax/get_jokoak/', 'gamerauntsia.gamer.views.get_jokoak', name='ajax_jokoak'),
      url(r'^ajax/get_erabiltzaileak/', 'gamerauntsia.gamer.views.get_user', name='ajax_user'),
