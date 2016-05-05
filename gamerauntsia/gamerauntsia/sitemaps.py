@@ -6,7 +6,7 @@ class Sitemaps(sitemaps.Sitemap):
     changefreq = 'hourly'
 
     def items(self):
-        return ['gameplayak', 'berriak', 'txapelketak']
+        return ['gameplay_index', 'bloga', 'jokoak', 'txapelketak_index']
 
     def location(self, item):
         return reverse(item)
