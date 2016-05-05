@@ -105,7 +105,7 @@ urlpatterns = patterns('',
      (r'^cookie/$', TemplateView.as_view(template_name='cookie.html')),
 
      # SITEMAP
-     url(r'^sitemap.xml', include('static_sitemaps.urls')),
+     #url(r'^sitemap.xml', include('static_sitemaps.urls')),
 
      # AJAX ESKAERAK
      url(r'^ajax/get_jokoak/', 'gamerauntsia.gamer.views.get_jokoak', name='ajax_jokoak'),
