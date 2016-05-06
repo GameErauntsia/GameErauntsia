@@ -15,8 +15,9 @@
     </div>
     <div class="col-sm-4">
         <h1>{{twitch.stream.channel.status}}</h1>
-        <p><span class="glyphicon glyphicon-play"></span> {{twitch.stream.game}} | <span class="glyphicon glyphicon-time"></span> {{twitch.stream.created_at}}
-        <p><a href="http://twitch.tv/{{twitch.stream.channel.name}}"><img src="{{STATIC_URL}}img/twitch.png" width="50"/></a></p>
+        <p><span class="glyphicon glyphicon-play"></span> {{twitch.stream.game}} | <span class="glyphicon glyphicon-eye-open"></span> {{twitch.stream.viewers}} ikusten
+        <p><iframe src="https://www.twitch.tv/{{twitch.stream.channel.name}}/chat?popout=" frameborder="0" scrolling="no" height="300" width="350"></iframe></p>
+        <p><a href="http://twitch.tv/{{twitch.stream.channel.name}}"><img src="{{STATIC_URL}}img/twitch.png" width="50"/> Ikusi {{twitch.stream.channel.name}} kanalean</a></p>
     </div>
     {% else %}
         {% get_comment_count for gp as comment_count %}
