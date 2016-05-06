@@ -62,7 +62,9 @@
         {% endif %}
         {% endif %}
         <p class="lead">{{item.desk|safe|emoticons}}</p>
-        <p><a class="twitter popup" href="http://twitter.com/share?text={{item.izenburua|urlfriend}}"><img src="{{STATIC_URL}}img/twitter.png"/></a> <a href="https://www.facebook.com/dialog/share?app_id={{FB_APP_ID}}&display=popup&href={{item.get_absolute_url|urlencode:''}}&redirect_uri={{item.get_absolute_url|urlencode:''}}"><img src="{{STATIC_URL}}img/facebook.png"/></a></p>
+
+        {% include 'share_buttons.html' with item=item %}
+        
         <hr>
         
         {% render_comment_list for item %}
