@@ -1,14 +1,15 @@
 from django.contrib import sitemaps
-from gamerauntsia.berriak.models import Berria
+from django.core.urlresolvers import reverse
+from datetime import datetime
 
 
-class Sitemaps(sitemaps.Sitemap):
+class StaticViewSitemap(sitemaps.Sitemap):
     priority = 0.5
-    changefreq = 'hourly'
+    changefreq = 'dayly'
 
     def items(self):
-        return Berria.objects.filter(status='1', pub_date__lt=datetime.now()).order_by('-pub_date')
+        return ['getb_index','berriak_index', 'game_index','gameplay_index','txapelketak_index']
 
 
-    def lastmod(self, obj):
-        return obj.pub_date 
+    def location(self, item):
+        return reverse(item) 

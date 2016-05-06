@@ -8,9 +8,16 @@ from rest_framework.routers import DefaultRouter
 from gamerauntsia.app.authentication.viewsets import UsersViewSet
 router = DefaultRouter()
 
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import StaticViewSitemap
+
 from gamerauntsia.base.feed import LatestEntriesFeed, LatestNewsFeed
 
 admin.autodiscover()
+
+sitemaps = {
+    'static': StaticViewSitemap,
+}
 
 urlpatterns = patterns('',
      (r'^robots.txt$',
@@ -105,7 +112,8 @@ urlpatterns = patterns('',
      (r'^cookie/$', TemplateView.as_view(template_name='cookie.html')),
 
      # SITEMAP
-     #url(r'^sitemap.xml', include('static_sitemaps.urls')),
+     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
+        name='django.contrib.sitemaps.views.sitemap'),
 
      # AJAX ESKAERAK
      url(r'^ajax/get_jokoak/', 'gamerauntsia.gamer.views.get_jokoak', name='ajax_jokoak'),
