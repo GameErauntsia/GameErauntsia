@@ -57,13 +57,16 @@
 					{% endif %}
 					<p>
 						{% if user_prof.ytube_channel %}
-						<a href="{{user_prof.ytube_channel}}"><img src="{{STATIC_URL}}img/youtube.png" /></a>
+						<a href="{{user_prof.ytube_channel}}"><img src="{{STATIC_URL}}img/youtube.png" width="50"/></a>
+						{% endif %}
+						{% if user_prof.twitch_channel %}
+						<a href="http://twitch.tv/{{user_prof.twitch_channel}}"><img src="{{STATIC_URL}}img/twitch.png" width="50"/></a>
 						{% endif %}
 						{% if user_prof.twitter_id %}
-						<a href="http://twitter.com/{{user_prof.twitter_id}}"><img src="{{STATIC_URL}}img/twitter.png" /></a>
+						<a href="http://twitter.com/{{user_prof.twitter_id}}"><img src="{{STATIC_URL}}img/twitter.png" width="50" /></a>
 						{% endif %}
 						{% if user_prof.facebook_id %}
-						<a href="http://facebook.com/{{user_prof.facebook_id}}"><img src="{{STATIC_URL}}img/facebook.png" /></a>
+						<a href="http://facebook.com/{{user_prof.facebook_id}}"><img src="{{STATIC_URL}}img/facebook.png" width="50" /></a>
 						{% endif %}
 					</p>
 				</div>

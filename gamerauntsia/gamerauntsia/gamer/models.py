@@ -43,6 +43,7 @@ class GamerUser(CSAbstractSocialUser):
     top_jokoak = models.ManyToManyField(Jokoa, blank=True)
     signature = models.TextField(verbose_name="Foro sinadura", null=True, blank=True)
     ytube_channel = models.CharField(max_length=150, null=True, blank=True)
+    twitch_channel = models.CharField(max_length=150, null=True, blank=True, verbose_name="Twitch kanala")
     email_notification = models.BooleanField(default=True, verbose_name="Eztabaidak")
     buletin_notification = models.BooleanField(default=True, verbose_name="Buletinak")
     motherboard = models.CharField(verbose_name="Txartel nagusia", max_length=150, null=True, blank=True)

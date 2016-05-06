@@ -9,12 +9,40 @@ from django.utils import timezone
 from gamerauntsia.berriak.models import Berria
 from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.txapelketak.models import Txapelketa
+from gamerauntsia.getb.models import Atala
+from gamerauntsia.gamer.models import GamerUser
+from gamerauntsia.utils.urls import get_urljson
 
+GAMERAUNTSIA_TWITCH = "gamerauntsia"
+TWITCH_URL = "https://api.twitch.tv/kraken/streams/"
 
 def index(request):
+    stream_data = get_urljson(TWITCH_URL+GAMERAUNTSIA_TWITCH)
+    is_streaming = stream_data.get("stream", False)
+
+    twitch = None
+    if not is_streaming:
+        gamerrak = GamerUser.objects.filter(Q(is_gamer=True),Q(twitch_channel__isnull=False),~Q(twitch_channel='')).order_by("-karma")
+        for gamer in gamerrak:
+            stream_data = get_urljson(TWITCH_URL+gamer.twitch_channel)
+            is_streaming = stream_data.get("stream", False)
+            if is_streaming:
+                twitch = stream_data
+                break
+    else:
+        twitch = stream_data
+
     gameplayak = GamePlaya.objects.filter(status='1', publikoa_da=True, pub_date__lt=datetime.now()).order_by(
-        '-pub_date')[:4]
+        '-pub_date')
+    if not twitch:
+        gp = gameplayak[0]
+        gameplayak = gameplayak[1:4]
+    else:
+        gameplayak = gameplayak[:3]
     berriak = Berria.objects.filter(status='1', pub_date__lt=datetime.now()).order_by('-pub_date')[:8]
+    #atala = Atala.objects.latest('pub_date')
+
+
     if Txapelketa.objects.filter(publikoa_da=True, status__in=('0', '1', '2')).exists():
         list_tx = Txapelketa.objects.filter(publikoa_da=True, status__in=('0', '1', '2')).order_by('-pub_date')
         if len(list_tx) > 1:
@@ -22,19 +50,6 @@ def index(request):
         else:
             txapelketa = list_tx[0]
 
-    if Txapelketa.objects.filter(Q(publikoa_da=True), Q(twitch=True), Q(status='2')).exists():
-        txs = Txapelketa.objects.filter(Q(publikoa_da=True), Q(twitch=True), Q(status='2'))
-        match = None
-        last_tx = None
-        for tx in txs:
-            if not match:
-                match = tx.get_next_match()
-                last_tx = tx
-            elif match and tx.get_next_match() and match > tx.get_next_match():
-                match = tx.get_next_match()
-                last_tx = tx
-        if match and match < timezone.now():
-            live_gp = last_tx
     return render_to_response('index.html', locals(), context_instance=RequestContext(request))
 
 
