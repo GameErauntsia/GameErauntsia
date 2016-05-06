@@ -17,10 +17,11 @@ class BerriakAdmin(admin.ModelAdmin):
     admin_thumbnail.allow_tags = True
 
     def preview(self,obj):
-        return '<a href="/bloga/%s">%s</a>' % (obj.slug, obj.slug)
+        return '<a href="/bloga/%s">aurreikusi</a>' % (obj.slug)
     preview.allow_tags=True
 
-    list_display = ('izenburua', 'preview', 'erabiltzailea', 'pub_date', 'mod_date', 'publikoa_da','status','admin_thumbnail')
+    list_display = ('admin_thumbnail', 'izenburua', 'preview', 'erabiltzailea', 'pub_date', 'mod_date', 'publikoa_da','status')
+    list_display_links = ('izenburua',)
     prepopulated_fields = {"slug": ("izenburua",)}
     filter_horizontal = ('gaia',)
     list_filter = ('publikoa_da', 'status')

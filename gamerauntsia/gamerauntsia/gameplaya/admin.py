@@ -19,10 +19,11 @@ class GamePlayAdmin(admin.ModelAdmin):
     admin_thumbnail.allow_tags = True
 
     def preview(self,obj):
-        return '<a href="/gameplayak/%s">%s</a>' % (obj.slug, obj.slug)
+        return '<a href="/gameplayak/%s">aurreikusi</a>' % (obj.slug)
     preview.allow_tags=True
 
-    list_display = ('izenburua', 'preview','zailtasuna', 'jokoa','plataforma','pub_date', 'erabiltzailea','publikoa_da', 'status','shared','admin_thumbnail')
+    list_display = ('admin_thumbnail','izenburua', 'preview','zailtasuna', 'jokoa','plataforma','pub_date', 'erabiltzailea','publikoa_da', 'status','shared')
+    list_display_links = ('izenburua',)
     prepopulated_fields = {"slug": ("izenburua",)}
     filter_horizontal = ('kategoria',)
     raw_id_fields = ('argazkia','jokoa','plataforma','erabiltzailea')

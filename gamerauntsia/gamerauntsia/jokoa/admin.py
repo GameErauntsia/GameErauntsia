@@ -16,7 +16,12 @@ class JokoaAdmin(admin.ModelAdmin):
     admin_thumbnail.short_description = 'Thumb'
     admin_thumbnail.allow_tags = True
 
-    list_display = ('izena','bertsioa','url','slug','steam_id', 'publikoa_da','admin_thumbnail' )
+    def preview(self,obj):
+        return '<a href="/jokoak/%s">aurreikusi</a>' % (obj.slug)
+    preview.allow_tags=True
+
+    list_display = ('admin_thumbnail','izena','bertsioa','preview','url','slug','steam_id', 'publikoa_da' )
+    list_display_links = ('izena',)
     prepopulated_fields = {"slug": ("izena","bertsioa")}
     search_fields = ['izena',]
     ordering = ('izena','bertsioa')
