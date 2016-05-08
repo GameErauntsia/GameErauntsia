@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from photologue.models import Photo
 
 SOFTWARE_AUKERAK = (
@@ -33,6 +34,13 @@ class Jokoa(models.Model):
     wiki = models.CharField(max_length=64, null=True, blank=True, help_text="Eremu honetan joko honen wikipediako URL helbidea zehaztu mesedez." )
 
     publikoa_da = models.BooleanField(default=True)
+
+    def get_title(self):
+        return "%s %s" % (self.izena,self.bertsioa)
+
+    def get_absolute_url(self):
+        return "%sjokoak/%s" % (settings.HOST,self.slug)
+
 
     def get_photo(self):
         if self.logoa:

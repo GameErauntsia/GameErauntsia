@@ -1,0 +1,17 @@
+{% load include %}
+<p>
+	<a class="twitter popup" href="http://twitter.com/share?text={{item.get_title|urlfriend}}">
+		<img src="{{STATIC_URL}}img/twitter.png" alt="Game Erauntsia twitter" title="Game Erauntsia twitter" width="40"/>
+	</a> 
+	<a href="https://www.facebook.com/dialog/share?app_id={{FB_APP_ID}}&display=popup&href={{item.get_absolute_url|urlencode:''}}&redirect_uri={{item.get_absolute_url|urlencode:''}}">
+		<img src="{{STATIC_URL}}img/facebook.png" alt="Game Erauntsia facebook" title="Game Erauntsia facebook" width="40"/>
+	</a>
+	{% if flavour == 'mobile' %}
+	<a href="whatsapp://send?text={{item.get_title|urlencode}}%20{{item.get_absolute_url|urlencode}}" data-text="Begiratu hau..." data-href="{{item.get_absolute_url|urlencode}}" class="wa_btn wa_btn_s" >
+        <img src="{{STATIC_URL}}img/whatsapp.png" alt="Game Erauntsia whatsapp" title="Game Erauntsia whatsapp" width="40">
+    </a>
+    <a href="tg://msg?text={{item.get_title|urlencode}}%20{{item.get_absolute_url|urlencode}}" data-text="Begiratu hau..." data-href="" class="wa_btn wa_btn_s" >
+        <img src="{{STATIC_URL}}img/telegram.png" alt="Game Erauntsia telegram" title="Game Erauntsia telegram" width="40">
+    </a>
+	{% endif %}
+</p>

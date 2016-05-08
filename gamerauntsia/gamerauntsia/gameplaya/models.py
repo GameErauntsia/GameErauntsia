@@ -67,6 +67,9 @@ class GamePlaya(models.Model):
     shared = models.BooleanField(default=False,
                                  help_text="Lauki hau automatikoki markatuko da sistemak edukia sare sozialetan elkarbanatzean.")
 
+    def get_title(self):
+        return self.izenburua
+
     def get_desk_index(self):
         if len(self.desk) > 400:
             return filters.striptags(self.desk)[:400] + '...'

@@ -25,7 +25,6 @@ def index(request,kategoria=None,username=None,maila=None,jokoa=None,plataforma=
         gameplayak = GamePlaya.objects.filter(status='1',publikoa_da=True,plataforma=plataforma, pub_date__lt=datetime.now()).order_by('-pub_date')
     else:
         gameplayak = GamePlaya.objects.filter(status='1',publikoa_da=True, pub_date__lt=datetime.now()).order_by('-pub_date')
-    users = GamerUser.objects.filter(is_active=True,is_gamer=True)
     kategoriak = Kategoria.objects.exclude(gameplay__isnull=True).order_by('izena')
     zailtasunak = Zailtasuna.objects.exclude(gameplay__isnull=True).order_by('izena')
     jokoak = Jokoa.objects.exclude(gameplay__isnull=True).order_by('izena')

@@ -16,10 +16,11 @@ class AtalaAdmin(admin.ModelAdmin):
     admin_thumbnail.allow_tags = True
 
     def preview(self,obj):
-        return '<a href="/getb/%s">%s</a>' % (obj.slug, obj.slug)
+        return '<a href="/getb/%s">aurreikusi</a>' % (obj.slug)
     preview.allow_tags=True
 
-    list_display = ('izenburua', 'preview','pub_date', 'publikoa_da', 'admin_thumbnail')
+    list_display = ('admin_thumbnail','izenburua', 'preview','pub_date', 'publikoa_da')
+    list_display_links = ('izenburua',)
     prepopulated_fields = {"slug": ("izenburua",)}
     raw_id_fields = ('argazkia',)
     list_filter = ('publikoa_da',)

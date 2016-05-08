@@ -22,6 +22,12 @@
                         <span class="input-group-addon" id="basic-addon1">Youtube</span>
                         <input id="id_youtube" class="form-control" type="text" name="ytube_channel" maxlength="60" placeholder="Youtube kanalaren URLa" value="{{ profileform.ytube_channel.value|default_if_none:"" }}" />
                     </div><br/>
+                    {% if user.is_gamer %}
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Twitch</span>
+                        <input id="id_twitch" class="form-control" type="text" name="twitch_channel" maxlength="60" placeholder="Twitch erabilzailea" value="{{ profileform.twitch_channel.value|default_if_none:"" }}" />
+                    </div><br/>
+                    {% endif %}
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">Twitter</span>
                         <input id="id_twitter_id" class="form-control" type="text" name="twitter_id" maxlength="60" placeholder="Twitter izena" value="{{ profileform.twitter_id.value|default_if_none:"" }}" />

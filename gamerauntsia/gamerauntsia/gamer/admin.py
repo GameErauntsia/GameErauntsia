@@ -44,17 +44,31 @@ class MyUserCreationForm(ModelForm):
         return user
 
 
-
 class GamerUserAdmin(UserAdmin):
+
+    def admin_thumbnail(self,obj):
+        try:
+            if obj.get_photo():
+                return u'<img src="%s" />' % (obj.get_photo().get_admin_thumbnail_url())
+            else:
+                return u'(Irudirik ez)'
+        except:
+            return '%s' % (obj.get_photo().title)
+    admin_thumbnail.short_description = 'Thumb'
+    admin_thumbnail.allow_tags = True
+
+    def preview(self,obj):
+        return '<a href="/komunitatea/%s">aurreikusi</a>' % (obj.username)
+    preview.allow_tags=True
 
     form = MyUserChangeForm
     change_user_password_template = None
     add_form = MyUserCreationForm
     change_password_form = AdminPasswordChangeForm
 
-    list_display = ('username','fullname','get_email','is_gamer','is_staff','is_active','date_joined')
+    list_display = ('admin_thumbnail','username','fullname','preview','get_email','is_gamer','is_staff','is_active','date_joined')
     list_display_links = ('fullname','username')
-    list_filter = ('is_staff', 'is_superuser', 'is_active', 'buletin_notification', 'groups')
+    list_filter = ('is_staff', 'is_gamer','is_superuser', 'is_active', 'buletin_notification', 'groups')
     search_fields = ['email','username','fullname']
     raw_id_fields = ('photo',)
 
@@ -70,7 +84,7 @@ class GamerUserAdmin(UserAdmin):
         ('Jakinarazpenak',
         {'fields':('email_notification','buletin_notification')},),
         ('Sare sozialak',
-        {'fields':('ytube_channel','twitter_id', 'facebook_id', 'telegram_id'),'classes': ['collapse',],},),
+        {'fields':('ytube_channel','twitch_channel','twitter_id', 'facebook_id', 'telegram_id'),'classes': ['collapse',],},),
         (_('Permissions'), {'fields': ('is_active','is_gamer', 'is_staff', 'is_superuser',
                                        'groups', 'user_permissions','last_login'),
                             'classes': ['collapse',],}),

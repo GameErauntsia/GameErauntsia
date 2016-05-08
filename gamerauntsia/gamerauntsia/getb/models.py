@@ -26,6 +26,9 @@ class Atala(models.Model):
     mod_date = models.DateTimeField('modifikazio data', default=datetime.now)
     shared = models.BooleanField(default=False, help_text="Lauki hau automatikoki markatuko da sistemak edukia sare sozialetan elkarbanatzean.")
 
+    def get_title(self):
+        return self.izenburua
+
     def get_desk_index(self):
     	if len(self.desk) > 400:
     	    return filters.striptags(self.desk)[:400]+'...'
@@ -48,6 +51,9 @@ class Atala(models.Model):
         return '%sgetb/%s' % (settings.HOST, self.slug)
 
     def getTwitText(self):
+        return self.izenburua + ' ' + self.get_absolute_url()
+
+    def getTelegramText(self):
         return self.izenburua + ' ' + self.get_absolute_url()
 
     def getEmailText(self):

@@ -58,6 +58,9 @@ class Txapelketa(models.Model):
     insk_date = models.DateTimeField('Izen ematea', default=datetime.now)
     shared = models.BooleanField(default=False)
 
+    def get_title(self):
+        return self.izena
+
     def get_jokalariak(self):
         return self.jokalariak.all()
 

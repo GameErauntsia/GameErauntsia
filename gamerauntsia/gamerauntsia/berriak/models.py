@@ -45,8 +45,11 @@ class Berria(models.Model):
     mod_date = models.DateTimeField('modifikazio data', default=datetime.now)
     shared = models.BooleanField(default=False, help_text="Lauki hau automatikoki markatuko da sistemak edukia sare sozialetan elkarbanatzean.")
 
+    def get_title(self):
+        return self.izenburua
+
     def get_desk_txikia(self):
-    	return filters.striptags(self.desk)[:400]+'...'
+    	  return filters.striptags(self.desk)[:400]+'...'
 
     def get_absolute_url(self):
         return '%sbloga/%s' % (settings.HOST, self.slug)

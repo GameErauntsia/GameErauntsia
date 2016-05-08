@@ -17,7 +17,7 @@ class GamerForm(forms.ModelForm):
 
     class Meta:
         model = GamerUser
-        fields = ('fullname','bio','twitter_id','facebook_id','ytube_channel','telegram_id','signature')
+        fields = ('fullname','bio','twitter_id','facebook_id','ytube_channel','twitch_channel','telegram_id','signature')
 
 class PCForm(forms.ModelForm):
     froga = forms.CharField()
