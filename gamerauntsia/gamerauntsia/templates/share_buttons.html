@@ -8,10 +8,10 @@
 	</a>
 	{% if flavour == 'mobile' %}
 	<a href="whatsapp://send?text={{item.get_title|urlencode}}%20{{item.get_absolute_url|urlencode}}" data-text="Begiratu hau..." data-href="{{item.get_absolute_url|urlencode}}" class="wa_btn wa_btn_s" >
-        <img src="{{STATIC_URL}}img/whatsapp.png" alt="Game Erauntsia whatsapp" title="Game Erauntsia whatsapp" width="40">
-    </a>
-    <a href="tg://msg?text={{item.get_title|urlencode}}%20{{item.get_absolute_url|urlencode}}" data-text="Begiratu hau..." data-href="" class="wa_btn wa_btn_s" >
-        <img src="{{STATIC_URL}}img/telegram.png" alt="Game Erauntsia telegram" title="Game Erauntsia telegram" width="40">
-    </a>
+            <img src="{{STATIC_URL}}img/whatsapp.png" alt="Game Erauntsia whatsapp" title="Game Erauntsia whatsapp" width="40">
+        </a>
+        <a href="tg://msg?text={{item.get_title|urlencode}}%20{{item.get_absolute_url|urlencode}}" data-text="Begiratu hau..." data-href="" class="wa_btn wa_btn_s" >
+            <img src="{{STATIC_URL}}img/telegram.png" alt="Game Erauntsia telegram" title="Game Erauntsia telegram" width="40">
+        </a>
 	{% endif %}
 </p>
