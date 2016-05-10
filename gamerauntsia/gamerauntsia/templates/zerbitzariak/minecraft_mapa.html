@@ -1,0 +1,22 @@
+{% extends "zerbitzariak/minecraft.html" %}
+{% load i18n emoticons_tags include %}
+
+{% block minecraft_title %}Minecraft mapa{% endblock %}
+
+{% block minecraft_content %}
+<div class="row">
+	<div class="col-sm-12">
+        <iframe src="http://198.20.111.238:8123/?worldname=Gamer_Erauntsia&mapname=surface&zoom=2&x=-400&y=65&z=-420" width="100%" height="600"></iframe>
+    </div>
+</div>
+<div class="well">
+    <div class="row">
+        <div class="col-md-8">
+            <p>Minecraft zerbitzaria guztiontzat eskuragarri dagoen dohako zerbitzu bat da. Jolastu ahal izateko ordea, izen ematea eta arau gutxi batzuk betetzea beharrezkoa da. </p>
+        </div>      
+        <div class="col-md-4">
+            <a href="{% url 'minecraft_index' %}" class="btn btn-lg btn-default btn-block">Eman izena!</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
