@@ -12,7 +12,7 @@ class Command(BaseCommand):
     help = 'Calculate users karma'
 
     def add_arguments(self, parser):
-        parser.add_argument('days', type=int)
+        parser.add_argument('--days', default=60, type=int)
 
     def handle(self, *args, **options):
-        calc_karma(days=options.get('days', 30))
+        calc_karma(days=options.get('days', 60))
