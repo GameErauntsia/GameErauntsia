@@ -33,10 +33,10 @@
 					{% if categs or bcategs %}
 					<p><strong>Kategoriak: </strong>
 						{% for cat in categs %}
-						<span class="label label-info"><a href="{% url 'gameplay_category' cat.kategoria__izena|slugify %}">{{cat.kategoria__izena}}</a></span>
+						<span class="label label-info tags"><a href="{% url 'gameplay_category' cat.kategoria__izena|slugify %}">{{cat.kategoria__izena}}</a></span>
 						{% endfor %}
 						{% for bcat in bcategs %}
-						<span class="label label-success">{{bcat.gaia__izena}}</span>
+						<span class="label label-success tags"><a href="{% url 'gaia' bcat.gaia__izena|slugify  %}">{{bcat.gaia__izena}}</a></span>
 						{% endfor %}
 					</p>
 					{% endif %}
