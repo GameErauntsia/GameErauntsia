@@ -8,7 +8,7 @@ IPS_STATUS = (
     ('2', 'Amaituta'),
 )
 
-class Retro_IPS(models.Model):
+class Itzulpena(models.Model):
     izena = models.CharField(max_length=150, verbose_name="Izena")
     status = models.CharField(max_length=1, choices=IPS_STATUS, default='0',verbose_name="Egoera")
     plataforma = models.ForeignKey(Plataforma)
@@ -21,8 +21,8 @@ class Retro_IPS(models.Model):
     mod_date = models.DateTimeField('modifikazio data', default=datetime.now)
 
     class Meta:
-        verbose_name = "Retro IPS file"
-        verbose_name_plural = "Retro IPS files"
+        verbose_name = "Itzulpen fitxategia"
+        verbose_name_plural = "Itzulpen fitxategiak"
 
     def get_absolute_url(self):
         return "%s" % self.ipsfile.url
