@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load include %}
+
+{% block title %}Retro artxiboa - {% endblock %}
+
+{% block content%}
+
+<div class="col-sm-12">
+    <h1 class="page-header">
+        Retro jokoen artxiboa
+        <small>
+        Euskarazko jokoak!
+        </small>
+    </h1>
+    <p>Garai bateko joko zaharrak izanik ere xarma berezia dute eta gure nostalgia elikatzeko iturri mugagabea dira. Orain arte euskaraz izan ez ditugun arren, hemendik aurrera gure txikitako momentu miragarri horiek berriz bizi nahi ditugu gure hizkuntzan.</p>
+</div>
+
+<div class="col-sm-12">
+    <form class="pull-right" method="get" action="{% url 'search_retro' %}">
+        <input id="search_term" value="" name="term" placeholder="Bilatu jokoa"/>
+        <input type="submit" value="Bilatu" class="btn btn-default"/>
+    </form>
+</div>
+
+<div class="col-sm-12">
+    <div id="content">
+        <div class="col-sm-12">
+            <div class="table-responsive">
+                <table class="table table-condensed table-hover">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Jokoa</th>
+                            <th>Plataforma</th>
+                            <th>IPS izena</th>
+                            <th>Egoera</th>
+                            <th>Argitaratze data</th>
+                            <th>Azken bertsioa</th>
+                            <th>Deskargatu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in items %}
+                        <tr>
+                            <td><img src="{{item.jokoa.get_forum_thumbnail_url}}" alt="{{item.jokoa.izena}} {{item.jokoa.bertsioa}} bideojokoak" title="{{item.jokoa.izena}} {{item.jokoa.bertsioa}} bideojokoak"/></td>
+                            <td><strong><a href="{{item.jokoa.get_absolute_url}}">{{item.jokoa.izena}} {{item.jokoa.bertsioa}}</a></strong></td>
+                            <td>{{item.plataforma.izena}}</td>
+                            <td>{{item.izena}}</td>
+                            <td>{{item.get_status_display}}</td>
+                            <td>{{item.pub_date|date:"Y/m/d H:i"}}</td>
+                            <td>{{item.mod_date|date:"Y/m/d H:i"}}</td>
+                            <td><a href="{{item.get_absolute_url}}"><i class="glyphicon glyphicon-download-alt"></i></a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}
