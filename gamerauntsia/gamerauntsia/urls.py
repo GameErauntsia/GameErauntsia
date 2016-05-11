@@ -74,8 +74,8 @@ urlpatterns = patterns('',
      url(r'^terminologia/bilatu', 'gamerauntsia.base.views.search_term', name='search_term'),
 
      # RETRO
-     url(r'^retro/$', 'gamerauntsia.retro.views.index', name='retro'),
-     url(r'^retro/bilatu', 'gamerauntsia.retro.views.search_retro', name='search_retro'),
+     url(r'^jokoen-itzulpenak/$', 'gamerauntsia.retro.views.index', name='retro'),
+     url(r'^jokoen-itzulpenak/bilatu', 'gamerauntsia.retro.views.search_retro', name='search_retro'),
 
      # BILAKETA
      url(r'^bilaketa?(?P<bilatu>[-\w]+)/$', 'gamerauntsia.views.bilaketa', name='bilaketa'),
