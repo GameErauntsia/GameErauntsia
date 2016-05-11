@@ -34,7 +34,6 @@
                             <th>Plataforma</th>
                             <th>IPS izena</th>
                             <th>Egoera</th>
-                            <th>Argitaratze data</th>
                             <th>Azken bertsioa</th>
                             <th>Deskargatu</th>
                         </tr>
@@ -42,12 +41,11 @@
                     <tbody>
                         {% for item in items %}
                         <tr>
-                            <td><img src="{{item.jokoa.get_forum_thumbnail_url}}" alt="{{item.jokoa.izena}} {{item.jokoa.bertsioa}} bideojokoak" title="{{item.jokoa.izena}} {{item.jokoa.bertsioa}} bideojokoak"/></td>
+                            <td><img src="{{item.jokoa.logoa.get_forum_thumbnail_url}}" alt="{{item.jokoa.izena}} {{item.jokoa.bertsioa}} bideojokoak" title="{{item.jokoa.izena}} {{item.jokoa.bertsioa}} bideojokoak"/></td>
                             <td><strong><a href="{{item.jokoa.get_absolute_url}}">{{item.jokoa.izena}} {{item.jokoa.bertsioa}}</a></strong></td>
                             <td>{{item.plataforma.izena}}</td>
                             <td>{{item.izena}}</td>
                             <td>{{item.get_status_display}}</td>
-                            <td>{{item.pub_date|date:"Y/m/d H:i"}}</td>
                             <td>{{item.mod_date|date:"Y/m/d H:i"}}</td>
                             <td><a href="{{item.get_absolute_url}}"><i class="glyphicon glyphicon-download-alt"></i></a></td>
                         </tr>
