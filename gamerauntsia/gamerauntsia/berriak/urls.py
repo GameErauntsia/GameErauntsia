@@ -3,6 +3,7 @@ from django.conf import settings
 
 urlpatterns = patterns('',
     url(r'^$', 'gamerauntsia.berriak.views.index', name='berriak_index'),
+    url(r'^gaia/(?P<slug>[-\w]+)/$', 'gamerauntsia.berriak.views.gaia', name='gaia'),
     url(r'^(?P<slug>[-\w]+)/$', 'gamerauntsia.berriak.views.berria', name='berria'),
 )
 

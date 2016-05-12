@@ -28,14 +28,16 @@
 <div class="row">
     <div class="col-sm-8">
 
+        {% block subtitle %}{% endblock %}
+
         {% block container %}
 
         {% autopaginate zerr_berriak 5 %}
         {% for berria in zerr_berriak %}
         {% get_comment_count for berria as comment_count %}
-        <h1><a href="{{berria.slug}}">{{berria.izenburua}}</a></h1>
+        <h1><a href="{% url 'berria' berria.slug %}">{{berria.izenburua}}</a></h1>
         <p class="lead">
-            <a href="{% url 'gamer_profile' berria.erabiltzailea.username %}"><img src="{{berria.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{berria.erabiltzailea.getFullName}}</a> | <span class="glyphicon glyphicon-time"></span> {{berria.pub_date|date:"Y/m/d H:i"}} {% for gai in berria.gaia.all %}<span class="label label-success tags">{{gai.izena}}</span>{% endfor %}
+            <a href="{% url 'gamer_profile' berria.erabiltzailea.username %}"><img src="{{berria.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{berria.erabiltzailea.getFullName}}</a> | <span class="glyphicon glyphicon-time"></span> {{berria.pub_date|date:"Y/m/d H:i"}} {% for gai in berria.gaia.all %}<span class="label label-success tags"><a href="{% url 'gaia' gai.slug %}">{{gai.izena}}</a></span>{% endfor %}
         </p>
         {% if berria.argazkia %}
         <a class="fancybox" href="{{berria.argazkia.image.url}}">
@@ -45,7 +47,7 @@
         {% endif %}
         <p>{{berria.get_desk_txikia|safe}}</p>
         <a class="btn btn-primary" href="{{berria.slug}}">Irakurri gehiago</a>
-        {% if comment_count %}<h4 class="pull-right"><a href="{{HOST}}berriak/{{berria.slug}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a></h4>{% endif %}
+        {% if comment_count %}<h4 class="pull-right"><a href="{% url 'berria' berria.slug %}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a></h4>{% endif %}
         <hr>
         {% endfor %}
 

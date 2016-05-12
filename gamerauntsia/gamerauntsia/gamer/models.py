@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from cssocialuser.models import CSAbstractSocialUser
 from django.conf import settings
@@ -120,27 +120,28 @@ class GamerUser(CSAbstractSocialUser):
         else:
             return False
 
-    def article_count(self):
-        return self.berriak.all().count()
+    def article_count(self,from_date):
+        return self.berriak.filter(status='1',pub_date__gte=from_date).count()
 
-    def gp_count(self):
-        return self.gameplayak.all().count()
+    def gp_count(self,from_date):
+        return self.gameplayak.filter(status='1',pub_date__gte=from_date).count()
 
-    def post_count(self):
-        return self.post_posts.all().count()
+    def post_count(self,from_date):
+        return self.post_posts.filter(created__gte=from_date).count()
 
-    def comment_count(self):
-        return self.comment_comments.all().count()
+    def comment_count(self,from_date):
+        return self.comment_comments.filter(is_public=True,submit_date__gte=from_date).count()
 
-    def tournament_count(self):
-        return self.jokalariak.all().count()
+    def tournament_count(self,from_date):
+        return self.jokalariak.filter(publikoa_da=True, pub_date__gte=from_date).count()
 
-    def get_karma(self):
-        karma = (self.article_count() * ARTICLE_KARMA) + \
-                (self.gp_count() * GP_KARMA) + \
-                (self.post_count() * POST_KARMA) + \
-                (self.comment_count() * COMMENT_KARMA) + \
-                (self.tournament_count() * TOURNAMENT_KARMA) or 0
+    def get_karma(self,days):
+        from_date = datetime.now() + timedelta(-days)
+        karma = (self.article_count(from_date) * ARTICLE_KARMA) + \
+                (self.gp_count(from_date) * GP_KARMA) + \
+                (self.post_count(from_date) * POST_KARMA) + \
+                (self.comment_count(from_date) * COMMENT_KARMA) + \
+                (self.tournament_count(from_date) * TOURNAMENT_KARMA) or 0
 
         # Puntuazio biderkatzailea
         if self.has_complete_profile():

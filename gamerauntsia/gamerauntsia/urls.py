@@ -73,6 +73,10 @@ urlpatterns = patterns('',
      url(r'^terminologia/$', 'gamerauntsia.base.views.index', name='terminologia'),
      url(r'^terminologia/bilatu', 'gamerauntsia.base.views.search_term', name='search_term'),
 
+     # JOKOEN ITZULPENAK
+     url(r'^jokoen-itzulpenak/$', 'gamerauntsia.jokoen_itzulpenak.views.index', name='jokoen_itzulpenak'),
+     url(r'^jokoen-itzulpenak/bilatu', 'gamerauntsia.jokoen_itzulpenak.views.search_retro', name='search_itzulpenak'),
+
      # BILAKETA
      url(r'^bilaketa?(?P<bilatu>[-\w]+)/$', 'gamerauntsia.views.bilaketa', name='bilaketa'),
 

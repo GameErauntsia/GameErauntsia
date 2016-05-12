@@ -1,7 +1,6 @@
 /gamerauntsia/static
 
 *.pyc
-wsgi.py
 local_settings.py
 /**/*settings.py
 gamerauntsia/gamerauntsia/settings.py
