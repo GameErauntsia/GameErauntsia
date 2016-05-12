@@ -1,8 +1,9 @@
 {% extends "base.html" %}
-{% load pagination_tags emoticons_tags include %}
+{% load pagination_tags emoticons_tags include bootstrap %}
 {% block title %}Erantzuna - {% endblock %}
 
 {% block morejs %}
+    {{ form.media }}
     <script type="text/javascript" src="{{ STATIC_URL }}js/tinymce/tinymce.min.js"></script>
 {% endblock %}
 
@@ -13,7 +14,7 @@
                 {{quote|safe}}
                 <form action="{% url 'reply' forum.slug topic.id %}" method="POST">
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    {{ form|bootstrap }}
                     <input type="hidden" name="quote" value="{{quote}}"/>
                     <input class="btn btn-primary" type="submit" value="Bidali" />
                     <a class="btn btn-default" href="{% url 'topic-detail' forum.slug topic.id %}">Ezeztatu</a>

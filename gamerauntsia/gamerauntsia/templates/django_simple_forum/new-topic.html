@@ -1,22 +1,22 @@
 {% extends "base.html" %}
+{% load bootstrap %}
 
 {% block title %}Gai berria - {% endblock %}
+
+{% block morejs %}
+    {{ form.media }}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/tinymce/tinymce.min.js"></script>
+{% endblock %}
 
 {% block content %}
 <div class="row">
     <div class="col-sm-12">
 		<h1>Gai berria gehitu</h1>
 		<form action="{% url 'new-topic' forum.slug %}" method="POST">
-		    {% csrf_token %}
-		    <fieldset>
-				<div class="input-group">
-  					<input id="id_title" class="form-control" type="text" name="title" maxlength="60" placeholder="Gaiaren izenburua">
-  				</div>
-  				<br/>
-                <textarea id="id_description" rows="4" name="description" cols="80" placeholder="Idatzi gaiari dagokion zure lehenengo mezua"></textarea><br/>
+		        {% csrf_token %}
+            {{ form|bootstrap }}
 		        <input class="btn btn-primary" type="submit" value="Bidali" />
 		        <a class="btn btn-default" href="{% url 'forum-detail' forum.slug %}">Ezeztatu</a>
-		    </fieldset>
 		</form>
 	</div>
 </div>
