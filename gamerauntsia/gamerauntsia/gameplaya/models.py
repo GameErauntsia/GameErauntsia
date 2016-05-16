@@ -80,6 +80,9 @@ class GamePlaya(models.Model):
             return filters.striptags(self.desk)[:150] + '...'
         return filters.striptags(self.desk)
 
+    def get_type(self):
+        return str(self.__class__.__name__).lower()
+
     def get_puntuak(self):
         if self.puntuak == 0:
             return 0

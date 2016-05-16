@@ -39,6 +39,9 @@ class Atala(models.Model):
     	    return filters.striptags(self.desk)[:150]+'...'
         return filters.striptags(self.desk)
 
+    def get_type(self):
+        return str(self.__class__.__name__).lower()
+
     def get_url(self):
         url = ''
         if self.bideoa.startswith('http://vimeo.com'):

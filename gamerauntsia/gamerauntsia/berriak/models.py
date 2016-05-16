@@ -51,6 +51,11 @@ class Berria(models.Model):
     def get_desk_txikia(self):
     	  return filters.striptags(self.desk)[:400]+'...'
 
+    def get_desk_index(self):
+        if len(self.desk) > 400:
+            return filters.striptags(self.desk)[:400]+'...'
+        return filters.striptags(self.desk)
+
     def get_absolute_url(self):
         return '%sbloga/%s' % (settings.HOST, self.slug)
 
@@ -81,6 +86,9 @@ class Berria(models.Model):
 
     def getFBinfo(self):
         return self.izenburua, self.desk, self.argazkia
+
+    def get_type(self):
+        return str(self.__class__.__name__).lower()
 
     def save(self, *args, **kwargs):
         self.desk = make_responsive(self.desk)
