@@ -58,22 +58,28 @@ def send_comment_email(sender,instance,**kwargs):
         except:
             send_mail('[Game Erauntsia]', str(instance.id)+' iruzkina ezin izan da bidali!\n\nMezua honako hau zen: "'+message+'"', settings.DEFAULT_FROM_EMAIL, ['ikerib@gmail.com'])
 
-def send_newuser_email(sender,instance,**kwargs):
+def send_newuser_msg(sender,instance,**kwargs):
     if kwargs['created']:
         tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
         message = '[Erabiltzailea]\n%skudeatu/gamer/gameruser/%s' % (settings.HOST,instance.id)
         tb.send_message(settings.EDITOR_CHAT_ID, message)
 
-def send_article_email(sender,instance,**kwargs):
+def send_article_msg(sender,instance,**kwargs):
     if instance.publikoa_da and instance.status == '0':
         tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
         message = '[Artikulua]\n%skudeatu/berriak/berria/%s' % (settings.HOST,instance.id)
         tb.send_message(settings.EDITOR_CHAT_ID, message)
 
-def send_gp_email(sender,instance,**kwargs):
+def send_gp_msg(sender,instance,**kwargs):
     if instance.publikoa_da and instance.status == '0':
         tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
         message = '[GamePlaya]\n%skudeatu/gameplaya/gameplaya/%s' % (settings.HOST,instance.id)
+        tb.send_message(settings.EDITOR_CHAT_ID, message)
+
+def send_game_msg(sender,instance,**kwargs):
+    if kwargs['created'] and not instance.publikoa_da:
+        tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
+        message = '[Jokoa]\n%skudeatu/jokoa/jokoa/%s' % (settings.HOST,instance.id)
         tb.send_message(settings.EDITOR_CHAT_ID, message)
 
 
@@ -82,7 +88,8 @@ def send_agenda_tweet(sender,instance,**kwargs):
         post_to_twitter(instance)
 
 post_save.connect(send_comment_email, sender=Comment)
-post_save.connect(send_newuser_email, sender=GamerUser)
-post_save.connect(send_article_email, sender=Berria)
-post_save.connect(send_gp_email, sender=GamePlaya)
+post_save.connect(send_newuser_msg, sender=GamerUser)
+post_save.connect(send_article_msg, sender=Berria)
+post_save.connect(send_gp_msg, sender=GamePlaya)
+post_save.connect(send_game_msg, sender=Jokoa)
 post_save.connect(send_agenda_tweet, sender=CalendarEvent)

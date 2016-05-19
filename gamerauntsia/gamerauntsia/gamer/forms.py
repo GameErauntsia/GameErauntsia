@@ -52,6 +52,17 @@ class ArticleForm(forms.ModelForm):
         model = Berria
         exclude = ('slug','erabiltzailea','pub_date','publikoa_da','status','mod_date','shared')
 
+class GameCatalogForm(forms.ModelForm):
+    logoa  = forms.ImageField(label='Jokoaren logo ofiziala', help_text='Onartutako formatuak: jpg, png, gif.', required=False)
+    desk = forms.CharField(label="Deskribapen laburra (aukerazkoa)", widget=forms.Textarea,required=False)
+    trailer = forms.CharField(label='Youtube trailerra (aukerazkoa)', help_text="Steam ID zenbakia jarrita badago, ez da beharrezkoa. Bestela, Youtube bideoaren KODEA itsatsi. Adibidez: bkgzXpKbVGE", required=False)
+    wiki = forms.CharField(label='Wikia (aukerazkoa)', help_text="Eremu honetan joko honen wikipediako URL helbidea zehaztu mesedez.", required=False)
+    steam_id = forms.IntegerField(label="Steam ID (aukerazkoa)", help_text="Jokoa Steam plataforman aurki badaiteke, jokoaren fitxaren URLan agertzen den zenbakia. Adibidez: 236110",required=False)
+
+    class Meta:
+        model = Jokoa
+        fields = ('izena','bertsioa','desk','logoa','lizentzia','url','steam_id','trailer','wiki')
+
 class TopForm(forms.ModelForm):
 
     top_jokoak = forms.ModelMultipleChoiceField(queryset=Jokoa.objects.all().order_by('izena','bertsioa'),

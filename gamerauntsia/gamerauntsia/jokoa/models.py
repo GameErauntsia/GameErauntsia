@@ -23,17 +23,17 @@ class Plataforma(models.Model):
 class Jokoa(models.Model):
     izena = models.CharField(max_length=64)
     slug = models.SlugField(db_index=True, unique=True, help_text="Eremu honetan joko honen URL helbidea zehazten ari zara.")
-    desk = models.TextField(max_length=256,null=True,blank=True)
-    bertsioa = models.CharField(max_length=64,null=True,blank=True)
+    desk = models.TextField(max_length=256,null=True,blank=True, verbose_name="Deskribapena")
+    bertsioa = models.CharField(max_length=64,null=True,blank=True,help_text="Joko saga bat bada, zehaztu hemen bertsioa.")
     lizentzia = models.CharField(max_length=2, default='C',choices=SOFTWARE_AUKERAK)
 
     logoa = models.ForeignKey(Photo)
-    steam_id = models.IntegerField(null=True,blank=True)
-    trailer = models.CharField(max_length=64,null=True,blank=True)
+    steam_id = models.IntegerField(null=True,blank=True, help_text="Jokoa Steam plataforman aurki badaiteke, jokoaren fitxaren URLan agertzen den zenbakia. Adibidez: 236110")
+    trailer = models.CharField(max_length=64,null=True,blank=True, verbose_name="Youtube trailerra",help_text="Steam ID zenbakia jarrita badago, ez da beharrezkoa. Bestela, Youtube bideoaren KODEA itsatsi. Adibidez: bkgzXpKbVGE")
     url = models.CharField(max_length=64, help_text="Eremu honetan joko honen atariko URL helbidea zehazten ari zara." )
     wiki = models.CharField(max_length=64, null=True, blank=True, help_text="Eremu honetan joko honen wikipediako URL helbidea zehaztu mesedez." )
 
-    publikoa_da = models.BooleanField(default=True)
+    publikoa_da = models.BooleanField(default=False)
 
     def get_title(self):
         return "%s %s" % (self.izena,self.bertsioa)

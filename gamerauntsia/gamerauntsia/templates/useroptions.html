@@ -14,6 +14,7 @@
 		<li role="presentation" class="divider"></li>
 		<li><a href="{% url 'add_gameplay' %}"><span class="glyphicon glyphicon-share"></span> Gehitu gameplaya</a></li>
 		<li><a href="{% url 'add_article' %}"><span class="glyphicon glyphicon-edit"></span> Idatzi artikulua</a></li>
+		<li><a href="{% url 'add_game' %}"><span class="glyphicon glyphicon-screenshot"></span> Gehitu jokoa</a></li>
 		<li><a href="{% url 'add_event' %}"><span class="glyphicon glyphicon-calendar"></span> Gehitu ekitaldia</a></li>
 		<li role="presentation" class="divider"></li>
 		<li><a href="{% url 'messages_inbox' %}"><span class="glyphicon glyphicon-envelope"></span> Mezuak {% if user|inbox_count_for > 0 %}[{{ user|inbox_count_for }}]{% endif %}</a></li>

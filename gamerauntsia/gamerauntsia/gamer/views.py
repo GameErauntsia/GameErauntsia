@@ -308,6 +308,24 @@ def add_article(request):
         articleform = ArticleForm()
     return render_to_response('profile/add_article.html', locals(), context_instance=RequestContext(request))
 
+@login_required
+def add_game(request):
+    """ """
+    user = request.user
+    if request.method == 'POST':
+        gameform = GameCatalogForm(request.POST)
+        if gameform.is_valid():
+            jokoa = gameform.save(commit=False)
+            jokoa.slug = slugify(jokoa.izena)
+            jokoa.publikoa_da = False
+            if request.FILES.get('logoa', ''):
+                photo = handle_uploaded_file(request.FILES['logoa'], user.getFullName())
+                jokoa.logoa = photo
+            jokoa.save()
+            return render_to_response('profile/game_sent.html', locals(), context_instance=RequestContext(request))
+    else:
+        gameform = GameCatalogForm()
+    return render_to_response('profile/add_game.html', locals(), context_instance=RequestContext(request))
 
 @login_required
 def add_gameplay(request):

@@ -23,7 +23,8 @@ class JokoaAdmin(admin.ModelAdmin):
     list_display = ('admin_thumbnail','izena','bertsioa','preview','url','slug','steam_id', 'publikoa_da' )
     list_display_links = ('izena',)
     prepopulated_fields = {"slug": ("izena","bertsioa")}
-    search_fields = ['izena',]
+    list_filter = ('publikoa_da',)
+    search_fields = ['izena','bertsioa']
     ordering = ('izena','bertsioa')
 
     fieldsets = (

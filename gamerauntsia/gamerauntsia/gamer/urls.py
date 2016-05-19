@@ -11,6 +11,7 @@ urlpatterns = patterns('gamerauntsia.gamer.views',
     ### EKINTZAK
     url(r'^gehitu-artikulua$', 'add_article', name='add_article'),
     url(r'^gehitu-gameplaya$', 'add_gameplay', name='add_gameplay'),
+    url(r'^gehitu-jokoa$', 'add_game', name='add_game'),
     url(r'^gehitu-ekitaldia$', 'add_event', name='add_event'),
     url(r'^gehitu-gustuko-jokoa/(?P<slug>[-\w]+)$', 'add_favorite_game',
        name='gamer_add_favorite_game'),
