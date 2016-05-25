@@ -31,6 +31,7 @@ from gamerauntsia.utils.urls import get_urlxml
 from gamerauntsia.zerbitzariak.views import set_user_whitelist
 from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from cssocialuser.forms import ProfilePhotoForm
 import json
 
 
@@ -100,6 +101,23 @@ def edit_profile(request):
         profileform = GamerForm(instance=profile)
 
     return render_to_response('profile/edit_personal.html', locals(), context_instance=RequestContext(request))
+
+@login_required
+def edit_profile_photo(request):
+    """ """
+    tab = 'photo'
+    user = request.user
+    profile = user
+    if request.method == 'POST':
+        form = ProfilePhotoForm(request.POST, request.FILES)
+        if form.is_valid():
+            photo = handle_uploaded_file(request.FILES['avatarpic'], profile.get_fullname())
+            profile.photo = photo
+            profile.save()
+
+    else:
+        form = ProfilePhotoForm()
+    return render_to_response('profile/edit_photo.html', locals(), context_instance=RequestContext(request))
 
 
 @login_required

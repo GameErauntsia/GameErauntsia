@@ -27,6 +27,8 @@ urlpatterns = patterns('gamerauntsia.gamer.views',
         name='edit_profile_pass_done'),
     # url(r'^app/', include(router.urls)),
 
+    url(r'^edit-profile-photo$','edit_profile_photo', name='edit_profile_photo'),
+
     ### HAU BETI AZKENA BEGIRATU BEHAR DA (Ez dauka hitz gakorik)
     url(r'^(?P<username>[-\w]+)$', 'profile', name='gamer_profile'),
 )
