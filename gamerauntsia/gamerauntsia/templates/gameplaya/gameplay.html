@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load emoticons_tags comments %}
+{% load emoticons_tags comments ratings %}
 
 {% block title %}{{gp.izenburua}} - Game playak - {% endblock %}
 
@@ -17,6 +17,9 @@
     <meta property="og:description" content="{{gp.desk|truncatewords:15|safe|striptags}}" />
     <meta property="og:title" content="{{gp.izenburua}}" />
     <meta property="og:image" content="http://gamerauntsia.eus{{gp.argazkia.get_blog_url}}" />
+
+    <link rel="stylesheet" href="{{STATIC_URL}}star-ratings/css/star-ratings.css">
+    <script type="text/javascript" src="{{STATIC_URL}}star-ratings/js/dist/star-ratings.min.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -32,6 +35,8 @@
         </div>
         <h1>{{gp.izenburua}}</h1>
         <p>{{gp.desk|safe|emoticons}}</p>
+
+        <div class="pull-right">{% ratings gp %}</div>
 
         {% include 'share_buttons.html' with item=gp %}
         

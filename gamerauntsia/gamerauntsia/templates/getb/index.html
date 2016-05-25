@@ -1,7 +1,12 @@
 {% extends "base.html" %}
-{% load pagination_tags include comments gamerauntsia %}
+{% load pagination_tags include comments gamerauntsia ratings %}
 
 {% block title %}GETB - {% endblock %}
+
+{% block morejs %}
+<link rel="stylesheet" href="{{STATIC_URL}}star-ratings/css/star-ratings.css">
+<script type="text/javascript" src="{{STATIC_URL}}star-ratings/js/dist/star-ratings.min.js"></script>
+{% endblock %}
 
 {% block content %}
 <div class="row">
@@ -19,6 +24,7 @@
                 <iframe width="1000" src="//www.youtube.com/embed/{{atal_nab.bideoa}}" frameborder="0" allowfullscreen></iframe>
             </div>
             <h2><a href="{{atal_nab.get_absolute_url}}">{{atal_nab.izenburua}}</a></h2>
+            {% ratings atal_nab %}
         </div>
 
         <div class="col-sm-2">
