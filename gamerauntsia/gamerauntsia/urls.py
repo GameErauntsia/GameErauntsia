@@ -103,6 +103,9 @@ urlpatterns = patterns('',
      # TINYMCE
      (r'^tinymce/', include('tinymce.urls')),
 
+     # STAR RATINGS
+     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
+
      # APIA
      url(r'^api/1.0/', include('gamerauntsia.api.urls')),
 
