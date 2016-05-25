@@ -172,7 +172,7 @@ REST_FRAMEWORK = {
 
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '5^!cvi0%23pm%3jo6cu1kmhv=am$3+@_+g@q%sx=mej#2_h41z'
+SECRET_KEY = ''
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
