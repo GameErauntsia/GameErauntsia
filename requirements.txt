@@ -38,4 +38,4 @@ django-crispy-forms == 1.6.0
 django-guardian == 1.4.1
 djangorestframework == 3.3.2
 django-mobile == 0.7.0
-django-star-ratings == 0.5.1
+git+git://github.com/wildfish/django-star-ratings#egg=django-star-ratings

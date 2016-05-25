@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load gamerauntsia pagination_tags include comments bootstrap_calendar %}
+{% load gamerauntsia pagination_tags include comments bootstrap_calendar ratings %}
 
 {% block morejs %}
 <div id="fb-root"></div>
@@ -16,6 +16,9 @@
 <link rel="stylesheet" href="{{STATIC_URL}}js/fancybox/helpers/jquery.fancybox-buttons.css" type="text/css" media="screen" />
 <script type="text/javascript" src="{{STATIC_URL}}js/fancybox/helpers/jquery.fancybox-buttons.js"></script>
 <script type="text/javascript" src="{{STATIC_URL}}js/fancybox/helpers/jquery.fancybox-media.js"></script>
+
+<link rel="stylesheet" href="{{STATIC_URL}}star-ratings/css/star-ratings.css">
+<script type="text/javascript" src="{{STATIC_URL}}star-ratings/js/dist/star-ratings.min.js"></script>
 
 {% bootstrap_calendar_css %}
 {% bootstrap_calendar_js language="eu-ES"  %}
@@ -46,7 +49,7 @@
         <hr>
         {% endif %}
         <p>{{berria.get_desk_txikia|safe}}</p>
-        <a class="btn btn-primary" href="{{berria.slug}}">Irakurri gehiago</a>
+        {% ratings berria %}
         {% if comment_count %}<h4 class="pull-right"><a href="{% url 'berria' berria.slug %}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a></h4>{% endif %}
         <hr>
         {% endfor %}
