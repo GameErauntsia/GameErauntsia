@@ -2,8 +2,6 @@
 
 *.pyc
 local_settings.py
-/**/*settings.py
-gamerauntsia/gamerauntsia/settings.py
 gamerauntsia/gamerauntsia/server_settings.py
 .idea/
 #server_settings.py
