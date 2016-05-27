@@ -173,7 +173,7 @@ def edit_platform(request):
                         platform = form.save(commit=False)
                         platform.user = user
                         if platform.plataforma == 'minecraft':
-                            set_user_whitelist(user, platform.nick)
+                            set_user_whitelist(user, platform.nick, 'edit')
                         platform.save()
             return HttpResponseRedirect(reverse('edit_profile_plat'))
     else:

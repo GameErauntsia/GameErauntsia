@@ -36,14 +36,14 @@
             {% endif %}
         </div>
         <div class="col-sm-4">
-            <h1>{{live.get_title}}</h1>
+            <h1><a href="{{live.get_absolute_url}}">{{live.get_title}}</a></h1>
             {% if live.get_type == 'gameplaya' or live.get_type == 'atala'  %}
                 <p>
                     {% if live.get_type == 'gameplaya' %}<span class="glyphicon glyphicon-play"></span> {% if live.jokoa.url %}<a href="{% url 'game' live.jokoa.slug %}">{{live.jokoa.izena}} {%if live.jokoa.bertsioa %}{{live.jokoa.bertsioa}}{% endif %}</a>{% else %}{{live.jokoa}}{% endif%} | {% endif %}<span class="glyphicon glyphicon-time"></span> {{live.iraupena_min}}min {{live.iraupena_seg}}seg{% if live.get_type == 'gameplaya' %} | <img src="{{live.plataforma.icon.get_profilesmall_url}}" alt="{{live.plataforma.izena}}" caption="{{live.plataforma.izena}}"/>{% endif %}{% if comment_count %} | <a href="{{live.get_absolute_url}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}
                 </p>
             {% else %}
                 <p>
-                <a href="{% url 'gamer_profile' live.erabiltzailea.username %}"><img src="{{live.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{live.erabiltzailea.getFullName}}</a> | <span class="glyphicon glyphicon-time"></span> {{live.pub_date|date:"Y/m/d H:i"}} {% for gai in live.gaia.all %}<span class="label label-success tags">{{gai.izena}}</span>{% endfor %}
+                <a href="{% url 'gamer_profile' live.erabiltzailea.username %}"><img src="{{live.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{live.erabiltzailea.getFullName}}</a> | <span class="glyphicon glyphicon-time"></span> {{live.pub_date|date:"Y/m/d H:i"}} {% for gai in live.gaia.all %}<span class="label label-success tags"><a href="{% url 'gaia' gai.slug %}">{{gai.izena}}</a></span>{% endfor %}
                 </p>
             {% endif %}
             <p>{{live.get_desk_index|safe}}</p>

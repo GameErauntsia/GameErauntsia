@@ -47,7 +47,7 @@
         <!-- the actual blog post: title/author/date/content -->
         <h1>{{item.izenburua}}</h1>
         <p class="lead">
-            <a href="{% url 'gamer_profile' item.erabiltzailea.username %}"><img src="{{item.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{item.erabiltzailea.getFullName}}</a> | <span class="glyphicon glyphicon-time"></span> {{item.pub_date|date:"Y/m/d H:i"}} {% for gai in item.gaia.all %}<span class="label label-success tags">{{gai.izena}}</span>{% endfor %}
+            <a href="{% url 'gamer_profile' item.erabiltzailea.username %}"><img src="{{item.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{item.erabiltzailea.getFullName}}</a> | <span class="glyphicon glyphicon-time"></span> {{item.pub_date|date:"Y/m/d H:i"}} {% for gai in item.gaia.all %}<span class="label label-success tags"><a href="{% url 'gaia' gai.slug %}">{{gai.izena}}</a></span>{% endfor %}
         </p>
         <hr>
         {% if item.argazkia %}

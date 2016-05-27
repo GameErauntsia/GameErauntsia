@@ -20,7 +20,6 @@ class GamerForm(forms.ModelForm):
         fields = ('fullname','bio','twitter_id','facebook_id','ytube_channel','twitch_channel','telegram_id','signature')
 
 class PCForm(forms.ModelForm):
-    froga = forms.CharField()
     class Meta:
         model = GamerUser
         fields = ('motherboard','processor','graphics','soundcard','ram','harddrive','harddrive2','mouse','keyboard','speakers')

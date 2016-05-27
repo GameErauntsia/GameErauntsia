@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n emoticons_tags include %}
+{% load i18n emoticons_tags include bootstrap %}
 
 {% block content %}
 <div class="row">
@@ -72,6 +72,30 @@
 			<li>Arau hauste bat ikusi edo jasan ezkero, idatzi <a href="/kontaktua">kontaktura</a> noiz/non/nork/zer gertatu den adieraziz eta guk beharrezko ikerketak egin ostean, erabaki bat hartuko dugu.</li>
         	</ul>
 
+            <div class="well">
+                <h2>Izen ematea</h2>
+                {% if user.is_authenticated %}
+                    {% if user.is_mc_gamer %}
+                        <p class="text-success">Mila esker <strong>{{user.getFullName}}!</strong> Zerbitzarian parte hartzeko zerrendan sartu zara. Hemendik aurrera jolasteko moduan izango zara! Eskerrik asko parte hartzeagatik! Arazoren bat baduzu, <strong><a href="{% url 'kontaktua' %}">jarri gurekin harremanetan</a></strong>.</p>
+                    {% else %}
+                        {% if user.has_mc_platform %}
+                        <form action="{% url 'minecraft_add' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-sm-6">{{mc_form|bootstrap}}</div>
+                            </div>
+                            <input type="submit" class="btn btn-lg btn-primary" value="Bidali" />
+                        </form>
+                        {% else %}
+                            <p class="text-warning"><strong>Sentitzen dugu!</strong> Ez dugu Minecraft erabiltzailerik konfiguratuta aurkitu... Sartu <a href="{% url 'edit_profile_plat' %}">zure profilera</a> eta plataformak atalean gehitu zeurea!</p>
+                        {% endif %}
+                    {% endif %}
+                {% else %}
+                    <p>Zerbitzarian parte hartu ahal izateko lehendabizi Game Erauntsian izena eman behar duzu.</p>
+                    <a class="btn btn-lg btn-primary" href="{% url 'auth_login' %}?next={{request.path}}" title="Log in"><i class="glyphicon glyphicon-user"></i> {% trans 'Log in' %}</a>
+                {% endif %}
+            </div>
+
             <h2>Minecraft mundua</h2>
             <div class="col-sm-12">
                 <iframe src="http://198.20.111.238:8123/?worldname=Gamer_Erauntsia&mapname=surface&zoom=1&x=-400&y=65&z=-420" width="100%" height="300"></iframe>
@@ -115,33 +139,13 @@
 
         <div class="col-sm-4">
             <div class="well">
-                <h2>Izen ematea</h2>
-                {% if user.is_authenticated %}
-                    {% if user.is_mc_gamer %}
-                        <p class="text-success">Mila esker <strong>{{user.getFullName}}!</strong> Zerbitzarian parte hartzeko zerrendan sartu zara. Hemendik aurrera jolasteko moduan izango zara! Eskerrik asko parte hartzeagatik! Arazoren bat baduzu, <strong><a href="{% url 'kontaktua' %}">jarri gurekin harremanetan</a></strong>.</p>
-                    {% else %}
-                        {% if user.has_mc_platform %}
-                        <form action="{% url 'minecraft_add' %}" method="POST">
-                            {% csrf_token %}
-                            <p><label><input type="checkbox" name="accept"> Onartzen ditut Minecraft zerbitzariko araudi eta baldintzak.</label></p>
-                            <input type="submit" class="btn btn-primary" value="Bidali" />
-                        </form>
-                        {% else %}
-                            <p class="text-warning"><strong>Sentitzen dugu!</strong> Ez dugu Minecraft erabiltzailerik konfiguratuta aurkitu... Sartu <a href="{% url 'edit_profile_plat' %}">zure profilera</a> eta plataformak atalean gehitu zeurea!</p>
-                        {% endif %}
-                    {% endif %}
-                {% else %}
-                    <p>Zerbitzarian parte hartu ahal izateko lehendabizi Game Erauntsian izena eman behar duzu.</p>
-                    <a class="btn btn-primary" href="{% url 'auth_login' %}?next={{request.path}}" title="Log in">{% trans 'Log in' %}</a>
-                {% endif %}
-            </div>
-            <div class="well">
+                <img class="img-responsive" src="{{STATIC_URL}}img/mc_vip.png"/>
                 <h2>Izan zaitez VIP</h2>
                 <p>Euskal Minecraft zerbitzaria martxan egon dadin esfortzu handia egiten dugu. <a href="#VIP">Izan zaitez VIP erabiltzaile</a> eta lagundu mantenu gastuak tapatzen!</p>
                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                     <input type="hidden" name="cmd" value="_s-xclick">
                     <input type="hidden" name="hosted_button_id" value="BCPEUA4ZER92J">
-                    <input type="image" src="http://gamerauntsia.com/media/photologue/photos/paypal_1.jpg" border="0" name="submit" alt="PayPal. La forma rápida y segura de pagar en Internet.">
+                    <input type="image" src="{{STATIC_URL}}img/paypal_1.jpg" border="0" name="submit" alt="PayPal ordainketak.">
                     <img alt="" border="0" src="https://www.paypalobjects.com/es_ES/i/scr/pixel.gif" width="1" height="1">
                 </form>
             </div>
