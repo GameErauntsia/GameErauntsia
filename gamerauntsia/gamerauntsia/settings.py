@@ -56,7 +56,8 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+#MEDIA_ROOT = ''
+MEDIA_ROOT = 'D:/dev/django/gamerauntsia/gamerauntsia/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -67,7 +68,9 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+#STATIC_ROOT = ''
+STATIC_ROOT = 'D:/dev/django/gamerauntsia/gamerauntsia/static/'
+
 
 STATIC_DOC_ROOT = STATIC_ROOT
 MEDIA_DOC_ROOT = MEDIA_ROOT
@@ -163,16 +166,10 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
-REST_FRAMEWORK = {
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer',
-    )
-}
 
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = ''
+SECRET_KEY = 'a212scc3235r'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -192,6 +189,13 @@ MIDDLEWARE_CLASSES = (
     'django_mobile.middleware.MobileDetectionMiddleware',
     'django_mobile.middleware.SetFlavourMiddleware',
 )
+
+CORS_ORIGIN_WHITELIST = (
+    'gamerauntsia.eus',
+    '127.0.0.1',
+)
+CORS_ORIGIN_ALLOW_ALL = True
+
 
 # Python dotted path to the WSGI application used by Django's runserver.
 #WSGI_APPLICATION = 'gamerauntsia.wsgi.application'
@@ -265,6 +269,30 @@ HOST = 'http://gamerauntsia.eus/'
 USE_X_FORWARDED_HOST = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'www.gamerauntsia.eus','gamerauntsia.eus']
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+	'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5
+}
+
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER':'gamerauntsia.gamer.serializers.GameUserSerializer'
+}
+
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_RENDERER_CLASSES': (
+#         'rest_framework.renderers.JSONRenderer',
+#         'rest_framework.renderers.BrowsableAPIRenderer',
+#     )
+# }
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

@@ -12,6 +12,9 @@ from django.contrib.sitemaps.views import sitemap
 from .sitemaps import StaticViewSitemap
 
 from gamerauntsia.base.feed import LatestEntriesFeed, LatestNewsFeed
+from gamerauntsia.log.views import DenboralerroaViewSet
+
+denboralerroa_list = DenboralerroaViewSet.as_view({'get':'list'})
 
 admin.autodiscover()
 
@@ -111,6 +114,7 @@ urlpatterns = patterns('',
 
      # APP
      url(r'^app/v1/', include('gamerauntsia.app.authentication.urls')),
+     url(r'^app/denboralerroa/$',denboralerroa_list, name='app_denboralerroa_list'),
 
      # ERABILERA ETA PRIBATUTASUNA
      (r'^erabilera-baldintzak/$', TemplateView.as_view(template_name='erabilera_baldintzak.html')),

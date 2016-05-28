@@ -79,3 +79,5 @@ target/
 # pyenv
 .python-version
 
+/gamerauntsia/media/
+/gamerauntsia/wsgi.py
