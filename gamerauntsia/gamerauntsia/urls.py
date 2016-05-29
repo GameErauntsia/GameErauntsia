@@ -122,6 +122,9 @@ urlpatterns = patterns('',
                        url(r'^app/denboralerroa/$', denboralerroa_list, name='app_denboralerroa_list'),
                        url(r'^app/berriak/$', berria_list, name='app_berria_list'),
                        url(r'^app/berria/(?P<pk>[0-9]+)/$','gamerauntsia.berriak.views.berria_detail', name='app_berria_detail'),
+                       url(r'^app/getb/$', 'gamerauntsia.getb.views.app_getb_list', name='app_getb_list'),
+                       url(r'^app/getb/(?P<pk>[0-9]+)/$','gamerauntsia.getb.views.atala_detail', name='atala_detail'),
+
 
                        # ERABILERA ETA PRIBATUTASUNA
                        (r'^erabilera-baldintzak/$', TemplateView.as_view(template_name='erabilera_baldintzak.html')),
