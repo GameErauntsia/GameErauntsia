@@ -124,7 +124,9 @@ urlpatterns = patterns('',
                        url(r'^app/berria/(?P<pk>[0-9]+)/$','gamerauntsia.berriak.views.berria_detail', name='app_berria_detail'),
                        url(r'^app/getb/$', 'gamerauntsia.getb.views.app_getb_list', name='app_getb_list'),
                        url(r'^app/getb/(?P<pk>[0-9]+)/$','gamerauntsia.getb.views.atala_detail', name='atala_detail'),
-
+                       url(r'^app/txapelketak/$', 'gamerauntsia.txapelketak.views.txapelketa_list', name='app_txapelketak_list'),
+                       url(r'^app/txapelketak/(?P<pk>[0-9]+)/$','gamerauntsia.txapelketak.views.txapelketa_detail', name='app_txapelketak_detail'),
+#
 
                        # ERABILERA ETA PRIBATUTASUNA
                        (r'^erabilera-baldintzak/$', TemplateView.as_view(template_name='erabilera_baldintzak.html')),
