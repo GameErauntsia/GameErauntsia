@@ -2,12 +2,13 @@ import telebot
 from django.conf import settings
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
-from rest_framework.decorators import api_view, renderer_classes
+from rest_framework.decorators import api_view, renderer_classes, permission_classes
 from gamerauntsia.zerbitzariak.models import MC_Whitelist
 
 
 @api_view(['GET'])
 @renderer_classes((JSONRenderer,))
+@permission_classes((permissions.AllowAny,))
 def mc_whitelist(request, format=None):
     
     base = MC_Whitelist.objects
@@ -47,6 +48,7 @@ def mc_whitelist(request, format=None):
 
 @api_view(['GET'])
 @renderer_classes((JSONRenderer,))
+@permission_classes((permissions.AllowAny,))
 def mc_telebot(request, username, format=None):                  
     base = MC_Whitelist.objects
     
