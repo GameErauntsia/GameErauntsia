@@ -19,12 +19,12 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.mysql',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': '',  # Or path to database file if using sqlite3.
+        'USER': '',  # Not used with sqlite3.
+        'PASSWORD': '',  # Not used with sqlite3.
+        'HOST': '',  # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',  # Set to empty string for default. Not used with sqlite3.
     }
 }
 
@@ -56,7 +56,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-#MEDIA_ROOT = ''
+# MEDIA_ROOT = ''
 MEDIA_ROOT = 'D:/dev/django/gamerauntsia/gamerauntsia/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
@@ -68,9 +68,8 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-#STATIC_ROOT = ''
+# STATIC_ROOT = ''
 STATIC_ROOT = 'D:/dev/django/gamerauntsia/gamerauntsia/static/'
-
 
 STATIC_DOC_ROOT = STATIC_ROOT
 MEDIA_DOC_ROOT = MEDIA_ROOT
@@ -79,12 +78,12 @@ MEDIA_DOC_ROOT = MEDIA_ROOT
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
 
-ADMIN_MEDIA_PREFIX='/media/admin/'
+ADMIN_MEDIA_PREFIX = '/media/admin/'
 
 POSTS_PER_PAGE = 10
 
-GP_GROUP = 'Gamerrak' #Set your GamePlay editor group name
-NEWS_GROUP = 'Analistak' #Set your blog editor group name
+GP_GROUP = 'Gamerrak'  # Set your GamePlay editor group name
+NEWS_GROUP = 'Analistak'  # Set your blog editor group name
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -132,6 +131,8 @@ INSTALLED_APPS = (
     'social.apps.django_app.default',
     'django.contrib.admin',
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
     'gamerauntsia.app.authentication',
     'gamerauntsia.app.services',
     'captcha',
@@ -166,8 +167,6 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
-
-
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'a212scc3235r'
 
@@ -196,12 +195,11 @@ CORS_ORIGIN_WHITELIST = (
 )
 CORS_ORIGIN_ALLOW_ALL = True
 
-
 # Python dotted path to the WSGI application used by Django's runserver.
-#WSGI_APPLICATION = 'gamerauntsia.wsgi.application'
+# WSGI_APPLICATION = 'gamerauntsia.wsgi.application'
 
 this = os.path.dirname(os.path.abspath(__file__))
-my_media_url=os.path.join(os.path.dirname(__file__), "media")
+my_media_url = os.path.join(os.path.dirname(__file__), "media")
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -212,7 +210,7 @@ TEMPLATE_DIRS = (
 
 ROOT_URLCONF = 'gamerauntsia.urls'
 
-#EMAIL REGISTRATION
+# EMAIL REGISTRATION
 ACCOUNT_ACTIVATION_DAYS = 7
 
 # Custom social user model
@@ -220,26 +218,26 @@ AUTH_USER_MODEL = 'gamer.GamerUser'
 PROFILE_PHOTO_DEFAULT_SLUG = 'default-user'
 SOCIAL_AUTH_USER_MODEL = AUTH_USER_MODEL
 
-#SOCIAL REGISTRATION
+# SOCIAL REGISTRATION
 AUTHENTICATION_BACKENDS = (
     'social.backends.twitter.TwitterOAuth',
     'social.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
-REGISTRATION_FORM ="registration.forms.RegistrationFormUniqueEmail"
+REGISTRATION_FORM = "registration.forms.RegistrationFormUniqueEmail"
 
-#TINYMCE PATH
+# TINYMCE PATH
 TINYMCE_JS_ROOT = STATIC_ROOT + "js/tinymce/"
 TINYMCE_JS_URL = STATIC_URL + "js/tinymce/tinymce.min.js"
 
-#TELEGRAM BOT
+# TELEGRAM BOT
 DIRNAME = '/home/csmant/django/gamerauntsia/'
 TELEBOT_TOKEN = ''
 MC_CHAT_ID = ''
 EDITOR_CHAT_ID = ''
 
-#Twitter API
+# Twitter API
 TWITTER_API_KEY = ''
 TWITTER_API_SECRET = ''
 TWITTER_CONSUMER_KEY = TWITTER_API_KEY
@@ -249,7 +247,7 @@ TWITTER_ACCESS_TOKEN = ''
 TWITTER_ACCESS_TOKEN_SECRET = ''
 TWITTER_MAXLENGTH = 140
 
-#Facebook API
+# Facebook API
 FB_APP_ID = ''
 FACEBOOK_APP_ID = FB_APP_ID
 FB_APP_SECRET = ''
@@ -259,16 +257,16 @@ FACEBOOK_EXTENDED_PERMISSIONS = [
     'publish_stream',
 ]
 
-#LOGIN URLS
-LOGIN_URL          = '/erabiltzaileak/login/'
+# LOGIN URLS
+LOGIN_URL = '/erabiltzaileak/login/'
 LOGIN_REDIRECT_URL = '/logged-in/'
-LOGIN_ERROR_URL    = '/login-error/'
+LOGIN_ERROR_URL = '/login-error/'
 
 HOST = 'http://gamerauntsia.eus/'
 
 USE_X_FORWARDED_HOST = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'www.gamerauntsia.eus','gamerauntsia.eus']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'www.gamerauntsia.eus', 'gamerauntsia.eus']
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -278,14 +276,13 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
-	'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 5
 }
 
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER':'gamerauntsia.gamer.serializers.GameUserSerializer'
+    'USER_DETAILS_SERIALIZER': 'gamerauntsia.gamer.serializers.GameUserSerializer'
 }
-
 
 # REST_FRAMEWORK = {
 #     'DEFAULT_RENDERER_CLASSES': (
@@ -337,4 +334,3 @@ try:
     from local_settings import *
 except:
     pass
-

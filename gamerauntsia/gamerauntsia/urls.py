@@ -15,6 +15,9 @@ from .sitemaps import StaticViewSitemap
 from gamerauntsia.base.feed import LatestEntriesFeed, LatestNewsFeed
 from gamerauntsia.log.views import DenboralerroaViewSet
 from gamerauntsia.berriak.views import BerriaViewSet
+from rest_framework import routers
+from rest_framework.authtoken.views import obtain_auth_token
+from rest_framework.routers import DefaultRouter
 
 berria_list = BerriaViewSet.as_view({'get': 'list'})
 denboralerroa_list = DenboralerroaViewSet.as_view({'get': 'list'})
@@ -118,6 +121,10 @@ urlpatterns = patterns('',
                        url(r'^api/1.0/', include('gamerauntsia.api.urls')),
 
                        # APP
+                       # Auth
+                       url(r'^rest-auth/', include('rest_auth.urls')),
+                       url(r'^rest-token-auth/$',obtain_auth_token),
+                       #url(r'^rest-user/$',views.UserViewSet),
                        url(r'^app/v1/', include('gamerauntsia.app.authentication.urls')),
                        url(r'^app/denboralerroa/$', denboralerroa_list, name='app_denboralerroa_list'),
                        url(r'^app/berriak/$', berria_list, name='app_berria_list'),
