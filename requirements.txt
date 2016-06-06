@@ -39,3 +39,4 @@ django-guardian == 1.4.1
 djangorestframework == 3.3.2
 django-mobile == 0.7.0
 git+git://github.com/wildfish/django-star-ratings#egg=django-star-ratings
+django-rest-auth == 0.7.0
