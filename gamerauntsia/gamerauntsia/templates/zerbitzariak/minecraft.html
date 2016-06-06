@@ -78,7 +78,6 @@
                     {% if user.is_mc_gamer %}
                         <p class="text-success">Mila esker <strong>{{user.getFullName}}!</strong> Zerbitzarian parte hartzeko zerrendan sartu zara. Hemendik aurrera jolasteko moduan izango zara! Eskerrik asko parte hartzeagatik! Arazoren bat baduzu, <strong><a href="{% url 'kontaktua' %}">jarri gurekin harremanetan</a></strong>.</p>
                     {% else %}
-                        {% if user.has_mc_platform %}
                         <form action="{% url 'minecraft_add' %}" method="POST">
                             {% csrf_token %}
                             <div class="row">
@@ -86,9 +85,6 @@
                             </div>
                             <input type="submit" class="btn btn-lg btn-primary" value="Bidali" />
                         </form>
-                        {% else %}
-                            <p class="text-warning"><strong>Sentitzen dugu!</strong> Ez dugu Minecraft erabiltzailerik konfiguratuta aurkitu... Sartu <a href="{% url 'edit_profile_plat' %}">zure profilera</a> eta plataformak atalean gehitu zeurea!</p>
-                        {% endif %}
                     {% endif %}
                 {% else %}
                     <p>Zerbitzarian parte hartu ahal izateko lehendabizi Game Erauntsian izena eman behar duzu.</p>
