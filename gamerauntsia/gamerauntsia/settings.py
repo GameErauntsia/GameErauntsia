@@ -132,7 +132,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'rest_framework',
     'rest_framework.authtoken',
-    'rest_auth',
+#    'rest_auth',
     'gamerauntsia.app.authentication',
     'gamerauntsia.app.services',
     'captcha',
