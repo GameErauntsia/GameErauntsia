@@ -136,6 +136,7 @@ INSTALLED_APPS = (
     'gamerauntsia.app.authentication',
     'gamerauntsia.app.services',
     'captcha',
+    'corsheaders',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -187,6 +188,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.locale.LocaleMiddleware',
     'django_mobile.middleware.MobileDetectionMiddleware',
     'django_mobile.middleware.SetFlavourMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 )
 
 CORS_ORIGIN_WHITELIST = (
@@ -283,6 +286,8 @@ REST_FRAMEWORK = {
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'gamerauntsia.gamer.serializers.GameUserSerializer'
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 # REST_FRAMEWORK = {
 #     'DEFAULT_RENDERER_CLASSES': (
