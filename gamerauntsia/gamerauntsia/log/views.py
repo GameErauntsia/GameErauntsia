@@ -15,7 +15,7 @@ from rest_framework import viewsets
 
 
 class DenboralerroaViewSet(viewsets.ModelViewSet):
-    queryset = Log.objects.all()
+    queryset = Log.objects.all().order_by('-fetxa')
     serializer_class = LogSerializer
 
 
