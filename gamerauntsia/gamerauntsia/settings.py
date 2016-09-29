@@ -94,6 +94,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
     'django.contrib.humanize',
+    'django.contrib.flatpages',
     'mptt',
     'tagging',
     'photologue',
@@ -123,6 +124,7 @@ INSTALLED_APPS = (
     'gamerauntsia.zerbitzariak',
     'gamerauntsia.finished',
     'gamerauntsia.jokoen_itzulpenak',
+    'gamerauntsia.bazkidetza',
     'gamerauntsia.log',
     'datetimewidget',
     'django_bootstrap_calendar',
@@ -190,6 +192,7 @@ MIDDLEWARE_CLASSES = (
     'django_mobile.middleware.SetFlavourMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware'
 )
 
 CORS_ORIGIN_WHITELIST = (

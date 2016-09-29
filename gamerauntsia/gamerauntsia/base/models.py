@@ -62,7 +62,7 @@ def send_newuser_msg(sender,instance,**kwargs):
     if kwargs['created']:
         tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
         message = '[Erabiltzailea]\n%skudeatu/gamer/gameruser/%s' % (settings.HOST,instance.id)
-        tb.send_message(settings.EDITOR_CHAT_ID, message)
+        tb.send_message(settings.ADMIN_CHAT_ID, message)
 
 def send_article_msg(sender,instance,**kwargs):
     if instance.publikoa_da and instance.status == '0':

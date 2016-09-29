@@ -6,6 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView
 from rest_framework.routers import DefaultRouter
 from gamerauntsia.app.authentication.viewsets import UsersViewSet
+from django.contrib.flatpages import views
 
 router = DefaultRouter()
 
@@ -18,6 +19,7 @@ from gamerauntsia.berriak.views import BerriaViewSet
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.routers import DefaultRouter
+
 
 berria_list = BerriaViewSet.as_view({'get': 'list'})
 denboralerroa_list = DenboralerroaViewSet.as_view({'get': 'list'})
@@ -149,6 +151,8 @@ urlpatterns = patterns('',
                        url(r'^ajax/get_jokoak/', 'gamerauntsia.gamer.views.get_jokoak', name='ajax_jokoak'),
                        url(r'^ajax/get_erabiltzaileak/', 'gamerauntsia.gamer.views.get_user', name='ajax_user'),
                        url(r'^ajax/post_finished/', 'gamerauntsia.finished.views.add_finished', name='ajax_finished'),
+
+                       url(r'^(?P<url>.*/)$', views.flatpage),
 
                        url('', include('social.apps.django_app.urls', namespace='social'))
 
