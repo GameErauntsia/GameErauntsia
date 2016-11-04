@@ -100,6 +100,14 @@ class GamerUser(CSAbstractSocialUser):
         """
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
+
+    def get_bazkidea(self):
+        from gamerauntsia.bazkidetza.models import Bazkidea
+        try:
+            return Bazkidea.objects.get(user=self, is_active=True)
+        except:
+            return None
+
     def is_mc_gamer(self):
         from gamerauntsia.zerbitzariak.models import MC_Whitelist
         return MC_Whitelist.objects.filter(user=self).exists()

@@ -8,6 +8,9 @@ urlpatterns = patterns('gamerauntsia.gamer.views',
     url(r'^guruak$', 'guruak', name='guruak'),
     url(r'^talde-motorra$', 'talde_motorra', name='talde_motorra'),
 
+    ### BAZKIDETZA
+    url(r'^bazkidetza/', include('gamerauntsia.bazkidetza.urls')),
+
     ### EKINTZAK
     url(r'^gehitu-artikulua$', 'add_article', name='add_article'),
     url(r'^gehitu-gameplaya$', 'add_gameplay', name='add_gameplay'),
@@ -25,8 +28,6 @@ urlpatterns = patterns('gamerauntsia.gamer.views',
     url(r'^editatu-profil-pass/$', 'password_change', name='edit_profile_pass'),
     url(r'^editatu-profil-pass-done/$', 'password_change_done',
         name='edit_profile_pass_done'),
-    # url(r'^app/', include(router.urls)),
-
     url(r'^edit-profile-photo$','edit_profile_photo', name='edit_profile_photo'),
 
     ### HAU BETI AZKENA BEGIRATU BEHAR DA (Ez dauka hitz gakorik)
