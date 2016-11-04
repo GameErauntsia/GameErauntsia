@@ -16,6 +16,7 @@ from gamerauntsia.utils.urls import get_urljson
 GAMERAUNTSIA_TWITCH = "gamerauntsia"
 TWITCH_URL = "https://api.twitch.tv/kraken/streams/"
 
+
 def index(request):
     # stream_data = get_urljson(TWITCH_URL+GAMERAUNTSIA_TWITCH)
     # is_streaming = stream_data.get("stream", False)
@@ -32,7 +33,8 @@ def index(request):
     # else:
     #     twitch = stream_data
 
-    gameplayak = GamePlaya.objects.filter(status='1', publikoa_da=True, pub_date__lt=datetime.now()).order_by('-pub_date')
+    gameplayak = GamePlaya.objects.filter(status='1', publikoa_da=True, pub_date__lt=datetime.now()).order_by(
+        '-pub_date')
     berriak = Berria.objects.filter(status='1', pub_date__lt=datetime.now()).order_by('-pub_date')
     if not twitch:
         atala = Atala.objects.latest('pub_date')
