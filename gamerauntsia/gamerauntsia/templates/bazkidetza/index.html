@@ -73,7 +73,7 @@
 
             <div class="col-md-3 col-sm-6 hero-feature">
                 <div class="thumbnail">
-                    <a href="{% url 'eskaintza' eskaintza.slug %}"><img src="http://placehold.it/800x500" alt=""></a>
+                    <a href="{% url 'eskaintza' eskaintza.slug %}"><img src="{{eskaintza.irudia.get_member_feature_url}}" alt="{{eskaintza.izena}}"></a>
                     <div class="caption">
                         <h3><a href="{% url 'eskaintza' eskaintza.slug %}">{{eskaintza.izena}}</a></h3>
                         <p>{{eskaintza.deskribapena|striptags|truncatechars:"100"}}</p>
