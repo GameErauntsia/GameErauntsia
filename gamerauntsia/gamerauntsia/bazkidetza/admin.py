@@ -1,4 +1,4 @@
-from models import Bazkidea, Eskaintza
+from models import Bazkidea, Eskaintza, OparitzekoJokoak
 from django.contrib import admin
 from forms import EskaintzaAdminForm
 
@@ -29,5 +29,13 @@ class EskaintzaAdmin(admin.ModelAdmin):
     form = EskaintzaAdminForm
 
 
+class OparitzekoJokoakAdmin(admin.ModelAdmin):
+    list_display = ('key','jokoa', 'plataforma', 'non_aldatzeko', 'oparituta',   'pub_date')
+    search_fields = ['jokoa__izena', ]
+    list_filter = ('plataforma', 'oparituta')
+    raw_id_fields = ('jokoa',)
+    ordering = ('-pub_date',)
+
 admin.site.register(Bazkidea, BazkideaAdmin)
 admin.site.register(Eskaintza, EskaintzaAdmin)
+admin.site.register(OparitzekoJokoak, OparitzekoJokoakAdmin)

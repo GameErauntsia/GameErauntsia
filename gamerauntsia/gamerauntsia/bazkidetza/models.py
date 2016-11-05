@@ -3,8 +3,9 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db.models.signals import post_save
 from gamerauntsia.gamer.models import GamerUser
+from gamerauntsia.jokoa.models import Jokoa, Plataforma
 from photologue.models import Photo
-import datetime
+from datetime import datetime
 from django.utils import timezone
 import telebot
 
@@ -14,6 +15,10 @@ ESKAINTZA_MOTAK = (
     (3, 'Eskubidea'),
 )
 
+DENDA_CHOICES = (
+    (1, 'Steam'),
+    (2, 'Origin'),
+)
 
 class Bazkidea(models.Model):
     user = models.ForeignKey(GamerUser, unique=True)
@@ -53,6 +58,24 @@ class Eskaintza(models.Model):
 
     def get_absolute_url(self):
         return reverse('eskaintza', arg=[self.slug])
+
+
+class OparitzekoJokoak(models.Model):
+    key = models.CharField(max_length=250)
+    non_aldatzeko = models.IntegerField(choices=DENDA_CHOICES, default=1)
+    jokoa = models.ForeignKey(Jokoa)
+    plataforma = models.ForeignKey(Plataforma)
+
+    oparituta = models.BooleanField(default=False)
+
+    pub_date = models.DateTimeField('publikazio data', default=datetime.now)
+
+    class Meta:
+        verbose_name = "Oparitzeko jokoa"
+        verbose_name_plural = "Oparitzeko jokoak"
+
+    def __unicode__(self):
+        return u'%s' % (self.jokoa.izena)
 
 
 def send_member_msg(sender,instance,**kwargs):

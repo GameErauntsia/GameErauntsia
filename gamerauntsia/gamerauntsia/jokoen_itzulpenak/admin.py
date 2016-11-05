@@ -38,6 +38,7 @@ class EuskarazkoJokoaAdmin(admin.ModelAdmin):
     list_display_links = ('admin_thumbnail', 'jokoa',)
     list_filter = ('publikoa_da', 'plataforma')
     search_fields = ['jokoa__izena', ]
+    raw_id_fields = ('jokoa',)
     ordering = ('-pub_date',)
 
 

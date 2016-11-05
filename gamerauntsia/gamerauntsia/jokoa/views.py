@@ -7,6 +7,7 @@ from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.base.models import Terminoa
 from gamerauntsia.jokoa.models import Jokoa
+from gamerauntsia.jokoen_itzulpenak.models import EuskarazkoJokoa
 from gamerauntsia.berriak.models import Berria
 from gamerauntsia.txapelketak.models import Txapelketa
 from gamerauntsia.utils.urls import get_urljson
@@ -15,6 +16,7 @@ def index(request):
     topjokoak = GamerUser.objects.values('top_jokoak__izena','top_jokoak__bertsioa','top_jokoak__logoa','top_jokoak__slug').annotate(Count('top_jokoak')).order_by('-top_jokoak__count','-top_jokoak__izena')[:10]
     jokoak = Jokoa.objects.filter(publikoa_da=True).order_by("izena","bertsioa")
     last_jokoak = Jokoa.objects.filter(publikoa_da=True).order_by("-id")[:10]
+    euskaljokoak = EuskarazkoJokoa.objects.filter(publikoa_da=True).order_by('-pub_date')[:5]
     try:
     	if last_jokoak[0].steam_id:
     	    steam_json = get_urljson("http://store.steampowered.com/api/appdetails?appids="+str(last_jokoak[0].steam_id))[str(last_jokoak[0].steam_id)]['data']
