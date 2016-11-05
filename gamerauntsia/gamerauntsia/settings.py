@@ -116,7 +116,6 @@ INSTALLED_APPS = (
     'gamerauntsia.kontaktua',
     'gamerauntsia.jokoa',
     'gamerauntsia.gamer',
-    'gamerauntsia.auto_gameplay',
     'gamerauntsia.templatetags',
     'gamerauntsia.aurkezpenak',
     'gamerauntsia.txapelketak',

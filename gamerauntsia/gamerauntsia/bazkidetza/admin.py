@@ -3,7 +3,7 @@ from django.contrib import admin
 from forms import EskaintzaAdminForm
 
 class BazkideaAdmin(admin.ModelAdmin):
-    list_display = ('id','user','paid','is_active', 'expire_date', 'date_joined')
+    list_display = ('id','user', 'paid', 'is_active', 'expire_date', 'date_joined')
     search_fields = ['id','user']
     raw_id_fields = ('user',)
     ordering = ('-id',)

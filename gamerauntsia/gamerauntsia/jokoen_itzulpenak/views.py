@@ -1,10 +1,12 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.db.models import Q
-from models import Itzulpena
+from models import Itzulpena, EuskarazkoJokoa, Euskalinkak
 
 def index(request):
     items = Itzulpena.objects.filter(publikoa_da=True).order_by('-mod_date')
+    orig_items = EuskarazkoJokoa.objects.filter(publikoa_da=True).order_by('-pub_date')
+    links = Euskalinkak.objects.filter(publikoa_da=True)
     return render_to_response('jokoen_itzulpenak/index.html', locals(),context_instance=RequestContext(request))
 
 
