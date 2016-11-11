@@ -12,6 +12,7 @@ from gamerauntsia.txapelketak.models import Txapelketa
 from gamerauntsia.getb.models import Atala
 from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.utils.urls import get_urljson
+from gamerauntsia.bazkidetza.models import Eskaintza
 
 GAMERAUNTSIA_TWITCH = "gamerauntsia"
 TWITCH_URL = "https://api.twitch.tv/kraken/streams/"
@@ -63,6 +64,8 @@ def index(request):
             txapelketak = list_tx
         else:
             txapelketa = list_tx[0]
+
+    eskaintzak = Eskaintza.objects.filter(Q(is_public=True), Q(expire_date__gte=datetime.now())| Q(expire_date__isnull=True)).order_by('-activate_date')[:4]
 
     return render_to_response('index.html', locals(), context_instance=RequestContext(request))
 

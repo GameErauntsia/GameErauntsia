@@ -9,7 +9,7 @@ from django.db.models import Q
 def index(request):
     if request.user.is_authenticated():
         bazkidea = request.user.get_bazkidea()
-    eskaintzak = Eskaintza.objects.filter(Q(is_public=True), Q(expire_date__gte=datetime.now())|Q(expire_date__isnull=True)).order_by('-activate_date')
+    eskaintzak = Eskaintza.objects.filter(Q(is_public=True), Q(expire_date__gte=datetime.now()) | Q(expire_date__isnull=True)).order_by('-activate_date')
     return render(request, 'bazkidetza/index.html', locals())
 
 def eskaintza(request, slug):

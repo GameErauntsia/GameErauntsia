@@ -68,6 +68,7 @@
     </div>
 </div>
 {% endif %}
+
 {% if txapelketak %}
 <div class="row">
 
@@ -102,6 +103,25 @@
 </div>
 
 <hr>
+{% endif %}
+
+{% if eskaintzak %}
+<div class="row text-center">
+    <h3>Izan bazkide eta gozatu abantailez</h3>
+    {% for eskaintza in eskaintzak %}
+    <div class="col-md-3 col-sm-6 hero-feature">
+        <div class="thumbnail">
+            <a href="{% url 'eskaintza' eskaintza.slug %}"><img src="{{eskaintza.irudia.get_member_feature_url}}" alt="{{eskaintza.izena}}"></a>
+            <div class="caption">
+                <h3><a href="{% url 'eskaintza' eskaintza.slug %}">{{eskaintza.izena}}</a></h3>
+                <p>{{eskaintza.deskribapena|striptags|truncatechars:"100"}}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <p class="col-md-4 col-md-offset-4"><a class="btn btn-primary" href="{% url 'bazkidetza' %}">Informazio gehiago</a></p>
+</div>
+<br/>
 {% endif %}
 
 <div class="row">
