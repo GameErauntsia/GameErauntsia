@@ -87,7 +87,7 @@
                         <h2 class="featurette-heading"><a href="{% url 'txapelketa' tx.slug %}">{{tx.izena}}</a>
                         <br/><span class="text-muted"><small>{{tx.get_status_display}}</small></span>
                         </h2>
-                        <p class="lead">{{tx.get_desk_index|safe|striptags}}</p>
+                        <p class="lead">{{tx.get_desk_index|safe|striptags|truncatechars:"250"}}</p>
                     </div>
                     {% endfor %}
             </div>
