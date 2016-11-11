@@ -23,3 +23,9 @@ def create_bazkidea(request):
     	bazkide = Bazkidea(user=request.user, is_active=True)
     	bazkide.save()
     return HttpResponseRedirect(reverse('bazkidetza'))
+
+def payment_done(request):
+    if request.user.is_authenticated() and Bazkidea.objects.filter(user=request.user).exists():
+        bazkide.paid = True
+        bazkide.save()
+    return HttpResponseRedirect(reverse('bazkidetza'))
