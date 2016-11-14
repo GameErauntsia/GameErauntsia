@@ -19,20 +19,20 @@ TWITCH_URL = "https://api.twitch.tv/kraken/streams/"
 
 
 def index(request):
-    stream_data = get_urljson(TWITCH_URL+GAMERAUNTSIA_TWITCH)
-    is_streaming = stream_data.get("stream", False)
+    # stream_data = get_urljson(TWITCH_URL+GAMERAUNTSIA_TWITCH)
+    # is_streaming = stream_data.get("stream", False)
     
     twitch = None
-    if not is_streaming:
-        gamerrak = GamerUser.objects.filter(Q(is_gamer=True),Q(twitch_channel__isnull=False),~Q(twitch_channel='')).order_by("-karma")
-        for gamer in gamerrak:
-            stream_data = get_urljson(TWITCH_URL+gamer.twitch_channel)
-            is_streaming = stream_data.get("stream", False)
-            if is_streaming:
-                twitch = stream_data
-                break
-    else:
-        twitch = stream_data
+    #if not is_streaming:
+    #    gamerrak = GamerUser.objects.filter(Q(is_gamer=True),Q(twitch_channel__isnull=False),~Q(twitch_channel='')).order_by("-karma")
+    #    for gamer in gamerrak:
+    #        stream_data = get_urljson(TWITCH_URL+gamer.twitch_channel)
+    #        is_streaming = stream_data.get("stream", False)
+    #        if is_streaming:
+    #            twitch = stream_data
+    #            break
+    #else:
+    #    twitch = stream_data
 
     gameplayak = GamePlaya.objects.filter(status='1', publikoa_da=True, pub_date__lt=datetime.now()).order_by(
         '-pub_date')
