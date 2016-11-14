@@ -6,7 +6,7 @@ def get_urljson(url):
     stream = []
     req = urllib2.Request(url)
     opener = urllib2.build_opener()
-    f = opener.open(req, ,timeout=1)
+    f = opener.open(req, timeout=1)
     try:
         stream = json.load(f)
     except:
