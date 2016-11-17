@@ -7,6 +7,6 @@ class AurkezpenaAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("izena",)}
     list_filter = ('izena',)
     search_fields = ['izena','slug',]
-    form = AurkezpenaAdminForm
+    #form = AurkezpenaAdminForm
 
 admin.site.register(Aurkezpena, AurkezpenaAdmin)
