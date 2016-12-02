@@ -12,26 +12,20 @@ from gamerauntsia.log.models import Log
 from django.template import defaultfilters as filters
 import pprint
 
-def social_share(minutuak):
-    minutuak=int(minutuak)
+def social_share():
     orain = datetime.datetime.now()
-    duela_x_ordu=orain - timedelta(minutes=minutuak)
 
-    berriak = Berria.objects.filter(Q(pub_date__gte=duela_x_ordu)
-                                                     & Q(pub_date__lte=orain) & Q(status='1')
-                                                     & Q(shared=False)).order_by('-pub_date')
+    berriak = Berria.objects.filter(Q(pub_date__lte=orain) & Q(status='1')
+                                   & Q(shared=False)).order_by('-pub_date')
 
-    gpak = GamePlaya.objects.filter(Q(pub_date__gte=duela_x_ordu)
-                                                     & Q(pub_date__lte=orain) & Q(status='1')
-                                                     & Q(shared=False)).order_by('-pub_date')
+    gpak = GamePlaya.objects.filter(Q(pub_date__lte=orain) & Q(status='1')
+                                   & Q(shared=False)).order_by('-pub_date')
 
-    atalak = Atala.objects.filter(Q(pub_date__gte=duela_x_ordu)
-                                                     & Q(pub_date__lte=orain) & Q(publikoa_da=True)
-                                                     & Q(shared=False)).order_by('-pub_date')
+    atalak = Atala.objects.filter(Q(pub_date__lte=orain) & Q(publikoa_da=True)
+                                   & Q(shared=False)).order_by('-pub_date')
 
-    txak = Txapelketa.objects.filter(Q(pub_date__gte=duela_x_ordu)
-                                                     & Q(pub_date__lte=orain) & Q(publikoa_da=True)
-                                                     & Q(shared=False)).order_by('-pub_date')
+    txak = Txapelketa.objects.filter(Q(pub_date__lte=orain) & Q(publikoa_da=True)
+                                    & Q(shared=False)).order_by('-pub_date')
     
     for berria in berriak:
         post_social(berria)
@@ -74,9 +68,5 @@ def social_share(minutuak):
 class Command(BaseCommand):
    help = 'Social share'
 
-   def add_arguments(self, parser):
-        parser.add_argument('minutuak', type=int)
-
    def handle(self, *args, **options):
-       minutuak = options.get('minutuak', 0)
-       social_share(minutuak)
+       social_share()
