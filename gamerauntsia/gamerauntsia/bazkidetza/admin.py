@@ -1,4 +1,4 @@
-from models import Bazkidea, Eskaintza, OparitzekoJokoak
+from models import Bazkidea, Eskaintza, Eskaera, OparitzekoJokoak
 from django.contrib import admin
 from forms import EskaintzaAdminForm
 
@@ -22,12 +22,18 @@ class EskaintzaAdmin(admin.ModelAdmin):
     admin_thumbnail.allow_tags = True
 
     list_display = ('admin_thumbnail', 'izena', 'mota', 'expire_date', 'activate_date', 'is_public')
+    list_display_links = ['admin_thumbnail', 'izena']
     search_fields = ['izena','deskribapena']
     raw_id_fields = ('irudia',)
     prepopulated_fields = {"slug": ("izena",)}
     ordering = ('-expire_date','activate_date')
     form = EskaintzaAdminForm
 
+class EskaeraAdmin(admin.ModelAdmin):
+    list_display = ('added', 'eskaintza', 'bazkidea', 'is_active')
+    search_fields = ['eskaintza','bazkidea']
+    raw_id_fields = ('eskaintza', 'bazkidea')
+    ordering = ('-added',)
 
 class OparitzekoJokoakAdmin(admin.ModelAdmin):
     list_display = ('key','jokoa', 'plataforma', 'non_aldatzeko', 'oparituta',   'pub_date')
@@ -38,4 +44,5 @@ class OparitzekoJokoakAdmin(admin.ModelAdmin):
 
 admin.site.register(Bazkidea, BazkideaAdmin)
 admin.site.register(Eskaintza, EskaintzaAdmin)
+admin.site.register(Eskaera, EskaeraAdmin)
 admin.site.register(OparitzekoJokoak, OparitzekoJokoakAdmin)

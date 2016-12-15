@@ -28,6 +28,16 @@ class Bazkidea(models.Model):
     date_joined = models.DateTimeField(auto_now_add=True, editable=False, null=True, blank=True)
     expire_date = models.DateTimeField(default=timezone.localtime(timezone.now().replace(year=timezone.now().year + 1)))
 
+    def has_eskaera(self):
+        return Eskaera.objects.filter(bazkidea=self, is_active=True).exists()
+
+    def has_partaidetza_eskaera(self):
+        return Eskaera.objects.filter(bazkidea=self, mota=2, is_active=True).exists()
+
+    def get_eskaerak(self):
+        eskaerak = Eskaera.objects.filter(bazkidea=self, is_active=True).order_by("-added")
+        return eskaerak
+
     class Meta:
         verbose_name = "Bazkidea"
         verbose_name_plural = "Bazkideak"
@@ -58,6 +68,21 @@ class Eskaintza(models.Model):
 
     def get_absolute_url(self):
         return reverse('eskaintza', arg=[self.slug])
+
+
+class Eskaera(models.Model):
+    eskaintza = models.ForeignKey(Eskaintza)
+    bazkidea = models.ForeignKey(Bazkidea)
+
+    added = models.DateTimeField(auto_now_add=True)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = "Eskaera"
+        verbose_name_plural = "Eskaerak"
+
+    def __unicode__(self):
+        return u'%s (#%d %s)' % (self.eskaintza.izena, self.bazkidea.id, self.bazkidea.user.username)
 
 
 class OparitzekoJokoak(models.Model):

@@ -18,7 +18,9 @@
     <div class="col-md-4">
         <h3>Azalpena</h3>
         {{eskaintza.deskribapena|safe}}
-         {% if bazkidea.paid %}<a href="{% url 'kontaktua' %}" class="btn btn-primary">{% if eskaintza.mota == 1 %}Eskatu{% else %}Parte hartu{% endif %}!</a>{% endif %} <a href="{% url 'bazkidetza' %}" class="btn btn-default">Atzera	</a>
+        {% if bazkidea.paid and eskaintza.mota == 2 and not bazkidea.has_partaidetza_eskaera %}<a href="{% url 'create_eskaera' eskaintza.id %}" class="btn btn-primary">Parte hartu!</a>{% endif %}
+        {% if bazkidea.paid and eskaintza.mota == 1 %}<a href="{% url 'create_eskaera' eskaintza.id %}" class="btn btn-primary">Eskatu!</a>{% endif %}
+        <a href="{% url 'bazkidetza' %}" class="btn btn-default">Atzera	</a>
     </div>
 
 </div>

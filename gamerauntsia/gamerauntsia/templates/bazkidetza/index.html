@@ -60,6 +60,19 @@
              </div>
         </div>
         {% endif %}
+        
+        {% if bazkidea.has_eskaera %}
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Eskaera hauek egin dituzu</h3>
+                <ul class="list-unstyled">
+                    {% for eskaera in bazkidea.get_eskaerak %}
+                    <li><a href="{% url 'eskaintza' eskaera.eskaintza.slug %}"><img src="{{eskaera.eskaintza.irudia.get_admin_thumbnail_url}}" alt="{{eskaera.eskaintza.izena}}"> {{eskaera.eskaintza.izena}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
 
         <div class="row">
             <div class="col-lg-12">
@@ -78,7 +91,9 @@
                         <h3><a href="{% url 'eskaintza' eskaintza.slug %}">{{eskaintza.izena}}</a></h3>
                         <p>{{eskaintza.deskribapena|striptags|truncatechars:"100"}}</p>
                         <p>
-                            {% if bazkidea.paid and eskaintza.mota != 3 %}<a href="{% url 'kontaktua' %}" class="btn btn-primary">{% if eskaintza.mota == 1 %}Eskatu{% else %}Parte hartu{% endif %}!</a> {% endif %}<a href="{% url 'eskaintza' eskaintza.slug %}" class="btn btn-default">Info gehiago</a>
+                            {% if bazkidea.paid and eskaintza.mota == 2 and not bazkidea.has_partaidetza_eskaera %}<a href="{% url 'create_eskaera' eskaintza.id %}" class="btn btn-primary">Parte hartu!</a>{% endif %}
+                            {% if bazkidea.paid and eskaintza.mota == 1 %}<a href="{% url 'create_eskaera' eskaintza.id %}" class="btn btn-primary">Eskatu!</a>{% endif %}
+                            <a href="{% url 'eskaintza' eskaintza.slug %}" class="btn btn-default">Info gehiago</a>
                         </p>
                     </div>
                 </div>
