@@ -32,7 +32,7 @@ class Bazkidea(models.Model):
         return Eskaera.objects.filter(bazkidea=self, is_active=True).exists()
 
     def has_partaidetza_eskaera(self):
-        return Eskaera.objects.filter(bazkidea=self, mota=2, is_active=True).exists()
+        return Eskaera.objects.filter(bazkidea=self, eskaintza__mota=2, is_active=True).exists()
 
     def get_eskaerak(self):
         eskaerak = Eskaera.objects.filter(bazkidea=self, is_active=True).order_by("-added")
