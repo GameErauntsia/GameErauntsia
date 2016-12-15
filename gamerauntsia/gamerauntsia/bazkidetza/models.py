@@ -109,4 +109,11 @@ def send_member_msg(sender,instance,**kwargs):
         message = '[#%s Bazkidea]\n%skudeatu/bazkidetza/bazkidea/%s' % (instance.id, settings.HOST, instance.id)
         tb.send_message(settings.ADMIN_CHAT_ID, message)
 
+def send_eskaera_msg(sender,instance,**kwargs):
+    if kwargs['created']:
+        tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
+        message = '[Eskaera berria]\n%s: %s\n%skudeatu/bazkidetza/eskaera/' % (instance.bazkidea.user.username, instance.eskaintza.izena, settings.HOST)
+        tb.send_message(settings.ADMIN_CHAT_ID, message)
+
 post_save.connect(send_member_msg, sender=Bazkidea)
+post_save.connect(send_eskaera_msg, sender=Eskaera)
