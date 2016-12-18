@@ -138,6 +138,7 @@ INSTALLED_APPS = (
     'gamerauntsia.app.services',
     'captcha',
     'corsheaders',
+    'gamerauntsia.podcasting',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
