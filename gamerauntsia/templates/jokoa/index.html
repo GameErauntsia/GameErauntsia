@@ -1,0 +1,96 @@
+{% extends "profile/base.html" %}
+{% load i18n include gamerauntsia pagination_tags %}
+
+{% block title %}Jokoak - {% endblock %}
+
+{% block content%}
+<div class="row">
+
+    <div class="col-sm-12">
+            <h1 class="page-header">Jokoen katalogoa</h1>
+        </div>
+
+    <div class="col-sm-8">
+        <div class="col-sm-12">
+        {% if steam_json.movies %}
+             <a href="{% url 'game' last_jokoak.0.slug %}">
+             <video width="100%" autoplay loop muted>
+                <source src="{{steam_json.movies.0.webm.480}}" type="video/mp4">
+                Zure nabigatzaileak ez du HTML5 erreproduktorea onartzen.
+            </video>
+            </a>
+            <hr/>
+        {% endif %}
+        {% autopaginate jokoak 32 %}
+        {% for joko in jokoak %}
+            {% if forloop.first %}<div class="row">{% endif %}
+            <div class="col-sm-3 text-center">
+                <a href="{% url 'game' joko.slug %}">
+                    <img class="img-responsive center-block" src="{{joko.get_photo.get_newsprofile_url}}" alt="" />
+                    <h3>{{joko.izena}} {{joko.bertsioa}}</h3>
+                </a>
+            </div>
+            {% if forloop.counter|divisibleby:4 %}</div><div class="row">{% endif %}
+            {% if forloop.last %}</div>{% endif %}
+        {% empty %}
+        {% endfor %}
+        </div>
+        {% paginate %}
+    </div>
+    <div class="col-sm-4">
+        <div class="well">
+            <h3>Euskarazko jokoak</h3>
+            {% for ejokoa in euskaljokoak %}
+            <div class="row bloglist">
+                <a href="{% url 'game' ejokoa.jokoa.slug %}">
+                <div class="col-sm-4">
+                    <img src="{{ejokoa.jokoa.get_photo.get_newsprofile_url}}" alt="" />
+                </div>
+                <div class="col-sm-8">
+                    <p><strong>{{ejokoa.jokoa.izena}} {{ejokoa.jokoa.bertsioa}}</strong></p>
+                </div>
+                </a>
+            </div>
+            {% endfor %}
+            <p><a href="{% url 'euskarazko_jokoak' %}">Katalogo osoa ikusi</a></p>
+        </div>
+
+        <div class="well">
+            <h3>Jokuen Top 10</h3>
+	        {% for k in topjokoak %}
+	            {% if k.top_jokoak__count %}
+	            	<div class="row bloglist">
+        			    <a href="{% url 'game' k.top_jokoak__slug %}">
+        				<div class="col-sm-4">
+        				    <img src="{{k.top_jokoak__logoa|get_photo_url}}" alt=""/>
+        				</div>
+        				<div class="col-sm-8">
+        				    <p><strong>{{k.top_jokoak__izena}} {{k.top_jokoak__bertsioa}} ({{k.top_jokoak__count}})</strong></p>
+        				</div>
+        			    </a>
+        			</div>
+	            {% endif %}
+	        {% endfor %}
+        </div>
+        <div class="well">
+        	<h3>Katalogoko azkenak</h3>
+    		{% for joko in last_jokoak %}
+    		<div class="row bloglist">
+    		    <a href="{% url 'game' joko.slug %}">
+    			<div class="col-sm-4">
+    			    <img src="{{joko.get_photo.get_newsprofile_url}}" alt="" />
+    			</div>
+    			<div class="col-sm-8">
+    			    <p><strong>{{joko.izena}} {{joko.bertsioa}}</strong></p>
+    			</div>
+    		    </a>
+    		</div>
+    		{% endfor %}
+        </div>
+        <div class="well">
+            <p>Zure gustuko jokoa gure katalogoan ez badago, <a href="{% url 'kontaktua' %}">idatziguzu</a> eta ahalik eta lasterren jarriko dugu!</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
