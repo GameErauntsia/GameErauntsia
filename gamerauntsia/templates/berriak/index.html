@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load gamerauntsia pagination_tags include comments bootstrap_calendar ratings %}
+
+{% block morejs %}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/eu_ES/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script src="{{STATIC_URL}}js/fancybox/jquery.fancybox.js"></script>
+<link href="{{STATIC_URL}}js/fancybox/jquery.fancybox.css" rel="stylesheet">
+
+<link rel="stylesheet" href="{{STATIC_URL}}js/fancybox/helpers/jquery.fancybox-buttons.css" type="text/css" media="screen" />
+<script type="text/javascript" src="{{STATIC_URL}}js/fancybox/helpers/jquery.fancybox-buttons.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/fancybox/helpers/jquery.fancybox-media.js"></script>
+
+<link rel="stylesheet" href="{{STATIC_URL}}star-ratings/css/star-ratings.css">
+<script type="text/javascript" src="{{STATIC_URL}}star-ratings/js/dist/star-ratings.min.js"></script>
+
+{% bootstrap_calendar_css %}
+{% bootstrap_calendar_js language="eu-ES"  %}
+
+{% endblock %}
+
+{% block title %}Berriak - {% endblock %}
+
+{% block content%}
+<div class="row">
+    <div class="col-sm-8">
+
+        {% block subtitle %}{% endblock %}
+
+        {% block container %}
+
+        {% autopaginate zerr_berriak 5 %}
+        {% for berria in zerr_berriak %}
+        {% get_comment_count for berria as comment_count %}
+        <h1><a href="{% url 'berria' berria.slug %}">{{berria.izenburua}}</a></h1>
+        <p class="lead">
+            <a href="{% url 'gamer_profile' berria.erabiltzailea.username %}"><img src="{{berria.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{berria.erabiltzailea.getFullName}}</a> | <span class="glyphicon glyphicon-time"></span> {{berria.pub_date|date:"Y/m/d H:i"}} {% for gai in berria.gaia.all %}<span class="label label-success tags"><a href="{% url 'gaia' gai.slug %}">{{gai.izena}}</a></span>{% endfor %}
+        </p>
+        {% if berria.argazkia %}
+        <a class="fancybox" href="{{berria.argazkia.image.url}}">
+            <img src="{{berria.argazkia.get_blog_url}}" class="img-responsive"/>
+        </a>
+        <hr>
+        {% endif %}
+        <p>{{berria.get_desk_txikia|safe}}</p>
+        {% ratings berria %}
+        {% if comment_count %}<h4 class="pull-right"><a href="{% url 'berria' berria.slug %}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a></h4>{% endif %}
+        <hr>
+        {% endfor %}
+
+        {% paginate %}
+
+        {% endblock %}
+
+    </div>
+
+    <div class="col-sm-4">
+        {% steam_panel %}
+        <div id="azkenErantzunak">
+            <h2>Azken erantzunak</h2>
+            {% azken_erantzunak %}
+        </div>
+        <div id="egutegia">
+            <h2>Egutegia</h2>
+            <div id="calendar"></div>
+        </div>
+        <div class="well commentform">
+            <div class="fb-like-box" data-href="https://www.facebook.com/Gamerauntsia" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
+        </div>
+        <div class="well">
+            <a class="twitter-timeline"  href="https://twitter.com/Gamerauntsia"  data-widget-id="493804561870491649">@Gamerauntsia(r)en Txioak</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </div>
+    </div>
+</div>
+
+{%endblock%}
+
+{% block footerjs %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".fancybox").fancybox();
+    });
+</script>
+{% bootstrap_calendar_init language="eu-ES" %}
+{% endblock %}

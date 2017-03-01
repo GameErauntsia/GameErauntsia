@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load gamerauntsia %}
+
+{% block title %}Foroak - {% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="col-sm-12">
+            <h1 class="page-header">Foroa <small>Denak</small></h1>
+            <p>Game Erauntsian tratatuko diren gai ezberdinei buruz hitz egiteko txoko bat sortu da. Horretarako foro zerrenda bat proposatu dugu, denboran zehar aldatzen eta handitzen joango dena. <a href="{% url 'auth_login' %}?next={{request.path}}">Hemen erregistratzen</a> den edonork parte har dezake beti ere besteekiko errespetuz jokatzen badu. Hala ez bada, hori ekiditeko neurriak hartuko dira. Bada, animatu eta parte hartu gure komunitatean!</p>
+        </div>
+
+        <div class="col-sm-12">
+            {% for cat in categories %}
+                <div class="col-sm-12">
+                    <h2>{{cat.title}}</h2>
+
+                        <table class="table table-condensed table-hover footable">
+                            <thead>
+                                <tr>
+                                    <th>Foroak</th>
+                                    <th data-hide="phone">Gaiak</th>
+                                    <th data-hide="phone">Mezuak</th>
+                                    <th>Azken mezua</th>
+                                    <th data-hide="phone">Bisitak</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for forum in cat.get_forums %}
+                                <tr {% if not forum|check_seen:user %}class="bg-success"{% endif %}>
+                                    <td>
+                                        <div class="title">
+                                            <img class="img-rounded" src="{{forum.icon.get_forum_thumbnail_url}}"/> <a href="{% url 'forum-detail' forum.slug %}">{{ forum.title }}</a>
+                                        </div>
+                                    </td>
+                                    <td>{{forum.num_topics}}</td>
+                                    <td>{{forum.num_posts}}</td>
+                                    <td>
+                                        {% if forum.last_post %}
+                                        <div class="col-sm-2">
+                                            <img src="{{forum.last_post.creator.get_photo.get_profilesmall_url}}" class="img-circle"/>
+                                        </div>
+                                        <div class="col-sm-10">
+                                        <a href="/foroa/{{forum.slug}}{{forum.last_post.get_absolute_url}}">{{forum.last_post.short|linebreaksbr}}</a>
+                                        </div>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{forum.get_visits}}</td>
+                                    <td>
+                                        {% if not forum|check_seen:user %}
+                                            <strong class="text-success"><span aria-hidden="true" class="glyphicon glyphicon-star-empty"></span> BERRIA</strong>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+            {% endfor %}
+        </div>
+        <form action="{% url 'reset_topics' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="user" value="{{user.id}}"/>
+            <input type="submit" class="btn btn-default pull-right" value="Markatu foro guztiak irakurrita">
+        </form>
+        </div>
+</div>
+<script type="text/javascript">
+$(function () {
+
+    $('.footable').footable();
+
+});
+</script>
+{% endblock %}

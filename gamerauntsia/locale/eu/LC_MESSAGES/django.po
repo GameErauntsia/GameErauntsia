@@ -1,0 +1,263 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-12 18:10+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: agenda/forms.py:7
+msgid "Partida"
+msgstr ""
+
+#: agenda/forms.py:8
+msgid "Jokoa"
+msgstr ""
+
+#: agenda/forms.py:9
+msgid "Berezia"
+msgstr ""
+
+#: agenda/forms.py:16
+msgid "Type"
+msgstr "Mota"
+
+#: agenda/forms.py:17
+msgid "Start Date"
+msgstr "Hasiera data"
+
+#: agenda/forms.py:18
+msgid "End Date"
+msgstr "Amaiera data"
+
+#: finished/forms.py:9 templates/django_messages/trash.html.py:15
+msgid "Fetxa"
+msgstr ""
+
+#: gamer/admin.py:88
+msgid "Permissions"
+msgstr "Baimenak"
+
+#: gamer/views.py:98
+msgid "New user data saved."
+msgstr "Erabiltzaile berriaren datuak gordeta."
+
+#: gamer/views.py:247
+msgid "Password change"
+msgstr "Pasahitza aldatu"
+
+#: gamer/views.py:261
+msgid "Password change successful"
+msgstr "Pasahitza arrakastaz aldatu da"
+
+#: templates/comments/form.html:21
+msgid "Preview"
+msgstr "Aurreikusi"
+
+#: templates/django_messages/base.html:8
+msgid "Sarrerako ontzia"
+msgstr ""
+
+#: templates/django_messages/base.html:9
+msgid "Bidalitakoen ontzia"
+msgstr ""
+
+#: templates/django_messages/base.html:10
+#: templates/django_messages/compose.html:5
+msgid "Mezu berria"
+msgstr ""
+
+#: templates/django_messages/base.html:11
+msgid "Zabor ontzia"
+msgstr ""
+
+#: templates/django_messages/compose.html:35
+msgid "Bidali"
+msgstr ""
+
+#: templates/django_messages/inbox.html:5
+msgid "Sarrerako erretila"
+msgstr ""
+
+#: templates/django_messages/inbox.html:13
+#: templates/django_messages/trash.html:13
+msgid "Igorlea"
+msgstr ""
+
+#: templates/django_messages/inbox.html:14
+#: templates/django_messages/outbox.html:14
+#: templates/django_messages/trash.html:14
+msgid "Gaia"
+msgstr ""
+
+#: templates/django_messages/inbox.html:15
+msgid "Jasota"
+msgstr ""
+
+#: templates/django_messages/inbox.html:16
+#: templates/django_messages/outbox.html:16
+#: templates/django_messages/trash.html:16
+msgid " "
+msgstr ""
+
+#: templates/django_messages/inbox.html:29
+#: templates/django_messages/outbox.html:26
+#: templates/django_messages/trash.html:26
+#: templates/django_messages/view.html:16
+msgid "DATETIME_FORMAT"
+msgstr ""
+
+#: templates/django_messages/inbox.html:37
+#: templates/django_messages/trash.html:33
+msgid "Ez dago mezurik."
+msgstr ""
+
+#: templates/django_messages/new_message.html:3
+#, python-format
+msgid ""
+"Kaixo %(recipient)s,\n"
+"\n"
+"%(sender)s erabiltzailearen mezu bat jaso duzu gai honekin:"
+msgstr ""
+
+#: templates/django_messages/new_message.html:10
+#, python-format
+msgid "%(site_url)s-etik bidalia"
+msgstr ""
+
+#: templates/django_messages/new_message.html:11
+msgid "Sarrera ontzia"
+msgstr ""
+
+#: templates/django_messages/new_message.html:12
+#: templates/django_messages/view.html:23
+msgid "Erantzun"
+msgstr ""
+
+#: templates/django_messages/outbox.html:5
+msgid "Igorritako mezuak"
+msgstr ""
+
+#: templates/django_messages/outbox.html:13
+msgid "Hartzailea"
+msgstr ""
+
+#: templates/django_messages/outbox.html:15
+msgid "Bidalia"
+msgstr ""
+
+#: templates/django_messages/outbox.html:33
+msgid "Mezurik ez dago."
+msgstr ""
+
+#: templates/django_messages/trash.html:5
+msgid "Ezabatutako mezuak"
+msgstr ""
+
+#: templates/django_messages/view.html:6
+msgid "Ikusi mezua"
+msgstr ""
+
+#: templates/django_messages/view.html:11
+msgid "Subject"
+msgstr "Gaia"
+
+#: templates/django_messages/view.html:13
+msgid "Sender"
+msgstr "Bidaltzailea"
+
+#: templates/django_messages/view.html:15
+msgid "Date"
+msgstr "Data"
+
+#: templates/django_messages/view.html:17
+msgid "Recipient"
+msgstr "Sarrera ontzia"
+
+#: templates/django_messages/view.html:25
+msgid "Delete"
+msgstr "Ezabatu"
+
+#: templates/profile/add_article.html:20 templates/profile/add_event.html:15
+#: templates/profile/add_gameplay.html:20
+#: templates/profile/edit_amaitutakoak.html:17
+#: templates/profile/edit_computer.html:11
+#: templates/profile/edit_notifications.html:11
+#: templates/profile/edit_personal.html:46
+#: templates/profile/edit_platform.html:41
+#: templates/profile/edit_top_games.html:17
+#: templates/txapelketak/sortu_taldea.html:21
+msgid "Save"
+msgstr "Gorde"
+
+#: templates/profile/edit_personal.html:10
+msgid "Your personal data"
+msgstr "Zure informazio pertsonala"
+
+#: templates/profile/edit_photo.html:6
+msgid "Photo"
+msgstr "Argazkia"
+
+#: templates/profile/edit_photo.html:10
+msgid "You haven't got any photo!"
+msgstr "Ez daukazu argazkirik!"
+
+#: templates/profile/edit_photo.html:12
+msgid "New photo"
+msgstr "Argazki berria"
+
+#: templates/profile/edit_social.html:11
+msgid "Twitter linked"
+msgstr ""
+
+#: templates/profile/edit_social.html:13
+msgid "Link Twitter for this user"
+msgstr ""
+
+#: templates/profile/edit_social.html:19
+msgid "Facebook linked"
+msgstr ""
+
+#: templates/profile/edit_social.html:21
+msgid "Link Facebook for this user"
+msgstr ""
+
+#: templates/registration/activation_email.txt:3
+msgid "Hello"
+msgstr "Kaixo"
+
+#: templates/registration/activation_email.txt:5
+#, python-format
+msgid "You have requested joining %(sitename)s."
+msgstr "%(sitename)s gunean izena emateko eskaera egin duzu."
+
+#: templates/registration/activation_email.txt:7
+#, python-format
+msgid "Please click in this activation link before %(expirationdays)s days:"
+msgstr "Mesedez, egin klik beheko aktibazio estekan %(expirationdays)s egun baino lehen:"
+
+#: templates/registration/activation_email.txt:11
+#, python-format
+msgid "The team at %(sitename)s."
+msgstr "%(sitename)s taldea."
+
+#: templates/registration/password_change_form.html:10
+msgid "Submit"
+msgstr "Gorde"
+
+#: templates/txapelketak/txapelketa.html:342
+#: templates/zerbitzariak/minecraft.html:135
+msgid "Log in"
+msgstr "Sartu"

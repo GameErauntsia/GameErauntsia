@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="col-sm-12">
+    <h1>GamePlaya bidalita!</h1>
+    <div class="alert alert-success" role="alert"><strong>Mila esker!</strong> Zure gameplaya jaso dugu! Orain gure editoreek pixka bat errepasatu eta ahal bezain laster argitaratuko dute.<br/>Bidali dituzun eta argitaratu zaizkizun <a href="{% url 'gamer_profile' user.username %}">gameplay guztiak</a> zure profilean ikus ditzakezu.</div>
+    <hr/>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% load i18n %}
+
+{% trans "Hello" %}
+
+{% blocktrans with sitename=site.name %}You have requested joining {{ sitename }}.{% endblocktrans %}
+
+{% blocktrans with expirationdays=expiration_days %}Please click in this activation link before {{ expirationdays }} days:{% endblocktrans %}
+
+http://{{site.domain}}{% url 'registration_activate' activation_key=activation_key %}
+
+{% blocktrans with sitename=site.name %}The team at {{ sitename }}.{% endblocktrans %}

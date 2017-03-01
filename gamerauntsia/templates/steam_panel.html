@@ -1,0 +1,21 @@
+<div class="well text-center commentform">
+    <div class="row">
+        <img class="img-responsive center-block" src="/static/img/steam-logo.png" />
+    </div>
+    <div class="row">
+        {% if steam_group %}
+        <div class="col-sm-4 text-muted"><h3><strong>{{steam_group.memberCount}}</strong><br>Kide</h3></div>
+        <div class="col-sm-4 text-success"><h3><strong>{{steam_group.membersInGame}}</strong><br>Jolasten</h3></div>
+        <div class="col-sm-4 text-primary"><h3><strong>{{steam_group.membersOnline}}</strong><br>Online</h3></div>
+        {% else %}
+        <div class="col-sm-4 text-muted"><strong>Steam konexioak huts egin du...</strong></div>
+        {% endif %}
+    </div>
+    <div class="row">
+        <hr>
+        <a class="steam-group-button" target="_blank" href="http://steamcommunity.com/groups/gamerauntsia">
+            <i class="steam-group-icon"></i>
+            <span class="steam-group-label">Jarraitu Steam taldea</span>
+        </a>
+    </div>
+</div>
