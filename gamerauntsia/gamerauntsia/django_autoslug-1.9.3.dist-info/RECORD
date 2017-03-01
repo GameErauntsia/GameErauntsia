@@ -1,0 +1,17 @@
+autoslug/__init__.py,sha256=3b5AWsZyBu3bWwHf1_LrSd7dn2sTtb8UJ1ZMbCdMAJM,409
+autoslug/fields.py,sha256=-2XHsby5-l2InN8RC629M_rP7TLBlIVVY6suS78im3c,12923
+autoslug/models.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
+autoslug/settings.py,sha256=o7ZywKScIkQ7lSt1QCVg3m3aEmPfdH8ezx3ZL-jImPM,2476
+autoslug/utils.py,sha256=7eitQI2tiaqqyE1kpVndJ2H6Wx8eBGfSXuMrWDQjY58,7594
+django_autoslug-1.9.3.dist-info/DESCRIPTION.rst,sha256=1GSQnJqcJgPtJejfcACnw3gQChFQ3MPy2AbCNHQkgF4,3852
+django_autoslug-1.9.3.dist-info/METADATA,sha256=kEWeo5vp6TTZPwZsxbYRRYH1BGvVsAy5ekrwhvIlnNg,5279
+django_autoslug-1.9.3.dist-info/RECORD,,
+django_autoslug-1.9.3.dist-info/WHEEL,sha256=GrqQvamwgBV4nLoJe0vhYRSWzWsx7xjlt74FT0SWYfE,110
+django_autoslug-1.9.3.dist-info/metadata.json,sha256=bGhJClxqphFQOIyXPlcLK64PlL_o3oGyw5XewaS_GXg,1522
+django_autoslug-1.9.3.dist-info/top_level.txt,sha256=hHL3_c9ih_K6VK5j82mu-a13sIIgpbebr1LScPvWW-g,9
+django_autoslug-1.9.3.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
+autoslug/settings.pyc,,
+autoslug/utils.pyc,,
+autoslug/models.pyc,,
+autoslug/fields.pyc,,
+autoslug/__init__.pyc,,

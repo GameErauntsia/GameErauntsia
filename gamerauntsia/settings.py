@@ -1,5 +1,6 @@
-﻿import os
-import raven
+﻿# Django settings for gamerauntsia project.
+
+import os
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
@@ -56,7 +57,7 @@ USE_TZ = True
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
 # MEDIA_ROOT = ''
-MEDIA_ROOT = "/home/ge/buildout/media/"
+MEDIA_ROOT = ''
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -68,7 +69,7 @@ MEDIA_URL = '/media/'
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
 # STATIC_ROOT = ''
-STATIC_ROOT = "/home/ge/buildout/static/"
+STATIC_ROOT = ''
 
 STATIC_DOC_ROOT = STATIC_ROOT
 MEDIA_DOC_ROOT = MEDIA_ROOT
@@ -90,8 +91,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
-    'django.contrib.sitemaps',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
     'django.contrib.humanize',
     'django.contrib.flatpages',
     'mptt',
@@ -138,8 +139,6 @@ INSTALLED_APPS = (
     'captcha',
     'corsheaders',
     'podcasting',
-    'raven.contrib.django.raven_compat',
-    'gunicorn',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -156,11 +155,19 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'gamerauntsia.context_processors.fb_app_id',
 )
 
+# Additional locations of static files
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+)
+
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # Make this unique, and don't share it with anybody.

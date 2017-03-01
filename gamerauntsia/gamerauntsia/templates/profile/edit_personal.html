@@ -1,0 +1,61 @@
+{% extends "profile/base.html" %}
+{% load i18n %}
+
+{% block morejs %}
+    {{ profileform.media }}
+{% endblock %}
+
+{% block perfil %}
+<div class="profileform">
+	<h2>{% trans "Your personal data" %}</h2>
+	<form action="{{request.path}}" method="POST">
+		{% csrf_token %}
+		<fieldset>
+			<div class="input-group">
+  				<input id="id_fullname" class="form-control" type="text" name="fullname" maxlength="60" placeholder="Zure izena" value="{{ profileform.fullname.value|default_if_none:"" }}" />
+  			</div>
+			<br/><textarea id="id_bio" rows="5" name="bio" cols="80" placeholder="Zure biografia...">{{ profileform.bio.value|default_if_none:"" }}</textarea><br/>
+			<div class="row">
+                <div class="col-sm-4">
+                    <label>Sare sozialak:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Youtube</span>
+                        <input id="id_youtube" class="form-control" type="text" name="ytube_channel" maxlength="60" placeholder="Youtube kanalaren URLa" value="{{ profileform.ytube_channel.value|default_if_none:"" }}" />
+                    </div><br/>
+                    {% if user.is_gamer %}
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Twitch</span>
+                        <input id="id_twitch" class="form-control" type="text" name="twitch_channel" maxlength="60" placeholder="Twitch erabilzailea" value="{{ profileform.twitch_channel.value|default_if_none:"" }}" />
+                    </div><br/>
+                    {% endif %}
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Twitter</span>
+                        <input id="id_twitter_id" class="form-control" type="text" name="twitter_id" maxlength="60" placeholder="Twitter izena" value="{{ profileform.twitter_id.value|default_if_none:"" }}" />
+                    </div><br/>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Facebook</span>
+                        <input id="id_facebook_id" class="form-control" type="text" name="facebook_id" maxlength="60" placeholder="Facebook izena" value="{{ profileform.facebook_id.value|default_if_none:"" }}" />
+                    </div><br/>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Telegram</span>
+                        <input id="id_telegram_id" class="form-control" type="text" name="telegram_id" maxlength="11" placeholder="Telegram kodea" value="{{ profileform.telegram_id.value|default_if_none:"" }}" />
+                    </div>
+                </div>
+            </div>
+            <br/><label for="id_signature">Foroko sinadura:</label>{{ profileform.signature }}<br/>
+			<input type="submit" class="btn btn-primary" value="{% trans "Save" %}"/>
+	    </fieldset>
+	</form>
+</div>
+
+<script type="text/javascript">
+
+    $(function() {
+        $('#id_bio').autogrow();
+    });
+
+</script>
+
+
+
+{% endblock %}
