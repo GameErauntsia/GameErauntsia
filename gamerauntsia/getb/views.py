@@ -1,23 +1,13 @@
 from gamerauntsia.getb.models import Atala
 from django.conf import settings
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.shortcuts import render_to_response
-from django.template import RequestContext
-from django.http import Http404
+from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from datetime import datetime
 
-from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
-from rest_framework.parsers import JSONParser
-from rest_framework import serializers
 from gamerauntsia.getb.serializers import GetbSerializer
-from rest_framework.response import Response
-import json
-# from django.core import serializers
-# from django.core.serializers import serialize
-from itertools import chain
 
 
 class JSONResponse(HttpResponse):
@@ -59,7 +49,7 @@ def index(request):
     atalak = Atala.objects.filter(publikoa_da=True, pub_date__lt=datetime.now()).exclude(id=atal_nab.id).order_by(
         '-pub_date')
     atalgehiago = atalak[3:7]
-    return render_to_response('getb/index.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'getb/index.html', locals())
 
 
 def atala(request, slug):
@@ -67,4 +57,4 @@ def atala(request, slug):
     related_atalak = Atala.objects.filter(publikoa_da=True, pub_date__lt=datetime.now()).exclude(id=atala.id).order_by(
         '-pub_date')[:5]
     facebook_id = settings.FACEBOOK_APP_ID
-    return render_to_response('getb/atala.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'getb/atala.html', locals())

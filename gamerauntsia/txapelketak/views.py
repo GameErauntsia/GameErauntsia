@@ -1,24 +1,14 @@
-from django.shortcuts import render_to_response
-from django.template import RequestContext
-from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from datetime import datetime
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
-from gamerauntsia.txapelketak.models import *
-from gamerauntsia.txapelketak.forms import *
+from gamerauntsia.txapelketak.models import Partida, Txapelketa, Partaidea
+from gamerauntsia.txapelketak.forms import TaldeaForm
 from django.core.urlresolvers import reverse
-from gamerauntsia.utils.timeline import get_tweepy_api
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
-from rest_framework.parsers import JSONParser
-from rest_framework import serializers
 from gamerauntsia.txapelketak.serializers import TxapelketaSerializer
-from rest_framework.response import Response
-import json
-# from django.core import serializers
-# from django.core.serializers import serialize
-from itertools import chain
 
 
 class JSONResponse(HttpResponse):
@@ -34,7 +24,6 @@ class JSONResponse(HttpResponse):
 
 def app_txapelketa_profile(request, pk):
     # 	return JSONResponse({1:1})
-    response_data = {}
     item = Txapelketa.objects.get(pk=pk)
     # 	gameplayak = GamePlaya.objects.filter(publikoa_da=True,status='1', erabiltzailea=user_prof, pub_date__lt=datetime.now()).order_by('-pub_date')
     list_sailkapena = item.get_partaideak(['-points', '-win', 'lose', '-average'])
@@ -86,13 +75,12 @@ def txapelketa_detail(request, pk):
 
 def index(request):
     items = Txapelketa.objects.filter(publikoa_da=True).order_by('-pub_date')
-    return render_to_response('txapelketak/index.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'txapelketak/index.html', locals())
 
 
 def txapelketa(request, slug):
     item = get_object_or_404(Txapelketa, slug=slug)
-    video_parts = Partida.objects.filter(Q(txapelketa=item), Q(bideoa__isnull=False)).exclude(
-        bideoa__iexact='').order_by('-date')[:3]
+    video_parts = Partida.objects.filter(Q(txapelketa=item), Q(bideoa__isnull=False)).exclude(bideoa__iexact='').order_by('-date')[:3]
     next_parts = Partida.objects.filter(Q(txapelketa=item), Q(partaideak__isnull=False),
                                         Q(emaitza__isnull=True) | Q(emaitza__iexact='')).order_by('date',
                                                                                                   'jardunaldia').distinct()
@@ -153,7 +141,7 @@ def txapelketa(request, slug):
     # search = '#' + item.hashtag
     # tweets = api.search(q=search,count=25)
 
-    return render_to_response('txapelketak/txapelketa.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'txapelketak/txapelketa.html', locals())
 
 
 def partaidea(request, slug, part_id):
@@ -162,7 +150,7 @@ def partaidea(request, slug, part_id):
     next_parts = Partida.objects.filter(Q(txapelketa=item), Q(partaideak=partaidea),
                                         Q(emaitza__isnull=True) | Q(emaitza__iexact='')).order_by('date',
                                                                                                   'jardunaldia').distinct()
-    return render_to_response('txapelketak/partaidea.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'txapelketak/partaidea.html', locals())
 
 
 def partida(request, slug, partida):
@@ -171,7 +159,7 @@ def partida(request, slug, partida):
     partida = get_object_or_404(queryset, id=partida)
     other_parts = Partida.objects.filter(txapelketa=item).exclude(id=partida.id, emaitza__isnull=False).order_by('date',
                                                                                                                  'jardunaldia').distinct()
-    return render_to_response('txapelketak/partida.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'txapelketak/partida.html', locals())
 
 
 @login_required
@@ -185,7 +173,6 @@ def txapelketa_insk(request, slug):
 
 @login_required
 def sortu_partaideak(request, slug):
-    user = request.user
     item = get_object_or_404(Txapelketa, slug=slug)
 
     for partai in item.jokalariak.all():
@@ -213,4 +200,4 @@ def sortu_taldea(request, slug):
             return HttpResponseRedirect(reverse("partaidea", kwargs={'part_id': team.id}))
     else:
         teamform = TaldeaForm()
-    return render_to_response('txapelketak/sortu_taldea.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'txapelketak/sortu_taldea.html', locals())

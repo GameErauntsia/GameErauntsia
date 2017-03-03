@@ -3,10 +3,8 @@ from django.template.defaultfilters import slugify
 from gamerauntsia.jokoa.models import Jokoa
 from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.berriak.models import Berria
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 from django.shortcuts import get_object_or_404
-from django.conf import settings
 from django.db.models import Count
 from django.db.models import Q
 from django.http import HttpResponseRedirect
@@ -14,23 +12,19 @@ from django.core.urlresolvers import reverse
 from gamerauntsia.utils.images import handle_uploaded_file
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from photologue.models import Photo
 from gamerauntsia.gamer.forms import *
 from gamerauntsia.agenda.forms import *
 from django.utils.translation import ugettext as _
 from django.forms.models import modelformset_factory
 from datetime import datetime
-from django.db.models import Count
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.forms import PasswordChangeForm
 from django.template.response import TemplateResponse
 from django_simple_forum.models import Category, Topic
 from django.forms.utils import ErrorList
-from gamerauntsia.utils.urls import get_urlxml
 from gamerauntsia.zerbitzariak.views import set_user_whitelist
 from django.http import HttpResponse
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from cssocialuser.forms import ProfilePhotoForm
 import json
 
@@ -47,28 +41,34 @@ def update_session_auth_hash(request, user):
     if hasattr(user, 'get_session_auth_hash') and request.user == user:
         request.session[HASH_SESSION_KEY] = user.get_session_auth_hash()
 
+
 def community(request):
     users = GamerUser.objects.filter(is_active=True).order_by('-date_joined')
     user_rows = int(round(len(users) / 3))
     gurus = GamerUser.objects.filter(is_active=True).order_by('-karma')[:9]
-    return render_to_response('gamer/community.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'gamer/community.html', locals())
+
 
 def youtuberrak(request):
     users = GamerUser.objects.filter(is_active=True).exclude(ytube_channel__isnull=True).exclude(
         ytube_channel__exact='').annotate(num_gp=Count('gameplayak')).exclude(num_gp=0).order_by('-num_gp')
-    return render_to_response('gamer/youtuberrak.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'gamer/youtuberrak.html', locals())
+
 
 def idazleak(request):
     users = GamerUser.objects.filter(is_active=True).annotate(num_art=Count('berriak')).exclude(num_art=0).order_by('-num_art')
-    return render_to_response('gamer/idazleak.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'gamer/idazleak.html', locals())
+
 
 def guruak(request):
     users = GamerUser.objects.filter(is_active=True).order_by('-karma')
-    return render_to_response('gamer/guruak.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'gamer/guruak.html', locals())
+
 
 def talde_motorra(request):
     users = GamerUser.objects.filter(is_active=True, is_staff=True).order_by('-date_joined')
-    return render_to_response('gamer/talde_motorra.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'gamer/talde_motorra.html', locals())
+
 
 def profile(request, username):
     user_prof = get_object_or_404(GamerUser, username=username, is_active=True)
@@ -84,7 +84,7 @@ def profile(request, username):
                                     pub_date__lt=datetime.now()).values('gaia__izena', ).annotate(count=Count('id'))
     berri_count = len(berriak)
     side_berriak = berriak[:5]
-    return render_to_response('gamer/profile.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'gamer/profile.html', locals())
 
 
 @login_required
@@ -100,7 +100,8 @@ def edit_profile(request):
     else:
         profileform = GamerForm(instance=profile)
 
-    return render_to_response('profile/edit_personal.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'profile/edit_personal.html', locals())
+
 
 @login_required
 def edit_profile_photo(request):
@@ -117,7 +118,7 @@ def edit_profile_photo(request):
 
     else:
         form = ProfilePhotoForm()
-    return render_to_response('profile/edit_photo.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'profile/edit_photo.html', locals())
 
 
 @login_required
@@ -133,7 +134,7 @@ def edit_notifications(request):
     else:
         notifyform = NotifyForm(instance=user)
 
-    return render_to_response('profile/edit_notifications.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'profile/edit_notifications.html', locals())
 
 
 @login_required
@@ -150,7 +151,7 @@ def edit_computer(request):
     else:
         pcform = PCForm(instance=user)
 
-    return render_to_response('profile/edit_computer.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'profile/edit_computer.html', locals())
 
 
 @login_required
@@ -181,7 +182,7 @@ def edit_platform(request):
         gameformset = GameFormSet(queryset=qset)
         options = PLATFORM
 
-    return render_to_response('profile/edit_platform.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'profile/edit_platform.html', locals())
 
 
 @login_required
@@ -210,7 +211,7 @@ def edit_amaitutakoak(request):
         qset = AmaitutakoJokoak.objects.filter(user=user)
         gameformset = AmaitutaFormSet(queryset=qset)
 
-    return render_to_response('profile/edit_amaitutakoak.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'profile/edit_amaitutakoak.html', locals())
 
 
 @login_required
@@ -233,7 +234,7 @@ def edit_top_games(request):
                                          'top_jokoak__slug').annotate(Count('top_jokoak')).order_by(
         '-top_jokoak__count', '-top_jokoak__izena')[:10]
     jokoak = user.top_jokoak.all().count()
-    return render_to_response('profile/edit_top_games.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'profile/edit_top_games.html', locals())
 
 
 @sensitive_post_parameters()
@@ -300,9 +301,7 @@ def reset_topics(request):
         return HttpResponseRedirect(reverse('forum-index'))
 
     categories = Category.objects.all().order_by('order')
-    return render_to_response("django_simple_forum/list.html", {'categories': categories,
-                                                                'user': request.user},
-                              context_instance=RequestContext(request))
+    return render(request, "django_simple_forum/list.html", {'categories': categories, 'user': request.user})
 
 
 @login_required
@@ -321,10 +320,11 @@ def add_article(request):
                 berria.argazkia = photo
             berria.save()
             articleform.save_m2m()
-            return render_to_response('profile/article_sent.html', locals(), context_instance=RequestContext(request))
+            return render(request, 'profile/article_sent.html', locals())
     else:
         articleform = ArticleForm()
-    return render_to_response('profile/add_article.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'profile/add_article.html', locals())
+
 
 @login_required
 def add_game(request):
@@ -340,10 +340,11 @@ def add_game(request):
                 photo = handle_uploaded_file(request.FILES['logoa'], user.getFullName())
                 jokoa.logoa = photo
             jokoa.save()
-            return render_to_response('profile/game_sent.html', locals(), context_instance=RequestContext(request))
+            return render(request, 'profile/game_sent.html', locals())
     else:
         gameform = GameCatalogForm()
-    return render_to_response('profile/add_game.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'profile/add_game.html', locals())
+
 
 @login_required
 def add_gameplay(request):
@@ -363,11 +364,10 @@ def add_gameplay(request):
                 gp.argazkia = handle_uploaded_file(request.FILES['argazkia'], user.getFullName())
                 gp.save()
                 gameplayform.save_m2m()
-                return render_to_response('profile/gameplay_sent.html', locals(),
-                                          context_instance=RequestContext(request))
+                return render(request, 'profile/gameplay_sent.html', locals())
     else:
         gameplayform = GamePlayForm()
-    return render_to_response('profile/add_gameplay.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'profile/add_gameplay.html', locals())
 
 
 @login_required
@@ -382,7 +382,7 @@ def add_event(request):
 
     else:
         eventform = EventForm()
-    return render_to_response('profile/add_event.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'profile/add_event.html', locals())
 
 
 @login_required

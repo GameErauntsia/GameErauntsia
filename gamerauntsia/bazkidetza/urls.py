@@ -1,10 +1,10 @@
-from django.conf.urls import patterns, include, url
-from django.conf import settings
+from django.conf.urls import url
+from gamerauntsia.bazkidetza import views
 
-urlpatterns = patterns('gamerauntsia.bazkidetza.views',
-	url(r'^$', 'index', name='bazkidetza'),
-	url(r'^izan-bazkide/$', 'create_bazkidea', name='create_bazkidea'),
-	url(r'^eskaera-egin/(?P<eskaintza_id>[\d]+)/$', 'create_eskaera', name='create_eskaera'),
-    url(r'^ordainketa-eginda/$', 'payment_done', name='payment_done'),
-	url(r'^eskaintza/(?P<slug>[-\w]+)/$', 'eskaintza', name='eskaintza'),
-)
+urlpatterns = [
+    url(r'^$', views.index, name='bazkidetza'),
+    url(r'^izan-bazkide/$', views.create_bazkidea, name='create_bazkidea'),
+    url(r'^eskaera-egin/(?P<eskaintza_id>[\d]+)/$', views.create_eskaera, name='create_eskaera'),
+    url(r'^ordainketa-eginda/$', views.payment_done, name='payment_done'),
+    url(r'^eskaintza/(?P<slug>[-\w]+)/$', views.eskaintza, name='eskaintza'),
+]

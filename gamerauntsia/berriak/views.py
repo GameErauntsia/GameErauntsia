@@ -2,17 +2,13 @@ from datetime import datetime
 
 from django.conf import settings
 from django.shortcuts import get_object_or_404
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.template import RequestContext
 from gamerauntsia.berriak.models import Berria, Gaia
-from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
-from rest_framework.parsers import JSONParser
-from rest_framework import serializers
 from gamerauntsia.berriak.serializers import BerriaSerializer
-from rest_framework.response import Response
-import json
 from rest_framework import viewsets
 
 
@@ -65,16 +61,16 @@ def berria_detail(request, pk):
 def index(request):
     h = {}
     zerr_berriak = Berria.objects.filter(status='1', pub_date__lt=datetime.now()).order_by('-pub_date')
-    return render_to_response('berriak/index.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'berriak/index.html', locals())
 
 
 def berria(request, slug):
     item = get_object_or_404(Berria, slug=slug)
     facebook_id = settings.FACEBOOK_APP_ID
-    return render_to_response('berriak/berria.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'berriak/berria.html', locals())
 
 
 def gaia(request, slug):
     gaia = get_object_or_404(Gaia, slug=slug)
     zerr_berriak = Berria.objects.filter(gaia=gaia, status='1', pub_date__lt=datetime.now()).order_by('-pub_date')
-    return render_to_response('berriak/gaia.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'berriak/gaia.html', locals())

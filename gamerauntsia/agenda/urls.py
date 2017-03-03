@@ -1,6 +1,6 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import url
+from gamerauntsia.agenda import views
 
-
-urlpatterns = patterns('gamerauntsia.agenda.views',
-    url(r'^$', 'index', name='agenda_index'),
-)
+urlpatterns = [
+    url(r'^$', views.index, name='agenda_index'),
+]

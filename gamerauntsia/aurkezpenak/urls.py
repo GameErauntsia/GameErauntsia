@@ -1,6 +1,7 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import url
+from gamerauntsia.aurkezpenak import views
 
-urlpatterns = patterns('',
-    url(r'^$', 'gamerauntsia.aurkezpenak.views.index', name='aurkezpenak_index'),
-    url(r'^(?P<slug>[-\w]+)$', 'gamerauntsia.aurkezpenak.views.aurkezpena', name='aurkezpena'),
-)
+urlpatterns = [
+    url(r'^$', views.index, name='aurkezpenak_index'),
+    url(r'^(?P<slug>[-\w]+)$', views.aurkezpena, name='aurkezpena'),
+]

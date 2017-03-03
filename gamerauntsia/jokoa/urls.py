@@ -1,20 +1,14 @@
-from django.conf.urls import patterns, include, url
-from django.conf import settings
+from django.conf.urls import url
+from gamerauntsia.jokoa import views
+from gamerauntsia.jokoen_itzulpenak import views as itzulpenakviews
 
-urlpatterns = patterns('',
-    url(r'^$', 'gamerauntsia.jokoa.views.index', name='game_index'),
+urlpatterns = [
+    url(r'^$', views.index, name='game_index'),
 
     # JOKOEN ITZULPENAK
-   url(r'^euskarazko-bideojokoak/$', 'gamerauntsia.jokoen_itzulpenak.views.index',
-       name='euskarazko_jokoak'),
-   url(r'^jokoen-itzulpenak/bilatu', 'gamerauntsia.jokoen_itzulpenak.views.search_retro',
-       name='search_itzulpenak'),
+    url(r'^euskarazko-bideojokoak/$', itzulpenakviews.index, name='euskarazko_jokoak'),
+    url(r'^jokoen-itzulpenak/bilatu', itzulpenakviews.search_retro, name='search_itzulpenak'),
+    ############
 
-    url(r'^(?P<slug>[-\w]+)$', 'gamerauntsia.jokoa.views.jokoa', name='game'),
-)
-
-if getattr(settings, 'DEBUG', False):
-    urlpatterns += patterns('',
-        (r'^media/(?P<path>.*)$', 'django.views.static.serve',
-         {'document_root': getattr(settings, 'MEDIA_ROOT', '')}),
-    )
+    url(r'^(?P<slug>[-\w]+)$', views.jokoa, name='game'),
+]

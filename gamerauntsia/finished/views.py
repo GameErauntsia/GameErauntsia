@@ -1,9 +1,8 @@
-from gamerauntsia.finished.models import Finished
-from django.shortcuts import render_to_response
-from django.template import RequestContext
-from django.conf import settings
-from datetime import datetime
-from django.shortcuts import get_object_or_404
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
+from gamerauntsia.agenda.forms import EventForm
+
 
 def add_finished(request):
     """ """
@@ -16,4 +15,4 @@ def add_finished(request):
 
     else:
         eventform = EventForm()
-    return render_to_response('profile/add_event.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'profile/add_event.html', locals())

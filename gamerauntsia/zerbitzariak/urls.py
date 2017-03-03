@@ -1,9 +1,10 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import url
 from django.views.generic import TemplateView
+from gamerauntsia.zerbitzariak import views
 
-urlpatterns = patterns('',
-    url(r'^minecraft$', 'gamerauntsia.zerbitzariak.views.minecraft_server', name='minecraft_index'),
-    url(r'^minecraft/mapa$', 'gamerauntsia.zerbitzariak.views.minecraft_mapa', name='minecraft_mapa'),
-    url(r'^minecraft/add$', 'gamerauntsia.zerbitzariak.views.minecraft_add', name='minecraft_add'),
+urlpatterns = [
+    url(r'^minecraft$', views.minecraft_server, name='minecraft_index'),
+    url(r'^minecraft/mapa$', views.minecraft_mapa, name='minecraft_mapa'),
+    url(r'^minecraft/add$', views.minecraft_add, name='minecraft_add'),
     url(r'^mumble$', TemplateView.as_view(template_name='zerbitzariak/mumble.html'), name='mumble_index'),
-)
+]

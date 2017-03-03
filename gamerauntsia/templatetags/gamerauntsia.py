@@ -1,13 +1,10 @@
 from django import template
-from registration.forms import RegistrationFormUniqueEmail
 from photologue.models import Photo
-from bootstrapform.templatetags.bootstrap import bootstrap
-from django import forms
 import urllib2
 import xmltodict
-from django.utils.translation import ugettext_lazy as _
 
 register = template.Library()
+
 
 def get_urlxml(url):
     stream = []
@@ -17,6 +14,7 @@ def get_urlxml(url):
     stream = dict(xmltodict.parse(data))
     return stream
 
+
 def steam_panel():
     try:
         steam_group = dict(dict(get_urlxml('http://steamcommunity.com/groups/gamerauntsia/memberslistxml/')['memberList'])['groupDetails'])
@@ -25,9 +23,11 @@ def steam_panel():
         return {'steam_group': None}
 register.inclusion_tag('steam_panel.html')(steam_panel)
 
+
 @register.filter
-def check_seen(obj,user):
+def check_seen(obj, user):
     return obj.has_seen(user)
+
 
 @register.filter
 def get_photo_url(obj_id):

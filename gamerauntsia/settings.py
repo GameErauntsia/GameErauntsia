@@ -129,7 +129,7 @@ INSTALLED_APPS = (
     'django_bootstrap_calendar',
     'django_messages',
     'django_mobile',
-    'social.apps.django_app.default',
+    'social_django',
     'django.contrib.admin',
     'rest_framework',
     'rest_framework.authtoken',
@@ -139,20 +139,6 @@ INSTALLED_APPS = (
     'captcha',
     'corsheaders',
     'podcasting',
-)
-
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.core.context_processors.debug',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.media',
-    'django.core.context_processors.static',
-    'django.contrib.auth.context_processors.auth',
-    'django.contrib.messages.context_processors.messages',
-    'django.core.context_processors.request',
-    'social.apps.django_app.context_processors.backends',
-    'social.apps.django_app.context_processors.login_redirect',
-    'django_mobile.context_processors.flavour',
-    'gamerauntsia.context_processors.fb_app_id',
 )
 
 # Additional locations of static files
@@ -173,12 +159,41 @@ STATICFILES_FINDERS = (
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'a212scc3235r'
 
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'django_mobile.loader.Loader',
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-)
+this = os.path.dirname(os.path.abspath(__file__))
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            # insert your TEMPLATE_DIRS here
+            '%s/templates' % this,
+        ],
+        'OPTIONS': {
+            'context_processors': [
+                # Insert your TEMPLATE_CONTEXT_PROCESSORS here or use this
+                # list if you haven't customized them:
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
+                'django_mobile.context_processors.flavour',
+                'gamerauntsia.context_processors.fb_app_id',
+            ],
+            'loaders': [
+                # insert your TEMPLATE_LOADERS here
+                'django_mobile.loader.Loader',
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+            ]
+        },
+    },
+]
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -204,16 +219,6 @@ CORS_ORIGIN_ALLOW_ALL = True
 # Python dotted path to the WSGI application used by Django's runserver.
 # WSGI_APPLICATION = 'gamerauntsia.wsgi.application'
 
-this = os.path.dirname(os.path.abspath(__file__))
-my_media_url = os.path.join(os.path.dirname(__file__), "media")
-
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    '%s/templates' % this,
-)
-
 ROOT_URLCONF = 'gamerauntsia.urls'
 
 # EMAIL REGISTRATION
@@ -226,8 +231,8 @@ SOCIAL_AUTH_USER_MODEL = AUTH_USER_MODEL
 
 # SOCIAL REGISTRATION
 AUTHENTICATION_BACKENDS = (
-    'social.backends.twitter.TwitterOAuth',
-    'social.backends.google.GoogleOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -292,43 +297,11 @@ REST_AUTH_SERIALIZERS = {
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_RENDERER_CLASSES': (
-#         'rest_framework.renderers.JSONRenderer',
-#         'rest_framework.renderers.BrowsableAPIRenderer',
-#     )
-# }
-
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
-
-
-#LOGGING = {
-#    'version': 1,
-#    'disable_existing_loggers': False,
-#    'filters': {
-#        'require_debug_false': {
-#            '()': 'django.utils.log.RequireDebugFalse'
-#        }
-#    },
-#    'handlers': {
-#        'mail_admins': {
-#            'level': 'ERROR',
-#            'filters': ['require_debug_false'],
-#            'class': 'django.utils.log.AdminEmailHandler'
-#        }
-#    },
-#    'loggers': {
-#        'django.request': {
-#            'handlers': ['mail_admins'],
-#            'level': 'ERROR',
-#            'propagate': True,
-#        },
-#    }
-#}
 
 try:
     from tiny_mce_settings import *

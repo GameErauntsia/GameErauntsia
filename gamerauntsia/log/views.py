@@ -1,15 +1,8 @@
 from gamerauntsia.log.models import Log
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.http import Http404, HttpResponse, HttpResponseRedirect
-from django.shortcuts import render_to_response
-from django.template import RequestContext
-from django.conf import settings
-from datetime import datetime
-from django.shortcuts import get_object_or_404
-
+from django.http import HttpResponse
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
-from rest_framework.parsers import JSONParser
 from gamerauntsia.log.serializers import LogSerializer
 from rest_framework import viewsets
 
@@ -40,4 +33,4 @@ def denboralerroa_list(request):
 
 def index(request):
     events = Log.objects.all().order_by('-fetxa')
-    return render_to_response('log/index.html', locals(), context_instance=RequestContext(request))
+    return render(request, 'log/index.html', locals())

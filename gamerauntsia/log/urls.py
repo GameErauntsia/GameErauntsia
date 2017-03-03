@@ -1,13 +1,8 @@
-from django.conf.urls import patterns, include, url
-from django.conf import settings
+from django.conf.urls import url
+from gamerauntsia.log import views
+from gamerauntsia.jokoa import views as gameviews
 
-urlpatterns = patterns('',
-    url(r'^$', 'gamerauntsia.log.views.index', name='log_index'),
-    url(r'^(?P<slug>[-\w]+)$', 'gamerauntsia.jokoa.views.jokoa', name='game'),
-)
-
-if getattr(settings, 'DEBUG', False):
-    urlpatterns += patterns('',
-        (r'^media/(?P<path>.*)$', 'django.views.static.serve',
-         {'document_root': getattr(settings, 'MEDIA_ROOT', '')}),
-    )
+urlpatterns = [
+    url(r'^$', views.index, name='log_index'),
+    url(r'^(?P<slug>[-\w]+)$', gameviews.jokoa, name='game'),
+]

@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from django.contrib import admin
 from django.http import HttpResponse
 from django.views.generic import TemplateView
@@ -15,6 +15,12 @@ from gamerauntsia.log.views import DenboralerroaViewSet
 from gamerauntsia.berriak.views import BerriaViewSet
 from rest_framework.authtoken.views import obtain_auth_token
 
+from gamerauntsia import views as indexviews
+from gamerauntsia.gamer import views as gamerviews
+from gamerauntsia.kontaktua import views as kontaktuaviews
+from gamerauntsia.base import views as baseviews
+from gamerauntsia.finished import views as finishedviews
+
 router = DefaultRouter()
 
 berria_list = BerriaViewSet.as_view({'get': 'list'})
@@ -26,12 +32,11 @@ sitemaps = {
     'static': StaticViewSitemap,
 }
 
-urlpatterns = patterns(
-    '',
-    (r'^robots.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: ", content_type="text/plain")),
-    (r'^3dedcce0621f78db1fdf62d2bb02148e.txt$', lambda r: HttpResponse("3dedcce0621f78db1fdf62d2bb02148e", content_type="text/plain")),
+urlpatterns = [
+    url(r'^robots.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: ", content_type="text/plain")),
+    url(r'^3dedcce0621f78db1fdf62d2bb02148e.txt$', lambda r: HttpResponse("3dedcce0621f78db1fdf62d2bb02148e", content_type="text/plain")),
 
-    url(r'^$', 'gamerauntsia.views.index', name='index'),
+    url(r'^$', indexviews.index, name='index'),
 
     # GETB
     url(r'^getb/', include('gamerauntsia.getb.urls')),
@@ -49,39 +54,39 @@ urlpatterns = patterns(
     url(r'^jokoak/', include('gamerauntsia.jokoa.urls'), name='jokoak'),
 
     # JOKALARIAK
-    (r'^komunitatea/', include('gamerauntsia.gamer.urls')),
-    (r'^komunitatea/', include('cssocialuser.urls')),
-    (r'^komunitatea/', include('registration.backends.default.urls')),
+    url(r'^komunitatea/', include('gamerauntsia.gamer.urls')),
+    url(r'^komunitatea/', include('cssocialuser.urls')),
+    url(r'^komunitatea/', include('registration.backends.default.urls')),
 
     # AURKEZPENAK
-    (r'^aurkezpenak/', include('gamerauntsia.aurkezpenak.urls')),
+    url(r'^aurkezpenak/', include('gamerauntsia.aurkezpenak.urls')),
 
     # TXAPELKETAK
-    (r'^txapelketak/', include('gamerauntsia.txapelketak.urls')),
+    url(r'^txapelketak/', include('gamerauntsia.txapelketak.urls')),
 
     # MINECRAFT SERVER
-    (r'^zerbitzariak/', include('gamerauntsia.zerbitzariak.urls')),
+    url(r'^zerbitzariak/', include('gamerauntsia.zerbitzariak.urls')),
 
     # AGENDA
-    (r'^agenda/', include('gamerauntsia.agenda.urls')),
+    url(r'^agenda/', include('gamerauntsia.agenda.urls')),
 
     # FOROA
-    url(r'^foroa/reset-topics$', 'gamerauntsia.gamer.views.reset_topics', name='reset_topics'),
+    url(r'^foroa/reset-topics$', gamerviews.reset_topics, name='reset_topics'),
     url(r'^foroa/', include('django_simple_forum.urls')),
 
     # KONTAKTUA
-    url(r'^kontaktua/$', 'gamerauntsia.kontaktua.views.index', name='kontaktua'),
-    url(r'^kontaktua/bidali/$', 'gamerauntsia.kontaktua.views.bidali', name='kontaktua_bidali'),
+    url(r'^kontaktua/$', kontaktuaviews.index, name='kontaktua'),
+    url(r'^kontaktua/bidali/$', kontaktuaviews.bidali, name='kontaktua_bidali'),
 
     # TERMINOLOGIA
-    url(r'^terminologia/$', 'gamerauntsia.base.views.index', name='terminologia'),
-    url(r'^terminologia/bilatu', 'gamerauntsia.base.views.search_term', name='search_term'),
+    url(r'^terminologia/$', baseviews.index, name='terminologia'),
+    url(r'^terminologia/bilatu', baseviews.search_term, name='search_term'),
 
     # PODCAST
     url(r"^podcastak/", include("podcasting.urls")),
 
     # BILAKETA
-    url(r'^bilaketa?(?P<bilatu>[-\w]+)/$', 'gamerauntsia.views.bilaketa', name='bilaketa'),
+    url(r'^bilaketa?(?P<bilatu>[-\w]+)/$', indexviews.bilaketa, name='bilaketa'),
 
     # RSS FEED
     url(r'^rss/gameplayak$', LatestEntriesFeed()),
@@ -92,20 +97,20 @@ urlpatterns = patterns(
     url(r'^2b27b83ad50e677714b2dd832b42acc3', include('facebookpagewriter.urls')),
 
     # COMMENTS
-    (r'^comments/', include('django_comments.urls')),
+    url(r'^comments/', include('django_comments.urls')),
 
     # KUDEATU
     url(r'^kudeatu/', include(admin.site.urls)),
     url(r'^photologue/', include('photologue.urls', namespace='photologue')),
 
     # MEZUAK
-    (r'^mezuak/', include('django_messages.urls')),
+    url(r'^mezuak/', include('django_messages.urls')),
 
     # EGUTEGIA
-    (r'^calendar/', include('django_bootstrap_calendar.urls')),
+    url(r'^calendar/', include('django_bootstrap_calendar.urls')),
 
     # TINYMCE
-    (r'^tinymce/', include('tinymce.urls')),
+    url(r'^tinymce/', include('tinymce.urls')),
 
     # STAR RATINGS
     url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
@@ -115,46 +120,36 @@ urlpatterns = patterns(
 
     # APP
     # Auth
-    url(r'^rest-auth/', include('rest_auth.urls')),
-    url(r'^rest-token-auth/$', obtain_auth_token),
-    # url(r'^rest-user/$',views.UserViewSet),
-    url(r'^app/v1/', include('gamerauntsia.app.authentication.urls')),
-    url(r'^app/denboralerroa/$', denboralerroa_list, name='app_denboralerroa_list'),
-    url(r'^app/berriak/$', berria_list, name='app_berria_list'),
-    url(r'^app/berria/(?P<pk>[0-9]+)/$', 'gamerauntsia.berriak.views.berria_detail', name='app_berria_detail'),
-    url(r'^app/getb/$', 'gamerauntsia.getb.views.app_getb_list', name='app_getb_list'),
-    url(r'^app/getb/(?P<pk>[0-9]+)/$', 'gamerauntsia.getb.views.atala_detail', name='atala_detail'),
-    url(r'^app/txapelketak/$', 'gamerauntsia.txapelketak.views.txapelketa_list', name='app_txapelketak_list'),
-    url(r'^app/txapelketak/(?P<pk>[0-9]+)/$', 'gamerauntsia.txapelketak.views.txapelketa_detail', name='app_txapelketak_detail'),
+    # url(r'^rest-auth/', include('rest_auth.urls')),
+    # url(r'^rest-token-auth/$', obtain_auth_token),
+    # # url(r'^rest-user/$',views.UserViewSet),
+    # url(r'^app/v1/', include('gamerauntsia.app.authentication.urls')),
+    # url(r'^app/denboralerroa/$', denboralerroa_list, name='app_denboralerroa_list'),
+    # url(r'^app/berriak/$', berria_list, name='app_berria_list'),
+    # url(r'^app/berria/(?P<pk>[0-9]+)/$', 'gamerauntsia.berriak.views.berria_detail', name='app_berria_detail'),
+    # url(r'^app/getb/$', 'gamerauntsia.getb.views.app_getb_list', name='app_getb_list'),
+    # url(r'^app/getb/(?P<pk>[0-9]+)/$', 'gamerauntsia.getb.views.atala_detail', name='atala_detail'),
+    # url(r'^app/txapelketak/$', 'gamerauntsia.txapelketak.views.txapelketa_list', name='app_txapelketak_list'),
+    # url(r'^app/txapelketak/(?P<pk>[0-9]+)/$', 'gamerauntsia.txapelketak.views.txapelketa_detail', name='app_txapelketak_detail'),
 
 
     # ERABILERA ETA PRIBATUTASUNA
-    (r'^erabilera-baldintzak/$', TemplateView.as_view(template_name='erabilera_baldintzak.html')),
-    (r'^pribatutasun-politika/$', TemplateView.as_view(template_name='pribatutasun_politika.html')),
-    (r'^gameplay-arauak/$', TemplateView.as_view(template_name='upload_gp.html')),
-    (r'^cookie/$', TemplateView.as_view(template_name='cookie.html')),
+    url(r'^erabilera-baldintzak/$', TemplateView.as_view(template_name='erabilera_baldintzak.html')),
+    url(r'^pribatutasun-politika/$', TemplateView.as_view(template_name='pribatutasun_politika.html')),
+    url(r'^gameplay-arauak/$', TemplateView.as_view(template_name='upload_gp.html')),
+    url(r'^cookie/$', TemplateView.as_view(template_name='cookie.html')),
 
     # SITEMAP
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 
     # AJAX ESKAERAK
-    url(r'^ajax/get_jokoak/', 'gamerauntsia.gamer.views.get_jokoak', name='ajax_jokoak'),
-    url(r'^ajax/get_erabiltzaileak/', 'gamerauntsia.gamer.views.get_user', name='ajax_user'),
-    url(r'^ajax/post_finished/', 'gamerauntsia.finished.views.add_finished', name='ajax_finished'),
+    url(r'^ajax/get_jokoak/', gamerviews.get_jokoak, name='ajax_jokoak'),
+    url(r'^ajax/get_erabiltzaileak/', gamerviews.get_user, name='ajax_user'),
+    url(r'^ajax/post_finished/', finishedviews.add_finished, name='ajax_finished'),
 
     url(r'^(?P<url>.*/)$', views.flatpage),
 
-    url('', include('social.apps.django_app.urls', namespace='social'))
-
-)
+    url('', include('social_django.urls', namespace='social'))
+]
 
 router.register(r'profile', UsersViewSet)
-
-if getattr(settings, 'DEBUG', False):
-    urlpatterns += patterns(
-        '',
-        (r'^static/(?P<path>.*)$', 'django.views.static.serve',
-         {'document_root': getattr(settings, 'STATIC_DOC_ROOT', '')}),
-        (r'^media/(?P<path>.*)$', 'django.views.static.serve',
-         {'document_root': getattr(settings, 'MEDIA_DOC_ROOT', '')}),
-    )
