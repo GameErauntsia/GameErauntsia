@@ -78,7 +78,7 @@
                         <a aria-controls="desk" data-toggle="tab" role="tab" href="#desk"><h4 class="panel-title"><i class="glyphicon glyphicon-info-sign"></i></i> Deskribapena</h4></a>
                     </li>
                     {% endif %}
-                    {% if not item.insk_date|irekita and item.status = '2' or item.status = '3' %}
+                    {% if not item.insk_date|irekita and item.status == '2' or item.status == '3' %}
                     <li class="active" role="presentation">
                         <a aria-controls="sailk" data-toggle="tab" role="tab" href="#sailk">
                             <h4 class="panel-title">
@@ -122,7 +122,7 @@
                         </a>
                     </li>
                     {% endif %}
-                    {% if not item.insk_date|irekita and item.status = '2' or item.status = '3' %}
+                    {% if not item.insk_date|irekita and item.status == '2' or item.status == '3' %}
                     <li role="presentation">
                         <a aria-controls="desk" data-toggle="tab" role="tab" href="#desk"><h4 class="panel-title"><i class="glyphicon glyphicon-info-sign"></i></i> Deskribapena</h4></a>
                     </li>
@@ -133,7 +133,7 @@
                     <div id="desk" class="tab-pane fade {% if item.insk_date|irekita and item.status < '2' %}in active{% endif %}" role="tabpanel">
                         <p class="lead">{{item.desk|safe|emoticons}}</p>
                     </div>
-                    {% if not item.insk_date|irekita and item.status = '2' or item.status = '3' %}
+                    {% if not item.insk_date|irekita and item.status == '2' or item.status == '3' %}
                     <div id="sailk" class="tab-pane fade in active" role="tabpanel">
                         {% if item.mota == '0' or item.mota == '2' %}
                         <div id="taula"></div>

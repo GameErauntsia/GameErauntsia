@@ -129,7 +129,6 @@ INSTALLED_APPS = (
     'django_bootstrap_calendar',
     'django_messages',
     'django_mobile',
-    'social_django',
     'django.contrib.admin',
     'rest_framework',
     'rest_framework.authtoken',
@@ -180,8 +179,6 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.request',
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect',
                 'django_mobile.context_processors.flavour',
                 'gamerauntsia.context_processors.fb_app_id',
             ],
@@ -231,8 +228,6 @@ SOCIAL_AUTH_USER_MODEL = AUTH_USER_MODEL
 
 # SOCIAL REGISTRATION
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.twitter.TwitterOAuth',
-    'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
