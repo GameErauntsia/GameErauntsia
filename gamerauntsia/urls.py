@@ -148,8 +148,6 @@ urlpatterns = [
     url(r'^ajax/post_finished/', finishedviews.add_finished, name='ajax_finished'),
 
     url(r'^(?P<url>.*/)$', views.flatpage),
-
-    url('', include('social_django.urls', namespace='social'))
 ]
 
 router.register(r'profile', UsersViewSet)
