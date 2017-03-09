@@ -110,11 +110,11 @@ INSTALLED_APPS = (
     'bootstrapform',
     'star_ratings',
     'gamerauntsia',
+    'gamerauntsia.jokoa',
     'gamerauntsia.gameplaya',
     'gamerauntsia.base',
     'gamerauntsia.berriak',
     'gamerauntsia.kontaktua',
-    'gamerauntsia.jokoa',
     'gamerauntsia.gamer',
     'gamerauntsia.templatetags',
     'gamerauntsia.aurkezpenak',
@@ -192,7 +192,7 @@ TEMPLATES = [
     },
 ]
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -202,10 +202,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.locale.LocaleMiddleware',
     'django_mobile.middleware.MobileDetectionMiddleware',
     'django_mobile.middleware.SetFlavourMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware'
-)
+]
 
 CORS_ORIGIN_WHITELIST = (
     'gamerauntsia.eus',
