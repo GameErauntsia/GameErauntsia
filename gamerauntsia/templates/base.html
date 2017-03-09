@@ -75,6 +75,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li {% if request.path|contains:"/getb/" %}class="active"{% endif %}><a href="/getb">GETB</a></li>
+                    <li {% if request.path|contains:"/podcastak/" %}class="active"{% endif %}><a href="/podcastak" title="Podcastak">Podcasta</a></li>
                     <li {% if request.path|contains:"/bloga/" %}class="active"{% endif %}><a href="/bloga" title="Berriak">Bloga</a></li>
                     <li {% if request.path|contains:"/foroa/" %}class="active"{% endif %}><a href="/foroa" title="Foroa">Foroa</a></li>
                     <li {% if request.path|contains:"/jokoak/" or request.path|contains:"/gameplayak/" or request.path|contains:"/txapelketak/" or request.path|contains:"/minecraft/" or request.path|contains:"/jokoak/" or request.path|contains:"/terminologia/" %}class="active"{% endif %}>
