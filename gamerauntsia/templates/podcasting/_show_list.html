@@ -6,13 +6,17 @@
     {% for show in show_list %}
         <div class="row">
             <div class="col-sm-12">
-                <h3><a href="{{ show.get_absolute_url }}">{{ show.title }}</a></h3>
-                <a href="{{ show.original_image.get_news_frontpage_url }}" rel="facebox">
-                    <img src="{{ show.original_image.get_profile_url }}" alt="{{ show.title }}" class="left" />
-                </a>
-                <h4>{{ show.subtitle }}</h4>
-                <p><span class="glyphicon glyphicon-link"></span> <a href="{{ show.link }}">{{ show.link }}</a></p>
-                <div class="show-description">{{ show.description }}</div>
+                <div class="col-sm-2">
+                    <a href="{{ show.get_absolute_url }}" rel="facebox">
+                        <img src="{{ show.original_image.get_profile_url }}" alt="{{ show.title }}" class="left" />
+                    </a>
+                </div>
+                <div class="col-sm-10">
+                    <h3><a href="{{ show.get_absolute_url }}">{{ show.title }}</a></h3>
+                    <h4>{{ show.subtitle }}</h4>
+                    <p><span class="glyphicon glyphicon-link"></span> <a href="{{ show.link }}">{{ show.link }}</a></p>
+                    <div class="show-description">{{ show.description }}</div>
+                </div>
             </div>
         </div>
     {% empty %}
