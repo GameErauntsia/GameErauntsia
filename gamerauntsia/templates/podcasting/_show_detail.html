@@ -1,0 +1,20 @@
+{% load i18n %}
+
+{% if show %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="page-header">{{ show.title }}</h1>
+            <a href="{{ show.original_image.get_news_frontpage_url }}" rel="facebox">
+                <img src="{{ show.original_image.get_profile_url }}" alt="{{ show.title }}" class="pull-right" />
+            </a>
+            <h4>{{ show.subtitle }}</h4>
+            <p><span class="glyphicon glyphicon-link"></span> <a href="{{ show.link }}">{{ show.link }}</a></p>
+            <div class="show-description">{{ show.description }}</div>
+        </div>
+    </div>
+    {% with show.episode_set.published as episode_list %}
+        {% include "podcasting/_episode_list.html" %}
+    {% endwith %}
+{% else %}
+    <h2>{% trans "There is no such show." %}</h2>
+{% endif %}

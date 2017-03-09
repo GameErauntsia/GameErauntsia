@@ -1,0 +1,21 @@
+{% load i18n %}
+
+<div class="podcast-show-list">
+    <h1 class="page-header">{% trans "Podcast Shows" %}</h1>
+
+    {% for show in show_list %}
+        <div class="row">
+            <div class="col-sm-12">
+                <h3><a href="{{ show.get_absolute_url }}">{{ show.title }}</a></h3>
+                <a href="{{ show.original_image.get_news_frontpage_url }}" rel="facebox">
+                    <img src="{{ show.original_image.get_profile_url }}" alt="{{ show.title }}" class="left" />
+                </a>
+                <h4>{{ show.subtitle }}</h4>
+                <p><span class="glyphicon glyphicon-link"></span> <a href="{{ show.link }}">{{ show.link }}</a></p>
+                <div class="show-description">{{ show.description }}</div>
+            </div>
+        </div>
+    {% empty %}
+        <h3>{% trans "There are no shows." %}</h3>
+    {% endfor %}
+</div>
