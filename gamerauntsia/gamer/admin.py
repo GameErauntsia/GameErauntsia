@@ -66,11 +66,11 @@ class GamerUserAdmin(UserAdmin):
     add_form = MyUserCreationForm
     change_password_form = AdminPasswordChangeForm
 
-    list_display = ('admin_thumbnail','username','fullname','preview','get_email','is_gamer','is_staff','is_active','date_joined')
-    list_display_links = ('fullname','username')
-    list_filter = ('is_staff', 'is_gamer','is_superuser', 'is_active', 'buletin_notification', 'groups')
+    list_display = ['admin_thumbnail','username','fullname','preview','get_email','is_gamer','is_staff','is_active','date_joined']
+    list_display_links = ['fullname','username']
+    list_filter = ['is_staff', 'is_gamer','is_superuser', 'is_active', 'buletin_notification', 'groups']
     search_fields = ['email','username','fullname']
-    raw_id_fields = ('photo',)
+    raw_id_fields = ['photo', ]
 
     inlines = [PlataformaInline]
 

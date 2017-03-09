@@ -2,7 +2,7 @@ from gamerauntsia.jokoa.models import Jokoa, Plataforma
 from django.contrib import admin
 
 from datetime import datetime
-    
+
 class JokoaAdmin(admin.ModelAdmin):
 
     def admin_thumbnail(self,obj):
@@ -20,12 +20,12 @@ class JokoaAdmin(admin.ModelAdmin):
         return '<a href="/jokoak/%s">aurreikusi</a>' % (obj.slug)
     preview.allow_tags=True
 
-    list_display = ('admin_thumbnail','izena','bertsioa','preview','url','slug','steam_id', 'publikoa_da' )
-    list_display_links = ('izena',)
+    list_display = ['admin_thumbnail','izena','bertsioa','preview','url','slug','steam_id', 'publikoa_da']
+    list_display_links = ['izena', ]
     prepopulated_fields = {"slug": ("izena","bertsioa")}
-    list_filter = ('publikoa_da',)
+    list_filter = ['publikoa_da', ]
     search_fields = ['izena','bertsioa']
-    ordering = ('izena','bertsioa')
+    ordering = ['izena','bertsioa']
 
     fieldsets = (
         ('Datu orokorrak',
@@ -35,10 +35,10 @@ class JokoaAdmin(admin.ModelAdmin):
     )
 
 class PlataformaAdmin(admin.ModelAdmin):
-    list_display = ('izena',)
+    list_display = ['izena', ]
     prepopulated_fields = {"slug": ("izena",)}
-    ordering = ('izena',)
-   
+    ordering = ['izena', ]
+
 
 admin.site.register(Jokoa, JokoaAdmin)
 admin.site.register(Plataforma, PlataformaAdmin)

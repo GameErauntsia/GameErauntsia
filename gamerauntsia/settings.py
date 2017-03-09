@@ -203,7 +203,6 @@ MIDDLEWARE = [
     'django_mobile.middleware.MobileDetectionMiddleware',
     'django_mobile.middleware.SetFlavourMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware'
 ]
 
 CORS_ORIGIN_WHITELIST = (

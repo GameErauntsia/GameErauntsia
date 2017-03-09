@@ -14,11 +14,11 @@ class ItzulpenakAdmin(admin.ModelAdmin):
     admin_thumbnail.short_description = 'Thumb'
     admin_thumbnail.allow_tags = True
 
-    list_display = ('admin_thumbnail', 'izena', 'jokoa', 'plataforma', 'pub_date', 'mod_date','status','publikoa_da')
-    list_display_links = ('admin_thumbnail', 'izena',)
-    list_filter = ('publikoa_da', 'status', 'plataforma')
+    list_display = ['admin_thumbnail', 'izena', 'jokoa', 'plataforma', 'pub_date', 'mod_date','status','publikoa_da']
+    list_display_links = ['admin_thumbnail', 'izena']
+    list_filter = ['publikoa_da', 'status', 'plataforma']
     search_fields = ['izena','jokoa__izena']
-    ordering = ('-pub_date',)
+    ordering = ['-pub_date', ]
 
 
 class EuskarazkoJokoaAdmin(admin.ModelAdmin):
@@ -34,12 +34,12 @@ class EuskarazkoJokoaAdmin(admin.ModelAdmin):
     admin_thumbnail.short_description = 'Thumb'
     admin_thumbnail.allow_tags = True
 
-    list_display = ('admin_thumbnail', 'jokoa', 'plataforma', 'pub_date', 'publikoa_da')
-    list_display_links = ('admin_thumbnail', 'jokoa',)
-    list_filter = ('publikoa_da', 'plataforma')
+    list_display = ['admin_thumbnail', 'jokoa', 'plataforma', 'pub_date', 'publikoa_da']
+    list_display_links = ['admin_thumbnail', 'jokoa']
+    list_filter = ['publikoa_da', 'plataforma']
     search_fields = ['jokoa__izena', ]
-    raw_id_fields = ('jokoa',)
-    ordering = ('-pub_date',)
+    raw_id_fields = ['jokoa', ]
+    ordering = ['-pub_date', ]
 
 
 class EuskalinkakAdmin(admin.ModelAdmin):
@@ -54,11 +54,11 @@ class EuskalinkakAdmin(admin.ModelAdmin):
     admin_thumbnail.short_description = 'Logoa'
     admin_thumbnail.allow_tags = True
 
-    list_display = ('admin_thumbnail', 'izena', 'url', 'pub_date', 'publikoa_da')
-    list_display_links = ('admin_thumbnail', 'izena',)
-    list_filter = ('publikoa_da',)
+    list_display = ['admin_thumbnail', 'izena', 'url', 'pub_date', 'publikoa_da']
+    list_display_links = ['admin_thumbnail', 'izena']
+    list_filter = ['publikoa_da', ]
     search_fields = ['izena', ]
-    ordering = ('-pub_date',)
+    ordering = ['-pub_date', ]
 
 admin.site.register(Itzulpena, ItzulpenakAdmin)
 admin.site.register(EuskarazkoJokoa, EuskarazkoJokoaAdmin)

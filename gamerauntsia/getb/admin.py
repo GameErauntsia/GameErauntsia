@@ -19,13 +19,13 @@ class AtalaAdmin(admin.ModelAdmin):
         return '<a href="/getb/%s">aurreikusi</a>' % (obj.slug)
     preview.allow_tags=True
 
-    list_display = ('admin_thumbnail','izenburua', 'preview','pub_date', 'publikoa_da')
-    list_display_links = ('izenburua',)
+    list_display = ['admin_thumbnail','izenburua', 'preview','pub_date', 'publikoa_da']
+    list_display_links = ['izenburua', ]
     prepopulated_fields = {"slug": ("izenburua",)}
-    raw_id_fields = ('argazkia',)
-    list_filter = ('publikoa_da',)
-    search_fields = ['izenburua',]
-    ordering = ('-pub_date',)
+    raw_id_fields = ['argazkia', ]
+    list_filter = ['publikoa_da', ]
+    search_fields = ['izenburua', ]
+    ordering = ['-pub_date', ]
     form = AtalaAdminForm
 
 

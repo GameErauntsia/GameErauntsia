@@ -22,14 +22,14 @@ class GamePlayAdmin(admin.ModelAdmin):
         return '<a href="/gameplayak/%s">aurreikusi</a>' % (obj.slug)
     preview.allow_tags=True
 
-    list_display = ('admin_thumbnail','izenburua', 'preview','zailtasuna', 'jokoa','plataforma','pub_date', 'erabiltzailea','publikoa_da', 'status','shared')
-    list_display_links = ('izenburua',)
+    list_display = ['admin_thumbnail','izenburua', 'preview','zailtasuna', 'jokoa','plataforma','pub_date', 'erabiltzailea','publikoa_da', 'status','shared']
+    list_display_links = ['izenburua', ]
     prepopulated_fields = {"slug": ("izenburua",)}
-    filter_horizontal = ('kategoria',)
-    raw_id_fields = ('argazkia','jokoa','plataforma','erabiltzailea')
-    list_filter = ('zailtasuna', 'publikoa_da','status')
+    filter_horizontal = ['kategoria', ]
+    raw_id_fields = ['argazkia','jokoa','plataforma','erabiltzailea']
+    list_filter = ['zailtasuna', 'publikoa_da','status']
     search_fields = ['erabiltzailea__fullname','erabiltzailea__username','izenburua']
-    ordering = ('-pub_date',)
+    ordering = ['-pub_date', ]
     form = GamePlayAdminForm
 
     def get_readonly_fields(self, request, obj=None):
@@ -49,7 +49,7 @@ class GamePlayAdmin(admin.ModelAdmin):
         if not request.user.is_superuser or not request.user.belongs_group(settings.GP_GROUP):
             obj.erabiltzailea = request.user
         obj.save()
-        
+
 
     def has_change_permission(self, request, obj=None):
         if not obj:
@@ -62,11 +62,11 @@ class GamePlayAdmin(admin.ModelAdmin):
     has_delete_permission = has_change_permission
 
 class KategoriaAdmin(admin.ModelAdmin):
-    list_display = ('izena','slug')
+    list_display = ['izena','slug']
     prepopulated_fields = {"slug": ("izena",)}
 
 class ZailtasunAdmin(admin.ModelAdmin):
-    list_display = ('izena',)
+    list_display = ['izena', ]
     prepopulated_fields = {"slug": ("izena",)}
 
 admin.site.register(GamePlaya, GamePlayAdmin)

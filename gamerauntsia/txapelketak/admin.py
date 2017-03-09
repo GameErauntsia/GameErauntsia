@@ -4,7 +4,7 @@ from gamerauntsia.txapelketak.models import Txapelketa, Partida, Partaidea
 from forms import PartidaInlineForm, TxapelketaAdminForm
 from mptt.admin import MPTTModelAdmin
 
-class PartidaForm(forms.ModelForm): 
+class PartidaForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(PartidaForm, self).__init__(*args, **kwargs)
         wtf = Partaidea.objects.filter(txapelketa=self.instance.txapelketa_id);
@@ -20,14 +20,14 @@ class PartidaAdmin(MPTTModelAdmin):
     def get_partaideak(self, obj):
         return " VS ".join([p.get_izena() for p in obj.partaideak.all()])
 
-    list_display = ('txapelketa', 'jardunaldia','get_partaideak','emaitza', 'average', 'date')
-    filter_horizontal = ('partaideak',)
-    raw_id_fields = ('parent','txapelketa')
+    list_display = ['txapelketa', 'jardunaldia','get_partaideak','emaitza', 'average', 'date']
+    filter_horizontal = ['partaideak', ]
+    raw_id_fields = ['parent','txapelketa']
     search_fields = ['txapelketa__izena',]
-    list_filter = ('txapelketa','is_playoff')
-    ordering = ('-date',)
+    list_filter = ['txapelketa','is_playoff']
+    ordering = ['-date', ]
     form = PartidaForm
-    
+
     fieldsets = (
         ('Datu orokorrak',
         {'fields':('jardunaldia','txapelketa')},),
@@ -63,18 +63,18 @@ class TxapelketaAdmin(admin.ModelAdmin):
         return '<a href="/txapelketak/%s">aurreikusi</a>' % (obj.slug)
     preview.allow_tags=True
 
-    list_display = ('admin_thumbnail','izena', 'preview','mota', 'modalitatea','jokoa','insk_date','pub_date', 'status', 'publikoa_da')
-    list_display_links = ('izena',)
+    list_display = ['admin_thumbnail','izena', 'preview','mota', 'modalitatea','jokoa','insk_date','pub_date', 'status', 'publikoa_da']
+    list_display_links = ['izena', ]
     prepopulated_fields = {"slug": ("izena",)}
-    filter_horizontal = ('jokalariak','adminak')
-    raw_id_fields = ('irudia','jokoa')
-    list_filter = ('mota','modalitatea', 'publikoa_da')
+    filter_horizontal = ['jokalariak','adminak']
+    raw_id_fields = ['irudia','jokoa']
+    list_filter = ['mota','modalitatea', 'publikoa_da']
     search_fields = ['izena','slug']
-    ordering = ('-pub_date',)
+    ordering = ['-pub_date', ]
     form = TxapelketaAdminForm
     #inlines = [PartidaInline]
 
-class PartaideakForm(forms.ModelForm): 
+class PartaideakForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(PartaideakForm, self).__init__(*args, **kwargs)
         wtf = []
@@ -99,13 +99,13 @@ class PartaideakAdmin(admin.ModelAdmin):
                 return ", ".join([p.username for p in obj.jokalariak.all()])
         return obj.izena
 
-    list_display = ('txapelketa', 'get_izena', 'win','lose', 'matches','points')
-    filter_horizontal = ('jokalariak','ordezkoak')
-    raw_id_fields = ('irudia','txapelketa','kapitaina')
+    list_display = ['txapelketa', 'get_izena', 'win','lose', 'matches','points']
+    filter_horizontal = ['jokalariak','ordezkoak']
+    raw_id_fields = ['irudia','txapelketa','kapitaina']
     search_fields = ['izena']
-    ordering = ('-id',)
+    ordering = ['-id', ]
     form = PartaideakForm
-    
+
     fieldsets = (
         ('Datu orokorrak',
         {'fields':('izena','irudia','txapelketa')},),

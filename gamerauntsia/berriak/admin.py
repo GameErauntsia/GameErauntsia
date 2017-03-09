@@ -3,9 +3,10 @@ from django.contrib import admin
 from django.conf import settings
 from gamerauntsia.berriak.forms import BerriaAdminForm
 
+
 class BerriakAdmin(admin.ModelAdmin):
 
-    def admin_thumbnail(self,obj):
+    def admin_thumbnail(self, obj):
         try:
             if obj.argazkia:
                 return u'<img src="%s" />' % (obj.argazkia.get_admin_thumbnail_url())
@@ -16,18 +17,18 @@ class BerriakAdmin(admin.ModelAdmin):
     admin_thumbnail.short_description = 'Thumb'
     admin_thumbnail.allow_tags = True
 
-    def preview(self,obj):
+    def preview(self, obj):
         return '<a href="/bloga/%s">aurreikusi</a>' % (obj.slug)
-    preview.allow_tags=True
+    preview.allow_tags = True
 
-    list_display = ('admin_thumbnail', 'izenburua', 'preview', 'erabiltzailea', 'pub_date', 'mod_date', 'publikoa_da','status','shared')
-    list_display_links = ('izenburua',)
+    list_display = ['admin_thumbnail', 'izenburua', 'preview', 'erabiltzailea', 'pub_date', 'mod_date', 'publikoa_da', 'status', 'shared']
+    list_display_links = ['izenburua', ]
     prepopulated_fields = {"slug": ("izenburua",)}
-    filter_horizontal = ('gaia',)
+    filter_horizontal = ['gaia', ]
     list_filter = ('publikoa_da', 'status')
-    search_fields = ['erabiltzailea__username','erabiltzailea__fullname','izenburua']
-    raw_id_fields = ('argazkia','erabiltzailea','jokoa')
-    ordering = ('-pub_date',)
+    search_fields = ['erabiltzailea__username', 'erabiltzailea__fullname', 'izenburua']
+    raw_id_fields = ['argazkia', 'erabiltzailea', 'jokoa']
+    ordering = ['-pub_date', ]
     form = BerriaAdminForm
 
     def get_readonly_fields(self, request, obj=None):
@@ -41,7 +42,7 @@ class BerriakAdmin(admin.ModelAdmin):
         if request.user.is_superuser or request.user.belongs_group(settings.NEWS_GROUP):
             return qs
         else:
-            return qs.filter(erabiltzailea = request.user)
+            return qs.filter(erabiltzailea=request.user)
 
     def save_model(self, request, obj, form, change):
         if not request.user.is_superuser or not request.user.belongs_group(settings.NEWS_GROUP):
@@ -51,7 +52,7 @@ class BerriakAdmin(admin.ModelAdmin):
 
     def has_change_permission(self, request, obj=None):
         if not obj:
-            return True # So they can see the change list page
+            return True  # So they can see the change list page
         if request.user.is_superuser or obj.erabiltzailea == request.user or request.user.belongs_group(settings.NEWS_GROUP):
             return True
         else:
@@ -61,7 +62,7 @@ class BerriakAdmin(admin.ModelAdmin):
 
 
 class GaiaAdmin(admin.ModelAdmin):
-    list_display = ('izena','slug')
+    list_display = ['izena', 'slug']
     prepopulated_fields = {"slug": ("izena",)}
 
 
