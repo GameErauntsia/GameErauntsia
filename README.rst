@@ -1,5 +1,5 @@
 Game Erauntsia
---------------
+==============
 
 .. image:: https://travis-ci.org/GameErauntsia/GameErauntsia.svg?branch=master
     :target: https://travis-ci.org/GameErauntsia/GameErauntsia
@@ -29,10 +29,13 @@ How to contribute
 
 Screenshot
 ----------
-
 .. image:: https://github.com/GameErauntsia/GameErauntsia/blob/master/gamerauntsia/static/img/gamerauntsia.png
 
 Contact
 -------
-
 You will find us on twitter `@gamerauntsia <http://twitter.com/gamerauntsia>`_ or you can email us to gamerauntsia@gmail.com.
+
+Travis CI status
+----------------
+We use Travis to check that the unit test suite is working against various combinations of Python, Django, etc...
+`Click here for the full report <http://travis-ci.org/#!/GameErauntsia/GameErauntsia>`_.
