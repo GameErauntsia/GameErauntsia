@@ -11,6 +11,10 @@ Game Erauntsia
 .. image:: https://img.shields.io/badge/python-2.7-blue.svg
     :target: https://badge.fury.io/py/gamerauntsia
 
+.. image:: https://requires.io/github/GameErauntsia/GameErauntsia/requirements.svg?branch=master
+     :target: https://requires.io/github/GameErauntsia/GameErauntsia/requirements/?branch=master
+     :alt: Requirements Status
+
 This is a Django *Game Erauntsia web page project*. Game Erauntsia was founded to fill the gap encountered in Basque gameplay videos. The final goal is to promote basque language creating and sharing modern game play videos. 
 You will find our web page in `https://gamerauntsia.eus <http://gamerauntsia.eus>`_.
 
