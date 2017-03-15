@@ -1,21 +1,5 @@
-/gamerauntsia/static
-
+# Binary
 *.pyc
-local_settings.py
-gamerauntsia/gamerauntsia/server_settings.py
-.idea/
-server_settings.py
-/media
-/static
-
-
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-
-# C extensions
-*.so
 
 # Distribution / packaging
 .Python
@@ -63,21 +47,7 @@ coverage.xml
 # Django stuff:
 *.log
 local_settings.py
-
-# Flask instance folder
-instance/
+server_settings.py
 
 # Sphinx documentation
 docs/_build/
-
-# PyBuilder
-target/
-
-# IPython Notebook
-.ipynb_checkpoints
-
-# pyenv
-.python-version
-
-/gamerauntsia/media/
-/gamerauntsia/wsgi.py
