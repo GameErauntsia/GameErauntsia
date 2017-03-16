@@ -23,13 +23,16 @@ You will find our web page in `https://gamerauntsia.eus <http://gamerauntsia.eus
 This project is 100% open-source project where everybody it's up to use, distribute/share or even modify under the 
 `AGPL v3.0 <http://www.gnu.org/licenses/agpl-3.0.html#content>`_ licence.
 
-How to contribute
------------------
-`Getting started <https://github.com/GameErauntsia/GameErauntsia/wiki>`_
 
 Screenshot
 ----------
 .. image:: https://github.com/GameErauntsia/GameErauntsia/blob/master/gamerauntsia/static/img/gamerauntsia.png
+    :scale: 50
+
+How to contribute
+-----------------
+`Getting started <https://github.com/GameErauntsia/GameErauntsia/wiki>`_
+
 
 Contact
 -------
