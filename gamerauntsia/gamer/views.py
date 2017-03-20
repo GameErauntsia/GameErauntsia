@@ -21,7 +21,7 @@ from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.forms import PasswordChangeForm
 from django.template.response import TemplateResponse
-from django_simple_forum.models import Category, Topic
+from django_forum_app.models import Category, Topic
 from django.forms.utils import ErrorList
 from gamerauntsia.zerbitzariak.views import set_user_whitelist
 from django.http import HttpResponse

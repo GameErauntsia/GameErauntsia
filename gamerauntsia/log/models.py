@@ -1,5 +1,5 @@
 from django.db import models
-from django_simple_forum.models import Category, Forum, Topic, Post
+from django_forum_app.models import Category, Forum, Topic, Post
 
 from gamerauntsia.berriak.models import Berria
 from gamerauntsia.gameplaya.models import GamePlaya

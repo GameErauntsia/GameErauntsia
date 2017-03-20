@@ -6,7 +6,7 @@ version = '0.1'
 setup(name='gamerauntsia',
       version=version,
       description="Game Erauntsia web page project",
-      long_description=open("README.md").read(),
+      long_description=open("README.rst").read(),
       classifiers=[],
       keywords='',
       author='Urtzi Odriozola',
@@ -16,11 +16,4 @@ setup(name='gamerauntsia',
       packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
       include_package_data=True,
       zip_safe=False,
-      install_requires=[
-            'django_simple_forum',
-          # -*- Extra requirements: -*-
-      ],
-      entry_points="""
-      # -*- Entry points: -*-
-      """,
       )
