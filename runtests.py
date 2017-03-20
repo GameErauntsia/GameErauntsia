@@ -20,7 +20,7 @@ settings.configure(
         ROOT_URLCONF='{0}.urls'.format(APP_NAME),
         STATIC_URL='/static/',
         MEDIA_URL='/media/',
-        FB_APP_SECRET='345sefsdfasdf2342234'
+        FB_APP_SECRET='345sefsdfasdf2342234',
         FB_APP_ID='123456789',
         SITE_ID=1,
         INSTALLED_APPS=(
