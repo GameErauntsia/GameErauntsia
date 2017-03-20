@@ -1,3 +1,4 @@
+django-messages == 0.5.3
 django-bootstrap-calendar == 0.1.1
 django-datetime-widget == 0.9.3
 django-star-ratings == 0.5.4
