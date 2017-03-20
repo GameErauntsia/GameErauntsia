@@ -45,7 +45,7 @@
             </a>
             <hr>
             {% endif %}
-            
+
             <div class="col-sm-12">
                 {% if item.live_bideoa or item.twitch%}
                 <h2><span class="glyphicon glyphicon-play-circle"></span> Zuzenean</h2>
@@ -58,7 +58,7 @@
                 </div>
                 {% endif %}
             </div>
-            
+
             <div class="col-sm-12">
                 {% for partida in video_parts %}
                 <div class="col-sm-4 player">
@@ -70,7 +70,7 @@
                 {% endfor %}
             </div>
             <br/>
-            
+
             <div class="tabpanel">
                 <ul class="nav nav-tabs" role="tablist">
                     {% if item.insk_date|irekita and item.status < '2' %}
@@ -138,7 +138,7 @@
                         {% if item.mota == '0' or item.mota == '2' %}
                         <div id="taula"></div>
                         {% endif %}
-                        
+
                         {% if item.mota == '1' or item.mota == '2'  %}
                         <div class="table-responsive">
                             <table class="table table-condensed table-hover">
@@ -284,7 +284,7 @@
                     {% endif %}
                 </div>
             </div>
-            
+
             <div class="col-sm-12">
             {% render_comment_list for item %}
             {% render_comment_form for item %}
@@ -332,7 +332,7 @@
                     </div>
                 </div>
             {% endif %}
-            {% if item.insk_date|irekita and user not in item.jokalariak.all %}
+            {% if item.insk_date|irekita and user not in item.jokalariak.all and not item.manual_sign %}
             <div class="well">
                 <h3>Izena eman</h3>
                 {% if user.is_authenticated %}

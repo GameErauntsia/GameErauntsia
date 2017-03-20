@@ -57,6 +57,7 @@ class Txapelketa(models.Model):
     berdinketa = models.IntegerField('Puntuak berdinketan', default=0)
 
     publikoa_da = models.BooleanField(default=True)
+    manual_sign = models.BooleanField(default=False)
     pub_date = models.DateTimeField('Publikazio data', default=datetime.now)
     insk_date = models.DateTimeField('Izen ematea', default=datetime.now)
     shared = models.BooleanField(default=False)

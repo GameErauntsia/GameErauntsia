@@ -63,7 +63,7 @@ class TxapelketaAdmin(admin.ModelAdmin):
         return '<a href="/txapelketak/%s">aurreikusi</a>' % (obj.slug)
     preview.allow_tags=True
 
-    list_display = ['admin_thumbnail','izena', 'preview','mota', 'modalitatea','jokoa','insk_date','pub_date', 'status', 'publikoa_da']
+    list_display = ['admin_thumbnail','izena', 'preview','mota', 'modalitatea','jokoa','insk_date','pub_date', 'status', 'manual_sign', 'publikoa_da']
     list_display_links = ['izena', ]
     prepopulated_fields = {"slug": ("izena",)}
     filter_horizontal = ['jokalariak','adminak']
@@ -72,7 +72,6 @@ class TxapelketaAdmin(admin.ModelAdmin):
     search_fields = ['izena','slug']
     ordering = ['-pub_date', ]
     form = TxapelketaAdminForm
-    #inlines = [PartidaInline]
 
 class PartaideakForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
