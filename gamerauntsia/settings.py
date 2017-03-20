@@ -104,7 +104,7 @@ INSTALLED_APPS = (
     'emoticons',
     'registration',
     'cssocialuser',
-    'django_simple_forum',
+    'django_forum_app',
     'django_comments',
     'facebookpagewriter',
     'bootstrapform',
