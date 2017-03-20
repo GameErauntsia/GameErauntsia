@@ -6,8 +6,9 @@ from django.contrib.auth.models import UserManager, Group
 from django.core.mail import send_mail
 from django.db import models
 from photologue.models import Photo
-
+from django.contrib.auth.validators import UnicodeUsernameValidator
 from gamerauntsia.jokoa.models import Jokoa
+
 
 MEMBER_PHOTO_SLUG = getattr(settings, 'PROFILE_PHOTO_DEFAULT_SLUG', 'no-profile-photo')
 
@@ -37,6 +38,16 @@ STAFF_KARMA = 20
 
 
 class GamerUser(CSAbstractSocialUser):
+    username_validator = UnicodeUsernameValidator()
+    username = models.CharField(
+        'Erabiltzaile izena',
+        max_length=150,
+        unique=True,
+        validators=[username_validator],
+        error_messages={
+            'unique': "Erabiltzaile izen hori dagoeneko existitzen da.",
+        },
+    )
     nickname = models.CharField(max_length=64, null=True, blank=True)
     telegram_id = models.IntegerField(verbose_name="Telegram kodea", null=True, blank=True)
     is_gamer = models.BooleanField(default=False)
