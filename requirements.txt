@@ -1,3 +1,4 @@
+django-datetime-widget == 0.9.3
 django-star-ratings == 0.5.4
 django-forum-app == 0.2
 django-mptt == 0.8.7
