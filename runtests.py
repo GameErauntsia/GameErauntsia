@@ -106,7 +106,11 @@ settings.configure(
             'django.contrib.auth.middleware.AuthenticationMiddleware',
             'django.contrib.messages.middleware.MessageMiddleware',
             'django.middleware.clickjacking.XFrameOptionsMiddleware',
-        ]
+        ],
+        TEMPLATE_LOADERS = (
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+        )
 )
 
 
