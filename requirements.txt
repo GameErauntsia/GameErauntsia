@@ -30,6 +30,7 @@ django-mobile == 0.7.0
 django-rest-auth == 0.7.0
 django-cors-headers == 1.1.0
 django-podcasting == 1.2
+django-pagination-bootstrap == 1.2
 
 PyJWT == 1.4.2
 collective.recipe.cmd == 0.11
