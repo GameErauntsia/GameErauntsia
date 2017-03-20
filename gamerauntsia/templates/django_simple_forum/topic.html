@@ -38,7 +38,7 @@
                         {% if request.user.is_authenticated %}
                         <div class="btn-group pull-right" role="group" aria-label="...">
                         {% if request.user.is_superuser %}
-                        <a class="btn btn-default" href="/kudeatu/django_simple_forum/post/{{post.id}}">Editatu</a>
+                        <a class="btn btn-default" href="/kudeatu/django_forum_app/post/{{post.id}}">Editatu</a>
                         {% endif %}
                         {% if not topic.closed %}
                         <a class="btn btn-default" href="{% url 'reply' forum.slug pk %}?author={{post.creator}}&quote={{post.body|truncatewords:30}}">Zitatu</a>

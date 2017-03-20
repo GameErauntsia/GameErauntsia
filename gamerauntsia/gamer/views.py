@@ -21,7 +21,7 @@ from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.forms import PasswordChangeForm
 from django.template.response import TemplateResponse
-from django_simple_forum.models import Category, Topic
+from django_forum_app.models import Category, Topic
 from django.forms.utils import ErrorList
 from gamerauntsia.zerbitzariak.views import set_user_whitelist
 from django.http import HttpResponse
@@ -301,7 +301,7 @@ def reset_topics(request):
         return HttpResponseRedirect(reverse('forum-index'))
 
     categories = Category.objects.all().order_by('order')
-    return render(request, "django_simple_forum/list.html", {'categories': categories, 'user': request.user})
+    return render(request, "django_forum_app/list.html", {'categories': categories, 'user': request.user})
 
 
 @login_required

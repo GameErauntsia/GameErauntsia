@@ -72,7 +72,7 @@ urlpatterns = [
 
     # FOROA
     url(r'^foroa/reset-topics$', gamerviews.reset_topics, name='reset_topics'),
-    url(r'^foroa/', include('django_simple_forum.urls')),
+    url(r'^foroa/', include('django_forum_app.urls')),
 
     # KONTAKTUA
     url(r'^kontaktua/$', kontaktuaviews.index, name='kontaktua'),

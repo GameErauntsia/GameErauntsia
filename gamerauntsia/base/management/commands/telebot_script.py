@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from django_simple_forum.models import Category, Forum, Topic, Post
+from django_forum_app.models import Category, Forum, Topic, Post
 from gamerauntsia.gamer.models import GamerUser
 from django.conf import settings
 import telebot
