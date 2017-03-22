@@ -97,8 +97,11 @@ def urlfriend(value):
 @register.inclusion_tag('comments/last.html')
 def azken_erantzunak(model='Berria'):
     h = {}
-    ct = ContentType.objects.get(model=model)
-    h['comments'] = Comment.objects.filter(content_type=ct).order_by('-submit_date')[:5]
+    try:
+        ct = ContentType.objects.get(model=model)
+        h['comments'] = Comment.objects.filter(content_type=ct).order_by('-submit_date')[:5]
+    except:
+        h['comments'] = []
     return h
 
 @register.filter
