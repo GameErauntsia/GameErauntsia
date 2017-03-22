@@ -45,3 +45,39 @@ class BasicTest(TestCase):
         url = reverse('index')
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
+
+    def test_getb_index(self):
+        c = Client()
+        url = reverse('getb_index')
+        response = c.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_berriak_index(self):
+        c = Client()
+        url = reverse('berriak_index')
+        response = c.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_gameplayak_index(self):
+        c = Client()
+        url = reverse('gameplay_index')
+        response = c.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_jokoa_index(self):
+        c = Client()
+        url = reverse('game_index')
+        response = c.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_bazkidetza_index(self):
+        c = Client()
+        url = reverse('bazkidetza')
+        response = c.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_komunitatea_index(self):
+        c = Client()
+        url = reverse('komunitatea')
+        response = c.get(url)
+        self.assertEqual(response.status_code, 200)
