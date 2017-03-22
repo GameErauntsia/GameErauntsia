@@ -22,6 +22,9 @@ settings.configure(
         MEDIA_URL='/media/',
         FB_APP_SECRET='345sefsdfasdf2342234',
         FB_APP_ID='123456789',
+        TELEBOT_TOKEN='110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw',
+        HOST='gamerauntsia.eus',
+        ADMIN_CHAT_ID='122346632',
         SITE_ID=1,
         INSTALLED_APPS=(
             'django.contrib.auth',
@@ -124,4 +127,3 @@ test_runner = TestRunner()
 failures = test_runner.run_tests([APP_NAME])
 if failures:
     sys.exit(failures)
-

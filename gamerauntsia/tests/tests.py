@@ -1,13 +1,44 @@
+import os
 from django.test import TestCase
 from django.test import Client
 from django.urls import reverse
-from django.contrib.auth import get_user_model
+from django.template.defaultfilters import slugify
+from django.core.files.base import ContentFile
+from gamerauntsia.gamer.models import GamerUser
+from gamerauntsia.getb.models import Atala
+from gamerauntsia.jokoa.models import Plataforma, Jokoa
+from gamerauntsia.gameplaya.models import Zailtasuna, Kategoria, GamePlaya
+from gamerauntsia.berriak.models import Gaia, Berria
+from photologue.models import Photo
+from django.core.files.base import ContentFile
 
-User = get_user_model()
+RES_DIR = os.path.join(os.path.dirname(__file__), '../res')
+LANDSCAPE_IMAGE_PATH = os.path.join(RES_DIR, 'test_photologue_landscape.jpg')
 
 class BasicTest(TestCase):
     def setUp(self):
-        user = User.objects.create_user('urtzai', 'uodriozola@gmail.com', 'urtzaipass')
+        user = GamerUser.objects.create_user('urtzai', 'uodriozola@gmail.com', 'urtzaipass')
+        photo = Photo(title='GETB atala irudia', slug='gtb-atala-irudia', is_public=True)
+        photo.image.save('test_photologue_landscape.jpg', ContentFile(open(LANDSCAPE_IMAGE_PATH, 'rb').read()))
+        photo.save()
+        Atala.objects.create(izenburua='GETB atala', slug='getb-atala', desk='Lehen atala duzue honako hau.', argazkia=photo,  publikoa_da=True)
+
+        plataforma = Plataforma.objects.create(izena='Play Station 4', slug='play-station-4')
+        jokoa = Jokoa.objects.create(izena='Call of Duty', bertsioa='4', slug='call-of-duty-4', logoa=photo, publikoa_da=True)
+        zailtasuna = Zailtasuna.objects.create(izena='Zaila', slug='zaila')
+        kategoria = Kategoria.objects.create(izena='FPS', slug='fps', desk="First Person Shooter")
+        gameplaya = GamePlaya(izenburua='Barrebusa 1', slug='barrebusa-1', desk="Espero dut gustuko izatea.", argazkia=photo, bideoa='c21XAuI3aMo',
+                                 jokoa=jokoa, plataforma=plataforma, zailtasuna=zailtasuna, erabiltzailea=user, publikoa_da=True, status='1')
+        gameplaya.save()
+        gameplaya.kategoria.add(kategoria)
+        gameplaya.save()
+
+        gaia = Gaia.objects.create(izena='Berriak', slug='berriak')
+        berria = Berria(izenburua='Switch argitaratu da', slug='switch-argitaratu-da', desk="Nintendoren kontsola berria argitaratu da.", erabiltzailea=user, argazkia=photo,
+                              jokoa=jokoa, publikoa_da=True, status='1')
+        berria.save()
+        berria.gaia.add(gaia)
+        berria.save()
 
     def test_index(self):
         c = Client()

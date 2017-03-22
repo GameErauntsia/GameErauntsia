@@ -1,14 +1,15 @@
-collective.recipe.cmd == 0.11
-collective.recipe.supervisor == 0.20
-collective.recipe.template == 2.0
-zc.recipe.egg == 2.0.3
+# collective.recipe.cmd == 0.11
+# collective.recipe.supervisor == 0.20
+# collective.recipe.template == 2.0
+# zc.recipe.egg == 2.0.3
 
 sphinx_rtd_theme == 0.2.4
 sphinx == 1.5.3
 sphinx-autobuild == 0.6.0
 django-recaptcha == 1.2.1
-django-messages == 0.5.3
-django-bootstrap-calendar == 0.1.1
+-e git://github.com/GameErauntsia/django-messages.git#egg=django-messages
+-e git://github.com/urtzai/django-podcasting.git#egg=django-podcasting
+-e git://github.com/GameErauntsia/django-bootstrap-calendar.git#egg=django-bootstrap-calendar
 django-datetime-widget == 0.9.3
 django-star-ratings == 0.5.4
 django-forum-app == 0.2
@@ -43,7 +44,6 @@ djangorestframework == 3.6.2
 django-mobile == 0.7.0
 django-rest-auth == 0.9.1
 django-cors-headers == 2.0.2
-django-podcasting == 1.2
 django-pagination-bootstrap == 1.2
 PyJWT == 1.4.2
 django-appconf == 1.0.2
