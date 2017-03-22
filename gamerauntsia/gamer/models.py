@@ -62,10 +62,10 @@ class GamerUser(AbstractUser):
     karma = models.IntegerField(verbose_name="Karma", default=0)
 
     email = models.EmailField(max_length=254, blank=True, null=True)
-    phone = models.CharField(_('Phone Number'), max_length=25, blank=True, null=True,)
+    phone = models.CharField('Telefonoa'), max_length=25, blank=True, null=True,)
 
-    fullname = models.CharField(_('Full name'), max_length=200, blank=True,null=True)
-    bio = models.TextField(_('Biography/description'),null=True,blank=True)
+    fullname = models.CharField('Izen abizenak'), max_length=200, blank=True,null=True)
+    bio = models.TextField('Biografia'),null=True,blank=True)
     photo = models.ForeignKey(Photo,null=True, blank=True)
 
     twitter_id = models.CharField(max_length=100, blank=True,null=True)
