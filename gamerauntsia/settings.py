@@ -103,7 +103,6 @@ INSTALLED_APPS = (
     'tinymce',
     'emoticons',
     'registration',
-    'cssocialuser',
     'django_forum_app',
     'django_comments',
     'facebookpagewriter',

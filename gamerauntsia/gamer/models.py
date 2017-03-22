@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 
-from cssocialuser.models import CSAbstractSocialUser
+from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from django.contrib.auth.models import UserManager, Group
 from django.core.mail import send_mail
@@ -37,17 +37,7 @@ PROFILE_KARMA = 15
 STAFF_KARMA = 20
 
 
-class GamerUser(CSAbstractSocialUser):
-    username_validator = UnicodeUsernameValidator()
-    username = models.CharField(
-        'Erabiltzaile izena',
-        max_length=150,
-        unique=True,
-        validators=[username_validator],
-        error_messages={
-            'unique': "Erabiltzaile izen hori dagoeneko existitzen da.",
-        },
-    )
+class GamerUser(AbstractUser):
     nickname = models.CharField(max_length=64, null=True, blank=True)
     telegram_id = models.IntegerField(verbose_name="Telegram kodea", null=True, blank=True)
     is_gamer = models.BooleanField(default=False)
@@ -71,10 +61,25 @@ class GamerUser(CSAbstractSocialUser):
 
     karma = models.IntegerField(verbose_name="Karma", default=0)
 
+    email = models.EmailField(max_length=254, blank=True, null=True)
+    phone = models.CharField(_('Phone Number'), max_length=25, blank=True, null=True,)
+
+    fullname = models.CharField(_('Full name'), max_length=200, blank=True,null=True)
+    bio = models.TextField(_('Biography/description'),null=True,blank=True)
+    photo = models.ForeignKey(Photo,null=True, blank=True)
+
+    twitter_id = models.CharField(max_length=100, blank=True,null=True)
+    facebook_id = models.CharField(max_length=100, blank=True,null=True)
+    openid_id = models.CharField(max_length=100, blank=True,null=True)
+    googleplus_id = models.CharField(max_length=100, blank=True,null=True)
+
     last_updated = models.DateTimeField(auto_now_add=True, editable=False)
     date_joined = models.DateTimeField(auto_now_add=True, editable=False, null=True, blank=True)
 
     objects = UserManager()
+
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email',]
 
     def get_photo(self):
         if self.photo:
@@ -183,6 +188,18 @@ class GamerUser(CSAbstractSocialUser):
             return True
         else:
             return False
+
+    def get_short_name(self):
+        return self.username
+
+    def get_full_name(self):
+        return self.fullname
+
+    def get_fullname(self):
+        if self.fullname:
+            return self.fullname
+        else:
+            return u'%s' % (self.get_full_name()) or self.username
 
     def get_absolute_url(self):
         return "/komunitatea/%s" % (self.username)

@@ -37,7 +37,6 @@ django-rest-auth == 0.7.0
 django-cors-headers == 1.1.0
 django-podcasting == 1.2
 django-pagination-bootstrap == 1.2
-cssocialuser == 0.44
 PyJWT == 1.4.2
 collective.recipe.cmd == 0.11
 collective.recipe.supervisor == 0.20
