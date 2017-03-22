@@ -106,6 +106,12 @@ class BasicTest(TestCase):
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
 
+    def test_gameplayak_gameplaya(self):
+        c = Client()
+        url = reverse('gameplay', kwargs={'slug': 'barrebusa-1'})
+        response = c.get(url)
+        self.assertEqual(response.status_code, 200)
+
     def test_jokoa_index(self):
         c = Client()
         url = reverse('game_index')
