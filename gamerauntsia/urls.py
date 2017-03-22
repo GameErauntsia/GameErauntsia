@@ -55,7 +55,6 @@ urlpatterns = [
 
     # JOKALARIAK
     url(r'^komunitatea/', include('gamerauntsia.gamer.urls')),
-    url(r'^komunitatea/', include('cssocialuser.urls')),
     url(r'^komunitatea/', include('registration.backends.default.urls')),
 
     # AURKEZPENAK
