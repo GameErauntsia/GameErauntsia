@@ -25,7 +25,7 @@ from django_forum_app.models import Category, Topic
 from django.forms.utils import ErrorList
 from gamerauntsia.zerbitzariak.views import set_user_whitelist
 from django.http import HttpResponse
-from cssocialuser.forms import ProfilePhotoForm
+from .forms import ProfilePhotoForm
 import json
 
 

@@ -5,10 +5,36 @@ from gamerauntsia.gamer.models import GamerUser, JokuPlataforma, AmaitutakoJokoa
 from gamerauntsia.gameplaya.models import Kategoria, GamePlaya
 from gamerauntsia.jokoa.models import Jokoa
 from tinymce.widgets import TinyMCE
+from django.utils.translation import ugettext as _
 from django.conf import settings
 
 TINYMCE_SMALL_BODY_CONFIG = getattr(settings, 'TINYMCE_SMALL_BODY_CONFIG', {})
 TINYMCE_DEFAULT_CONFIG = getattr(settings, 'TINYMCE_DEFAULT_CONFIG', {})
+
+
+class ProfileForm(forms.ModelForm):
+
+    class Meta:
+        model = GamerUser
+        fields = ('fullname','bio',)
+
+
+class ProfilePhotoForm(forms.Form):
+    avatarpic  = forms.ImageField(label=_('Your picture'),help_text=_('Please upload a picture of you. Supported formats: jpg, png, gif.'))
+
+    def clean_argazkia(self):
+        """ """
+        avatarpic = self.cleaned_data['avatarpic']
+        name = avatarpic.name
+        try:
+            name.encode('ascii')
+        except:
+            raise forms.ValidationError(_('The name of the picture (%s) has an unsupported character. Please rename it before uploading.') % name)
+
+        format = name.split('.')[-1]
+        if format.lower().strip()==u'bmp':
+            raise forms.ValidationError(_("The picture is not in one of our supported formats. We don't support BMP files. Please change it"))
+
 
 class GamerForm(forms.ModelForm):
 
@@ -84,7 +110,7 @@ class AmaitutaForm(forms.ModelForm):
     class Meta:
         model = AmaitutakoJokoak
         fields = ('izenburua','urtea')
-        
+
 
 
 class GamePlayForm(forms.ModelForm):
@@ -98,9 +124,9 @@ class GamePlayForm(forms.ModelForm):
     argazkia  = forms.ImageField(label='Nabarmendutako irudia', help_text='Onartutako formatuak: jpg, png, gif.', required=False)
 
     jokoa = forms.ModelChoiceField(label="Jokoa", queryset=Jokoa.objects.all().order_by('izena'))
-    
+
     lizentzia = forms.BooleanField(label="Irakurri eta onartzen ditut gameplayak igotzeko arauak", help_text=mark_safe('Informazioa gehiago <a href="/gameplay-arauak">gameplay arauetan</a>.'))
-    
+
     def clean_lizentzia(self):
         lizentzia = self.cleaned_data['lizentzia']
         if not lizentzia:
@@ -119,7 +145,7 @@ class GamePlayForm(forms.ModelForm):
         if not desk:
             raise forms.ValidationError('Mezu hutsek ez dute balio. Mesedez, idatzi zerbait!')
         return self.cleaned_data['desk']
-        
+
     def clean_bideoa(self):
         bideoa = self.cleaned_data['bideoa']
         if len(bideoa) > 15 or "/" in bideoa or not bideoa:
