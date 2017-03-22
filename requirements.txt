@@ -8,33 +8,33 @@ django-mptt == 0.8.7
 facebookpagewriter == 0.7
 Django == 1.10.6
 MySQL-python == 1.2.5
-pillow == 3.4.2
-django-sortedm2m == 1.1.1
+pillow == 4.0.0
+django-sortedm2m == 1.3.3
 ExifRead == 2.1.2
-django-extensions == 1.3.8
-django-bootstrap-form == 3.2
-requests == 2.9.1
+django-extensions == 1.7.7
+django-bootstrap-form == 3.2.1
+requests == 2.13.0
 akismet == 0.2.0
-xmltodict == 0.9.2
-django-model-utils == 2.3.1
+xmltodict == 0.10.2
+django-model-utils == 2.6.1
 django-photologue == 3.6
-django-tinymce == 2.2.0
-html5lib == 0.999
-django-tagging == 0.4.1
-facebook-sdk == 0.4.0
+django-tinymce == 2.6.0
+html5lib == 0.999999999
+django-tagging == 0.4.5
+facebook-sdk == 2.0.0
 python-twitter == 2.0
-django-registration-redux == 1.3
-django-emoticons == 1.1.2
-django-contrib-comments == 1.6.2
-pyTelegramBotAPI == 0.2.7
-tweepy == 2.3.0
-Markdown == 2.6.5
-django-crispy-forms == 1.6.0
-django-guardian == 1.4.1
-djangorestframework == 3.3.2
+django-registration-redux == 1.4
+django-emoticons == 1.2
+django-contrib-comments == 1.8.0
+pyTelegramBotAPI == 2.3.1
+tweepy == 3.5.0
+Markdown == 2.6.8
+django-crispy-forms == 1.6.1
+django-guardian == 1.4.6
+djangorestframework == 3.6.2
 django-mobile == 0.7.0
 django-rest-auth == 0.7.0
-django-cors-headers == 1.1.0
+django-cors-headers == 2.0.2
 django-podcasting == 1.2
 django-pagination-bootstrap == 1.2
 PyJWT == 1.4.2
@@ -44,42 +44,14 @@ collective.recipe.template == 2.0
 django-appconf == 1.0.2
 django-autoslug == 1.9.3
 django-filter == 1.0.1
-gunicorn == 19.6.0
+gunicorn == 19.7.1
 meld3 == 1.0.2
-mr.developer == 1.35
-oauthlib == 2.0.1
-py == 1.4.32
+mr.developer == 1.38
+oauthlib == 2.0.2
+py == 1.4.33
 python-openid == 2.2.5
 raven == 6.0.0
 requests-oauthlib == 0.8.0
 supervisor == 3.3.1
 wsgiref == 0.1.2
 zc.recipe.egg == 2.0.3
-
-# Required by:
-# django-emoticons==1.1.2
-beautifulsoup4 == 4.5.3
-
-# Required by:
-# raven==6.0.0
-contextlib2 == 0.5.4
-
-# Required by:
-# django-star-ratings==0.5.4
-django-braces == 1.11.0
-
-# Required by:
-# django-bootstrap-calendar==0.1.0
-jsmin == 2.2.1
-
-# Required by:
-# pyTelegramBotAPI==0.2.7
-pytest == 3.0.6
-
-# Required by:
-# django-datetime-widget==0.9.3
-pytz == 2016.10
-
-# Required by:
-# python-twitter==2.0
-simplejson == 3.10.0
