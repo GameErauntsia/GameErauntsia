@@ -52,15 +52,57 @@ class BasicTest(TestCase):
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
 
+    def test_getb_atala(self):
+        c = Client()
+        url = reverse('getb_atala', kwargs={'slug': 'getb-atala'})
+        response = c.get(url)
+        self.assertEqual(response.status_code, 200)
+
     def test_berriak_index(self):
         c = Client()
         url = reverse('berriak_index')
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
 
+    def test_berriak_gaia(self):
+        c = Client()
+        url = reverse('gaia', kwargs={'slug': 'berriak'})
+        response = c.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_berriak_berria(self):
+        c = Client()
+        url = reverse('berria', kwargs={'slug': 'switch-argitaratu-da'})
+        response = c.get(url)
+        self.assertEqual(response.status_code, 200)
+
     def test_gameplayak_index(self):
         c = Client()
         url = reverse('gameplay_index')
+        response = c.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_gameplayak_category(self):
+        c = Client()
+        url = reverse('gameplay_category', kwargs={'kategoria': 'fps'})
+        response = c.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_gameplayak_level(self):
+        c = Client()
+        url = reverse('gameplay_level', kwargs={'maila': 'zaila'})
+        response = c.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_gameplayak_game(self):
+        c = Client()
+        url = reverse('gameplay_game', kwargs={'jokoa': 'call-of-duty-4'})
+        response = c.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_gameplayak_platform(self):
+        c = Client()
+        url = reverse('gameplay_platform', kwargs={'plataforma': 'play-station-4'})
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
 

@@ -66,7 +66,7 @@ def index(request):
 
 def berria(request, slug):
     item = get_object_or_404(Berria, slug=slug)
-    facebook_id = settings.FACEBOOK_APP_ID
+    facebook_id = settings.FB_APP_ID
     return render(request, 'berriak/berria.html', locals())
 
 

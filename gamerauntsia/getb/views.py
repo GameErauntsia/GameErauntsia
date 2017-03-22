@@ -56,5 +56,5 @@ def atala(request, slug):
     atala = get_object_or_404(Atala, slug=slug)
     related_atalak = Atala.objects.filter(publikoa_da=True, pub_date__lt=datetime.now()).exclude(id=atala.id).order_by(
         '-pub_date')[:5]
-    facebook_id = settings.FACEBOOK_APP_ID
+    facebook_id = settings.FB_APP_ID
     return render(request, 'getb/atala.html', locals())
