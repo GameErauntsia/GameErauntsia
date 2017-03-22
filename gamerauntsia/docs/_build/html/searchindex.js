@@ -1,0 +1,1 @@
+Search.setIndex({docnames:["index"],envversion:50,filenames:["index.rst"],objects:{},objnames:{},objtypes:{},terms:{bilaketa:0,indizea:0,moduluen:0,orria:0},titles:["Welcome to Game Erauntsia&#8217;s documentation!"],titleterms:{document:0,erauntsia:0,game:0,indic:0,tabl:0,welcom:0}})

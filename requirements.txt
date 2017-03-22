@@ -1,3 +1,5 @@
+sphinx == 1.5.3
+sphinx-autobuild == 0.6.0
 django-recaptcha == 1.2.1
 django-messages == 0.5.3
 django-bootstrap-calendar == 0.1.1
@@ -38,9 +40,6 @@ django-cors-headers == 2.0.2
 django-podcasting == 1.2
 django-pagination-bootstrap == 1.2
 PyJWT == 1.4.2
-collective.recipe.cmd == 0.11
-collective.recipe.supervisor == 0.20
-collective.recipe.template == 2.0
 django-appconf == 1.0.2
 django-autoslug == 1.9.3
 django-filter == 1.0.1
@@ -54,4 +53,3 @@ raven == 6.0.0
 requests-oauthlib == 0.8.0
 supervisor == 3.3.1
 wsgiref == 0.1.2
-zc.recipe.egg == 2.0.3
