@@ -22,7 +22,7 @@ django-tinymce == 2.6.0
 html5lib == 0.999999999
 django-tagging == 0.4.5
 facebook-sdk == 2.0.0
-python-twitter == 2.0
+python-twitter == 3.2.1
 django-registration-redux == 1.4
 django-emoticons == 1.2
 django-contrib-comments == 1.8.0
@@ -33,7 +33,7 @@ django-crispy-forms == 1.6.1
 django-guardian == 1.4.6
 djangorestframework == 3.6.2
 django-mobile == 0.7.0
-django-rest-auth == 0.7.0
+django-rest-auth == 0.9.1
 django-cors-headers == 2.0.2
 django-podcasting == 1.2
 django-pagination-bootstrap == 1.2
