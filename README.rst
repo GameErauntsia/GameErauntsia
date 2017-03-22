@@ -22,6 +22,10 @@ Game Erauntsia
     :target: https://requires.io/github/GameErauntsia/GameErauntsia/requirements/?branch=master
     :alt: Requirements Status
 
+.. image:: https://readthedocs.org/projects/game-erauntsia/badge/?version=latest
+    :target: http://game-erauntsia.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+
 This is a Django *Game Erauntsia web page project*. Game Erauntsia was founded to fill the gap encountered in Basque gameplay videos. The final goal is to promote basque language creating and sharing modern game play videos.
 You will find our web page in `https://gamerauntsia.eus <http://gamerauntsia.eus>`_.
 
@@ -34,10 +38,12 @@ Screenshot
 .. image:: https://github.com/GameErauntsia/GameErauntsia/blob/master/gamerauntsia/static/img/gamerauntsia.png
     :scale: 50
 
-How to contribute
------------------
-`Getting started <https://github.com/GameErauntsia/GameErauntsia/wiki>`_
+Documentation
+-------------
 
+The documentation is contained in the /docs/ directory and can be build with
+sphinx. A HTML version of the documentation is available at:
+http://game-erauntsia.readthedocs.org
 
 Contact
 -------
