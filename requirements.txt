@@ -1,7 +1,7 @@
-#collective.recipe.cmd == 0.11
-#collective.recipe.supervisor == 0.20
-#collective.recipe.template == 2.0
-#zc.recipe.egg == 2.0.3
+collective.recipe.cmd == 0.11
+collective.recipe.supervisor == 0.20
+collective.recipe.template == 2.0
+zc.recipe.egg == 2.0.3
 
 sphinx_rtd_theme == 0.2.4
 sphinx == 1.5.3
