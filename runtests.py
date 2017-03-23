@@ -79,7 +79,7 @@ settings.configure(
             'corsheaders',
             'podcasting',
         ),
-        TEMPLATES=[
+        TEMPLATES = [
             {
                 'BACKEND': 'django.template.backends.django.DjangoTemplates',
                 'DIRS': [
@@ -104,7 +104,7 @@ settings.configure(
                 },
             },
         ],
-        MIDDLEWARE=[
+        MIDDLEWARE_CLASSES = [
             'django.middleware.security.SecurityMiddleware',
             'django.contrib.sessions.middleware.SessionMiddleware',
             'django.middleware.common.CommonMiddleware',
