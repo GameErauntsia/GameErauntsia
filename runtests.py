@@ -79,7 +79,7 @@ settings.configure(
             'corsheaders',
             'podcasting',
         ),
-        TEMPLATES=[
+        TEMPLATES = [
             {
                 'BACKEND': 'django.template.backends.django.DjangoTemplates',
                 'DIRS': [
@@ -104,7 +104,7 @@ settings.configure(
                 },
             },
         ],
-        MIDDLEWARE=[
+        MIDDLEWARE = [
             'django.middleware.security.SecurityMiddleware',
             'django.contrib.sessions.middleware.SessionMiddleware',
             'django.middleware.common.CommonMiddleware',
@@ -112,6 +112,7 @@ settings.configure(
             'django.contrib.auth.middleware.AuthenticationMiddleware',
             'django.contrib.messages.middleware.MessageMiddleware',
             'django.middleware.clickjacking.XFrameOptionsMiddleware',
+            'pagination_bootstrap.middleware.PaginationMiddleware',
         ],
         TEMPLATE_LOADERS = (
                 'django.template.loaders.filesystem.Loader',

@@ -266,7 +266,7 @@ HOST = 'http://gamerauntsia.eus/'
 
 USE_X_FORWARDED_HOST = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'www.gamerauntsia.eus', 'gamerauntsia.eus']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '138.68.93.226', 'www.gamerauntsia.eus', 'gamerauntsia.eus']
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
