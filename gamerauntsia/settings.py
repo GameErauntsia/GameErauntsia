@@ -259,9 +259,8 @@ FACEBOOK_EXTENDED_PERMISSIONS = [
 ]
 
 # LOGIN URLS
-LOGIN_URL = '/erabiltzaileak/login/'
-LOGIN_REDIRECT_URL = '/logged-in/'
-LOGIN_ERROR_URL = '/login-error/'
+LOGIN_URL = '/komunitatea/login/'
+LOGIN_ERROR_URL = '/komunitatea/login-error/'
 
 HOST = 'http://gamerauntsia.eus/'
 

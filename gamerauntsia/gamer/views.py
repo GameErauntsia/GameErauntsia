@@ -39,7 +39,7 @@ def update_session_auth_hash(request, user):
     from which the password was changed.
     """
     if hasattr(user, 'get_session_auth_hash') and request.user == user:
-        request.session[HASH_SESSION_KEY] = user.get_session_auth_hash()
+        request.session.update({'HASH_SESSION_KEY': user.get_session_auth_hash()})
 
 
 def community(request):
@@ -268,8 +268,7 @@ def password_change(request,
     }
     if extra_context is not None:
         context.update(extra_context)
-    return TemplateResponse(request, template_name, context,
-                            current_app=current_app)
+    return TemplateResponse(request, template_name, context)
 
 
 @login_required
@@ -282,8 +281,7 @@ def password_change_done(request,
     }
     if extra_context is not None:
         context.update(extra_context)
-    return TemplateResponse(request, template_name, context,
-                            current_app=current_app)
+    return TemplateResponse(request, template_name, context)
 
 
 @login_required
