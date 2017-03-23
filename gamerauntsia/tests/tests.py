@@ -9,6 +9,7 @@ from gamerauntsia.getb.models import Atala
 from gamerauntsia.jokoa.models import Plataforma, Jokoa
 from gamerauntsia.gameplaya.models import Zailtasuna, Kategoria, GamePlaya
 from gamerauntsia.berriak.models import Gaia, Berria
+from gamerauntsia.txapelketak.models import Txapelketa
 from photologue.models import Photo
 from django.core.files.base import ContentFile
 
