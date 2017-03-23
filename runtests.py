@@ -104,7 +104,7 @@ settings.configure(
                 },
             },
         ],
-        MIDDLEWARE_CLASSES = [
+        MIDDLEWARE = [
             'django.middleware.security.SecurityMiddleware',
             'django.contrib.sessions.middleware.SessionMiddleware',
             'django.middleware.common.CommonMiddleware',
@@ -112,6 +112,7 @@ settings.configure(
             'django.contrib.auth.middleware.AuthenticationMiddleware',
             'django.contrib.messages.middleware.MessageMiddleware',
             'django.middleware.clickjacking.XFrameOptionsMiddleware',
+            'pagination_bootstrap.middleware.PaginationMiddleware',
         ],
         TEMPLATE_LOADERS = (
                 'django.template.loaders.filesystem.Loader',
