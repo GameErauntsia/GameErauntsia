@@ -10,7 +10,8 @@ django-recaptcha == 1.2.1
 -e git://github.com/GameErauntsia/django-messages.git#egg=django-messages
 -e git://github.com/urtzai/django-podcasting.git#egg=django-podcasting
 -e git://github.com/GameErauntsia/django-bootstrap-calendar.git#egg=django-bootstrap-calendar
--e git://github.com/urtzai/django-pagination-bootstrap.git#egg=django-pagination-bootstrap
+#-e git://github.com/urtzai/django-pagination-bootstrap.git#egg=django-pagination-bootstrap
+django-pagination-bootstrap == 1.2
 -e git://github.com/urtzai/django-mobile.git#egg=django-mobile
 django-datetime-widget == 0.9.3
 django-star-ratings == 0.5.4
