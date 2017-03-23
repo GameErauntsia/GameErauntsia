@@ -42,7 +42,6 @@ class BasicTest(TestCase):
         berria.save()
         
         txapelketa = Txapelketa(izena='LoL txapelketa', slug="lol-txapelketa", jokoa=jokoa)
-        txapelketa.save()
         txapelketa.adminak.add(user)
         txapelketa.save()
 
