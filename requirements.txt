@@ -11,6 +11,7 @@ django-recaptcha == 1.2.1
 -e git://github.com/urtzai/django-podcasting.git#egg=django-podcasting
 -e git://github.com/GameErauntsia/django-bootstrap-calendar.git#egg=django-bootstrap-calendar
 -e git://github.com/urtzai/django-pagination-bootstrap.git#egg=django-pagination-bootstrap
+-e git://github.com/urtzai/django-mobile.git#egg=django-mobile
 django-datetime-widget == 0.9.3
 django-star-ratings == 0.5.4
 django-forum-app == 0.2
@@ -42,7 +43,6 @@ Markdown == 2.6.8
 django-crispy-forms == 1.6.1
 django-guardian == 1.4.6
 djangorestframework == 3.6.2
-django-mobile == 0.7.0
 django-rest-auth == 0.9.1
 django-cors-headers == 2.0.2
 PyJWT == 1.4.2
