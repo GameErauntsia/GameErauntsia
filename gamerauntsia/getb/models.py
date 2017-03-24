@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 from photologue.models import Photo
-from datetime import datetime
+from django.utils import timezone
 from django.template import defaultfilters as filters
 from django.template.loader import get_template
 from django.template import Context
@@ -25,8 +25,8 @@ class Atala(models.Model):
                               help_text="Eremu honetan Youtube bideoaren URL kodea itsatsi behar duzu. Adb.: c21XAuI3aMo")
 
     publikoa_da = models.BooleanField(default=False, verbose_name="Publikatzeko prest")
-    pub_date = models.DateTimeField('publikazio data', default=datetime.now)
-    mod_date = models.DateTimeField('modifikazio data', default=datetime.now)
+    pub_date = models.DateTimeField('publikazio data', default=timezone.now())
+    mod_date = models.DateTimeField('modifikazio data', default=timezone.now())
     shared = models.BooleanField(default=False,
                                  help_text="Lauki hau automatikoki markatuko da sistemak edukia sare sozialetan elkarbanatzean.")
 

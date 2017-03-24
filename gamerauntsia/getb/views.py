@@ -2,7 +2,7 @@ from gamerauntsia.getb.models import Atala
 from django.conf import settings
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
-from datetime import datetime
+from django.utils import timezone
 
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -45,8 +45,8 @@ def atala_detail(request, pk):
 
 
 def index(request):
-    atal_nab = Atala.objects.filter(publikoa_da=True, pub_date__lt=datetime.now()).order_by('-pub_date')[0]
-    atalak = Atala.objects.filter(publikoa_da=True, pub_date__lt=datetime.now()).exclude(id=atal_nab.id).order_by(
+    atal_nab = Atala.objects.filter(publikoa_da=True, pub_date__lt=timezone.now()).order_by('-pub_date')[0]
+    atalak = Atala.objects.filter(publikoa_da=True, pub_date__lt=timezone.now()).exclude(id=atal_nab.id).order_by(
         '-pub_date')
     atalgehiago = atalak[3:7]
     return render(request, 'getb/index.html', locals())
@@ -54,7 +54,7 @@ def index(request):
 
 def atala(request, slug):
     atala = get_object_or_404(Atala, slug=slug)
-    related_atalak = Atala.objects.filter(publikoa_da=True, pub_date__lt=datetime.now()).exclude(id=atala.id).order_by(
+    related_atalak = Atala.objects.filter(publikoa_da=True, pub_date__lt=timezone.now()).exclude(id=atala.id).order_by(
         '-pub_date')[:5]
     facebook_id = settings.FB_APP_ID
     return render(request, 'getb/atala.html', locals())
