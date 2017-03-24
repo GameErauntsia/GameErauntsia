@@ -13,12 +13,7 @@ settings.configure(
         DEBUG=True,
         DATABASES={
             'default': {
-                'ENGINE': 'django.db.backends.mysql',
-                'NAME': 'gamerauntsia',
-                'USER': 'travis',
-                'PASSWORD': '',
-                'HOST': '',
-                'PORT': '',
+                'ENGINE': 'django.db.backends.sqlite3',
             }
         },
         USE_TZ=True,
