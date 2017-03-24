@@ -40,11 +40,9 @@ class BasicTest(TestCase):
         berria.save()
         berria.gaia.add(gaia)
         berria.save()
-        
-        txapelketa = Txapelketa(izena='LoL txapelketa', slug="lol-txapelketa", jokoa=jokoa)
-        txapelketa.save(commit=False)
+
+        txapelketa = Txapelketa.objects.create(izena='LoL txapelketa', slug="lol-txapelketa", jokoa=jokoa)
         txapelketa.adminak.add(user)
-        txapelketa.save()
 
     def test_index(self):
         c = Client()
@@ -135,33 +133,33 @@ class BasicTest(TestCase):
         url = reverse('komunitatea')
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
-        
+
     def test_txapelketak_index(self):
         c = Client()
         url = reverse('txapelketak_index')
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
-        
+
     def test_txapelketak_txapelketa(self):
         c = Client()
         url = reverse('txapelketa', kwargs={'slug': 'lol-txapelketa'})
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
-        
+
     def test_txapelketak_txapelketa_insk(self):
         c = Client()
         c.login(username='urtzai', password='urtzaipass')
         url = reverse('txapelketa_insk')
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
-        
+
     def test_txapelketak_sortu_partaideak(self):
         c = Client()
         c.login(username='urtzai', password='urtzaipass')
         url = reverse('sortu_partaideak')
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
-        
+
     def test_txapelketak_sortu_taldea(self):
         c = Client()
         c.login(username='urtzai', password='urtzaipass')

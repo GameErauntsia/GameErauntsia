@@ -1,5 +1,8 @@
 language: python
 
+services:
+  - mysql
+
 python:
   - "2.7"
 
