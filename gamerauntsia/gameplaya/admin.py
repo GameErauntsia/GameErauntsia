@@ -2,8 +2,7 @@ from gamerauntsia.gameplaya.models import GamePlaya, Kategoria, Zailtasuna
 from django.contrib import admin
 from django.conf import settings
 from gamerauntsia.gameplaya.forms import GamePlayAdminForm
-from datetime import datetime
-from django.utils import timezone
+
 
 class GamePlayAdmin(admin.ModelAdmin):
 
@@ -44,12 +43,6 @@ class GamePlayAdmin(admin.ModelAdmin):
             return qs
         else:
             return qs.filter(erabiltzailea = request.user)
-
-    def save_model(self, request, obj, form, change):
-        if not request.user.is_superuser or not request.user.belongs_group(settings.GP_GROUP):
-            obj.erabiltzailea = request.user
-        obj.save()
-
 
     def has_change_permission(self, request, obj=None):
         if not obj:

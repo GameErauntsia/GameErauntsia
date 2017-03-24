@@ -3,6 +3,7 @@
 from __future__ import unicode_literals
 
 import datetime
+from django.utils import timezone
 from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
@@ -73,7 +74,7 @@ class Migration(migrations.Migration):
                 ('key', models.CharField(max_length=250)),
                 ('non_aldatzeko', models.IntegerField(choices=[(1, b'Steam'), (2, b'Origin')], default=1)),
                 ('oparituta', models.BooleanField(default=False)),
-                ('pub_date', models.DateTimeField(default=datetime.datetime.now, verbose_name=b'publikazio data')),
+                ('pub_date', models.DateTimeField(default=timezone.now(), verbose_name=b'publikazio data')),
                 ('jokoa', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='jokoa.Jokoa')),
                 ('plataforma', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='jokoa.Plataforma')),
             ],
