@@ -5,7 +5,6 @@ from django.db.models.signals import post_save
 from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.jokoa.models import Jokoa, Plataforma
 from photologue.models import Photo
-from datetime import datetime
 from django.utils import timezone
 import telebot
 
@@ -93,7 +92,7 @@ class OparitzekoJokoak(models.Model):
 
     oparituta = models.BooleanField(default=False)
 
-    pub_date = models.DateTimeField('publikazio data', default=datetime.now)
+    pub_date = models.DateTimeField('publikazio data', default=timezone.now())
 
     class Meta:
         verbose_name = "Oparitzeko jokoa"

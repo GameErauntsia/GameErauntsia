@@ -1,4 +1,4 @@
-from datetime import datetime
+from django.utils import timezone
 
 from django.conf import settings
 from django.shortcuts import get_object_or_404
@@ -60,7 +60,7 @@ def berria_detail(request, pk):
 
 def index(request):
     h = {}
-    zerr_berriak = Berria.objects.filter(status='1', pub_date__lt=datetime.now()).order_by('-pub_date')
+    zerr_berriak = Berria.objects.filter(status='1', pub_date__lt=timezone.now()).order_by('-pub_date')
     return render(request, 'berriak/index.html', locals())
 
 
@@ -72,5 +72,5 @@ def berria(request, slug):
 
 def gaia(request, slug):
     gaia = get_object_or_404(Gaia, slug=slug)
-    zerr_berriak = Berria.objects.filter(gaia=gaia, status='1', pub_date__lt=datetime.now()).order_by('-pub_date')
+    zerr_berriak = Berria.objects.filter(gaia=gaia, status='1', pub_date__lt=timezone.now()).order_by('-pub_date')
     return render(request, 'berriak/gaia.html', locals())

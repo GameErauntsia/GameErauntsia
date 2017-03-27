@@ -89,7 +89,7 @@ class Migration(migrations.Migration):
                 ('pub_date', models.DateTimeField(default=datetime.datetime.now, verbose_name=b'Publikazio data')),
                 ('insk_date', models.DateTimeField(default=datetime.datetime.now, verbose_name=b'Izen ematea')),
                 ('shared', models.BooleanField(default=False)),
-                ('adminak', models.ManyToManyField(related_name='adminak', to=settings.AUTH_USER_MODEL, verbose_name=b'Egileak')),
+                ('adminak', models.ManyToManyField(related_name='tx_adminak', to=settings.AUTH_USER_MODEL, verbose_name=b'Egileak')),
                 ('irudia', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='photologue.Photo')),
                 ('jokalariak', models.ManyToManyField(blank=True, related_name='jokalariak', to=settings.AUTH_USER_MODEL, verbose_name=b'Inskripzioa')),
                 ('jokoa', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='jokoa.Jokoa')),

@@ -44,12 +44,6 @@ class BerriakAdmin(admin.ModelAdmin):
         else:
             return qs.filter(erabiltzailea=request.user)
 
-    def save_model(self, request, obj, form, change):
-        if not request.user.is_superuser or not request.user.belongs_group(settings.NEWS_GROUP):
-            obj.erabiltzailea = request.user
-
-        obj.save()
-
     def has_change_permission(self, request, obj=None):
         if not obj:
             return True  # So they can see the change list page
