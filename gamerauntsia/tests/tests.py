@@ -19,6 +19,8 @@ LANDSCAPE_IMAGE_PATH = os.path.join(RES_DIR, 'test_photologue_landscape.jpg')
 class BasicTest(TestCase):
     def setUp(self):
         user = GamerUser.objects.create_user('urtzai', 'uodriozola@gmail.com', 'urtzaipass')
+        user.is_superuser = True
+        user.save()
         photo = Photo(title='GETB atala irudia', slug='gtb-atala-irudia', is_public=True)
         photo.image.save('test_photologue_landscape.jpg', ContentFile(open(LANDSCAPE_IMAGE_PATH, 'rb').read()))
         photo.save()
@@ -41,7 +43,7 @@ class BasicTest(TestCase):
         berria.gaia.add(gaia)
         berria.save()
 
-        txapelketa = Txapelketa.objects.create(izena='LoL txapelketa', slug="lol-txapelketa", jokoa=jokoa)
+        txapelketa = Txapelketa.objects.create(izena='LoL txapelketa', slug="lol-txapelketa", desk="LoLeko beste txapelketa bat.", jokoa=jokoa)
         txapelketa.adminak.add(user)
 
     def test_index(self):
@@ -149,20 +151,22 @@ class BasicTest(TestCase):
     def test_txapelketak_txapelketa_insk(self):
         c = Client()
         c.login(username='urtzai', password='urtzaipass')
-        url = reverse('txapelketa_insk')
+        url = reverse('txapelketa_insk', kwargs={'slug': 'lol-txapelketa'})
         response = c.get(url)
-        self.assertEqual(response.status_code, 200)
+        tx_url = reverse('txapelketa', kwargs={'slug': "lol-txapelketa"})
+        self.assertRedirects(response, tx_url)
 
     def test_txapelketak_sortu_partaideak(self):
         c = Client()
         c.login(username='urtzai', password='urtzaipass')
-        url = reverse('sortu_partaideak')
+        url = reverse('sortu_partaideak', kwargs={'slug': 'lol-txapelketa'})
         response = c.get(url)
-        self.assertEqual(response.status_code, 200)
+        tx_url = reverse('txapelketa', kwargs={'slug': "lol-txapelketa"})
+        self.assertRedirects(response, tx_url)
 
     def test_txapelketak_sortu_taldea(self):
         c = Client()
         c.login(username='urtzai', password='urtzaipass')
-        url = reverse('sortu_taldea')
+        url = reverse('sortu_taldea', kwargs={'slug': 'lol-txapelketa'})
         response = c.get(url)
         self.assertEqual(response.status_code, 200)

@@ -26,6 +26,7 @@ settings.configure(
         HOST='gamerauntsia.eus',
         ADMIN_CHAT_ID='122346632',
         SITE_ID=1,
+        AUTH_USER_MODEL='gamer.GamerUser',
         INSTALLED_APPS=(
             'django.contrib.auth',
             'django.contrib.contenttypes',
