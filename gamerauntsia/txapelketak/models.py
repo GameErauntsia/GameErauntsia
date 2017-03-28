@@ -50,7 +50,7 @@ class Txapelketa(models.Model):
     jokalariak = models.ManyToManyField(GamerUser, related_name="jokalariak", verbose_name="Inskripzioa", blank=True)
 
     jokoa = models.ForeignKey(Jokoa)
-    adminak = models.ManyToManyField(GamerUser, related_name="adminak", verbose_name="Egileak")
+    adminak = models.ManyToManyField(GamerUser, related_name="tx_adminak", verbose_name="Egileak")
 
     irabazi = models.IntegerField('Puntuak irabaztean', default=0)
     galdu = models.IntegerField('Puntuak galtzean', default=0)

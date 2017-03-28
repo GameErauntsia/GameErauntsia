@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-from datetime import datetime
+from django.utils import timezone
 from photologue.models import Photo
 from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.jokoa.models import Jokoa
@@ -46,8 +46,8 @@ class Berria(models.Model):
     publikoa_da = models.BooleanField(default=False, verbose_name="Publikatzeko prest")
 
     status = models.CharField(max_length=1, choices=STATUS, default='0')
-    pub_date = models.DateTimeField('publikazio data', default=datetime.now)
-    mod_date = models.DateTimeField('modifikazio data', default=datetime.now)
+    pub_date = models.DateTimeField('publikazio data', default=timezone.now())
+    mod_date = models.DateTimeField('modifikazio data', default=timezone.now())
     shared = models.BooleanField(default=False,
                                  help_text="Lauki hau automatikoki markatuko da sistemak edukia sare sozialetan elkarbanatzean.")
 
