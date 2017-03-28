@@ -12,7 +12,7 @@
     <meta name="twitter:description" content="{{atala.desk|truncatewords:15|safe|striptags}}" />
     <meta name="twitter:title" content="{{atala.izenburua}}" />
     <meta name="twitter:url" content="{{atala.get_absolute_url}}" />
-    <meta name="twitter:image" content="http://gamerauntsia.eus{{atala.argazkia.get_blog_url}}" /> 
+    <meta name="twitter:image" content="http://gamerauntsia.eus{{atala.argazkia.get_blog_url}}" />
 
     <meta property="og:description" content="{{atala.desk|truncatewords:15|safe|striptags}}" />
     <meta property="og:title" content="{{atala.izenburua}}" />
@@ -20,6 +20,19 @@
 
     <link rel="stylesheet" href="{{STATIC_URL}}star-ratings/css/star-ratings.css">
     <script type="text/javascript" src="{{STATIC_URL}}star-ratings/js/dist/star-ratings.min.js"></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "VideoObject",
+      "name": "{{atala.izenburua}}",
+      "description": "{{atala.get_desk_txikia}}",
+      "thumbnailUrl": "https://gamerauntsia.eus{{atala.argazkia.get_gp_thumbnail_url}}",
+      "uploadDate": "{{atala.pub_date}}",
+      "duration": "PT{{atala.iraupena_min}}M{{atala.iraupena_seg}}S",
+      "embedUrl": "https://www.youtube.com/embed/{{atala.bideoa}}"
+    }
+    </script>
 
 {% endblock %}
 
@@ -36,7 +49,7 @@
         <p>{{atala.desk|safe|emoticons}}</p>
 
         <div class="pull-right">{% ratings atala %}</div>
-        
+
         {% include 'share_buttons.html' with item=atala %}
 
         {% render_comment_list for atala %}
