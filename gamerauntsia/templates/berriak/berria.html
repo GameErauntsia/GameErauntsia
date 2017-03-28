@@ -10,7 +10,7 @@
     <meta name="twitter:description" content="{{item.desk|truncatewords:15|safe|striptags}}" />
     <meta name="twitter:title" content="{{item.izenburua}}" />
     <meta name="twitter:url" content="{{item.get_absolute_url}}" />
-    <meta name="twitter:image" content="http://gamerauntsia.eus{{item.argazkia.get_blog_url}}" /> 
+    <meta name="twitter:image" content="http://gamerauntsia.eus{{item.argazkia.get_blog_url}}" />
 
     <meta property="og:description" content="{{item.desk|truncatewords:15|safe|striptags}}" />
     <meta property="og:title" content="{{item.izenburua}}" />
@@ -37,6 +37,40 @@
 
     {% bootstrap_calendar_css %}
     {% bootstrap_calendar_js language="eu-ES"  %}
+
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://gamerauntsia.eus/bloga"
+      },
+      "headline": "{{item.izenburua}}",
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://gamerauntsia.eus{{item.argazkia.get_blog_url}}",
+        "height": 900,
+        "width": 300
+      },
+      "datePublished": "{{item.pub_date}}",
+      "author": {
+        "@type": "Person",
+        "name": "{{item.erabiltzailea.getFullName}}"
+      },
+       "publisher": {
+        "@type": "Organization",
+        "name": "Gamer Erauntsia",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://gamerauntsia.eus{{STATIC_URL}}img/logo.png",
+          "width": 217,
+          "height": 46
+        }
+      },
+      "description": "{{item.get_desk_txikia}}"
+    }
+    </script>
 
 {% endblock %}
 
@@ -69,9 +103,9 @@
         <div class="pull-right">{% ratings item %}</div>
 
         {% include 'share_buttons.html' with item=item %}
-        
+
         <hr>
-        
+
         {% render_comment_list for item %}
 
         {% render_comment_form for item %}

@@ -12,14 +12,27 @@
     <meta name="twitter:description" content="{{gp.desk|truncatewords:15|safe|striptags}}" />
     <meta name="twitter:title" content="{{gp.izenburua}}" />
     <meta name="twitter:url" content="{{gp.get_absolute_url}}" />
-    <meta name="twitter:image" content="http://gamerauntsia.eus{{gp.argazkia.get_blog_url}}" />
+    <meta name="twitter:image" content="https://gamerauntsia.eus{{gp.argazkia.get_blog_url}}" />
 
     <meta property="og:description" content="{{gp.desk|truncatewords:15|safe|striptags}}" />
     <meta property="og:title" content="{{gp.izenburua}}" />
-    <meta property="og:image" content="http://gamerauntsia.eus{{gp.argazkia.get_blog_url}}" />
+    <meta property="og:image" content="https://gamerauntsia.eus{{gp.argazkia.get_blog_url}}" />
 
     <link rel="stylesheet" href="{{STATIC_URL}}star-ratings/css/star-ratings.css">
     <script type="text/javascript" src="{{STATIC_URL}}star-ratings/js/dist/star-ratings.min.js"></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "VideoObject",
+      "name": "Title",
+      "description": "{{gp.izenburua}}",
+      "thumbnailUrl": "https://gamerauntsia.eus{{gp.argazkia.get_gp_thumbnail_url}}",
+      "uploadDate": "{{gp.pub_date}}",
+      "duration": "PT{{gp.iraupena_min}}M{{gp.iraupena_seg}}S",
+      "embedUrl": "https://www.youtube.com/embed/{{gp.bideoa}}",
+    }
+    </script>
 {% endblock %}
 
 {% block content %}
@@ -30,7 +43,7 @@
             {% if gp.bideoa %}
             <iframe width="700" height="394" src="//www.youtube.com/embed/{{gp.bideoa}}" frameborder="0" allowfullscreen></iframe>
             {% else %}
-            <iframe src="http://www.twitch.tv/gamerauntsia/embed" frameborder="0" scrolling="no" height="378" width="620"></iframe>
+            <iframe src="https://www.twitch.tv/gamerauntsia/embed" frameborder="0" scrolling="no" height="378" width="620"></iframe>
             {% endif %}
         </div>
         <h1>{{gp.izenburua}}</h1>
@@ -39,7 +52,7 @@
         <div class="pull-right">{% ratings gp %}</div>
 
         {% include 'share_buttons.html' with item=gp %}
-        
+
         {% render_comment_list for gp %}
 
         {% render_comment_form for gp %}
@@ -47,7 +60,7 @@
     <div class="col-sm-4">
         {% if not gp.bideoa %}
             <h3>Zuzeneko txata</h3>
-            <iframe src="http://www.twitch.tv/gamerauntsia/chat?popout=" frameborder="0" height="500" width="100%"></iframe>
+            <iframe src="https://www.twitch.tv/gamerauntsia/chat?popout=" frameborder="0" height="500" width="100%"></iframe>
         {% endif %}
         <h3>Fitxa teknikoa</h3>
         <div class="well">
