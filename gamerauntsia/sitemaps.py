@@ -12,7 +12,6 @@ berria_sitemap = {
     'date_field': 'mod_date',
 }
 
-
 gameplaya_sitemap = {
     'queryset': GamePlaya.objects.filter(is_public=True),
     'date_field': 'mod_date',
