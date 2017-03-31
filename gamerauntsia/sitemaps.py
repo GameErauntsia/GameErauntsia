@@ -1,15 +1,42 @@
-from django.contrib import sitemaps
-from django.core.urlresolvers import reverse
-from datetime import datetime
+from django.conf import settings
+from django.contrib.sitemaps import GenericSitemap
+from gamerauntsia.berriak.models import Berria
+from gamerauntsia.gameplaya.models import GamePlaya
+from gamerauntsia.txapelketak.models import Txapelketa
+from gamerauntsia.getb.models import Atala
+from gamerauntsia.jokoa.models import Jokoa
 
 
-class StaticViewSitemap(sitemaps.Sitemap):
-    priority = 0.5
-    changefreq = 'daily'
+berria_sitemap = {
+    'queryset': Berria.objects.filter(publikoa_da=True),
+    'date_field': 'mod_date',
+}
 
-    def items(self):
-        return ['getb_index','berriak_index', 'game_index','gameplay_index','txapelketak_index']
+gameplaya_sitemap = {
+    'queryset': GamePlaya.objects.filter(publikoa_da=True),
+    'date_field': 'mod_date',
+}
+
+txapelketa_sitemap = {
+    'queryset': Txapelketa.objects.filter(publikoa_da=True),
+    'date_field': 'mod_date',
+}
+
+atala_sitemap = {
+    'queryset': Atala.objects.filter(publikoa_da=True),
+    'date_field': 'mod_date',
+}
+
+jokoa_sitemap = {
+    'queryset': Jokoa.objects.filter(publikoa_da=True),
+    'date_field': 'mod_date',
+}
 
 
-    def location(self, item):
-        return reverse(item) 
+sitemaps = {
+    'gameplayak': GenericSitemap(gameplaya_sitemap, priority=0.6),
+    'berriak': GenericSitemap(berria_sitemap, priority=0.6),
+    'txapelketak': GenericSitemap(txapelketa_sitemap, priority=0.6),
+    'atalak': GenericSitemap(atala_sitemap, priority=0.6),
+    'jokoak': GenericSitemap(jokoa_sitemap, priority=0.6)
+}
