@@ -8,27 +8,27 @@ from gamerauntsia.jokoa.models import Jokoa
 
 
 berria_sitemap = {
-    'queryset': Berria.objects.filter(is_public=True),
+    'queryset': Berria.objects.filter(publikoa_da=True),
     'date_field': 'mod_date',
 }
 
 gameplaya_sitemap = {
-    'queryset': GamePlaya.objects.filter(is_public=True),
+    'queryset': GamePlaya.objects.filter(publikoa_da=True),
     'date_field': 'mod_date',
 }
 
 txapelketa_sitemap = {
-    'queryset': Txapelketa.objects.filter(is_public=True),
+    'queryset': Txapelketa.objects.filter(publikoa_da=True),
     'date_field': 'mod_date',
 }
 
 atala_sitemap = {
-    'queryset': Atala.objects.filter(is_public=True),
+    'queryset': Atala.objects.filter(publikoa_da=True),
     'date_field': 'mod_date',
 }
 
 jokoa_sitemap = {
-    'queryset': Jokoa.objects.filter(is_public=True),
+    'queryset': Jokoa.objects.filter(publikoa_da=True),
     'date_field': 'mod_date',
 }
 
