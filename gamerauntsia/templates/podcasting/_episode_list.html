@@ -4,7 +4,7 @@
     <div class="episode-list">
         {% for episode in episode_list %}
             <div class="podcast-episode mod">
-                <h2>{{ episode.title }}</h2>
+                <h2><a href="{% url 'podcasting_episode_detail' show.slug episode.slug %}">{{ episode.title }}</a></h2>
                 <p>{{ episode.description }}</p>
                 <div class="row">
                     {% for enclosure in episode.enclosure_set.all %}
