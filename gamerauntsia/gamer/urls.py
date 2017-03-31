@@ -33,5 +33,5 @@ urlpatterns = [
     url(r'^edit-profile-photo$', views.edit_profile_photo, name='edit_profile_photo'),
 
     # ## HAU BETI AZKENA BEGIRATU BEHAR DA (Ez dauka hitz gakorik)
-    url(r'^(?P<username>[-\w]+)$', views.profile, name='gamer_profile'),
+    url(r'^(?P<username>[\w.@+-]+)$', views.profile, name='gamer_profile'),
 ]
