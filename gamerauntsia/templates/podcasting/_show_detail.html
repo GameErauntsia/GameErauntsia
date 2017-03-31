@@ -12,7 +12,7 @@
             <div class="show-description">{{ show.description }}</div>
         </div>
     </div>
-    {% with show.episode_set.published as episode_list %}
+    {% with episode_list=show.episode_set.published show=show  %}
         {% include "podcasting/_episode_list.html" %}
     {% endwith %}
 {% else %}
