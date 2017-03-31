@@ -7,8 +7,8 @@ from rest_framework.routers import DefaultRouter
 from gamerauntsia.app.authentication.viewsets import UsersViewSet
 from django.contrib.flatpages import views
 
-from django.contrib.sitemaps.views import sitemap
-from .sitemaps import StaticViewSitemap
+from django.contrib.sitemaps import views as sitemapsviews
+from .sitemaps import sitemaps
 
 from gamerauntsia.base.feed import LatestEntriesFeed, LatestNewsFeed
 from gamerauntsia.log.views import DenboralerroaViewSet
@@ -27,10 +27,6 @@ berria_list = BerriaViewSet.as_view({'get': 'list'})
 denboralerroa_list = DenboralerroaViewSet.as_view({'get': 'list'})
 
 admin.autodiscover()
-
-sitemaps = {
-    'static': StaticViewSitemap,
-}
 
 urlpatterns = [
     url(r'^robots.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: ", content_type="text/plain")),
@@ -139,7 +135,9 @@ urlpatterns = [
     url(r'^cookie/$', TemplateView.as_view(template_name='cookie.html')),
 
     # SITEMAP
-    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    url(r'^sitemap\.xml$', sitemapsviews.index, {'sitemaps': sitemaps}),
+    url(r'^sitemap-(?P<section>.+)\.xml$', sitemapsviews.sitemap, {'sitemaps': sitemaps},
+        name='django.contrib.sitemaps.views.sitemap'),
 
     # AJAX ESKAERAK
     url(r'^ajax/get_jokoak/', gamerviews.get_jokoak, name='ajax_jokoak'),
