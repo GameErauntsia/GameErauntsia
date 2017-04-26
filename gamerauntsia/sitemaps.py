@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.sitemaps import Sitemap
 from django.contrib.sitemaps import GenericSitemap
 from gamerauntsia.berriak.models import Berria
 from gamerauntsia.gameplaya.models import GamePlaya
@@ -7,36 +8,80 @@ from gamerauntsia.getb.models import Atala
 from gamerauntsia.jokoa.models import Jokoa
 
 
-berria_sitemap = {
-    'queryset': Berria.objects.filter(publikoa_da=True),
-    'date_field': 'mod_date',
-}
+class BerriaSitemap(Sitemap):
+    changefreq = "never"
+    priority = 0.5
 
-gameplaya_sitemap = {
-    'queryset': GamePlaya.objects.filter(publikoa_da=True),
-    'date_field': 'mod_date',
-}
+    def items(self):
+        return Berria.objects.filter(publikoa_da=True)
 
-txapelketa_sitemap = {
-    'queryset': Txapelketa.objects.filter(publikoa_da=True),
-    'date_field': 'mod_date',
-}
+    def lastmod(self, obj):
+        return obj.mod_date
+    
+    def location(self, obj):
+        return reverse('berria', kwargs={'slug': obj.slug})
 
-atala_sitemap = {
-    'queryset': Atala.objects.filter(publikoa_da=True),
-    'date_field': 'mod_date',
-}
+    
+class GamePlayaSitemap(Sitemap):
+    changefreq = "never"
+    priority = 0.5
 
-jokoa_sitemap = {
-    'queryset': Jokoa.objects.filter(publikoa_da=True),
-    'date_field': 'mod_date',
-}
+    def items(self):
+        return GamePlaya.objects.filter(publikoa_da=True)
+
+    def lastmod(self, obj):
+        return obj.mod_date
+    
+    def location(self, obj):
+        return reverse('gameplay', kwargs={'slug': obj.slug})
+
+
+class TxapelketaSitemap(Sitemap):
+    changefreq = "never"
+    priority = 0.5
+
+    def items(self):
+        return Txapelketa.objects.filter(publikoa_da=True)
+
+    def lastmod(self, obj):
+        return obj.mod_date
+    
+    def location(self, obj):
+        return reverse('txapelketa', kwargs={'slug': obj.slug})
+
+
+class AtalaSitemap(Sitemap):
+    changefreq = "never"
+    priority = 0.5
+
+    def items(self):
+        return Atala.objects.filter(publikoa_da=True)
+
+    def lastmod(self, obj):
+        return obj.mod_date
+    
+    def location(self, obj):
+        return reverse('getb_atala', kwargs={'slug': obj.slug})
+
+
+class JokoaSitemap(Sitemap):
+    changefreq = "never"
+    priority = 0.5
+
+    def items(self):
+        return Jokoa.objects.filter(publikoa_da=True)
+
+    def lastmod(self, obj):
+        return obj.mod_date
+    
+    def location(self, obj):
+        return reverse('game', kwargs={'slug': obj.slug})
 
 
 sitemaps = {
-    'gameplayak': GenericSitemap(gameplaya_sitemap, priority=0.6),
-    'berriak': GenericSitemap(berria_sitemap, priority=0.6),
-    'txapelketak': GenericSitemap(txapelketa_sitemap, priority=0.6),
-    'atalak': GenericSitemap(atala_sitemap, priority=0.6),
-    'jokoak': GenericSitemap(jokoa_sitemap, priority=0.6)
+    'gameplayak': GamePlayaSitemap(),
+    'berriak': BerriaSitemap(),
+    'txapelketak': TxapelketaSitemap(),
+    'atalak': AtalaSitemap(),
+    'jokoak': JokoaSitemap()
 }
