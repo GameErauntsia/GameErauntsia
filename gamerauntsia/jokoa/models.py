@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from photologue.models import Photo
+from django.utils import timezone
 
 SOFTWARE_AUKERAK = (
         ('C', 'Copyright'),
@@ -34,6 +35,7 @@ class Jokoa(models.Model):
     wiki = models.CharField(max_length=64, null=True, blank=True, help_text="Eremu honetan joko honen wikipediako URL helbidea zehaztu mesedez." )
 
     publikoa_da = models.BooleanField(default=False)
+    mod_date = models.DateTimeField('modifikazio data', default=timezone.now())
 
     def get_title(self):
         return "%s %s" % (self.izena,self.bertsioa)
