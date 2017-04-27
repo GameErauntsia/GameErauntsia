@@ -1,6 +1,6 @@
 from django.conf import settings
+from django.urls import reverse
 from django.contrib.sitemaps import Sitemap
-from django.contrib.sitemaps import GenericSitemap
 from gamerauntsia.berriak.models import Berria
 from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.txapelketak.models import Txapelketa
@@ -17,11 +17,11 @@ class BerriaSitemap(Sitemap):
 
     def lastmod(self, obj):
         return obj.mod_date
-    
+
     def location(self, obj):
         return reverse('berria', kwargs={'slug': obj.slug})
 
-    
+
 class GamePlayaSitemap(Sitemap):
     changefreq = "never"
     priority = 0.5
@@ -31,7 +31,7 @@ class GamePlayaSitemap(Sitemap):
 
     def lastmod(self, obj):
         return obj.mod_date
-    
+
     def location(self, obj):
         return reverse('gameplay', kwargs={'slug': obj.slug})
 
@@ -45,7 +45,7 @@ class TxapelketaSitemap(Sitemap):
 
     def lastmod(self, obj):
         return obj.mod_date
-    
+
     def location(self, obj):
         return reverse('txapelketa', kwargs={'slug': obj.slug})
 
@@ -59,7 +59,7 @@ class AtalaSitemap(Sitemap):
 
     def lastmod(self, obj):
         return obj.mod_date
-    
+
     def location(self, obj):
         return reverse('getb_atala', kwargs={'slug': obj.slug})
 
@@ -73,7 +73,7 @@ class JokoaSitemap(Sitemap):
 
     def lastmod(self, obj):
         return obj.mod_date
-    
+
     def location(self, obj):
         return reverse('game', kwargs={'slug': obj.slug})
 
