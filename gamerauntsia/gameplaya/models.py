@@ -61,8 +61,8 @@ class GamePlaya(models.Model):
 
     erabiltzailea = models.ForeignKey(GamerUser, related_name='gameplayak')
     publikoa_da = models.BooleanField(default=False, verbose_name="Publikatzeko prest")
-    pub_date = models.DateTimeField('publikazio data', default=timezone.now())
-    mod_date = models.DateTimeField('modifikazio data', default=timezone.now())
+    pub_date = models.DateTimeField('publikazio data', default=timezone.now)
+    mod_date = models.DateTimeField('modifikazio data', default=timezone.now)
     status = models.CharField(max_length=1, choices=STATUS, default='0')
     shared = models.BooleanField(default=False,
                                  help_text="Lauki hau automatikoki markatuko da sistemak edukia sare sozialetan elkarbanatzean.")

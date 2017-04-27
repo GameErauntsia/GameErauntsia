@@ -5,7 +5,7 @@ from photologue.models import Photo
 from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.jokoa.models import Jokoa
 from gamerauntsia.gameplaya.models import GamePlaya
-from datetime import datetime
+from django.utils import timezone
 from django.template import defaultfilters as filters
 from mptt.models import MPTTModel, TreeForeignKey
 from django.template.loader import get_template
@@ -58,8 +58,9 @@ class Txapelketa(models.Model):
 
     publikoa_da = models.BooleanField(default=True)
     manual_sign = models.BooleanField(default=False)
-    pub_date = models.DateTimeField('Publikazio data', default=datetime.now)
-    insk_date = models.DateTimeField('Izen ematea', default=datetime.now)
+    pub_date = models.DateTimeField('Publikazio data', default=timezone.now)
+    mod_date = models.DateTimeField('modifikazio data', default=timezone.now)
+    insk_date = models.DateTimeField('Izen ematea', default=timezone.now)
     shared = models.BooleanField(default=False)
 
     def get_title(self):

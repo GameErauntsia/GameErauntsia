@@ -92,7 +92,7 @@ class OparitzekoJokoak(models.Model):
 
     oparituta = models.BooleanField(default=False)
 
-    pub_date = models.DateTimeField('publikazio data', default=timezone.now())
+    pub_date = models.DateTimeField('publikazio data', default=timezone.now)
 
     class Meta:
         verbose_name = "Oparitzeko jokoa"
