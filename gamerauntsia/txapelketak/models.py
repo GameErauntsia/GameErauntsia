@@ -58,7 +58,7 @@ class Txapelketa(models.Model):
 
     publikoa_da = models.BooleanField(default=True)
     manual_sign = models.BooleanField(default=False)
-    pub_date = models.DateTimeField('Publikazio data', default=timezone.now)
+    pub_date = models.DateField('Publikazio data', default=timezone.now)
     mod_date = models.DateTimeField('modifikazio data', default=timezone.now)
     insk_date = models.DateTimeField('Izen ematea', default=timezone.now)
     shared = models.BooleanField(default=False)
