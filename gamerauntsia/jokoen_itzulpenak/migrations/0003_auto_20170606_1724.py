@@ -18,9 +18,4 @@ class Migration(migrations.Migration):
             name='garatzaileak_itzulia',
             field=models.BooleanField(default=False, verbose_name=b'Garatzaileak itzulia'),
         ),
-        migrations.AddField(
-            model_name='euskarazkojokoa',
-            name='plataformak',
-            field=models.ManyToManyField(to='jokoa.Plataforma'),
-        ),
     ]
