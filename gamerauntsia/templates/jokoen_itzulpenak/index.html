@@ -14,14 +14,14 @@
 </div>
 
 <div class="col-sm-9    ">
-    <h2>Guk itzulitako jokoak</h2>
+    <!-- <h2>Guk itzulitako jokoak</h2> -->
 
     <!-- <form class="pull-right" method="get" action="{% url 'search_itzulpenak' %}">
         <input id="search_term" value="" name="term" placeholder="Bilatu jokoa"/>
         <input type="submit" value="Bilatu" class="btn btn-default"/>
     </form> -->
 
-    <div id="content">
+    <!-- <div id="content">
         <div class="col-sm-12">
             <div class="table-responsive">
                 <table class="table table-condensed table-hover">
@@ -52,7 +52,7 @@
                 </table>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <h2>Euskaraz dauden jokoak</h2>
 
@@ -65,18 +65,25 @@
                             <th></th>
                             <th>Jokoa</th>
                             <th>Plataforma</th>
+                            <th>Itzulpena</th>
+                            <th class="text-center">Instalazio azalpena</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for item in orig_items %}
+                        {% for item in items %}
                         <tr>
                             <td><img src="{{item.jokoa.logoa.get_forum_thumbnail_url}}" alt="{{item.jokoa.izena}} {{item.jokoa.bertsioa}} bideojokoak" title="{{item.jokoa.izena}} {{item.jokoa.bertsioa}} bideojokoak"/></td>
                             <td><strong><a href="{{item.jokoa.get_absolute_url}}">{{item.jokoa.izena}} {{item.jokoa.bertsioa}}</a></strong></td>
-                            <td>{{item.plataforma.izena}}</td>
+                            <td>{% for plat in item.plataformak.all %}{{plat.izena}}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
+                            <td>{% if item.itzulpena %}{{item.is_ge_translation_icon}} <br/><a href="{{item.itzulpena.get_absolute_url}}"><i class="glyphicon glyphicon-download-alt"></i> Deskargatu</a>{% elif item.garatzaileak_itzulia %}<i class="glyphicon glyphicon-home"></i> Garatzaileek itzulita{% else %}<i class="glyphicon glyphicon-globe"></i> Online{% endif %}</td>
+                            <td class="text-center">{% if item.itzulpena.instalazioa %}<a tabindex="0" class="instalazioa" role="button" data-toggle="popover" data-trigger="focus" title="Instalazioa" data-content="{{item.itzulpena.instalazioa}}"><i class="glyphicon glyphicon-book"></i></a>{% else %}-{% endif %}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
+                <script>
+                    $('.instalazioa').popover()
+                </script>
             </div>
         </div>
     </div>
