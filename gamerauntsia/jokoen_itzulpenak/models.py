@@ -2,6 +2,7 @@ from django.db import models
 from gamerauntsia.jokoa.models import Jokoa, Plataforma
 from datetime import datetime
 from photologue.models import Photo
+from django.utils.html import mark_safe
 
 IPS_STATUS = (
     ('0', 'Erdizka'),
@@ -10,12 +11,10 @@ IPS_STATUS = (
 )
 
 class Itzulpena(models.Model):
-    izena = models.CharField(max_length=150, verbose_name="Izena")
+    izena = models.CharField(max_length=150, verbose_name="Fitxategi izena")
     status = models.CharField(max_length=1, choices=IPS_STATUS, default='0',verbose_name="Egoera")
-    plataforma = models.ForeignKey(Plataforma)
-    jokoa = models.ForeignKey(Jokoa)
     ipsfile = models.FileField(upload_to='ips')
-
+    instalazioa = models.TextField(blank=True)
     publikoa_da = models.BooleanField(default=False,verbose_name="Publikoa da")
 
     pub_date = models.DateTimeField('publikazio data', default=datetime.now)
@@ -29,12 +28,15 @@ class Itzulpena(models.Model):
         return "%s" % self.ipsfile.url
 
     def __unicode__(self):
-        return u'%s %s' % (self.jokoa.izena, self.jokoa.bertsioa)
+        return u'%s' % (self.izena)
 
 
 class EuskarazkoJokoa(models.Model):
     jokoa = models.ForeignKey(Jokoa)
-    plataforma = models.ForeignKey(Plataforma)
+    plataformak = models.ManyToManyField(Plataforma)
+
+    itzulpena = models.ForeignKey(Itzulpena, blank=True, null=True)
+    garatzaileak_itzulia = models.BooleanField(default=False,verbose_name="Garatzaileak itzulia")
 
     publikoa_da = models.BooleanField(default=False,verbose_name="Publikoa da")
     pub_date = models.DateTimeField('publikazio data', default=datetime.now)
@@ -45,6 +47,13 @@ class EuskarazkoJokoa(models.Model):
 
     def __unicode__(self):
         return u'%s %s' % (self.jokoa.izena, self.jokoa.bertsioa)
+
+    def is_ge_translation(self):
+        return self.itzulpena and True or False
+    is_ge_translation.boolean = True
+
+    def is_ge_translation_icon(self):
+        return self.is_ge_translation() and mark_safe('<i class="glyphicon glyphicon-ok"></i> Fitxategia %s' % self.itzulpena.get_status_display()) or ''
 
 
 class Euskalinkak(models.Model):
