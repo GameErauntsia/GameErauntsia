@@ -36,7 +36,8 @@ class EuskarazkoJokoa(models.Model):
     plataformak = models.ManyToManyField(Plataforma)
 
     itzulpena = models.ForeignKey(Itzulpena, blank=True, null=True)
-    garatzaileak_itzulia = models.BooleanField(default=False,verbose_name="Garatzaileak itzulia")
+    garatzaileak_itzulia = models.BooleanField(default=False, verbose_name="Garatzaileak itzulia")
+    online_url = models.URLField(blank=True, verbose_name="Online itzulpen proiektua")
 
     publikoa_da = models.BooleanField(default=False,verbose_name="Publikoa da")
     pub_date = models.DateTimeField('publikazio data', default=datetime.now)
@@ -53,7 +54,7 @@ class EuskarazkoJokoa(models.Model):
     is_ge_translation.boolean = True
 
     def is_ge_translation_icon(self):
-        return self.is_ge_translation() and mark_safe('<i class="glyphicon glyphicon-ok"></i> Fitxategia %s' % self.itzulpena.get_status_display()) or ''
+        return self.is_ge_translation() and mark_safe('<i class="glyphicon glyphicon-file"></i> Fitxategia %s' % self.itzulpena.get_status_display().lower()) or ''
 
 
 class Euskalinkak(models.Model):

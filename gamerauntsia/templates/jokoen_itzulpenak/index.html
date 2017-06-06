@@ -13,7 +13,7 @@
     <p>Beste batzuk aldiz hasiera hasieratik, euskaraz argitaratutakoak dira.</p>
 </div>
 
-<div class="col-sm-9    ">
+<div class="col-sm-9">
     <!-- <h2>Guk itzulitako jokoak</h2> -->
 
     <!-- <form class="pull-right" method="get" action="{% url 'search_itzulpenak' %}">
@@ -75,7 +75,7 @@
                             <td><img src="{{item.jokoa.logoa.get_forum_thumbnail_url}}" alt="{{item.jokoa.izena}} {{item.jokoa.bertsioa}} bideojokoak" title="{{item.jokoa.izena}} {{item.jokoa.bertsioa}} bideojokoak"/></td>
                             <td><strong><a href="{{item.jokoa.get_absolute_url}}">{{item.jokoa.izena}} {{item.jokoa.bertsioa}}</a></strong></td>
                             <td>{% for plat in item.plataformak.all %}{{plat.izena}}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
-                            <td>{% if item.itzulpena %}{{item.is_ge_translation_icon}} <br/><a href="{{item.itzulpena.get_absolute_url}}"><i class="glyphicon glyphicon-download-alt"></i> Deskargatu</a>{% elif item.garatzaileak_itzulia %}<i class="glyphicon glyphicon-home"></i> Garatzaileek itzulita{% else %}<i class="glyphicon glyphicon-globe"></i> Online{% endif %}</td>
+                            <td>{% if item.itzulpena %}{{item.is_ge_translation_icon}} <br/><a href="{{item.itzulpena.get_absolute_url}}"><i class="glyphicon glyphicon-download-alt"></i> Deskargatu</a>{% elif item.garatzaileak_itzulia %}<i class="glyphicon glyphicon-home"></i> Garatzaileek itzulita{% else %}{% if item.online_url %}<a href="{{item.online_url}}"><i class="glyphicon glyphicon-globe"></i> Online</a>{% else %}<i class="glyphicon glyphicon-globe"></i> Online{% endif %}{% endif %}</td>
                             <td class="text-center">{% if item.itzulpena.instalazioa %}<a tabindex="0" class="instalazioa" role="button" data-toggle="popover" data-trigger="focus" title="Instalazioa" data-content="{{item.itzulpena.instalazioa}}"><i class="glyphicon glyphicon-book"></i></a>{% else %}-{% endif %}</td>
                         </tr>
                         {% endfor %}
@@ -89,14 +89,28 @@
     </div>
 </div>
 
-<div class="col-sm-3 well">
-    <h3>Beste proiektu batzuk</h3>
-    <hr/>
-    <ul class="list-unstyled">
-        {% for link in links %}
-        <li><a href="{{link.url}}"><img src="{{link.irudia.get_profilesmall_url}}" alt="{{link.izena}}" title="{{link.izena}}"> {{link.izena}}</li>
-        {% endfor %}
-    </ul>
+<div class="col-sm-3">
+    <div class="well">
+        <h3>Itzulpen motak</h3>
+        <hr/>
+        <ul class="list-unstyled">
+            <li><strong><i class="glyphicon glyphicon-home"></i> Garatzaileek itzulita:</strong> Jokoa hasieratik itzulita dagoela esan nahi du. Garatzaileek euskara kontutan izan dute eta ez dugu guk itzuli behar izan.</li>
+            <li><strong><i class="glyphicon glyphicon-globe"></i> Online:</strong> Itzulpenak guk egin ditugu baina online dagoen itzulpen tresna bat erabiliaz. Jokoaren bertsioren batean itzulpenak sartuko dituzte, beraz webgune ofizialean euskarazko bertsio hori eskuratzea besterik ez duzu beharko.</li>
+            <li><strong><i class="glyphicon glyphicon-file"></i> Fitxategia probatzeko:</strong> Itzulpen fitxategiak erauzi eta itzultzea lortu dugu. Jokoa ondo probatzea falta da itzulpenak ondo dauden jakiteko. Jokoa euskaratzeko instalazio azalpenak jarraitu.<li>
+            <li><strong><i class="glyphicon glyphicon-file"></i> Fitxategia erdizka:</strong> Itzulpen fitxategiak erauzi eta erdizka itzultzea lortu dugu. Baliteke jokoaren zati handi bat itzuli gabe egotea. Jokoa euskaratzeko instalazio azalpenak jarraitu.<li>
+            <li><strong><i class="glyphicon glyphicon-file"></i> Fitxategia amaituta:</strong> Itzulpen fitxategiak erauzi eta osorik itzultzea lortu dugu. Jokoa euskaraz dagoela probatuta dago. Jokoa euskaratzeko instalazio azalpenak jarraitu.<li>
+        </ul>
+    </div>
+
+    <div class="well">
+        <h3>Beste proiektu batzuk</h3>
+        <hr/>
+        <ul class="list-unstyled">
+            {% for link in links %}
+            <li><a href="{{link.url}}"><img src="{{link.irudia.get_profilesmall_url}}" alt="{{link.izena}}" title="{{link.izena}}"> {{link.izena}}</li>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
 
 {%endblock%}
