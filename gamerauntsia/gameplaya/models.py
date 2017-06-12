@@ -7,6 +7,7 @@ from django.utils import timezone
 from django.template import defaultfilters as filters
 from django.template.loader import get_template
 from django.template import Context
+from django.template.defaultfilters import truncatechars
 
 STATUS = (
     ('0', 'Zirriborroa'),
@@ -104,9 +105,9 @@ class GamePlaya(models.Model):
 
     def getTwitText(self):
         if self.erabiltzailea.twitter_id:
-            return self.izenburua + ' ' + self.get_absolute_url() + ' @%s 2dz' % (self.erabiltzailea.twitter_id)
+            return truncatechars(self.izenburua, 60) + ' ' + self.get_absolute_url() + ' @%s 2dz' % (self.erabiltzailea.twitter_id)
         else:
-            return self.izenburua + ' ' + self.get_absolute_url()
+            return truncatechars(self.izenburua, 100) + ' ' + self.get_absolute_url()
 
     def getTelegramText(self):
         return self.izenburua + ' ' + self.get_absolute_url()

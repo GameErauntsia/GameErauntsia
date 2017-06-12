@@ -11,6 +11,7 @@ from mptt.models import MPTTModel, TreeForeignKey
 from django.template.loader import get_template
 from django.template import Context
 from django.db.models.signals import post_save
+from django.template.defaultfilters import truncatechars
 
 MOTA = (
     ('0', 'Kanporaketa'),
@@ -123,9 +124,9 @@ class Txapelketa(models.Model):
     def getTwitText(self):
         twitter_ids = " ".join(erab.twitter_id for erab in self.adminak.all())
         if twitter_ids:
-            return self.izena + ' ' + self.get_absolute_url() + ' @%s 2dz' % (twitter_ids)
+            return truncatechars(self.izena, 60) + ' ' + self.get_absolute_url() + ' @%s 2dz' % (twitter_ids)
         else:
-            return self.izena + ' ' + self.get_absolute_url()
+            return truncatechars(self.izena, 100) + ' ' + self.get_absolute_url()
 
     def getTelegramText(self):
         return self.izena + ' ' + self.get_absolute_url()
