@@ -8,53 +8,36 @@
 
 {% block content %}
 
-<div class="row">      
+<div class="row">
     <iframe src="https://www.lehenhitza.eus/iframe_luzea" width="1170" height="132" frameborder="0" scrolling="no"></iframe>
 </div>
 
 <div class="row">
-    {% if twitch %}
-    <div class="col-sm-12"> 
-        <h2><span class="text-danger glyphicon glyphicon-play-circle"><span>Zuzenean<h2>
-    </div>
+    {% get_comment_count for live as comment_count %}
     <div class="col-sm-8">
+        {% if live.get_type == 'gameplaya' or live.get_type == 'atala'  %}
         <div class="flex-video widescreen">
-        <iframe src="http://www.twitch.tv/{{twitch.stream.channel.name}}/embed" frameborder="0" scrolling="no" height="378" width="620"></iframe>
+            <iframe width="700" height="394" src="//www.youtube.com/embed/{{live.bideoa}}" frameborder="0" allowfullscreen></iframe>
         </div>
+        {% else %}
+        <a href="{% url 'berria' live.slug %}"><img class="img-responsive" src="{{live.argazkia.get_news_frontpage_url}}"></a>
+        {% endif %}
     </div>
     <div class="col-sm-4">
-        <h1>{{twitch.stream.channel.status}}</h1>
-        <p><span class="glyphicon glyphicon-play"></span> {{twitch.stream.game}} | <span class="glyphicon glyphicon-eye-open"></span> {{twitch.stream.viewers}} ikusten
-        <p><iframe src="https://www.twitch.tv/{{twitch.stream.channel.name}}/chat?popout=" frameborder="0" scrolling="no" height="300" width="350"></iframe></p>
-        <p><a href="http://twitch.tv/{{twitch.stream.channel.name}}"><img src="{{STATIC_URL}}img/twitch.png" width="50"/> Ikusi {{twitch.stream.channel.name}} kanalean</a></p>
+        <h1><a href="{{live.get_absolute_url}}">{{live.get_title}}</a></h1>
+        {% if live.get_type == 'gameplaya' or live.get_type == 'atala'  %}
+            <p>
+                {% if live.get_type == 'gameplaya' %}<span class="glyphicon glyphicon-play"></span> {% if live.jokoa.url %}<a href="{% url 'game' live.jokoa.slug %}">{{live.jokoa.izena}} {%if live.jokoa.bertsioa %}{{live.jokoa.bertsioa}}{% endif %}</a>{% else %}{{live.jokoa}}{% endif%} | {% endif %}{% if live.iraupena_min or live.iraupena_seg %}<span class="glyphicon glyphicon-time"></span> {{live.iraupena_min}}min {{live.iraupena_seg}}seg{% else %}<span class="label label-danger">ZUZENEKOA</span>{% endif %}{% if live.get_type == 'gameplaya' %} | <img src="{{live.plataforma.icon.get_profilesmall_url}}" alt="{{live.plataforma.izena}}" caption="{{live.plataforma.izena}}"/>{% endif %}{% if comment_count %} | <a href="{{live.get_absolute_url}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}
+            </p>
+        {% else %}
+            <p>
+            <a href="{% url 'gamer_profile' live.erabiltzailea.username %}"><img src="{{live.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{live.erabiltzailea.getFullName}}</a> | <span class="glyphicon glyphicon-time"></span> {{live.pub_date|date:"Y/m/d H:i"}} {% for gai in live.gaia.all %}<span class="label label-success tags"><a href="{% url 'gaia' gai.slug %}">{{gai.izena}}</a></span>{% endfor %}
+            </p>
+        {% endif %}
+        <p>{{live.get_desk_index|safe}}</p>
+        <p>{% ratings live %}</p>
+        <a class="btn btn-primary btn-lg" href="{{live.get_absolute_url}}">Gehiago nahi? <span class="glyphicon glyphicon-play-circle"></span></a>
     </div>
-    {% else %}
-        {% get_comment_count for live as comment_count %}
-        <div class="col-sm-8">
-            {% if live.get_type == 'gameplaya' or live.get_type == 'atala'  %}
-            <div class="flex-video widescreen">
-                <iframe width="700" height="394" src="//www.youtube.com/embed/{{live.bideoa}}" frameborder="0" allowfullscreen></iframe>
-            </div>
-            {% else %}
-            <a href="{% url 'berria' live.slug %}"><img class="img-responsive" src="{{live.argazkia.get_news_frontpage_url}}"></a>
-            {% endif %}
-        </div>
-        <div class="col-sm-4">
-            <h1><a href="{{live.get_absolute_url}}">{{live.get_title}}</a></h1>
-            {% if live.get_type == 'gameplaya' or live.get_type == 'atala'  %}
-                <p>
-                    {% if live.get_type == 'gameplaya' %}<span class="glyphicon glyphicon-play"></span> {% if live.jokoa.url %}<a href="{% url 'game' live.jokoa.slug %}">{{live.jokoa.izena}} {%if live.jokoa.bertsioa %}{{live.jokoa.bertsioa}}{% endif %}</a>{% else %}{{live.jokoa}}{% endif%} | {% endif %}<span class="glyphicon glyphicon-time"></span> {{live.iraupena_min}}min {{live.iraupena_seg}}seg{% if live.get_type == 'gameplaya' %} | <img src="{{live.plataforma.icon.get_profilesmall_url}}" alt="{{live.plataforma.izena}}" caption="{{live.plataforma.izena}}"/>{% endif %}{% if comment_count %} | <a href="{{live.get_absolute_url}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}
-                </p>
-            {% else %}
-                <p>
-                <a href="{% url 'gamer_profile' live.erabiltzailea.username %}"><img src="{{live.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{live.erabiltzailea.getFullName}}</a> | <span class="glyphicon glyphicon-time"></span> {{live.pub_date|date:"Y/m/d H:i"}} {% for gai in live.gaia.all %}<span class="label label-success tags"><a href="{% url 'gaia' gai.slug %}">{{gai.izena}}</a></span>{% endfor %}
-                </p>
-            {% endif %}
-            <p>{{live.get_desk_index|safe}}</p>
-            <p>{% ratings live %}</p>
-            <a class="btn btn-primary btn-lg" href="{{live.get_absolute_url}}">Gehiago nahi? <span class="glyphicon glyphicon-play-circle"></span></a>
-        </div>
-    {% endif %}
 </div>
 
 <hr>
@@ -182,7 +165,7 @@
     <div class="row">
         <div class="col-md-8">
             <p>Minecraft zerbitzaria guztiontzat eskuragarri dagoen dohako zerbitzu bat da. Jolastu ahal izateko ordea, izen ematea eta arau gutxi batzuk betetzea beharrezkoa da. </p>
-        </div>      
+        </div>
         <div class="col-md-4">
             <a href="{% url 'minecraft_mapa' %}" class="btn btn-lg btn-default">Mapa handia</a>
             <a href="{% url 'minecraft_index' %}" class="btn btn-lg btn-primary">Informazio gehiago</a>
