@@ -285,3 +285,8 @@ padding: 0 7px 0 26px;
   top: 9px;
   z-index: 2;
 }
+
+.img-center {
+	margin: 0 auto;
+  box-shadow: 1px 5px 5px rgba(0, 0, 0, .3);
+}
