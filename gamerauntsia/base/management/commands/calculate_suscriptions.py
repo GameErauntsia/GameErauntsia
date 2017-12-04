@@ -3,7 +3,7 @@ from datetime import datetime
 from gamerauntsia.bazkidetza.models import Bazkidea
  
 def calc_suscription():
-    users = Bazkidea.objects.filter(paid=True, expire_date__gt=datetime.now())
+    users = Bazkidea.objects.filter(paid=True, expire_date__lt=datetime.now())
 
     for user in users:
         user.paid = False
