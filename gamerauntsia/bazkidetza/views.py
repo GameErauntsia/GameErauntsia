@@ -41,5 +41,6 @@ def payment_done(request):
     if request.user.is_authenticated() and Bazkidea.objects.filter(user=request.user).exists():
         bazkide = Bazkidea.objects.get(user=request.user)
         bazkide.paid = True
+        bazkide.expire_date = timezone.localtime(timezone.now().replace(year=timezone.now().year + 1))
         bazkide.save()
     return HttpResponseRedirect(reverse('bazkidetza'))
