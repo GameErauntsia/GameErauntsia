@@ -3,9 +3,9 @@ from django.contrib import admin
 
 
 class TerminoaAdmin(admin.ModelAdmin):
-    list_display = ['term_eu','term_es','term_en','jokoa']
+    list_display = ['term_eu','term_es','term_en']
     search_fields = ['term_eu','term_es','term_en']
-    raw_id_fields = ['jokoa', ]
+    filter_horizontal = ['jokoak', ]
     ordering = ['term_eu', ]
 
 

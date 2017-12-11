@@ -15,10 +15,11 @@ from gamerauntsia.log.models import Log
 import telebot
 
 class Terminoa(models.Model):
-    term_eu = models.CharField(max_length=64)
-    term_es = models.CharField(max_length=64,null=True,blank=True)
-    term_en = models.CharField(max_length=64,null=True,blank=True)
-    jokoa = models.ForeignKey(Jokoa)
+    term_eu = models.TextField()
+    term_es = models.TextField(null=True,blank=True)
+    term_en = models.TextField(null=True,blank=True)
+    jokoak = models.ManyToManyField(Jokoa, blank=True)
+    jokoa = models.ForeignKey(Jokoa, related_name="jokoa")
 
     class Meta:
         verbose_name = "Terminoa"
