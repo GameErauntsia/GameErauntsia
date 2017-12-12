@@ -14,46 +14,6 @@
 </div>
 
 <div class="col-sm-9">
-    <!-- <h2>Guk itzulitako jokoak</h2> -->
-
-    <!-- <form class="pull-right" method="get" action="{% url 'search_itzulpenak' %}">
-        <input id="search_term" value="" name="term" placeholder="Bilatu jokoa"/>
-        <input type="submit" value="Bilatu" class="btn btn-default"/>
-    </form> -->
-
-    <!-- <div id="content">
-        <div class="col-sm-12">
-            <div class="table-responsive">
-                <table class="table table-condensed table-hover">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Jokoa</th>
-                            <th>Plataforma</th>
-                            <th>Fitxategi izena</th>
-                            <th>Egoera</th>
-                            <th>Azken bertsioa</th>
-                            <th>Deskargatu</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for item in items %}
-                        <tr>
-                            <td><img src="{{item.jokoa.logoa.get_forum_thumbnail_url}}" alt="{{item.jokoa.izena}} {{item.jokoa.bertsioa}} bideojokoak" title="{{item.jokoa.izena}} {{item.jokoa.bertsioa}} bideojokoak"/></td>
-                            <td><strong><a href="{{item.jokoa.get_absolute_url}}">{{item.jokoa.izena}} {{item.jokoa.bertsioa}}</a></strong></td>
-                            <td>{{item.plataforma.izena}}</td>
-                            <td>{{item.izena}}</td>
-                            <td>{{item.get_status_display}}</td>
-                            <td>{{item.mod_date|date:"Y/m/d H:i"}}</td>
-                            <td><a href="{{item.get_absolute_url}}"><i class="glyphicon glyphicon-download-alt"></i></a></td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div> -->
-
     <h2>Euskaraz dauden jokoak</h2>
 
     <div id="content">
@@ -66,7 +26,7 @@
                             <th>Jokoa</th>
                             <th>Plataforma</th>
                             <th>Itzulpena</th>
-                            <th class="text-center">Instalazio azalpena</th>
+                            <th class="text-center">Euskaratzeko pausoak</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -76,13 +36,35 @@
                             <td><strong><a href="{{item.jokoa.get_absolute_url}}">{{item.jokoa.izena}} {{item.jokoa.bertsioa}}</a></strong></td>
                             <td>{% for plat in item.plataformak.all %}{{plat.izena}}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
                             <td>{% if item.itzulpena %}{{item.is_ge_translation_icon}} <br/><a href="{{item.itzulpena.get_absolute_url}}"><i class="glyphicon glyphicon-download-alt"></i> Deskargatu</a>{% elif item.garatzaileak_itzulia %}<i class="glyphicon glyphicon-home"></i> Garatzaileek itzulita{% else %}{% if item.online_url %}<a href="{{item.online_url}}"><i class="glyphicon glyphicon-globe"></i> Online</a>{% else %}<i class="glyphicon glyphicon-globe"></i> Online{% endif %}{% endif %}</td>
-                            <td class="text-center">{% if item.itzulpena.instalazioa %}<a tabindex="0" class="instalazioa" role="button" data-toggle="popover" data-trigger="focus" title="Instalazioa" data-content="{{item.itzulpena.instalazioa}}"><i class="glyphicon glyphicon-book"></i></a>{% else %}-{% endif %}</td>
+                            <td class="text-center">{% if item.instalazioa %}<a role="button" data-toggle="modal" data-target="#instalazioa" title="Euskaratzeko pausoak" data-title="{{item.jokoa.izena}} euskaratzeko pausoak" data-content="{{item.instalazioa}}"><i class="glyphicon glyphicon-book"></i></a>{% else %}-{% endif %}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
+                <div class="modal fade" id="instalazioa" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title"></h4>
+                            </div>
+                            <div class="modal-body">
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Ados</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <script>
-                    $('.instalazioa').popover()
+                    $('#instalazioa').on('show.bs.modal', function (event) {
+                        var button = $(event.relatedTarget)
+                        var title = button.data('title')
+                        var content = button.data('content')
+                        var modal = $(this)
+                        modal.find('.modal-title').html('<span class="glyphicon glyphicon-book"></span> ' + title)
+                        modal.find('.modal-body').html(content)
+                    })
                 </script>
             </div>
         </div>

@@ -1,5 +1,6 @@
 from django.contrib import admin
 from models import Itzulpena, EuskarazkoJokoa, Euskalinkak
+from forms import EuskarazkoJokoaAdminForm
 
 class ItzulpenakAdmin(admin.ModelAdmin):
 
@@ -33,6 +34,7 @@ class EuskarazkoJokoaAdmin(admin.ModelAdmin):
     search_fields = ['jokoa__izena', ]
     raw_id_fields = ['jokoa', ]
     ordering = ['-pub_date', ]
+    form = EuskarazkoJokoaAdminForm
 
 
 class EuskalinkakAdmin(admin.ModelAdmin):
