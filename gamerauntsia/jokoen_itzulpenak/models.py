@@ -14,7 +14,6 @@ class Itzulpena(models.Model):
     izena = models.CharField(max_length=150, verbose_name="Fitxategi izena")
     status = models.CharField(max_length=1, choices=IPS_STATUS, default='0',verbose_name="Egoera")
     ipsfile = models.FileField(upload_to='ips')
-    instalazioa = models.TextField(blank=True)
     publikoa_da = models.BooleanField(default=False,verbose_name="Publikoa da")
 
     pub_date = models.DateTimeField('publikazio data', default=datetime.now)
@@ -38,6 +37,7 @@ class EuskarazkoJokoa(models.Model):
     itzulpena = models.ForeignKey(Itzulpena, blank=True, null=True)
     garatzaileak_itzulia = models.BooleanField(default=False, verbose_name="Garatzaileak itzulia")
     online_url = models.URLField(blank=True, verbose_name="Online itzulpen proiektua")
+    instalazioa = models.TextField(blank=True)
 
     publikoa_da = models.BooleanField(default=False,verbose_name="Publikoa da")
     pub_date = models.DateTimeField('publikazio data', default=datetime.now)
