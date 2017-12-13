@@ -41,7 +41,7 @@
                         <a class="btn btn-default" href="/kudeatu/django_forum_app/post/{{post.id}}">Editatu</a>
                         {% endif %}
                         {% if not topic.closed %}
-                        <a class="btn btn-default" href="{% url 'reply' forum.slug pk %}?author={{post.creator}}&quote={{post.body|truncatewords:30}}">Zitatu</a>
+                        <a class="btn btn-default" href="{% url 'reply' forum.slug topic.id %}?author={{post.creator}}&quote={{post.body|truncatewords:30}}">Zitatu</a>
                         {% endif %}
                         </div>
                         {% endif %}
@@ -71,9 +71,9 @@
                 {% if topic.closed %}
                 <div class="alert alert-warning pull-right" role="alert"><strong>Berandu!</strong> Gai hau dagoeneko itxita dago...</div>
                 {% else %}
-                <a class="btn btn-primary pull-right" href="{% url 'reply' forum.slug pk %}">Erantzun</a>
+                <a class="btn btn-primary pull-right" href="{% url 'reply' forum.slug topic.id %}">Erantzun</a>
                 {% if user.is_superuser %}
-                <a class="btn btn-default pull-right" href="{% url 'close-topic' forum.slug pk %}">Itxi gaia</a>
+                <a class="btn btn-default pull-right" href="{% url 'close-topic' forum.slug topic.id %}">Itxi gaia</a>
                 {% endif %}
                 {% endif %}
             </div>

@@ -45,7 +45,7 @@ def post_to_page(obj, data={}):
     message = u''.encode('utf8')
     try:
         post(PAGE_ID, component, message, **data)
-    except Exception, e:
+    except Exception:
         pass
 
 def post_social(obj):
