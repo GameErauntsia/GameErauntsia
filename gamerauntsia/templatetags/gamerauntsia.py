@@ -1,6 +1,6 @@
 from django import template
 from photologue.models import Photo
-import urllib2
+import urllib
 import xmltodict
 
 register = template.Library()
@@ -8,7 +8,7 @@ register = template.Library()
 
 def get_urlxml(url):
     stream = []
-    raw_data = urllib2.urlopen(url)
+    raw_data = urllib.urlopen(url)
     data = raw_data.read()
     raw_data.close()
     stream = dict(xmltodict.parse(data))

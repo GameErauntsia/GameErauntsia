@@ -20,7 +20,7 @@ class Kategoria(models.Model):
     slug = models.SlugField(db_index=True, unique=True,
                             help_text="Eremu honetan kategoria honen URL helbidea zehazten ari zara.")
     desk = models.TextField(max_length=256, null=True, blank=True)
-    irudia = models.ForeignKey(Photo, null=True, blank=True)
+    irudia = models.ForeignKey(Photo, null=True, blank=True, on_delete=models.DO_NOTHING)
 
     class Meta:
         verbose_name = "Kategoria"
@@ -51,16 +51,16 @@ class GamePlaya(models.Model):
     iraupena_min = models.IntegerField(default=0)
     iraupena_seg = models.IntegerField(null=False, blank=False, default=0)
 
-    argazkia = models.ForeignKey(Photo)
+    argazkia = models.ForeignKey(Photo, on_delete=models.DO_NOTHING)
     bideoa = models.CharField(max_length=100, null=True, blank=True,
                               help_text="Eremu honetan Youtube bideoaren URL kodea itsatsi behar duzu. Adb.: c21XAuI3aMo")
 
-    jokoa = models.ForeignKey(Jokoa, related_name='gameplay')
-    plataforma = models.ForeignKey(Plataforma, related_name='gameplay')
-    zailtasuna = models.ForeignKey(Zailtasuna, related_name='gameplay')
+    jokoa = models.ForeignKey(Jokoa, related_name='gameplay', on_delete=models.DO_NOTHING)
+    plataforma = models.ForeignKey(Plataforma, related_name='gameplay', on_delete=models.DO_NOTHING)
+    zailtasuna = models.ForeignKey(Zailtasuna, related_name='gameplay', on_delete=models.DO_NOTHING)
     kategoria = models.ManyToManyField(Kategoria, related_name='gameplay')
 
-    erabiltzailea = models.ForeignKey(GamerUser, related_name='gameplayak')
+    erabiltzailea = models.ForeignKey(GamerUser, related_name='gameplayak', on_delete=models.DO_NOTHING)
     publikoa_da = models.BooleanField(default=False, verbose_name="Publikatzeko prest")
     pub_date = models.DateTimeField('publikazio data', default=timezone.now)
     mod_date = models.DateTimeField('modifikazio data', default=timezone.now)

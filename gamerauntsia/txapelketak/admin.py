@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django import forms
 from gamerauntsia.txapelketak.models import Txapelketa, Partida, Partaidea
-from forms import PartidaInlineForm, TxapelketaAdminForm
+from .forms import PartidaInlineForm, TxapelketaAdminForm
 from mptt.admin import MPTTModelAdmin
 
 class PartidaForm(forms.ModelForm):

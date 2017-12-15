@@ -5,7 +5,7 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from gamerauntsia.txapelketak.models import Partida, Txapelketa, Partaidea
 from gamerauntsia.txapelketak.forms import TaldeaForm
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from gamerauntsia.txapelketak.serializers import TxapelketaSerializer

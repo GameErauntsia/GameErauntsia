@@ -180,15 +180,17 @@ TEMPLATES = [
                 'django_mobile.context_processors.flavour',
                 'gamerauntsia.context_processors.fb_app_id',
             ],
-            'loaders': [
-                # insert your TEMPLATE_LOADERS here
-                'django_mobile.loader.Loader',
-                'django.template.loaders.filesystem.Loader',
-                'django.template.loaders.app_directories.Loader',
-            ]
         },
     },
 ]
+
+
+TEMPLATE_LOADERS = [
+    'django_mobile.loader.Loader',
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+]
+
 
 MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
@@ -293,16 +295,16 @@ CORS_ORIGIN_ALLOW_ALL = True
 # more details on how to customize your logging configuration.
 
 try:
-    from tiny_mce_settings import *
+    from .tiny_mce_settings import *
 except:
     pass
 
 try:
-    from server_settings import *
+    from .server_settings import *
 except:
     pass
 
 try:
-    from local_settings import *
+    from .local_settings import *
 except:
     pass

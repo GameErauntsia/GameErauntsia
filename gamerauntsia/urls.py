@@ -95,7 +95,7 @@ urlpatterns = [
     url(r'^comments/', include('django_comments.urls')),
 
     # KUDEATU
-    url(r'^kudeatu/', include(admin.site.urls)),
+    url(r'^kudeatu/', admin.site.urls),
     url(r'^photologue/', include('photologue.urls', namespace='photologue')),
 
     # MEZUAK
@@ -108,7 +108,7 @@ urlpatterns = [
     url(r'^tinymce/', include('tinymce.urls')),
 
     # STAR RATINGS
-    url(r'^ratings/', include('star_ratings.urls', namespace='ratings', app_name='ratings')),
+    url(r'^ratings/', include('star_ratings.urls', namespace='ratings')),
 
     # APIA
     url(r'^api/1.0/', include('gamerauntsia.api.urls')),

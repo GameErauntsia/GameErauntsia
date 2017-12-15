@@ -8,7 +8,7 @@ from gamerauntsia.gamer.models import GamerUser
 
 
 class Token(models.Model):
-    user = models.ForeignKey(GamerUser)
+    user = models.ForeignKey(GamerUser, on_delete=models.DO_NOTHING)
     token = models.CharField(max_length=40, primary_key=True)
     created = models.DateTimeField(auto_now_add=True)
 

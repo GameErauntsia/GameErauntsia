@@ -31,10 +31,10 @@ class Itzulpena(models.Model):
 
 
 class EuskarazkoJokoa(models.Model):
-    jokoa = models.ForeignKey(Jokoa)
+    jokoa = models.ForeignKey(Jokoa, on_delete=models.DO_NOTHING)
     plataformak = models.ManyToManyField(Plataforma)
 
-    itzulpena = models.ForeignKey(Itzulpena, blank=True, null=True)
+    itzulpena = models.ForeignKey(Itzulpena, blank=True, null=True, on_delete=models.DO_NOTHING)
     garatzaileak_itzulia = models.BooleanField(default=False, verbose_name="Garatzaileak itzulia")
     online_url = models.URLField(blank=True, verbose_name="Online itzulpen proiektua")
     instalazioa = models.TextField(blank=True)
@@ -61,7 +61,7 @@ class Euskalinkak(models.Model):
     izena = models.CharField(max_length=150, verbose_name="Izena")
     url = models.URLField()
 
-    irudia = models.ForeignKey(Photo)
+    irudia = models.ForeignKey(Photo, on_delete=models.DO_NOTHING)
 
     publikoa_da = models.BooleanField(default=False,verbose_name="Publikoa da")
     pub_date = models.DateTimeField('publikazio data', default=datetime.now)

@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404
 from django.db.models import Count
 from django.db.models import Q
 from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from gamerauntsia.utils.images import handle_uploaded_file
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages

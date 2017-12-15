@@ -21,7 +21,7 @@ class Gaia(models.Model):
     slug = models.SlugField(db_index=True, unique=True,
                             help_text="Eremu honetan gai honen URL helbidea zehazten ari zara.")
     desk = models.TextField(max_length=256, null=True, blank=True)
-    irudia = models.ForeignKey(Photo, null=True, blank=True)
+    irudia = models.ForeignKey(Photo, null=True, blank=True, on_delete=models.DO_NOTHING)
 
     class Meta:
         verbose_name = "Gaia"
@@ -39,9 +39,9 @@ class Berria(models.Model):
 
     gaia = models.ManyToManyField(Gaia)
 
-    erabiltzailea = models.ForeignKey(GamerUser, related_name='berriak')
-    argazkia = models.ForeignKey(Photo, null=True, blank=True)
-    jokoa = models.ForeignKey(Jokoa, null=True, blank=True,
+    erabiltzailea = models.ForeignKey(GamerUser, related_name='berriak', on_delete=models.DO_NOTHING)
+    argazkia = models.ForeignKey(Photo, null=True, blank=True, on_delete=models.DO_NOTHING)
+    jokoa = models.ForeignKey(Jokoa, null=True, blank=True, on_delete=models.DO_NOTHING,
                               help_text="Artikulu honek joko zehaz batekin loturarik badu, adierazi hemen.")
 
     publikoa_da = models.BooleanField(default=False, verbose_name="Publikatzeko prest")

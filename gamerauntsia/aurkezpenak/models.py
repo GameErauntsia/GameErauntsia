@@ -10,7 +10,7 @@ class Aurkezpena(models.Model):
     abstract = models.TextField(max_length=256,null=True,blank=True)
     slides = models.TextField()
 
-    erabiltzailea = models.ForeignKey(GamerUser)
+    erabiltzailea = models.ForeignKey(GamerUser, on_delete=models.DO_NOTHING)
 
     pub_date = models.DateTimeField('publikazio data', default=datetime.now)
     mod_date = models.DateTimeField('modifikazio data', default=datetime.now)

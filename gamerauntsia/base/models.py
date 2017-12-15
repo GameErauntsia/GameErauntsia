@@ -19,7 +19,6 @@ class Terminoa(models.Model):
     term_es = models.TextField(null=True,blank=True)
     term_en = models.TextField(null=True,blank=True)
     jokoak = models.ManyToManyField(Jokoa, blank=True)
-    jokoa = models.ForeignKey(Jokoa, related_name="jokoa")
 
     class Meta:
         verbose_name = "Terminoa"

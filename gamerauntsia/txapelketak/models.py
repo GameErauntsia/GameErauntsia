@@ -39,7 +39,7 @@ class Txapelketa(models.Model):
     desk = models.TextField(max_length=256)
     arauak = models.TextField(max_length=256, null=True, blank=True)
     saria = models.TextField(max_length=256, null=True, blank=True)
-    irudia = models.ForeignKey(Photo, null=True, blank=True)
+    irudia = models.ForeignKey(Photo, null=True, blank=True, on_delete=models.DO_NOTHING)
     mota = models.CharField(max_length=1, choices=MOTA, default='0')
     modalitatea = models.CharField(max_length=1, choices=MODALITATEA, default='0')
     status = models.CharField(max_length=1, choices=EGOERA, default='0')
@@ -50,7 +50,7 @@ class Txapelketa(models.Model):
 
     jokalariak = models.ManyToManyField(GamerUser, related_name="jokalariak", verbose_name="Inskripzioa", blank=True)
 
-    jokoa = models.ForeignKey(Jokoa)
+    jokoa = models.ForeignKey(Jokoa, on_delete=models.DO_NOTHING)
     adminak = models.ManyToManyField(GamerUser, related_name="tx_adminak", verbose_name="Egileak")
 
     irabazi = models.IntegerField('Puntuak irabaztean', default=0)
@@ -160,14 +160,14 @@ class Txapelketa(models.Model):
 
 class Partaidea(models.Model):
     izena = models.CharField(max_length=64, null=True, blank=True)
-    irudia = models.ForeignKey(Photo, null=True, blank=True)
+    irudia = models.ForeignKey(Photo, null=True, blank=True, on_delete=models.DO_NOTHING)
 
-    txapelketa = models.ForeignKey(Txapelketa)
+    txapelketa = models.ForeignKey(Txapelketa, on_delete=models.DO_NOTHING)
     irabazlea = models.BooleanField(default=False)
 
     jokalariak = models.ManyToManyField(GamerUser, blank=True, verbose_name="Titularrak")
     ordezkoak = models.ManyToManyField(GamerUser, related_name="ordezkoak", blank=True, verbose_name="Ordezkoak")
-    kapitaina = models.ForeignKey(GamerUser, related_name="kapitaina", null=True, blank=True)
+    kapitaina = models.ForeignKey(GamerUser, related_name="kapitaina", null=True, blank=True, on_delete=models.DO_NOTHING)
 
     win = models.IntegerField('Irabazitakoak', default=0)
     lose = models.IntegerField('Galdutakoak', default=0)
@@ -232,7 +232,7 @@ class Partaidea(models.Model):
 
 class Partida(MPTTModel):
     partaideak = models.ManyToManyField(Partaidea, blank=True)
-    parent = TreeForeignKey('self', null=True, blank=True, related_name='children')
+    parent = TreeForeignKey('self', null=True, blank=True, related_name='children', on_delete=models.DO_NOTHING)
     jardunaldia = models.IntegerField('Jardunaldia', default=1)
     emaitza = models.CharField(max_length=50, null=True, blank=True)
     average = models.CharField(max_length=50, null=True, blank=True)
@@ -240,7 +240,7 @@ class Partida(MPTTModel):
     is_playoff = models.BooleanField('Playoff motakoa', default=False,
                                      help_text='Markatu hau txapelketa konbinatu bateko playoff-aren partida bat bada')
 
-    txapelketa = models.ForeignKey(Txapelketa)
+    txapelketa = models.ForeignKey(Txapelketa, on_delete=models.DO_NOTHING)
     bideoa = models.CharField(max_length=150, null=True, blank=True)
     start = models.IntegerField('Hasiera', null=True, blank=True)
     end = models.IntegerField('Bukaera', null=True, blank=True)
