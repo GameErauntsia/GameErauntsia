@@ -5,7 +5,7 @@ from django.db.models.signals import post_save
 from django.contrib.contenttypes.models import ContentType
 from gamerauntsia.utils.social import post_to_twitter
 from django_comments.models import Comment
-from django.db.models import Count
+from django.db.models import Count  
 from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.jokoa.models import Jokoa
 from gamerauntsia.berriak.models import Berria
@@ -13,6 +13,7 @@ from gamerauntsia.gameplaya.models import GamePlaya
 from django_bootstrap_calendar.models import CalendarEvent
 from gamerauntsia.log.models import Log
 import telebot
+
 
 class Terminoa(models.Model):
     term_eu = models.TextField()
