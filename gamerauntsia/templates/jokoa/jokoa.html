@@ -69,8 +69,10 @@
         {% for berria in berriak %}
         {% get_comment_count for berria as comment_count %}
         <div class="col-sm-4">
-            <a href="{% url 'berria' berria.slug %}"><img class="img-responsive" src="{{berria.argazkia.get_gp_thumbnail_url}}"></a>
-            <h2>{{berria.izenburua}}</h2>
+            <a href="{% url 'berria' berria.slug %}">
+                <img class="img-responsive" src="{{berria.argazkia.get_gp_thumbnail_url}}" />
+                <h2>{{berria.izenburua}}</h2>
+            </a>
             <p><a href="{% url 'gamer_profile' berria.erabiltzailea.username %}"><img src="{{berria.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{berria.erabiltzailea.getFullName}}</a> | <span class="glyphicon glyphicon-time"></span> {{berria.pub_date|date:"Y/m/d H:i"}} {% for gai in berria.gaia.all %}<span class="label label-success tags">{{gai.izena}}</span>{% endfor %}</p>
             <p>{{berria.get_desk_txikia|safe}}</p>
         </div>

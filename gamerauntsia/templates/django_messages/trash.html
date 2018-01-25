@@ -24,7 +24,7 @@
                 {{ message.subject }}
                 </td>
                 <td>{{ message.sent_at|date:_("DATETIME_FORMAT") }}</td>
-                <td><a class="btn btn-sm btn-danger" href="{% url 'messages_undelete' message.id %}"><i class="fa fa-trash-o"></i></a></td>
+                <td><a class="btn btn-sm btn-danger" href="{% url 'messages_undelete' message.id %}"><i class="glyphicon glyphicon-trash"></i></a></td>
             </tr>
         {% endfor %}
             </tbody>

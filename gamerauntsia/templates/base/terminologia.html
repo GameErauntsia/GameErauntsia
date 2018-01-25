@@ -40,7 +40,7 @@
                             <td><strong>{{item.term_eu}}</strong></td>
                             <td>{{item.term_es}}</td>
                             <td>{{item.term_en}}</td>
-                            <td><a href="{% url 'game' item.jokoa.slug %}">{{item.jokoa.izena}}</a></td>
+                            <td>{% for jokoa in item.jokoak.all %}<a href="{% url 'game' jokoa.slug %}">{{jokoa.izena}}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
