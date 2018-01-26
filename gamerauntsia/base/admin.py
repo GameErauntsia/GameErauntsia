@@ -1,5 +1,8 @@
 from models import Terminoa
 from django.contrib import admin
+from gamerauntsia.base.forms import FlatPageForm
+from django.contrib.flatpages.models import FlatPage
+from tinymce.widgets import TinyMCE
 
 
 class TerminoaAdmin(admin.ModelAdmin):
@@ -28,3 +31,9 @@ class PhotoAdmin2(PhotoAdmin):
 
 admin.site.unregister(Photo)
 admin.site.register(Photo, PhotoAdmin2)
+
+
+class FlatPageAdmin(admin.ModelAdmin):
+    form = FlatPageForm
+admin.site.unregister(FlatPage)
+admin.site.register(FlatPage, FlatPageAdmin)
