@@ -1,4 +1,4 @@
-{%load breadcrumbs include%}
+{%load breadcrumbs include flatpages %}
 <!DOCTYPE html>
 <html lang="eu">
 
@@ -87,6 +87,15 @@
                             <li><a href="{% url 'game_index' %}" title="Jokoen katalogoa">Jokoen katalogoa</a></li>
                             <li role="presentation" class="divider"></li>
                             <li><a href="{% url 'terminologia' %}" title="Terminologia">Terminologia</a></li>
+                        </ul>
+                    </li>
+                    <li class="{% if request.path|contains:"/ekimenak/" %}active{% endif %}">
+                        <a href="{% url 'komunitatea' %}" class="dropdown-toggle" data-toggle="dropdown">Ekimenak <b class="caret"></b></a>
+                        {% get_flatpages as flatpages %}
+                        <ul class="dropdown-menu" role="menu">
+                            {% for page in flatpages %}
+                            <li><a href="{{ page.url }}" title="{{ page.title }}">{{ page.title }}</a></li>
+                            {% endfor %}
                         </ul>
                     </li>
                     <li class="{% if request.path|contains:"/komunitatea/" or request.path|contains:"/aurkezpenak/" %}active{% endif %}">
