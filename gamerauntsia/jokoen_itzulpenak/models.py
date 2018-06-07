@@ -5,6 +5,7 @@ from photologue.models import Photo
 from django.utils.html import mark_safe
 
 IPS_STATUS = (
+    ('-', 'Hasita'),
     ('0', 'Erdizka'),
     ('1', 'Probatzeko'),
     ('2', 'Amaituta'),
