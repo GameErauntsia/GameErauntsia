@@ -13,6 +13,7 @@ TINYMCE_DEFAULT_CONFIG = {
     "media_poster": False,
     "media_dimensions": False,
     "content_css": "/static/css/tinymce_content.css",
+    "extended_valid_elements" : "script[src|type|language]",
 }
 
 TINYMCE_SMALL_BODY_CONFIG = {
