@@ -53,26 +53,23 @@
             </div>
             <br/>
 
-            <p>Game Erauntsiaren eskutik lehen euskarazko Minecraft zerbitzaria daukazue eskuragai. Zerbitzarira sartzeko <strong>1.8 bertsioa</strong> izan behar duzu jolasean. Hona hemen zerbitzarian parte hartzeko jarraitu beharreko pausoak:</p>
-            <ul>
-                <li>Jarraian ageri diren arauak irakurri behar dituzu! Arau hauek onartzea oso garrantzitsua da!</li>
-                <li>Sisteman erabiltzaile bat sortu behar duzu lehendik ez baduzu</li>
-                <li>Jokoan izen emateko botoia sakatu behar duzu orrialde honetan. <strong>Gogoratu hau egitean berauek onartzen dituzula esan nahi duela! Izan ARDURATSUA!</strong></li>
-            </ul>
+            <p>Game Erauntsiaren eskutik lehen euskarazko Minecraft zerbitzaria duzue eskuragai. Zerbitzarira sartzeko 1.12.2 bertsioa izan behar duzu jolasean. Zerbitzarian bizikidetza egoki bat bermatzeko jarraian dagoen araudia irakurtzea gomendatzen da.</p>
         	<h2>Araudi eta baldintzak</h2>
         	<ul>
         		<li>Gogoratu Minecraft-eko lehen zerbitzari euskalduna dela, beraz txat-etik derrigorrezkoa da euskaraz hitz egitea.</li>
 			<li>Zerbitzariko jokalariak eta administratzaileak errespetatu.</li>
 			<li>Txata modu egokian erabili: Irainak, spam-a, iruzurrak… debekatuta daude</li>
-			<li>Mundu nagusian zuri esleitutako partzelan bakarrik eraiki dezakezu. Partzela hauek 5 diamanteko prezioa dute, eta administratzaile bati eskatu beharko zaio erosi nahi izanez gero. Eraikinen neurri maximoa 15 bloke dira, bai gorantz eta bai beherantz.</li>
-			<li>Zerbitzarian partzela gehiagorekin mundu lau bat dago. Partzela hauek erosteko ezinbestekoa da lehenago mundu nagusian bat erostea, eta ezingo dira etxebizitza nagusi bezala erabili. Prezioa: 200 € edo 20 diamante</li>
-			<li>Ez ezazu eraiki errekurtsoen munduan! Munduan noizean behin berritzen da.</li>
+			<li>Mundu nagusian zuri esleitutako partzelan bakarrik eraiki dezakezu. Partzela hauetako bat nahi izatekotan, GE-an erregistratuta egotea beharrezkoa da eta administratzaile bati eskatu beharko zaio baldintza betez gero. Eraikinen neurri maximoa 15 bloke dira, bai gorantz eta bai beherantz.</li>
+			<li>Mundu nagusian partzela izanez gero eta 3 hilabetetan zerbitzarira ez sartuz gero, partzela galdutzat emango da. Arau hau partzela abandonatu asko ez izateko da.</li>
+			<li>Zerbitzarian partzela gehiagorekin mundu berezi bat dago. Partzela hauek erosteko ezinbestekoa da lehenago mundu nagusian bat edukitzea. Prezioa 20 diamantekoa izango da 32x32 blokeko esparruarentzat. 64x64-ra handitzea nahi bada 20 diamante bloke ordaindu beharko dira.</li>
+			<li>Ez ezazu eraiki errekurtsoen munduan! Munduan noizean behin berritzen baita.</li>
 			<li>Zerbitzariaren eraikuntza irekia da, edozein erabiltzailek hartu dezake parte. Horretarako lehenago foroan idatzi beharko du eskaera proposamena adieraziz.</li>
-			<li>Aurreko arauetako bat hausteak zigorra jasotzea ekarri dezake: Hitzez atentzioa ematetik,  zerbitzaritik betirako kanporatua izateraino.</li>
+			<li>Zerbitzarian jokalarien 3 kategoria daude: Arruntak, Erregistratuak eta VIP-ak. Erregistratuek maskota zein elementu apaingarri batzuk dituk eta VIP-ek berriz guztiak.</li>
+			<li>Aurreko arauetako bat hausteak zigorra jasotzea ekarri dezake: Hitzez atentzioa ematetik, zerbitzaritik betirako kanporatua izateraino.</li>
 			<li>Arau hauste bat ikusi edo jasan ezkero, idatzi <a href="/kontaktua">kontaktura</a> noiz/non/nork/zer gertatu den adieraziz eta guk beharrezko ikerketak egin ostean, erabaki bat hartuko dugu.</li>
         	</ul>
 
-            <div class="well">
+            /*<div class="well">
                 <h2>Izen ematea</h2>
                 {% if user.is_authenticated %}
                     {% if user.is_mc_gamer %}
@@ -90,7 +87,7 @@
                     <p>Zerbitzarian parte hartu ahal izateko lehendabizi Game Erauntsian izena eman behar duzu.</p>
                     <a class="btn btn-lg btn-primary" href="{% url 'auth_login' %}?next={{request.path}}" title="Log in"><i class="glyphicon glyphicon-user"></i> {% trans 'Log in' %}</a>
                 {% endif %}
-            </div>
+            </div>*/
 
             <h2>Minecraft mundua</h2>
             <div class="col-sm-12">
@@ -100,37 +97,21 @@
 
             <a id="VIP"></a>
             <h2>Izan zaitez VIP!</h2>
-            <p>Euskal Minecraft zebitzariak hainbat gastu ditu mantenuan bakarrik. Horiek tapatzeko erabiltzaileen VIP sistema bat erabiltzen dugu. Oso erraza eta merkea da eta abantaila ugari lor ditzakezue:</p>
+            <p>Game Erauntsiaren proiektuari bultzada emateko bazkidetza sistema bat dugu non beronek zerbitzarian VIP izaera izatea dakarren. Oso erraza eta merkea da eta abantaila ugari lor ditzakezue:</p>
             <ul>
                 <li>Zerbitzariak <strong>30 erabiltzaileko muga</strong> dauka oraingoz. Horrek esan nahi du, zerbitzarira konektatzen 32. erabiltzailea bazara eta ez baduzu VIP pasea, kanpoan geratuko zarela.</li>
                 <li>Jokua jendez gainezka baldin badago eta VIP erabiltzaileren bat konektatzen bada, erabiltzaile arrunt bat <strong>automatikoki kanporatua</strong> izango da.</li>
                 <li>VIP erabiltzaileak normalak baino <strong>maskota eta elementu gehiago ditu</strong> eskura jokoan.</li>
-                <li>Pribilegiodun erabiltzailea izan zaitezke <strong>soilik urteko 10€ ordainduz</strong>!</li>
+                <li>VIP erabiltzailea izan zaitezke <strong>soilik urteko 10€ ordainduz</strong>!</li>
                 <li>Egin ekarpena PayPal bidez eta <a href="{% url 'kontaktua' %}">jakinarazi guri</a></li>
             </ul>
 
             <h2>Zerbitzarira konektatzeko pausoak</h2>
             <p>Zerbitzarira sartzeko pausoak honakoak dira:</p>
             <ul>
-                <li>Zerbitzarian sartu ahal izateko ezinbestekoa da GE-ko Minecraft atalean izena ematea. Jarraitu beharko pausoak:
-			<ul>
-			        <li>Game Erauntsiko zure erabiltzailean sartu.</li>
-				<li>‘Profila editatu’  atalera joan.</li>
-				<li>Ireki berri den orrialdean “Plataforma” atalera joan, bertan Minecraft plataforma aukeratu eta zure jokoko erabiltzaile izena sartu</li>
-				<li>gamerauntsia.eus/minecraft orrialdera joan eta ‘Izena eman’ botoia sakatu.</li>
-				<li>Multijokalaria atalera sartu eta han "Gehitu zerbitzaria" botoiari sakatu.</li>
-				<li>"Zerbitzariaren izena" atalean "Game Erauntsia" idatzi eta "Zerbitzariaren helbidea" atalean "mc.gamerauntsia.eus".</li>
-			</ul>
-		</li>
-                <li>Jarraian dagoen irudian ikusi ahal duzue hobeto:<br/><br/><img class="img-responsive" src="http://i.imgur.com/3SZYwpl.png" /><br/><br/></li>
-                <li>Ados sakatu eta listo, gure zerbitzaria gozatzen hasi zaitezkete.</li>
+                <li>Minecraft barruan Multijokalaria atalera sartu eta han "Gehitu zerbitzaria" botoiari sakatu.</li>
+                <li>"Zerbitzariaren izena" atalean "Game Erauntsia" idatzi eta "Zerbitzariaren helbidea" atalean "mc.gamerauntsia.eus".</li>
             </ul>
-            <a id="Arazoak"></a>
-            <h2>Izen ematearekin arazoak?</h2>
-            <p>Argibide gehiagorako ikusi bideoa hau:</p>
-            <div class="flex-video widescreen"><iframe width="560" height="315" src="https://www.youtube.com/embed/v9bIVA6T5I8" frameborder="0" allowfullscreen></iframe></div>
-            <p>Animatu, zuen zain gaude eta!</p>
-
         </div>
 
         <div class="col-sm-4">
