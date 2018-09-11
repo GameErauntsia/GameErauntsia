@@ -54,22 +54,30 @@
             <br/>
 
             <p>Game Erauntsiaren eskutik lehen euskarazko Minecraft zerbitzaria duzue eskuragai. Zerbitzarira sartzeko 1.12.2 bertsioa izan behar duzu jolasean. Zerbitzarian bizikidetza egoki bat bermatzeko jarraian dagoen araudia irakurtzea gomendatzen da.</p>
-        	<h2>Araudi eta baldintzak</h2>
-        	<ul>
-        		<li>Gogoratu Minecraft-eko lehen zerbitzari euskalduna dela, beraz txat-etik derrigorrezkoa da euskaraz hitz egitea.</li>
-			<li>Zerbitzariko jokalariak eta administratzaileak errespetatu.</li>
-			<li>Txata modu egokian erabili: Irainak, spam-a, iruzurrak… debekatuta daude</li>
-			<li>Mundu nagusian zuri esleitutako partzelan bakarrik eraiki dezakezu. Partzela hauetako bat nahi izatekotan, GE-an erregistratuta egotea beharrezkoa da eta administratzaile bati eskatu beharko zaio baldintza betez gero. Eraikinen neurri maximoa 15 bloke dira, bai gorantz eta bai beherantz.</li>
-			<li>Mundu nagusian partzela izanez gero eta 3 hilabetetan zerbitzarira ez sartuz gero, partzela galdutzat emango da. Arau hau partzela abandonatu asko ez izateko da.</li>
-			<li>Zerbitzarian partzela gehiagorekin mundu berezi bat dago. Partzela hauek erosteko ezinbestekoa da lehenago mundu nagusian bat edukitzea. Prezioa 20 diamantekoa izango da 32x32 blokeko esparruarentzat. 64x64-ra handitzea nahi bada 20 diamante bloke ordaindu beharko dira.</li>
-			<li>Ez ezazu eraiki errekurtsoen munduan! Munduan noizean behin berritzen baita.</li>
-			<li>Zerbitzariaren eraikuntza irekia da, edozein erabiltzailek hartu dezake parte. Horretarako lehenago foroan idatzi beharko du eskaera proposamena adieraziz.</li>
-			<li>Zerbitzarian jokalarien 3 kategoria daude: Arruntak, Erregistratuak eta VIP-ak. Erregistratuek maskota zein elementu apaingarri batzuk dituk eta VIP-ek berriz guztiak.</li>
-			<li>Aurreko arauetako bat hausteak zigorra jasotzea ekarri dezake: Hitzez atentzioa ematetik, zerbitzaritik betirako kanporatua izateraino.</li>
-			<li>Arau hauste bat ikusi edo jasan ezkero, idatzi <a href="/kontaktua">kontaktura</a> noiz/non/nork/zer gertatu den adieraziz eta guk beharrezko ikerketak egin ostean, erabaki bat hartuko dugu.</li>
-        	</ul>
-
-            /*<div class="well">
+            <h2>Zerbitzarira konektatzeko pausoak</h2>
+            <p>Zerbitzarira sartzeko pausoak honakoak dira:</p>
+            <ul>
+                <li>Minecraft barruan Multijokalaria atalera sartu eta han "Gehitu zerbitzaria" botoiari sakatu.</li>
+                <li>"Zerbitzariaren izena" atalean "Game Erauntsia" idatzi eta "Zerbitzariaren helbidea" atalean "mc.gamerauntsia.eus". Konektatu eta kitto!</li>
+		    <li>Ez ahaztu <strong><a href="#araudia">ARAUDI ETA BALDINTZAK</a></strong> irakurri eta betetzea!!</li>
+	    </ul>
+	    <a id="araudia"></a>
+	    <h2>Araudi eta baldintzak</h2>
+	    <ul>
+		<li>Gogoratu Minecraft-eko lehen zerbitzari euskalduna dela, beraz txat-etik derrigorrezkoa da euskaraz hitz egitea.</li>
+		<li>Zerbitzariko jokalariak eta administratzaileak errespetatu.</li>
+		<li>Txata modu egokian erabili: Irainak, spam-a, iruzurrak… debekatuta daude</li>
+		<li>Mundu nagusian zuri esleitutako partzelan bakarrik eraiki dezakezu. Partzela hauetako bat nahi izatekotan, GE-an erregistratuta egotea beharrezkoa da eta administratzaile bati eskatu beharko zaio baldintza betez gero. Eraikinen neurri maximoa 15 bloke dira, bai gorantz eta bai beherantz.</li>
+		<li>Mundu nagusian partzela izanez gero eta 3 hilabetetan zerbitzarira ez sartuz gero, partzela galdutzat emango da. Arau hau partzela abandonatu asko ez izateko da.</li>
+		<li>Zerbitzarian partzela gehiagorekin mundu berezi bat dago. Partzela hauek erosteko ezinbestekoa da lehenago mundu nagusian bat edukitzea. Prezioa 20 diamantekoa izango da 32x32 blokeko esparruarentzat. 50x50-ra handitzea nahi bada 20 diamante bloke ordaindu beharko dira. Partzela hauetan gehienez goraka 30 bloke eta beheraka 15 bloke eraiki daitezke.</li>
+		<li>Ez ezazu eraiki errekurtsoen munduan! Munduan noizean behin berritzen baita.</li>
+		<li>Debekatuak daude granja automatikoak zein redstone zirkuitu konplexuak egitea.</li>
+		<li>Zerbitzariaren eraikuntza irekia da, edozein erabiltzailek hartu dezake parte. Horretarako lehenago foroan idatzi beharko du eskaera proposamena adieraziz.</li>
+		<li>Zerbitzarian jokalarien 3 kategoria daude: Arruntak, Erregistratuak eta VIP-ak. Erregistratuek maskota zein elementu apaingarri batzuk dituk eta VIP-ek berriz guztiak.</li>
+		<li>Aurreko arauetako bat hausteak zigorra jasotzea ekarri dezake: Hitzez atentzioa ematetik, zerbitzaritik betirako kanporatua izateraino.</li>
+		<li>Arau hauste bat ikusi edo jasan ezkero, idatzi <a href="/kontaktua">kontaktura</a> noiz/non/nork/zer gertatu den adieraziz eta guk beharrezko ikerketak egin ostean, erabaki bat hartuko dugu.</li>
+	    </ul>
+            <div class="well">
                 <h2>Izen ematea</h2>
                 {% if user.is_authenticated %}
                     {% if user.is_mc_gamer %}
@@ -84,47 +92,36 @@
                         </form>
                     {% endif %}
                 {% else %}
-                    <p>Zerbitzarian parte hartu ahal izateko lehendabizi Game Erauntsian izena eman behar duzu.</p>
-                    <a class="btn btn-lg btn-primary" href="{% url 'auth_login' %}?next={{request.path}}" title="Log in"><i class="glyphicon glyphicon-user"></i> {% trans 'Log in' %}</a>
+                    <p>Zerbitzarian erregistratu kategoria izateko, lehendabizi Game Erauntsian izena eman behar duzu.</p>
+                    <a class="btn btn-lg btn-primary" href="{% url 'auth_login' %}?next={{request.path}}" title="Log in"><i class="glyphicon glyphicon-user"></i> Izena eman!</a>
                 {% endif %}
-            </div>*/
-
-            <h2>Minecraft mundua</h2>
-            <div class="col-sm-12">
-                <iframe src="http://198.20.111.238:8123/?worldname=Gamer_Erauntsia&mapname=surface&zoom=1&x=-400&y=65&z=-420" width="100%" height="300"></iframe>
-                <a href="{% url 'minecraft_mapa' %}">Ikusi mapa handia</a>
             </div>
 
             <a id="VIP"></a>
             <h2>Izan zaitez VIP!</h2>
             <p>Game Erauntsiaren proiektuari bultzada emateko bazkidetza sistema bat dugu non beronek zerbitzarian VIP izaera izatea dakarren. Oso erraza eta merkea da eta abantaila ugari lor ditzakezue:</p>
             <ul>
-                <li>Zerbitzariak <strong>30 erabiltzaileko muga</strong> dauka oraingoz. Horrek esan nahi du, zerbitzarira konektatzen 32. erabiltzailea bazara eta ez baduzu VIP pasea, kanpoan geratuko zarela.</li>
-                <li>Jokua jendez gainezka baldin badago eta VIP erabiltzaileren bat konektatzen bada, erabiltzaile arrunt bat <strong>automatikoki kanporatua</strong> izango da.</li>
+                <li>Zerbitzariak <strong>30 erabiltzaileko muga</strong> dauka oraingoz. Horrek esan nahi du, zerbitzarira konektatzen 31. erabiltzailea bazara eta ez baduzu VIP pasea, kanpoan geratuko zarela.</li>
+                <li>Jokua jendez gainezka baldin badago eta VIP erabiltzaileren bat konektatzen bada, VIP ez den erabiltzaile bat <strong>automatikoki kanporatua</strong> izango da.</li>
                 <li>VIP erabiltzaileak normalak baino <strong>maskota eta elementu gehiago ditu</strong> eskura jokoan.</li>
                 <li>VIP erabiltzailea izan zaitezke <strong>soilik urteko 10€ ordainduz</strong>!</li>
-                <li>Egin ekarpena PayPal bidez eta <a href="{% url 'kontaktua' %}">jakinarazi guri</a></li>
-            </ul>
-
-            <h2>Zerbitzarira konektatzeko pausoak</h2>
-            <p>Zerbitzarira sartzeko pausoak honakoak dira:</p>
-            <ul>
-                <li>Minecraft barruan Multijokalaria atalera sartu eta han "Gehitu zerbitzaria" botoiari sakatu.</li>
-                <li>"Zerbitzariaren izena" atalean "Game Erauntsia" idatzi eta "Zerbitzariaren helbidea" atalean "mc.gamerauntsia.eus".</li>
-            </ul>
+		<li>Ez galdu abantaila hauek eta <strong><a href="{% url 'bazkidetza' %}">EGIN ZAITEZ BAZKIDE</a></strong></li>
+	    </ul>
+		
+	    {% comment %}
+            <h2>Minecraft mundua</h2>
+            <div class="col-sm-12">
+                <iframe src="http://198.20.111.238:8123/?worldname=Gamer_Erauntsia&mapname=surface&zoom=1&x=-400&y=65&z=-420" width="100%" height="300"></iframe>
+                <a href="{% url 'minecraft_mapa' %}">Ikusi mapa handia</a>
+            </div>
+	    {% endcomment %}
         </div>
 
         <div class="col-sm-4">
             <div class="well">
                 <img class="img-responsive" src="{{STATIC_URL}}img/mc_vip.png"/>
                 <h2>Izan zaitez VIP</h2>
-                <p>Euskal Minecraft zerbitzaria martxan egon dadin esfortzu handia egiten dugu. <a href="#VIP">Izan zaitez VIP erabiltzaile</a> eta lagundu mantenu gastuak tapatzen!</p>
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                    <input type="hidden" name="cmd" value="_s-xclick">
-                    <input type="hidden" name="hosted_button_id" value="BCPEUA4ZER92J">
-                    <input type="image" src="{{STATIC_URL}}img/paypal_1.jpg" border="0" name="submit" alt="PayPal ordainketak.">
-                    <img alt="" border="0" src="https://www.paypalobjects.com/es_ES/i/scr/pixel.gif" width="1" height="1">
-                </form>
+                <p>Game Erauntsiaren proiektuari bultzada bat emateaz gain, zerbitzarian VIP izaera izango duzu. Egin zure ekarpena eta gozatu hainbat abantailez. Jarraitu pauso hauek <a href="#VIP">VIP erabiltzaile</a> izateko!</p>
             </div>
         	<div class="well">
         		<h2>Azken 10 erabiltzaileak</h2>
