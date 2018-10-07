@@ -32,7 +32,7 @@ def index(request, kategoria=None, username=None, maila=None, jokoa=None, plataf
 def gameplaya(request, slug, related=None):
     gp = get_object_or_404(GamePlaya, slug=slug)
     if gp.status == '0' and not request.user.is_staff:
-        return Http404
+        raise Http404
     related_gps = GamePlaya.objects.filter(status='1', publikoa_da=True, jokoa=gp.jokoa, pub_date__lt=gp.pub_date).exclude(id=gp.id).order_by('-pub_date')[:5]
     facebook_id = settings.FB_APP_ID
     return render(request, 'gameplaya/gameplay.html', locals())
