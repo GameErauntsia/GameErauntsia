@@ -7,4 +7,4 @@ class MCForm(forms.ModelForm):
 
     class Meta:
         model = MC_Whitelist
-        fields = ('mc_user','lizentzia')
+        fields = ('mc_user', 'lizentzia')
