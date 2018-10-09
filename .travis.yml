@@ -20,7 +20,7 @@ after_success:
   - coveralls
 
 matrix:
-  allowed_failures:
+  allow_failures:
     - python: "3.6"
       env: DJANGO="Django>=1.10.0,<1.11.0"
 
