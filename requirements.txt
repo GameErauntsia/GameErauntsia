@@ -3,6 +3,7 @@ sphinx == 1.8.1
 django-recaptcha == 1.4.0
 -e git://github.com/arneb/django-messages#egg=django-messages
 -e git://github.com/urtzai/django-mobile.git#egg=django-mobile
+django_bootstrap_calendar == 0.1.1
 django-podcasting == 1.3.2
 django-pagination-bootstrap == 1.2.4
 django-datetime-widget == 0.9.3
