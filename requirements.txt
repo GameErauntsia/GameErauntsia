@@ -8,7 +8,7 @@ django-podcasting == 1.3.2
 django-pagination-bootstrap == 1.2.4
 django-datetime-widget == 0.9.3
 django-star-ratings == 0.6.0
-django-forum-app == 0.7
+django-forum-app == 0.10
 django-mptt == 0.9.0
 facebookpagewriter == 0.8
 Django == 1.10.6
