@@ -129,10 +129,10 @@ urlpatterns = [
 
 
     # ERABILERA ETA PRIBATUTASUNA
-    url(r'^erabilera-baldintzak/$', TemplateView.as_view(template_name='erabilera_baldintzak.html')),
-    url(r'^pribatutasun-politika/$', TemplateView.as_view(template_name='pribatutasun_politika.html')),
-    url(r'^gameplay-arauak/$', TemplateView.as_view(template_name='upload_gp.html')),
-    url(r'^cookie/$', TemplateView.as_view(template_name='cookie.html')),
+    # url(r'^erabilera-baldintzak/$', TemplateView.as_view(template_name='erabilera_baldintzak.html')),
+    # url(r'^pribatutasun-politika/$', TemplateView.as_view(template_name='pribatutasun_politika.html')),
+    # url(r'^gameplay-arauak/$', TemplateView.as_view(template_name='upload_gp.html')),
+    # url(r'^cookie/$', TemplateView.as_view(template_name='cookie.html')),
 
     # SITEMAP
     url(r'^sitemap\.xml$', sitemapsviews.index, {'sitemaps': sitemaps}),
@@ -144,6 +144,7 @@ urlpatterns = [
     url(r'^ajax/get_erabiltzaileak/', gamerviews.get_user, name='ajax_user'),
     url(r'^ajax/post_finished/', finishedviews.add_finished, name='ajax_finished'),
 
+    # FLATPAGEAK
     url(r'^(?P<url>.*/)$', views.flatpage),
 ]
 
