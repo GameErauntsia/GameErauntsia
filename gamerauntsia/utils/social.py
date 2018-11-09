@@ -5,6 +5,7 @@ from facebookpagewriter.utils import post
 from django.core.mail import EmailMultiAlternatives
 from django.template import defaultfilters as filters
 from gamerauntsia.gamer.models import GamerUser
+from mastodon import Mastodon
 
 def post_to_email(obj):
     email_list = GamerUser.objects.values_list('email', flat=True).filter(is_active=True, buletin_notification=True)
@@ -25,6 +26,12 @@ def post_to_twitter(item):
     auth.set_access_token(settings.TWITTER_ACCESS_TOKEN, settings.TWITTER_ACCESS_TOKEN_SECRET)
     api = tweepy.API(auth)
     api.update_status(textua)
+    return True
+
+def post_to_mastodon(item):
+    textua = item.getTwitText()
+    api = Mastodon(settings.MASTODON_CLIENT_ID, settings.MASTODON_CLIENT_SECRET, settings.MASTODON_USER_ACCESS_TOKEN, api_base_url="https://mastodon.eus")
+    api.toot(textua)
     return True
 
 
@@ -53,4 +60,5 @@ def post_social(obj):
     post_to_twitter(obj)
     post_to_page(obj)
     post_to_telegram(obj)
+    post_to_mastodon(obj)
     return True
