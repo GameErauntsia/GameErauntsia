@@ -258,6 +258,11 @@ FACEBOOK_EXTENDED_PERMISSIONS = [
     'publish_stream',
 ]
 
+# Mastodon API
+MASTODON_CLIENT_ID = ''
+MASTODON_CLIENT_SECRET = ''
+MASTODON_USER_ACCESS_TOKEN = ''
+
 # LOGIN URLS
 LOGIN_URL = '/komunitatea/login/'
 LOGIN_ERROR_URL = '/komunitatea/login-error/'
