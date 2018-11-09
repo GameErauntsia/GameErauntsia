@@ -7,6 +7,8 @@ from django.template import defaultfilters as filters
 from gamerauntsia.gamer.models import GamerUser
 from mastodon import Mastodon
 
+BASE_PATH = getattr(settings, "BASE_PATH", "")
+
 def post_to_email(obj):
     email_list = GamerUser.objects.values_list('email', flat=True).filter(is_active=True, buletin_notification=True)
     subject, text_content, html_content = obj.getEmailText()
@@ -31,7 +33,8 @@ def post_to_twitter(item):
 def post_to_mastodon(item):
     textua = item.getTwitText()
     api = Mastodon(settings.MASTODON_CLIENT_ID, settings.MASTODON_CLIENT_SECRET, settings.MASTODON_USER_ACCESS_TOKEN, api_base_url="https://mastodon.eus")
-    api.toot(textua)
+    media_dict = api.media_post(BASE_PATH + item.argazkia.image.url)
+    api.status_post(textua, media_ids=media_dict, language="eus")
     return True
 
 
