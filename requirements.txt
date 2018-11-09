@@ -27,6 +27,7 @@ python-twitter == 3.3
 django-registration-redux == 1.9
 django-emoticons == 1.2
 django-contrib-comments == 1.8.0
+Mastodon.py == 1.3.1
 pyTelegramBotAPI == 3.5.1
 tweepy == 3.5.0
 django-crispy-forms == 1.7.0
