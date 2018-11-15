@@ -13,7 +13,6 @@ from gamerauntsia.utils.images import handle_uploaded_file
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from gamerauntsia.gamer.forms import *
-from gamerauntsia.agenda.forms import *
 from django.utils.translation import ugettext as _
 from django.forms.models import modelformset_factory
 from datetime import datetime
@@ -367,21 +366,6 @@ def add_gameplay(request):
     else:
         gameplayform = GamePlayForm()
     return render(request, 'profile/add_gameplay.html', locals())
-
-
-@login_required
-def add_event(request):
-    """ """
-    user = request.user
-    if request.method == 'POST':
-        eventform = EventForm(request.POST)
-        if eventform.is_valid():
-            eventform.save()
-            return HttpResponseRedirect(reverse('agenda_index'))
-
-    else:
-        eventform = EventForm()
-    return render(request, 'profile/add_event.html', locals())
 
 
 @login_required

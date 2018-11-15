@@ -19,7 +19,6 @@ urlpatterns = [
     url(r'^gehitu-artikulua$', views.add_article, name='add_article'),
     url(r'^gehitu-gameplaya$', views.add_gameplay, name='add_gameplay'),
     url(r'^gehitu-jokoa$', views.add_game, name='add_game'),
-    url(r'^gehitu-ekitaldia$', views.add_event, name='add_event'),
     url(r'^gehitu-gustuko-jokoa/(?P<slug>[-\w]+)$', views.add_favorite_game, name='gamer_add_favorite_game'),
     url(r'^editatu-profil$', views.edit_profile, name='edit_profile'),
     url(r'^editatu-profil-jakin$', views.edit_notifications, name='edit_profile_noti'),

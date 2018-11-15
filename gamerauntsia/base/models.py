@@ -10,7 +10,6 @@ from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.jokoa.models import Jokoa
 from gamerauntsia.berriak.models import Berria
 from gamerauntsia.gameplaya.models import GamePlaya
-from django_bootstrap_calendar.models import CalendarEvent
 from gamerauntsia.log.models import Log
 import telebot
 
@@ -97,13 +96,8 @@ def send_game_msg(sender,instance,**kwargs):
             pass
 
 
-def send_agenda_tweet(sender,instance,**kwargs):
-    if kwargs['created']:
-        post_to_twitter(instance)
-
 post_save.connect(send_comment_email, sender=Comment)
 post_save.connect(send_newuser_msg, sender=GamerUser)
 post_save.connect(send_article_msg, sender=Berria)
 post_save.connect(send_gp_msg, sender=GamePlaya)
 post_save.connect(send_game_msg, sender=Jokoa)
-post_save.connect(send_agenda_tweet, sender=CalendarEvent)

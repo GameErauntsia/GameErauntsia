@@ -19,7 +19,6 @@ from gamerauntsia import views as indexviews
 from gamerauntsia.gamer import views as gamerviews
 from gamerauntsia.kontaktua import views as kontaktuaviews
 from gamerauntsia.base import views as baseviews
-from gamerauntsia.finished import views as finishedviews
 
 router = DefaultRouter()
 
@@ -62,9 +61,6 @@ urlpatterns = [
     # MINECRAFT SERVER
     url(r'^zerbitzariak/', include('gamerauntsia.zerbitzariak.urls')),
 
-    # AGENDA
-    url(r'^agenda/', include('gamerauntsia.agenda.urls')),
-
     # FOROA
     url(r'^foroa/reset-topics$', gamerviews.reset_topics, name='reset_topics'),
     url(r'^foroa/', include('django_forum_app.urls')),
@@ -101,9 +97,6 @@ urlpatterns = [
     # MEZUAK
     url(r'^mezuak/', include('django_messages.urls')),
 
-    # EGUTEGIA
-    url(r'^calendar/', include('django_bootstrap_calendar.urls')),
-
     # TINYMCE
     url(r'^tinymce/', include('tinymce.urls')),
 
@@ -112,21 +105,6 @@ urlpatterns = [
 
     # APIA
     url(r'^api/1.0/', include('gamerauntsia.api.urls')),
-
-    # APP
-    # Auth
-    # url(r'^rest-auth/', include('rest_auth.urls')),
-    # url(r'^rest-token-auth/$', obtain_auth_token),
-    # # url(r'^rest-user/$',views.UserViewSet),
-    # url(r'^app/v1/', include('gamerauntsia.app.authentication.urls')),
-    # url(r'^app/denboralerroa/$', denboralerroa_list, name='app_denboralerroa_list'),
-    # url(r'^app/berriak/$', berria_list, name='app_berria_list'),
-    # url(r'^app/berria/(?P<pk>[0-9]+)/$', 'gamerauntsia.berriak.views.berria_detail', name='app_berria_detail'),
-    # url(r'^app/getb/$', 'gamerauntsia.getb.views.app_getb_list', name='app_getb_list'),
-    # url(r'^app/getb/(?P<pk>[0-9]+)/$', 'gamerauntsia.getb.views.atala_detail', name='atala_detail'),
-    # url(r'^app/txapelketak/$', 'gamerauntsia.txapelketak.views.txapelketa_list', name='app_txapelketak_list'),
-    # url(r'^app/txapelketak/(?P<pk>[0-9]+)/$', 'gamerauntsia.txapelketak.views.txapelketa_detail', name='app_txapelketak_detail'),
-
 
     # ERABILERA ETA PRIBATUTASUNA
     url(r'^erabilera-baldintzak/$', TemplateView.as_view(template_name='erabilera_baldintzak.html')),
@@ -142,7 +120,6 @@ urlpatterns = [
     # AJAX ESKAERAK
     url(r'^ajax/get_jokoak/', gamerviews.get_jokoak, name='ajax_jokoak'),
     url(r'^ajax/get_erabiltzaileak/', gamerviews.get_user, name='ajax_user'),
-    url(r'^ajax/post_finished/', finishedviews.add_finished, name='ajax_finished'),
 
     url(r'^(?P<url>.*/)$', views.flatpage),
 ]

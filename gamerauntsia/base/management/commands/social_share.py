@@ -5,7 +5,6 @@ from gamerauntsia.berriak.models import Berria
 from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.txapelketak.models import Txapelketa
 from gamerauntsia.getb.models import Atala
-from django_bootstrap_calendar.models import CalendarEvent
 from gamerauntsia.utils.social import post_social
 from datetime import timedelta
 from gamerauntsia.log.models import Log
