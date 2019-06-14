@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='euskarazkojokoa',
             name='online_url',
-            field=models.URLField(blank=True, verbose_name=b'Online itzulpen proiektua'),
+            field=models.URLField(blank=True, verbose_name='Online itzulpen proiektua'),
         ),
     ]

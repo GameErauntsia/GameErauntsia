@@ -66,7 +66,7 @@ class GamerUser(AbstractUser):
 
     fullname = models.CharField('Izen abizenak', max_length=200, blank=True,null=True)
     bio = models.TextField('Biografia', null=True,blank=True)
-    photo = models.ForeignKey(Photo,null=True, blank=True)
+    photo = models.ForeignKey(Photo, null=True, blank=True, on_delete=models.SET_NULL)
 
     twitter_id = models.CharField(max_length=100, blank=True,null=True)
     facebook_id = models.CharField(max_length=100, blank=True,null=True)
@@ -204,7 +204,7 @@ class GamerUser(AbstractUser):
     def get_absolute_url(self):
         return "/komunitatea/%s" % (self.username)
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s' % self.username
 
     class Meta:
@@ -215,9 +215,9 @@ class GamerUser(AbstractUser):
 class JokuPlataforma(models.Model):
     plataforma = models.CharField(max_length=10, choices=PLATFORM)
     nick = models.CharField(max_length=64)
-    user = models.ForeignKey(GamerUser, related_name='plataforma')
+    user = models.ForeignKey(GamerUser, related_name='plataforma', on_delete=models.PROTECT)
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s - %s' % (self.plataforma, self.nick)
 
     class Meta:
@@ -228,11 +228,11 @@ class JokuPlataforma(models.Model):
 class AmaitutakoJokoak(models.Model):
     izenburua = models.CharField(max_length=150)
     urtea = models.IntegerField(blank=True, null=True)
-    user = models.ForeignKey(GamerUser, related_name='amaitutakoak')
+    user = models.ForeignKey(GamerUser, related_name='amaitutakoak', on_delete=models.PROTECT)
     pub_date = models.DateTimeField('publikazio data', default=datetime.now)
     mod_date = models.DateTimeField('modifikazio data', default=datetime.now)
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s' % (self.izenburua)
 
     class Meta:

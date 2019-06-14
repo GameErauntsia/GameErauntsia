@@ -1,6 +1,6 @@
-from models import Bazkidea, Eskaintza, Eskaera, OparitzekoJokoak
+from .models import Bazkidea, Eskaintza, Eskaera, OparitzekoJokoak
 from django.contrib import admin
-from forms import EskaintzaAdminForm
+from .forms import EskaintzaAdminForm
 
 class BazkideaAdmin(admin.ModelAdmin):
     list_display = ['id','user', 'paid', 'is_active', 'expire_date', 'date_joined']

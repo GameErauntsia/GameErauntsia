@@ -1,4 +1,4 @@
-from models import Terminoa
+from .models import Terminoa
 from django.contrib import admin
 from gamerauntsia.base.forms import FlatPageForm
 from django.contrib.flatpages.models import FlatPage

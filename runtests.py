@@ -61,6 +61,7 @@ settings.configure(
             'gamerauntsia.aurkezpenak',
             'gamerauntsia.txapelketak',
             'gamerauntsia.getb',
+            'gamerauntsia.telegram',
             'gamerauntsia.zerbitzariak',
             'gamerauntsia.finished',
             'gamerauntsia.jokoen_itzulpenak',

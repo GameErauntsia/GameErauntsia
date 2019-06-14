@@ -8,7 +8,7 @@ from gamerauntsia.gamer.models import GamerUser
 
 
 class Token(models.Model):
-    user = models.ForeignKey(GamerUser)
+    user = models.ForeignKey(GamerUser, on_delete=models.PROTECT)
     token = models.CharField(max_length=40, primary_key=True)
     created = models.DateTimeField(auto_now_add=True)
 
@@ -20,5 +20,5 @@ class Token(models.Model):
     def generate_token(self):
         return binascii.hexlify(os.urandom(20)).decode()
 
-    def __unicode__(self):
+    def __str__(self):
         return self.token

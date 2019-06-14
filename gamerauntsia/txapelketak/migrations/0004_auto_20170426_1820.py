@@ -17,16 +17,16 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='txapelketa',
             name='mod_date',
-            field=models.DateTimeField(default=datetime.datetime(2017, 4, 26, 16, 20, 20, 648538, tzinfo=utc), verbose_name=b'modifikazio data'),
+            field=models.DateTimeField(default=datetime.datetime(2017, 4, 26, 16, 20, 20, 648538, tzinfo=utc), verbose_name='modifikazio data'),
         ),
         migrations.AlterField(
             model_name='txapelketa',
             name='insk_date',
-            field=models.DateTimeField(default=datetime.datetime(2017, 4, 26, 16, 20, 20, 648559, tzinfo=utc), verbose_name=b'Izen ematea'),
+            field=models.DateTimeField(default=datetime.datetime(2017, 4, 26, 16, 20, 20, 648559, tzinfo=utc), verbose_name='Izen ematea'),
         ),
         migrations.AlterField(
             model_name='txapelketa',
             name='pub_date',
-            field=models.DateTimeField(default=datetime.datetime(2017, 4, 26, 16, 20, 20, 648507, tzinfo=utc), verbose_name=b'Publikazio data'),
+            field=models.DateTimeField(default=datetime.datetime(2017, 4, 26, 16, 20, 20, 648507, tzinfo=utc), verbose_name='Publikazio data'),
         ),
     ]

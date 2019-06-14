@@ -3,7 +3,6 @@
 import os
 
 DEBUG = False
-TEMPLATE_DEBUG = DEBUG
 DEFAULT_FROM_EMAIL = ''
 BULETIN_FROM_EMAIL = DEFAULT_FROM_EMAIL
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
@@ -124,6 +123,7 @@ INSTALLED_APPS = (
     'gamerauntsia.jokoen_itzulpenak',
     'gamerauntsia.bazkidetza',
     'gamerauntsia.log',
+    'gamerauntsia.telegram',
     'datetimewidget',
     'django_bootstrap_calendar',
     'django_messages',

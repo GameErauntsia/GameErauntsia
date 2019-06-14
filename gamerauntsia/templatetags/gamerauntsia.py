@@ -1,6 +1,6 @@
 from django import template
 from photologue.models import Photo
-import urllib2
+import urllib.request as urllib2
 import xmltodict
 
 register = template.Library()
