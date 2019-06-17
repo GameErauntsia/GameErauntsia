@@ -4,15 +4,15 @@ django-recaptcha == 1.3.1
 -e git://github.com/arneb/django-messages#egg=django-messages
 -e git://github.com/GameErauntsia/django-bootstrap-calendar.git#egg=django-bootstrap-calendar
 -e git://github.com/urtzai/django-mobile.git#egg=django-mobile
--e git://github.com/codesyntax/facebookpagewriter#egg=facebookpagewriter
--e git://github.com:Fantomas42/django-emoticons.git#egg=django-emoticons
+#-e git://github.com/codesyntax/facebookpagewriter#egg=facebookpagewriter
+#-e git://github.com:Fantomas42/django-emoticons.git#egg=django-emoticons
 django-podcasting == 1.3.2
 django-pagination-bootstrap == 1.2.4
 django-datetime-widget == 0.9.3
 django-star-ratings == 0.6.0
 django-forum-app == 0.10
 django-mptt == 0.9.0
-#facebookpagewriter == 0.8
+facebookpagewriter == 0.9
 Django >= 2.2
 mysqlclient == 1.3.13
 pillow == 4.3.0
@@ -27,7 +27,7 @@ django-tagging == 0.4.6
 facebook-sdk == 2.0.0
 python-twitter == 3.3
 django-registration-redux == 2.6
-#django-emoticons == 1.2
+django-emoticons == 1.2
 django-contrib-comments == 1.8.0
 Mastodon.py == 1.3.1
 pyTelegramBotAPI == 3.6.6
