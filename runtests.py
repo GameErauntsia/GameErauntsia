@@ -97,6 +97,7 @@ settings.configure(
                         "django.template.context_processors.i18n",
                         "django.template.context_processors.media",
                         "django.template.context_processors.request",
+                        'django.contrib.messages.context_processors.messages',
                     ],
                     'loaders': [
                         # insert your TEMPLATE_LOADERS here
