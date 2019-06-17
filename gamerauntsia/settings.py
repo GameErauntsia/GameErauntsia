@@ -3,7 +3,6 @@
 import os
 
 DEBUG = False
-TEMPLATE_DEBUG = DEBUG
 DEFAULT_FROM_EMAIL = ''
 BULETIN_FROM_EMAIL = DEFAULT_FROM_EMAIL
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
@@ -124,6 +123,7 @@ INSTALLED_APPS = (
     'gamerauntsia.jokoen_itzulpenak',
     'gamerauntsia.bazkidetza',
     'gamerauntsia.log',
+    'gamerauntsia.telegram',
     'datetimewidget',
     'django_bootstrap_calendar',
     'django_messages',
@@ -132,8 +132,8 @@ INSTALLED_APPS = (
     'rest_framework',
     'rest_framework.authtoken',
     # 'rest_auth',
-    'gamerauntsia.app.authentication',
-    'gamerauntsia.app.services',
+    # 'gamerauntsia.app.authentication',
+    # 'gamerauntsia.app.services',
     'captcha',
     'corsheaders',
     'podcasting',
@@ -220,7 +220,7 @@ ACCOUNT_ACTIVATION_DAYS = 7
 # Custom social user model
 AUTH_USER_MODEL = 'gamer.GamerUser'
 PROFILE_PHOTO_DEFAULT_SLUG = 'default-user'
-SOCIAL_AUTH_USER_MODEL = AUTH_USER_MODEL
+# SOCIAL_AUTH_USER_MODEL = AUTH_USER_MODEL
 
 # SOCIAL REGISTRATION
 AUTHENTICATION_BACKENDS = (

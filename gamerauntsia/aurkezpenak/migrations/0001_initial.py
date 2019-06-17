@@ -22,11 +22,11 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('izena', models.CharField(max_length=64)),
-                ('slug', models.SlugField(help_text=b'Eremu honetan aurkezpen honen URL helbidea zehazten ari zara.', unique=True)),
+                ('slug', models.SlugField(help_text='Eremu honetan aurkezpen honen URL helbidea zehazten ari zara.', unique=True)),
                 ('abstract', models.TextField(blank=True, max_length=256, null=True)),
                 ('slides', models.TextField()),
-                ('pub_date', models.DateTimeField(default=datetime.datetime.now, verbose_name=b'publikazio data')),
-                ('mod_date', models.DateTimeField(default=datetime.datetime.now, verbose_name=b'modifikazio data')),
+                ('pub_date', models.DateTimeField(default=datetime.datetime.now, verbose_name='publikazio data')),
+                ('mod_date', models.DateTimeField(default=datetime.datetime.now, verbose_name='modifikazio data')),
                 ('erabiltzailea', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={

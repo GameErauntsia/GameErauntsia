@@ -20,13 +20,13 @@ class Kategoria(models.Model):
     slug = models.SlugField(db_index=True, unique=True,
                             help_text="Eremu honetan kategoria honen URL helbidea zehazten ari zara.")
     desk = models.TextField(max_length=256, null=True, blank=True)
-    irudia = models.ForeignKey(Photo, null=True, blank=True)
+    irudia = models.ForeignKey(Photo, null=True, blank=True, on_delete=models.SET_NULL)
 
     class Meta:
         verbose_name = "Kategoria"
         verbose_name_plural = "Kategoriak"
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s' % (self.izena)
 
 
@@ -39,7 +39,7 @@ class Zailtasuna(models.Model):
         verbose_name = "Zailtasuna"
         verbose_name_plural = "Zailtasunak"
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s' % (self.izena)
 
 
@@ -51,16 +51,16 @@ class GamePlaya(models.Model):
     iraupena_min = models.IntegerField(default=0)
     iraupena_seg = models.IntegerField(null=False, blank=False, default=0)
 
-    argazkia = models.ForeignKey(Photo)
+    argazkia = models.ForeignKey(Photo, on_delete=models.PROTECT)
     bideoa = models.CharField(max_length=100, null=True, blank=True,
                               help_text="Eremu honetan Youtube bideoaren URL kodea itsatsi behar duzu. Adb.: c21XAuI3aMo")
 
-    jokoa = models.ForeignKey(Jokoa, related_name='gameplay')
-    plataforma = models.ForeignKey(Plataforma, related_name='gameplay')
-    zailtasuna = models.ForeignKey(Zailtasuna, related_name='gameplay')
+    jokoa = models.ForeignKey(Jokoa, related_name='gameplay', on_delete=models.PROTECT)
+    plataforma = models.ForeignKey(Plataforma, related_name='gameplay', on_delete=models.PROTECT)
+    zailtasuna = models.ForeignKey(Zailtasuna, related_name='gameplay', on_delete=models.PROTECT)
     kategoria = models.ManyToManyField(Kategoria, related_name='gameplay')
 
-    erabiltzailea = models.ForeignKey(GamerUser, related_name='gameplayak')
+    erabiltzailea = models.ForeignKey(GamerUser, related_name='gameplayak', on_delete=models.PROTECT)
     publikoa_da = models.BooleanField(default=False, verbose_name="Publikatzeko prest")
     pub_date = models.DateTimeField('publikazio data', default=timezone.now)
     mod_date = models.DateTimeField('modifikazio data', default=timezone.now)
@@ -142,5 +142,5 @@ class GamePlaya(models.Model):
         verbose_name = "Gameplaya"
         verbose_name_plural = "Gameplayak"
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s' % (self.izenburua)

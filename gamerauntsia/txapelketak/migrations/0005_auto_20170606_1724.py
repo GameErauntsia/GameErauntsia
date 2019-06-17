@@ -16,16 +16,16 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='txapelketa',
             name='insk_date',
-            field=models.DateTimeField(default=django.utils.timezone.now, verbose_name=b'Izen ematea'),
+            field=models.DateTimeField(default=django.utils.timezone.now, verbose_name='Izen ematea'),
         ),
         migrations.AlterField(
             model_name='txapelketa',
             name='mod_date',
-            field=models.DateTimeField(default=django.utils.timezone.now, verbose_name=b'modifikazio data'),
+            field=models.DateTimeField(default=django.utils.timezone.now, verbose_name='modifikazio data'),
         ),
         migrations.AlterField(
             model_name='txapelketa',
             name='pub_date',
-            field=models.DateTimeField(default=django.utils.timezone.now, verbose_name=b'Publikazio data'),
+            field=models.DateTimeField(default=django.utils.timezone.now, verbose_name='Publikazio data'),
         ),
     ]

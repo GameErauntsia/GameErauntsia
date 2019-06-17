@@ -1,6 +1,6 @@
 from django.contrib import admin
-from models import Itzulpena, EuskarazkoJokoa, Euskalinkak
-from forms import EuskarazkoJokoaAdminForm
+from .models import Itzulpena, EuskarazkoJokoa, Euskalinkak
+from .forms import EuskarazkoJokoaAdminForm
 
 class ItzulpenakAdmin(admin.ModelAdmin):
 

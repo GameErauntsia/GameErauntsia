@@ -16,11 +16,11 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='gameplaya',
             name='mod_date',
-            field=models.DateTimeField(default=django.utils.timezone.now, verbose_name=b'modifikazio data'),
+            field=models.DateTimeField(default=django.utils.timezone.now, verbose_name='modifikazio data'),
         ),
         migrations.AlterField(
             model_name='gameplaya',
             name='pub_date',
-            field=models.DateTimeField(default=django.utils.timezone.now, verbose_name=b'publikazio data'),
+            field=models.DateTimeField(default=django.utils.timezone.now, verbose_name='publikazio data'),
         ),
     ]

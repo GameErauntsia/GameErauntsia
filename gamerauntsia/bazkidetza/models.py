@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db.models.signals import post_save
 from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.jokoa.models import Jokoa, Plataforma
@@ -20,7 +20,7 @@ DENDA_CHOICES = (
 )
 
 class Bazkidea(models.Model):
-    user = models.ForeignKey(GamerUser, unique=True)
+    user = models.ForeignKey(GamerUser, unique=True, on_delete=models.PROTECT)
     paid = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
 
@@ -41,7 +41,7 @@ class Bazkidea(models.Model):
         verbose_name = "Bazkidea"
         verbose_name_plural = "Bazkideak"
 
-    def __unicode__(self):
+    def __str__(self):
         return u'#%d %s' % (self.id, self.user.username)
 
 
@@ -49,7 +49,7 @@ class Eskaintza(models.Model):
     izena = models.CharField(max_length=150)
     slug = models.SlugField()
     deskribapena = models.TextField()
-    irudia = models.ForeignKey(Photo)
+    irudia = models.ForeignKey(Photo, on_delete=models.PROTECT)
 
     mota = models.IntegerField(choices=ESKAINTZA_MOTAK, default=1)
 
@@ -62,7 +62,7 @@ class Eskaintza(models.Model):
         verbose_name = "Eskaintza"
         verbose_name_plural = "Eskaintza"
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s' % (self.izena)
 
     def get_absolute_url(self):
@@ -70,8 +70,8 @@ class Eskaintza(models.Model):
 
 
 class Eskaera(models.Model):
-    eskaintza = models.ForeignKey(Eskaintza)
-    bazkidea = models.ForeignKey(Bazkidea)
+    eskaintza = models.ForeignKey(Eskaintza, on_delete=models.PROTECT)
+    bazkidea = models.ForeignKey(Bazkidea, on_delete=models.PROTECT)
 
     added = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
@@ -80,15 +80,15 @@ class Eskaera(models.Model):
         verbose_name = "Eskaera"
         verbose_name_plural = "Eskaerak"
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s (#%d %s)' % (self.eskaintza.izena, self.bazkidea.id, self.bazkidea.user.username)
 
 
 class OparitzekoJokoak(models.Model):
     key = models.CharField(max_length=250)
     non_aldatzeko = models.IntegerField(choices=DENDA_CHOICES, default=1)
-    jokoa = models.ForeignKey(Jokoa)
-    plataforma = models.ForeignKey(Plataforma)
+    jokoa = models.ForeignKey(Jokoa, on_delete=models.PROTECT)
+    plataforma = models.ForeignKey(Plataforma, on_delete=models.PROTECT)
 
     oparituta = models.BooleanField(default=False)
 
@@ -98,7 +98,7 @@ class OparitzekoJokoak(models.Model):
         verbose_name = "Oparitzeko jokoa"
         verbose_name_plural = "Oparitzeko jokoak"
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s' % (self.jokoa.izena)
 
 

@@ -20,13 +20,13 @@ class Terminoa(models.Model):
     term_es = models.TextField(null=True,blank=True)
     term_en = models.TextField(null=True,blank=True)
     jokoak = models.ManyToManyField(Jokoa, blank=True)
-    jokoa = models.ForeignKey(Jokoa, related_name="jokoa")
+    jokoa = models.ForeignKey(Jokoa, related_name="jokoa", on_delete=models.PROTECT)
 
     class Meta:
         verbose_name = "Terminoa"
         verbose_name_plural = "Terminoak"
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s' % (self.term_eu)
 
 

@@ -1,5 +1,5 @@
 from photologue.models import Photo
-from urllib2 import urlopen
+from urllib.request import urlopen
 from django.template.defaultfilters import slugify
 from django.core.files.base import ContentFile
 
@@ -8,7 +8,10 @@ from gamerauntsia.utils.slug import time_slug, time_slug_long, time_slug_string
 
 from random import  randint
 
-from cStringIO import StringIO
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 try:
     from PIL import Image
 except ImportError:
@@ -61,14 +64,14 @@ def loadUrlImage(url='', title='', tags='', format='jpg', slug=''):
     
         photo.image.save('%s.%s' % (slug,format), ContentFile(f.read()))
 
-    except Exception, e:
-        print 'Errorea irudi honekin RGB', photo.slug, e
+    except Exception:
+        print('Errorea irudi honekin RGB', photo.slug)
         return photo      
 
     try:
         photo.save()
     except:
-        print 'Errorea irudi honekin', photo.slug
+        print('Errorea irudi honekin', photo.slug)
 
     return photo
     
