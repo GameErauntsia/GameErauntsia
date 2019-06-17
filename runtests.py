@@ -13,7 +13,9 @@ settings.configure(
         DEBUG=True,
         DATABASES={
             'default': {
-                'ENGINE': 'django.db.backends.sqlite3',
+                'ENGINE': 'django.db.backends.mysql',
+                'USER': 'travis',
+                'PASSWORD': '',
             }
         },
         USE_TZ=True,

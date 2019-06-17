@@ -2,7 +2,10 @@ dist: xenial
 language: python
 
 python:
-  - "3.6"
+  - "3.7"
+
+services:
+  - mysql
 
 env:
   - DJANGO="Django>2.0.0"
