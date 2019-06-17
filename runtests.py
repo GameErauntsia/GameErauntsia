@@ -117,10 +117,6 @@ settings.configure(
             'django.middleware.clickjacking.XFrameOptionsMiddleware',
             'pagination_bootstrap.middleware.PaginationMiddleware',
         ],
-        TEMPLATE_LOADERS = (
-                'django.template.loaders.filesystem.Loader',
-                'django.template.loaders.app_directories.Loader',
-        )
 )
 
 
