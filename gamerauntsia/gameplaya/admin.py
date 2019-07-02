@@ -18,9 +18,9 @@ class GamePlayAdmin(admin.ModelAdmin):
             return '%s' % (obj.argazkia.title)
     admin_thumbnail.short_description = 'Thumb'
 
+    @mark_safe
     def preview(self,obj):
         return '<a href="/gameplayak/%s">aurreikusi</a>' % (obj.slug)
-    preview.allow_tags=True
 
     list_display = ['admin_thumbnail','izenburua', 'preview','zailtasuna', 'jokoa','plataforma','pub_date', 'erabiltzailea','publikoa_da', 'status','shared']
     list_display_links = ['izenburua', ]
