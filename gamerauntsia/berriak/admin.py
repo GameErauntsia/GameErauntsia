@@ -2,10 +2,12 @@ from gamerauntsia.berriak.models import Berria, Gaia
 from django.contrib import admin
 from django.conf import settings
 from gamerauntsia.berriak.forms import BerriaAdminForm
+from django.utils.safestring import mark_safe
 
 
 class BerriakAdmin(admin.ModelAdmin):
 
+    @mark_safe
     def admin_thumbnail(self, obj):
         try:
             if obj.argazkia:
