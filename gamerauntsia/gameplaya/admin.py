@@ -2,10 +2,12 @@ from gamerauntsia.gameplaya.models import GamePlaya, Kategoria, Zailtasuna
 from django.contrib import admin
 from django.conf import settings
 from gamerauntsia.gameplaya.forms import GamePlayAdminForm
+from django.utils.safestring import mark_safe
 
 
 class GamePlayAdmin(admin.ModelAdmin):
 
+    @mark_safe
     def admin_thumbnail(self,obj):
         try:
             if obj.argazkia:
