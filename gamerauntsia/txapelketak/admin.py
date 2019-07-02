@@ -3,6 +3,8 @@ from django import forms
 from gamerauntsia.txapelketak.models import Txapelketa, Partida, Partaidea
 from .forms import PartidaInlineForm, TxapelketaAdminForm
 from mptt.admin import MPTTModelAdmin
+from django.utils.safestring import mark_safe
+
 
 class PartidaForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
@@ -48,6 +50,7 @@ class PartidaInline(admin.TabularInline):
 
 class TxapelketaAdmin(admin.ModelAdmin):
 
+    @mark_safe
     def admin_thumbnail(self,obj):
         try:
             if obj.irudia:
@@ -57,11 +60,10 @@ class TxapelketaAdmin(admin.ModelAdmin):
         except:
             return '%s' % (obj.irudia.title)
     admin_thumbnail.short_description = 'Thumb'
-    admin_thumbnail.allow_tags = True
-
+    
+    @mark_safe
     def preview(self,obj):
         return '<a href="/txapelketak/%s">aurreikusi</a>' % (obj.slug)
-    preview.allow_tags=True
 
     list_display = ['admin_thumbnail','izena', 'preview','mota', 'modalitatea','jokoa','insk_date','pub_date', 'status', 'manual_sign', 'publikoa_da']
     list_display_links = ['izena', ]
