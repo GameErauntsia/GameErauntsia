@@ -17,7 +17,6 @@ class GamePlayAdmin(admin.ModelAdmin):
         except:
             return '%s' % (obj.argazkia.title)
     admin_thumbnail.short_description = 'Thumb'
-    admin_thumbnail.allow_tags = True
 
     def preview(self,obj):
         return '<a href="/gameplayak/%s">aurreikusi</a>' % (obj.slug)
