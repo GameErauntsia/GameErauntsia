@@ -1,10 +1,12 @@
 from gamerauntsia.jokoa.models import Jokoa, Plataforma
 from django.contrib import admin
+from django.utils.safestring import mark_safe
 
 from datetime import datetime
 
 class JokoaAdmin(admin.ModelAdmin):
 
+    @mark_safe
     def admin_thumbnail(self,obj):
         try:
             if obj.logoa:
@@ -14,8 +16,8 @@ class JokoaAdmin(admin.ModelAdmin):
         except:
             return '%s' % (obj.logoa.title)
     admin_thumbnail.short_description = 'Thumb'
-    admin_thumbnail.allow_tags = True
 
+    @mark_safe
     def preview(self,obj):
         return '<a href="/jokoak/%s">aurreikusi</a>' % (obj.slug)
     preview.allow_tags=True
