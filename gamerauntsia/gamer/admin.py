@@ -6,6 +6,7 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.contrib.auth.admin import UserAdmin
 from django.forms import ModelForm
 from django import forms
+from django.utils.safestring import mark_safe
 
 class PlataformaInline(admin.TabularInline):
     model = JokuPlataforma
@@ -46,6 +47,7 @@ class MyUserCreationForm(ModelForm):
 
 class GamerUserAdmin(UserAdmin):
 
+    @mark_safe
     def admin_thumbnail(self,obj):
         try:
             if obj.get_photo():
@@ -55,11 +57,10 @@ class GamerUserAdmin(UserAdmin):
         except:
             return '%s' % (obj.get_photo().title)
     admin_thumbnail.short_description = 'Thumb'
-    admin_thumbnail.allow_tags = True
 
+    @mark_safe
     def preview(self,obj):
         return '<a href="/komunitatea/%s">aurreikusi</a>' % (obj.username)
-    preview.allow_tags=True
 
     form = MyUserChangeForm
     change_user_password_template = None
