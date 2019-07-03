@@ -2,10 +2,12 @@ from gamerauntsia.gameplaya.models import GamePlaya, Kategoria, Zailtasuna
 from django.contrib import admin
 from django.conf import settings
 from gamerauntsia.gameplaya.forms import GamePlayAdminForm
+from django.utils.safestring import mark_safe
 
 
 class GamePlayAdmin(admin.ModelAdmin):
 
+    @mark_safe
     def admin_thumbnail(self,obj):
         try:
             if obj.argazkia:
@@ -15,11 +17,10 @@ class GamePlayAdmin(admin.ModelAdmin):
         except:
             return '%s' % (obj.argazkia.title)
     admin_thumbnail.short_description = 'Thumb'
-    admin_thumbnail.allow_tags = True
 
+    @mark_safe
     def preview(self,obj):
         return '<a href="/gameplayak/%s">aurreikusi</a>' % (obj.slug)
-    preview.allow_tags=True
 
     list_display = ['admin_thumbnail','izenburua', 'preview','zailtasuna', 'jokoa','plataforma','pub_date', 'erabiltzailea','publikoa_da', 'status','shared']
     list_display_links = ['izenburua', ]
