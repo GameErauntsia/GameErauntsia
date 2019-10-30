@@ -35,7 +35,7 @@ pyTelegramBotAPI == 3.6.6
 tweepy == 3.7.0
 django-crispy-forms == 1.7.0
 django-guardian == 1.4.9
-djangorestframework == 3.7.3
+djangorestframework == 3.9.1
 django-rest-auth == 0.9.2
 django-cors-headers == 2.1.0
 django-appconf == 1.0.2
