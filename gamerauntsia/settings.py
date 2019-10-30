@@ -298,9 +298,11 @@ CORS_ORIGIN_ALLOW_ALL = True
 # more details on how to customize your logging configuration.
 
 try:
-    from tiny_mce_settings import *
+    from .tiny_mce_settings import *
 except:
     pass
+
+
 
 try:
     from server_settings import *
@@ -308,6 +310,6 @@ except:
     pass
 
 try:
-    from local_settings import *
+    from .local_settings import *
 except:
     pass
