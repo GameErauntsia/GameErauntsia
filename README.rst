@@ -9,11 +9,6 @@ Game Erauntsia
     :target: https://coveralls.io/github/GameErauntsia/GameErauntsia?branch=master
     :alt: Coveralls
 
-
-.. image:: https://landscape.io/github/GameErauntsia/GameErauntsia/master/landscape.svg?style=flat
-    :target: https://landscape.io/github/GameErauntsia/GameErauntsia/master
-    :alt: Code Health
-
 .. image:: https://img.shields.io/badge/python-2.7-blue.svg
     :target: https://badge.fury.io/py/gamerauntsia
     :alt: Python version
