@@ -43,15 +43,29 @@
         ga('send', 'pageview');
     </script>
     {% block morejs %}{% endblock %}
-<!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
-<script type="text/javascript">
-    window.cookieconsent_options = {"message":"Cookie-ak erabiltzen ditugu, baina datu pertsonalak ez ditugu gordetzen.","dismiss":"Onartu","learnMore":"Zer da Cookie bat?","link":"http://gamerauntsia.eus/cookie/","theme":"/static/css/cookie.css"};
-</script>
-
-<script type="text/javascript" src="//s3.amazonaws.com/cc.silktide.com/cookieconsent.latest.min.js"></script>
-<!-- End Cookie Consent plugin -->
-
-
+    <!-- Begin Cookie Consent plugin - https://www.osano.com/cookieconsent -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+    <script>
+      window.cookieconsent.initialise({
+          "palette": {
+              "popup": {
+                  "background": "#222",
+              },
+              "button": {
+                  "background": "#149845"
+              }
+          },
+          "theme": "classic",
+          "content": {
+              "message": "Cookie-ak erabiltzen ditugu, baina datu pertsonalak ez ditugu gordetzen.",
+              "dismiss": "Onartu",
+              "link": "Zer da Cookie bat?",
+              "href": "http://gamerauntsia.eus/cookie"
+          }
+      });
+    </script>
+    <!-- End Cookie Consent plugin -->
 </head>
 
 <body>
