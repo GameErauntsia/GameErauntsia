@@ -17,6 +17,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='jokoa',
             name='mod_date',
-            field=models.DateTimeField(default=datetime.datetime(2017, 4, 26, 16, 21, 0, 188826, tzinfo=utc), verbose_name=b'modifikazio data'),
+            field=models.DateTimeField(default=datetime.datetime(2017, 4, 26, 16, 21, 0, 188826, tzinfo=utc), verbose_name='modifikazio data'),
         ),
     ]

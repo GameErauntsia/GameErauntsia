@@ -24,13 +24,13 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('izenburua', models.CharField(max_length=150)),
-                ('slug', models.SlugField(help_text=b'Eremu honetan berri honen URL helbidea zehazten ari zara.', unique=True)),
+                ('slug', models.SlugField(help_text='Eremu honetan berri honen URL helbidea zehazten ari zara.', unique=True)),
                 ('desk', models.TextField(max_length=256)),
-                ('publikoa_da', models.BooleanField(default=False, verbose_name=b'Publikatzeko prest')),
-                ('status', models.CharField(choices=[(b'0', b'Zirriborroa'), (b'1', b'Publikoa')], default=b'0', max_length=1)),
-                ('pub_date', models.DateTimeField(default=timezone.now(), verbose_name=b'publikazio data')),
-                ('mod_date', models.DateTimeField(default=timezone.now(), verbose_name=b'modifikazio data')),
-                ('shared', models.BooleanField(default=False, help_text=b'Lauki hau automatikoki markatuko da sistemak edukia sare sozialetan elkarbanatzean.')),
+                ('publikoa_da', models.BooleanField(default=False, verbose_name='Publikatzeko prest')),
+                ('status', models.CharField(choices=[('0', 'Zirriborroa'), ('1', 'Publikoa')], default='0', max_length=1)),
+                ('pub_date', models.DateTimeField(default=timezone.now(), verbose_name='publikazio data')),
+                ('mod_date', models.DateTimeField(default=timezone.now(), verbose_name='modifikazio data')),
+                ('shared', models.BooleanField(default=False, help_text='Lauki hau automatikoki markatuko da sistemak edukia sare sozialetan elkarbanatzean.')),
                 ('argazkia', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='photologue.Photo')),
                 ('erabiltzailea', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='berriak', to=settings.AUTH_USER_MODEL)),
             ],
@@ -44,7 +44,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('izena', models.CharField(max_length=64)),
-                ('slug', models.SlugField(help_text=b'Eremu honetan gai honen URL helbidea zehazten ari zara.', unique=True)),
+                ('slug', models.SlugField(help_text='Eremu honetan gai honen URL helbidea zehazten ari zara.', unique=True)),
                 ('desk', models.TextField(blank=True, max_length=256, null=True)),
                 ('irudia', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='photologue.Photo')),
             ],
@@ -61,6 +61,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='berria',
             name='jokoa',
-            field=models.ForeignKey(blank=True, help_text=b'Artikulu honek joko zehaz batekin loturarik badu, adierazi hemen.', null=True, on_delete=django.db.models.deletion.CASCADE, to='jokoa.Jokoa'),
+            field=models.ForeignKey(blank=True, help_text='Artikulu honek joko zehaz batekin loturarik badu, adierazi hemen.', null=True, on_delete=django.db.models.deletion.CASCADE, to='jokoa.Jokoa'),
         ),
     ]

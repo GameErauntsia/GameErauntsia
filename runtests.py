@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import sys
 import os
@@ -13,7 +13,9 @@ settings.configure(
         DEBUG=True,
         DATABASES={
             'default': {
-                'ENGINE': 'django.db.backends.sqlite3',
+                'ENGINE': 'django.db.backends.mysql',
+                'USER': 'travis',
+                'PASSWORD': '',
             }
         },
         USE_TZ=True,
@@ -23,6 +25,7 @@ settings.configure(
         FB_APP_SECRET='345sefsdfasdf2342234',
         FB_APP_ID='123456789',
         TELEBOT_TOKEN='110201543:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw',
+        SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error'],
         HOST='gamerauntsia.eus',
         ADMIN_CHAT_ID='122346632',
         SITE_ID=1,
@@ -61,6 +64,7 @@ settings.configure(
             'gamerauntsia.aurkezpenak',
             'gamerauntsia.txapelketak',
             'gamerauntsia.getb',
+            'gamerauntsia.telegram',
             'gamerauntsia.zerbitzariak',
             'gamerauntsia.finished',
             'gamerauntsia.jokoen_itzulpenak',
@@ -74,8 +78,8 @@ settings.configure(
             'rest_framework',
             'rest_framework.authtoken',
             # 'rest_auth',
-            'gamerauntsia.app.authentication',
-            'gamerauntsia.app.services',
+            # 'gamerauntsia.app.authentication',
+            # 'gamerauntsia.app.services',
             'captcha',
             'corsheaders',
             'podcasting',
@@ -96,6 +100,7 @@ settings.configure(
                         "django.template.context_processors.i18n",
                         "django.template.context_processors.media",
                         "django.template.context_processors.request",
+                        'django.contrib.messages.context_processors.messages',
                     ],
                     'loaders': [
                         # insert your TEMPLATE_LOADERS here
@@ -115,10 +120,6 @@ settings.configure(
             'django.middleware.clickjacking.XFrameOptionsMiddleware',
             'pagination_bootstrap.middleware.PaginationMiddleware',
         ],
-        TEMPLATE_LOADERS = (
-                'django.template.loaders.filesystem.Loader',
-                'django.template.loaders.app_directories.Loader',
-        )
 )
 
 

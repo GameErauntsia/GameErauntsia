@@ -39,6 +39,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='itzulpena',
             name='izena',
-            field=models.CharField(max_length=150, verbose_name=b'Fitxategi izena'),
+            field=models.CharField(max_length=150, verbose_name='Fitxategi izena'),
         ),
     ]

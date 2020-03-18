@@ -1,4 +1,4 @@
-import urllib2
+import urllib.request as urllib2
 import xmltodict
 import json
 

@@ -20,7 +20,7 @@ class Atala(models.Model):
     iraupena_min = models.IntegerField(default=0)
     iraupena_seg = models.IntegerField(null=False, blank=False, default=0)
 
-    argazkia = models.ForeignKey(Photo)
+    argazkia = models.ForeignKey(Photo, on_delete=models.PROTECT)
     bideoa = models.CharField(max_length=100, null=True, blank=True,
                               help_text="Eremu honetan Youtube bideoaren URL kodea itsatsi behar duzu. Adb.: c21XAuI3aMo")
 
@@ -93,5 +93,5 @@ class Atala(models.Model):
         verbose_name = "Atala"
         verbose_name_plural = "Atalak"
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s' % (self.izenburua)

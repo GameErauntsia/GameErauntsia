@@ -46,12 +46,12 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='gameruser',
             name='bio',
-            field=models.TextField(blank=True, null=True, verbose_name=b'Biografia'),
+            field=models.TextField(blank=True, null=True, verbose_name='Biografia'),
         ),
         migrations.AlterField(
             model_name='gameruser',
             name='fullname',
-            field=models.CharField(blank=True, max_length=200, null=True, verbose_name=b'Izen abizenak'),
+            field=models.CharField(blank=True, max_length=200, null=True, verbose_name='Izen abizenak'),
         ),
         migrations.AlterField(
             model_name='gameruser',
@@ -66,7 +66,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='gameruser',
             name='phone',
-            field=models.CharField(blank=True, max_length=25, null=True, verbose_name=b'Telefonoa'),
+            field=models.CharField(blank=True, max_length=25, null=True, verbose_name='Telefonoa'),
         ),
         migrations.AlterField(
             model_name='gameruser',

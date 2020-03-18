@@ -3,8 +3,8 @@ from django.contrib.auth import views as authviews
 from gamerauntsia.gamer import views
 
 urlpatterns = [
-    url(r'^logout$', authviews.logout, name='user_logout'),
-    url(r'^login$', authviews.login, name='user_login'),
+    url(r'^logout$', authviews.LogoutView.as_view(), name='user_logout'),
+    url(r'^login$', authviews.LoginView.as_view(), name='user_login'),
 
     url(r'^$', views.community, name='komunitatea'),
     url(r'^youtuberrak$', views.youtuberrak, name='youtuberrak'),

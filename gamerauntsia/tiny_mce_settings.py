@@ -1,6 +1,6 @@
 TINYMCE_DEFAULT_CONFIG = {
     "language": 'eu',
-    "theme": "modern",
+    "themes": "modern",
     "height": 600,
     "plugins": [
         "advlist autolink lists link image charmap print preview anchor",
@@ -18,7 +18,7 @@ TINYMCE_DEFAULT_CONFIG = {
 
 TINYMCE_SMALL_BODY_CONFIG = {
     "language": 'eu',
-    "theme": "modern",
+    "themes": "modern",
     "plugins": [
         "advlist autolink lists link image charmap print preview anchor",
         "searchreplace visualblocks code fullscreen",

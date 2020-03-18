@@ -16,6 +16,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='euskarazkojokoa',
             name='garatzaileak_itzulia',
-            field=models.BooleanField(default=False, verbose_name=b'Garatzaileak itzulia'),
+            field=models.BooleanField(default=False, verbose_name='Garatzaileak itzulia'),
         ),
     ]

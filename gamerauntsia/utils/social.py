@@ -7,6 +7,8 @@ from django.template import defaultfilters as filters
 from gamerauntsia.gamer.models import GamerUser
 from mastodon import Mastodon
 
+BASE_PATH = getattr(settings, "BASE_PATH", "")
+
 def post_to_email(obj):
     email_list = GamerUser.objects.values_list('email', flat=True).filter(is_active=True, buletin_notification=True)
     subject, text_content, html_content = obj.getEmailText()
@@ -31,25 +33,26 @@ def post_to_twitter(item):
 def post_to_mastodon(item):
     textua = item.getTwitText()
     api = Mastodon(settings.MASTODON_CLIENT_ID, settings.MASTODON_CLIENT_SECRET, settings.MASTODON_USER_ACCESS_TOKEN, api_base_url="https://mastodon.eus")
-    api.toot(textua)
+    media_dict = api.media_post(BASE_PATH + item.argazkia.image.url)
+    api.status_post(textua, media_ids=media_dict, language="eus")
     return True
 
 
 def post_to_page(obj, data={}):
     PAGE_ID = getattr(settings, 'FB_PAGE_ID', None)
 
-    data['link'] = unicode(obj.get_absolute_url())
+    data['link'] = obj.get_absolute_url()
 
     name, desk, pic = obj.getFBinfo()
 
-    data['name'] = name.encode('utf8')
-    data['description'] = filters.safe(filters.striptags(desk))[:150].encode('utf8')
+    data['name'] = name
+    data['description'] = filters.safe(filters.striptags(desk))[:150]
     if pic:
-        data['picture'] = unicode(settings.HOST+pic.get_blog_url()).encode('utf8')
+        data['picture'] = settings.HOST+pic.get_blog_url()
     else:
-        data['picture'] = unicode(getattr(settings,'STATIC_URL')+u'img/fb_no_image.jpg').encode('utf8')
-    component = u'feed'.encode('utf8')
-    message = u''.encode('utf8')
+        data['picture'] = getattr(settings,'STATIC_URL')+u'img/fb_no_image.jpg'
+    component = u'feed'
+    message = u''
     try:
         post(PAGE_ID, component, message, **data)
     except Exception:

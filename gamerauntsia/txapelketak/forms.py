@@ -1,7 +1,7 @@
 from django import forms
 from django.conf import settings
 from tinymce.widgets import TinyMCE
-from models import Partaidea, Txapelketa
+from .models import Partaidea, Txapelketa
 
 TINYMCE_DEFAULT_CONFIG = getattr(settings, 'TINYMCE_DEFAULT_CONFIG', {})
 

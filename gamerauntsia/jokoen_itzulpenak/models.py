@@ -27,15 +27,15 @@ class Itzulpena(models.Model):
     def get_absolute_url(self):
         return "%s" % self.ipsfile.url
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s' % (self.izena)
 
 
 class EuskarazkoJokoa(models.Model):
-    jokoa = models.ForeignKey(Jokoa)
+    jokoa = models.ForeignKey(Jokoa, on_delete=models.PROTECT)
     plataformak = models.ManyToManyField(Plataforma)
 
-    itzulpena = models.ForeignKey(Itzulpena, blank=True, null=True)
+    itzulpena = models.ForeignKey(Itzulpena, blank=True, null=True, on_delete=models.SET_NULL)
     garatzaileak_itzulia = models.BooleanField(default=False, verbose_name="Garatzaileak itzulia")
     online_url = models.URLField(blank=True, verbose_name="Online itzulpen proiektua")
     instalazioa = models.TextField(blank=True)
@@ -47,7 +47,7 @@ class EuskarazkoJokoa(models.Model):
         verbose_name = "Euskarazko jokoa"
         verbose_name_plural = "Euskarazko jokoak"
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s %s' % (self.jokoa.izena, self.jokoa.bertsioa)
 
     def is_ge_translation(self):
@@ -62,7 +62,7 @@ class Euskalinkak(models.Model):
     izena = models.CharField(max_length=150, verbose_name="Izena")
     url = models.URLField()
 
-    irudia = models.ForeignKey(Photo)
+    irudia = models.ForeignKey(Photo, on_delete=models.PROTECT)
 
     publikoa_da = models.BooleanField(default=False,verbose_name="Publikoa da")
     pub_date = models.DateTimeField('publikazio data', default=datetime.now)
@@ -71,5 +71,5 @@ class Euskalinkak(models.Model):
         verbose_name = "Euskal lotura"
         verbose_name_plural = "Euskal loturak"
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s' % (self.izena)
