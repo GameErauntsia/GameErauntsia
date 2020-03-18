@@ -19,7 +19,7 @@ def index(request):
     euskaljokoak = EuskarazkoJokoa.objects.filter(publikoa_da=True).order_by('-pub_date')[:5]
     try:
         if last_jokoak[0].steam_id:
-            steam_json = get_urljson("http://store.steampowered.com/api/appdetails?appids=" + str(last_jokoak[0].steam_id))[str(last_jokoak[0].steam_id)]['data']
+            steam_json = get_urljson("https://store.steampowered.com/api/appdetails?appids=" + str(last_jokoak[0].steam_id))[str(last_jokoak[0].steam_id)]['data']
     except:
         pass
     return render(request, 'jokoa/index.html', locals())
@@ -33,7 +33,7 @@ def jokoa(request, slug):
         fav_game = user.likes_game(jokoa)
     try:
         if jokoa.steam_id:
-            steam_json = get_urljson("http://store.steampowered.com/api/appdetails?appids=" + str(jokoa.steam_id))[str(jokoa.steam_id)]['data']
+            steam_json = get_urljson("https://store.steampowered.com/api/appdetails?appids=" + str(jokoa.steam_id))[str(jokoa.steam_id)]['data']
     except:
         pass
     gameplayak = GamePlaya.objects.filter(jokoa=jokoa, publikoa_da=True, status='1', pub_date__lt=datetime.now()).order_by('-pub_date')

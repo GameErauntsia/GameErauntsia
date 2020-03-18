@@ -17,11 +17,11 @@
                 <p>{{jokoa.desk}}</p>
                 {% if steam_json %}
                     {% if steam_json.price_overview %}
-                    <h3><a href="http://store.steampowered.com/app/{{steam_json.steam_appid}}"><strong>{% widthratio steam_json.price_overview.final 100.0 1 %} €</strong> <img src="{{STATIC_URL}}img/steam.png" width="40"/></a></h3>
+                    <h3><a href="https://store.steampowered.com/app/{{steam_json.steam_appid}}"><strong>{% widthratio steam_json.price_overview.final 100.0 1 %} €</strong> <img src="{{STATIC_URL}}img/steam.png" width="40"/></a></h3>
                     {% endif %}
                     {% if steam_json.metacritic %}
                     <div class="well">
-                        <img src="{{STATIC_URL}}img/metacritic.png" height="50"/>   
+                        <img src="{{STATIC_URL}}img/metacritic.png" height="50"/>
                         <h3>
                         <strong>{{steam_json.metacritic.score}}/100</strong></h3>
                         <a href="{{steam_json.metacritic.url}}">Metacritic balorazioa</a>
