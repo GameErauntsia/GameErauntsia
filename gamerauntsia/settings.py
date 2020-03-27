@@ -204,8 +204,8 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_WHITELIST = (
-    'gamerauntsia.eus',
-    '127.0.0.1',
+    'https://gamerauntsia.eus',
+    'https://127.0.0.1',
 )
 CORS_ORIGIN_ALLOW_ALL = True
 
