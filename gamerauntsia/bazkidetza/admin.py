@@ -1,6 +1,7 @@
 from .models import Bazkidea, Eskaintza, Eskaera, OparitzekoJokoak
 from django.contrib import admin
 from .forms import EskaintzaAdminForm
+from django.utils.safestring import mark_safe
 
 class BazkideaAdmin(admin.ModelAdmin):
     list_display = ['id','user', 'paid', 'is_active', 'expire_date', 'date_joined']
@@ -10,6 +11,8 @@ class BazkideaAdmin(admin.ModelAdmin):
 
 
 class EskaintzaAdmin(admin.ModelAdmin):
+
+    @mark_safe
     def admin_thumbnail(self,obj):
         try:
             if obj.irudia:
@@ -19,7 +22,6 @@ class EskaintzaAdmin(admin.ModelAdmin):
         except:
             return '%s' % (obj.irudia.title)
     admin_thumbnail.short_description = 'Thumb'
-    admin_thumbnail.allow_tags = True
 
     list_display = ['admin_thumbnail', 'izena', 'mota', 'expire_date', 'activate_date', 'is_public']
     list_display_links = ['admin_thumbnail', 'izena']
