@@ -3,15 +3,15 @@ import xmltodict
 import json
 
 def get_urljson(url):
-    stream = []
+    obj = {}
     req = urllib2.Request(url)
     opener = urllib2.build_opener()
     f = opener.open(req, timeout=1)
     try:
-        stream = json.load(f)
+        obj = json.loads(f.read().decode())
     except:
         return None
-    return stream
+    return obj
 
 def get_urlxml(url):
     stream = []
