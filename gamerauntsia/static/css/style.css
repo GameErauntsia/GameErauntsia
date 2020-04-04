@@ -245,13 +245,14 @@ box-shadow: inset 0 3px 7px rgba(255,255,255,0.15);
 }
 
 .steam-group-icon {
-width: 16px;
-height: 16px;
-left: 4px;
-margin-top: -8px;
-position: absolute;
-top: 50%;
-background: transparent url('http://cdn.steampowered.com/favicon.ico') 0 0 no-repeat;
+  width: 16px;
+  height: 16px;
+  left: 4px;
+  margin-top: -8px;
+  position: absolute;
+  top: 50%;
+  background: transparent url('/static/img/steam-icon.ico') 0 0 no-repeat;
+  background-size: contain;
 }
 
 .steam-group-label {
