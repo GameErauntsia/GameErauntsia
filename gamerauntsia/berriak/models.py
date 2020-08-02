@@ -68,12 +68,12 @@ class Berria(models.Model):
 
     def getTwitText(self):
         if self.erabiltzailea.twitter_id:
-            return truncatechars(self.izenburua, 60) + ' ' + self.get_absolute_url() + ' @%s 2dz' % (self.erabiltzailea.twitter_id)
+            return truncatechars(self.izenburua, 230) + ' ' + self.get_absolute_url() + ' @%s 2dz' % (self.erabiltzailea.twitter_id)
         else:
-            return truncatechars(self.izenburua, 100) + ' ' + self.get_absolute_url()
+            return truncatechars(self.izenburua, 250) + ' ' + self.get_absolute_url()
 
     def getTelegramText(self):
-        return self.izenburua + ' ' + self.get_absolute_url()
+        return self.izenburua + ' ' + self.get_absolute_url() + ' @%s 2dz' % (self.erabiltzailea.getFullName())
 
     def getEmailText(self):
         htmly = get_template('buletina/buletina.html')
