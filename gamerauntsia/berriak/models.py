@@ -73,7 +73,7 @@ class Berria(models.Model):
             return truncatechars(self.izenburua, 250) + ' ' + self.get_absolute_url()
 
     def getTelegramText(self):
-        return self.izenburua + ' ' + self.get_absolute_url()
+        return self.izenburua + ' ' + self.get_absolute_url() + ' @%s 2dz' % (self.erabiltzailea.getFullName())
 
     def getEmailText(self):
         htmly = get_template('buletina/buletina.html')
