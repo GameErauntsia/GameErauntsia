@@ -227,7 +227,7 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-REGISTRATION_FORM = "registration.forms.RegistrationFormUniqueEmail"
+REGISTRATION_FORM = "gamerauntsia.gamer.forms.RecaptchaRegistrationForm"
 
 # TINYMCE PATH
 TINYMCE_JS_ROOT = STATIC_ROOT + "js/tinymce/"
