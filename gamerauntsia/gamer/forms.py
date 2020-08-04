@@ -7,6 +7,8 @@ from gamerauntsia.jokoa.models import Jokoa
 from tinymce.widgets import TinyMCE
 from django.utils.translation import ugettext as _
 from django.conf import settings
+from registration.forms import RegistrationFormUniqueEmail
+from captcha.fields import ReCaptchaField
 
 TINYMCE_SMALL_BODY_CONFIG = getattr(settings, 'TINYMCE_SMALL_BODY_CONFIG', {})
 TINYMCE_DEFAULT_CONFIG = getattr(settings, 'TINYMCE_DEFAULT_CONFIG', {})
@@ -155,3 +157,6 @@ class GamePlayForm(forms.ModelForm):
     class Meta:
         model = GamePlaya
         exclude = ('slug','erabiltzailea','pub_date','publikoa_da','status','mod_date','shared','argazkia')
+
+class RecaptchaRegistrationForm(RegistrationFormUniqueEmail):
+    recaptcha = ReCaptchaField(label="")
