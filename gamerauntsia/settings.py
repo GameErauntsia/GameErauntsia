@@ -1,88 +1,107 @@
-﻿# Django settings for gamerauntsia project.
+# Django settings for gamerauntsia project.
 
 import os
+import raven
 
-DEBUG = False
-DEFAULT_FROM_EMAIL = ''
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+## General config
+DEBUG = os.getenv('DEBUG', False)
+TEMPLATE_DEBUG = DEBUG
+SITE_ID = 1
+LANGUAGE_CODE = 'eu'
+SECRET_KEY = os.getenv('SECRET_KEY')
+POSTS_PER_PAGE = 10
+GP_GROUP = 'Gamerrak'  # Set your GamePlay editor group name
+NEWS_GROUP = 'Analistak'  # Set your blog editor group name
+
+## Email
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
 BULETIN_FROM_EMAIL = DEFAULT_FROM_EMAIL
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
 EMAIL_SUBJECT_PREFIX = '[Game Erauntsia] '
-DEFAULT_TO_EMAIL = ''
+DEFAULT_TO_EMAIL = os.getenv('DEFAULT_TO_EMAIL')
 EMAIL_SUBJECT = EMAIL_SUBJECT_PREFIX
 
-ADMINS = (
-    ('Admin', 'admin@domain.com'),
-)
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_HOST_USER = DEFAULT_FROM_EMAIL
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
-MANAGERS = ADMINS
+#TELEGRAM BOT
+TELEBOT_TOKEN = os.getenv("TG_BOT_TOKEN")
+ADMIN_CHAT_ID = os.getenv("TG_ADMIN_CHAT_ID")
+MC_CHAT_ID = os.getenv("TG_MC_CHAT_ID")
+EDITOR_CHAT_ID = os.getenv("TG_EDITOR_CHAT_ID")
+PUBLIC_CHAT_ID = os.getenv("TG_PUBLIC_CHAT_ID")
 
+#Twitter API
+TWITTER_API_KEY = os.getenv("TW_API_KEY")
+TWITTER_API_SECRET = os.getenv("TW_API_SECRET")
+TWITTER_CONSUMER_KEY = TWITTER_API_KEY
+TWITTER_CONSUMER_SECRET = TWITTER_API_SECRET
+TWITTER_USERNAME = os.getenv("TW_USERNAME")
+TWITTER_ACCESS_TOKEN = os.getenv("TW_ACCESS_TOKEN")
+TWITTER_ACCESS_TOKEN_SECRET = os.getenv("TW_ACCESS_TOKEN_SECRET")
+TWITTER_MAXLENGTH = 140
+
+#Facebook API
+FB_APP_ID = ''
+FACEBOOK_APP_ID = FB_APP_ID
+FB_APP_SECRET = ''
+FB_PAGE_ID = ''
+
+#Mastodon API
+MASTODON_CLIENT_ID = os.getenv("MA_CLIENT_ID")
+MASTODON_CLIENT_SECRET = os.getenv("MA_CLIENT_SECRET")
+MASTODON_USER_ACCESS_TOKEN = os.getenv("MA_USER_ACCESS_TOKEN")
+
+#RECAPTCHA
+RECAPTCHA_PUBLIC_KEY = os.getenv("RECAPTCHA_PUBLIC_KEY")
+RECAPTCHA_PRIVATE_KEY = os.getenv("RECAPTCHA_PRIVATE_KEY")
+NOCAPTCHA = True
+
+## Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',  # Or path to database file if using sqlite3.
-        'USER': '',  # Not used with sqlite3.
-        'PASSWORD': '',  # Not used with sqlite3.
-        'HOST': '',  # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',  # Set to empty string for default. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.getenv("MYSQL_DATABASE"),
+        'USER': os.getenv("MYSQL_USER"),
+        'PASSWORD': os.getenv("MYSQL_PASSWORD"),
+        'HOST': os.getenv("MYSQL_HOST"),
+        'PORT': os.getenv("MYSQL_PORT"),
     }
 }
 
-# Local time zone for this installation. Choices can be found here:
-# http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
-# although not all choices may be available on all operating systems.
-# On Unix systems, a value of None will cause Django to use the same
-# timezone as the operating system.
-# If running in a Windows environment this must be set to the same as your
-# system time zone.
+## Time
 TIME_ZONE = 'Europe/Madrid'
-
-# Language code for this installation. All choices can be found here:
-# http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'eu'
-
-SITE_ID = 1
-
-# If you set this to False, Django will make some optimizations so as not
-# to load the internationalization machinery.
 USE_I18N = True
-
-# If you set this to False, Django will not format dates, numbers and
-# calendars according to the current locale.
 USE_L10N = True
-
-# If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
 
-# Absolute filesystem path to the directory that will hold user-uploaded files.
-# Example: "/home/media/media.lawrence.com/media/"
-# MEDIA_ROOT = ''
-MEDIA_ROOT = "/home/ge/django/media/"
+ADMINS = (
+)
 
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash.
-# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = '/media/'
+MANAGERS = (
+    ('Urtzi Odriozola', 'urtzi.odriozola@gmail.com'),
+)
 
-# Absolute path to the directory static files should be collected to.
-# Don't put anything in this directory yourself; store your static files
-# in apps' "static/" subdirectories and in STATICFILES_DIRS.
-# Example: "/home/media/media.lawrence.com/static/"
-# STATIC_ROOT = ''
-STATIC_ROOT = "/home/ge/django/static/"
-
-# URL prefix for static files.
-# Example: "http://media.lawrence.com/static/"
+## Paths
 STATIC_URL = '/static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_DOC_ROOT = STATIC_ROOT
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_DOC_ROOT = MEDIA_ROOT
+ADMIN_MEDIA_PREFIX = os.path.join(BASE_DIR, "media/admin")
 
-ADMIN_MEDIA_PREFIX = '/media/admin/'
-
-POSTS_PER_PAGE = 10
-
-GP_GROUP = 'Gamerrak'  # Set your GamePlay editor group name
-NEWS_GROUP = 'Analistak'  # Set your blog editor group name
+STATICFILES_DIRS=()
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -139,23 +158,6 @@ INSTALLED_APPS = (
     'podcasting',
 )
 
-# Additional locations of static files
-STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)
-
-# List of finder classes that know how to find static files in
-# various locations.
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-)
-
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = 'a212scc3235r'
-
 this = os.path.dirname(os.path.abspath(__file__))
 
 TEMPLATES = [
@@ -204,7 +206,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_WHITELIST = (
-    'https://gamerauntsia.eus',
+    os.getenv("HOST_NAME"),
     'https://127.0.0.1',
 )
 CORS_ORIGIN_ALLOW_ALL = True
@@ -233,45 +235,15 @@ REGISTRATION_FORM = "gamerauntsia.gamer.forms.RecaptchaRegistrationForm"
 TINYMCE_JS_ROOT = STATIC_ROOT + "js/tinymce/"
 TINYMCE_JS_URL = STATIC_URL + "js/tinymce/tinymce.min.js"
 
-# TELEGRAM BOT
-DIRNAME = ''
-TELEBOT_TOKEN = ''
-MC_CHAT_ID = ''
-EDITOR_CHAT_ID = ''
-
-# Twitter API
-TWITTER_API_KEY = ''
-TWITTER_API_SECRET = ''
-TWITTER_CONSUMER_KEY = TWITTER_API_KEY
-TWITTER_CONSUMER_SECRET = TWITTER_API_SECRET
-TWITTER_USERNAME = 'gamerauntsia'
-TWITTER_ACCESS_TOKEN = ''
-TWITTER_ACCESS_TOKEN_SECRET = ''
-TWITTER_MAXLENGTH = 140
-
-# Facebook API
-FB_APP_ID = ''
-FB_APP_SECRET = ''
-FB_PAGE_ID = ''
-
-FACEBOOK_EXTENDED_PERMISSIONS = [
-    'publish_stream',
-]
-
-# Mastodon API
-MASTODON_CLIENT_ID = ''
-MASTODON_CLIENT_SECRET = ''
-MASTODON_USER_ACCESS_TOKEN = ''
-
 # LOGIN URLS
 LOGIN_URL = '/komunitatea/login/'
 LOGIN_ERROR_URL = '/komunitatea/login-error/'
 
-HOST = 'http://gamerauntsia.eus/'
+HOST = os.getenv("HOST_NAME")
 
 USE_X_FORWARDED_HOST = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '138.68.93.226', 'www.gamerauntsia.eus', 'gamerauntsia.eus', 'gamerauntsia.com', 'www.gamerauntsia.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '138.68.93.226', 'www.gamerauntsia.eus', 'gamerauntsia.eus', 'gamerauntsia.com', 'www.gamerauntsia.com', 'ge.galaipa.eus']
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -291,25 +263,49 @@ REST_AUTH_SERIALIZERS = {
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-# A sample logging configuration. The only tangible logging
-# performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error when DEBUG=False.
-# See http://docs.djangoproject.com/en/dev/topics/logging for
-# more details on how to customize your logging configuration.
-
-try:
-    from .tiny_mce_settings import *
-except:
-    pass
-
-
-
-try:
-    from server_settings import *
-except:
-    pass
-
-try:
-    from .local_settings import *
-except:
-    pass
+#LOGGING
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+        'store_to_file': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(BASE_DIR, "logs/event.log"),
+            'maxBytes': 1024 * 1024 * 5,  # 5 MB
+            'backupCount': 5,
+            'formatter': 'simple',
+            'filters': ['require_debug_false'],
+        },
+        'sentry': {
+            'level': 'ERROR',
+            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
+            'filters': ['require_debug_false'],
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['store_to_file', 'sentry'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    },
+}

@@ -1,0 +1,10 @@
+version: '2.1'
+services:
+  web:
+    build: .
+    command: >
+      python manage.py runserver 0.0.0.0:8000
+    environment:
+      - DEBUG=True
+    volumes:
+      - .:/app/code
