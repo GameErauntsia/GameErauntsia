@@ -20,6 +20,7 @@ services:
     command: >
       gunicorn gamerauntsia.wsgi:application --bind 0.0.0.0:8000 --workers=1
     environment:
+      - HOST_NAME
       - SECRET_KEY
       - MYSQL_HOST
       - MYSQL_DATABASE
@@ -54,7 +55,7 @@ services:
   proxy:
     image: nginx:mainline-alpine
     ports:
-      - 8000:80
+      - 80:80
     volumes:
       - ./proxy:/etc/nginx/conf.d:ro
       - staticfiles:/app/static/:ro
