@@ -231,10 +231,6 @@ AUTHENTICATION_BACKENDS = (
 
 REGISTRATION_FORM = "gamerauntsia.gamer.forms.RecaptchaRegistrationForm"
 
-# TINYMCE PATH
-TINYMCE_JS_ROOT = STATIC_ROOT + "js/tinymce/"
-TINYMCE_JS_URL = STATIC_URL + "js/tinymce/tinymce.min.js"
-
 # LOGIN URLS
 LOGIN_URL = '/komunitatea/login/'
 LOGIN_ERROR_URL = '/komunitatea/login-error/'
@@ -309,3 +305,22 @@ LOGGING = {
         },
     },
 }
+
+# TINIYMCE
+TINYMCE_JS_ROOT = STATIC_ROOT + "js/tinymce/"
+TINYMCE_JS_URL = STATIC_URL + "js/tinymce/tinymce.min.js"
+try:
+    from .tiny_mce_settings import *
+except:
+    pass
+
+## ADDITIONAL SETTINGS
+try:
+    from server_settings import *
+except:
+    pass
+
+try:
+    from .local_settings import *
+except:
+    pass
