@@ -1,0 +1,29 @@
+version: '2.1'
+
+services:
+  db:
+   restart: unless-stopped
+  web:
+   restart: unless-stopped
+  proxy:
+   restart: unless-stopped
+  https-portal:
+    image: steveltn/https-portal:1
+    restart: unless-stopped
+    ports:
+      - '443:443'
+      - '80:80'
+    depends_on:
+      - proxy
+    environment:
+      - DOMAINS=gamerauntsia.eus -> http://proxy:80
+      - STAGE=production
+      - CLIENT_MAX_BODY_SIZE=10m
+      - PROXY_BUFFERS=4 32k
+      - PROXY_CONNECT_TIMEOUT=120
+      - PROXY_SEND_TIMEOUT=120
+      - PROXY_READ_TIMEOUT=120
+    volumes:
+      - ssl-certs:/var/lib/https-portal
+volumes:
+  ssl-certs:

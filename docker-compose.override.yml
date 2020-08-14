@@ -1,5 +1,8 @@
 version: '2.1'
 services:
+  proxy:
+    ports:
+      - 80:80
   web:
     build: .
     command: >

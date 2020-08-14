@@ -18,7 +18,7 @@ services:
   web:
     image: gamerauntsia/web:latest
     command: >
-      gunicorn gamerauntsia.wsgi:application --bind 0.0.0.0:8000 --workers=1
+      gunicorn gamerauntsia.wsgi:application --bind 0.0.0.0:8000 --workers=4
     environment:
       - HOST_NAME
       - SECRET_KEY
@@ -54,8 +54,6 @@ services:
         condition: service_healthy
   proxy:
     image: nginx:mainline-alpine
-    ports:
-      - 80:80
     volumes:
       - ./proxy:/etc/nginx/conf.d:ro
       - staticfiles:/app/static/:ro
