@@ -235,7 +235,7 @@ REGISTRATION_FORM = "gamerauntsia.gamer.forms.RecaptchaRegistrationForm"
 LOGIN_URL = '/komunitatea/login/'
 LOGIN_ERROR_URL = '/komunitatea/login-error/'
 
-HOST = os.getenv("HOST_NAME")
+HOST = os.getenv("HOST_NAME") + '/'
 
 USE_X_FORWARDED_HOST = True
 
