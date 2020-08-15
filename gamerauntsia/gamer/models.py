@@ -11,7 +11,7 @@ from gamerauntsia.jokoa.models import Jokoa
 
 
 MEMBER_PHOTO_SLUG = getattr(settings, 'PROFILE_PHOTO_DEFAULT_SLUG', 'no-profile-photo')
-
+DEFAULT_PHOTO = Photo.objects.get(slug=MEMBER_PHOTO_SLUG)
 PLATFORM = (
     ('steam', 'Steam'),
     ('origin', 'Origin'),
@@ -86,7 +86,7 @@ class GamerUser(AbstractUser):
             return self.photo
         else:
             try:
-                return Photo.objects.get(slug=MEMBER_PHOTO_SLUG)
+                return DEFAULT_PHOTO
             except:
                 return None
 

@@ -60,7 +60,7 @@ def berria_detail(request, pk):
 
 def index(request):
     h = {}
-    zerr_berriak = Berria.objects.filter(status='1', pub_date__lt=timezone.now()).order_by('-pub_date')
+    zerr_berriak = Berria.objects.filter(status='1', pub_date__lt=timezone.now()).order_by('-pub_date').select_related('argazkia','erabiltzailea__photo')
     return render(request, 'berriak/index.html', locals())
 
 

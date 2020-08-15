@@ -13,8 +13,8 @@ from gamerauntsia.bazkidetza.models import Eskaintza
 
 def index(request):
     gameplayak = GamePlaya.objects.filter(status='1', publikoa_da=True, pub_date__lt=datetime.now()).order_by(
-        '-pub_date')
-    berriak = Berria.objects.filter(status='1', pub_date__lt=datetime.now()).order_by('-pub_date')
+        '-pub_date').select_related('argazkia','jokoa','plataforma__icon')
+    berriak = Berria.objects.filter(status='1', pub_date__lt=datetime.now()).order_by('-pub_date').select_related('argazkia')
     atala = Atala.objects.latest('pub_date')
     gp = gameplayak[0]
     berria = berriak[0]

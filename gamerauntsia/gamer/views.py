@@ -43,9 +43,9 @@ def update_session_auth_hash(request, user):
 
 
 def community(request):
-    users = GamerUser.objects.filter(is_active=True).order_by('-date_joined')
+    users = GamerUser.objects.filter(is_active=True).order_by('-date_joined').select_related('photo')
     user_rows = int(round(len(users) / 3))
-    gurus = GamerUser.objects.filter(is_active=True).order_by('-karma')[:9]
+    gurus = GamerUser.objects.filter(is_active=True).order_by('-karma').select_related('photo')[:9]
     return render(request, 'gamer/community.html', locals())
 
 
@@ -66,7 +66,7 @@ def guruak(request):
 
 
 def talde_motorra(request):
-    users = GamerUser.objects.filter(is_active=True, is_staff=True).order_by('-date_joined')
+    users = GamerUser.objects.filter(is_active=True, is_staff=True).order_by('-date_joined').select_related('photo')
     return render(request, 'gamer/talde_motorra.html', locals())
 
 

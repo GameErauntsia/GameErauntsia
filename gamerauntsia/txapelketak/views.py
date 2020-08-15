@@ -74,7 +74,7 @@ def txapelketa_detail(request, pk):
 
 
 def index(request):
-    items = Txapelketa.objects.filter(publikoa_da=True).order_by('-pub_date')
+    items = Txapelketa.objects.filter(publikoa_da=True).order_by('-pub_date').select_related('irudia')
     return render(request, 'txapelketak/index.html', locals())
 
 
