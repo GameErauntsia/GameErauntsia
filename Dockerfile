@@ -9,7 +9,7 @@ RUN mkdir logs static media
 
 COPY cronjobs $APP_HOME/
 RUN cat cronjobs >> /etc/crontabs/root
-EXEC crond -b
+RUN crond -b
 
 RUN apk add --no-cache mysql-client mariadb-client-libs libjpeg
 COPY requirements.txt $APP_HOME/
