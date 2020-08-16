@@ -74,12 +74,15 @@ def txapelketa_detail(request, pk):
 
 
 def index(request):
-    items = Txapelketa.objects.filter(publikoa_da=True).order_by('-pub_date').select_related('irudia')
+    items = Txapelketa.objects.filter(publikoa_da=True).order_by('-pub_date').select_related('irudia','jokoa')
     return render(request, 'txapelketak/index.html', locals())
 
 
 def txapelketa(request, slug):
-    item = get_object_or_404(Txapelketa, slug=slug)
+    item = get_object_or_404(Txapelketa.objects.select_related('irudia').prefetch_related('jokalariak__photo','adminak__photo'), slug=slug)
+    list_sailkapena = item.get_partaideak(['-points', '-win', 'lose', '-average']).prefetch_related('jokalariak__photo')
+    single_gamers = item.get_single_gamers()
+    partidak = Partida.objects.filter(txapelketa=item).order_by('date').prefetch_related('partaideak__jokalariak')
     video_parts = Partida.objects.filter(Q(txapelketa=item), Q(bideoa__isnull=False)).exclude(bideoa__iexact='').order_by('-date')[:3]
     next_parts = Partida.objects.filter(Q(txapelketa=item), Q(partaideak__isnull=False),
                                         Q(emaitza__isnull=True) | Q(emaitza__iexact='')).order_by('date',
@@ -96,7 +99,7 @@ def txapelketa(request, slug):
             for x in range(leaflvl, -1, -1):
                 graphdata += "["
                 partidak = Partida.objects.filter(Q(level=x), Q(txapelketa=item),
-                                                  Q(txapelketa__mota='0') | Q(txapelketa__mota='2', is_playoff=True))
+                                                  Q(txapelketa__mota='0') | Q(txapelketa__mota='2', is_playoff=True)).prefetch_related('partaideak__jokalariak')
                 last_part = len(partidak) - 1
                 for j, part in enumerate(partidak):
                     graphdata += "["
@@ -130,12 +133,6 @@ def txapelketa(request, slug):
                 graphdata += "[[{'name': '???','seed': '???','id': 0}]]]"
         else:
             graphdata = ""
-
-        if item.mota == '2':
-            list_sailkapena = item.get_partaideak(['-points', '-win', 'lose', '-average'])
-
-    else:
-        list_sailkapena = item.get_partaideak(['-points', '-win', 'lose', '-average'])
 
     # api = get_tweepy_api()
     # search = '#' + item.hashtag

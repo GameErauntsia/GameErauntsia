@@ -108,7 +108,7 @@
                         <a aria-controls="myTabDrop1-contents" data-toggle="dropdown" class="dropdown-toggle" id="myTabDrop1" href="#" aria-expanded="false"><i class="glyphicon glyphicon-user"></i> Partaideak {% if item.jokalariak_count %}({{item.jokalariak_count}}){% endif %} <span class="caret"></span></a>
                         <ul id="myTabDrop1-contents" aria-labelledby="myTabDrop1" role="menu" class="dropdown-menu">
                             <li class=""><a aria-controls="dropdown1" data-toggle="tab" id="dropdown1-tab" role="tab" tabindex="-1" href="#dropdown1" aria-expanded="false"><i class="glyphicon glyphicon-user"></i><i class="glyphicon glyphicon-user"></i> Taldeak</a></li>
-                            {% if item.get_single_gamers %}
+                            {% if single_gamers %}
                             <li class=""><a aria-controls="dropdown2" data-toggle="tab" id="dropdown2-tab" role="tab" tabindex="-1" href="#dropdown2" aria-expanded="true"><i class="glyphicon glyphicon-user"></i> Talderik gabe</a></li>
                             {% endif %}
                         </ul>
@@ -185,7 +185,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for partida in item.get_partidak %}
+                                    {% for partida in partidak %}
                                     <tr>
                                         <td>#{{partida.jardunaldia}}</td>
                                         <td>{{partida.render_izena|safe}}</td>
@@ -240,7 +240,7 @@
                     </div>
                     <div id="dropdown1" class="tab-pane fade" aria-labelledby="dropdown1-tab" role="tabpanel">
                         <p>
-                            {% for partaide in item.get_partaideak %}
+                            {% for partaide in list_sailkapena %}
                                 {% if partaide.is_group %}
                                 <div class="panel panel-success">
                                     <div class="panel-heading">
@@ -267,11 +267,11 @@
                             {% endfor %}
                         </p>
                     </div>
-                    {% if item.get_single_gamers %}
+                    {% if single_gamers %}
                     <div id="dropdown2" class="tab-pane fade" aria-labelledby="dropdown2-tab" role="tabpanel">
                         <div class="row">
                             <br>
-                            {% for user in item.get_single_gamers %}
+                            {% for user in single_gamers %}
                                 {% if forloop.first %}
                                 <div class="col-sm-6"><ul class="list-unstyled">
                                 {%endif%}
