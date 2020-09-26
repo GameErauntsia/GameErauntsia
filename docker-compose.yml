@@ -8,13 +8,9 @@ services:
       - MYSQL_DATABASE
       - MYSQL_USER
       - MYSQL_PASSWORD
+      - MYSQL_ROOT_PASSWORD
     volumes:
       - db-data:/var/lib/mysql
-    healthcheck:
-      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
-      timeout: 45s
-      interval: 30s
-      retries: 10
   web:
     image: gamerauntsia/web:latest
     command: >
@@ -28,6 +24,7 @@ services:
       - MYSQL_USER
       - MYSQL_PASSWORD
       - EMAIL_HOST
+      - EMAIL_HOST_USER
       - EMAIL_HOST_PASSWORD
       - DEFAULT_FROM_EMAIL
       - DEFAULT_TO_EMAIL
@@ -50,8 +47,7 @@ services:
       - staticfiles:/app/static
       - mediafiles:/app/media
     depends_on:
-      db:
-        condition: service_healthy
+      - db
   proxy:
     image: nginx:mainline-alpine
     volumes:
