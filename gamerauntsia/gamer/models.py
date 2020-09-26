@@ -12,6 +12,17 @@ from gamerauntsia.jokoa.models import Jokoa
 
 MEMBER_PHOTO_SLUG = getattr(settings, 'PROFILE_PHOTO_DEFAULT_SLUG', 'no-profile-photo')
 
+def get_default_photo():
+    try:
+        return Photo.objects.get(slug=MEMBER_PHOTO_SLUG)
+    except:
+        return None
+
+# Dirty hack to avoid going to the DB every time get_photo is called
+# and the user has no image.
+# Probably there is a better way of handling this.
+DEFAULT_PHOTO = get_default_photo()
+
 PLATFORM = (
     ('steam', 'Steam'),
     ('origin', 'Origin'),
@@ -85,10 +96,7 @@ class GamerUser(AbstractUser):
         if self.photo:
             return self.photo
         else:
-            try:
-                return Photo.objects.get(slug=MEMBER_PHOTO_SLUG)
-            except:
-                return None
+            return DEFAULT_PHOTO
 
     def get_profile(self):
         return self

@@ -1,0 +1,13 @@
+version: '2.1'
+services:
+  proxy:
+    ports:
+      - 80:80
+  web:
+    build: .
+    command: >
+      python manage.py runserver 0.0.0.0:8000
+    environment:
+      - DEBUG=True
+    volumes:
+      - .:/app/code

@@ -1,0 +1,4 @@
+# min	hour	day	month	weekday	command
+*/5	*	*	*	*	python3 /app/code/manage.py social_share >/dev/null 2>&1
+ 0      3       0       0       0       python3 /app/code/manage.py calculate_karma >/dev/null 2>&1
+ 0      4       0       0       0       python3 /app/code/manage.py calculate_suscriptions >/dev/null 2>&1

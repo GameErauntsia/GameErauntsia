@@ -99,7 +99,7 @@ def azken_erantzunak(model='Berria'):
     h = {}
     try:
         ct = ContentType.objects.get(model=model)
-        h['comments'] = Comment.objects.filter(content_type=ct).order_by('-submit_date')[:5]
+        h['comments'] = Comment.objects.filter(content_type=ct).order_by('-submit_date')[:5].select_related('user__photo')
     except:
         h['comments'] = []
     return h

@@ -75,8 +75,8 @@ class Txapelketa(models.Model):
 
     def get_single_gamers(self):
         singles = []
-        gamers = self.get_jokalariak()
-        teams = self.get_partaideak()
+        gamers = self.jokalariak.all()
+        teams = self.get_partaideak().prefetch_related('jokalariak','ordezkoak')
         for gamer in gamers:
             has_team = False
             for team in teams:
@@ -247,21 +247,20 @@ class Partida(MPTTModel):
     date = models.DateTimeField('Data', null=True, blank=True)
 
     def get_izena(self):
-        if self.partaideak.all():
+        partaideak = self.partaideak.all()
+        if partaideak:
             if self.is_return:
-                return " VS ".join([p.get_izena() for p in self.partaideak.all().order_by("-id")])
-            else:
-                return " VS ".join([p.get_izena() for p in self.partaideak.all()])
+                partaideak = sorted(partaideak, key=lambda x: getattr(x, 'id'), reverse=True)
+            return " VS ".join([p.get_izena() for p in partaideak])
         else:
             return u'%d jardunaldia' % (self.jardunaldia)
 
     def render_izena(self):
-        if self.partaideak.all():
+        partaideak = self.partaideak.all()
+        if partaideak:
             if self.is_return:
-                return " <img src='/static/img/versus.png'/> ".join(
-                    [p.get_izena() for p in self.partaideak.all().order_by("-id")])
-            else:
-                return " <img src='/static/img/versus.png'/> ".join([p.get_izena() for p in self.partaideak.all()])
+                partaideak = sorted(partaideak, key=lambda x: getattr(x, 'id'), reverse=True)
+            return " <img src='/static/img/versus.png'/> ".join([p.get_izena() for p in partaideak])
         else:
             return u'???'
 

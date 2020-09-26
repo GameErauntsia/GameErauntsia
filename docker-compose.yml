@@ -1,0 +1,66 @@
+version: '2.1'
+
+services:
+  db:
+    image: mariadb:10.5.5
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_DATABASE
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+    volumes:
+      - db-data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 45s
+      interval: 30s
+      retries: 10
+  web:
+    image: gamerauntsia/web:latest
+    command: >
+      gunicorn gamerauntsia.wsgi:application --bind 0.0.0.0:8000 --workers=4
+    environment:
+      - HOST_NAME
+      - SECRET_KEY
+      - MYSQL_HOST
+      - MYSQL_DATABASE
+      - MYSQL_PORT
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+      - EMAIL_HOST
+      - EMAIL_HOST_PASSWORD
+      - DEFAULT_FROM_EMAIL
+      - DEFAULT_TO_EMAIL
+      - TG_BOT_TOKEN
+      - TG_ADMIN_CHAT_ID
+      - TG_MC_CHAT_ID
+      - TG_EDITOR_CHAT_ID
+      - TG_PUBLIC_CHAT_ID
+      - TW_USERNAME
+      - TW_API_KEY
+      - TW_API_SECRET
+      - TW_ACCESS_TOKEN
+      - TW_ACCESS_TOKEN_SECRET
+      - MA_CLIENT_ID
+      - MA_CLIENT_SECRET
+      - MA_USER_ACCESS_TOKEN
+      - RECAPTCHA_PUBLIC_KEY
+      - RECAPTCHA_PRIVATE_KEY
+    volumes:
+      - staticfiles:/app/static
+      - mediafiles:/app/media
+    depends_on:
+      db:
+        condition: service_healthy
+  proxy:
+    image: nginx:mainline-alpine
+    volumes:
+      - ./proxy:/etc/nginx/conf.d:ro
+      - staticfiles:/app/static/:ro
+      - mediafiles:/app/media/:ro
+    depends_on:
+      - web
+volumes:
+  db-data:
+  staticfiles:
+  mediafiles:
