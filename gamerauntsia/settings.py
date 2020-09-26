@@ -239,7 +239,7 @@ HOST = os.getenv("HOST_NAME") + '/'
 
 USE_X_FORWARDED_HOST = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '138.68.93.226', 'www.gamerauntsia.eus', 'gamerauntsia.eus', 'gamerauntsia.com', 'www.gamerauntsia.com', 'ge.galaipa.eus']
+ALLOWED_HOSTS = ['*']
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
