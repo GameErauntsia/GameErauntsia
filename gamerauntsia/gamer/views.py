@@ -311,7 +311,7 @@ def add_article(request):
         articleform = ArticleForm(request.POST)
         if articleform.is_valid():
             berria = articleform.save(commit=False)
-            berria.slug = slugify(berria.izenburua)
+            berria.slug = slugify(berria.izenburua)[:50]
             berria.erabiltzailea = user
             berria.publikoa_da = True
             if request.FILES.get('argazkia', ''):
@@ -333,7 +333,7 @@ def add_game(request):
         gameform = GameCatalogForm(request.POST)
         if gameform.is_valid():
             jokoa = gameform.save(commit=False)
-            jokoa.slug = slugify(jokoa.izena)
+            jokoa.slug = slugify(jokoa.izena)[:50]
             jokoa.publikoa_da = False
             if request.FILES.get('logoa', ''):
                 photo = handle_uploaded_file(request.FILES['logoa'], user.getFullName())
@@ -357,7 +357,7 @@ def add_gameplay(request):
                     [u"Argazkia jartzea derrigorrezkoa da. Mesedez, jarri argazki polit bat!"])
             else:
                 gp = gameplayform.save(commit=False)
-                gp.slug = slugify(gp.izenburua)
+                gp.slug = slugify(gp.izenburua)[:50]
                 gp.erabiltzailea = user
                 gp.publikoa_da = True
                 gp.argazkia = handle_uploaded_file(request.FILES['argazkia'], user.getFullName())
