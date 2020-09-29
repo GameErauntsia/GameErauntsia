@@ -16,7 +16,7 @@ from gamerauntsia.gamer.forms import *
 from gamerauntsia.agenda.forms import *
 from django.utils.translation import ugettext as _
 from django.forms.models import modelformset_factory
-from datetime import datetime
+from django.utils import timezone
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.forms import PasswordChangeForm
@@ -73,15 +73,15 @@ def talde_motorra(request):
 def profile(request, username):
     user_prof = get_object_or_404(GamerUser, username=username, is_active=True)
     gameplayak = GamePlaya.objects.filter(publikoa_da=True, status='1', erabiltzailea=user_prof,
-                                          pub_date__lt=datetime.now()).order_by('-pub_date')
+                                          pub_date__lt=timezone.now()).order_by('-pub_date')
     gp_count = len(gameplayak)
     categs = GamePlaya.objects.filter(publikoa_da=True, status='1', erabiltzailea=user_prof,
-                                      pub_date__lt=datetime.now()).values('kategoria__izena', ).annotate(
+                                      pub_date__lt=timezone.now()).values('kategoria__izena', ).annotate(
         count=Count('id'))
     berriak = Berria.objects.filter(publikoa_da=True, status='1', erabiltzailea=user_prof,
-                                    pub_date__lt=datetime.now()).order_by('-pub_date')
+                                    pub_date__lt=timezone.now()).order_by('-pub_date')
     bcategs = Berria.objects.filter(publikoa_da=True, status='1', erabiltzailea=user_prof,
-                                    pub_date__lt=datetime.now()).values('gaia__izena', ).annotate(count=Count('id'))
+                                    pub_date__lt=timezone.now()).values('gaia__izena', ).annotate(count=Count('id'))
     berri_count = len(berriak)
     side_berriak = berriak[:5]
     return render(request, 'gamer/profile.html', locals())
