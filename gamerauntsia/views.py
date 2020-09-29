@@ -1,4 +1,4 @@
-from datetime import datetime
+from django.utils import timezone
 
 from django.db.models import Q
 from django.http import Http404
@@ -12,9 +12,9 @@ from gamerauntsia.bazkidetza.models import Eskaintza
 
 
 def index(request):
-    gameplayak = GamePlaya.objects.filter(status='1', publikoa_da=True, pub_date__lt=datetime.now()).order_by(
+    gameplayak = GamePlaya.objects.filter(status='1', publikoa_da=True, pub_date__lt=timezone.now()).order_by(
         '-pub_date').select_related('argazkia','jokoa','plataforma__icon')
-    berriak = Berria.objects.filter(status='1', pub_date__lt=datetime.now()).order_by('-pub_date').select_related('argazkia')
+    berriak = Berria.objects.filter(status='1', pub_date__lt=timezone.now()).order_by('-pub_date').select_related('argazkia')
     atala = Atala.objects.latest('pub_date')
     gp = gameplayak[0]
     berria = berriak[0]
@@ -39,7 +39,7 @@ def index(request):
         else:
             txapelketa = list_tx[0]
 
-    eskaintzak = Eskaintza.objects.filter(Q(is_public=True), Q(expire_date__gte=datetime.now()) | Q(expire_date__isnull=True)).order_by('-activate_date')[:4]
+    eskaintzak = Eskaintza.objects.filter(Q(is_public=True), Q(expire_date__gte=timezone.now()) | Q(expire_date__isnull=True)).order_by('-activate_date')[:4]
 
     return render(request, 'index.html', locals())
 
