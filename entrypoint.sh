@@ -6,6 +6,9 @@ while ! mysqladmin ping -h db --silent; do
     echo "Retrying mysql connection"
 done
 
+# Run start cron
+crond -b
+
 # Run migrations and collect static files
 python manage.py makemigrations --noinput
 python manage.py migrate --noinput
