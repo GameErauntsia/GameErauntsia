@@ -67,14 +67,12 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- <li {% if request.path|contains:"/getb/" %}class="active"{% endif %}><a href="/getb">GETB</a></li> -->
                     <!-- <li {% if request.path|contains:"/podcastak/" %}class="active"{% endif %}><a href="/podcastak" title="Podcastak">Podcasta</a></li> -->
-                    <li {% if request.path|contains:"/bloga/" %}class="active"{% endif %}><a href="/bloga" title="Berriak">Bloga</a></li>
+                    <li {% if request.path|contains:"/bloga/" %}class="active"{% endif %}><a href="/bloga/" title="Berriak">Bloga</a></li>
                     <li {% if request.path|contains:"/jokoak/" or request.path|contains:"/gameplayak/" or request.path|contains:"/txapelketak/" or request.path|contains:"/minecraft/" or request.path|contains:"/jokoak/" or request.path|contains:"/terminologia/" %}class="active"{% endif %}>
                         <a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'talde_motorra' %}" title="Jokoak">Jokoak <b class="caret"></b></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{% url 'gameplay_index' %}" title="GamePlayak">GamePlayak</a></li>
                             <li><a href="{% url 'txapelketak_index' %}" title="Komunitatea">Txapelketak</a></li>
-                            <li role="presentation" class="divider"></li>
-                            <li><a href="{% url 'minecraft_index' %}" title="Minecraft">Minecraft</a></li>
                             <li role="presentation" class="divider"></li>
                             <li><a href="{% url 'game_index' %}" title="Jokoen katalogoa">Jokoen katalogoa</a></li>
                             <li><a href="{% url 'euskarazko_jokoak' %}" title="Euskarazko jokoak">Euskarazko jokoak</a></li>
@@ -98,8 +96,6 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{% url 'talde_motorra' %}" title="Talde motorra">Talde motorra</a></li>
                             <li><a href="{% url 'komunitatea' %}" title="Komunitatea">Komunitate osoa</a></li>
-                            <li role="presentation" class="divider"></li>
-                            <li><a href="{% url 'bazkidetza' %}" title="Bazkidetza">Bazkide txokoa</a></li>
                             <li role="presentation" class="divider"></li>
                             <li><a href="{% url 'forum-index' %}" title="Foroa">Foroa</a></li>
                             <li><a href="{% url 'aurkezpenak_index' %}" title="Aurkezpenak">Aurkezpenak</a></li>
