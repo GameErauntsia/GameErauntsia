@@ -13,7 +13,7 @@ class BerriaSitemap(Sitemap):
     priority = 0.5
 
     def items(self):
-        return Berria.objects.filter(publikoa_da=True)
+        return Berria.objects.filter(publikoa_da=True).order_by('-pub_date')
 
     def lastmod(self, obj):
         return obj.mod_date
@@ -27,7 +27,7 @@ class GamePlayaSitemap(Sitemap):
     priority = 0.5
 
     def items(self):
-        return GamePlaya.objects.filter(publikoa_da=True)
+        return GamePlaya.objects.filter(publikoa_da=True).order_by('-pub_date')
 
     def lastmod(self, obj):
         return obj.mod_date
@@ -41,7 +41,7 @@ class TxapelketaSitemap(Sitemap):
     priority = 0.5
 
     def items(self):
-        return Txapelketa.objects.filter(publikoa_da=True)
+        return Txapelketa.objects.filter(publikoa_da=True).order_by('-pub_date')
 
     def lastmod(self, obj):
         return obj.mod_date
@@ -55,7 +55,7 @@ class AtalaSitemap(Sitemap):
     priority = 0.5
 
     def items(self):
-        return Atala.objects.filter(publikoa_da=True)
+        return Atala.objects.filter(publikoa_da=True).order_by('-pub_date')
 
     def lastmod(self, obj):
         return obj.mod_date
@@ -69,7 +69,7 @@ class JokoaSitemap(Sitemap):
     priority = 0.5
 
     def items(self):
-        return Jokoa.objects.filter(publikoa_da=True)
+        return Jokoa.objects.filter(publikoa_da=True).order_by('-pub_date')
 
     def lastmod(self, obj):
         return obj.mod_date
