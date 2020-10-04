@@ -69,7 +69,7 @@ class JokoaSitemap(Sitemap):
     priority = 0.5
 
     def items(self):
-        return Jokoa.objects.filter(publikoa_da=True).order_by('-pub_date')
+        return Jokoa.objects.filter(publikoa_da=True).order_by('-mod_date')
 
     def lastmod(self, obj):
         return obj.mod_date
