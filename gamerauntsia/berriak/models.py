@@ -68,7 +68,7 @@ class Berria(models.Model):
 
     def getTwitText(self):
         if self.erabiltzailea.twitter_id:
-            return truncatechars(self.izenburua, 230) + ' ' + self.get_absolute_url() + ' @%s 2dz' % (self.erabiltzailea.twitter_id)
+            return truncatechars(self.izenburua, 230) + ' @%s 2dz ' % (self.erabiltzailea.twitter_id) + self.get_absolute_url()
         else:
             return truncatechars(self.izenburua, 250) + ' ' + self.get_absolute_url()
 
