@@ -26,6 +26,7 @@ DEFAULT_PHOTO = get_default_photo()
 PLATFORM = (
     ('steam', 'Steam'),
     ('origin', 'Origin'),
+    ('epic', 'Epic Games'),
     ('lol', 'League of Legends'),
     ('uplay', 'Uplay'),
     ('xbox', 'XBOX'),
