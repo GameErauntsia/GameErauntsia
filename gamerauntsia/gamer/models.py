@@ -81,6 +81,7 @@ class GamerUser(AbstractUser):
     photo = models.ForeignKey(Photo, null=True, blank=True, on_delete=models.SET_NULL)
 
     twitter_id = models.CharField(max_length=100, blank=True,null=True)
+    mastodon_id = models.CharField(max_length=100, blank=True,null=True)
     facebook_id = models.CharField(max_length=100, blank=True,null=True)
     openid_id = models.CharField(max_length=100, blank=True,null=True)
     googleplus_id = models.CharField(max_length=100, blank=True,null=True)
@@ -212,6 +213,13 @@ class GamerUser(AbstractUser):
 
     def get_absolute_url(self):
         return "/komunitatea/%s" % (self.username)
+
+    def get_mastodon_url(self):
+        user = self.mastodon_id.split("@")
+        if len(user) > 1:
+            return u"https://%s/@%s" % (user[-1], user[-2])
+        else:
+            return u"https://mastodon.eus/@%s" % user[0]
 
     def __str__(self):
         return u'%s' % self.username

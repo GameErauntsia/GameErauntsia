@@ -72,8 +72,14 @@ class Berria(models.Model):
         else:
             return truncatechars(self.izenburua, 250) + ' ' + self.get_absolute_url()
 
+    def getTootText(self):
+        if self.erabiltzailea.mastodon_id:
+            return truncatechars(self.izenburua, 230) + ' @%s 2dz ' % (self.erabiltzailea.mastodon_id) + self.get_absolute_url()
+        else:
+            return truncatechars(self.izenburua, 250) + ' ' + self.get_absolute_url()
+
     def getTelegramText(self):
-        return self.izenburua + ' ' + self.get_absolute_url() + ' @%s 2dz' % (self.erabiltzailea.getFullName())
+        return self.izenburua + ' ' + self.get_absolute_url() + ' %s 2dz' % (self.erabiltzailea.getFullName())
 
     def getEmailText(self):
         htmly = get_template('buletina/buletina.html')

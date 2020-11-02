@@ -31,8 +31,11 @@ def post_to_twitter(item):
     return True
 
 def post_to_mastodon(item):
-    textua = item.getTwitText()
-    api = Mastodon(settings.MASTODON_CLIENT_ID, settings.MASTODON_CLIENT_SECRET, settings.MASTODON_USER_ACCESS_TOKEN, api_base_url="https://mastodon.eus")
+    textua = item.getTootText()
+    api = Mastodon(settings.MASTODON_CLIENT_ID,
+                   settings.MASTODON_CLIENT_SECRET,
+                   settings.MASTODON_USER_ACCESS_TOKEN,
+                   api_base_url="https://mastodon.eus")
     media_dict = api.media_post(BASE_DIR + item.argazkia.image.url)
     api.status_post(textua, media_ids=media_dict, language="eus")
     return True

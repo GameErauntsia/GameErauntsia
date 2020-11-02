@@ -33,6 +33,10 @@
                         <input id="id_twitter_id" class="form-control" type="text" name="twitter_id" maxlength="60" placeholder="Twitter izena" value="{{ profileform.twitter_id.value|default_if_none:"" }}" />
                     </div><br/>
                     <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Mastodon</span>
+                        <input id="id_mastodon_id" class="form-control" type="text" name="mastodon_id" maxlength="60" placeholder="Mastodon izena" value="{{ profileform.mastodon_id.value|default_if_none:"" }}" />
+                    </div><br/>
+                    <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">Facebook</span>
                         <input id="id_facebook_id" class="form-control" type="text" name="facebook_id" maxlength="60" placeholder="Facebook izena" value="{{ profileform.facebook_id.value|default_if_none:"" }}" />
                     </div><br/>
