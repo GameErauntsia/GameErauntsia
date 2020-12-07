@@ -55,7 +55,7 @@ def youtuberrak(request):
     return render(request, 'gamer/youtuberrak.html', locals())
 
 def streamerrak(request):
-    users = GamerUser.objects.filter(is_active=True).exclude(twitch_channel__isnull=True).exclude(twitch_channel__exact='')
+    users = GamerUser.objects.filter(is_active=True).exclude(twitch_channel__isnull=True).exclude(twitch_channel__exact='').order_by('twitch_channel')
     return render(request, 'gamer/streamerrak.html', locals())
 
 def idazleak(request):

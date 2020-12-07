@@ -27,7 +27,7 @@
             <div class="col-sm-3 text-center">
                 <a href="{% url 'game' joko.slug %}">
                     <img class="img-responsive center-block" src="{{joko.get_photo.get_newsprofile_url}}" alt="" />
-                    <h3>{{joko.izena}} {{joko.bertsioa}}</h3>
+                    <h3>{{joko.izena}} {{joko.bertsioa|default_if_none:""}}</h3>
                 </a>
             </div>
             {% if forloop.counter|divisibleby:4 %}</div><div class="row">{% endif %}
@@ -47,7 +47,7 @@
                     <img src="{{ejokoa.jokoa.get_photo.get_newsprofile_url}}" alt="" />
                 </div>
                 <div class="col-sm-8">
-                    <p><strong>{{ejokoa.jokoa.izena}} {{ejokoa.jokoa.bertsioa}}</strong></p>
+                    <p><strong>{{ejokoa.jokoa.izena}} {{ejokoa.jokoa.bertsioa|default_if_none:""}}</strong></p>
                 </div>
                 </a>
             </div>
@@ -65,7 +65,7 @@
         				    <img src="{{k.top_jokoak__logoa|get_photo_url}}" alt=""/>
         				</div>
         				<div class="col-sm-8">
-        				    <p><strong>{{k.top_jokoak__izena}} {{k.top_jokoak__bertsioa}} ({{k.top_jokoak__count}})</strong></p>
+        				    <p><strong>{{k.top_jokoak__izena}} {{k.top_jokoak__bertsioa|default_if_none:""}} ({{k.top_jokoak__count}})</strong></p>
         				</div>
         			    </a>
         			</div>
@@ -81,7 +81,7 @@
     			    <img src="{{joko.get_photo.get_newsprofile_url}}" alt="" />
     			</div>
     			<div class="col-sm-8">
-    			    <p><strong>{{joko.izena}} {{joko.bertsioa}}</strong></p>
+    			    <p><strong>{{joko.izena}} {{joko.bertsioa|default_if_none:""}}</strong></p>
     			</div>
     		    </a>
     		</div>
