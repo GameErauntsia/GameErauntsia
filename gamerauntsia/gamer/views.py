@@ -54,6 +54,9 @@ def youtuberrak(request):
         ytube_channel__exact='').annotate(num_gp=Count('gameplayak')).exclude(num_gp=0).order_by('-num_gp')
     return render(request, 'gamer/youtuberrak.html', locals())
 
+def streamerrak(request):
+    users = GamerUser.objects.filter(is_active=True).exclude(twitch_channel__isnull=True).exclude(twitch_channel__exact='')
+    return render(request, 'gamer/streamerrak.html', locals())
 
 def idazleak(request):
     users = GamerUser.objects.filter(is_active=True).annotate(num_art=Count('berriak')).exclude(num_art=0).order_by('-num_art')
