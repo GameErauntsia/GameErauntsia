@@ -18,7 +18,7 @@
 
 <div class="col-sm-12">
     <h1 class="page-header">Streamerrak
-        <small>Harpidetu zaitez euren kanaletara!</small>
+        <small>Twitchen euskaraz emititzen duten sortzaileak aurkituko dituzu hemen</small>
     </h1>
 </div>
 
@@ -30,7 +30,7 @@
             {% if forloop.first %}<div class="row">{% endif %}
                 <div class="col-sm-4 col-sm-6">
                     <a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profile_url}}" class="img-circle img-responsive"></a>
-                    <h3><a href="{% url 'gamer_profile' user.username %}">{{user.fullname}}</a>
+                    <h3><a href="{% url 'gamer_profile' user.username %}">{{user.getFullName}}</a>
                         <small>@{{user.twitch_channel}}</small>
                     </h3>
                     <p>{{user.bio|striptags}}</p>
