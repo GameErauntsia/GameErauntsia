@@ -8,6 +8,7 @@ urlpatterns = [
 
     url(r'^$', views.community, name='komunitatea'),
     url(r'^youtuberrak$', views.youtuberrak, name='youtuberrak'),
+    url(r'^streamerrak$', views.streamerrak, name='streamerrak'),
     url(r'^idazleak$', views.idazleak, name='idazleak'),
     url(r'^guruak$', views.guruak, name='guruak'),
     url(r'^talde-motorra$', views.talde_motorra, name='talde_motorra'),
