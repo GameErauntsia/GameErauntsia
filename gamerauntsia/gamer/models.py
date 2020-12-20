@@ -52,7 +52,8 @@ STAFF_KARMA = 20
 class GamerUser(AbstractUser):
     nickname = models.CharField(max_length=64, null=True, blank=True)
     telegram_id = models.IntegerField(verbose_name="Telegram kodea", null=True, blank=True)
-    is_gamer = models.BooleanField(default=False)
+    is_gamer = models.BooleanField(verbose_name="Sortzailea", default=False)
+    is_core_team_member = models.BooleanField(verbose_name="Talde motorreko kidea",default=False)
     top_jokoak = models.ManyToManyField(Jokoa, blank=True)
     signature = models.TextField(verbose_name="Foro sinadura", null=True, blank=True)
     devices = models.TextField(verbose_name="Mugikor gailuaen IDak", null=True, blank=True)

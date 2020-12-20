@@ -28,7 +28,7 @@
     <div class="col-sm-8">
         <h2>Erabaki taldea</h2>
         {% for user in users %}
-        {% if user.is_staff and user.is_active %}
+        {% if user.is_core_team_member and user.is_active %}
             {% if forloop.first %}<div class="row">{% endif %}
                 <div class="col-sm-4 col-sm-6">
                     <a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profile_url}}" class="img-circle img-responsive"></a>
