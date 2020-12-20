@@ -3,221 +3,187 @@
 
 {% block content %}
 <div class="row">
+  <div class="col-sm-12">
+    <h1 class="page-header">{% block minecraft_title %}Minecraft zerbitzaria{% endblock %}</h1>
+  </div>
+
+  {% block minecraft_content %}
+  <div class="col-sm-8">
+
+    <div class="row carousel-holder">
+      <div class="col-md-12">
+        <div id="carousel-minecraft-generic" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carousel-minecraft-generic" data-slide-to="0" class="active"></li>
+            {% for i in carousel_images %}
+            <li data-target="#carousel-minecraft-generic" data-slide-to="{{i}}"></li>
+            {% endfor %}
+          </ol>
+          <div class="carousel-inner">
+            <div class="item active">
+              <img class="slide-image" src="{{STATIC_URL}}img/minecraft/minecraft_banner.jpg" />
+            </div>
+            {% for i in carousel_images %}
+            <div class="item">
+              <img class="slide-image" src="{{STATIC_URL}}img/minecraft/minecraft_banner{{i}}.jpg" alt="">
+            </div>
+            {% endfor %}
+          </div>
+          <a class="left carousel-control" href="#carousel-minecraft-generic" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+          <a class="right carousel-control" href="#carousel-minecraft-generic" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <br/>
+
+    <h2 id=deskribapena>Zerbitzariari buruz</h2>
+    <p><strong><a href="/komunitatea/Suspekain_"
+                  target="_blank">Suspekain_</a></strong> erabiltzailearen
+        iniziatibaz, eta <strong>Game Erauntsiaren</strong> babesarekin
+        euskarazko hirugarren Minecraft zerbitzaria duzue eskuragai. Hasieran behintzat,
+        aurretik izandako zerbitzarien desberdina izango da: ez dugu Euskal Herri
+        birtualik ez minijokorik izango, mundu ireki bat besterik ez. Helburua konfiantzan
+        eta komunitatean oinarritutako zerbitzaria izatea izango da</p>
+    <p>Tarteka, denok elkarrekin jokatzeko geratuko gara, esate baterako Infernura
+        lehen aldiz joan, edo Amaierako munduko dragoia hiltzeko. Gainera, horiek
+        Twitch bidez zuzenean emitituko ditugu nahi duenak jarraitzeko.</p>
+    <h2 id="araudia">Araudia</h2>
+    <ul>
+        <li>Gogoratu Minecraft-eko zerbitzari euskalduna dela,
+            beraz <strong>txat-ean</strong> derrigorrezkoa
+            da <strong>euskaraz</strong> hitz egitea.</li>
+        <li>Zerbitzariko jokalariak eta administratzaileak <strong>errespetatu</strong></li>
+        <li>Txata modu egokian erabili: <strong>Irainak</strong>,
+            spam-a, iruzurrak… <strong>debekatuta</strong> daude</li>
+        <li>Zerbitzariaren eraikuntza irekia da, edozein erabiltzailek
+            hartu dezake parte, beti ere <strong>besteen eraikinak
+            errespetatuz.</strong>
+            <ul>
+                <li>Ezin dira besteen eraikinak <strong>suntsitu</strong></li>
+                <li>Ezin dira besteen baliabideak <strong>lapurtu</strong></li>
+                <li>Ezin dira beste eraikinen <strong>gainean eraiki</strong> edo <strong>eraldatu</strong></li>
+            </ul>
+        </li>
+        <li><strong>Gune komunitario</strong> bat egongo da, eta
+            bertan <strong>denek eraikitzeko</strong> aukera izango dute
+            Administratzaileen jarraibideekin.</li>
+        <li>Zerbitzarian jokalarien 3 kategoria
+            daude: <strong>Arruntak</strong>
+            (Mundua <strong>ikusteko</strong> baimena
+            soilik), <strong>Erregistratuak</strong>
+            (Munduan <strong>jolasteko</strong> baimena)
+            eta <strong>Adminak</strong>
+            (Erabiltzaileak <strong>baneatzeko</strong> aukera).</li>
+        <li>Baserri automatikoak zein redstone zirkuitu konplexuak gune
+            komunitariotik kanpo egiteko, adminisratzaileen baimena beharko
+            da.</li>
+        <li>Aurreko <strong>arauetako bat hausteak zigorra</strong>
+            jasotzea ekarri dezake: Hitzez atentzioa ematetik, zerbitzaritik
+            betirako kanporatua izateraino</li>
+        <li>Arau hauste bat ikusi edo jasan ezkero, idatzi kontaktura
+            noiz/non/nork/zer gertatu den adieraziz eta guk beharrezko
+            ikerketak egin ostean, erabaki bat hartuko dugu.
+            <ul>
+                <li> Twitter: Suspekain_</li>
+                <li> Postaz: minecraft[abildua]gamerauntsia.eus</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Konektatzeko pausoak</h2>
+    <p>Zerbitzarira sartzeko pausoak ondorengoak dira:</p>
+    <ul>
+        <li> <strong><a href="#araudia">Araudia</a></strong> irakurri</li>
+        <li>Game Erauntsian, eta zerbitzariaren orrialdean <strong><a href="#izen-ematea">izena eman</a></strong>
+            <ul>
+                <li>Izena eman orduko, automatikoki, erabiltzaile <strong>Arrunta</strong>
+                    baimena izango duzu. Baimen honekin, zerbitzarian sartu
+                    eta bertakoa ikusi dezakezu baina ezin izango duzu ezer
+                    editatu. Izena ematerakoan administratzailetako bat
+                    zurekin harremanetan jarriko da</li>
+                <li>Administratzaileak galderarenbat egingo dizu, zure
+                    asmoa ezagutzeko eta gomendioren bat emango dizu.</li>
+                <li>Behin erabiltzaile <strong>Erregistratu</strong> kategoria
+                    izatean, jolasten hasi zaitezke.</li>
+            </ul>
+        </li>
+        <li>Minecraften <strong>1.16.4 bertsioa</strong> aukeratu</li>
+        <li>Behin barruan Multijokalaria atalera sartu eta "Gehitu zerbitzaria" botoia sakatu</li>
+        <li>"Zerbitzariaren izena" atalean "Game Erauntsia" idatzi eta
+            "Zerbitzariaren helbidea" atalean
+            "mc.gamerauntsia.eus". Konektatu eta kitto!</li>
+    </ul>
+    {% comment %}
+    <h2>Minecraft mundua</h2>
+    <div class="col-sm-12">
+      <iframe src="http://198.20.111.238:8123/?worldname=Gamer_Erauntsia&mapname=surface&zoom=1&x=-400&y=65&z=-420" width="100%" height="300"></iframe>
+      <a href="{% url 'minecraft_mapa' %}">Ikusi mapa handia</a>
+    </div>
+    {% endcomment %}
+  </div>
+
+  <div class="col-sm-4">
+    <div class="well">
+      <h2>Komunitateak gidatua</h2> <p><strong><a href="/komunitatea/Suspekain_" target="_blank">Suspekain_</a></strong> erabiltzailearen
+      iniziatibaz ireki dugu berriro Minecraft zerbitzaria. Antzeko edo bestelako
+      ideiarik baduzu, <a href="/komunitatea">jarri gurekin harremanetan</a> eta ziur elkarrekin zerbait egin dezakegula!</p>
+    </div>
+    <div class="well" id="izen-ematea">
+      <h2>Izen ematea</h2>
+      {% if user.is_authenticated %}
+      {% if user.is_mc_gamer %}
+      <p class="text-success">Mila esker <strong>{{user.getFullName}}!</strong> Zerbitzarian parte hartzeko zerrendan sartu zara. Hemendik aurrera jolasteko moduan izango zara! Eskerrik asko parte hartzeagatik! Arazoren bat baduzu, <strong><a href="{% url 'kontaktua' %}">jarri gurekin harremanetan</a></strong>.</p>
+      {% else %}
+      <form action="{% url 'minecraft_add' %}" method="POST">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-sm-6">{{mc_form|bootstrap}}</div>
+        </div>
+        <input type="submit" class="btn btn-lg btn-primary" value="Bidali" />
+      </form>
+      {% endif %}
+      {% else %}
+      <p>Zerbitzarian erregistratu kategoria izateko, lehendabizi Game Erauntsian izena eman behar duzu.</p>
+      <a class="btn btn-lg btn-primary" href="{% url 'auth_login' %}?next={{request.path}}" title="Log in"><i class="glyphicon glyphicon-user"></i> Eman izena!</a>
+      {% endif %}
+    </div>
+    <div class="well">
+      <h2>Azken 10 erabiltzaileak</h2>
+      <div class="row">
         <div class="col-sm-12">
-            <h1 class="page-header">{% block minecraft_title %}Minecraft zerbitzaria{% endblock %}</h1>
+          {% for mc in mc_list %}
+          <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{mc.user.getFullName}}</a></p>
+          {% endfor %}
         </div>
-
-        {% block minecraft_content %}
-        <div class="col-sm-8">
-
-            <div class="row carousel-holder">
-                <div class="col-md-12">
-                    <div id="carousel-minecraft-generic" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            <li data-target="#carousel-minecraft-generic" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-minecraft-generic" data-slide-to="1"></li>
-                            <li data-target="#carousel-minecraft-generic" data-slide-to="2"></li>
-                            <li data-target="#carousel-minecraft-generic" data-slide-to="3"></li>
-                            <li data-target="#carousel-minecraft-generic" data-slide-to="4"></li>
-                            <li data-target="#carousel-minecraft-generic" data-slide-to="5"></li>
-                            <li data-target="#carousel-minecraft-generic" data-slide-to="6"></li>
-			    <li data-target="#carousel-minecraft-generic" data-slide-to="7"></li>
-			    <li data-target="#carousel-minecraft-generic" data-slide-to="8"></li>
-			    <li data-target="#carousel-minecraft-generic" data-slide-to="9"></li>
-			    <li data-target="#carousel-minecraft-generic" data-slide-to="10"></li>
-		            <li data-target="#carousel-minecraft-generic" data-slide-to="11"></li>
-			    <li data-target="#carousel-minecraft-generic" data-slide-to="12"></li>
-			    <li data-target="#carousel-minecraft-generic" data-slide-to="13"></li>
-			    <li data-target="#carousel-minecraft-generic" data-slide-to="14"></li>
-			    <li data-target="#carousel-minecraft-generic" data-slide-to="15"></li>
-			    <li data-target="#carousel-minecraft-generic" data-slide-to="16"></li>
-			    <li data-target="#carousel-minecraft-generic" data-slide-to="17"></li>
-			    <li data-target="#carousel-minecraft-generic" data-slide-to="18"></li>
-			    <li data-target="#carousel-minecraft-generic" data-slide-to="19"></li>
-			    <li data-target="#carousel-minecraft-generic" data-slide-to="20"></li>
-			    <li data-target="#carousel-minecraft-generic" data-slide-to="21"></li>
-			    <li data-target="#carousel-minecraft-generic" data-slide-to="22"></li>
-                        </ol>
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <img class="slide-image" src="{{STATIC_URL}}img/minecraft/minecraft_banner.jpg" />
-                            </div>
-                            <div class="item">
-                                <img class="slide-image" src="{{STATIC_URL}}img/minecraft/minecraft_banner2.jpg" alt="">
-                            </div>
-                            <div class="item">
-                                <img class="slide-image" src="{{STATIC_URL}}img/minecraft/minecraft_banner3.jpg" alt="">
-                            </div>
-                            <div class="item">
-                                <img class="slide-image" src="{{STATIC_URL}}img/minecraft/minecraft_banner4.jpg" alt="">
-                            </div>
-                            <div class="item">
-                                <img class="slide-image" src="{{STATIC_URL}}img/minecraft/minecraft_banner5.jpg" alt="">
-                            </div>
-                            <div class="item">
-                                <img class="slide-image" src="{{STATIC_URL}}img/minecraft/minecraft_banner6.jpg" alt="">
-                            </div>
-			    <div class="item">
-                                <img class="slide-image" src="{{STATIC_URL}}img/minecraft/minecraft_banner7.jpg" alt="">
-                            </div>
-			    <div class="item">
-                                <img class="slide-image" src="{{STATIC_URL}}img/minecraft/minecraft_banner8.jpg" alt="">
-                            </div>
-		            <div class="item">
-                                <img class="slide-image" src="{{STATIC_URL}}img/minecraft/minecraft_banner9.jpg" alt="">
-                            </div>
-			    <div class="item">
-                                <img class="slide-image" src="{{STATIC_URL}}img/minecraft/minecraft_banner10.jpg" alt="">
-                            </div>
-			    <div class="item">
-                                <img class="slide-image" src="{{STATIC_URL}}img/minecraft/minecraft_banner11.jpg" alt="">
-                            </div>
-			    <div class="item">
-                                <img class="slide-image" src="{{STATIC_URL}}img/minecraft/minecraft_banner12.jpg" alt="">
-                            </div>
-			    <div class="item">
-                                <img class="slide-image" src="{{STATIC_URL}}img/minecraft/minecraft_banner13.jpg" alt="">
-                            </div>
-			    <div class="item">
-                                <img class="slide-image" src="{{STATIC_URL}}img/minecraft/minecraft_banner14.jpg" alt="">
-                            </div>
-			    <div class="item">
-                                <img class="slide-image" src="{{STATIC_URL}}img/minecraft/minecraft_banner15.jpg" alt="">
-                            </div>
-			    <div class="item">
-                                <img class="slide-image" src="{{STATIC_URL}}img/minecraft/minecraft_banner16.jpg" alt="">
-                            </div>
-			    <div class="item">
-                                <img class="slide-image" src="{{STATIC_URL}}img/minecraft/minecraft_banner17.jpg" alt="">
-                            </div>
-			    <div class="item">
-                                <img class="slide-image" src="{{STATIC_URL}}img/minecraft/minecraft_banner18.jpg" alt="">
-                            </div>
-			    <div class="item">
-                                <img class="slide-image" src="{{STATIC_URL}}img/minecraft/minecraft_banner19.jpg" alt="">
-                            </div>
-			    <div class="item">
-                                <img class="slide-image" src="{{STATIC_URL}}img/minecraft/minecraft_banner20.jpg" alt="">
-                            </div>
-			    <div class="item">
-                                <img class="slide-image" src="{{STATIC_URL}}img/minecraft/minecraft_banner21.jpg" alt="">
-                            </div>
-			    <div class="item">
-                                <img class="slide-image" src="{{STATIC_URL}}img/minecraft/minecraft_banner22.jpg" alt="">
-                            </div>
-                        </div>
-                        <a class="left carousel-control" href="#carousel-minecraft-generic" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-minecraft-generic" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <br/>
-
-            <p>Game Erauntsiaren eskutik lehen euskarazko Minecraft zerbitzaria duzue eskuragai. Zerbitzarira sartzeko 1.12.2 bertsioa izan behar duzu jolasean. Zerbitzarian bizikidetza egoki bat bermatzeko jarraian dagoen araudia irakurtzea gomendatzen da.</p>
-            <h2>Zerbitzarira konektatzeko pausoak</h2>
-            <p>Zerbitzarira sartzeko pausoak honakoak dira:</p>
-            <ul>
-                <li>Minecraft barruan Multijokalaria atalera sartu eta han "Gehitu zerbitzaria" botoiari sakatu.</li>
-                <li>"Zerbitzariaren izena" atalean "Game Erauntsia" idatzi eta "Zerbitzariaren helbidea" atalean "mc.gamerauntsia.eus". Konektatu eta kitto!</li>
-		    <li>Ez ahaztu <strong><a href="#araudia">ARAUDI ETA BALDINTZAK</a></strong> irakurri eta betetzea!!</li>
-	    </ul>
-	    <a id="araudia"></a>
-	    <h2>Araudi eta baldintzak</h2>
-	    <ul>
-		<li>Gogoratu Minecraft-eko lehen zerbitzari euskalduna dela, beraz txat-etik derrigorrezkoa da euskaraz hitz egitea.</li>
-		<li>Zerbitzariko jokalariak eta administratzaileak errespetatu.</li>
-		<li>Txata modu egokian erabili: Irainak, spam-a, iruzurrak… debekatuta daude</li>
-		<li>Mundu nagusian zuri esleitutako partzelan bakarrik eraiki dezakezu. Partzela hauetako bat nahi izatekotan, GE-an erregistratuta egotea beharrezkoa da eta administratzaile bati eskatu beharko zaio baldintza betez gero. Eraikinen neurri maximoa 15 bloke dira, bai gorantz eta bai beherantz.</li>
-		<li>Mundu nagusian partzela izanez gero eta 3 hilabetetan zerbitzarira ez sartuz gero, partzela galdutzat emango da. Arau hau partzela abandonatu asko ez izateko da.</li>
-		<li>Zerbitzarian partzela gehiagorekin mundu berezi bat dago. Partzela hauek erosteko ezinbestekoa da lehenago mundu nagusian bat edukitzea. Prezioa 20 diamantekoa izango da 32x32 blokeko esparruarentzat. 50x50-ra handitzea nahi bada 20 diamante bloke ordaindu beharko dira. Partzela hauetan gehienez goraka 30 bloke eta beheraka 15 bloke eraiki daitezke.</li>
-		<li>Ez ezazu eraiki errekurtsoen munduan! Munduan noizean behin berritzen baita.</li>
-		<li>Debekatuak daude granja automatikoak zein redstone zirkuitu konplexuak egitea.</li>
-		<li>Zerbitzariaren eraikuntza irekia da, edozein erabiltzailek hartu dezake parte. Horretarako lehenago foroan idatzi beharko du eskaera proposamena adieraziz.</li>
-		<li>Zerbitzarian jokalarien 3 kategoria daude: Arruntak, Erregistratuak eta VIP-ak. Erregistratuek maskota zein elementu apaingarri batzuk dituk eta VIP-ek berriz guztiak.</li>
-		<li>Aurreko arauetako bat hausteak zigorra jasotzea ekarri dezake: Hitzez atentzioa ematetik, zerbitzaritik betirako kanporatua izateraino.</li>
-		<li>Arau hauste bat ikusi edo jasan ezkero, idatzi <a href="/kontaktua">kontaktura</a> noiz/non/nork/zer gertatu den adieraziz eta guk beharrezko ikerketak egin ostean, erabaki bat hartuko dugu.</li>
-	    </ul>
-            <div class="well">
-                <h2>Izen ematea</h2>
-                {% if user.is_authenticated %}
-                    {% if user.is_mc_gamer %}
-                        <p class="text-success">Mila esker <strong>{{user.getFullName}}!</strong> Zerbitzarian parte hartzeko zerrendan sartu zara. Hemendik aurrera jolasteko moduan izango zara! Eskerrik asko parte hartzeagatik! Arazoren bat baduzu, <strong><a href="{% url 'kontaktua' %}">jarri gurekin harremanetan</a></strong>.</p>
-                    {% else %}
-                        <form action="{% url 'minecraft_add' %}" method="POST">
-                            {% csrf_token %}
-                            <div class="row">
-                                <div class="col-sm-6">{{mc_form|bootstrap}}</div>
-                            </div>
-                            <input type="submit" class="btn btn-lg btn-primary" value="Bidali" />
-                        </form>
-                    {% endif %}
-                {% else %}
-                    <p>Zerbitzarian erregistratu kategoria izateko, lehendabizi Game Erauntsian izena eman behar duzu.</p>
-                    <a class="btn btn-lg btn-primary" href="{% url 'auth_login' %}?next={{request.path}}" title="Log in"><i class="glyphicon glyphicon-user"></i> Izena eman!</a>
-                {% endif %}
-            </div>
-
-            <a id="VIP"></a>
-            <h2>Izan zaitez VIP!</h2>
-            <p>Game Erauntsiaren proiektuari bultzada emateko bazkidetza sistema bat dugu non beronek zerbitzarian VIP izaera izatea dakarren. Oso erraza eta merkea da eta abantaila ugari lor ditzakezue:</p>
-            <ul>
-                <li>Zerbitzariak <strong>30 erabiltzaileko muga</strong> dauka oraingoz. Horrek esan nahi du, zerbitzarira konektatzen 31. erabiltzailea bazara eta ez baduzu VIP pasea, kanpoan geratuko zarela.</li>
-                <li>Jokua jendez gainezka baldin badago eta VIP erabiltzaileren bat konektatzen bada, VIP ez den erabiltzaile bat <strong>automatikoki kanporatua</strong> izango da.</li>
-                <li>VIP erabiltzaileak normalak baino <strong>maskota eta elementu gehiago ditu</strong> eskura jokoan.</li>
-                <li>VIP erabiltzailea izan zaitezke <strong>soilik urteko 10€ ordainduz</strong>!</li>
-		<li>Ez galdu abantaila hauek eta <strong><a href="{% url 'bazkidetza' %}">EGIN ZAITEZ BAZKIDE</a></strong></li>
-	    </ul>
-
-	    {% comment %}
-            <h2>Minecraft mundua</h2>
-            <div class="col-sm-12">
-                <iframe src="http://198.20.111.238:8123/?worldname=Gamer_Erauntsia&mapname=surface&zoom=1&x=-400&y=65&z=-420" width="100%" height="300"></iframe>
-                <a href="{% url 'minecraft_mapa' %}">Ikusi mapa handia</a>
-            </div>
-	    {% endcomment %}
+      </div>
+    </div>
+    {% comment %}
+    <div class="well">
+      <h2>VIP erabiltzaileak</h2>
+      <div class="row">
+        <div class="col-sm-12">
+          {% for mc in mc_vip_list %}
+          <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{mc.user.getFullName}}</a></p>
+          {% endfor %}
         </div>
-
-        <div class="col-sm-4">
-            <div class="well">
-                <img class="img-responsive" src="{{STATIC_URL}}img/minecraft/vippeople.png"/>
-                <h2>Izan zaitez VIP</h2>
-                <p>Game Erauntsiaren proiektuari bultzada bat emateaz gain, zerbitzarian VIP izaera izango duzu. Egin zure ekarpena eta gozatu hainbat abantailez. Jarraitu pauso hauek <a href="#VIP">VIP erabiltzaile</a> izateko!</p>
-            </div>
-        	<div class="well">
-        		<h2>Azken 10 erabiltzaileak</h2>
-        		<div class="row">
-                    <div class="col-sm-12">
-                        {% for mc in mc_list %}
-                        <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{mc.user.getFullName}}</a></p>
-                        {% endfor %}
-                    </div>
-                </div>
-        	</div>
-        	<div class="well">
-        		<h2>VIP erabiltzaileak</h2>
-        		<div class="row">
-                    <div class="col-sm-12">
-                        {% for mc in mc_vip_list %}
-                        <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{mc.user.getFullName}}</a></p>
-                        {% endfor %}
-                    </div>
-                </div>
-        	</div>
-        	<div class="well">
-        		<h2>Administratzaileak</h2>
-        		<div class="row">
-                    <div class="col-sm-12">
-                        {% for mc in mc_admin_list %}
-                        <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{mc.user.getFullName}}</a></p>
-                        {% endfor %}
-                    </div>
-                </div>
-        	</div>
+      </div>
+    </div>
+    {% endcomment %}
+    <div class="well">
+      <h2>Administratzaileak</h2>
+      <div class="row">
+        <div class="col-sm-12">
+          {% for mc in mc_admin_list %}
+          <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{mc.user.getFullName}}</a></p>
+          {% endfor %}
         </div>
-        {% endblock %}
+      </div>
+    </div>
+  </div>
+  {% endblock %}
 </div>
 {% endblock %}

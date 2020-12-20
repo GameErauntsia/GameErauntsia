@@ -38,6 +38,8 @@ def minecraft_server(request):
     mc_admin_list = MC_Whitelist.objects.filter(rol='a')
     mc_vip_list = MC_Whitelist.objects.filter(rol='v')
     mc_form = MCForm()
+    carousel_images = range(1,21)
+    print(carousel_images)
     return render(request, 'zerbitzariak/minecraft.html', locals())
 
 
