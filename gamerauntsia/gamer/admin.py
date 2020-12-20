@@ -69,7 +69,7 @@ class GamerUserAdmin(UserAdmin):
 
     list_display = ['admin_thumbnail','username','fullname','preview','get_email','is_gamer','is_staff','is_active','date_joined']
     list_display_links = ['fullname','username']
-    list_filter = ['is_staff', 'is_gamer','is_superuser', 'is_active', 'buletin_notification', 'groups']
+    list_filter = ['is_staff', 'is_core_team_member' ,'is_gamer','is_superuser', 'is_active', 'buletin_notification', 'groups']
     search_fields = ['email','username','fullname']
     raw_id_fields = ['photo', ]
 
@@ -86,7 +86,7 @@ class GamerUserAdmin(UserAdmin):
         {'fields':('email_notification','buletin_notification')},),
         ('Sare sozialak',
         {'fields':('ytube_channel','twitch_channel','twitter_id', 'mastodon_id', 'facebook_id', 'telegram_id'),'classes': ['collapse',],},),
-        (_('Permissions'), {'fields': ('is_active','is_gamer', 'is_staff', 'is_superuser',
+        (_('Permissions'), {'fields': ('is_active','is_gamer', 'is_core_team_member','is_staff', 'is_superuser',
                                        'groups', 'user_permissions','last_login'),
                             'classes': ['collapse',],}),
 

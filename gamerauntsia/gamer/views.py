@@ -69,7 +69,7 @@ def guruak(request):
 
 
 def talde_motorra(request):
-    users = GamerUser.objects.filter(is_active=True, is_staff=True).order_by('-date_joined').select_related('photo')
+    users = GamerUser.objects.filter(is_active=True, is_core_team_member=True).order_by('-date_joined').select_related('photo')
     return render(request, 'gamer/talde_motorra.html', locals())
 
 

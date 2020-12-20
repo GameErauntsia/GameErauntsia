@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-2 text-center">
                         <a href="{% url 'gamer_profile' post.creator.username %}"><img src="{{post.creator.get_photo.get_forum_profile_url}}" alt="" class="center-block img-circle img-responsive"/></a>
-                        <p><strong><a href="{% url 'gamer_profile' post.creator.username %}">{{post.creator.getFullName}}</a></strong><br/>{% if post.creator.is_staff %}<img src="{{STATIC_URL}}img/kidea.png" alt="Game Erauntsiako Kidea" class="center-block img-responsive"/>{% endif %}<span class="date">{{post.created|date:"Y/m/d H:i"}}</span>{% if user.is_authenticated %}<br/><a href="{% url 'messages_compose_to' post.creator.username  %}"><span class="glyphicon glyphicon-envelope"></span></a>{% endif %}{% if post.creator.karma %}<i class="glyphicon glyphicon-flash" style="color:#E1E100"></i> <abbr title="Karma">{{post.creator.karma}}</abbr>{% endif %}
+                        <p><strong><a href="{% url 'gamer_profile' post.creator.username %}">{{post.creator.getFullName}}</a></strong><br/>{% if post.creator.is_core_team_member %}<img src="{{STATIC_URL}}img/kidea.png" alt="Game Erauntsiako Kidea" class="center-block img-responsive"/>{% endif %}<span class="date">{{post.created|date:"Y/m/d H:i"}}</span>{% if user.is_authenticated %}<br/><a href="{% url 'messages_compose_to' post.creator.username  %}"><span class="glyphicon glyphicon-envelope"></span></a>{% endif %}{% if post.creator.karma %}<i class="glyphicon glyphicon-flash" style="color:#E1E100"></i> <abbr title="Karma">{{post.creator.karma}}</abbr>{% endif %}
                         </p>
                     </div>
                     <div class="col-xs-12 col-sm-10">
