@@ -139,11 +139,9 @@
       <p class="text-success">Mila esker <strong>{{user.getFullName}}!</strong> Zerbitzarian parte hartzeko zerrendan sartu zara. Hemendik aurrera jolasteko moduan izango zara! Eskerrik asko parte hartzeagatik! Arazoren bat baduzu, <strong><a href="{% url 'kontaktua' %}">jarri gurekin harremanetan</a></strong>.</p>
       {% else %}
       <form action="{% url 'minecraft_add' %}" method="POST">
-        {% csrf_token %}
-        <div class="row">
-          <div class="col-sm-6">{{mc_form|bootstrap}}</div>
-        </div>
-        <input type="submit" class="btn btn-lg btn-primary" value="Bidali" />
+          {% csrf_token %}
+          {{mc_form|bootstrap}}
+          <input type="submit" class="btn btn-lg btn-primary" value="Bidali" />
       </form>
       {% endif %}
       {% else %}

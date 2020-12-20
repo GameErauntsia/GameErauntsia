@@ -266,11 +266,6 @@ padding: 0 7px 0 26px;
   margin-top: 100px;
 }
 
-#id_lizentzia {
-    float: left;
-    margin: 5px 5px 0px 0px;
-}
-
 .userpic {
   left: 5px;
   position: relative;
@@ -288,6 +283,6 @@ padding: 0 7px 0 26px;
 }
 
 .img-center {
-	margin: 0 auto;
+  margin: 0 auto;
   box-shadow: 1px 5px 5px rgba(0, 0, 0, .3);
 }
