@@ -57,8 +57,7 @@ class GamerUser(AbstractUser):
     top_jokoak = models.ManyToManyField(Jokoa, blank=True)
     signature = models.TextField(verbose_name="Foro sinadura", null=True, blank=True)
     devices = models.TextField(verbose_name="Mugikor gailuaen IDak", null=True, blank=True)
-    ytube_channel = models.CharField(max_length=150, null=True, blank=True)
-    twitch_channel = models.CharField(max_length=150, null=True, blank=True, verbose_name="Twitch kanala")
+    ytube_channel = models.CharField(max_length=150, null=True, blank=True, verbose_name="Youtube kanala")
     email_notification = models.BooleanField(default=True, verbose_name="Eztabaidak")
     buletin_notification = models.BooleanField(default=True, verbose_name="Buletinak")
     motherboard = models.CharField(verbose_name="Txartel nagusia", max_length=150, null=True, blank=True)
@@ -90,6 +89,11 @@ class GamerUser(AbstractUser):
     last_updated = models.DateTimeField(auto_now_add=True, editable=False)
     date_joined = models.DateTimeField(auto_now_add=True, editable=False, null=True, blank=True)
 
+    ## Twitch
+    twitch_channel = models.CharField(max_length=150, null=True, blank=True, verbose_name="Twitch kanala")
+    twitch_channel_id= models.CharField(max_length=150, null=True, blank=True, verbose_name="Twitch kanalaren IDa")
+    twitch_sub_id_online= models.CharField(max_length=36, null=True, blank=True, verbose_name="Twitch kanalaren online harpidetza id-a")
+    twitch_sub_id_offline= models.CharField(max_length=36, null=True, blank=True, verbose_name="Twitch kanalaren offline harpidetza id-a")
     objects = UserManager()
 
     USERNAME_FIELD = 'username'

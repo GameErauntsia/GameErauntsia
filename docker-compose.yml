@@ -43,6 +43,9 @@ services:
       - MA_USER_ACCESS_TOKEN
       - RECAPTCHA_PUBLIC_KEY
       - RECAPTCHA_PRIVATE_KEY
+      - STREAMING_TWITCH_WEBHOOK_SECRET
+      - STREAMING_TWITCH_CLIENT_ID
+      - STREAMING_TWITCH_CLIENT_SECRET
     volumes:
       - staticfiles:/app/static
       - mediafiles:/app/media

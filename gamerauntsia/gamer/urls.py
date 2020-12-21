@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^editatu-profil-pass/$', views.password_change, name='edit_profile_pass'),
     url(r'^editatu-profil-pass-done/$', views.password_change_done, name='edit_profile_pass_done'),
     url(r'^edit-profile-photo$', views.edit_profile_photo, name='edit_profile_photo'),
+    url(r'^editatu-profil-kanalak', views.edit_channels, name='edit_profile_kanalak'),
 
     # ## HAU BETI AZKENA BEGIRATU BEHAR DA (Ez dauka hitz gakorik)
     url(r'^(?P<username>[\w.@+-]+)$', views.profile, name='gamer_profile'),

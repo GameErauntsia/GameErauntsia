@@ -5,27 +5,25 @@
 {% block title%}Editatu profila - {% endblock %}
 
 {% block content %}
-	{% block cscontent %}
-	<h1>Editatu profila</h1>
-	<div id="editprofile">
-
-			<ul class="nav nav-tabs">
-				<li class="{% if tab == 'personal' %}active{%endif%}"><a href="{% url 'edit_profile' %}">Datu orokorrak</a></li>
-				<li class="{% if tab == 'photo' %}active{%endif%}"><a href="{% url 'edit_profile_photo' %}">Argazkia</a></li>
-				<li class="{% if tab == 'platforms' %}active{%endif%}"><a href="{% url 'edit_profile_plat' %}">Plataformak</a></li>
-				<li class="{% if tab == 'top_games' %}active{%endif%}"><a href="{% url 'edit_profile_top' %}">Joko gustukoenak</a></li>
-				<li class="{% if tab == 'tab_amaitutakoak' %}active{%endif%}"><a href="{% url 'edit_profile_amaitutakoak' %}">Amaitutako jokoak</a></li>
-				<li class="{% if tab == 'computer' %}active{%endif%}"><a href="{% url 'edit_profile_comp' %}">Ordenagailua</a></li>
-				<li class="{% if tab == 'notifications' %}active{%endif%}"><a href="{% url 'edit_profile_noti' %}">Jakinarazpenak</a></li>
-				<li class="{% if tab == 'pass' %}active{%endif%}"><a href="{% url 'edit_profile_pass' %}">Aldatu pasahitza</a></li>
-			</ul>
-
-
-		{% block perfil %}{% endblock%}
-	</div>
-	{% endblock %}
+{% block cscontent %}
+<h1>Editatu profila</h1>
+<div id="editprofile">
+  <ul class="nav nav-tabs">
+    <li class="{% if tab == 'personal' %}active{%endif%}"><a href="{% url 'edit_profile' %}">Datu orokorrak</a></li>
+    <li class="{% if tab == 'channels' %}active{%endif%}"><a href="{% url 'edit_profile_kanalak' %}">Kanalak</a></li>
+    <li class="{% if tab == 'photo' %}active{%endif%}"><a href="{% url 'edit_profile_photo' %}">Argazkia</a></li>
+    <li class="{% if tab == 'platforms' %}active{%endif%}"><a href="{% url 'edit_profile_plat' %}">Plataformak</a></li>
+    <li class="{% if tab == 'top_games' %}active{%endif%}"><a href="{% url 'edit_profile_top' %}">Joko gustukoenak</a></li>
+    <li class="{% if tab == 'tab_amaitutakoak' %}active{%endif%}"><a href="{% url 'edit_profile_amaitutakoak' %}">Amaitutako jokoak</a></li>
+    <li class="{% if tab == 'computer' %}active{%endif%}"><a href="{% url 'edit_profile_comp' %}">Ordenagailua</a></li>
+    <li class="{% if tab == 'notifications' %}active{%endif%}"><a href="{% url 'edit_profile_noti' %}">Jakinarazpenak</a></li>
+    <li class="{% if tab == 'pass' %}active{%endif%}"><a href="{% url 'edit_profile_pass' %}">Aldatu pasahitza</a></li>
+  </ul>
+  {% block perfil %}{% endblock%}
+</div>
+{% endblock %}
 {% endblock %}
 
 {% block sidebar %}
-	{% block cssidebar %}{%include 'profile/user_data_sidebar.html'%}{% endblock %}
+{% block cssidebar %}{%include 'profile/user_data_sidebar.html'%}{% endblock %}
 {% endblock %}

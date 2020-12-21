@@ -62,6 +62,10 @@ RECAPTCHA_PUBLIC_KEY = os.getenv("RECAPTCHA_PUBLIC_KEY")
 RECAPTCHA_PRIVATE_KEY = os.getenv("RECAPTCHA_PRIVATE_KEY")
 NOCAPTCHA = True
 
+#TWITCH
+STREAMING_TWITCH_WEBHOOK_SECRET= os.getenv("STREAMING_TWITCH_WEBHOOK_SECRET")
+STREAMING_TWITCH_CLIENT_ID= os.getenv("STREAMING_TWITCH_CLIENT_ID")
+STREAMING_TWITCH_CLIENT_SECRET=os.getenv("STREAMING_TWITCH_CLIENT_SECRET")
 ## Database
 DATABASES = {
     'default': {
@@ -129,6 +133,7 @@ INSTALLED_APPS = (
     'gamerauntsia',
     'gamerauntsia.jokoa',
     'gamerauntsia.gameplaya',
+    'gamerauntsia.streaming',
     'gamerauntsia.base',
     'gamerauntsia.berriak',
     'gamerauntsia.kontaktua',

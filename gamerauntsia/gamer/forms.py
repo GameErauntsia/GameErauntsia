@@ -45,7 +45,12 @@ class GamerForm(forms.ModelForm):
 
     class Meta:
         model = GamerUser
-        fields = ('fullname','bio','twitter_id', 'mastodon_id','facebook_id','ytube_channel','twitch_channel','telegram_id','signature')
+        fields = ('fullname','bio','twitter_id', 'mastodon_id','facebook_id','telegram_id','signature')
+
+class ChannelsForm(forms.ModelForm):
+    class Meta:
+        model = GamerUser
+        fields = ('ytube_channel','twitch_channel')
 
 class PCForm(forms.ModelForm):
     class Meta:

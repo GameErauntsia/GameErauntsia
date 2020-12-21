@@ -113,6 +113,9 @@ urlpatterns = [
     # APIA
     url(r'^api/1.0/', include('gamerauntsia.api.urls')),
 
+    # STREAMING
+    url(r'^streaming/', include('gamerauntsia.streaming.urls')),
+
     # APP
     # Auth
     # url(r'^rest-auth/', include('rest_auth.urls')),
