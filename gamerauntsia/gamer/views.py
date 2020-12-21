@@ -24,6 +24,7 @@ from django.template.response import TemplateResponse
 from django_forum_app.models import Category, Topic
 from django.forms.utils import ErrorList
 from gamerauntsia.zerbitzariak.views import set_user_whitelist
+from gamerauntsia.streaming.twitch_api import get_twitch_user_id, get_twitch_token, create_twitch_subscription, delete_twitch_subscription
 from django.http import HttpResponse
 from .forms import ProfilePhotoForm
 import json
@@ -122,6 +123,33 @@ def edit_profile_photo(request):
     else:
         form = ProfilePhotoForm()
     return render(request, 'profile/edit_photo.html', locals())
+
+@login_required
+def edit_channels(request):
+    tab = 'channels'
+    user = request.user
+    if request.method == 'POST':
+        twitch_before = user.twitch_channel
+        channelsform = ChannelsForm(request.POST, instance=user)
+        if channelsform.is_valid():
+            channelsform.save()
+            twitch_now = user.twitch_channel
+            if twitch_before != twitch_now:
+                token = get_twitch_token()
+                user_id = get_twitch_user_id(token,twitch_now)
+                user.twitch_channel_id = user_id
+                if user.twitch_sub_id_online:
+                    delete_twitch_subscription(token,user.twitch_sub_id_online)
+                if user.twitch_sub_id_offline:
+                    delete_twitch_subscription(token,user.twitch_sub_id_offline)
+                if user_id:
+                    user.twitch_sub_id_online = create_twitch_subscription(token,user_id,'stream.online')
+                    user.twitch_sub_id_offline = create_twitch_subscription(token,user_id,'stream.offline')
+                user.save()
+    else:
+        channelsform = ChannelsForm(instance=user)
+
+    return render(request, 'profile/edit_channels.html', locals())
 
 
 @login_required
