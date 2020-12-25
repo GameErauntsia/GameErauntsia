@@ -43,7 +43,15 @@ def streaming_started(event):
                                   game_name=channel_info['game_name'])
             streaming.save()
             tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
-            msg = "%s %s stremeatzen ari da!" % (channel_info['broadcaster_name'],channel_info['game_name'])
+            if channel_info['title']:
+                msg = "%s %s (%s) stremeatzen ari da! https://twitch.tv/" % (channel_info['broadcaster_name'],
+                                                                             channel_info['title'],
+                                                                             channel_info['game_name'],
+                                                                             channel_info['broadcaster_name'])
+            else:
+                msg = "%s %s stremeatzen ari da! https://twitch.tv/" % (channel_info['broadcaster_name'],
+                                                                        channel_info['game_name'],
+                                                                        channel_info['broadcaster_name'])
             tb.send_message(settings.PUBLIC_CHAT_ID, msg)
     except:
         logger.error('Could not create stream: ' + str(event))
