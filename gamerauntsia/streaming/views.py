@@ -9,6 +9,7 @@ from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.streaming.models import Streaming
 from gamerauntsia.streaming.twitch_api import get_stream_info
 from django.utils import timezone
+from django.shortcuts import render
 import telebot
 import hmac
 import hashlib
@@ -84,3 +85,8 @@ def twitch_subscription_callback(request, format=None):
             return HttpResponse()
     else:
         return Response(status=403)
+
+def streaming(request, slug, related=None):
+    streaming = Streaming.objects.filter(twitch_id=slug).first()
+    channel_name = streaming.user.twitch_channel
+    return render(request, 'streaming/streaming.html', locals())
