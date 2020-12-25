@@ -2,6 +2,7 @@ from gamerauntsia.gamer.models import GamerUser, JokuPlataforma, AmaitutakoJokoa
 from django.template.defaultfilters import slugify
 from gamerauntsia.jokoa.models import Jokoa
 from gamerauntsia.gameplaya.models import GamePlaya
+from gamerauntsia.streaming.models import Streaming
 from gamerauntsia.berriak.models import Berria
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
@@ -88,6 +89,8 @@ def profile(request, username):
                                     pub_date__lt=timezone.now()).values('gaia__izena', ).annotate(count=Count('id'))
     berri_count = len(berriak)
     side_berriak = berriak[:5]
+    streaming_count = Streaming.objects.filter(user=user_prof).count()
+    streaming_categs = Streaming.objects.filter(user=user_prof).values('game_name',).annotate(count=Count('id'))
     return render(request, 'gamer/profile.html', locals())
 
 
