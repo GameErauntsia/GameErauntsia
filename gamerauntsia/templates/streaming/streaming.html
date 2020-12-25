@@ -8,7 +8,7 @@
     {% if streaming %}
     <div class="col-sm-8">
         <div class="flex-video widescreen">
-            <iframe src="https://player.twitch.tv/?channel={{streamer.twitch_channel}}&parent=gamerauntsia.eus" frameborder="0" scrolling="no" width="100%"></iframe>
+            <iframe src="https://player.twitch.tv/?channel={{streamer.twitch_channel}}&parent=gamerauntsia.eus" frameborder="0" scrolling="no" width="100%" allowfullscreen=true></iframe>
         </div>
         <h2>{{streaming.title}}</h2>
         <p><a href="{% url 'gamer_profile' streamer.username %}">
@@ -19,7 +19,7 @@
     </div>
     <div class="col-sm-4">
         <h3>Zuzeneko txata</h3>
-        <iframe src="https://www.twitch.tv/embed/{{streamer_twitch_channel}}/chat?parent=gamerauntsia.eus" frameborder="0" height="500" width="100%"></iframe>
+        <iframe src="https://www.twitch.tv/embed/{{streamer.twitch_channel}}/chat?parent=gamerauntsia.eus" frameborder="0" height="500" width="100%"></iframe>
     </div>
     {% else %}
     <div class="col-sm-8">
