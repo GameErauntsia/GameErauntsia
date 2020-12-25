@@ -1,4 +1,5 @@
 from gamerauntsia.gamer.models import GamerUser, JokuPlataforma, AmaitutakoJokoak, PLATFORM
+from gamerauntsia.streaming.models import Streaming
 from django.template.defaultfilters import slugify
 from gamerauntsia.jokoa.models import Jokoa
 from gamerauntsia.gameplaya.models import GamePlaya
@@ -57,7 +58,10 @@ def youtuberrak(request):
     return render(request, 'gamer/youtuberrak.html', locals())
 
 def streamerrak(request):
-    users = GamerUser.objects.filter(is_active=True).exclude(twitch_channel__isnull=True).exclude(twitch_channel__exact='').order_by('twitch_channel')
+    users = GamerUser.objects.filter(is_active=True).exclude(twitch_channel__isnull=True).exclude(twitch_channel__exact='').annotate(num_stm=Count('streamingak')).order_by('-num_stm')
+    latest_streams = Streaming.objects.exclude(end_date__isnull=True).order_by('-end_date')[:4]
+    current_streams = Streaming.objects.filter(end_date__isnull=True)
+    current_stream_count = len(current_streams)
     return render(request, 'gamer/streamerrak.html', locals())
 
 def idazleak(request):
