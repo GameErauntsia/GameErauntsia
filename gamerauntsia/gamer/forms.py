@@ -50,7 +50,10 @@ class GamerForm(forms.ModelForm):
 class ChannelsForm(forms.ModelForm):
     class Meta:
         model = GamerUser
-        fields = ('ytube_channel','twitch_channel')
+        widgets = {'channel_description': forms.Textarea(),
+                   'twitch_channel': forms.TextInput(attrs={'placeholder':'Erabiltzaile izena, ez URLa'}),
+                   'ytube_channel': forms.URLInput(attrs={'placeholder': 'URLa'})}
+        fields = ('channel_description','ytube_channel','twitch_channel')
 
 class PCForm(forms.ModelForm):
     class Meta:
