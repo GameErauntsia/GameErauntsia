@@ -90,21 +90,23 @@
       <div class="tab-content" id="myTabContent">
         <div id="stats" class="tab-pane fade in active  " role="tabpanel">
           <p>
-            {% if gp_count or berri_count %}
+            {% if gp_count or berri_count or streaming_count %}
             {% if gp_count %}
-            <div class="col-sm-6 text-center">
-              {% if gp_count == 1 %}
-              <p><small>Game Play</small></p>
-              <h2><strong> {{gp_count}} </strong></h2>
-              {% else %}
-              <h2><strong> {{gp_count}} </strong></h2>
-              <p><small>Game Play</small></p>
-              {% endif %}
-            </div>
-            <div class="col-sm-6">
-              {% for cat in categs %}
-              <p><strong>{{cat.count}}</strong> <span class="label label-info tags"><a href="{% url 'gameplay_category' cat.kategoria__izena|slugify %}">{{cat.kategoria__izena}}</a></span></p>
-              {% endfor %}
+            <div class="row">
+              <div class="col-sm-6 text-center">
+                {% if gp_count == 1 %}
+                <p><small>Game Play</small></p>
+                <h2><strong> {{gp_count}} </strong></h2>
+                {% else %}
+                <h2><strong> {{gp_count}} </strong></h2>
+                <p><small>Game Play</small></p>
+                {% endif %}
+              </div>
+              <div class="col-sm-6">
+                {% for cat in categs %}
+                <p><strong>{{cat.count}}</strong> <span class="label label-info tags"><a href="{% url 'gameplay_category' cat.kategoria__izena|slugify %}">{{cat.kategoria__izena}}</a></span></p>
+                {% endfor %}
+              </div>
             </div>
             {% endif %}
             {% if gp_count and berri_count %}<hr/>{% endif %}
@@ -126,8 +128,27 @@
               </div>
             </div>
             {% endif %}
+            {% if berri_count or gp_count and streaming_count %}<hr/>{% endif %}
+            {% if streaming_count %}
+            <div class="row">
+              <div class="col-sm-6 text-center">
+                {% if streaming_count == 1 %}
+                <p><small>Streaming</small></p>
+                <h2><strong> {{streaming_count}} </strong></h2>
+                {% else %}
+                <h2><strong> {{streaming_count}} </strong></h2>
+                <p><small>Streaming</small></p>
+                {% endif %}
+              </div>
+              <div class="col-sm-6">
+                {% for cat in streaming_categs %}
+                <p><strong>{{cat.count}}</strong> <span class="label label-success tags">{{cat.game_name}}</span></p>
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
             {% else %}
-            <div class="alert alert-warning" role="alert">Ez du artikulu edo gameplayrik...</div>
+            <div class="alert alert-warning" role="alert">Ez du artikulu, streaming edo gameplayrik...</div>
             {% endif %}
           </p>
         </div>
