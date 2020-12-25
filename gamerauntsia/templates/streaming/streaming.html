@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load emoticons_tags comments ratings %}
+
+{% block title %}{{gp.izenburua}} - Game playak - {% endblock %}
+
+{% block morejs %}
+<meta property="fb:app_id" content="{{facebook_id}}" />
+<meta name="twitter:site" content="@gamerauntsia" />
+<meta name="twitter:creator" content="@gamerauntsia" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:domain" content="gamerauntsia.eus" />
+<meta name="twitter:description" content="{{gp.desk|truncatewords:15|safe|striptags}}" />
+<meta name="twitter:title" content="{{gp.izenburua}}" />
+<meta name="twitter:url" content="{{gp.get_absolute_url}}" />
+<meta name="twitter:image" content="https://gamerauntsia.eus{{gp.argazkia.get_blog_url}}" />
+
+<meta property="og:description" content="{{gp.desk|truncatewords:15|safe|striptags}}" />
+<meta property="og:title" content="{{gp.izenburua}}" />
+<meta property="og:image" content="https://gamerauntsia.eus{{gp.argazkia.get_blog_url}}" />
+
+<link rel="stylesheet" href="{{STATIC_URL}}star-ratings/css/star-ratings.css">
+<script type="text/javascript" src="{{STATIC_URL}}star-ratings/js/dist/star-ratings.min.js"></script>
+
+<script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "VideoObject",
+      "name": "{{gp.izenburua}}",
+      "description": "{{gp.get_desk_txikia}}",
+      "thumbnailUrl": "https://gamerauntsia.eus{{gp.argazkia.get_gp_thumbnail_url}}",
+      "uploadDate": "{{gp.pub_date}}",
+      "duration": "PT{{gp.iraupena_min}}M{{gp.iraupena_seg}}S",
+      "embedUrl": "https://www.youtube.com/embed/{{gp.bideoa}}"
+  }
+</script>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+  <h1>{{streaming.title}}</h1>
+  <p><a href="{% url 'gamer_profile' streaming.user.username %}">
+      <img src="{{streaming.user.get_photo.get_profilesmall_url}}" class="img-circle"/>
+      {{streaming.user.getFullName}}</a> |
+     <strong>{{streaming.game_name}}</a></strong>
+  </p>
+  <div class="col-sm-8">
+    <div class="flex-video widescreen">
+      <iframe src="https://player.twitch.tv/?channel={{channel_name}}&parent=gamerauntsia.eus" frameborder="0" scrolling="no" height="378" width="620"></iframe>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <h3>Zuzeneko txata</h3>
+    <iframe src="https://www.twitch.tv/embed/{{channel_name}}/chat?parent=gamerauntsia.eus" frameborder="0" height="500" width="100%"></iframe>
+  </div>
+</div>
+{% endblock %}
