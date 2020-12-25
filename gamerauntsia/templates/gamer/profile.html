@@ -11,7 +11,6 @@
         <img src="{{user_prof.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive">
         {% if user_prof.is_core_team_member%}<img src="{{STATIC_URL}}img/kidea.png" alt="Game Erauntsiako Kidea" class="center-block img-responsive"/>{% endif %}
         <p>{{user_prof.date_joined|date:"Y/m/d H:i"}}
-          {% if user.is_authenticated %}<br/><a href="{% url 'messages_compose_to' user_prof.username  %}"><span class="glyphicon glyphicon-envelope"></span></a>{% endif %}
         </p>
       </div><!--/col-->
       <div class="col-xs-12 col-sm-8">
@@ -142,7 +141,7 @@
               </div>
               <div class="col-sm-6">
                 {% for cat in streaming_categs %}
-                <p><strong>{{cat.count}}</strong> <span class="label label-success tags">{{cat.game_name}}</span></p>
+                <p><strong>{{cat.count}}</strong> <span class="label label-warning tags">{{cat.game_name}}</span></p>
                 {% endfor %}
               </div>
             </div>
