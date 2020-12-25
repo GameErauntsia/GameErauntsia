@@ -94,6 +94,7 @@ class GamerUser(AbstractUser):
     twitch_channel_id= models.CharField(max_length=150, null=True, blank=True, verbose_name="Twitch kanalaren IDa")
     twitch_sub_id_online= models.CharField(max_length=36, null=True, blank=True, verbose_name="Twitch kanalaren online harpidetza id-a")
     twitch_sub_id_offline= models.CharField(max_length=36, null=True, blank=True, verbose_name="Twitch kanalaren offline harpidetza id-a")
+    channel_description = models.TextField('Kanalaren deskribapen laburra', null=True,blank=True)
     objects = UserManager()
 
     USERNAME_FIELD = 'username'

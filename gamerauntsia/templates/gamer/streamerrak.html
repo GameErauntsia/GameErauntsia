@@ -26,12 +26,12 @@
     <div class="col-sm-8">
         {% for user in users %}
         {% if forloop.first %}<div class="row">{% endif %}
-        <div class="col-sm-6 col-sm-6">
+        <div class="col-sm-4 col-sm-6">
             <a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profile_url}}" class="img-circle img-responsive"></a>
             <h3><a href="{% url 'gamer_profile' user.username %}">{{user.getFullName}}</a>
                 <small>@{{user.twitch_channel}}</small>
             </h3>
-            <p>{{user.bio|striptags}}</p>
+            <p>{{user.channel_description|default_if_none:""|striptags}}</p>
         </div>
         {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
         {% if forloop.last %}</div>{% endif %}
