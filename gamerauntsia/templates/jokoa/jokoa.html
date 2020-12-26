@@ -1,13 +1,13 @@
 {% extends "profile/base.html" %}
 {% load i18n include comments %}
 
-{% block title %}{{jokoa.izena}} {{jokoa.bertsioa}} - {% endblock %}
+{% block title %}{{jokoa.izena}} {{jokoa.bertsioa|default_if_none:""}} - {% endblock %}
 
 {% block content%}
 <div class="row">
 
     <div class="col-sm-12">
-            <h1 class="page-header">{{jokoa.izena}} {{jokoa.bertsioa}}</h1>
+            <h1 class="page-header">{{jokoa.izena}} {{jokoa.bertsioa|default_if_none:""}}</h1>
         </div>
 
     <div class="col-sm-12">
@@ -66,6 +66,12 @@
     </div>
     <hr/>
     <div class="col-sm-12">
+        {% if berriak %}
+        <h2><i class="glyphicon glyphicon-bookmark"></i> Blogeko artikuluak
+            {% if berriak_more %}
+            <small><a href="/bloga/jokoa/{{jokoa.slug}}"><strong>(Ikusi denak)</strong></a></small>
+            {% endif %}
+        </h2>
         {% for berria in berriak %}
         {% get_comment_count for berria as comment_count %}
         <div class="col-sm-4">
@@ -77,6 +83,7 @@
             <p>{{berria.get_desk_txikia|safe}}</p>
         </div>
         {% endfor %}
+        {% endif %}
     </div>
     <hr/>
     {% if users %}
@@ -106,7 +113,11 @@
     <div col="col-sm-12">
         {% if steam_json.screenshots and gameplayak %}
         <div class="col-sm-6">
-                <h2><i class="glyphicon glyphicon-film"></i> Game Playak</h2>
+            <h2><i class="glyphicon glyphicon-film"></i> Game Playak
+                {% if gameplayak_more %}
+                <small><a href="/gameplayak/jokoak/{{jokoa.slug}}"><strong>(Ikusi denak)</strong></a></small>
+                {% endif %}
+            </h2>
                 {% for gp in gameplayak %}
                 {% get_comment_count for gp as comment_count %}
                 <div class="row">
@@ -144,7 +155,11 @@
         {% else %}
         <div class="col-sm-12">
             {% if gameplayak %}
-                <h2><i class="glyphicon glyphicon-film"></i> Game Playak</h2>
+            <h2><i class="glyphicon glyphicon-film"></i> Game Playak
+                {% if gameplayak_more %}
+                <small><a href="/gameplayak/jokoak/{{jokoa.slug}}"><strong>(Ikusi denak)</strong></a></small>
+                {% endif %}
+            </h2>
                 {% for gp in gameplayak %}
                 {% get_comment_count for gp as comment_count %}
                 {% if not forloop.counter|divisibleby:2 %}

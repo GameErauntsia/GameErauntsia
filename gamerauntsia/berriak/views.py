@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from django.template import RequestContext
 from gamerauntsia.berriak.models import Berria, Gaia
+from gamerauntsia.jokoa.models import Jokoa
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
@@ -74,3 +75,8 @@ def gaia(request, slug):
     gaia = get_object_or_404(Gaia, slug=slug)
     zerr_berriak = Berria.objects.filter(gaia=gaia, status='1', pub_date__lt=timezone.now()).order_by('-pub_date')
     return render(request, 'berriak/gaia.html', locals())
+
+def jokoa(request, slug):
+    jokoa = get_object_or_404(Jokoa, slug=slug)
+    zerr_berriak = Berria.objects.filter(jokoa=jokoa, status='1', pub_date__lt=timezone.now()).order_by('-pub_date')
+    return render(request, 'berriak/jokoa.html', locals())
