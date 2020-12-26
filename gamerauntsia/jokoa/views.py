@@ -38,11 +38,11 @@ def jokoa(request, slug):
         pass
     gameplayak = GamePlaya.objects.filter(jokoa=jokoa, publikoa_da=True, status='1', pub_date__lt=timezone.now()).order_by('-pub_date')
     if steam_json:
-        gameplayak = gameplayak[:2]
         gameplayak_more = len(gameplayak) > 2
+        gameplayak = gameplayak[:2]
     else:
-        gameplayak = gameplayak[:4]
         gameplayak_more = len(gameplayak) > 4
+        gameplayak = gameplayak[:4]
     users = GamerUser.objects.filter(top_jokoak=jokoa, is_core_team_member=False).order_by("-karma")[:6]
     terminoak = Terminoa.objects.filter(jokoa=jokoa).order_by("?")[:10]
     txapelketak = Txapelketa.objects.filter(jokoa=jokoa, publikoa_da=True).order_by('-pub_date')[:3]
