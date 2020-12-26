@@ -54,7 +54,7 @@ def streaming_started(event):
                 msg = "%s %s stremeatzen ari da! https://twitch.tv/%s" % (channel_info['broadcaster_name'],
                                                                           channel_info['game_name'],
                                                                           channel_info['broadcaster_name'])
-                tb.send_message(settings.PUBLIC_CHAT_ID, msg)
+            tb.send_message(settings.PUBLIC_CHAT_ID, msg)
     except:
         logger.error('Could not create stream: ' + str(event))
 
