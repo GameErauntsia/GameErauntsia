@@ -72,7 +72,7 @@
             <p><a href="{% url 'gamer_profile' gp.erabiltzailea.username %}"><img src="{{gp.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{gp.erabiltzailea.getFullName}}</a></p>
         </div>
 
-        <iframe src="https://www.lehenhitza.eus/iframe_laukia" width="300" height="250" frameborder="0" scrolling="no"></iframe>
+        <iframe src="https://www.lehenhitza.eus/iframe_laukia" class="center-block" width="300" height="250" frameborder="0" scrolling="no"></iframe>
 
         {% if user.is_authenticated %}
             {% if user.is_superuser or user == gp.erabiltzailea %}
