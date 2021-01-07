@@ -291,3 +291,11 @@ padding: 0 7px 0 26px;
   display: flex;
   flex-direction: column;
 }
+
+.article-body {
+  font-size: 16px;
+}
+
+.article-body figure {
+  margin: 2% 5%;
+}

@@ -99,8 +99,9 @@
         </div>
         {% endif %}
         {% endif %}
-        <p class="lead">{{item.desk|safe|emoticons}}</p>
-
+        <div class="article-body">
+          <p class="lead">{{item.desk|safe|emoticons}}</p>
+        </div>
         <div class="pull-right">{% ratings item %}</div>
 
         {% include 'share_buttons.html' with item=item %}
