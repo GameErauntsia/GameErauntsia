@@ -12,7 +12,6 @@ TINYMCE_DEFAULT_CONFIG = {
     "media_alt_source": False,
     "media_poster": False,
     "media_dimensions": False,
-    "content_css": "/static/css/tinymce_content.css",
     "extended_valid_elements" : "script[src|type|language]",
 }
 
