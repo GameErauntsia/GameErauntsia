@@ -1,4 +1,4 @@
-FROM python:3.5.2-alpine
+FROM python:3.6.12-alpine
 
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONWRITEBYTECODE 1
@@ -11,7 +11,9 @@ COPY cronjobs $APP_HOME/
 RUN cat cronjobs >> /etc/crontabs/root
 RUN crond -b
 
-RUN apk add --no-cache mysql-client mariadb-client-libs libjpeg
+RUN apk add --no-cache mysql-client mariadb-connector-c-dev libjpeg
+# Downgrade pip version to avoid incompatibility issues with some of the libraries
+RUN pip install pip==20.0.2
 COPY requirements.txt $APP_HOME/
 RUN apk add --no-cache --virtual .build-deps \
         mariadb-dev git \
