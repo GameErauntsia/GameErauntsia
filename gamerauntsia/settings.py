@@ -121,7 +121,7 @@ INSTALLED_APPS = (
     'tagging',
     'photologue',
     'sortedm2m',
-    'pagination_bootstrap',
+    'django_pagination_bootstrap',
     'tinymce',
     'emoticons',
     'registration',
@@ -203,7 +203,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'pagination_bootstrap.middleware.PaginationMiddleware',
+    'django_pagination_bootstrap.middleware.PaginationMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django_mobile.middleware.MobileDetectionMiddleware',
     'django_mobile.middleware.SetFlavourMiddleware',
@@ -312,8 +312,8 @@ LOGGING = {
 }
 
 # TINIYMCE
-TINYMCE_JS_ROOT = STATIC_ROOT + "js/tinymce/"
-TINYMCE_JS_URL = STATIC_URL + "js/tinymce/tinymce.min.js"
+#TINYMCE_JS_ROOT = STATIC_ROOT + "js/tiny_mce/"
+#TINYMCE_JS_URL = STATIC_URL + "js/tinymce/tinymce.min.js"
 try:
     from .tiny_mce_settings import *
 except:
