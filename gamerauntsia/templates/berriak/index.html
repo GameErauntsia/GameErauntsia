@@ -35,22 +35,26 @@
 
         {% block container %}
 
-        {% autopaginate zerr_berriak 5 %}
+        {% autopaginate zerr_berriak 9 %}
         {% for berria in zerr_berriak %}
         {% get_comment_count for berria as comment_count %}
-        <h1><a href="{% url 'berria' berria.slug %}">{{berria.izenburua}}</a></h1>
-        <p class="lead">
-            <a href="{% url 'gamer_profile' berria.erabiltzailea.username %}"><img src="{{berria.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{berria.erabiltzailea.getFullName}}</a> | <span class="glyphicon glyphicon-time"></span> {{berria.pub_date|date:"Y/m/d H:i"}} {% for gai in berria.gaia.all %}<span class="label label-success tags"><a href="{% url 'gaia' gai.slug %}">{{gai.izena}}</a></span>{% endfor %}
-        </p>
-        {% if berria.argazkia %}
-        <a class="fancybox" href="{{berria.argazkia.image.url}}">
-            <img src="{{berria.argazkia.get_blog_index_url}}" class="img-responsive"/>
-        </a>
-        <hr>
-        {% endif %}
-        <p>{{berria.get_desk_txikia|safe}}</p>
-        {% ratings berria %}
-        {% if comment_count %}<h4 class="pull-right"><a href="{% url 'berria' berria.slug %}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a></h4>{% endif %}
+        <div class="row">
+            <div class="col-sm-4">
+                <a class="fancybox" href="{{berria.argazkia.image.url}}">
+                    <img style="margin: 25px 0"  src="{{berria.argazkia.get_blog_index_url}}" class="img-responsive"/>
+                </a>
+                <p class="lead">
+                    <a href="{% url 'gamer_profile' berria.erabiltzailea.username %}"><img src="{{berria.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{berria.erabiltzailea.getFullName}}</a> | <span class="glyphicon glyphicon-time"></span> {{berria.pub_date|date:"Y/m/d H:i"}}
+                </p>
+            </div>
+            <div class="col-sm-8">
+                <h1><a href="{% url 'berria' berria.slug %}">{{berria.izenburua}}</a></h1>
+                <p>{% for gai in berria.gaia.all %}<span class="label label-success tags"><a href="{% url 'gaia' gai.slug %}">{{gai.izena}}</a></span>{% endfor %}
+                    {% if comment_count %}<a class="pull-right" href="{% url 'berria' berria.slug %}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}
+                </p>
+                <p>{{berria.azpititularra|default_if_none:""|safe}}</p>
+            </div>
+        </div>
         <hr>
         {% endfor %}
 

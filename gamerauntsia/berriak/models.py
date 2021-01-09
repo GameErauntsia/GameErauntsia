@@ -35,8 +35,8 @@ class Berria(models.Model):
     izenburua = models.CharField(max_length=150)
     slug = models.SlugField(db_index=True, unique=True,
                             help_text="Eremu honetan berri honen URL helbidea zehazten ari zara.")
+    azpititularra = models.CharField(max_length=140, null=True, blank=True)
     desk = models.TextField(max_length=256)
-
     gaia = models.ManyToManyField(Gaia)
 
     erabiltzailea = models.ForeignKey(GamerUser, related_name='berriak', on_delete=models.PROTECT)

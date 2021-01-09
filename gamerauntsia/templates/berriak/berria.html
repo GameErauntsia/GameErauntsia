@@ -100,6 +100,9 @@
         {% endif %}
         {% endif %}
         <div class="article-body">
+          {% if item.azpititularra %}
+          <h4><strong>{{item.azpititularra|safe}}</strong></h4>
+          {% endif %}
           <p class="lead">{{item.desk|safe|emoticons}}</p>
         </div>
         <div class="pull-right">{% ratings item %}</div>
