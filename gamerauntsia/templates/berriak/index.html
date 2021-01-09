@@ -35,7 +35,7 @@
 
         {% block container %}
 
-        {% autopaginate zerr_berriak 9 %}
+        {% autopaginate zerr_berriak 5 %}
         {% for berria in zerr_berriak %}
         {% get_comment_count for berria as comment_count %}
         <div class="row">
