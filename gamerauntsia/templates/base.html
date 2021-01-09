@@ -67,7 +67,21 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- <li {% if request.path|contains:"/getb/" %}class="active"{% endif %}><a href="/getb">GETB</a></li> -->
                     <!-- <li {% if request.path|contains:"/podcastak/" %}class="active"{% endif %}><a href="/podcastak" title="Podcastak">Podcasta</a></li> -->
-                    <li {% if request.path|contains:"/bloga/" %}class="active"{% endif %}><a href="/bloga/" title="Berriak">Bloga</a></li>
+                    <li {% if request.path|contains:"/bloga/" %} class="active"{% endif %}>
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="/bloga" title="Bloga">Bloga <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="/bloga/gaia/analisiak" title="Analisiak">Analisiak</a></li>
+                        <li><a href="/bloga/gaia/artikuluak" title="Artikuluak">Artikuluak</a></li>
+                        <li><a href="/bloga/gaia/berriak" title="Berriak">Berriak</a></li>
+                        <li><a href="/bloga/gaia/ekitaldiak" title="Ekitaldiak">Ekitaldiak</a></li>
+                        <li><a href="/bloga/gaia/elkarrizketak" title="Elkarrizketak">Elkarrizketak</a></li>
+                        <li><a href="/bloga/gaia/komunitatea" title="Komunitatea">Komunitatea</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li><a href="/bloga/gaia/euskal-jokoak" title="Euskal jokoak">Euskal jokoak</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li><a href="/bloga" title="Denak">Denak</a></li>
+                        </ul>
+                    </li>
                     <li {% if request.path|contains:"/jokoak/" or request.path|contains:"/gameplayak/" or request.path|contains:"/txapelketak/" or request.path|contains:"/minecraft/" or request.path|contains:"/jokoak/" or request.path|contains:"/terminologia/" %}class="active"{% endif %}>
                         <a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'talde_motorra' %}" title="Jokoak">Jokoak <b class="caret"></b></a>
                         <ul class="dropdown-menu" role="menu">
