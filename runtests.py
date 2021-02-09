@@ -44,7 +44,7 @@ settings.configure(
             'tagging',
             'photologue',
             'sortedm2m',
-            'pagination_bootstrap',
+            'django_pagination_bootstrap',
             'tinymce',
             'emoticons',
             'registration',
@@ -118,7 +118,7 @@ settings.configure(
             'django.contrib.auth.middleware.AuthenticationMiddleware',
             'django.contrib.messages.middleware.MessageMiddleware',
             'django.middleware.clickjacking.XFrameOptionsMiddleware',
-            'pagination_bootstrap.middleware.PaginationMiddleware',
+            'django_pagination_bootstrap.middleware.PaginationMiddleware',
         ],
 )
 
