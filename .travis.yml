@@ -6,6 +6,7 @@ python:
 
 services:
   - mysql
+  - docker
 
 env:
   - DJANGO="Django>2.0.0"
@@ -21,10 +22,8 @@ script:
 after_success:
   - coveralls
 
-matrix:
-  exclude:
-    - python: "2.7"
-      env: DJANGO="Django>=2.0.0,<2.1.0"
-
-  allow_failures:
-    - python: "3.6"
+deploy:
+  provider: script
+  script: bash ./ci/build_push_docker.sh
+  on:
+    branch: master
