@@ -14,7 +14,7 @@ docker tag ${TARGET_IMAGE} ${TARGET_IMAGE_LATEST}
 docker push ${TARGET_IMAGE_LATEST}
 
 # Versioned
-VERSION=$(date '+%Y-%m-%d_%H:%M:%S')
+VERSION=$(date '+%Y-%m-%d__%H-%M-%S')
 TARGET_IMAGE_VERSIONED="${TARGET_IMAGE}:${VERSION}"
 docker tag ${TARGET_IMAGE} ${TARGET_IMAGE_VERSIONED}
 docker push ${TARGET_IMAGE_VERSIONED}
