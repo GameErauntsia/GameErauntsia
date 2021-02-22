@@ -1,7 +1,9 @@
+# coding: utf-8
+
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
+from django.db.models import Q, Max
 from django.shortcuts import get_object_or_404
 from gamerauntsia.txapelketak.models import Partida, Txapelketa, Partaidea
 from gamerauntsia.txapelketak.forms import TaldeaForm
@@ -88,58 +90,32 @@ def txapelketa(request, slug):
                                         Q(emaitza__isnull=True) | Q(emaitza__iexact='')).order_by('date',
                                                                                                   'jardunaldia').distinct()
 
-    if item.mota == '0' or item.mota == '2':
-        root_exists = Partida.objects.filter(Q(txapelketa=item), Q(parent__isnull=True),
-                                             Q(txapelketa__mota='0') | Q(txapelketa__mota='2', is_playoff=True))
-        if root_exists:
-            first_node = root_exists[0]
-            leaflvl = first_node.get_leafnodes(include_self=True)[0].get_level()
-
-            graphdata = "["
-            for x in range(leaflvl, -1, -1):
-                graphdata += "["
-                partidak = Partida.objects.filter(Q(level=x), Q(txapelketa=item),
-                                                  Q(txapelketa__mota='0') | Q(txapelketa__mota='2', is_playoff=True)).prefetch_related('partaideak__jokalariak')
-                last_part = len(partidak) - 1
-                for j, part in enumerate(partidak):
-                    graphdata += "["
-                    if part.partaideak.all():
-                        if len(part.partaideak.all()) > 1:
-                            last_gamer = len(part.partaideak.all()) - 1
-                            for i, gamer in enumerate(part.partaideak.all()):
-                                if i == last_gamer:
-                                    graphdata += "{'name': '" + gamer.get_izena() + "', 'seed':" + str(
-                                        gamer.id) + ", 'id':" + str(gamer.id) + "}"
-                                else:
-                                    graphdata += "{'name': '" + gamer.get_izena() + "', 'seed':" + str(
-                                        gamer.id) + ", 'id':" + str(gamer.id) + "},"
-                            if j == last_part:
-                                graphdata += "]"
-                            else:
-                                graphdata += "],"
-                        else:
-                            gamer = part.partaideak.all()[0]
-                            graphdata += "{'name': '" + gamer.get_izena() + "', 'seed':" + str(
-                                gamer.id) + ", 'id':" + str(
-                                gamer.id) + "},{'name': 'Deskalifikatuta', 'seed': '0', 'id': 0}]"
-                    else:
-                        graphdata += "{'name': '???', 'seed': '???', 'id': 0},{'name': '???', 'seed': '???', 'id': 0}]"
-                graphdata += "],"
-            try:
-                irabazlea = Partaidea.objects.get(txapelketa=item, irabazlea=True)
-                graphdata += "[[{'name': '" + irabazlea.get_izena() + "','seed': '" + str(
-                    irabazlea.id) + "','id': " + str(irabazlea.id) + "}]]]"
-            except:
-                graphdata += "[[{'name': '???','seed': '???','id': 0}]]]"
-        else:
-            graphdata = ""
-
-    # api = get_tweepy_api()
-    # search = '#' + item.hashtag
-    # tweets = api.search(q=search,count=25)
-
     return render(request, 'txapelketak/txapelketa.html', locals())
 
+def zuhaitza(request, slug):
+    item = get_object_or_404(Txapelketa.objects.select_related('irudia').prefetch_related('jokalariak__photo','adminak__photo'), slug=slug)
+    jardunaldi_kopurua = Partida.objects.filter(txapelketa=item).aggregate(Max('jardunaldia'))['jardunaldia__max']
+    roundlabels = ["{}. jardunaldia".format(zbk + 1) for zbk in range(jardunaldi_kopurua)]
+    def get_partida(partida):
+        return [{'name': gamer.get_izena(),
+                 'seed': gamer.id,
+                 'id': gamer.id}
+                for gamer in partida.partaideak.all()]
+
+    def get_jardunaldi_partidak(jardunaldi_zbk):
+        jardunaldia = Partida.objects.filter(Q(txapelketa=item),
+                                             Q(jardunaldia=jardunaldi_zbk+1)).prefetch_related('partaideak__jokalariak')
+        return [get_partida(partida) for partida in jardunaldia]
+
+    graphdata = [get_jardunaldi_partidak(jardunaldia) for jardunaldia in range(jardunaldi_kopurua)]
+
+    try:
+        irabazlea = Partaidea.objects.get(txapelketa=item, irabazlea=True)
+        azkena = [[{'name':irabazlea.get_izena(),'seed': irabazlea.id,'id': irabazlea.id}]]
+    except:
+        azkena = [[{'name':'???','seed': '???','id': 0}]]
+        graphdata.append(azkena)
+    return render(request, 'txapelketak/zuhaitza.html', locals())
 
 def partaidea(request, slug, part_id):
     item = get_object_or_404(Txapelketa, slug=slug)
