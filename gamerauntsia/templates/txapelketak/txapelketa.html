@@ -115,7 +115,7 @@
                     </div>
                     {% if not item.insk_date|irekita and item.status == '2' or item.status == '3' %}
                     <div id="sailk" class="tab-pane fade" role="tabpanel">
-                      {% if item.mota == '0' or item.mota == '2' %}
+                      {% if item.mota == '0' %}
                       <p>
                         Ikusi txapelketaren zuhaitza
                         <a href="{% url 'zuhaitza' item.slug %}"
