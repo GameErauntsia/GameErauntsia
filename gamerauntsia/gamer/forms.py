@@ -88,6 +88,7 @@ class ArticleForm(forms.ModelForm):
         exclude = ('slug','erabiltzailea','pub_date','publikoa_da','status','mod_date','shared')
 
 class GameCatalogForm(forms.ModelForm):
+    bertsioa = forms.CharField(label='Bertsioa (aukerazkoa)', help_text="Joko saga bat bada, zehaztu hemen bertsioa. ", required=False)
     logoa  = forms.ImageField(label='Jokoaren logo ofiziala', help_text='Onartutako formatuak: jpg, png, gif.', required=False)
     desk = forms.CharField(label="Deskribapen laburra (aukerazkoa)", widget=forms.Textarea,required=False)
     trailer = forms.CharField(label='Youtube trailerra (aukerazkoa)', help_text="Steam ID zenbakia jarrita badago, ez da beharrezkoa. Bestela, Youtube bideoaren KODEA itsatsi. Adibidez: bkgzXpKbVGE", required=False)
