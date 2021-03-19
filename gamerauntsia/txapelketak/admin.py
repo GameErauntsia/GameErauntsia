@@ -60,7 +60,7 @@ class TxapelketaAdmin(admin.ModelAdmin):
         except:
             return '%s' % (obj.irudia.title)
     admin_thumbnail.short_description = 'Thumb'
-    
+
     @mark_safe
     def preview(self,obj):
         return '<a href="/txapelketak/%s">aurreikusi</a>' % (obj.slug)
@@ -78,15 +78,13 @@ class TxapelketaAdmin(admin.ModelAdmin):
 class PartaideakForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(PartaideakForm, self).__init__(*args, **kwargs)
-        wtf = []
+        jokalariak = []
         if Txapelketa.objects.filter(id=self.instance.txapelketa_id).exists():
-            wtf = Txapelketa.objects.get(id=self.instance.txapelketa_id).get_jokalariak()
-        self.fields['kapitaina'].queryset = wtf
+            jokalariak = Txapelketa.objects.get(id=self.instance.txapelketa_id).get_jokalariak()
+            self.fields['kapitaina'].queryset = jokalariak
         w = self.fields['jokalariak'].widget
         w2 = self.fields['ordezkoak'].widget
-        choices = []
-        for choice in wtf:
-            choices.append((choice.id, choice.getFullName()))
+        choices = [[j.id, j.getFullName()] for j in jokalariak]
         w.choices = choices
         w2.choices = choices
 
