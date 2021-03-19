@@ -88,7 +88,15 @@
                         </a>
                     </li>
                     {% endif %}
-                    {% if item.modalitatea == '1' %} <!-- 1 = taldeka -->
+                    {% if item.external_signup %}
+                    <li role="presentation">
+                        <a aria-controls="partaide-anonimoak" data-toggle="tab" role="tab" href="#partaide-anonimoak">
+                            <h4 class="panel-title">
+                                <i class="glyphicon glyphicon-user"></i> Partaideak {% if item.partaideak_count %}({{item.partaideak_count}}){% endif %}
+                            </h4>
+                        </a>
+                    </li>
+                    {% elif item.modalitatea == '1' %} <!-- 1 = taldeka -->
                     <li class="dropdown" role="presentation">
                         <a aria-controls="myTabDrop1-contents" data-toggle="dropdown" class="dropdown-toggle" id="myTabDrop1" href="#" aria-expanded="false"><i class="glyphicon glyphicon-user"></i> Partaideak {% if item.jokalariak_count %}({{item.jokalariak_count}}){% endif %} <span class="caret"></span></a>
                         <ul id="myTabDrop1-contents" aria-labelledby="myTabDrop1" role="menu" class="dropdown-menu">
@@ -205,6 +213,18 @@
                         {% endif %}
                     </div>
                     {% endif %}
+                    <!-- Kanpoko izen ematea: partaideak -->
+                    <div id="partaide-anonimoak" class="tab-pane fade" role="tabpanel">
+                        <div class="row">
+                            <br>
+                            {% for partaide in list_sailkapena %}
+                              {% if forloop.first %} <div class="col-sm-6"><ul class="list-unstyled">{% endif %}
+                              <li><a href="{{partaide.get_absolute_url}}"><img src="{{partaide.get_photo.getprofilesmall_url}}" class="img-circle"/> {{partaide.get_izena|safe}}</a></li>
+                              {% if forloop.counter|divisibleby:4 %}</ul></div><div class="col-sm-6"><ul class="list-unstyled">{% endif %}
+                              {% if forloop.last %}</ul></div>{% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
                     <!-- Bakarka: partaideak -->
                     <div id="banakako-partaideak" class="tab-pane fade" role="tabpanel">
                         <div class="row">
@@ -321,7 +341,10 @@
             {% if item.insk_date|irekita and user not in item.jokalariak.all and not item.manual_sign %}
             <div class="well">
                 <h3>Izena eman</h3>
-                {% if user.is_authenticated %}
+                {% if item.external_signup %}
+                <p>Izen ematea ondorengo <strong>kanpoko webgunean</strong> egin behar da. Irakurri arauak, eta ziurtatu parte hartzeko baldintzak betetzen dituzula izena eman aurretik.</p>
+                <a href="{{item.external_signup_url}}" target="_blank" class="btn btn-default">Parte hartu!</a>
+                {% elif user.is_authenticated %}
                 <a href="{% url 'txapelketa_insk' item.slug %}" class="btn btn-default">Parte hartu!</a>
                 {% else %}
                 <p>Txapelketetan parte hartu ahal izateko lehendabizi Game Erauntsian izena eman behar duzu.</p>

@@ -64,6 +64,9 @@ class Txapelketa(models.Model):
     insk_date = models.DateTimeField('Izen ematea', default=timezone.now)
     shared = models.BooleanField(default=False)
 
+    external_signup = models.BooleanField('Kanpoko izen ematea',default=False)
+    external_signup_url = models.URLField('Kanpoko izen ematea (URL)',null=True,blank=True)
+
     def get_title(self):
         return self.izena
 
@@ -181,21 +184,23 @@ class Partaidea(models.Model):
             return True
         return False
 
+    def is_anonymous(self):
+        return (len(self.jokalariak.all()) == 0)
+
     def get_absolute_url(self):
-        if self.is_group():
+        if self.is_group() or self.is_anonymous():
             return "%stxapelketak/%s/taldea/%d" % (settings.HOST, self.txapelketa.slug, self.id)
         else:
             return "%s" % (self.jokalariak.all()[0].get_absolute_url())
 
     def get_photo(self):
-        if self.is_group():
-            if self.irudia:
-                return self.irudia
-            else:
-                try:
-                    return Photo.objects.get(slug=GROUP_PHOTO_SLUG)
-                except:
-                    return None
+        if self.irudia:
+            return self.irudia
+        elif self.is_group() or self.is_anonymous():
+            try:
+                return Photo.objects.get(slug=GROUP_PHOTO_SLUG)
+            except:
+                return None
         else:
             return self.jokalariak.all()[0].get_photo()
 
