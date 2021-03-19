@@ -14,9 +14,9 @@ django-star-ratings == 0.9.1
 django-forum-app == 0.10
 django-mptt == 0.11.0
 facebookpagewriter == 0.10
-Django == 2.2.18
+Django == 2.2.19
 mysqlclient == 2.0.3
-pillow == 8.1.1
+pillow == 8.1.2
 django-sortedm2m == 3.0.2
 django-extensions == 2.2.5
 django-bootstrap-form == 3.4
@@ -31,7 +31,7 @@ django-registration-redux == 2.9
 django-emoticons == 1.2
 django-contrib-comments == 2.0.0
 Mastodon.py == 1.5.1
-pyTelegramBotAPI == 3.7.5
+pyTelegramBotAPI == 3.7.6
 tweepy == 3.10.0
 django-crispy-forms == 1.10.0
 django-guardian == 2.3.0
