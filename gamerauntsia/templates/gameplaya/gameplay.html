@@ -30,7 +30,7 @@
       "thumbnailUrl": "https://gamerauntsia.eus{{gp.argazkia.get_gp_thumbnail_url}}",
       "uploadDate": "{{gp.pub_date}}",
       "duration": "PT{{gp.iraupena_min}}M{{gp.iraupena_seg}}S",
-      "embedUrl": "https://www.youtube.com/embed/{{gp.bideoa}}"
+      "embedUrl": "{{gp.get_bideo_url}}"
     }
     </script>
 {% endblock %}
@@ -39,12 +39,8 @@
 
 <div class="row">
     <div class="col-sm-8">
-        <div class="flex-video widescreen">
-            {% if gp.bideoa %}
-            <iframe width="700" height="394" src="//www.youtube.com/embed/{{gp.bideoa}}" frameborder="0" allowfullscreen></iframe>
-            {% else %}
-            <iframe src="https://www.twitch.tv/gamerauntsia/embed" frameborder="0" scrolling="no" height="378" width="620"></iframe>
-            {% endif %}
+      <div class="flex-video widescreen">
+        <iframe width="700" height="394" src="{{gp.get_bideo_url}}" frameborder="0" allowfullscreen></iframe> -->
         </div>
         <h1>{{gp.izenburua}}</h1>
         <p>{{gp.desk|safe|emoticons}}</p>
@@ -58,10 +54,6 @@
         {% render_comment_form for gp %}
     </div>
     <div class="col-sm-4">
-        {% if not gp.bideoa %}
-            <h3>Zuzeneko txata</h3>
-            <iframe src="https://www.twitch.tv/gamerauntsia/chat?popout=" frameborder="0" height="500" width="100%"></iframe>
-        {% endif %}
         <h3>Fitxa teknikoa</h3>
         <div class="well">
             <p><span class="glyphicon glyphicon-play"></span> <strong><a href="{% url 'game' gp.jokoa.slug %}">{{gp.jokoa.izena}} {%if gp.jokoa.bertsioa %}{{gp.jokoa.bertsioa}}{% endif %}</a></strong></p>

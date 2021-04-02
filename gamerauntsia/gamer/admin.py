@@ -85,7 +85,7 @@ class GamerUserAdmin(UserAdmin):
         ('Jakinarazpenak',
         {'fields':('email_notification','buletin_notification')},),
         ('Kanalak',
-         {'fields':('channel_description','ytube_channel','twitch_channel','twitch_channel_id', 'twitch_sub_id_online', 'twitch_sub_id_offline'),'classes': ['collapse',],},),
+         {'fields':('channel_description','ytube_channel','peertube_channel','twitch_channel','twitch_channel_id', 'twitch_sub_id_online', 'twitch_sub_id_offline'),'classes': ['collapse',],},),
         ('Sare sozialak',
         {'fields':('twitter_id', 'mastodon_id', 'facebook_id', 'telegram_id'),'classes': ['collapse',],},),
         (_('Permissions'), {'fields': ('is_active','is_gamer', 'is_core_team_member','is_staff', 'is_superuser',

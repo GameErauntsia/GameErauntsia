@@ -89,6 +89,9 @@ class GamerUser(AbstractUser):
     last_updated = models.DateTimeField(auto_now_add=True, editable=False)
     date_joined = models.DateTimeField(auto_now_add=True, editable=False, null=True, blank=True)
 
+    ## Peertube
+    peertube_channel = models.CharField(max_length=150, null=True, blank=True, verbose_name="Peertube kanala")
+
     ## Twitch
     twitch_channel = models.CharField(max_length=150, null=True, blank=True, verbose_name="Twitch kanala")
     twitch_channel_id= models.CharField(max_length=150, null=True, blank=True, verbose_name="Twitch kanalaren IDa")

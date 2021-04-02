@@ -2,13 +2,14 @@ from django import forms
 from django.utils.safestring import mark_safe
 from gamerauntsia.berriak.models import Berria, Gaia
 from gamerauntsia.gamer.models import GamerUser, JokuPlataforma, AmaitutakoJokoak
-from gamerauntsia.gameplaya.models import Kategoria, GamePlaya
+from gamerauntsia.gameplaya.models import Kategoria, GamePlaya, BideoPlataforma
 from gamerauntsia.jokoa.models import Jokoa
 from tinymce.widgets import TinyMCE
 from django.utils.translation import ugettext as _
 from django.conf import settings
 from registration.forms import RegistrationFormUniqueEmail
 from captcha.fields import ReCaptchaField
+import re
 
 TINYMCE_SMALL_BODY_CONFIG = getattr(settings, 'TINYMCE_SMALL_BODY_CONFIG', {})
 TINYMCE_DEFAULT_CONFIG = getattr(settings, 'TINYMCE_DEFAULT_CONFIG', {})
@@ -52,8 +53,9 @@ class ChannelsForm(forms.ModelForm):
         model = GamerUser
         widgets = {'channel_description': forms.Textarea(),
                    'twitch_channel': forms.TextInput(attrs={'placeholder':'Erabiltzaile izena, ez URLa'}),
-                   'ytube_channel': forms.URLInput(attrs={'placeholder': 'URLa'})}
-        fields = ('channel_description','ytube_channel','twitch_channel')
+                   'ytube_channel': forms.URLInput(attrs={'placeholder': 'URLa'}),
+                   'peertube_channel': forms.URLInput(attrs={'placeholder': 'URLa'})}
+        fields = ('channel_description','ytube_channel','twitch_channel', 'peertube_channel')
 
 class PCForm(forms.ModelForm):
     class Meta:
@@ -136,6 +138,11 @@ class GamePlayForm(forms.ModelForm):
 
     jokoa = forms.ModelChoiceField(label="Jokoa", queryset=Jokoa.objects.all().order_by('izena'))
 
+    bideo_plataforma = forms.ModelChoiceField(label="Bideo plataforma",
+                                              help_text='Zure plataforma falta bada jarri gurekin harremanetan, eta gehituko dugu zerrendara',
+                                              initial=1,
+                                              queryset=BideoPlataforma.objects.all().order_by('izena'))
+
     lizentzia = forms.BooleanField(label="Irakurri eta onartzen ditut gameplayak igotzeko arauak", help_text=mark_safe('Informazioa gehiago <a href="/gameplay-arauak">gameplay arauetan</a>.'))
 
     def clean_lizentzia(self):
@@ -159,12 +166,17 @@ class GamePlayForm(forms.ModelForm):
 
     def clean_bideoa(self):
         bideoa = self.cleaned_data['bideoa']
-        if len(bideoa) > 15 or "/" in bideoa or not bideoa:
-            raise forms.ValidationError('Bideoaren Youtube kodea bakarrik jarri behar da. Mesedez, ikusi adibidea eta zuzendu kodea!')
-        return self.cleaned_data['bideoa']
+        if not bideoa:
+            raise forms.ValidationError('Bideoaren kodea derrigorrezkoa da!')
+        elif not re.fullmatch(r"^[a-zA-Z\-0-9]+$", bideoa):
+            raise forms.ValidationError('Bideoaren kodea bakarrik jarri behar da. Mesedez, ikusi adibidea eta zuzendu kodea!')
+        return bideoa
 
     class Meta:
         model = GamePlaya
+        fields = ('izenburua', 'desk', 'bideo_plataforma', 'bideoa',
+                  'iraupena_min', 'iraupena_seg', 'jokoa','plataforma',
+                  'zailtasuna','kategoria', 'argazkia', 'lizentzia')
         exclude = ('slug','erabiltzailea','pub_date','publikoa_da','status','mod_date','shared','argazkia')
 
 class RecaptchaRegistrationForm(RegistrationFormUniqueEmail):

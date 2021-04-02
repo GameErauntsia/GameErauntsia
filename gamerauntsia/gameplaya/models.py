@@ -42,6 +42,14 @@ class Zailtasuna(models.Model):
     def __str__(self):
         return u'%s' % (self.izena)
 
+class BideoPlataforma(models.Model):
+    izena = models.CharField(max_length=64)
+    embed_url = models.CharField(max_length=200)
+    class Meta:
+        verbose_name = "Bideo plataforma"
+        verbose_name_plural = "Bideo plataformak"
+    def __str__(self):
+        return u"%s" % (self.izena)
 
 class GamePlaya(models.Model):
     izenburua = models.CharField(max_length=64)
@@ -53,7 +61,8 @@ class GamePlaya(models.Model):
 
     argazkia = models.ForeignKey(Photo, on_delete=models.PROTECT)
     bideoa = models.CharField(max_length=100, null=True, blank=True,
-                              help_text="Eremu honetan Youtube bideoaren URL kodea itsatsi behar duzu. Adb.: c21XAuI3aMo")
+                              verbose_name="Bideoaren URL kodea",
+                              help_text="Bideoaren URL kodea. Youtube adb.: c21XAuI3aMo Peertube adb.: 544349f5-c7b3-4b31-92cb-a06c96eadfb6")
 
     jokoa = models.ForeignKey(Jokoa, related_name='gameplay', on_delete=models.PROTECT)
     plataforma = models.ForeignKey(Plataforma, related_name='gameplay', on_delete=models.PROTECT)
@@ -67,6 +76,7 @@ class GamePlaya(models.Model):
     status = models.CharField(max_length=1, choices=STATUS, default='0')
     shared = models.BooleanField(default=False,
                                  help_text="Lauki hau automatikoki markatuko da sistemak edukia sare sozialetan elkarbanatzean.")
+    bideo_plataforma = models.ForeignKey(BideoPlataforma, on_delete=models.PROTECT, null=True, verbose_name="Bideo plataforma")
 
     def get_title(self):
         return self.izenburua
@@ -91,6 +101,12 @@ class GamePlaya(models.Model):
 
     def get_rating(self):
         return int(self.get_puntuak() * 2)
+
+    def get_bideo_url(self):
+        if self.bideo_plataforma:
+            return self.bideo_plataforma.embed_url.replace("{{id}}", self.bideoa)
+        else:
+            return u"https://www.youtube.com/embed/%s" % (self.bideoa)
 
     def get_url(self):
         url = ''
