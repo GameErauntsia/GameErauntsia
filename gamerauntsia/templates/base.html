@@ -107,14 +107,13 @@
                             {% endfor %}
                         </ul>
                     </li>
-                    <li class="{% if request.path|contains:"/komunitatea/" or request.path|contains:"/aurkezpenak/" %}active{% endif %}">
+                    <li class="{% if request.path|contains:"/komunitatea/" %}active{% endif %}">
                         <a href="{% url 'komunitatea' %}" class="dropdown-toggle" data-toggle="dropdown">Komunitatea <b class="caret"></b></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{% url 'talde_motorra' %}" title="Talde motorra">Talde motorra</a></li>
                             <li><a href="{% url 'komunitatea' %}" title="Komunitatea">Komunitate osoa</a></li>
                             <li role="presentation" class="divider"></li>
                             <li><a href="{% url 'forum-index' %}" title="Foroa">Foroa</a></li>
-                            <li><a href="{% url 'aurkezpenak_index' %}" title="Aurkezpenak">Aurkezpenak</a></li>
                         </ul>
                     </li>
                     <li>
