@@ -106,7 +106,7 @@ class GamePlaya(models.Model):
         if self.bideo_plataforma:
             return self.bideo_plataforma.embed_url.replace("{{id}}", self.bideoa)
         else:
-            return u"https://www.youtube.com/embed/%s" % (self.bideoa)
+            return u"https://www.youtube-nocookie.com/embed/%s" % (self.bideoa)
 
     def get_url(self):
         url = ''
