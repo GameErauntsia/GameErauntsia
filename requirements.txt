@@ -14,7 +14,7 @@ django-star-ratings == 0.9.1
 django-forum-app == 0.10
 django-mptt == 0.11.0
 facebookpagewriter == 0.10
-Django == 2.2.20
+Django == 2.2.24
 mysqlclient == 2.0.3
 pillow == 8.1.2
 django-sortedm2m == 3.0.2
