@@ -55,4 +55,7 @@ class Jokoa(models.Model):
         verbose_name_plural = "Jokoak"
 
     def __str__(self):
-        return u'%s %s' % (self.izena, self.bertsioa)
+        if self.bertsioa:
+            return u'%s %s' % (self.izena, self.bertsioa)
+        else:
+            return self.izena
