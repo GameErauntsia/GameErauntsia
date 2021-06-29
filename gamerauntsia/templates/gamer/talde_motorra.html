@@ -17,15 +17,45 @@
 {% block content %}
 
 <div class="col-sm-12">
-    <h1 class="page-header">Talde motorra
-        <small>Pozten gara zu ezagutzeaz!</small>
-    </h1>
-    <p>Zaletasun berdin batek bildu gaituen komunitate bat gara. Bideo jokoak ditugu gustuko eta horien inguruan sortzen diren albiste eta berrikuntzak ditugu gustuko. Euskal jokalari taldea gara gu, <span class="text-success">Game Erauntsia</span>.</p>
-    <p>Bideo jokoak gustuko dituzula? Zeren zain zaude! Hemen denetarik aurkituko duzu eta gainera euskaraz! Gozatu gure komunitatean parte hartuz eta animatzen bazara zuk ere zure txoko propioa izan dezakezu gure taldean! Zer animatzen?</p>
+  <h1 class="page-header">Nortzuk gara</h1>
 </div>
-
-<div class="col-sm-12">
-    <div class="col-sm-8">
+<div class="col-sm-8">
+    <p>Game Erauntsia egitasmo bezala <strong>2014. urtean</strong> sortu zen
+    euskarazko bideo-jokoen kopuru eta hauei lotutako edukien
+    eskaintza urriari aurre egiteko. Horregatik hasieratik oinarrizko
+    <strong>helburua bideo-jokoak eta euskara uztartzea</strong> izan da. Egitasmoa
+    <strong>elkarte ofizial</strong> bihurtu zen 2016.urtean eta helburua lortzeko bi
+      bide nagusi finkatu ditugu:</p>
+    <ul>
+      <li><strong>Euskara eta bideo-jokoak lotzen dituzten ekintza orotarikoak
+      bideratu</strong>: gamer gelak, txapelketak, argitalpenak, streamingak,
+      hitzaldiak, tailerrak…
+      </li>
+      <li><strong>Bideo-jokozale euskaldunak elkartzeko espazioak sortu</strong>
+      </li>
+    </ul>
+    <p>Hainbat urtez elkarteak beste instituzio eta agenteekin
+    <strong>elkarlanak</strong> burutu ditu bere helburuak lortzeko: Asmoz Fundazioa,
+    Azkue Fundazioa, Durangoko Azoka, EDE Fundazioa, Euskaltzeen
+    Topagunea, Mondragon Unibertsitatea, Tabakalera Kultura
+    Garaikidearen Nazioarteko Zentroaren 2DEO Ikus-entzunezko
+    laborategia… eta beste hainbat instituzioen ekintzetan parte hartu
+      du.</p>
+    <p>Elkarteak bere helburuak burutzen laguntzeko 2020.urtetik <strong>Eusko
+    Jaurlaritzaren Hizkuntza Politikarako Sailburuordetzaren babesa</strong>
+    jasotzen du. Horretaz gain, Euskara Aholku Batzordearen IKT
+      sailean aholkularitza lana egin du.</p>
+    <p>Bideo-jokozaleentzako espazioak</p>
+    <p>Honako topaleku birtualak martxan jarri ditu Game Erauntsia Elkarteak:</p>
+    <ul>
+      <li><a href="https://telegram.me/gamerauntsia" target="_blank">Telegram talde orokorra</a>: bideo-jokoei buruz
+      hitz egiteko eta zalantzak eta esperientziak partekatzeko.
+      </li>
+      <li><strong>Telegram talde konkretuak</strong>: bideo-joko
+      zehatzei buruzko txatak. ARK, LOL (League of Legends)…
+      </li>
+      <li><a href="https://discord.com/invite/zYv84NQ" target="_blank"">Discord zerbitzaria</a>: online jokatzeko testu eta ahots zerbitzaria.</li>
+    </ul>
         <h2>Erabaki taldea</h2>
         {% for user in users %}
         {% if user.is_core_team_member and user.is_active %}
@@ -64,6 +94,5 @@
                 <img alt="" border="0" src="https://www.paypalobjects.com/es_ES/i/scr/pixel.gif" width="1" height="1">
             </form>
         </div>
-    </div>
 </div>
 {% endblock %}
