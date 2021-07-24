@@ -9,7 +9,10 @@ services:
       - MYSQL_USER
       - MYSQL_PASSWORD
       - MYSQL_ROOT_PASSWORD
+      - MYSQL_BACKUP_USER
+      - MYSQL_BACKUP_USER_PASSWORD
     volumes:
+      - ./db:/docker-entrypoint-initdb.d:ro
       - db-data:/var/lib/mysql
   web:
     image: gamerauntsia/web:latest

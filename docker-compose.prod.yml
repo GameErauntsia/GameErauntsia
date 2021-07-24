@@ -25,5 +25,22 @@ services:
       - PROXY_READ_TIMEOUT=120
     volumes:
       - ssl-certs:/var/lib/https-portal
+  backup:
+    build: backup
+    depends_on:
+      - db
+    environment:
+      - RESTIC_REPOSITORY
+      - RESTIC_PASSWORD
+      - RESTIC_FORGET_ARGS
+      - BACKUP_CRON
+      - B2_ACCOUNT_ID
+      - B2_ACCOUNT_KEY
+      - MYSQL_DATABASE
+      - MYSQL_BACKUP_USER
+      - MYSQL_BACKUP_USER_PASSWORD
+    volumes:
+      - mediafiles:/data/media/:ro
+      - ./backup/hooks:/hooks:ro
 volumes:
   ssl-certs:
