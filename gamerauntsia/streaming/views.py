@@ -11,6 +11,7 @@ from gamerauntsia.streaming.twitch_api import get_stream_info
 from django.utils import timezone
 from django.shortcuts import render
 from django.http import Http404
+from datetime import timedelta
 import telebot
 import hmac
 import hashlib
@@ -44,17 +45,20 @@ def streaming_started(event):
                                   user=user,
                                   game_name=channel_info['game_name'])
             streaming.save()
-            tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
-            if channel_info['title']:
-                msg = "%s %s (%s) stremeatzen ari da! https://twitch.tv/%s" % (channel_info['broadcaster_name'],
-                                                                               channel_info['title'],
-                                                                               channel_info['game_name'],
-                                                                               channel_info['broadcaster_name'])
-            else:
-                msg = "%s %s stremeatzen ari da! https://twitch.tv/%s" % (channel_info['broadcaster_name'],
-                                                                          channel_info['game_name'],
-                                                                          channel_info['broadcaster_name'])
-            tb.send_message(settings.PUBLIC_CHAT_ID, msg, disable_web_page_preview=True)
+            last_streaming = Streaming.objects.filter(user=user).latest('end_date')
+            elapsed_time = streaming.start_date - last_streaming.end_date
+            if elapsed_time > timedelta(minutes=10):
+                tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
+                if channel_info['title']:
+                    msg = "%s %s (%s) stremeatzen ari da! https://twitch.tv/%s" % (channel_info['broadcaster_name'],
+                                                                                   channel_info['title'],
+                                                                                   channel_info['game_name'],
+                                                                                   channel_info['broadcaster_name'])
+                else:
+                    msg = "%s %s stremeatzen ari da! https://twitch.tv/%s" % (channel_info['broadcaster_name'],
+                                                                              channel_info['game_name'],
+                                                                              channel_info['broadcaster_name'])
+                tb.send_message(settings.PUBLIC_CHAT_ID, msg, disable_web_page_preview=True)
     except:
         logger.error('Could not create stream: ' + str(event))
 
