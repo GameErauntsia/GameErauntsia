@@ -41,6 +41,7 @@ services:
       - TW_API_SECRET
       - TW_ACCESS_TOKEN
       - TW_ACCESS_TOKEN_SECRET
+      - FB_APP_ID
       - MA_CLIENT_ID
       - MA_CLIENT_SECRET
       - MA_USER_ACCESS_TOKEN
