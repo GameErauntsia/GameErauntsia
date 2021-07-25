@@ -7,7 +7,7 @@
 
 {% block morejs %}
     {{ gameplayform.media }}
-    <script src="{{STATIC_URL}}js/select2/js/select2.js"></script>
+    <script src="{{STATIC_URL}}js/select2/js/select2.min.js"></script>
     <script type="text/javascript" src="{{STATIC_URL}}js/select2/js/i18n/eu.js"></script>
 {% endblock %}
 
@@ -25,7 +25,7 @@
 
 {% block footerjs %}
 <script type="text/javascript">
-	$('#id_kategoria').select2({
+    $('#id_kategoria').select2({
         language: "eu",
         placeholder: "Aukeratu erlazionaturiko gaiak",
     });
