@@ -137,6 +137,8 @@ urlpatterns = [
     # url(r'^gameplay-arauak/$', TemplateView.as_view(template_name='upload_gp.html')),
     # url(r'^cookie/$', TemplateView.as_view(template_name='cookie.html')),
 
+    # LIZENTZIEI BURUZKO INFORMAZIOA
+    url(r'^lizentzia$', TemplateView.as_view(template_name='license.html')),
     # SITEMAP
     url(r'^sitemap\.xml$', sitemapsviews.index, {'sitemaps': sitemaps}),
     url(r'^sitemap-(?P<section>.+)\.xml$', sitemapsviews.sitemap, {'sitemaps': sitemaps},
