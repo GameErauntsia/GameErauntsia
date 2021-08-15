@@ -16,7 +16,7 @@ services:
     depends_on:
       - proxy
     environment:
-      - DOMAINS=gamerauntsia.eus -> http://proxy:80
+      - DOMAINS=www.gamerauntsia.eus => https://gamerauntsia.eus, gamerauntsia.eus -> http://proxy:80
       - STAGE=production
       - CLIENT_MAX_BODY_SIZE=10m
       - PROXY_BUFFERS=4 32k
