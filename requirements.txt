@@ -16,7 +16,7 @@ django-mptt == 0.11.0
 facebookpagewriter == 0.10
 Django == 2.2.24
 mysqlclient == 2.0.3
-pillow == 8.3.1
+pillow == 8.3.2
 django-sortedm2m == 3.0.2
 django-extensions == 2.2.5
 django-bootstrap-form == 3.4
