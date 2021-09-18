@@ -14,6 +14,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 POSTS_PER_PAGE = 10
 GP_GROUP = 'Gamerrak'  # Set your GamePlay editor group name
 NEWS_GROUP = 'Analistak'  # Set your blog editor group name
+ENABLE_TRACKING = (os.getenv('ENABLE_TRACKING') == "True")
 
 ## Email
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
@@ -185,6 +186,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django_mobile.context_processors.flavour',
                 'gamerauntsia.context_processors.fb_app_id',
+                'gamerauntsia.context_processors.enable_tracking',
             ],
             'loaders': [
                 # insert your TEMPLATE_LOADERS here

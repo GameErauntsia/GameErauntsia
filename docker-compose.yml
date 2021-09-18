@@ -50,6 +50,7 @@ services:
       - STREAMING_TWITCH_WEBHOOK_SECRET
       - STREAMING_TWITCH_CLIENT_ID
       - STREAMING_TWITCH_CLIENT_SECRET
+      - ENABLE_TRACKING
     volumes:
       - staticfiles:/app/static
       - mediafiles:/app/media

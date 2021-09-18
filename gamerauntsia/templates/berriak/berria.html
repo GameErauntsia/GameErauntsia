@@ -126,3 +126,13 @@
 </script>
 <!-- {% bootstrap_calendar_init language="eu-ES" %} -->
 {% endblock %}
+<!-- Matomo -->
+{% block matomo_pre_tracking %}
+    {% for gai in item.gaia.all %}
+    _paq.push(['setCustomVariable', {{forloop.counter}}, 'berria_gaia', "{{gai.izena}}", 'page']);
+    {% endfor %}
+{% endblock %}
+{% block matomo_after_tracking %}
+    _paq.push(['enableHeartBeatTimer']);
+{% endblock %}
+<!-- End Matomo -->

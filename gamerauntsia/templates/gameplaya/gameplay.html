@@ -107,3 +107,13 @@
     </div>
 </div> -->
 {% endblock %}
+<!-- Matomo -->
+{% block matomo_pre_tracking %}
+    {% for gai in gp.kategoria.all %}
+    _paq.push(['setCustomVariable', {{forloop.counter}}, 'gameplay_gaia', "{{gai.izena}}", 'page']);
+    {% endfor %}
+{% endblock %}
+{% block matomo_after_tracking %}
+    _paq.push(['enableHeartBeatTimer']);
+{% endblock %}
+<!-- End Matomo -->

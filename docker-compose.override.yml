@@ -1,6 +1,8 @@
 version: '2.1'
 services:
   proxy:
+    extra_hosts:
+      - "matomo:0.0.0.0"
     ports:
       - 80:80
   web:

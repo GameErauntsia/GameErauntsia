@@ -3,6 +3,10 @@ version: '2.1'
 services:
   db:
    restart: unless-stopped
+   environment:
+     - MATOMO_DATABASE_DBNAME
+     - MATOMO_DATABASE_USERNAME
+     - MATOMO_DATABASE_PASSWORD
   web:
    restart: unless-stopped
   proxy:
@@ -41,6 +45,17 @@ services:
       - MYSQL_BACKUP_USER_PASSWORD
     volumes:
       - mediafiles:/data/media/:ro
+      - matomo-config:/data/matomo-config/:ro
       - ./backup/hooks:/hooks:ro
+  matomo:
+    image: matomo:4.4.1
+    environment:
+      - MATOMO_DATABASE_USERNAME
+      - MATOMO_DATABASE_PASSWORD
+      - MATOMO_DATABASE_DBNAME
+      - MATOMO_DATABASE_HOST
+    volumes:
+      - matomo-config:/var/www/html/config
 volumes:
   ssl-certs:
+  matomo-config:
