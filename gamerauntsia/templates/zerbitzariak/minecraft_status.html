@@ -3,6 +3,13 @@
     <link rel="stylesheet" href="/static/css/gamerauntsia/minecraft.css">
     <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.min.css">
     <link href="{{STATIC_URL}}css/style.css" rel="stylesheet">
+    <script src="{{STATIC_URL}}js/jquery-3.6.0.min.js"></script>
+    <script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function(){
+          $('[data-toggle="tooltip"]').tooltip();
+      });
+      </script>
   </head>
   <body>
     <div class="minecraft-status">
@@ -12,7 +19,7 @@
       <p>Konektatutako jokalariak: <strong>{{mc_server_status.players.online}}</strong></p>
       <div class="minecraft-status__player-list">
         {% for p in mc_server_status.players.sample %}
-        <img title="{{p.name}}" src="https://minotar.net/avatar/{{p.name}}/32.png">
+        <img data-toggle="tooltip" data-placement="top" title="{{p.name}}" src="https://minotar.net/avatar/{{p.name}}/32.png">
         {% endfor %}
       </div>
       {% else %}
