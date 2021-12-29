@@ -28,14 +28,14 @@ class ZerbitzariakTest(TestCase):
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
 
-    def test_MCForm(self):
-        form_data = {'mc_user': 'urtzai', 'lizentzia': True}
-        form = MCForm(data=form_data)
-        self.assertTrue(form.is_valid())
+    # def test_MCForm(self):
+    #     form_data = {'mc_user': 'urtzai', 'lizentzia': True}
+    #     form = MCForm(data=form_data)
+    #     self.assertTrue(form.is_valid())
 
-    def test_minecraft_add(self):
-        c = Client()
-        c.login(username='urtzai', password='urtzaipass')
-        url = reverse('minecraft_add')
-        response = c.post(url, {'mc_user': 'urtzai', 'lizentzia': True})
-        self.assertEqual(response.status_code, 200)
+    # def test_minecraft_add(self):
+    #     c = Client()
+    #     c.login(username='urtzai', password='urtzaipass')
+    #     url = reverse('minecraft_add')
+    #     response = c.post(url, {'mc_user': 'urtzai', 'lizentzia': True})
+    #     self.assertEqual(response.status_code, 200)
