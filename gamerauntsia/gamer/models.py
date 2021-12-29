@@ -23,6 +23,11 @@ def get_default_photo():
 # Probably there is a better way of handling this.
 DEFAULT_PHOTO = get_default_photo()
 
+MC_PLATFORMS = (
+    ('minecraft', 'Minecraft Java Edition'),
+    ('minecraft_bedrock', 'Minecraft Bedrock Edition')
+)
+
 PLATFORM = (
     ('steam', 'Steam'),
     ('origin', 'Origin'),
@@ -34,9 +39,8 @@ PLATFORM = (
     ('wii', 'Wii'),
     ('archeage', 'Archeage'),
     ('wow', 'World of Warcraft'),
-    ('bnet', 'Battlenet'),
-    ('minecraft', 'Minecraft'),
-)
+    ('bnet', 'Battlenet')
+) + MC_PLATFORMS
 
 ARTICLE_KARMA = 10
 GP_KARMA = 15
@@ -239,7 +243,7 @@ class GamerUser(AbstractUser):
 
 
 class JokuPlataforma(models.Model):
-    plataforma = models.CharField(max_length=10, choices=PLATFORM)
+    plataforma = models.CharField(max_length=20, choices=PLATFORM)
     nick = models.CharField(max_length=64)
     user = models.ForeignKey(GamerUser, related_name='plataforma', on_delete=models.PROTECT)
 

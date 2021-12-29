@@ -172,7 +172,9 @@
       <h2>Izen ematea</h2>
       {% if user.is_authenticated %}
       {% if user.is_mc_gamer %}
-      <p class="text-success">Mila esker <strong>{{user.getFullName}}!</strong> Zerbitzarian parte hartzeko zerrendan sartu zara. Hemendik aurrera jolasteko moduan izango zara! Eskerrik asko parte hartzeagatik! Arazoren bat baduzu, <strong><a href="{% url 'kontaktua' %}">jarri gurekin harremanetan</a></strong>.</p>
+      <p class="text-success">Mila esker <strong>{{user.getFullName}}!</strong> Zerbitzarian parte hartzeko zerrendan sartu zara. Hemendik aurrera jolasteko moduan izango zara!.</p>
+      <p class="text-success">Behar izanez gero, erregistratutako Minecraft erabiltzaile izena <a href="/komunitatea/editatu-profil-plat">zure profiletik</a> aldatu dezakezu.</p>
+      <p class="text-success">Arazoren bat baduzu, <strong><a href="{% url 'kontaktua' %}">jarri gurekin harremanetan</a></strong></p>
       {% else %}
       <form action="{% url 'minecraft_add' %}" method="POST">
           {% csrf_token %}

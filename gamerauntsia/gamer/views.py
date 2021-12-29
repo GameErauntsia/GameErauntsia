@@ -25,7 +25,6 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.template.response import TemplateResponse
 from django_forum_app.models import Category, Topic
 from django.forms.utils import ErrorList
-from gamerauntsia.zerbitzariak.views import set_user_whitelist
 from gamerauntsia.streaming.twitch_api import get_twitch_user_id, get_twitch_token, create_twitch_subscription, delete_twitch_subscription
 from django.http import HttpResponse
 from .forms import ProfilePhotoForm
@@ -211,9 +210,6 @@ def edit_platform(request):
                     else:
                         platform = form.save(commit=False)
                         platform.user = user
-                        platform.save()
-                        if platform.plataforma == 'minecraft':
-                            set_user_whitelist(user, platform.nick, 'edit')
                         platform.save()
             return HttpResponseRedirect(reverse('edit_profile_plat'))
     else:
