@@ -13,6 +13,13 @@ from gamerauntsia.gamer.models import GamerUser
 def mc_whitelist(request, format=None):
     username = request.query_params.get("username")
     edition = request.query_params.get("edition")
+    if not edition:
+        if username.startswith("br_"):
+            username = username.replace("br_","")
+            edition = "bedrock"
+        else:
+            edition = "java"
+
     if not username:
         return Response(status=400)
     else:
@@ -21,8 +28,9 @@ def mc_whitelist(request, format=None):
             query = MC_Whitelist.objects.get(user__plataforma__nick=username,
                                              user__plataforma__plataforma=platform_name)
             data = {'user': query.user.username,
+                    'mc_user': username,
                     'created': query.created.strftime("%Y-%m-%d %H:%M:%S"),
-                    'role': query.get_rol_display()}
+                    'rol': query.get_rol_display()}
             return Response(data)
         except:
             return Response(status=404)
