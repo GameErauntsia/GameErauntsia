@@ -70,8 +70,7 @@ urlpatterns = [
     url(r'^foroa/', include('django_forum_app.urls')),
 
     # KONTAKTUA
-    url(r'^kontaktua/$', kontaktuaviews.index, name='kontaktua'),
-    url(r'^kontaktua/bidali/$', kontaktuaviews.bidali, name='kontaktua_bidali'),
+    url(r'^kontaktua/$', kontaktuaviews.contact_form, name='kontaktua'),
 
     # TERMINOLOGIA
     url(r'^terminologia/$', baseviews.index, name='terminologia'),
