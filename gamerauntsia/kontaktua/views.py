@@ -13,6 +13,7 @@ logger = logging.getLogger(__name__)
 def contact_form(request):
     if request.method == 'GET':
         form = ContactForm()
+        return render(request, 'kontaktua/index.html', {'form': form})
     elif request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -33,4 +34,4 @@ def contact_form(request):
                     logger.error("Could not send contact email")
             except:
                 logger.exception("Could not send contact email")
-    return render(request, 'kontaktua/index.html', {'form': form})
+        return render(request, 'kontaktua/index.html', {'form': form, 'error': True})

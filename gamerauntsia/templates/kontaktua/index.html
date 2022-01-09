@@ -21,6 +21,9 @@
         <div class="form-group">{{form.subject}}</div>
         <div class="form-group">{{form.message}}</div>
         <div class="form-group">{{form.captcha}}</div>
+        {% if error %}
+        <div class="alert alert-danger" role="alert">Ezin izan da zure mezua bidali. Ziurtatu eremu guztiak ondo bete dituzula eta saiatu berriro. Barkatu eragozpenak.</div>
+        {% endif %}
         <button class="btn btn-primary" type="submit"/>Bidali</button>
       </form>
     </div>
