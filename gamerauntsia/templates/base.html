@@ -23,7 +23,7 @@
 <body>
 
     <nav class="navbar navbar-inverse" role="navigation">
-        <div class="container">
+        <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -39,7 +39,7 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-left">
                     <!-- <li {% if request.path|contains:"/getb/" %}class="active"{% endif %}><a href="/getb">GETB</a></li> -->
                     <!-- <li {% if request.path|contains:"/podcastak/" %}class="active"{% endif %}><a href="/podcastak" title="Podcastak">Podcasta</a></li> -->
                     <li {% if request.path|contains:"/bloga/" %} class="active"{% endif %}>
@@ -95,7 +95,9 @@
                         </ul>
                     </li>
                     <li><a href="{% url 'euskarazko_jokoak' %}" title="Euskarazko jokoak"><label class="btn btn-warning btnEuskerazkoJolasak" style="color:black;">Euskarazko jokoak</label></a></li>
-                    <li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="">
                         <form class="navbar-search pull-right" action="/bilaketa">
                             <div class="input-group search-query">
                                 <input type="text" name="q" class="form-control field" id="q"/>
@@ -114,7 +116,7 @@
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container-fluid">
         {% block content %}
         {% endblock %}
         <footer>
