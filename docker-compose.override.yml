@@ -1,5 +1,8 @@
 version: '2.1'
 services:
+  db:
+    ports:
+      - 3306:3306
   proxy:
     extra_hosts:
       - "matomo:0.0.0.0"

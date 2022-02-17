@@ -58,6 +58,8 @@ services:
       - db
   proxy:
     image: nginx:mainline-alpine
+    ports:
+      - 9000:9000
     volumes:
       - ./proxy:/etc/nginx/conf.d:ro
       - staticfiles:/app/static/:ro
