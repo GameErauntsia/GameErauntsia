@@ -28,7 +28,7 @@ class JokoItzulpena(models.Model):
     jokoa = models.ForeignKey(Jokoa, on_delete=models.CASCADE)
     plataformak = models.ManyToManyField(Plataforma)
     sortze_data = models.DateTimeField(default=timezone.now)
-    erabilgarritasun_data = models.DateTimeField(null=True, blank=True)
+    erabilgarritasun_data = models.DateField(null=True, blank=True)
     publikoa_da = models.BooleanField(default=True,verbose_name="Publikoa da")
     ofiziala_da = models.BooleanField(default=False,verbose_name="Ofiziala da")
     jatorria = models.CharField(max_length=1, choices=ITZULPEN_JATORRIAK, default='0')
