@@ -1,0 +1,38 @@
+<div class="table-responsive">
+  <table class="table table-condensed table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Jokoa</th>
+        <th>Egoera</th>
+        <th>Arduraduna</th>
+        <th>Itzulpena</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for proiektua in proiektuak %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <!-- <td><img src="{{proiektua.jokoa.logoa.get_forum_thumbnail_url}}" -->
+        <!--          alt="{{proiektua.jokoa.izena}} bideojokoaren logoa" -->
+        <!--          title="{{proiektua.jokoa.izena}} bideojokoaren logoa"/> -->
+        <!-- </td> -->
+        <td><a href="{% url 'game' proiektua.jokoa.slug %}"><strong>{{proiektua.jokoa.izena}}</strong></a></td>
+        <td>{{proiektua.get_egoera_display}}</td>
+        <td>
+          <a href="{% url 'gamer_profile' proiektua.arduraduna.username %}">
+            {% if proiektua.arduraduna.get_photo %}
+            <img src="{{proiektua.arduraduna.get_photo.get_profilesmall_url}}"
+                 class="img-circle"/>
+            {% endif %}
+            {{proiektua.arduraduna.getFullName}}
+          </a>
+        </td>
+        <td>
+          <a href="{% url 'itzulpen_proiektua' proiektua.slug %}"><i class="glyphicon glyphicon-book"></i> Ikusi</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

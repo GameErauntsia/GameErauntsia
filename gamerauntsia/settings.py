@@ -144,6 +144,7 @@ INSTALLED_APPS = (
     'gamerauntsia.getb',
     'gamerauntsia.zerbitzariak',
     'gamerauntsia.finished',
+    'gamerauntsia.joko_itzulpenak',
     'gamerauntsia.jokoen_itzulpenak',
     'gamerauntsia.bazkidetza',
     'gamerauntsia.log',
