@@ -27,7 +27,7 @@ ITZULPEN_JATORRIAK = [
 class JokoItzulpena(models.Model):
     jokoa = models.ForeignKey(Jokoa, on_delete=models.CASCADE)
     plataformak = models.ManyToManyField(Plataforma)
-    sortze_data = models.DateTimeField(default=timezone.now)
+    sortze_data = models.DateField(default=timezone.now)
     erabilgarritasun_data = models.DateField(null=True, blank=True)
     publikoa_da = models.BooleanField(default=True,verbose_name="Publikoa da")
     ofiziala_da = models.BooleanField(default=False,verbose_name="Ofiziala da")
@@ -49,7 +49,7 @@ class ItzulpenProiektua(JokoItzulpena):
     parte_hartzaileak = models.ManyToManyField(GamerUser, through='ItzulpenProiektuParteHartzailea')
     instalazioa = models.TextField(null=True, blank=True)
     ohar_teknikoak = models.TextField(null=True, blank=True)
-    eguneratze_data = models.DateTimeField(default=timezone.now)
+    eguneratze_data = models.DateField(default=timezone.now)
 
     def __str__(self):
         return u'Itzulpen proiektua - %s' % (self.jokoa.izena)
