@@ -31,6 +31,7 @@ class ItzulpenProiektuaAdmin(JokoItzulpenaAdmin):
 class KanpokoItzulpenaAdmin(JokoItzulpenaAdmin):
     list_display= ['jokoa','sortze_data']
     fields = ['jokoa', 'publikoa_da',
+              'ofiziala_da','jatorria',
               'erabilgarritasun_data',
               'url','plataformak']
 
