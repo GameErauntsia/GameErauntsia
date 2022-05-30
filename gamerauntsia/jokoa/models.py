@@ -45,6 +45,8 @@ class Jokoa(models.Model):
     desk = models.TextField(max_length=256,null=True,blank=True, verbose_name="Deskribapena")
     bertsioa = models.CharField(max_length=64,null=True,blank=True,help_text="Joko saga bat bada, zehaztu hemen bertsioa.")
     lizentzia = models.CharField(max_length=2, default='C',choices=SOFTWARE_AUKERAK)
+    argitaratze_data =  models.DateField(blank=True, null=True,
+                                         help_text="Jokoa noiz argitaratu zen edo argitaratuko den.")
 
     logoa = models.ForeignKey(Photo, on_delete=models.PROTECT)
     steam_id = models.IntegerField(null=True,blank=True, help_text="Jokoa Steam plataforman aurki badaiteke, jokoaren fitxaren URLan agertzen den zenbakia. Adibidez: 236110")

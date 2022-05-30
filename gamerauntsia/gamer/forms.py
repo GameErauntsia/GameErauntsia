@@ -99,7 +99,7 @@ class GameCatalogForm(forms.ModelForm):
 
     class Meta:
         model = Jokoa
-        fields = ('izena','bertsioa','desk','logoa','lizentzia','url','steam_id','trailer','wiki')
+        fields = ('izena','bertsioa','argitaratze_data','desk','logoa','lizentzia','url','steam_id','trailer','wiki')
 
 class TopForm(forms.ModelForm):
 
