@@ -154,6 +154,7 @@ INSTALLED_APPS = (
     'django_messages',
     'django_mobile',
     'django.contrib.admin',
+     'django_filters',
     'rest_framework',
     'rest_framework.authtoken',
     # 'rest_auth',

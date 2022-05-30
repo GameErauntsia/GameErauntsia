@@ -65,6 +65,19 @@ class Jokoa(models.Model):
     def get_absolute_url(self):
         return "%sjokoak/%s" % (settings.HOST,self.slug)
 
+    def get_basque_available_platforms(self):
+        platforms = []
+        for itzulpena in self.jokoitzulpena_set.all():
+            for plataforma in itzulpena.plataformak.all():
+                platforms.append(plataforma.izena)
+        platforms.sort()
+        return ', '.join(platforms)
+
+    def get_basque_translation_types(self):
+        types = []
+        for itzulpena in self.jokoitzulpena_set.all():
+            types.append(itzulpena.get_mota())
+        return ', '.join(types)
 
     def get_photo(self):
         if self.logoa:

@@ -1,0 +1,20 @@
+{% load pagination_tags %}
+
+<div class="row">
+  {% autopaginate jokoak 16 %}
+  {% for jokoa in jokoak %}
+  <div class="col-xs-6 col-sm-3 col-md2"
+       style="margin-bottom: 20px">
+    <a href="{% url 'game' jokoa.slug %}"
+       title="{{jokoa.izena}}">
+      <img class="img-responsive img-thumbnail"
+           src="{{jokoa.get_photo.get_joko_karatula_url}}"
+           alt="{{jokoa.izena}} bideojokoaren karatula">
+    </a>
+  </div>
+  {% endfor %}
+</div>
+<div class="row text-center">
+  {% paginate %}
+</div>
+<br>

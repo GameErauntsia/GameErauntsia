@@ -1,0 +1,32 @@
+{% load pagination_tags %}
+
+<div class="row">
+  <table class="table table-condensed table-hover">
+    <thead>
+      <tr>
+        <th>Jokoa</th>
+        <th>Plataformak</th>
+        <th>Generoak</th>
+        <th>Argitaratze data</th>
+        <th>Euskaratzea</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% autopaginate jokoak 16 %}
+        {% for jokoa in jokoak %}
+      <tr>
+        <td><a href="{% url 'game' jokoa.slug %}"><strong>{{jokoa.izena}}</strong></a></td>
+        <td>{{jokoa.get_basque_available_platforms}}
+        </td>
+        <td></td>
+        <td>{{jokoa.argitaratze_data|date:"Y-m"}}</td>
+        <td>{{jokoa.get_basque_translation_types}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<div class="row text-center">
+  {% paginate %}
+</div>
+<br>

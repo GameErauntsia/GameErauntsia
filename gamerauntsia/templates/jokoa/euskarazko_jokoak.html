@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load include gamerauntsia bootstrap %}
+
+{% block title %}Euskarazko bideo-jokoak - {% endblock %}
+
+{% block extracss %}
+<link href="{{STATIC_URL}}js/select2/css/select2.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block morejs %}
+{{ articleform.media }}
+<script src="{{STATIC_URL}}js/select2/js/select2.min.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/select2/js/i18n/eu.js"></script>
+{% endblock %}
+
+{% block content%}
+
+<div class="col-sm-12">
+  <h1 class="page-header">Euskarazko bideojokoak</h1>
+  <p>Orrialdearen deskribapena</p>
+</div>
+<div class="col-sm-9">
+  <div id="content">
+    <div class="col-sm-12">
+      <div class="col-sm-12 text-right hidden-xs"
+           style="margin-bottom:10px">
+        <a href="?{% replace_query_param 'view_mode' 'grid' %}"><i class="glyphicon glyphicon-th-large"></i></a>
+        <a href="?{% replace_query_param 'view_mode' 'list' %}"><i class="glyphicon glyphicon-th-list"></i></a>
+      </div>
+      {% if request.GET.view_mode == 'list' %}
+      {% include 'jokoa/jokoak_list.html' with jokoak=filters.qs %}
+      {% else %}
+      {% include 'jokoa/jokoak_grid.html' with jokoak=filters.qs %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-3">
+  <div class="well">
+    <h3>Iragazi</h3>
+    <form class ="game-filters" method="get">
+      {{filters.form.as_p}}
+      <input type="hidden" name="view_mode" value="{{request.GET.view_mode}}">
+      <input class="btn btn-primary" type="submit" value="Aplikatu">
+    </form>
+  </div>
+</div>
+
+{%endblock%}
+
+{% block footerjs %}
+<script type="text/javascript">
+  $('#id_plataformak').select2({
+      language: "eu",
+      placeholder: "Aukeratu zerrendatik",
+      width: "100%"
+  });
+  $('#id_ofiziala_da').select2({
+      language: "eu",
+      width: "100%",
+      minimumResultsForSearch: Infinity
+  });
+</script>
+{% endblock %}

@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^euskarazko-bideojokoak/$', itzulpenakviews.index, name='euskarazko_jokoak'),
     url(r'^jokoen-itzulpenak/bilatu', itzulpenakviews.search_retro, name='search_itzulpenak'),
     ############
+    url(r'^euskaraz$', views.euskarazko_jokoak, name='jokoak_euskaraz'),
 
     url(r'^garatzailea/(?P<slug>[-\w]+)$',views.garatzailea,name='garatzailea'),
     url(r'^(?P<slug>[-\w]+)$', views.jokoa, name='game'),

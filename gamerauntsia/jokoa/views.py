@@ -6,7 +6,9 @@ from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.base.models import Terminoa
 from gamerauntsia.jokoa.models import Jokoa, Garatzailea
+from gamerauntsia.jokoa.filters import EuskarazkoJokoaFilter
 from gamerauntsia.jokoen_itzulpenak.models import EuskarazkoJokoa
+from gamerauntsia.joko_itzulpenak.models import JokoItzulpena
 from gamerauntsia.berriak.models import Berria
 from gamerauntsia.txapelketak.models import Txapelketa
 from gamerauntsia.utils.urls import get_urljson
@@ -57,3 +59,8 @@ def garatzailea(request, slug):
     jokoak = Jokoa.objects.filter(garatzailea=garatzailea).order_by('-argitaratze_data')[:3]
     return render(request, 'jokoa/garatzailea.html',locals())
 
+def euskarazko_jokoak(request):
+    euskaraz = JokoItzulpena.objects.filter(jokoa=OuterRef('pk'))
+    jokoak = Jokoa.objects.annotate(euskaraz=Exists(euskaraz)).filter(euskaraz=True).order_by('jokoa')
+    filters = EuskarazkoJokoaFilter(request.GET,queryset=jokoak)
+    return render(request, 'jokoa/euskarazko_jokoak.html',locals())
