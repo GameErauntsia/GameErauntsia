@@ -21,6 +21,24 @@ class Plataforma(models.Model):
     def __str__(self):
         return u'%s' % (self.izena)
 
+class Garatzailea(models.Model):
+    izena = models.CharField(max_length=64)
+    desk = models.TextField(max_length=256,null=True,blank=True,verbose_name="Deskribapena")
+    slug = models.SlugField(db_index=True, unique=True)
+    url = models.CharField(max_length=64)
+    logoa = models.ForeignKey(Photo, on_delete=models.PROTECT)
+    sorrera_data =  models.DateField(blank=True, null=True)
+    itxiera_data =  models.DateField(blank=True, null=True)
+    plataformak = models.ManyToManyField(Plataforma)
+    # TODO: Jatorria, sare-sozialak
+
+    class Meta:
+        verbose_name = "Garatzailea"
+        verbose_name_plural = "Garatzaileak"
+
+    def __str__(self):
+        return self.izena
+
 class Jokoa(models.Model):
     izena = models.CharField(max_length=64)
     slug = models.SlugField(db_index=True, unique=True, help_text="Eremu honetan joko honen URL helbidea zehazten ari zara.")
@@ -33,6 +51,8 @@ class Jokoa(models.Model):
     trailer = models.CharField(max_length=64,null=True,blank=True, verbose_name="Youtube trailerra",help_text="Steam ID zenbakia jarrita badago, ez da beharrezkoa. Bestela, Youtube bideoaren KODEA itsatsi. Adibidez: bkgzXpKbVGE")
     url = models.CharField(max_length=64, help_text="Eremu honetan joko honen atariko URL helbidea zehazten ari zara." )
     wiki = models.CharField(max_length=64, null=True, blank=True, help_text="Eremu honetan joko honen wikipediako URL helbidea zehaztu mesedez." )
+
+    garatzailea = models.ForeignKey(Garatzailea, blank=True, null=True, on_delete=models.PROTECT)
 
     publikoa_da = models.BooleanField(default=False)
     mod_date = models.DateTimeField('modifikazio data', default=timezone.now)
