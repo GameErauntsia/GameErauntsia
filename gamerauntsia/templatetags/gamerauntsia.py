@@ -1,4 +1,4 @@
-from django import template
+from django import template, http
 from photologue.models import Photo
 import urllib.request as urllib2
 import xmltodict
@@ -32,3 +32,9 @@ def check_seen(obj, user):
 @register.filter
 def get_photo_url(obj_id):
     return Photo.objects.get(id=obj_id).get_newsprofile_url()
+
+@register.simple_tag(takes_context=True)
+def replace_query_param(context, attr, val):
+    dict_ = context['request'].GET.copy()
+    dict_[attr] = val
+    return dict_.urlencode()
