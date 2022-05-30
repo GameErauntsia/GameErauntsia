@@ -3,7 +3,7 @@ from django.conf import settings
 from django.utils import timezone
 from photologue.models import Photo
 from gamerauntsia.gamer.models import GamerUser
-from gamerauntsia.jokoa.models import Jokoa
+from gamerauntsia.jokoa.models import Jokoa, Garatzailea
 from django.template import defaultfilters as filters
 from django.template.loader import get_template
 from django.template import Context
@@ -43,6 +43,8 @@ class Berria(models.Model):
     argazkia = models.ForeignKey(Photo, null=True, blank=True, on_delete=models.SET_NULL)
     jokoa = models.ForeignKey(Jokoa, null=True, blank=True, on_delete=models.SET_NULL,
                               help_text="Artikulu honek joko zehaz batekin loturarik badu, adierazi hemen.")
+    garatzailea = models.ForeignKey(Garatzailea, null=True, blank=True, on_delete=models.SET_NULL,
+                                    help_text="Artikulu honek garatzaile zehaz batekin loturarik badu, adierazi hemen. Jokoa adierazten bada ez da beharrezkoa.")
 
     publikoa_da = models.BooleanField(default=False, verbose_name="Publikatzeko prest")
 
