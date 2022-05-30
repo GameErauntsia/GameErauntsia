@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^jokoen-itzulpenak/bilatu', itzulpenakviews.search_retro, name='search_itzulpenak'),
     ############
 
+    url(r'^garatzailea/(?P<slug>[-\w]+)$',views.garatzailea,name='garatzailea'),
     url(r'^(?P<slug>[-\w]+)$', views.jokoa, name='game'),
 ]

@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
-from django.db.models import Count
+from django.db.models import Count, Q, OuterRef, Exists
 from django.utils import timezone
 from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.base.models import Terminoa
-from gamerauntsia.jokoa.models import Jokoa
+from gamerauntsia.jokoa.models import Jokoa, Garatzailea
 from gamerauntsia.jokoen_itzulpenak.models import EuskarazkoJokoa
 from gamerauntsia.berriak.models import Berria
 from gamerauntsia.txapelketak.models import Txapelketa
@@ -50,3 +50,10 @@ def jokoa(request, slug):
     berriak_more = len(berriak) > 3
     berriak = berriak[:3]
     return render(request, 'jokoa/jokoa.html', locals())
+
+def garatzailea(request, slug):
+    garatzailea = get_object_or_404(Garatzailea,slug=slug)
+    berriak = Berria.objects.filter(Q(garatzailea=garatzailea) | Q(jokoa__garatzailea=garatzailea)).filter(status='1',pub_date__lt=timezone.now()).order_by('-pub_date')[:3]
+    jokoak = Jokoa.objects.filter(garatzailea=garatzailea).order_by('-argitaratze_data')[:3]
+    return render(request, 'jokoa/garatzailea.html',locals())
+
