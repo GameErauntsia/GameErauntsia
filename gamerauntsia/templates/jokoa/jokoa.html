@@ -17,7 +17,11 @@
                 <p>{{jokoa.desk}}</p>
                 {% if steam_json %}
                     {% if steam_json.price_overview %}
-                    <h3><a href="https://store.steampowered.com/app/{{steam_json.steam_appid}}"><strong>{% widthratio steam_json.price_overview.final 100.0 1 %} €</strong> <img src="{{STATIC_URL}}img/steam.png" width="40"/></a></h3>
+                    <h3>
+                        <a href="https://store.steampowered.com/app/{{steam_json.steam_appid}}">
+                            <img src="{{STATIC_URL}}img/steam.png" width="40"/>
+                        </a>
+                    </h3>
                     {% endif %}
                     {% if steam_json.metacritic %}
                     <div class="well">
@@ -215,15 +219,7 @@
         </div>
         {% endif %}
         <div class="col-sm-4">
-            <h2><i class="glyphicon glyphicon-book"></i> Terminologia</h2>
-            <ul class="list-unstyled">
-            {% for term in terminoak %}
-            <li><a href="{% url 'search_term' %}?term={{term.term_eu}}">{{term.term_eu}}</a></li>
-            {% empty %}
-            <li>Ez da hiztegirik garatu...</li>
-            {% endfor %}
-            </ul>
-            {% if terminoak %}<p class="pull-right"><a href="{% url 'search_term' %}?term={{jokoa.izena}}">Ikusi gehiago</a></p>{% endif %}
+           
         </div>
     </div>
 </div>
