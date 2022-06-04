@@ -36,6 +36,9 @@
       {% if proiektua.ofiziala_da %}
       <p><i class="glyphicon glyphicon-asterisk"></i> Garatzaileek itzulpena jokoan ofizialki onartu dute</p>
       {% endif %}
+      {% if request.user.is_superuser %}
+      <a class="btn btn-default" href="/kudeatu/joko_itzulpenak/itzulpenproiektua/{{proiektua.id}}">Editatu</a>
+      {% endif %}
     </div>
   </div>
   <div class="col-sm-12">

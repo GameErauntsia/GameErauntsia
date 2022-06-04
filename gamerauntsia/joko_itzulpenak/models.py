@@ -3,6 +3,7 @@ from django.utils import timezone
 from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.jokoa.models import Jokoa, Plataforma
 from django.utils import timezone
+from django.conf import settings
 
 PROIEKTU_EGOERAK = [
     ('0', 'Lanean'),
@@ -65,6 +66,9 @@ class ItzulpenProiektua(JokoItzulpena):
 
     def get_url(self):
         return "/itzulpenak/proiektuak/%s" % (self.slug)
+
+    def get_absolute_url(self):
+        return '%sitzulpenak/proiektuak/%s' % (settings.HOST, self.slug)
 
     def __str__(self):
         return u'Itzulpen proiektua - %s' % (self.jokoa.izena)
