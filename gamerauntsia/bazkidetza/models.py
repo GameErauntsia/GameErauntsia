@@ -25,7 +25,7 @@ class Bazkidea(models.Model):
     is_active = models.BooleanField(default=True)
 
     date_joined = models.DateTimeField(auto_now_add=True, editable=False, null=True, blank=True)
-    expire_date = models.DateTimeField(default=timezone.localtime(timezone.now().replace(year=timezone.now().year + 1)))
+    expire_date = models.DateTimeField()
 
     def has_eskaera(self):
         return Eskaera.objects.filter(bazkidea=self, is_active=True).exists()
