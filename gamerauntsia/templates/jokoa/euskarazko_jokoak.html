@@ -38,11 +38,35 @@
 
 <div class="col-sm-3">
   <div class="well">
-    <h3>Iragazi</h3>
     <form class ="game-filters" method="get">
-      {{filters.form.as_p}}
+      <h4><strong>Bilatu</strong></h4>
+      <p>
+      {{filters.form.izena}}
+      </p>
+      <hr>
+      <h4><strong>Ordenatu</strong></h4>
+      <p>
+      {{filters.form.ordena}}
+      </p>
+      <hr>
+      <h4><strong>Ezaugarriak</strong></h4>
+      <p>
+      {{filters.form.plataformak.label_tag}}
+      {{filters.form.plataformak}}
+      </p>
+      <hr>
+      <h4><strong>Euskaraketa</strong></h4>
+      <p>
+      {{filters.form.ofiziala_da.label_tag}}
+      {{filters.form.ofiziala_da}}
+      </p>
+      <p>
+      {{filters.form.jatorria.label_tag}}
+      {{filters.form.jatorria}}
+      </p>
+      <hr>
       <input type="hidden" name="view_mode" value="{{request.GET.view_mode}}">
-      <input class="btn btn-primary" type="submit" value="Aplikatu">
+      <input class="btn btn-primary" type="submit" value="Iragazi">
     </form>
   </div>
 </div>
@@ -57,6 +81,16 @@
       width: "100%"
   });
   $('#id_ofiziala_da').select2({
+      language: "eu",
+      width: "100%",
+      minimumResultsForSearch: Infinity
+  });
+  $('#id_jatorria').select2({
+      language: "eu",
+      width: "100%",
+      minimumResultsForSearch: Infinity
+  });
+  $('#id_ordena').select2({
       language: "eu",
       width: "100%",
       minimumResultsForSearch: Infinity

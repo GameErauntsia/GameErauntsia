@@ -21,7 +21,7 @@ class ItzulpenProiektuaAdmin(JokoItzulpenaAdmin):
     form=ItzulpenProiektuaAdminForm
     fields = ['sortze_data', 'eguneratze_data',
               'erabilgarritasun_data',
-              'jokoa','slug','egoera', 'url',
+              'jokoa','slug','egoera', 'external_url',
               'jatorria','ofiziala_da',
               'arduraduna', 'plataformak',
               'deskribapena','instalazioa', 'ohar_teknikoak']

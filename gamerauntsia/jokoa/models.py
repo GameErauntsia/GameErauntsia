@@ -49,6 +49,7 @@ class Jokoa(models.Model):
                                          help_text="Jokoa noiz argitaratu zen edo argitaratuko den.")
 
     logoa = models.ForeignKey(Photo, on_delete=models.PROTECT)
+    karatula = models.ForeignKey(Photo, on_delete=models.PROTECT, blank=True, null=True, related_name="karatula")
     steam_id = models.IntegerField(null=True,blank=True, help_text="Jokoa Steam plataforman aurki badaiteke, jokoaren fitxaren URLan agertzen den zenbakia. Adibidez: 236110")
     trailer = models.CharField(max_length=64,null=True,blank=True, verbose_name="Youtube trailerra",help_text="Steam ID zenbakia jarrita badago, ez da beharrezkoa. Bestela, Youtube bideoaren KODEA itsatsi. Adibidez: bkgzXpKbVGE")
     url = models.CharField(max_length=64, help_text="Eremu honetan joko honen atariko URL helbidea zehazten ari zara." )
@@ -73,17 +74,20 @@ class Jokoa(models.Model):
         platforms.sort()
         return ', '.join(platforms)
 
-    def get_basque_translation_types(self):
-        types = []
-        for itzulpena in self.jokoitzulpena_set.all():
-            types.append(itzulpena.get_mota())
-        return ', '.join(types)
+    def get_itzulpenak(self):
+        return self.jokoitzulpena_set.all()
 
     def get_photo(self):
         if self.logoa:
             return self.logoa
         else:
             return None
+
+    def get_karatula(self):
+        if self.karatula:
+            return self.karatula
+        else:
+            return self.get_photo()
 
     class Meta:
         verbose_name = "Jokoa"

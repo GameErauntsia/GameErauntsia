@@ -33,6 +33,12 @@ class JokoItzulpena(models.Model):
     ofiziala_da = models.BooleanField(default=False,verbose_name="Ofiziala da")
     jatorria = models.CharField(max_length=1, choices=ITZULPEN_JATORRIAK, default='0')
 
+    def get_jatorria(self):
+        if self.jatorria == '2' and self.ofiziala_da:
+            return "Zaleen itzulpen ofiziala"
+        else:
+            return self.get_jatorria_display()
+
     def get_mota(self):
         if hasattr(self,'itzulpenproiektua'):
             return "itzulpenproiektua"
@@ -40,16 +46,25 @@ class JokoItzulpena(models.Model):
             return "kanpokoitzulpena"
         return None
 
+    def get_url(self):
+        if self.get_mota() == 'itzulpenproiektua':
+            return self.itzulpenproiektua.get_url()
+        else:
+            return self.kanpokoitzulpena.url
+
 class ItzulpenProiektua(JokoItzulpena):
     egoera = models.CharField(max_length=1, choices=PROIEKTU_EGOERAK, default='0')
     slug = models.SlugField(db_index=True, unique=True)
     deskribapena = models.TextField(max_length=256,null=True,blank=True)
-    url = models.CharField(max_length=150, null=True, blank=True)
+    external_url = models.CharField(max_length=150, null=True, blank=True)
     arduraduna = models.ForeignKey(GamerUser,null=True, blank=True, on_delete=models.PROTECT, related_name='arduraduna')
     parte_hartzaileak = models.ManyToManyField(GamerUser, through='ItzulpenProiektuParteHartzailea')
     instalazioa = models.TextField(null=True, blank=True)
     ohar_teknikoak = models.TextField(null=True, blank=True)
     eguneratze_data = models.DateField(default=timezone.now)
+
+    def get_url(self):
+        return "/itzulpenak/proiektuak/%s" % (self.slug)
 
     def __str__(self):
         return u'Itzulpen proiektua - %s' % (self.jokoa.izena)
