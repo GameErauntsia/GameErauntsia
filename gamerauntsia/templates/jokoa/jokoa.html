@@ -90,30 +90,6 @@
         {% endif %}
     </div>
     <hr/>
-    {% if users %}
-    <div class="col-sm-12">
-        <h2><i class="glyphicon glyphicon-user"></i> Jokalari izarrak</h2>
-        <div class="row well">
-            {% for user_prof in users %}
-            <div class="col-md-2 portfolio-item">
-                <div class="col-xs-4 text-center">
-                    <a href="{% url 'gamer_profile' user_prof.username %}"><img src="{{user_prof.get_photo.get_forum_thumbnail_url}}" alt="" class="center-block img-circle"></a>
-                </div>
-                <div class="col-xs-8">
-                    <h4>
-                        <a href="{% url 'gamer_profile' user_prof.username %}">{{user_prof.getFullName}}
-                        </a>
-                    </h4>
-                    <p>
-                        {% if user_prof.karma %}<i class="glyphicon glyphicon-flash" style="color:#E1E100"></i> <abbr title="Karma">{{user_prof.karma}}</abbr>{% endif %}
-                        {% if user.is_authenticated %}<a href="{% url 'messages_compose_to' user_prof.username  %}"><span class="glyphicon glyphicon-envelope"></span></a>{% endif %}
-                    </p>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-    {% endif %}
     <div col="col-sm-12">
         {% if steam_json.screenshots and gameplayak %}
         <div class="col-sm-6">

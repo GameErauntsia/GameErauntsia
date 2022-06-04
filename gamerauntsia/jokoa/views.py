@@ -45,8 +45,6 @@ def jokoa(request, slug):
     else:
         gameplayak_more = len(gameplayak) > 4
         gameplayak = gameplayak[:4]
-    users = GamerUser.objects.filter(top_jokoak=jokoa, is_core_team_member=False).order_by("-karma")[:6]
-    terminoak = Terminoa.objects.filter(jokoa=jokoa).order_by("?")[:10]
     txapelketak = Txapelketa.objects.filter(jokoa=jokoa, publikoa_da=True).order_by('-pub_date')[:3]
     berriak = Berria.objects.filter(jokoa=jokoa, status='1', pub_date__lt=timezone.now()).order_by('-pub_date')
     berriak_more = len(berriak) > 3
