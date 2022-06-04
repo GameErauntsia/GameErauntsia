@@ -21,8 +21,17 @@ class EuskarazkoJokoaFilter(django_filters.FilterSet):
                                            choices=ITZULPEN_JATORRIAK,
                                            label="Mota",
                                            empty_label="-")
-    # argitaratze_data = django_filters.DateFromToRangeFilter(field_name='argitaratze_data',
-    #                                                         widget=django_filters.widgets.RangeWidget(attrs={'placeholder': 'YYYY/MM'}))
+
+    ordena = django_filters.OrderingFilter(fields=(('izena','izena'),
+                                                   ('argitaratze_data','argitaratze_data')),
+                                           choices=(('izena', 'Izena (a-z)'),
+                                                    ('-izena', 'Izena (z-a)'),
+                                                    ('-argitaratze_data','Argitaratze data (berrienak lehenengo)'),
+                                                    ('argitaratze_data','Argitaratze data (zaharrenak lehenengo)'),
+                                                    ('-jokoitzulpena__erabilgarritasun_data','Euskaratze data (berrienak lehenengo)'),
+                                                    ('jokoitzulpena__erabilgarritasun_data','Euskaratze data (zaharrenak lehenengo)'),
+                                                    ),
+                                           empty_label="-")
     class Meta:
         model = Jokoa
         fields= ['izena']

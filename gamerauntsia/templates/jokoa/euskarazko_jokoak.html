@@ -42,7 +42,12 @@
       <h4><strong>Bilatu</strong></h4>
       <p>
       {{filters.form.izena}}
-        </p>
+      </p>
+      <hr>
+      <h4><strong>Ordenatu</strong></h4>
+      <p>
+      {{filters.form.ordena}}
+      </p>
       <hr>
       <h4><strong>Ezaugarriak</strong></h4>
       <p>
@@ -81,6 +86,11 @@
       minimumResultsForSearch: Infinity
   });
   $('#id_jatorria').select2({
+      language: "eu",
+      width: "100%",
+      minimumResultsForSearch: Infinity
+  });
+  $('#id_ordena').select2({
       language: "eu",
       width: "100%",
       minimumResultsForSearch: Infinity
