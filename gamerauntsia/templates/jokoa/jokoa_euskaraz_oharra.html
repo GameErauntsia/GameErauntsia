@@ -4,15 +4,15 @@
   {% if itzulpenak.0.plataformak.all|length == 1 %}
   <p>Jokoa hau euskaraz jokatu daiteke {{itzulpenak.0.plataformak.all.0.izena}} plataforman.</p>
   {% else %}
-  <p>Joko hau euskaraz jokatu daiteke {% for plataforma in itzulpenak.0.plataformak.all %}{% if not forloop.first %}{% if forloop.last %} eta{% else %} ,{% endif %}{% endif %} {{plataforma.izena}}{% endfor %} plataformetan.</p>
+  <p>Joko hau euskaraz jokatu daiteke {% for plataforma in itzulpenak.0.plataformak.all %}{% if not forloop.first %}{% if forloop.last %} eta{% else %},{% endif %}{% endif %} {{plataforma.izena}}{% endfor %} plataformetan.</p>
   {% endif %}
 
   {% if itzulpenak.0.jatorria == '0' %}
   <p>Jatorriz euskaraz sortutako jokoa da.</p>
   {% elif itzulpenak.0.jatorria == '1' %}
-  <p>Garatzaileek eskainitako itzulpena da. Menuan aurkituko duzu euskaraz jartzeko aukera</p>
+  <p>Garatzaileek eskainitako itzulpena da. Menuan aurkituko duzu euskaraz jartzeko aukera.</p>
   {% elif itzulpenak.0.jatorria == '2' and itzulpenak.0.ofiziala_da %}
-  <p>Zaleek egindako itzulpena da, baina jokoan ofizialki onartutakoa. Menuan aurkituko duzu euskaraz jartzeko aukera</p>
+  <p>Zaleek egindako itzulpena da, baina jokoan ofizialki onartutakoa. Menuan aurkituko duzu euskaraz jartzeko aukera.</p>
   {% else %}
   <p>Zaleek egindako itzulpena da, eta zoritxarrez, ez da ofiziala. Euskaratzeko pauso batzuk jarraitu beharko dituzu.</p>
   {% endif %}
