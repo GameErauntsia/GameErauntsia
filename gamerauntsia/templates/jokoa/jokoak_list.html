@@ -4,6 +4,7 @@
   <table class="table table-condensed table-hover">
     <thead>
       <tr>
+        <th></th>
         <th>Jokoa</th>
         <th>Plataformak</th>
         <th>Generoak</th>
@@ -14,7 +15,10 @@
     <tbody>
         {% autopaginate jokoak 16 %}
         {% for jokoa in jokoak %}
-      <tr>
+        <tr>
+          <td><img src="{{jokoa.logoa.get_forum_thumbnail_url}}"
+                   alt="{{jokoa.izena}} {{jokoa.bertsioa|default_if_none:""}} bideojokoak"
+                   title="{{jokoa.izena}} {{jokoa.bertsioa}} bideojokoak"/></td>
         <td><a href="{% url 'game' jokoa.slug %}"><strong>{{jokoa.izena}}</strong></a></td>
         <td>{{jokoa.get_basque_available_platforms}}
         </td>
