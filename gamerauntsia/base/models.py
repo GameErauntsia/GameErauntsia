@@ -5,13 +5,15 @@ from django.db.models.signals import post_save
 from django.contrib.contenttypes.models import ContentType
 from gamerauntsia.utils.social import post_to_twitter
 from django_comments.models import Comment
-from django.db.models import Count  
+from django.db.models import Count
 from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.jokoa.models import Jokoa
 from gamerauntsia.berriak.models import Berria
 from gamerauntsia.gameplaya.models import GamePlaya
 from django_bootstrap_calendar.models import CalendarEvent
 from gamerauntsia.log.models import Log
+from photologue.models import Photo
+from datetime import datetime
 import telebot
 
 
@@ -29,6 +31,21 @@ class Terminoa(models.Model):
     def __str__(self):
         return u'%s' % (self.term_eu)
 
+class ProiektuLaguna(models.Model):
+    izena = models.CharField(max_length=150, verbose_name="Izena")
+    url = models.URLField()
+
+    irudia = models.ForeignKey(Photo, on_delete=models.PROTECT)
+
+    publikoa_da = models.BooleanField(default=False,verbose_name="Publikoa da")
+    pub_date = models.DateTimeField('publikazio data', default=datetime.now)
+
+    class Meta:
+        verbose_name = "Proiektu laguna"
+        verbose_name_plural = "Proiektu lagunak"
+
+    def __str__(self):
+        return u'%s' % (self.izena)
 
 def send_comment_email(sender,instance,**kwargs):
     if kwargs['created']:

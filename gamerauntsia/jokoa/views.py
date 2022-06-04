@@ -4,7 +4,7 @@ from django.db.models import Count, Q, OuterRef, Exists
 from django.utils import timezone
 from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.gameplaya.models import GamePlaya
-from gamerauntsia.base.models import Terminoa
+from gamerauntsia.base.models import Terminoa, ProiektuLaguna
 from gamerauntsia.jokoa.models import Jokoa, Garatzailea
 from gamerauntsia.jokoa.filters import EuskarazkoJokoaFilter
 from gamerauntsia.jokoen_itzulpenak.models import EuskarazkoJokoa
@@ -62,4 +62,5 @@ def euskarazko_jokoak(request):
     euskaraz = JokoItzulpena.objects.filter(jokoa=OuterRef('pk'))
     jokoak = Jokoa.objects.annotate(euskaraz=Exists(euskaraz)).filter(euskaraz=True).order_by('jokoa').prefetch_related('karatula','logoa')
     filters = EuskarazkoJokoaFilter(request.GET,queryset=jokoak)
+    proiektu_lagunak = ProiektuLaguna.objects.filter(publikoa_da=True).select_related('irudia').order_by('izena')
     return render(request, 'jokoa/euskarazko_jokoak.html',locals())
