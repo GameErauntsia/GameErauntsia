@@ -78,7 +78,7 @@
       </p>
       <hr>
       <input type="hidden" name="view_mode" value="{{request.GET.view_mode}}">
-      <input class="btn btn-primary" type="submit" value="Iragazi">
+      <input class="btn btn-primary" type="submit" value="Aplikatu">
     </form>
   </div>
 </div>
@@ -95,6 +95,10 @@
   $('#id_generoak').select2({
       language: "eu",
       placeholder: "Aukeratu zerrendatik",
+      width: "100%"
+  });
+  $('#id_lizentzia').select2({
+      language: "eu",
       width: "100%"
   });
   $('#id_ofiziala_da').select2({

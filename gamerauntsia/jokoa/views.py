@@ -60,6 +60,6 @@ def garatzailea(request, slug):
 
 def euskarazko_jokoak(request):
     euskaraz = JokoItzulpena.objects.filter(jokoa=OuterRef('pk'))
-    jokoak = Jokoa.objects.annotate(euskaraz=Exists(euskaraz)).filter(euskaraz=True).order_by('jokoa').prefetch_related('karatula')
+    jokoak = Jokoa.objects.annotate(euskaraz=Exists(euskaraz)).filter(euskaraz=True).order_by('jokoa').prefetch_related('karatula','logoa')
     filters = EuskarazkoJokoaFilter(request.GET,queryset=jokoak)
     return render(request, 'jokoa/euskarazko_jokoak.html',locals())
