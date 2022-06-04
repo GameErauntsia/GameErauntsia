@@ -49,6 +49,7 @@ def jokoa(request, slug):
     berriak = Berria.objects.filter(jokoa=jokoa, status='1', pub_date__lt=timezone.now()).order_by('-pub_date')
     berriak_more = len(berriak) > 3
     berriak = berriak[:3]
+    itzulpenak = jokoa.jokoitzulpena_set.all()
     return render(request, 'jokoa/jokoa.html', locals())
 
 def garatzailea(request, slug):

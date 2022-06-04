@@ -41,10 +41,12 @@
                     {% else %}
                     <p class="text-danger"><a href="{% url 'gamer_add_favorite_game' jokoa.slug %}"><i class="glyphicon glyphicon-heart"></i> Gogoko dut</a></p>
                     {% endif %}
-                {% if request.user.is_superuser %}
-                <a class="btn btn-default" href="/kudeatu/jokoa/jokoa/{{jokoa.id}}">Editatu</a>
-                {% endif %}
-                {% endif %}
+                    {% if request.user.is_superuser %}
+                    <a class="btn btn-default" href="/kudeatu/jokoa/jokoa/{{jokoa.id}}">Editatu</a>
+                    <p></p>
+                    {% include 'jokoa/jokoa_euskaraz_oharra.html' with itzulpenak=itzulpenak %}
+                    {% endif %}
+                    {% endif %}
             </div>
         </div>
         <div class="col-sm-6">
