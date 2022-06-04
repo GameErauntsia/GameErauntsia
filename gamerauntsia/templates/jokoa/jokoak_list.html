@@ -20,7 +20,15 @@
         </td>
         <td></td>
         <td>{{jokoa.argitaratze_data|date:"Y-m"}}</td>
-        <td>{{jokoa.get_basque_translation_types}}</td>
+        <td>
+          {% for itzulpena in jokoa.get_itzulpenak %}
+          {% if itzulpena.get_url %}
+          <a href="{{itzulpena.get_url}}">{{itzulpena.get_jatorria}}</a>
+          {% else %}
+          {{itzulpena.get_jatorria}}
+          {% endif %}
+          {% endfor %}
+        </td>
       </tr>
       {% endfor %}
     </tbody>

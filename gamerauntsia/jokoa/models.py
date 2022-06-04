@@ -74,11 +74,8 @@ class Jokoa(models.Model):
         platforms.sort()
         return ', '.join(platforms)
 
-    def get_basque_translation_types(self):
-        types = []
-        for itzulpena in self.jokoitzulpena_set.all():
-            types.append(itzulpena.get_mota())
-        return ', '.join(types)
+    def get_itzulpenak(self):
+        return self.jokoitzulpena_set.all()
 
     def get_photo(self):
         if self.logoa:
