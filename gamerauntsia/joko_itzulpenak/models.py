@@ -56,7 +56,7 @@ class ItzulpenProiektua(JokoItzulpena):
     egoera = models.CharField(max_length=1, choices=PROIEKTU_EGOERAK, default='0')
     slug = models.SlugField(db_index=True, unique=True)
     deskribapena = models.TextField(max_length=256,null=True,blank=True)
-    url = models.CharField(max_length=150, null=True, blank=True)
+    external_url = models.CharField(max_length=150, null=True, blank=True)
     arduraduna = models.ForeignKey(GamerUser,null=True, blank=True, on_delete=models.PROTECT, related_name='arduraduna')
     parte_hartzaileak = models.ManyToManyField(GamerUser, through='ItzulpenProiektuParteHartzailea')
     instalazioa = models.TextField(null=True, blank=True)

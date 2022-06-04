@@ -22,7 +22,7 @@
     <div class="col-sm-4" style="padding-top: 5px">
       <p><i class="glyphicon glyphicon-info-sign"></i> Egoera: {{proiektua.get_egoera_display}}</p>
       {% if proiektua.url %}
-      <p><i class="glyphicon glyphicon-globe"></i> <a href="{{proiektua.url}}" target="_blank">Itzulpenaren webgunea</a></p>
+      <p><i class="glyphicon glyphicon-globe"></i> <a href="{{proiektua.external_url}}" target="_blank">Itzulpenaren webgunea</a></p>
       {% endif %}
       <p><i class="glyphicon glyphicon-screenshot"></i> Plataformak:
         {% for plataforma in proiektua.plataformak.all %}{% if not forloop.first %},{% endif %} {{plataforma.izena}}{% endfor %}
