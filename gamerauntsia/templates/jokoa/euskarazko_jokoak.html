@@ -21,12 +21,16 @@
 </div>
 <div class="col-sm-9">
   <div id="content">
+    <div class="col-sm-12 text-right"
+         style="margin-bottom:10px;padding-right:0px">
+      <a href="?{% replace_query_param 'view_mode' 'grid' %}"
+         title="Ikusi mosaiko moduan">
+        <i class="glyphicon glyphicon-th-large" style="font-size: 20px;{% if request.GET.view_mode == 'list' %}color: gray;{% endif %}"></i></a>
+      <a href="?{% replace_query_param 'view_mode' 'list' %}"
+         title="Ikusi zerrenda moduan">
+        <i class="glyphicon glyphicon-th-list" style="font-size: 20px;{% if request.GET.view_mode == 'grid' or not request.GET.view_mode %}color: gray;{% endif %}"></i></a>
+    </div>
     <div class="col-sm-12">
-      <div class="col-sm-12 text-right hidden-xs"
-           style="margin-bottom:10px">
-        <a href="?{% replace_query_param 'view_mode' 'grid' %}"><i class="glyphicon glyphicon-th-large"></i></a>
-        <a href="?{% replace_query_param 'view_mode' 'list' %}"><i class="glyphicon glyphicon-th-list"></i></a>
-      </div>
       {% if request.GET.view_mode == 'list' %}
       {% include 'jokoa/jokoak_list.html' with jokoak=filters.qs %}
       {% else %}

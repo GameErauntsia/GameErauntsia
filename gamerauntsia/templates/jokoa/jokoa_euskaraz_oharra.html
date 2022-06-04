@@ -2,7 +2,7 @@
 <div class="alert alert-success">
   <h4><strong>Euskaraz!</strong></h4>
   {% if itzulpenak.0.plataformak.all|length == 1 %}
-  <p>Jokoa hau euskaraz jokatu daiteke {{itzulpenak.0.plataformak.all.0.izena}} plataforman.</p>
+  <p>Joko hau euskaraz jokatu daiteke {{itzulpenak.0.plataformak.all.0.izena}} plataforman.</p>
   {% else %}
   <p>Joko hau euskaraz jokatu daiteke {% for plataforma in itzulpenak.0.plataformak.all %}{% if not forloop.first %}{% if forloop.last %} eta{% else %},{% endif %}{% endif %} {{plataforma.izena}}{% endfor %} plataformetan.</p>
   {% endif %}
