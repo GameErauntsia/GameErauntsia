@@ -31,7 +31,7 @@ class JokoaAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ('Datu orokorrak',
-        {'fields':('izena','bertsioa','slug', 'desk', 'lizentzia','garatzailea','url', 'logoa', 'publikoa_da')},),
+        {'fields':('izena','bertsioa','slug', 'desk', 'lizentzia','garatzailea','url', 'logoa','karatula', 'publikoa_da')},),
         ('Osagarriak',
         {'fields':('argitaratze_data','steam_id','trailer', 'wiki')},),
     )

@@ -92,6 +92,7 @@ class ArticleForm(forms.ModelForm):
 class GameCatalogForm(forms.ModelForm):
     bertsioa = forms.CharField(label='Bertsioa (aukerazkoa)', help_text="Joko saga bat bada, zehaztu hemen bertsioa. ", required=False)
     logoa  = forms.ImageField(label='Jokoaren logo ofiziala', help_text='Onartutako formatuak: jpg, png, gif.', required=False)
+    karatula  = forms.ImageField(label='Jokoaren karatula', help_text='Onartutako formatuak: jpg, png, gif.', required=False)
     desk = forms.CharField(label="Deskribapen laburra (aukerazkoa)", widget=forms.Textarea,required=False)
     trailer = forms.CharField(label='Youtube trailerra (aukerazkoa)', help_text="Steam ID zenbakia jarrita badago, ez da beharrezkoa. Bestela, Youtube bideoaren KODEA itsatsi. Adibidez: bkgzXpKbVGE", required=False)
     wiki = forms.CharField(label='Wikia (aukerazkoa)', help_text="Eremu honetan joko honen wikipediako URL helbidea zehaztu mesedez.", required=False)
@@ -99,7 +100,7 @@ class GameCatalogForm(forms.ModelForm):
 
     class Meta:
         model = Jokoa
-        fields = ('izena','bertsioa','argitaratze_data','desk','logoa','lizentzia','url','steam_id','trailer','wiki')
+        fields = ('izena','bertsioa','argitaratze_data','desk','logoa','karatula','lizentzia','url','steam_id','trailer','wiki')
 
 class TopForm(forms.ModelForm):
 
