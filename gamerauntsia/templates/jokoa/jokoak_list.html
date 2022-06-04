@@ -23,7 +23,7 @@
         <td>
           {% for itzulpena in jokoa.get_itzulpenak %}
           {% if itzulpena.get_url %}
-          <a href="{{itzulpena.get_url}}">{{itzulpena.get_jatorria}}</a>
+          <a target="_blank" href="{{itzulpena.get_url}}">{{itzulpena.get_jatorria}}</a>
           {% else %}
           {{itzulpena.get_jatorria}}
           {% endif %}
