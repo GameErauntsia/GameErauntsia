@@ -55,7 +55,7 @@
                 <source src="{{steam_json.movies.0.webm.480}}" type="video/mp4">
                 Zure nabigatzaileak ez du HTML5 erreproduktorea onartzen.
             </video>
-            {% else %}
+            {% elif jokoa.trailer %}
             <div class="flex-video widescreen">
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/{{jokoa.trailer}}" frameborder="0" allowfullscreen></iframe>
             </div>
