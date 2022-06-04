@@ -16,13 +16,6 @@
                 <img class="img-responsive img-thumbnail" src="{{jokoa.logoa.get_videoprofile_url}}"/>
                 <p>{{jokoa.desk}}</p>
                 {% if steam_json %}
-                    {% if steam_json.price_overview %}
-                    <h3>
-                        <a href="https://store.steampowered.com/app/{{steam_json.steam_appid}}">
-                            <img src="{{STATIC_URL}}img/steam.png" width="40"/>
-                        </a>
-                    </h3>
-                    {% endif %}
                     {% if steam_json.metacritic %}
                     <div class="well">
                         <img src="{{STATIC_URL}}img/metacritic.png" height="50"/>
