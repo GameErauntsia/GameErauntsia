@@ -9,6 +9,15 @@ SOFTWARE_AUKERAK = (
         ('OS', 'Kode Irekia'),
     )
 
+class Generoa(models.Model):
+    izena = models.CharField(max_length=64)
+    slug = models.SlugField(db_index=True, unique=True, help_text="Eremu honetan etiketa honen URL helbidea zehazten ari zara.")
+    class Meta:
+        verbose_name = "Generoa"
+        verbose_name_plural = "Generoak"
+    def __str__(self):
+        return u'%s' % (self.izena)
+
 class Plataforma(models.Model):
     izena = models.CharField(max_length=64)
     slug = models.SlugField(db_index=True, unique=True, help_text="Eremu honetan plataforma honen URL helbidea zehazten ari zara.")
@@ -56,7 +65,7 @@ class Jokoa(models.Model):
     wiki = models.CharField(max_length=64, null=True, blank=True, help_text="Eremu honetan joko honen wikipediako URL helbidea zehaztu mesedez." )
 
     garatzailea = models.ForeignKey(Garatzailea, blank=True, null=True, on_delete=models.PROTECT)
-
+    generoak = models.ManyToManyField(Generoa, blank=True, null=True)
     publikoa_da = models.BooleanField(default=False)
     mod_date = models.DateTimeField('modifikazio data', default=timezone.now)
 
@@ -74,9 +83,12 @@ class Jokoa(models.Model):
         platforms.sort()
         return ', '.join(platforms)
 
+    def get_generoak(self):
+        generoak = [g.izena for g in self.generoak.all()]
+        return ', '.join(generoak)
+
     def get_itzulpenak(self):
         return self.jokoitzulpena_set.all()
-
     def get_photo(self):
         if self.logoa:
             return self.logoa

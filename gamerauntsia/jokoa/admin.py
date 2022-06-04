@@ -1,4 +1,4 @@
-from gamerauntsia.jokoa.models import Jokoa, Plataforma, Garatzailea
+from gamerauntsia.jokoa.models import Jokoa, Plataforma, Garatzailea, Generoa
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
@@ -28,15 +28,20 @@ class JokoaAdmin(admin.ModelAdmin):
     list_filter = ['publikoa_da', ]
     search_fields = ['izena','bertsioa']
     ordering = ['izena','bertsioa']
-
+    filter_horizontal = ['generoak', ]
     fieldsets = (
         ('Datu orokorrak',
-        {'fields':('izena','bertsioa','slug', 'desk', 'lizentzia','garatzailea','url', 'logoa','karatula', 'publikoa_da')},),
+        {'fields':('izena','bertsioa','slug', 'desk', 'lizentzia','garatzailea', 'generoak','url', 'logoa','karatula', 'publikoa_da')},),
         ('Osagarriak',
         {'fields':('argitaratze_data','steam_id','trailer', 'wiki')},),
     )
 
 class PlataformaAdmin(admin.ModelAdmin):
+    list_display = ['izena', ]
+    prepopulated_fields = {"slug": ("izena",)}
+    ordering = ['izena', ]
+
+class GeneroaAdmin(admin.ModelAdmin):
     list_display = ['izena', ]
     prepopulated_fields = {"slug": ("izena",)}
     ordering = ['izena', ]
@@ -49,4 +54,5 @@ class GaratzaileaAdmin(admin.ModelAdmin):
 
 admin.site.register(Jokoa, JokoaAdmin)
 admin.site.register(Plataforma, PlataformaAdmin)
+admin.site.register(Generoa, GeneroaAdmin)
 admin.site.register(Garatzailea, GaratzaileaAdmin)

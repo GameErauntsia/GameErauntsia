@@ -22,7 +22,7 @@
         <td><a href="{% url 'game' jokoa.slug %}"><strong>{{jokoa.izena}}</strong></a></td>
         <td>{{jokoa.get_basque_available_platforms}}
         </td>
-        <td></td>
+        <td>{{jokoa.get_generoak}}</td>
         <td>{{jokoa.argitaratze_data|date:"Y-m"}}</td>
         <td>
           {% for itzulpena in jokoa.get_itzulpenak %}

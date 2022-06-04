@@ -1,5 +1,5 @@
 import django_filters
-from gamerauntsia.jokoa.models import Jokoa, Plataforma
+from gamerauntsia.jokoa.models import Jokoa, Plataforma, Generoa
 from gamerauntsia.joko_itzulpenak.models import ITZULPEN_JATORRIAK
 
 BOOLEAN_CHOICES = (
@@ -13,6 +13,9 @@ class EuskarazkoJokoaFilter(django_filters.FilterSet):
     plataformak = django_filters.ModelMultipleChoiceFilter(field_name='jokoitzulpena__plataformak',
                                                            queryset=Plataforma.objects,
                                                            label="Plataformak")
+    generoak = django_filters.ModelMultipleChoiceFilter(field_name='generoak',
+                                                           queryset=Generoa.objects,
+                                                           label="Generoak")
     ofiziala_da = django_filters.ChoiceFilter(field_name='jokoitzulpena__ofiziala_da',
                                               choices=BOOLEAN_CHOICES,
                                               label="Ofiziala",

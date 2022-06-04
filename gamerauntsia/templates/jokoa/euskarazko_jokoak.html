@@ -53,10 +53,14 @@
       {{filters.form.ordena}}
       </p>
       <hr>
-      <h4><strong>Ezaugarriak</strong></h4>
+      <h4><strong>Iragazi ezaugarriak</strong></h4>
       <p>
       {{filters.form.plataformak.label_tag}}
       {{filters.form.plataformak}}
+      </p>
+      <p>
+      {{filters.form.generoak.label_tag}}
+      {{filters.form.generoak}}
       </p>
       <hr>
       <h4><strong>Euskaraketa</strong></h4>
@@ -80,6 +84,11 @@
 {% block footerjs %}
 <script type="text/javascript">
   $('#id_plataformak').select2({
+      language: "eu",
+      placeholder: "Aukeratu zerrendatik",
+      width: "100%"
+  });
+  $('#id_generoak').select2({
       language: "eu",
       placeholder: "Aukeratu zerrendatik",
       width: "100%"
