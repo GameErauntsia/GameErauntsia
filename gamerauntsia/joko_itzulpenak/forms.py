@@ -12,6 +12,8 @@ class ItzulpenProiektuaAdminForm(forms.ModelForm):
         attrs={'cols': 80, 'rows': 30,},mce_attrs=TINYMCE_DEFAULT_CONFIG))
     ohar_teknikoak = forms.CharField(widget=TinyMCE(
         attrs={'cols': 80, 'rows': 30,},mce_attrs=TINYMCE_DEFAULT_CONFIG), required=False)
+    parte_hartzaileak_oharra = forms.CharField(widget=TinyMCE(
+        attrs={'cols': 80, 'rows': 30,},mce_attrs=TINYMCE_DEFAULT_CONFIG), required=False)
 
     class Meta:
         model = ItzulpenProiektua

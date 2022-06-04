@@ -28,7 +28,7 @@ ITZULPEN_JATORRIAK = [
 class JokoItzulpena(models.Model):
     jokoa = models.ForeignKey(Jokoa, on_delete=models.CASCADE)
     plataformak = models.ManyToManyField(Plataforma)
-    sortze_data = models.DateField(default=timezone.now)
+    sortze_data = models.DateField(default=timezone.now,null=True,blank=True)
     erabilgarritasun_data = models.DateField(null=True, blank=True)
     publikoa_da = models.BooleanField(default=True,verbose_name="Publikoa da")
     ofiziala_da = models.BooleanField(default=False,verbose_name="Ofiziala da")
@@ -60,9 +60,10 @@ class ItzulpenProiektua(JokoItzulpena):
     external_url = models.CharField(max_length=150, null=True, blank=True)
     arduraduna = models.ForeignKey(GamerUser,null=True, blank=True, on_delete=models.PROTECT, related_name='arduraduna')
     parte_hartzaileak = models.ManyToManyField(GamerUser, through='ItzulpenProiektuParteHartzailea')
+    parte_hartzaileak_oharra = models.TextField(max_length=256,null=True,blank=True)
     instalazioa = models.TextField(null=True, blank=True)
     ohar_teknikoak = models.TextField(null=True, blank=True)
-    eguneratze_data = models.DateField(default=timezone.now)
+    eguneratze_data = models.DateField(default=timezone.now,null=True,blank=True)
 
     def get_url(self):
         return "/itzulpenak/proiektuak/%s" % (self.slug)

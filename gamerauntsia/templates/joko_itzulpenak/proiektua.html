@@ -27,11 +27,19 @@
       <p><i class="glyphicon glyphicon-screenshot"></i> Plataformak:
         {% for plataforma in proiektua.plataformak.all %}{% if not forloop.first %},{% endif %} {{plataforma.izena}}{% endfor %}
       </p>
+      {% if proiektua.sortze_data %}
       <p><i class="glyphicon glyphicon-calendar"></i> Hasiera data: {{proiektua.sortze_data|date:"Y/m/d"}}</p>
+      {% endif %}
+      {% if proiektua.eguneratze_data %}
       <p><i class="glyphicon glyphicon-calendar"></i> Azken eguneraketa: {{proiektua.eguneratze_data|date:"Y/m/d"}}</p>
+      {% endif %}
       <p><i class="glyphicon glyphicon-user"></i> Arduraduna:
+        {% if proiektua.arduraduna %}
         <a href="{% url 'gamer_profile' proiektua.arduraduna.username %}">
           {{proiektua.arduraduna.getFullName}} </a>
+        {% else %}
+        <span>Ez dago / ezezaguna</span>
+        {% endif %}
       </p>
       {% if proiektua.ofiziala_da %}
       <p><i class="glyphicon glyphicon-asterisk"></i> Garatzaileek itzulpena jokoan ofizialki onartu dute</p>
@@ -72,6 +80,7 @@
       </div>
       <div id="egileak" class="tab-pane fade" role="tabpanel">
         <br>
+        {% if parte_hartzaileak|length > 0 %}
         <span>Itzulpenean ondorengo erabiltzaileek hartu dute parte:</span>
         <table class="table table-condensed table-hover">
           <thead>
@@ -81,7 +90,7 @@
             </tr>
           </thead>
           <tbody>
-            {% for parte_hartzailea in proiektua.itzulpenproiektupartehartzailea_set.all %}
+            {% for parte_hartzailea in parte_hartzaileak %}
             <tr>
               <td>
                 <a href="{% url 'gamer_profile' parte_hartzailea.erabiltzailea.username %}">
@@ -97,6 +106,10 @@
             {% endfor %}
           </tbody>
         </table>
+        {% endif %}
+        {% if proiektua.parte_hartzaileak_oharra %}
+        <p class="lead">{{proiektua.parte_hartzaileak_oharra|safe}}</p>
+        {% endif %}
       </div>
       <div id="instalazioa" class="tab-pane fade" role="tabpanel">
         <p class="lead">{{proiektua.instalazioa|safe}}</p>

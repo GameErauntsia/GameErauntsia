@@ -5,6 +5,7 @@ from gamerauntsia.jokoa.models import Jokoa
 
 def itzulpen_proiektua(request,slug):
     proiektua = get_object_or_404(ItzulpenProiektua,slug=slug)
+    parte_hartzaileak = proiektua.itzulpenproiektupartehartzailea_set.all()
     return render(request, 'joko_itzulpenak/proiektua.html',locals())
 
 def itzulpen_proiektuak(request):

@@ -25,7 +25,7 @@ class ItzulpenProiektuaAdmin(JokoItzulpenaAdmin):
               'jokoa','slug','egoera', 'external_url',
               'jatorria','ofiziala_da',
               'arduraduna', 'plataformak',
-              'deskribapena','instalazioa', 'ohar_teknikoak']
+              'deskribapena','instalazioa', 'ohar_teknikoak', 'parte_hartzaileak_oharra']
     filter_horizontal = ['plataformak', ]
     inlines= [ItzulpenProiektuParteHartzaileaAdminInline, ItzulpenFitxategiaAdminInline]
 
