@@ -4,9 +4,9 @@ from photologue.models import Photo
 from django.utils import timezone
 
 SOFTWARE_AUKERAK = (
-        ('C', 'Copyright'),
-        ('FR', 'Doakoa'),
-        ('OS', 'Kode Irekia'),
+        ('C', 'Jabeduna - ordainpekoa'),
+        ('FR', 'Jabeduna - doakoa'),
+        ('OS', 'Librea edo irekia'),
     )
 
 class Generoa(models.Model):
