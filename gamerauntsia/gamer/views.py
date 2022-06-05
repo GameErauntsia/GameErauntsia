@@ -1,9 +1,9 @@
 from gamerauntsia.gamer.models import GamerUser, JokuPlataforma, AmaitutakoJokoak, PLATFORM
-from gamerauntsia.streaming.models import Streaming
 from django.template.defaultfilters import slugify
 from gamerauntsia.jokoa.models import Jokoa
 from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.streaming.models import Streaming
+from gamerauntsia.joko_itzulpenak.models import ItzulpenProiektua, ItzulpenProiektuParteHartzailea
 from gamerauntsia.berriak.models import Berria
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
@@ -84,16 +84,24 @@ def profile(request, username):
                                           pub_date__lt=timezone.now()).order_by('-pub_date')
     gp_count = len(gameplayak)
     categs = GamePlaya.objects.filter(publikoa_da=True, status='1', erabiltzailea=user_prof,
-                                      pub_date__lt=timezone.now()).values('kategoria__izena', ).annotate(
-        count=Count('id'))
+                                      pub_date__lt=timezone.now()).values('kategoria__izena', ).annotate(count=Count('id')).order_by('-count')
     berriak = Berria.objects.filter(publikoa_da=True, status='1', erabiltzailea=user_prof,
                                     pub_date__lt=timezone.now()).order_by('-pub_date')
     bcategs = Berria.objects.filter(publikoa_da=True, status='1', erabiltzailea=user_prof,
-                                    pub_date__lt=timezone.now()).values('gaia__izena', ).annotate(count=Count('id'))
+                                    pub_date__lt=timezone.now()).values('gaia__izena', ).annotate(count=Count('id')).order_by('-count')
     berri_count = len(berriak)
     side_berriak = berriak[:5]
+
     streaming_count = Streaming.objects.filter(user=user_prof).count()
-    streaming_categs = Streaming.objects.filter(user=user_prof).values('game_name',).annotate(count=Count('id'))
+    streaming_categs = Streaming.objects.filter(user=user_prof).values('game_name',).annotate(count=Count('id')).order_by('-count')
+
+    itzulpenak_count = ItzulpenProiektua.objects.filter(parte_hartzaileak=user_prof).distinct().count()
+    if itzulpenak_count > 0:
+        itzulpenak_categs = ItzulpenProiektua.objects.filter(parte_hartzaileak=user_prof).values('itzulpenproiektupartehartzailea__mota',).annotate(count=Count('id')).order_by('-count')
+        itzulpenak_motak = dict(ItzulpenProiektuParteHartzailea._meta.get_field('mota').flatchoices)
+        for entry in itzulpenak_categs:
+            entry['izena'] = itzulpenak_motak[entry['itzulpenproiektupartehartzailea__mota']]
+
     return render(request, 'gamer/profile.html', locals())
 
 

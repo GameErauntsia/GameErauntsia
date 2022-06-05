@@ -92,7 +92,7 @@
       <div class="tab-content" id="myTabContent">
         <div id="stats" class="tab-pane fade in active  " role="tabpanel">
           <p>
-            {% if gp_count or berri_count or streaming_count %}
+            {% if gp_count or berri_count or streaming_count or itzulpenak_count %}
             {% if gp_count %}
             <div class="row">
               <div class="col-sm-6 text-center">
@@ -145,6 +145,25 @@
               <div class="col-sm-6">
                 {% for cat in streaming_categs %}
                 <p><strong>{{cat.count}}</strong> <span class="label label-warning tags">{{cat.game_name}}</span></p>
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
+            {% if berri_count or gp_count or streaming_count and itzulpenak_count %}<hr/>{% endif %}
+            {% if itzulpenak_count %}
+            <div class="row">
+              <div class="col-sm-6 text-center">
+                {% if itzulpenak_count == 1 %}
+                <p><small>Itzulpen</small></p>
+                <h2><strong> {{itzulpenak_count}} </strong></h2>
+                {% else %}
+                <h2><strong> {{itzulpenak_count}} </strong></h2>
+                <p><small>Itzulpen</small></p>
+                {% endif %}
+              </div>
+              <div class="col-sm-6">
+                {% for cat in itzulpenak_categs %}
+                <p><strong>{{cat.count}}</strong> <span class="label label-primary tags">{{cat.izena}}</span></p>
                 {% endfor %}
               </div>
             </div>
