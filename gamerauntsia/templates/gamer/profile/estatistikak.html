@@ -1,0 +1,80 @@
+{% if gp_count or berri_count or streaming_count or itzulpenak_count %}
+{% if gp_count %}
+<div class="row">
+  <div class="col-sm-6 text-center">
+    {% if gp_count == 1 %}
+    <p><small>Game Play</small></p>
+    <h2><strong> {{gp_count}} </strong></h2>
+    {% else %}
+    <h2><strong> {{gp_count}} </strong></h2>
+    <p><small>Game Play</small></p>
+    {% endif %}
+  </div>
+  <div class="col-sm-6">
+    {% for cat in categs %}
+    <p><strong>{{cat.count}}</strong> <span class="label label-info tags"><a href="{% url 'gameplay_category' cat.kategoria__izena|slugify %}">{{cat.kategoria__izena}}</a></span></p>
+    {% endfor %}
+  </div>
+</div>
+{% if berri_count or streaming_count or itzulpenak_count %}<hr/>{% endif %}
+{% endif %}
+{% if berri_count %}
+<div class="row">
+  <div class="col-sm-6 text-center">
+    {% if berri_count == 1 %}
+    <p><small>Artikulu</small></p>
+    <h2><strong> {{berri_count}} </strong></h2>
+    {% else %}
+    <h2><strong> {{berri_count}} </strong></h2>
+    <p><small>Artikulu</small></p>
+    {% endif %}
+  </div>
+  <div class="col-sm-6">
+    {% for bcat in bcategs %}
+    <p><strong>{{bcat.count}}</strong> <span class="label label-success tags">{{bcat.gaia__izena}}</span></p>
+    {% endfor %}
+  </div>
+</div>
+{% if streaming_count or itzulpenak_count %}<hr/>{% endif %}
+{% endif %}
+{% if streaming_count %}
+<div class="row">
+  <div class="col-sm-6 text-center">
+    {% if streaming_count == 1 %}
+    <p><small>Streaming</small></p>
+    <h2><strong> {{streaming_count}} </strong></h2>
+    {% else %}
+    <h2><strong> {{streaming_count}} </strong></h2>
+    <p><small>Streaming</small></p>
+    {% endif %}
+  </div>
+  <div class="col-sm-6">
+    {% for cat in streaming_categs %}
+    <p><strong>{{cat.count}}</strong> <span class="label label-warning tags">{{cat.game_name}}</span></p>
+    {% endfor %}
+  </div>
+</div>
+{% if itzulpenak_count %}<hr/>{% endif %}
+{% endif %}
+{% if itzulpenak_count %}
+<div class="row">
+  <div class="col-sm-6 text-center">
+    {% if itzulpenak_count == 1 %}
+    <p><small>Itzulpen</small></p>
+    <h2><strong> {{itzulpenak_count}} </strong></h2>
+    {% else %}
+    <h2><strong> {{itzulpenak_count}} </strong></h2>
+    <p><small>Itzulpen</small></p>
+    {% endif %}
+  </div>
+  <div class="col-sm-6">
+    {% for cat in itzulpenak_categs %}
+    <p><strong>{{cat.count}}</strong> <span class="label label-primary tags">{{cat.izena}}</span></p>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+{% else %}
+<div class="alert alert-warning" role="alert">Ez du artikulu, streaming edo gameplayrik...</div>
+{% endif %}
+</p>
