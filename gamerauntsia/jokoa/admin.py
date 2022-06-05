@@ -29,6 +29,7 @@ class JokoaAdmin(admin.ModelAdmin):
     search_fields = ['izena','bertsioa']
     ordering = ['izena','bertsioa']
     filter_horizontal = ['generoak', ]
+    raw_id_fields = ['logoa','karatula','garatzailea']
     fieldsets = (
         ('Datu orokorrak',
         {'fields':('izena','bertsioa','slug', 'desk', 'lizentzia','garatzailea', 'generoak','url', 'logoa','karatula', 'publikoa_da')},),

@@ -5,6 +5,7 @@ from django.utils.safestring import mark_safe
 
 class ItzulpenProiektuParteHartzaileaAdminInline(admin.TabularInline):
     model = ItzulpenProiektuParteHartzailea
+    raw_id_fields = ['erabiltzailea']
 
 class ItzulpenFitxategiaAdminInline(admin.TabularInline):
     model = ItzulpenFitxategia
@@ -20,6 +21,7 @@ class ItzulpenProiektuaAdmin(JokoItzulpenaAdmin):
     ordering=['sortze_data']
     list_filter=['egoera','ofiziala_da','jatorria']
     form=ItzulpenProiektuaAdminForm
+    raw_id_fields = ['jokoa','arduraduna']
     fields = ['sortze_data', 'eguneratze_data',
               'erabilgarritasun_data',
               'jokoa','slug','egoera', 'external_url',
@@ -35,6 +37,7 @@ class ItzulpenProiektuaAdmin(JokoItzulpenaAdmin):
 
 class KanpokoItzulpenaAdmin(JokoItzulpenaAdmin):
     list_display= ['jokoa','sortze_data']
+    raw_id_fields = ['jokoa']
     fields = ['jokoa', 'publikoa_da',
               'ofiziala_da','jatorria',
               'erabilgarritasun_data',
