@@ -4,10 +4,10 @@ TINYMCE_DEFAULT_CONFIG = {
     "height": 600,
     "plugins": [
         "advlist autolink lists link image charmap print preview anchor",
-        "searchreplace visualblocks code fullscreen",
+        "searchreplace visualblocks code fullscreen codesample",
         "insertdatetime media table contextmenu paste",
     ],
-    "toolbar": "styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | code preview",
+    "toolbar": "styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | code codesample preview",
     "menubar": False,
     "media_alt_source": False,
     "media_poster": False,
