@@ -43,13 +43,10 @@ urlpatterns = [
     # BLOGA
     url(r'^bloga/', include('gamerauntsia.berriak.urls'), name='bloga'),
 
-    # DENBORA LERROA
-    url(r'^denboralerroa/', include('gamerauntsia.log.urls'), name='log'),
-
     # JOKOAK
     url(r'^jokoak/', include('gamerauntsia.jokoa.urls'), name='jokoak'),
 
-    # JOKOAK
+    # JOKO ITZULPENAK
     url(r'^itzulpenak/', include('gamerauntsia.joko_itzulpenak.urls'), name='jokoak'),
 
     # JOKALARIAK

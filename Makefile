@@ -18,22 +18,22 @@ help: ## laguntza hau
 	@echo
 
 build: ## Docker irudia sortu
-	docker-compose --env-file .env
+	DOCKER_BUILDKIT=1 docker compose --env-file .env build
 
 build-force: ## forcker irudia sortu systema garbitik
-	DOCKER_BUILDKIT=1 docker-compose --env-file .env build --force-rm --no-cache
+	DOCKER_BUILDKIT=1 docker compose --env-file .env build --force-rm --no-cache
 
 restart: ## Kontenedoreak geratu eta martxan ipini
 	$(MAKE) stop && $(MAKE) run
 
 run: ## Kontenedoreak abiatu
-	docker-compose up -d
+	docker compose -f docker-compose.yml -f docker-compose.override.yml up -d
 
 stop: ## Kontenedoreak gelditu
-	docker-compose down
+	docker compose down
 
 ssh: ## Kontenedorean sartu
-	docker-compose exec web sh
+	docker compose exec web sh
 
 superuser:
-	docker-compose exec web python3 manage.py createsuperuser
+	docker compose exec web python3 manage.py createsuperuser

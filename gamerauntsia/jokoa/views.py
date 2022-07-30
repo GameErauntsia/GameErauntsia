@@ -52,6 +52,10 @@ def jokoa(request, slug):
     itzulpenak = jokoa.jokoitzulpena_set.all()
     return render(request, 'jokoa/jokoa.html', locals())
 
+def garatzaileak(request):
+    garatzaileak = get_object_or_404(Garatzailea.objects.filter().order_by('izena'))
+    return render(request, 'jokoa/garatzaileak.html',locals())
+
 def garatzailea(request, slug):
     garatzailea = get_object_or_404(Garatzailea,slug=slug)
     berriak = Berria.objects.filter(Q(garatzailea=garatzailea) | Q(jokoa__garatzailea=garatzailea)).filter(status='1',pub_date__lt=timezone.now()).order_by('-pub_date')[:3]

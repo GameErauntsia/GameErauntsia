@@ -147,7 +147,6 @@ INSTALLED_APPS = (
     'gamerauntsia.joko_itzulpenak',
     'gamerauntsia.jokoen_itzulpenak',
     'gamerauntsia.bazkidetza',
-    'gamerauntsia.log',
     'gamerauntsia.telegram',
     'datetimewidget',
     'django_bootstrap_calendar',
