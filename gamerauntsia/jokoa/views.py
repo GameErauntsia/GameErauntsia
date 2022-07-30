@@ -53,7 +53,7 @@ def jokoa(request, slug):
     return render(request, 'jokoa/jokoa.html', locals())
 
 def garatzaileak(request):
-    garatzaileak = get_object_or_404(Garatzailea.objects.filter().order_by('izena'))
+    garatzaileak = Garatzailea.objects.filter()
     return render(request, 'jokoa/garatzaileak.html',locals())
 
 def garatzailea(request, slug):

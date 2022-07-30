@@ -45,7 +45,7 @@ urlpatterns = [
     url(r'^jokoak/', include('gamerauntsia.jokoa.urls'), name='jokoak'),
 
     # JOKO ITZULPENAK
-    url(r'^itzulpenak/', include('gamerauntsia.joko_itzulpenak.urls'), name='jokoak'),
+    url(r'^itzulpenak/', include('gamerauntsia.joko_itzulpenak.urls'), name='joko_itzulpenak'),
 
     # JOKALARIAK
     url(r'^komunitatea/', include('gamerauntsia.gamer.urls')),

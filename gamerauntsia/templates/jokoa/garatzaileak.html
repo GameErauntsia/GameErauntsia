@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load include gamerauntsia bootstrap %}
+
+{% block title %}Euskarazko bideo-jokoak - {% endblock %}
+
+{% block extracss %}
+<link href="{{STATIC_URL}}js/select2/css/select2.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block morejs %}
+{{ articleform.media }}
+<script src="{{STATIC_URL}}js/select2/js/select2.min.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/select2/js/i18n/eu.js"></script>
+{% endblock %}
+
+{% block content%}
+{% load debug_tags %}
+{% variables %}
+{% attributes garatzaileak %}
+
+<div class="col-sm-12">
+  <h1 class="page-header">Garatzaileak</h1>
+  <p>Bideokoak euskaraz dituzten garatzaileak.</p>
+</div>
+<br />
+<div class="col-sm-9">
+  <div id="content">
+    <div class="col-sm-12">
+      {% load pagination_tags %}
+
+      <div class="row" style="overflow-y:auto">
+        <table class="table table-condensed table-hover">
+          <thead>
+            <tr>
+              <th>Izena</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+              {% autopaginate garatzaileak 16 %}
+              {% for g in garatzaileak %}
+             <tr>
+              <td>{{g.izena}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="row text-center">
+        {% paginate %}
+      </div>
+      <br>
+      
+    </div>
+  </div>
+</div>
+
+{%endblock%}
+
+

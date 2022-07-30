@@ -42,3 +42,5 @@ django-filter == 2.4.0
 gunicorn == 20.0.4
 raven == 6.10.0
 mcstatus == 7.0.0
+django-debug-toolbar==3.2.4
+django-template-debug==0.3.5

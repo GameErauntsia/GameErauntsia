@@ -7,6 +7,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 
 ## General config
 DEBUG = os.getenv('DEBUG', False)
+TEMPLATE_DEBUG = os.getenv('TEMPLATE_DEBUG', False)
 TEMPLATE_DEBUG = DEBUG
 SITE_ID = 1
 LANGUAGE_CODE = 'eu'
@@ -117,6 +118,8 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'django.contrib.humanize',
     'django.contrib.flatpages',
+    'debug_toolbar',
+    'template_debug',
     'mptt',
     'tagging',
     'photologue',
@@ -153,7 +156,7 @@ INSTALLED_APPS = (
     'django_messages',
     'django_mobile',
     'django.contrib.admin',
-     'django_filters',
+    'django_filters',
     'rest_framework',
     'rest_framework.authtoken',
     # 'rest_auth',
@@ -173,6 +176,7 @@ TEMPLATES = [
             # insert your TEMPLATE_DIRS here
             '%s/templates' % this,
         ],
+        
         'OPTIONS': {
             'context_processors': [
                 # Insert your TEMPLATE_CONTEXT_PROCESSORS here or use this
@@ -210,6 +214,7 @@ MIDDLEWARE = [
     'django_mobile.middleware.MobileDetectionMiddleware',
     'django_mobile.middleware.SetFlavourMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 CORS_ORIGIN_WHITELIST = (
