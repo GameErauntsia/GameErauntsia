@@ -11,7 +11,6 @@ from gamerauntsia.jokoa.models import Jokoa
 from gamerauntsia.berriak.models import Berria
 from gamerauntsia.gameplaya.models import GamePlaya
 from django_bootstrap_calendar.models import CalendarEvent
-from gamerauntsia.log.models import Log
 from photologue.models import Photo
 from datetime import datetime
 import telebot
@@ -65,11 +64,6 @@ def send_comment_email(sender,instance,**kwargs):
                 message += 'gameplay honetan: \n\n%sgameplayak/%s\n\n' % (settings.HOST,obj.slug)
                 messagelog += 'gameplay honetan: \n\n%sgameplayak/%s\n\n' % (settings.HOST,obj.slug)
             creators = Comment.objects.filter(object_pk=instance.object_pk,content_type=instance.content_type).values('user__email').distinct()
-            l = Log()
-            l.mota = 'Iruzkin'
-            l.tituloa = "Iruzkin berria"
-            l.deskripzioa = messagelog
-            l.save()
 
             for creator in creators:
                 if not instance.user.email == creator['user__email'] and instance.user.email_notification:

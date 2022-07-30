@@ -7,7 +7,6 @@ from gamerauntsia.txapelketak.models import Txapelketa
 from gamerauntsia.getb.models import Atala
 from django_bootstrap_calendar.models import CalendarEvent
 from gamerauntsia.utils.social import post_social
-from gamerauntsia.log.models import Log
 from django.template import defaultfilters as filters
 import pprint
 
@@ -30,27 +29,11 @@ def social_share():
         post_social(berria)
         berria.shared=True
         berria.save()
-        l = Log()
-        l.mota = 'Albistea'
-        l.tituloa = berria.izenburua
-        l.fetxa =timezone.now()
-        l.user = berria.erabiltzailea
-        l.deskripzioa = filters.striptags(berria.desk)[:400]+'...'
-        l.berria = berria
-        l.save()
-
+  
     for gp in gpak:
         post_social(gp)
         gp.shared=True
         gp.save()
-        l = Log()
-        l.mota = 'GP'
-        l.tituloa = gp.izenburua
-        l.fetxa =timezone.now()
-        l.user = gp.erabiltzailea
-        l.deskripzioa = filters.striptags(gp.desk)[:400]+'...'
-        l.gameplaya = gp
-        l.save()
 
     for atal in atalak:
         post_social(atal)

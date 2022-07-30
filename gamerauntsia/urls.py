@@ -11,7 +11,6 @@ from django.contrib.sitemaps import views as sitemapsviews
 from .sitemaps import sitemaps
 
 from gamerauntsia.base.feed import LatestEntriesFeed, LatestNewsFeed
-from gamerauntsia.log.views import DenboralerroaViewSet
 from gamerauntsia.berriak.views import BerriaViewSet
 from rest_framework.authtoken.views import obtain_auth_token
 
@@ -24,7 +23,6 @@ from gamerauntsia.finished import views as finishedviews
 router = DefaultRouter()
 
 berria_list = BerriaViewSet.as_view({'get': 'list'})
-denboralerroa_list = DenboralerroaViewSet.as_view({'get': 'list'})
 
 admin.autodiscover()
 
@@ -121,7 +119,6 @@ urlpatterns = [
     # url(r'^rest-token-auth/$', obtain_auth_token),
     # # url(r'^rest-user/$',views.UserViewSet),
     # url(r'^app/v1/', include('gamerauntsia.app.authentication.urls')),
-    # url(r'^app/denboralerroa/$', denboralerroa_list, name='app_denboralerroa_list'),
     # url(r'^app/berriak/$', berria_list, name='app_berria_list'),
     # url(r'^app/berria/(?P<pk>[0-9]+)/$', 'gamerauntsia.berriak.views.berria_detail', name='app_berria_detail'),
     # url(r'^app/getb/$', 'gamerauntsia.getb.views.app_getb_list', name='app_getb_list'),
