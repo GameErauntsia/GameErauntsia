@@ -15,11 +15,15 @@
 
 {% block content%}
 
-<div class="col-sm-12">
-  <h1 class="page-header">Euskarazko bideojokoak</h1>
-  <p>Orrialdearen deskribapena</p>
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="page-header">Euskarazko bideojokoak</h1>
+    <p>Orrialdearen deskribapena</p>
+  </div>
 </div>
-<div class="col-sm-9">
+
+<div class="row">
+  <div class="col-sm-9">
   <div id="content">
     <div class="col-sm-12 text-right"
          style="margin-bottom:10px;padding-right:0px">
@@ -40,7 +44,7 @@
   </div>
 </div>
 
-<div class="col-sm-3">
+  <div class="col-sm-3">
   <div class="well">
     <form class ="game-filters" method="get">
       <h4><strong>Bilatu</strong></h4>
@@ -91,6 +95,8 @@
     </ul>
   </div>
 </div>
+</div>
+
 
 {%endblock%}
 

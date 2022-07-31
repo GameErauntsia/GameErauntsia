@@ -4,41 +4,50 @@ from photologue.models import Photo
 from django.utils import timezone
 
 SOFTWARE_AUKERAK = (
-        ('C', 'Jabeduna - ordainpekoa'),
-        ('FR', 'Jabeduna - doakoa'),
-        ('OS', 'Librea edo irekia'),
-    )
+    ('C', 'Jabeduna - ordainpekoa'),
+    ('FR', 'Jabeduna - doakoa'),
+    ('OS', 'Librea edo irekia'),
+)
+
 
 class Generoa(models.Model):
     izena = models.CharField(max_length=64)
-    slug = models.SlugField(db_index=True, unique=True, help_text="Eremu honetan etiketa honen URL helbidea zehazten ari zara.")
+    slug = models.SlugField(db_index=True, unique=True,
+                            help_text="Eremu honetan etiketa honen URL helbidea zehazten ari zara.")
+
     class Meta:
         verbose_name = "Generoa"
         verbose_name_plural = "Generoak"
+
     def __str__(self):
         return u'%s' % (self.izena)
 
+
 class Plataforma(models.Model):
     izena = models.CharField(max_length=64)
-    slug = models.SlugField(db_index=True, unique=True, help_text="Eremu honetan plataforma honen URL helbidea zehazten ari zara.")
-    icon = models.ForeignKey(Photo, null=True,blank=True, on_delete=models.SET_NULL)
+    slug = models.SlugField(db_index=True, unique=True,
+                            help_text="Eremu honetan plataforma honen URL helbidea zehazten ari zara.")
+    icon = models.ForeignKey(Photo, null=True, blank=True, on_delete=models.SET_NULL)
 
     class Meta:
         verbose_name = "Plataforma"
         verbose_name_plural = "Plataformak"
 
     def __str__(self):
-        return u'%s' % (self.izena)
+        return u'%s' % self.izena
+
 
 class Garatzailea(models.Model):
+    objects = None
     izena = models.CharField(max_length=64)
-    desk = models.TextField(max_length=256,null=True,blank=True,verbose_name="Deskribapena")
+    desk = models.TextField(max_length=256, null=True, blank=True, verbose_name="Deskribapena")
     slug = models.SlugField(db_index=True, unique=True)
     url = models.CharField(max_length=64)
     logoa = models.ForeignKey(Photo, on_delete=models.PROTECT)
-    sorrera_data =  models.DateField(blank=True, null=True)
-    itxiera_data =  models.DateField(blank=True, null=True)
+    sorrera_data = models.DateField(blank=True, null=True)
+    itxiera_data = models.DateField(blank=True, null=True)
     plataformak = models.ManyToManyField(Plataforma)
+
     # TODO: Jatorria, sare-sozialak
 
     class Meta:
@@ -48,21 +57,27 @@ class Garatzailea(models.Model):
     def __str__(self):
         return self.izena
 
+
 class Jokoa(models.Model):
     izena = models.CharField(max_length=64)
-    slug = models.SlugField(db_index=True, unique=True, help_text="Eremu honetan joko honen URL helbidea zehazten ari zara.")
-    desk = models.TextField(max_length=256,null=True,blank=True, verbose_name="Deskribapena")
-    bertsioa = models.CharField(max_length=64,null=True,blank=True,help_text="Joko saga bat bada, zehaztu hemen bertsioa.")
-    lizentzia = models.CharField(max_length=2, default='C',choices=SOFTWARE_AUKERAK)
-    argitaratze_data =  models.DateField(blank=True, null=True,
-                                         help_text="Jokoa noiz argitaratu zen edo argitaratuko den.")
+    slug = models.SlugField(db_index=True, unique=True,
+                            help_text="Eremu honetan joko honen URL helbidea zehazten ari zara.")
+    desk = models.TextField(max_length=256, null=True, blank=True, verbose_name="Deskribapena")
+    bertsioa = models.CharField(max_length=64, null=True, blank=True,
+                                help_text="Joko saga bat bada, zehaztu hemen bertsioa.")
+    lizentzia = models.CharField(max_length=2, default='C', choices=SOFTWARE_AUKERAK)
+    argitaratze_data = models.DateField(blank=True, null=True,
+                                        help_text="Jokoa noiz argitaratu zen edo argitaratuko den.")
 
     logoa = models.ForeignKey(Photo, on_delete=models.PROTECT)
     karatula = models.ForeignKey(Photo, on_delete=models.PROTECT, blank=True, null=True, related_name="karatula")
-    steam_id = models.IntegerField(null=True,blank=True, help_text="Jokoa Steam plataforman aurki badaiteke, jokoaren fitxaren URLan agertzen den zenbakia. Adibidez: 236110")
-    trailer = models.CharField(max_length=64,null=True,blank=True, verbose_name="Youtube trailerra",help_text="Steam ID zenbakia jarrita badago, ez da beharrezkoa. Bestela, Youtube bideoaren KODEA itsatsi. Adibidez: bkgzXpKbVGE")
-    url = models.CharField(max_length=64, help_text="Eremu honetan joko honen atariko URL helbidea zehazten ari zara." )
-    wiki = models.CharField(max_length=64, null=True, blank=True, help_text="Eremu honetan joko honen wikipediako URL helbidea zehaztu mesedez." )
+    steam_id = models.IntegerField(null=True, blank=True,
+                                   help_text="Jokoa Steam plataforman aurki badaiteke, jokoaren fitxaren URLan agertzen den zenbakia. Adibidez: 236110")
+    trailer = models.CharField(max_length=64, null=True, blank=True, verbose_name="Youtube trailerra",
+                               help_text="Steam ID zenbakia jarrita badago, ez da beharrezkoa. Bestela, Youtube bideoaren KODEA itsatsi. Adibidez: bkgzXpKbVGE")
+    url = models.CharField(max_length=64, help_text="Eremu honetan joko honen atariko URL helbidea zehazten ari zara.")
+    wiki = models.CharField(max_length=64, null=True, blank=True,
+                            help_text="Eremu honetan joko honen wikipediako URL helbidea zehaztu mesedez.")
 
     garatzailea = models.ForeignKey(Garatzailea, blank=True, null=True, on_delete=models.PROTECT)
     generoak = models.ManyToManyField(Generoa, blank=True, null=True)
@@ -70,10 +85,10 @@ class Jokoa(models.Model):
     mod_date = models.DateTimeField('modifikazio data', default=timezone.now)
 
     def get_title(self):
-        return "%s %s" % (self.izena,self.bertsioa)
+        return "%s %s" % (self.izena, self.bertsioa)
 
     def get_absolute_url(self):
-        return "%sjokoak/%s" % (settings.HOST,self.slug)
+        return "%sjokoak/%s" % (settings.HOST, self.slug)
 
     def get_basque_available_platforms(self):
         platforms = []
@@ -89,6 +104,7 @@ class Jokoa(models.Model):
 
     def get_itzulpenak(self):
         return self.jokoitzulpena_set.all()
+
     def get_photo(self):
         if self.logoa:
             return self.logoa

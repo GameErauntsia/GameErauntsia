@@ -14,16 +14,15 @@
 {% endblock %}
 
 {% block content%}
-{% load debug_tags %}
-{% variables %}
-{% attributes garatzaileak %}
 
 <div class="col-sm-12">
   <h1 class="page-header">Garatzaileak</h1>
   <p>Bideokoak euskaraz dituzten garatzaileak.</p>
 </div>
+
 <br />
-<div class="col-sm-9">
+<div class="row">
+  <div class="col-sm-9">
   <div id="content">
     <div class="col-sm-12">
       {% load pagination_tags %}
@@ -32,15 +31,20 @@
         <table class="table table-condensed table-hover">
           <thead>
             <tr>
+              <th></th>
               <th>Izena</th>
-              
+              <th>Web orria</th>
             </tr>
           </thead>
           <tbody>
-              {% autopaginate garatzaileak 16 %}
-              {% for g in garatzaileak %}
+              {% autopaginate jokogaratzaileak 16 %}
+              {% for g in jokogaratzaileak %}
              <tr>
+               <td><img src="{{g.logoa.get_forum_thumbnail_url}}"
+                   alt="{{g.izena}} garatzailea"
+                   title="{{jokoa.izena}} {{jokoa.bertsioa}} bideojokoak"/></td>
               <td>{{g.izena}}</td>
+               <td>{{g.url}}</td>
             </tr>
             {% endfor %}
           </tbody>
@@ -50,11 +54,58 @@
         {% paginate %}
       </div>
       <br>
-      
+
+    </div>
+  </div>
+</div>
+    <div class="col-sm-3">
+    <div class="well">
+      <form class ="game-filters" method="get">
+        <h4><strong>Bilatu</strong></h4>
+        <p>{{filters.form.izena}}</p>
+        <hr>
+        <h4><strong>Iragazi ezaugarriak</strong></h4>
+        <p>
+          {{filters.form.plataformak.label_tag}}
+          {{filters.form.plataformak}}
+        </p>
+        <hr>
+        <input type="hidden" name="view_mode" value="{{request.GET.view_mode}}">
+        <input class="btn btn-primary" type="submit" value="Aplikatu">
+      </form>
+    </div>
+    <div class="well">
+      <h3>Euskarazko eduki gehiago</h3>
+      <hr/>
+      <ul class="list-unstyled">
+        {% for pl in proiektu_lagunak %}
+        <li style="margin-bottom: 5px"><a href="{{pl.url}}" target="_blank"><img src="{{pl.irudia.get_profilesmall_url}}" alt="{{pl.izena}}" title="{{pl.izena}}"> {{pl.izena}}</li>
+        {% endfor %}
+      </ul>
     </div>
   </div>
 </div>
 
 {%endblock%}
 
+
+{% block footerjs %}
+<script type="text/javascript">
+  $('#id_plataformak').select2({
+      language: "eu",
+      placeholder: "Aukeratu zerrendatik",
+      width: "100%"
+  });
+  $('#id_generoak').select2({
+      language: "eu",
+      placeholder: "Aukeratu zerrendatik",
+      width: "100%"
+  });
+  $('#id_ordena').select2({
+      language: "eu",
+      width: "100%",
+      minimumResultsForSearch: Infinity
+  });
+</script>
+{% endblock %}
 

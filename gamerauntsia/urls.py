@@ -20,6 +20,7 @@ from gamerauntsia.kontaktua import views as kontaktuaviews
 from gamerauntsia.base import views as baseviews
 from gamerauntsia.finished import views as finishedviews
 
+
 router = DefaultRouter()
 
 berria_list = BerriaViewSet.as_view({'get': 'list'})
@@ -147,6 +148,14 @@ urlpatterns = [
 
     # FLATPAGEAK
     url(r'^(?P<url>.*/)$', views.flatpage),
+
+    # DEBUG
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns
 
 router.register(r'profile', UsersViewSet)

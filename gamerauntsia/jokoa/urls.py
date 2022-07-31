@@ -11,8 +11,8 @@ urlpatterns = [
     ############
     url(r'^euskaraz$', views.euskarazko_jokoak, name='jokoak_euskaraz'),
 
-    ## Garatzaileak
-    url(r'^garatzaileak',views.garatzaileak,name='garatzaileak'),
-    url(r'^garatzailea/(?P<slug>[-\w]+)$',views.garatzailea,name='garatzailea'),
+    # Garatzaileak
+    url(r'^garatzaileak$', views.garatzaileak, name='garatzaileak'),
+    url(r'^garatzailea/(?P<slug>[-\w]+)$', views.garatzailea, name='garatzailea'),
     url(r'^(?P<slug>[-\w]+)$', views.jokoa, name='game'),
 ]
