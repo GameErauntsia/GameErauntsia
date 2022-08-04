@@ -38,7 +38,6 @@ class Plataforma(models.Model):
 
 
 class Garatzailea(models.Model):
-    objects = None
     izena = models.CharField(max_length=64)
     desk = models.TextField(max_length=256, null=True, blank=True, verbose_name="Deskribapena")
     slug = models.SlugField(db_index=True, unique=True)

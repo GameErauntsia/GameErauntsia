@@ -40,10 +40,14 @@
               {% autopaginate jokogaratzaileak 16 %}
               {% for g in jokogaratzaileak %}
              <tr>
-               <td><img src="{{g.logoa.get_forum_thumbnail_url}}"
-                   alt="{{g.izena}} garatzailea"
-                   title="{{jokoa.izena}} {{jokoa.bertsioa}} bideojokoak"/></td>
-              <td>{{g.izena}}</td>
+               <td>
+                 <img src="{{g.logoa.get_forum_thumbnail_url}}"
+                      alt="{{g.izena}} garatzailea"
+                      title="{{jokoa.izena}} {{jokoa.bertsioa}} bideojokoak"/>
+               </td>
+               <td>
+                 <a href="{% url 'garatzailea' g.slug %}"><strong>{{g.izena}}</strong></a>
+               </td>
                <td>{{g.url}}</td>
             </tr>
             {% endfor %}

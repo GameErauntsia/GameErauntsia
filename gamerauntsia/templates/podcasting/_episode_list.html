@@ -1,33 +1,60 @@
 {% load i18n %}
 
 {% if episode_list %}
-    <div class="episode-list">
-        {% for episode in episode_list %}
-            <div class="podcast-episode mod">
-                <h2><a href="{% url 'podcasting_episode_detail' show.slug episode.slug %}">{{ episode.title }}</a></h2>
-                <p>{{ episode.description }}</p>
-                <div class="row">
-                    {% for enclosure in episode.enclosure_set.all %}
-                        {% if enclosure.mime == 'mp3' %}
-                            <div class="col-sm-12">
-                                <audio controls>
-                                    <source src="{{ enclosure.url }}" type="audio/mpeg">
-                                </audio>
-                            </div>
-                            <div class="col-sm-12">
-                                {{ episode.published|date:"Y-m-d" }}
-                                <a href="{{ enclosure.url }}" class="tiptip download"
-                                    title="{% trans "to download right click and select 'save link as'" %}">
-                                    {% trans "Download / Stream" %}
-                                </a>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
+<div class="episode-list">
+<!--    <div class="row">&nbsp;</div>-->
+<!--    <div class="row">-->
+<!--    {% for episode in episode_list %}-->
+
+<!--        <div class="col-sm-6">-->
+<!--            <div class="panel panel-default">-->
+<!--                <div class="panel-heading">-->
+<!--                    {{ episode.title }}-->
+<!--                    <span class="pull-right"> {{ episode.published|date:"Y-m-d" }}</span>-->
+<!--                </div>-->
+<!--                <div class="panel-body">-->
+
+<!--                </div>-->
+<!--                 <div class="panel-footer">-->
+<!--                    <a href="{{ enclosure.url }}" class="tiptip download" title="{% trans " to download right click and select 'save link as'" %}">-->
+<!--                        {% trans "Download / Stream" %}-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--        </div>-->
+
+
+<!--    {% endfor %}-->
+<!--    </div>-->
+    {% for episode in episode_list %}
+    <div class="podcast-episode mod">
+        <h2><a href="{% url 'podcasting_episode_detail' show.slug episode.slug %}">{{ episode.title }}</a></h2>
+        <p>{{ episode.description }}</p>
+        <div class="row">
+            {% for enclosure in episode.enclosure_set.all %}
+            {% if enclosure.mime == 'mp3' %}
+            <div class="col-sm-12">
+                <audio controls>
+                    <source src="{{ enclosure.url }}" type="audio/mpeg">
+                </audio>
             </div>
-            {% if not forloop.last %}<hr/>{% endif %}
-        {% endfor %}
+            <div class="col-sm-12">
+                {{ episode.published|date:"Y-m-d" }}
+                <a href="{{ enclosure.url }}" class="tiptip download"
+                   title="{% trans " to download right click and select 'save link as'" %}">
+                {% trans "Download / Stream" %}
+                </a>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
     </div>
+    {% if not forloop.last %}
+    <hr/>
+    {% endif %}
+    {% endfor %}
+</div>
 {% else %}
-    <h2>{% trans "Coming soon..." %}</h2>
+<h2>{% trans "Coming soon..." %}</h2>
 {% endif %}
