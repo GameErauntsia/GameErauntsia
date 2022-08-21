@@ -76,6 +76,7 @@
                         <a href="{% url 'komunitatea' %}" class="dropdown-toggle" data-toggle="dropdown">Ekimenak <b class="caret"></b></a>
                         {% get_flatpages as flatpages %}
                         <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{podcasting_show_list}}" title="Podcastak">Podcastak</a></li>
                             {% for page in flatpages %}
                             {% if 'ekimenak' in page.url %}
                             <li><a href="{{ page.url }}" title="{{ page.title }}">{{ page.title }}</a></li>
