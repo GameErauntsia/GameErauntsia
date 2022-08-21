@@ -1,0 +1,34 @@
+{% load pagination_tags %}
+
+
+      <div class="row" style="overflow-y:auto">
+        <table class="table table-condensed table-hover">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Izena</th>
+              <th>Web orria</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% autopaginate jokogaratzaileak 16 %}
+              {% for g in jokogaratzaileak %}
+             <tr>
+               <td>
+                 <img src="{{g.logoa.get_forum_thumbnail_url}}"
+                      alt="{{g.izena}} garatzailea"
+                      title="{{jokoa.izena}} {{jokoa.bertsioa}} bideojokoak"/>
+               </td>
+               <td>
+                 <a href="{% url 'garatzailea' g.slug %}"><strong>{{g.izena}}</strong></a>
+               </td>
+               <td>{{g.url}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="row text-center">
+        {% paginate %}
+      </div>
+      <br>
