@@ -4,7 +4,7 @@ django-recaptcha == 2.0.6
 -e git+https://github.com/urtzai/django-messages#egg=django-messages
 -e git+https://github.com/GameErauntsia/django-bootstrap-calendar.git#egg=django-bootstrap-calendar
 -e git+https://github.com/urtzai/django-mobile.git#egg=django-mobile
--e git+https://github.com/ikerib/django-podcasting#egg=django-podcasting
+-e git+https://github.com/urtzai/django-podcasting#egg=django-podcasting
 #django-podcasting == 1.3.2
 django-pagination-bootstrap == 2.4.1
 django-datetime-widget == 0.9.3
