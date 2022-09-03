@@ -8,6 +8,7 @@
               <th></th>
               <th>Izena</th>
               <th>Web orria</th>
+                <th>Plataformak</th>
             </tr>
           </thead>
           <tbody>
@@ -23,6 +24,9 @@
                  <a href="{% url 'garatzailea' g.slug %}"><strong>{{g.izena}}</strong></a>
                </td>
                <td>{{g.url}}</td>
+                 <td>
+                     {{g.get_available_platforms}}
+                 </td>
             </tr>
             {% endfor %}
           </tbody>

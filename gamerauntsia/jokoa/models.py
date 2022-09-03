@@ -56,6 +56,12 @@ class Garatzailea(models.Model):
     def __str__(self):
         return self.izena
 
+    def get_available_platforms(self):
+        platforms = []
+        for plataforma in self.plataformak.all():
+            platforms.append(plataforma.izena)
+        platforms.sort()
+        return ', '.join(platforms)
 
 class Jokoa(models.Model):
     izena = models.CharField(max_length=64)
