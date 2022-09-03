@@ -10,13 +10,13 @@ BOOLEAN_CHOICES = (
 
 class JokoGaratzaileakFilter(django_filters.FilterSet):
     izena = django_filters.CharFilter(lookup_expr='icontains', label='Bilatu izenez')
-    plataformak = django_filters.ModelMultipleChoiceFilter(field_name='garatzaileak__plataformak',
+    plataformak = django_filters.ModelMultipleChoiceFilter(field_name='plataformak',
                                                            queryset=Plataforma.objects,
                                                            label="Plataformak")
 
     class Meta:
         model = Garatzailea
-        fields = ['izena']
+        fields = ['izena',]
 
 
 class EuskarazkoJokoaFilter(django_filters.FilterSet):

@@ -62,7 +62,7 @@ def jokoa(request, slug):
 
 
 def garatzaileak(request):
-    jokogaratzaileak = Garatzailea.objects.filter()
+    jokogaratzaileak = Garatzailea.objects.filter().order_by('izena').prefetch_related( 'logoa')
     filters = JokoGaratzaileakFilter(request.GET, queryset=jokogaratzaileak)
     return render(request, 'jokoa/garatzaileak.html', locals())
 

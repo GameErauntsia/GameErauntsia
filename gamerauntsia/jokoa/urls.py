@@ -13,6 +13,6 @@ urlpatterns = [
 
     # Garatzaileak
     url(r'^garatzaileak$', views.garatzaileak, name='garatzaileak'),
-    url(r'^garatzailea/(?P<slug>[-\w]+)$', views.garatzailea, name='garatzailea'),
+    url(r'^garatzaile-fitxa/(?P<slug>[-\w]+)$', views.garatzailea, name='garatzailea'),
     url(r'^(?P<slug>[-\w]+)$', views.jokoa, name='game'),
 ]

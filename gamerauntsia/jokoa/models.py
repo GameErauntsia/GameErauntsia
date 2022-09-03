@@ -63,6 +63,7 @@ class Garatzailea(models.Model):
         platforms.sort()
         return ', '.join(platforms)
 
+
 class Jokoa(models.Model):
     izena = models.CharField(max_length=64)
     slug = models.SlugField(db_index=True, unique=True,
