@@ -5,17 +5,97 @@
 {% block content%}
 <div class="row">
 
-  <div class="col-sm-12">
-    <h1 class="page-header">{{garatzailea.izena}}</h1>
-  </div>
+    <div class="col-sm-12">
+        <h1 class="page-header">{{garatzailea.izena}}</h1>
+        <ul class="list-inline">
+            {% if garatzailea.url %}
+            <li class="list-item">
+                <a href="{{garatzailea.url}}" target="_blank"><img src="{{STATIC_URL}}img/www.png" width="25"/></a>
+            </li>
+            {% endif %}
 
-  <div class="col-sm-12">
-    <div class="col-sm-6">
-      <span>"EGITEKE"</span>
+            {% if garatzailea.twitter_id %}
+            <li class="list-item">
+                <a href="https://twitter.com/{{garatzailea.twitter_id}}" target="_blank"><img
+                        src="{{STATIC_URL}}img/twitter.png" width="25"/></a>
+            </li>
+            {% endif %}
+
+            {% if garatzailea.ytube_channel %}
+            <li class="list-item">
+                <a href="{{garatzailea.ytube_channel}}" target="_blank"><img src="{{STATIC_URL}}img/youtube.png"
+                                                                             width="25"/></a>
+            </li>
+            {% endif %}
+
+            {% if garatzailea.facebook_id %}
+            <li class="list-item">
+                <a href="https://facebook.com/{{garatzailea.facebook_id}}" target="_blank"><img
+                        src="{{STATIC_URL}}img/facebook.png" width="25"/></a>
+            </li>
+            {% endif %}
+
+            {% if garatzailea.email %}
+            <li class="list-item">
+                <a href="mailto://{{garatzailea.email}}" target="_blank"><img src="{{STATIC_URL}}img/mail.png"
+                                                                              width="25"/></a>
+            </li>
+            {% endif %}
+
+            {% if garatzailea.phone %}
+            <li class="list-item">
+                <a href="tel://{{garatzailea.phone}}" target="_blank"><img src="{{STATIC_URL}}img/phone.png"
+                                                                           width="25"/></a>
+            </li>
+            {% endif %}
+        </ul>
     </div>
-    <div class="col-sm6">
-      <span>"EGITEKE"</span>
+
+    <div class="row">
+        <div class="col-sm-12">
+            &nbsp;
+        </div>
     </div>
-  </div>
+
+    {% if jokoak %}
+        <div class="row">
+            <div class="12">
+                <h2>Euskerazko jokoak</h2>
+                {% for jokoa in jokoak %}
+                    <div class="col-xs-6 col-sm-3 col-md2" style="margin-bottom: 20px">
+                        <a href="{% url 'game' jokoa.slug %}" title="{{jokoa.izena}}">
+                            <img class="img-responsive img-thumbnail" src="{{jokoa.get_karatula.get_joko_karatula_url}}" alt="{{jokoa.izena}} bideojokoaren karatula">
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    {% if berriak %}
+        <div class="row">
+            <div class="12">
+                <h2>Azken berrriak</h2>
+                {% for berri in berriak %}
+                <div class="row bloglist">
+                    <div class="col-sm-4">
+                        <a href="{% url 'berria' berri.slug %}"><img src="{{berri.argazkia.get_videoprofile_url}}" alt=""/></a>
+                    </div>
+                    <div class="col-sm-8">
+                        <h3 style="margin-top: 0"><a href="{% url 'berria' berri.slug %}">{{berri.izenburua}}</a></h3>
+                        <p>
+                            <span class="glyphicon glyphicon-time"></span> {{berri.pub_date|date:"Y/m/d H:i"}}
+                            {% for gai in berri.gaia.all %}
+                            <span class="label label-success tags">{{gai.izena}}</span>
+                            {% endfor %}
+                        </p>
+                        <p>{{berri.get_desk_txikia|safe}}</p>
+                    </div>
+                </div>
+                <hr/>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
 </div>
 {% endblock %}

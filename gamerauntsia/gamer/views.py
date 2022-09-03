@@ -25,7 +25,8 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.template.response import TemplateResponse
 from django_forum_app.models import Category, Topic
 from django.forms.utils import ErrorList
-from gamerauntsia.streaming.twitch_api import get_twitch_user_id, get_twitch_token, create_twitch_subscription, delete_twitch_subscription
+from gamerauntsia.streaming.twitch_api import get_twitch_user_id, get_twitch_token, create_twitch_subscription, \
+    delete_twitch_subscription
 from django.http import HttpResponse
 from .forms import ProfilePhotoForm
 import json
@@ -56,15 +57,19 @@ def youtuberrak(request):
         ytube_channel__exact='').annotate(num_gp=Count('gameplayak')).exclude(num_gp=0).order_by('-num_gp')
     return render(request, 'gamer/youtuberrak.html', locals())
 
+
 def streamerrak(request):
-    users = GamerUser.objects.filter(is_active=True).exclude(twitch_channel__isnull=True).exclude(twitch_channel__exact='').annotate(num_stm=Count('streamingak')).order_by('-num_stm')
+    users = GamerUser.objects.filter(is_active=True).exclude(twitch_channel__isnull=True).exclude(
+        twitch_channel__exact='').annotate(num_stm=Count('streamingak')).order_by('-num_stm')
     latest_streams = Streaming.objects.exclude(end_date__isnull=True).order_by('-end_date')[:4]
     current_streams = Streaming.objects.filter(end_date__isnull=True)
     current_stream_count = len(current_streams)
     return render(request, 'gamer/streamerrak.html', locals())
 
+
 def idazleak(request):
-    users = GamerUser.objects.filter(is_active=True).annotate(num_art=Count('berriak')).exclude(num_art=0).order_by('-num_art')
+    users = GamerUser.objects.filter(is_active=True).annotate(num_art=Count('berriak')).exclude(num_art=0).order_by(
+        '-num_art')
     return render(request, 'gamer/idazleak.html', locals())
 
 
@@ -74,7 +79,8 @@ def guruak(request):
 
 
 def talde_motorra(request):
-    users = GamerUser.objects.filter(is_active=True, is_core_team_member=True).order_by('-date_joined').select_related('photo')
+    users = GamerUser.objects.filter(is_active=True, is_core_team_member=True).order_by('-date_joined').select_related(
+        'photo')
     return render(request, 'gamer/talde_motorra.html', locals())
 
 
@@ -84,20 +90,24 @@ def profile(request, username):
                                           pub_date__lt=timezone.now()).order_by('-pub_date')
     gp_count = len(gameplayak)
     categs = GamePlaya.objects.filter(publikoa_da=True, status='1', erabiltzailea=user_prof,
-                                      pub_date__lt=timezone.now()).values('kategoria__izena', ).annotate(count=Count('id')).order_by('-count')
+                                      pub_date__lt=timezone.now()).values('kategoria__izena', ).annotate(
+        count=Count('id')).order_by('-count')
     berriak = Berria.objects.filter(publikoa_da=True, status='1', erabiltzailea=user_prof,
                                     pub_date__lt=timezone.now()).order_by('-pub_date')
     bcategs = Berria.objects.filter(publikoa_da=True, status='1', erabiltzailea=user_prof,
-                                    pub_date__lt=timezone.now()).values('gaia__izena', ).annotate(count=Count('id')).order_by('-count')
+                                    pub_date__lt=timezone.now()).values('gaia__izena', ).annotate(
+        count=Count('id')).order_by('-count')
     berri_count = len(berriak)
     side_berriak = berriak[:5]
 
     streaming_count = Streaming.objects.filter(user=user_prof).count()
-    streaming_categs = Streaming.objects.filter(user=user_prof).values('game_name',).annotate(count=Count('id')).order_by('-count')
+    streaming_categs = Streaming.objects.filter(user=user_prof).values('game_name', ).annotate(
+        count=Count('id')).order_by('-count')
 
     itzulpenak_count = ItzulpenProiektua.objects.filter(parte_hartzaileak=user_prof).distinct().count()
     if itzulpenak_count > 0:
-        itzulpenak_categs = ItzulpenProiektua.objects.filter(parte_hartzaileak=user_prof).values('itzulpenproiektupartehartzailea__mota',).annotate(count=Count('id')).order_by('-count')
+        itzulpenak_categs = ItzulpenProiektua.objects.filter(parte_hartzaileak=user_prof).values(
+            'itzulpenproiektupartehartzailea__mota', ).annotate(count=Count('id')).order_by('-count')
         itzulpenak_motak = dict(ItzulpenProiektuParteHartzailea._meta.get_field('mota').flatchoices)
         for entry in itzulpenak_categs:
             entry['izena'] = itzulpenak_motak[entry['itzulpenproiektupartehartzailea__mota']]
@@ -138,6 +148,7 @@ def edit_profile_photo(request):
         form = ProfilePhotoForm()
     return render(request, 'profile/edit_photo.html', locals())
 
+
 @login_required
 def edit_channels(request):
     tab = 'channels'
@@ -150,15 +161,15 @@ def edit_channels(request):
             twitch_now = user.twitch_channel
             if twitch_before != twitch_now:
                 token = get_twitch_token()
-                user_id = get_twitch_user_id(token,twitch_now)
+                user_id = get_twitch_user_id(token, twitch_now)
                 user.twitch_channel_id = user_id
                 if user.twitch_sub_id_online:
-                    delete_twitch_subscription(token,user.twitch_sub_id_online)
+                    delete_twitch_subscription(token, user.twitch_sub_id_online)
                 if user.twitch_sub_id_offline:
-                    delete_twitch_subscription(token,user.twitch_sub_id_offline)
+                    delete_twitch_subscription(token, user.twitch_sub_id_offline)
                 if user_id:
-                    user.twitch_sub_id_online = create_twitch_subscription(token,user_id,'stream.online')
-                    user.twitch_sub_id_offline = create_twitch_subscription(token,user_id,'stream.offline')
+                    user.twitch_sub_id_online = create_twitch_subscription(token, user_id, 'stream.online')
+                    user.twitch_sub_id_offline = create_twitch_subscription(token, user_id, 'stream.offline')
                 user.save()
     else:
         channelsform = ChannelsForm(instance=user)
