@@ -46,8 +46,11 @@ class Garatzailea(models.Model):
     sorrera_data = models.DateField(blank=True, null=True)
     itxiera_data = models.DateField(blank=True, null=True)
     plataformak = models.ManyToManyField(Plataforma)
-
-    # TODO: Jatorria, sare-sozialak
+    ytube_channel = models.CharField(max_length=150, null=True, blank=True, verbose_name="Youtube kanala")
+    twitter_id = models.CharField(max_length=100, blank=True, null=True)
+    facebook_id = models.CharField(max_length=100, blank=True, null=True)
+    email = models.EmailField(max_length=254, blank=True, null=True)
+    phone = models.CharField('Telefonoa', max_length=25, blank=True, null=True)
 
     class Meta:
         verbose_name = "Garatzailea"

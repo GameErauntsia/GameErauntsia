@@ -35,5 +35,5 @@ stop: ## Kontenedoreak gelditu
 ssh: ## Kontenedorean sartu
 	docker compose exec web sh
 
-superuser:
+superuser: ## superuser sortu
 	docker compose exec web python3 manage.py createsuperuser
