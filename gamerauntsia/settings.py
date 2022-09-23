@@ -163,6 +163,7 @@ INSTALLED_APPS = (
     'captcha',
     'corsheaders',
     'podcasting',
+    'embed_video'
 )
 
 this = os.path.dirname(os.path.abspath(__file__))

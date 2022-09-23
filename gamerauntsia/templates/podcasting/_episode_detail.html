@@ -4,8 +4,10 @@
     <div class="podcast-episode mod">
         <h2>{{ episode.title }}</h2>
         <div class="row">
-            {% for enclosure in episode.enclosure_set.all %}
-                {% if enclosure.mime == 'mp3' %}
+            <div class="col-sm-8">
+                <div class="row">
+                    {% for enclosure in episode.enclosure_set.all %}
+                        {% if enclosure.mime == 'mp3' %}
                             <div class="col-sm-12">
                                 <audio controls>
                                     <source src="{{ enclosure.url }}" type="audio/mpeg">
@@ -18,16 +20,24 @@
                                     {% trans "Download / Stream" %}
                                 </a>
                             </div>
-                  {% endif %}
-            {% endfor %}
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-                <h6>{{ episode.subtitle }}</h6>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h6>{{ episode.subtitle }}</h6>
 
-                {% if episode.description %}
-                    <div class="episode-description">{{ episode.description }}</div>
-                {% endif %}
+                        {% if episode.description %}
+                            <div class="episode-description">{{ episode.description }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                {% load embed_video_tags %}
+                {% for myvideo in episode.embedmedia_set.all %}
+                    {% video myvideo.url tiny %}
+                {% endfor %}
             </div>
         </div>
     </div>

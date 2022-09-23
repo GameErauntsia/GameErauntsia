@@ -5,24 +5,34 @@
         {% for episode in episode_list %}
             <div class="podcast-episode mod">
                 <h2><a href="{% url 'podcasting_episode_detail' show.slug episode.slug %}">{{ episode.title }}</a></h2>
-                <p>{{ episode.description }}</p>
                 <div class="row">
-                    {% for enclosure in episode.enclosure_set.all %}
-                        {% if enclosure.mime == 'mp3' %}
-                            <div class="col-sm-12">
-                                <audio controls>
-                                    <source src="{{ enclosure.url }}" type="audio/mpeg">
-                                </audio>
-                            </div>
-                            <div class="col-sm-12">
-                                {{ episode.published|date:"Y-m-d" }}
-                                <a href="{{ enclosure.url }}" class="tiptip download"
-                                    title="{% trans "to download right click and select 'save link as'" %}">
-                                    {% trans "Download / Stream" %}
-                                </a>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
+                    <div class="col-sm-8">
+                        <div class="row">
+                            <p>{{ episode.description }}</p>
+                            {% for enclosure in episode.enclosure_set.all %}
+                                {% if enclosure.mime == 'mp3' %}
+                                    <div class="col-sm-12">
+                                        <audio controls>
+                                            <source src="{{ enclosure.url }}" type="audio/mpeg">
+                                        </audio>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        {{ episode.published|date:"Y-m-d" }}
+                                        <a href="{{ enclosure.url }}" class="tiptip download"
+                                            title="{% trans "to download right click and select 'save link as'" %}">
+                                            {% trans "Download / Stream" %}
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        {% load embed_video_tags %}
+                        {% for myvideo in episode.embedmedia_set.all %}
+                            {% video myvideo.url "340x200" %}
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
             {% if not forloop.last %}<hr/>{% endif %}
