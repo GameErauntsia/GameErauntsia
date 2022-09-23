@@ -67,7 +67,9 @@
                             <li role="presentation" class="divider"></li>
                             <li><a href="{% url 'game_index' %}" title="Jokoen katalogoa">Jokoen katalogoa</a></li>
                             <li><a href="{% url 'euskarazko_jokoak' %}" title="Euskarazko jokoak">Euskarazko jokoak</a></li>
-                            <li><a href="{% url 'garatzaileak' %}" title="Garatzaileak">Garatzaileak</a></li>
+                            {% if user.is_staff or user.is_superuser %}
+                                <li><a href="{% url 'garatzaileak' %}" title="Garatzaileak">Garatzaileak</a></li>
+                            {% endif %}
                             <li role="presentation" class="divider"></li>
                             <li><a href="{% url 'terminologia' %}" title="Terminologia">Terminologia</a></li>
                         </ul>
@@ -76,7 +78,9 @@
                         <a href="{% url 'komunitatea' %}" class="dropdown-toggle" data-toggle="dropdown">Ekimenak <b class="caret"></b></a>
                         {% get_flatpages as flatpages %}
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{% url 'podcasting_show_list' %}" title="Podcastak">Podcastak</a></li>
+                            {% if user.is_staff or user.is_superuser %}
+                                <li><a href="{% url 'podcasting_show_list' %}" title="Podcastak">Podcastak</a></li>
+                            {% endif %}
                             {% for page in flatpages %}
                             {% if 'ekimenak' in page.url %}
                             <li><a href="{{ page.url }}" title="{{ page.title }}">{{ page.title }}</a></li>
