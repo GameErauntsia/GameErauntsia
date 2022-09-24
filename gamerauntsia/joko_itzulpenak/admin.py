@@ -36,7 +36,7 @@ class ItzulpenProiektuaAdmin(JokoItzulpenaAdmin):
         return '<a href="/itzulpenak/proiektuak/%s">aurreikusi</a>' % (obj.slug)
 
 class KanpokoItzulpenaAdmin(JokoItzulpenaAdmin):
-    list_display= ['jokoa','sortze_data']
+    list_display= ['jokoa','ofiziala_da','jatorria','erabilgarritasun_data','sortze_data']
     raw_id_fields = ['jokoa']
     fields = ['jokoa', 'publikoa_da',
               'ofiziala_da','jatorria',
