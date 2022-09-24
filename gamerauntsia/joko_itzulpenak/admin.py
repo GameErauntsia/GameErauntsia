@@ -17,7 +17,7 @@ class JokoItzulpenaAdmin(admin.ModelAdmin):
     filter_horizontal = ['plataformak', ]
 
 class ItzulpenProiektuaAdmin(JokoItzulpenaAdmin):
-    list_display= ['jokoa','egoera','ofiziala_da','jatorria','preview','sortze_data']
+    list_display= ['jokoa','egoera','ofiziala_da','jatorria','preview','erabilgarritasun_data','sortze_data']
     ordering=['sortze_data']
     list_filter=['egoera','ofiziala_da','jatorria']
     form=ItzulpenProiektuaAdminForm
