@@ -13,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-        {% autopaginate jokoak 16 %}
+        {% autopaginate jokoak 20 %}
         {% for jokoa in jokoak %}
         <tr>
           <td><img src="{{jokoa.logoa.get_forum_thumbnail_url}}"
