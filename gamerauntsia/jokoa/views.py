@@ -78,9 +78,11 @@ def garatzailea(request, slug):
 
 def euskarazko_jokoak(request):
     euskaraz = JokoItzulpena.objects.filter(jokoa=OuterRef('pk'))
-    jokoak = Jokoa.objects.annotate(euskaraz=Exists(euskaraz)).filter(euskaraz=True).prefetch_related('karatula', 'logoa')
     proiektu_lagunak = ProiektuLaguna.objects.filter(publikoa_da=True).select_related('irudia').order_by('izena')
+    jokoak_kop = JokoItzulpena.objects.count()
+    jokoak_azken_urtea_kop = JokoItzulpena.objects.filter(erabilgarritasun_data__year=timezone.now().year).count()
 
+    jokoak = Jokoa.objects.annotate(euskaraz=Exists(euskaraz)).filter(euskaraz=True).prefetch_related('karatula', 'logoa')
     filter_params = request.GET.copy()
     if 'ordena' not in filter_params:
         filter_params['ordena'] = '-jokoitzulpena__erabilgarritasun_data'

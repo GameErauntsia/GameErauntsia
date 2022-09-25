@@ -18,7 +18,9 @@
 <div class="row">
   <div class="col-sm-12">
     <h1 class="page-header">Euskarazko bideojokoak</h1>
-    <p>Orrialdearen deskribapena</p>
+    <p>Entretenimendura zuzendutako euskarazko bideojokoen zerrenda da hau. Helburu didaktikoa duten joko eta aplikazioak ez daude zerrenda honetan. Zerrendako bideojoko batzuk euskaraz merkaturatu dira, eta beraz, ez da ezer berezirik egin behar euskaraz jokatzeko. Beste batzuk, aldiz, itzulpen ez ofizialak dira, eta, horregatik,  itzulpena deskargatu eta instalatu egin behar da. Horren inguruko xehetasunak bideojokoen fitxetan aurkituko dituzu.</p>
+    <p>Euskarazko bideojoko bat sortu edo itzuli baduzu edota zerrendan jokoren bat falta dela ikusten baduzu, <a href="/kontaktua/">jarri gurekin harremanetan</a> eta ahal bezain laster gehituko dugu.</p>
+    <p>Gaur egun, <strong>zerrendan {{jokoak_kop}} bideojoko</strong> daude, eta horietatik <strong>{{jokoak_azken_urtea_kop}} azken urtean</strong> gehitutakoak dira.</p>
   </div>
 </div>
 
@@ -43,57 +45,56 @@
     </div>
   </div>
 </div>
-
   <div class="col-sm-3">
-  <div class="well">
-    <form class ="game-filters" method="get">
-      <h4><strong>Bilatu</strong></h4>
-      <p>
-      {{filters.form.izena}}
-      </p>
-      <hr>
-      <h4><strong>Ordenatu</strong></h4>
-      <p>
-      {{filters.form.ordena}}
-      </p>
-      <hr>
-      <h4><strong>Iragazi ezaugarriak</strong></h4>
-      <p>
-      {{filters.form.plataformak.label_tag}}
-      {{filters.form.plataformak}}
-      </p>
-      <p>
-      {{filters.form.generoak.label_tag}}
-      {{filters.form.generoak}}
-      </p>
-      <p>
-      {{filters.form.lizentzia.label_tag}}
-      {{filters.form.lizentzia}}
-      </p>
-      <hr>
-      <h4><strong>Euskaraketa</strong></h4>
-      <p>
-      {{filters.form.ofiziala_da.label_tag}}
-      {{filters.form.ofiziala_da}}
-      </p>
-      <p>
-      {{filters.form.jatorria.label_tag}}
-      {{filters.form.jatorria}}
-      </p>
-      <hr>
-      <input type="hidden" name="view_mode" value="{{request.GET.view_mode}}">
-      <input class="btn btn-primary" type="submit" value="Aplikatu">
-    </form>
-  </div>
-  <div class="well">
-    <h3>Euskarazko eduki gehiago</h3>
-    <hr/>
-    <ul class="list-unstyled">
-      {% for pl in proiektu_lagunak %}
-      <li style="margin-bottom: 5px"><a href="{{pl.url}}" target="_blank"><img src="{{pl.irudia.get_profilesmall_url}}" alt="{{pl.izena}}" title="{{pl.izena}}"> {{pl.izena}}</li>
-      {% endfor %}
-    </ul>
-  </div>
+    <div class="well">
+      <form class ="game-filters" method="get">
+        <h4><strong>Bilatu</strong></h4>
+        <p>
+          {{filters.form.izena}}
+        </p>
+        <hr>
+        <h4><strong>Ordenatu</strong></h4>
+        <p>
+          {{filters.form.ordena}}
+        </p>
+        <hr>
+        <h4><strong>Iragazi ezaugarriak</strong></h4>
+        <p>
+          {{filters.form.plataformak.label_tag}}
+          {{filters.form.plataformak}}
+        </p>
+        <p>
+          {{filters.form.generoak.label_tag}}
+          {{filters.form.generoak}}
+        </p>
+        <p>
+          {{filters.form.lizentzia.label_tag}}
+          {{filters.form.lizentzia}}
+        </p>
+        <hr>
+        <h4><strong>Euskaraketa</strong></h4>
+        <p>
+          {{filters.form.ofiziala_da.label_tag}}
+          {{filters.form.ofiziala_da}}
+        </p>
+        <p>
+          {{filters.form.jatorria.label_tag}}
+          {{filters.form.jatorria}}
+        </p>
+        <hr>
+        <input type="hidden" name="view_mode" value="{{request.GET.view_mode}}">
+        <input class="btn btn-primary" type="submit" value="Aplikatu">
+      </form>
+    </div>
+    <div class="well">
+      <h3>Euskarazko eduki gehiago</h3>
+      <hr/>
+      <ul class="list-unstyled">
+        {% for pl in proiektu_lagunak %}
+        <li style="margin-bottom: 5px"><a href="{{pl.url}}" target="_blank"><img src="{{pl.irudia.get_profilesmall_url}}" alt="{{pl.izena}}" title="{{pl.izena}}"> {{pl.izena}}</li>
+        {% endfor %}
+      </ul>
+    </div>
 </div>
 </div>
 
