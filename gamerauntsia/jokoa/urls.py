@@ -5,11 +5,8 @@ from gamerauntsia.jokoen_itzulpenak import views as itzulpenakviews
 urlpatterns = [
     url(r'^$', views.index, name='game_index'),
 
-    # JOKOEN ITZULPENAK
-    url(r'^euskarazko-bideojokoak/$', itzulpenakviews.index, name='euskarazko_jokoak'),
-    url(r'^jokoen-itzulpenak/bilatu', itzulpenakviews.search_retro, name='search_itzulpenak'),
-    ############
-    url(r'^euskaraz$', views.euskarazko_jokoak, name='jokoak_euskaraz'),
+    # Euskarazko jokoak
+    url(r'^euskarazko-bideojokoak/$', views.euskarazko_jokoak, name='euskarazko_jokoak'),
 
     # Garatzaileak
     url(r'^garatzaileak$', views.garatzaileak, name='garatzaileak'),

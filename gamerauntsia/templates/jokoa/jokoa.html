@@ -44,9 +44,9 @@
                     {% if request.user.is_superuser %}
                     <a class="btn btn-default" href="/kudeatu/jokoa/jokoa/{{jokoa.id}}">Editatu</a>
                     <p></p>
-                    {% include 'jokoa/jokoa_euskaraz_oharra.html' with itzulpenak=itzulpenak %}
                     {% endif %}
                     {% endif %}
+                {% include 'jokoa/jokoa_euskaraz_oharra.html' with itzulpenak=itzulpenak %}
             </div>
         </div>
         <div class="col-sm-6">
@@ -189,7 +189,7 @@
         </div>
         {% endif %}
         <div class="col-sm-4">
-           
+
         </div>
     </div>
 </div>
