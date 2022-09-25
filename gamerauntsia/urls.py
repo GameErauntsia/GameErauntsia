@@ -28,7 +28,7 @@ berria_list = BerriaViewSet.as_view({'get': 'list'})
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^robots.txt$', lambda r: HttpResponse("User-agent: *\nDisallow: ", content_type="text/plain")),
+    url(r'^robots.txt$', lambda r: HttpResponse("User-agent: *\nSitemap: https://gamerauntsia.eus/sitemap.xml\nDisallow: ", content_type="text/plain")),
     url(r'^3dedcce0621f78db1fdf62d2bb02148e.txt$', lambda r: HttpResponse("3dedcce0621f78db1fdf62d2bb02148e", content_type="text/plain")),
 
     url(r'^$', indexviews.index, name='index'),

@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.urls import reverse
 from django.contrib.sitemaps import Sitemap
+from django.contrib.flatpages.sitemaps import FlatPageSitemap
 from gamerauntsia.berriak.models import Berria
 from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.txapelketak.models import Txapelketa
@@ -78,10 +79,21 @@ class JokoaSitemap(Sitemap):
         return reverse('game', kwargs={'slug': obj.slug})
 
 
+class EstatikoakSitemap(Sitemap):
+    priority = 0.5
+    changefreq = 'weekly'
+
+    def items(self):
+        return ['euskarazko_jokoak','talde_motorra','minecraft_index','bloga']
+
+    def location(self, item):
+        return reverse(item)
+
 sitemaps = {
     'gameplayak': GamePlayaSitemap(),
     'berriak': BerriaSitemap(),
     'txapelketak': TxapelketaSitemap(),
-    'atalak': AtalaSitemap(),
-    'jokoak': JokoaSitemap()
+    'jokoak': JokoaSitemap(),
+    'estatikoak': EstatikoakSitemap(),
+    'flatpages': FlatPageSitemap()
 }

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load include gamerauntsia bootstrap %}
 
-{% block title %}Euskarazko bideo-jokoak - {% endblock %}
+{% block title %}Euskarazko bideojokoak - {% endblock %}
 
 {% block extracss %}
 <link href="{{STATIC_URL}}js/select2/css/select2.css" rel="stylesheet"/>
@@ -11,6 +11,7 @@
 {{ articleform.media }}
 <script src="{{STATIC_URL}}js/select2/js/select2.min.js"></script>
 <script type="text/javascript" src="{{STATIC_URL}}js/select2/js/i18n/eu.js"></script>
+<meta name="description" content="Entretenimendura zuzendutako euskarazko bideojokoen zerrenda."/>
 {% endblock %}
 
 {% block content%}
