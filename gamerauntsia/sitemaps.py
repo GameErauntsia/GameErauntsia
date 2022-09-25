@@ -7,7 +7,7 @@ from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.txapelketak.models import Txapelketa
 from gamerauntsia.getb.models import Atala
 from gamerauntsia.jokoa.models import Jokoa
-
+from gamerauntsia.joko_itzulpenak.models import ItzulpenProiektua
 
 class BerriaSitemap(Sitemap):
     changefreq = "never"
@@ -78,13 +78,26 @@ class JokoaSitemap(Sitemap):
     def location(self, obj):
         return reverse('game', kwargs={'slug': obj.slug})
 
+class ItzulpenProiektuaSitemap(Sitemap):
+    changefreq = "weekly"
+    priority = 0.5
+
+    def items(self):
+        return ItzulpenProiektua.objects.filter(publikoa_da=True).order_by('-eguneratze_data')
+
+    def lastmod(self, obj):
+        return obj.eguneratze_data
+
+    def location(self, obj):
+        return reverse('itzulpen_proiektua', kwargs={'slug': obj.slug})
+
 
 class EstatikoakSitemap(Sitemap):
     priority = 0.5
     changefreq = 'weekly'
 
     def items(self):
-        return ['euskarazko_jokoak','talde_motorra','minecraft_index','bloga']
+        return ['euskarazko_jokoak','talde_motorra','minecraft_index','berriak_index']
 
     def location(self, item):
         return reverse(item)
@@ -95,5 +108,6 @@ sitemaps = {
     'txapelketak': TxapelketaSitemap(),
     'jokoak': JokoaSitemap(),
     'estatikoak': EstatikoakSitemap(),
-    'flatpages': FlatPageSitemap()
+    'flatpages': FlatPageSitemap(),
+    'itzulpen_proiektuak': ItzulpenProiektuaSitemap()
 }
