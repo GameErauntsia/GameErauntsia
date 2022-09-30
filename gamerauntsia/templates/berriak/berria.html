@@ -1,5 +1,5 @@
-{% extends "berriak/index.html" %}
-{% load emoticons_tags include comments bootstrap_calendar ratings %}
+{% extends "base.html" %}
+{% load gamerauntsia emoticons_tags include comments ratings %}
 
 {% block morejs %}
     <meta property="fb:app_id" content="{{facebook_id}}" />
@@ -16,15 +16,6 @@
     <meta property="og:title" content="{{item.izenburua}}" />
     <meta property="og:image" content="https://gamerauntsia.eus{{item.argazkia.get_share_url}}" />
 
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/eu_ES/sdk.js#xfbml=1&version=v2.0";
-    fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-
     <script src="{{STATIC_URL}}js/fancybox/jquery.fancybox.pack.js"></script>
     <link href="{{STATIC_URL}}js/fancybox/jquery.fancybox.css" rel="stylesheet">
 
@@ -34,9 +25,6 @@
 
     <link rel="stylesheet" href="{{STATIC_URL}}star-ratings/css/star-ratings.css">
     <script type="text/javascript" src="{{STATIC_URL}}star-ratings/js/dist/star-ratings.min.js"></script>
-
-    <!-- {% bootstrap_calendar_css %} -->
-    <!-- {% bootstrap_calendar_js language="eu-ES"  %} -->
 
     <script type="application/ld+json">
     {
@@ -53,8 +41,8 @@
         "height": 300,
         "width": 900
       },
-      "datePublished": "{{item.pub_date}}",
-      "dateModified": "{{item.mod_date}}",
+      "datePublished": "{{item.pub_date|date:'c'}}",
+      "dateModified": "{{item.mod_date|date:'c'}}",
       "author": {
         "@type": "Person",
         "name": "{{item.erabiltzailea.getFullName}}"
@@ -77,25 +65,25 @@
 
 {% block title %}{{item.izenburua}} - Berriak - {% endblock %}
 
-{% block container%}
-
-        <!-- the actual blog post: title/author/date/content -->
+{% block content%}
+    <div class="row">
+      <div class="col-sm-8">
         <h1>{{item.izenburua}}</h1>
         <p class="lead">
-            <a href="{% url 'gamer_profile' item.erabiltzailea.username %}"><img src="{{item.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{item.erabiltzailea.getFullName}}</a> | <span class="glyphicon glyphicon-time"></span> {{item.pub_date|date:"Y/m/d H:i"}} {% for gai in item.gaia.all %}<span class="label label-success tags"><a href="{% url 'gaia' gai.slug %}">{{gai.izena}}</a></span>{% endfor %}
+          <a href="{% url 'gamer_profile' item.erabiltzailea.username %}"><img src="{{item.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{item.erabiltzailea.getFullName}}</a> | <span class="glyphicon glyphicon-time"></span> {{item.pub_date|date:"Y/m/d H:i"}} {% for gai in item.gaia.all %}<span class="label label-success tags"><a href="{% url 'gaia' gai.slug %}">{{gai.izena}}</a></span>{% endfor %}
         </p>
         <hr>
         {% if item.argazkia %}
         <a class="fancybox" href="{{item.argazkia.image.url}}">
-            <img src="{{item.argazkia.get_blog_url}}" class="img-responsive"/>
+          <img src="{{item.argazkia.get_blog_url}}" class="img-responsive"/>
         </a>
         <hr>
         {% endif %}
         {% if user.is_authenticated %}
         {% if user.is_superuser or user == item.erabiltzailea %}
         <div class="well">
-            <h3>Editatu berria</h3>
-            <a class="btn btn-default" href="/kudeatu/berriak/berria/{{item.id}}">Editatu</a>
+          <h3>Editatu berria</h3>
+          <a class="btn btn-default" href="/kudeatu/berriak/berria/{{item.id}}">Editatu</a>
         </div>
         {% endif %}
         {% endif %}
@@ -115,7 +103,16 @@
 
         {% render_comment_form for item %}
 
-
+      </div>
+      <div class="col-sm-4">
+        {% steam_panel %}
+        <div id="azkenErantzunak">
+            <h2>Azken erantzunak</h2>
+            {% azken_erantzunak %}
+        </div>
+        <iframe src="https://www.lehenhitza.eus/iframe_laukia" class="center-block" width="300" height="250" frameborder="0" scrolling="no"></iframe>
+      </div>
+    </div>
 {%endblock%}
 
 {% block footerjs %}
@@ -124,7 +121,6 @@
         $(".fancybox").fancybox();
     });
 </script>
-<!-- {% bootstrap_calendar_init language="eu-ES" %} -->
 {% endblock %}
 <!-- Matomo -->
 {% block matomo_pre_tracking %}
