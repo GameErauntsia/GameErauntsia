@@ -10,6 +10,7 @@ from gamerauntsia.jokoa.models import Jokoa
 from gamerauntsia.joko_itzulpenak.models import ItzulpenProiektua
 
 class BerriaSitemap(Sitemap):
+    protocol = "https"
     changefreq = "never"
     priority = 0.5
 
@@ -24,6 +25,7 @@ class BerriaSitemap(Sitemap):
 
 
 class GamePlayaSitemap(Sitemap):
+    protocol = "https"
     changefreq = "never"
     priority = 0.5
 
@@ -38,6 +40,7 @@ class GamePlayaSitemap(Sitemap):
 
 
 class TxapelketaSitemap(Sitemap):
+    protocol = "https"
     changefreq = "never"
     priority = 0.5
 
@@ -52,6 +55,7 @@ class TxapelketaSitemap(Sitemap):
 
 
 class AtalaSitemap(Sitemap):
+    protocol = "https"
     changefreq = "never"
     priority = 0.5
 
@@ -66,6 +70,7 @@ class AtalaSitemap(Sitemap):
 
 
 class JokoaSitemap(Sitemap):
+    protocol = "https"
     changefreq = "never"
     priority = 0.5
 
@@ -79,6 +84,7 @@ class JokoaSitemap(Sitemap):
         return reverse('game', kwargs={'slug': obj.slug})
 
 class ItzulpenProiektuaSitemap(Sitemap):
+    protocol = "https"
     changefreq = "weekly"
     priority = 0.5
 
@@ -93,6 +99,7 @@ class ItzulpenProiektuaSitemap(Sitemap):
 
 
 class EstatikoakSitemap(Sitemap):
+    protocol = "https"
     priority = 0.5
     changefreq = 'weekly'
 
