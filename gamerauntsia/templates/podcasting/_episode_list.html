@@ -5,7 +5,8 @@
 .modulo-lista .flip-container {
     overflow: hidden;
     border: 1px solid #eee;
-    border-radius: 8px
+    border-radius: 8px;
+    margin-top: 10px;
 }
 
 .wrapper-modulo-lista {
@@ -1571,18 +1572,20 @@ body.side-player #main {
                             <p class="title-wrapper text-ellipsis-multiple">
                                 <a href="{% url 'podcasting_episode_detail' show.slug episode.slug %}">{{ episode.title }}</a>
                             </p>
+
+                             <div class="d-flex align-items-center">
+                                <p class="time font-12">
+                                    {{ episode.published|date:"Y-m-d" }}
+                                </p>
+                            </div>
+
                             <p class="audio-description">
-                                {{ episode.description |truncatechars:100 }}
+                                {{ episode.description |truncatechars:300 }}
                                 <button class="btn btn-link info" data-toggle="popover-info" data-type="popover-info"
                                         data-content="Hoy C&amp;eacute;sar Vidal entrevistar&amp;aacute; a &amp;#381;eljko Petrovi&amp;#263; Zeki&amp;#263;, que nos lo contar&amp;aacute; todo sobre su libro: &quot;Sangre Serbia, coraz&amp;oacute;n espa&amp;ntilde;ol&quot; de la editorial SND Editores.Suscr&amp;iacute;bete a CesarVidal.TV y escucha este audio antes que nadie y sin publicidad: https://www.cesarvidal.tv"
                                         data-title="Descripción:" title="" data-original-title="Descripción">
                                 </button>
                             </p>
-                            <div class="d-flex align-items-center">
-                                <p class="time font-12">
-                                    {{ episode.published|date:"Y-m-d" }}
-                                </p>
-                            </div>
                         </div>
 
                         <div class="footer-modulo">
