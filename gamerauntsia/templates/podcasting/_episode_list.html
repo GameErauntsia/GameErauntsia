@@ -1,43 +1,1608 @@
 {% load i18n %}
 
+<style>
+
+.modulo-lista .flip-container {
+    overflow: hidden;
+    border: 1px solid #eee;
+    border-radius: 8px
+}
+
+.wrapper-modulo-lista {
+    margin-bottom: 50px
+}
+
+.modulo-lista>h2 {
+    margin-bottom: 12px;
+    margin-top: 30px
+}
+
+.modulo-view .header-modulo {
+    padding: 9px 9px 0 9px;
+    overflow: hidden;
+    height: 104px;
+    position: relative
+}
+
+.modulo-view .header-modulo .links {
+    padding: 0;
+    list-style: none;
+    font-size: 12px;
+    overflow: hidden;
+    margin: 20px 0 0 0
+}
+
+.modulo-view .header-modulo .links>li {
+    padding: 0 16px
+}
+
+.modulo-view .header-modulo .links>li:first-child {
+    padding-left: 0
+}
+
+@media(max-width: 768px) {
+    .modulo-view .header-modulo .links.links-xs-multiline>li {
+        float: none;
+        display: block
+    }
+    .modulo-view .header-modulo .links.links-xs-multiline>li+li {
+        border: none;
+        padding: 0
+    }
+}
+
+.modulo-view.modulo-type-canal .header-modulo {
+    margin-bottom: 5px
+}
+
+.modulo-view .header-modulo>img.main {
+    float: left;
+    max-width: 80px
+}
+
+.modulo-view .header-modulo>img.mini {
+    position: absolute;
+    top: 62px;
+    left: 62px
+}
+
+.modulo-view.modulo-type-lista .header-modulo>img {
+    border-radius: 50%
+}
+
+.modulo-view.modulo-type-user .header-modulo {
+    border-bottom: 1px solid #EEE;
+    height: 103px;
+    margin-bottom: 8px
+}
+
+.modulo-view.modulo-type-user .header-modulo .wrapper {
+    margin-top: 25px;
+    margin-left: 90px
+}
+
+.modulo-view.modulo-type-user .header-modulo>img {
+    border-radius: 50%;
+    border: 2px solid #EEE
+}
+
+.floated-links a {
+    float: left
+}
+
+.modulo-view.modulo-type-user .floated-links a {
+    margin-bottom: 5px;
+    margin-right: 5px
+}
+
+.modulo-view.modulo-type-user .floated-links a.more {
+    font-size: 12px;
+    color: #797979;
+    padding: 3px 10px
+}
+
+.modulo-view.modulo-type-lista .carousel-playlist-authors {
+    margin-top: 4px
+}
+
+.modulo-view.modulo-type-lista .carousel-playlist-authors .item a+a {
+    margin-left: 5px
+}
+
+.modulo-view .header-modulo .wrapper {
+    margin-left: 98px;
+    font-size: 13px;
+    line-height: 16px
+}
+
+.modulo-view .header-modulo .wrapper strong {
+    color: #FF8000;
+    display: block
+}
+
+.modulo-view .header-modulo .wrapper span {
+    font-size: 13px;
+    color: #212529
+}
+
+.modulo-view .header-modulo .remove {
+    position: absolute;
+    top: 10px;
+    right: 10px
+}
+
+.modulo-view .header-modulo .remove,
+.table-list .remove {
+    text-align: center;
+    height: 23px;
+    width: 23px;
+    border-radius: 50%;
+    border: none;
+    background: transparent
+}
+
+.modulo-view .header-modulo .remove:hover,
+.table-list .remove:hover {
+    background-color: #FF7E00
+}
+
+.modulo-view .header-modulo .remove:after,
+.table-list .remove:after {
+    content: "";
+    background: transparent url(https://static-1.ivoox.com/img/sprites.png) no-repeat -159px -151px;
+    width: 10px;
+    height: 12px;
+    display: block;
+    margin: 0 auto
+}
+
+.modulo-view .header-modulo .remove:hover:after,
+.table-list .remove:hover:after {
+    background-position: -174px -151px
+}
+
+.align-items-center {
+  align-items: center;
+}
+.d-flex {
+  display: flex !important;
+}
+
+.play {
+  left: 0px;
+  max-width: 100%;
+  position: absolute;
+  top: 9px;
+  z-index: 2;
+}
+
+.modulo-view .content {
+    padding: 0 12px 48px 12px;
+    height: 200px;
+    position: relative;
+    overflow: hidden
+}
+.modulo-view .content p.time, .modulo-view .content p.time + p {
+  margin-bottom: 0;
+  align-items: center;
+}
+.modulo-view .content p.time {
+  margin-right: 10px;
+}
+.modulo-view.modulo-type-canal .content {
+    height: auto;
+    padding-bottom: 10px
+}
+
+.modulo-view.modulo-type-user .content {
+    height: 100px;
+    padding-bottom: 10px
+}
+
+.modulo-view .content h4 {
+    font-size: 22px;
+    color: #444;
+    border-top: 1px solid #EEE;
+    margin-top: 0;
+    padding-top: 8px
+}
+
+.modulo-view.modulo-type-programa .content h4 {
+    height: auto
+}
+
+.modulo-view .content p {
+    font-size: 15px;
+    color: rgba(51, 51, 51, 0.52)
+}
+
+.modulo-view .content ul.action {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 1px solid #EEE;
+    height: 38px
+}
+
+.modulo-view .content ul.action,
+.suscripcion-header ul.action {
+    padding: 6px 0 0 0;
+    list-style: none;
+    overflow: hidden;
+    text-align: center;
+    font-size: 11px;
+    font-weight: bold;
+    color: #777;
+    font-family: Arial;
+    margin: 0
+}
+
+.modulo-view .content ul.action li {
+    width: 33.33%;
+    float: left;
+    position: relative
+}
+
+.suscripcion-header ul.action li {
+    float: left;
+    position: relative;
+    padding-right: 15px
+}
+
+.suscripcion-header ul.action li+li {
+    padding-left: 15px
+}
+
+.modulo-view .content ul.action.two-cols li {
+    width: 50%
+}
+
+.modulo-view .content ul.action li+li:after,
+.suscripcion-header ul.action li+li:after {
+    content: "";
+    border-left: 1px solid #CCC;
+    position: absolute;
+    left: 0;
+    height: 16px;
+    top: 5px
+}
+
+.modulo-view .content ul.action li a,
+.suscripcion-header ul.action li a {
+    color: #777
+}
+
+.modulo-view .content ul.action li:before,
+.table-list .date:before,
+.table-list .stair:before,
+.suscripcion-header ul.action li:before {
+    content: "";
+    background: transparent url(https://static-1.ivoox.com/img/sprites.png) no-repeat 0 0;
+    display: inline-block;
+    margin-right: 10px;
+    position: relative;
+    top: 4px
+}
+
+.modulo-view .content ul.action li.likes:before,
+.suscripcion-header ul.action li.likes:before {
+    background-position: -79px -176px;
+    width: 18px;
+    height: 20px
+}
+
+.modulo-view .content ul.action li.comments:before {
+    background-position: -51px -177px;
+    width: 18px;
+    height: 16px
+}
+
+.modulo-view .content ul.action li.date:before,
+.table-list .date:before,
+.suscripcion-header .content li.date:before {
+    background-position: -75px -155px;
+    width: 26px;
+    height: 17px
+}
+
+.modulo-view .content ul.action li.stair:before,
+.table-list .stair:before,
+.suscripcion-header ul.action li.stair:before {
+    background-position: -51px -229px;
+    width: 14px;
+    height: 16px
+}
+
+.modulo-view.modulo-type-episodio .title-wrapper {
+  height: 95px;
+  margin-top: 0;
+  line-height: 1.1;
+  margin-bottom: 0;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 56px;
+  min-height: 24px;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+.modulo-view .content .audio-description {
+  font-size: 12px;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 56px;
+  min-height: 20px;
+  display: -webkit-box;
+}
+
+.modulo-view .footer-modulo {
+    font-size: 14px;
+    color: #FFF;
+    font-weight: 600;
+    text-align: center;
+    position: relative;
+    width: 95%;
+    margin: 0 auto;
+    padding: 8px 0
+}
+
+.modulo-view .footer.gray-bg {
+    background-color: #AAA
+}
+
+.modulo-view .footer-modulo .mini-player {
+    display: none;
+    height: 5px;
+    background: #EEE;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+    right: 48px
+}
+
+.modulo-view .footer-modulo .mini-player>div {
+    background: #FF8000;
+    height: 100%
+}
+
+.modulo-view .footer.gray-bg .mini-player {
+    display: block
+}
+
+.modulo-view .footer-modulo .plus,
+.modulo-view .footer-modulo .config {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-left: 1px solid #FFF;
+    width: 20%;
+    height: 48px;
+    margin-top: 8px;
+    text-align: center;
+    background: #FF8000;
+    border-radius: 0 8px 8px 0
+}
+
+.header-ficha2 .player-bar .button .plus {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-left: 1px solid #FFF;
+    height: 47px;
+    text-align: center;
+    background: #FF8000;
+    border-radius: 0 8px 8px 0px;
+    display: flex;
+    padding: 0 4px
+}
+
+.modulo-view .footer-modulo .plus:before,
+.header-ficha2 .player-bar .button .plus:before,
+.modulo-view .footer-modulo .config:before {
+    content: "";
+    background: transparent url(https://static-1.ivoox.com/img/sprites.png) no-repeat -73px -210px;
+    width: 29px;
+    height: 26px;
+    display: block;
+    margin: 12px auto 0 auto
+}
+
+.modulo-view .footer-modulo .config:before {
+    background-position: -158px -308px;
+    width: 20px;
+    height: 20px
+}
+
+.modulo-view .footer-modulo .play a,
+.modulo-view .footer-modulo .stop a,
+.modulo-view .footer-modulo .buy a,
+.modulo-view .footer-modulo .listen a,
+.modulo-view .footer-modulo .follow a,
+.header-ficha2 .player-bar .button .play a,
+.header-ficha2 .player-bar .button .stop a {
+    display: inline-block;
+    position: relative;
+    color: #FFF
+}
+
+.modulo-view .footer-modulo .play .stop-txt,
+.header-ficha2 .player-bar .play .stop-txt {
+    display: none
+}
+
+.modulo-view .footer-modulo .stop .play-txt,
+.header-ficha2 .player-bar .stop .play-txt {
+    display: none
+}
+
+.modulo-view .footer-modulo .play,
+.modulo-view .footer-modulo .stop,
+.modulo-view .footer-modulo .listen,
+.modulo-view .footer-modulo .follow,
+.modulo-view .footer-modulo .buy {
+    padding: 14px;
+    height: auto;
+    border-radius: 8px;
+    background-color: #ff8000;
+    width: 100%
+}
+
+.modulo-view .footer-modulo .play:hover,
+.modulo-view .footer-modulo .stop:hover,
+.modulo-view .footer-modulo .listen:hover,
+.modulo-view .footer-modulo .follow:hover,
+.modulo-view .footer-modulo .buy:hover,
+.modulo-view .footer-modulo .plus:hover,
+.modulo-view .footer-modulo .config:hover {
+    background: #D96D00
+}
+
+.modulo-view .footer.gray-bg .stop:hover {
+    background: #999
+}
+
+.modulo-view .footer-modulo .play a:before,
+.modulo-view .footer-modulo .stop a:before,
+.modulo-view .footer-modulo .listen a:before,
+.modulo-view .footer-modulo .follow a:before,
+.header-ficha2 .player-bar .button .play a:before,
+.header-ficha2 .player-bar .button .stop a:before {
+    content: "";
+    background: transparent url(https://static-1.ivoox.com/img/sprites.png) no-repeat -37px -300px;
+    width: 34px;
+    height: 32px;
+    position: absolute;
+    left: -40px;
+    top: -6px
+}
+
+.header-ficha2 .player-bar .button .play a:before,
+.header-ficha2 .player-bar .button .stop a:before {
+    margin-left: 48px
+}
+
+.modulo-view .footer-modulo .stop a:before,
+.header-ficha2 .player-bar .button .stop a:before {
+    background-position: -1px -300px
+}
+
+.modulo-view .footer-modulo .listen a:before {
+    background-position: -130px -337px;
+    width: 22px;
+    height: 20px;
+    top: 0;
+    left: -35px
+}
+
+.modulo-view .footer-modulo .follow a:before {
+    background-position: -158px -339px;
+    width: 22px;
+    height: 18px;
+    top: 0;
+    left: -35px
+}
+
+.modulo-view .footer-modulo .buy {
+    padding-top: 14px;
+    font-size: 20px
+}
+
+.modulo-view .footer-modulo .buy a {
+    padding-left: 16px
+}
+
+.modulo-view .footer-modulo .buy a i {
+    font-size: 15px;
+    font-style: normal
+}
+
+.modulo-view .footer-modulo .buy a:before {
+    content: "";
+    background: transparent url(https://static-1.ivoox.com/img/sprites.png) no-repeat -74px -300px;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    left: -30px;
+    top: -2px
+}
+
+.modulo-view {
+    background: #FFF
+}
+
+.modulo-view-default {
+    background: #FFF;
+    font-size: 16px
+}
+
+.modulo-view-default .content {
+    padding: 10px
+}
+
+.modulo-view-default.slide {
+    position: absolute;
+    right: -100%;
+    width: 100%;
+    z-index: 3;
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out
+}
+
+.modulo-view-default.slide .form {
+    padding-top: 6px
+}
+
+.modulo-view-default.slide .form-control {
+    border-radius: 0;
+    height: 38px
+}
+
+.modulo-view-default.slide .form-group {
+    margin-bottom: 10px
+}
+
+.modulo-view-default.slide .btn {
+    padding: 13px 5px
+}
+
+.modulo-view-default.slide.active {
+    right: 0
+}
+
+.modulo-view-default .header-modulo {
+    border-bottom: 1px solid #EEE;
+    padding-top: 19px;
+    padding-left: 22px;
+    position: relative;
+    padding-bottom: 4px
+}
+
+.modulo-view-default .header-modulo h4 {
+    font-weight: 600;
+    color: #5F5F5F;
+    margin-top: 0;
+    font-size: 16px
+}
+
+.modulo-view-default .header-modulo h4 a {
+    color: #5F5F5F
+}
+
+.modulo-view-default .header-modulo h4.volver:before {
+    content: "";
+    background: transparent url(https://static-1.ivoox.com/img/sprites.png) no-repeat -75px -244px;
+    width: 9px;
+    height: 14px;
+    float: left;
+    margin-right: 10px
+}
+
+.modulo-view-default .header-modulo span.close {
+    background: transparent url(https://static-1.ivoox.com/img/sprites.png) no-repeat -53px -197px;
+    width: 14px;
+    height: 14px;
+    display: block;
+    position: absolute;
+    opacity: 1;
+    right: 10px;
+    top: 18px
+}
+
+@media(min-width: 768px) {
+    .modulo-view .content h4 {
+        height: 88px
+    }
+}
+
+.popover-lista .front {
+    background: #FFF;
+    border: 1px solid #CCC;
+    border-bottom: 2px solid #CCC
+}
+
+.popover-lista .modulo-view-default .header-modulo {
+    padding: 0
+}
+
+.popover-lista .modulo-view-default .header-modulo span.close {
+    top: 0
+}
+
+.popover-lista .modulo-view-default .content {
+    padding: 10px 0
+}
+
+.modulo-add-options .content ul,
+.popover-lista .popover-content .buttons {
+    padding: 0;
+    list-style: none;
+    margin: -10px -10px 0 -10px
+}
+
+.modulo-add-options .content ul li {
+    border-bottom: 1px solid #EEE;
+    padding: 12px 20px
+}
+
+.popover-lista .popover-content .buttons>li {
+    border-bottom: 1px solid #EEE;
+    padding: 12px 10px
+}
+
+.modulo-add-options .content ul li:hover {
+    background: #F8F8F8
+}
+
+.modulo-add-options .content ul li:before,
+.popover-lista .popover-content .buttons>li:before {
+    content: "";
+    background: transparent url(https://static-1.ivoox.com/img/sprites.png) no-repeat 0 0;
+    float: left;
+    margin-right: 10px
+}
+
+.popover.popover-lista {
+    width: 260px;
+    border-radius: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+    min-height: 200px
+}
+
+.popover.popover-lista .popover-content>div>.arrow,
+.popover.popover-lista .popover-content>div>.arrow:after {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: rgba(0, 0, 0, 0);
+    border-style: solid
+}
+
+.popover.popover-lista .popover-content>div>.arrow {
+    border-width: 11px;
+    top: 39%;
+    margin-top: -11px;
+    z-index: 1
+}
+
+.popover.popover-lista.left .popover-content>div>.arrow {
+    right: -11px;
+    border-right-width: 0;
+    border-left-color: rgb(153, 153, 153);
+    border-left-color: rgba(0, 0, 0, 0.25)
+}
+
+.popover.popover-lista.right .popover-content>div>.arrow {
+    left: -11px;
+    border-left-width: 0;
+    border-right-color: rgb(153, 153, 153);
+    border-right-color: rgba(0, 0, 0, 0.25)
+}
+
+.popover.popover-lista.left .popover-content>div>.arrow:after {
+    right: -9px;
+    bottom: -10px;
+    content: " ";
+    border-right-width: 0;
+    border-left-color: rgb(255, 255, 255);
+    border-width: 10px
+}
+
+.popover.popover-lista.right .popover-content>div>.arrow:after {
+    left: -9px;
+    bottom: -10px;
+    content: " ";
+    border-left-width: 0;
+    border-right-color: rgb(255, 255, 255);
+    border-width: 10px
+}
+
+.popover.popover-lista.left>.arrow {
+    right: -9px;
+    z-index: 1
+}
+
+.popover-lista .popover-content {
+    padding: 0;
+    background: #FFF
+}
+
+.popover-lista .popover-content .buttons {
+    padding: 15px 20px
+}
+
+.modulo-add-options .content ul li.new-list:before,
+.popover-lista .popover-content .buttons>li.new-list:before {
+    background-position: -111px -109px;
+    width: 19px;
+    height: 23px
+}
+
+.popover-lista .popover-content .buttons>li.new-list:hover:before,
+.popover-lista .popover-content .buttons>li.new-list.active:before {
+    background-position: -186px -2px
+}
+
+.modulo-add-options .content ul li.existing-list:before,
+.popover-lista .popover-content .buttons>li.existing-list:before {
+    background-position: -111px -138px;
+    width: 20px;
+    height: 23px
+}
+
+.popover-lista .popover-content .buttons>li.existing-list:hover:before,
+.popover-lista .popover-content .buttons>li.existing-list.active:before {
+    background-position: -186px -31px
+}
+
+.modulo-add-options .content ul li.favorites:before,
+.popover-lista .popover-content .buttons>li.favorites:before {
+    background-position: -111px -169px;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 3px
+}
+
+.popover-lista .popover-content .buttons>li.favorites:hover:before,
+.popover-lista .popover-content .buttons>li.favorites.active:before {
+    background-position: -186px -62px
+}
+
+.modulo-add-options .content ul li.listen-later:before,
+.popover-lista .popover-content .buttons>li.listen-later:before {
+    background-position: -111px -193px;
+    width: 18px;
+    height: 18px;
+    position: relative;
+    top: 4px
+}
+
+.modulo-add-options .content ul li.bloquear-list:before,
+.popover-lista .popover-content .buttons>li.bloquear-list:before {
+    background-position: -312px -252px;
+    width: 18px;
+    height: 18px;
+    position: relative;
+    top: 3px
+}
+
+.modulo-add-options .content ul li.dejar-list:before,
+.popover-lista .popover-content .buttons>li.dejar-list:before {
+    background-position: -314px -277px;
+    width: 18px;
+    height: 22px;
+    position: relative;
+    top: 3px
+}
+
+.popover-lista .popover-content .buttons>li.listen-later:hover:before,
+.popover-lista .popover-content .buttons>li.listen-later.active:before {
+    background-position: -186px -86px
+}
+
+.popover-lista .add-existing-list {
+    border-top: 1px solid #EEE
+}
+
+.popover-lista .add-existing-list ul {
+    padding: 0;
+    margin: 0;
+    list-style: none
+}
+
+.popover-lista .add-existing-list ul li {}
+
+.popover-lista .add-existing-list ul li a {
+    color: #525252;
+    font-size: 12px;
+    display: block;
+    padding: 12px 14px
+}
+
+.popover-lista .add-existing-list ul li a:hover {
+    background: #F8F8F8
+}
+
+.popover-lista .add-existing-list ul li+li>a {
+    border-top: 1px solid #EEE
+}
+
+.popover-lista .togglable {
+    display: none
+}
+
+.popover-lista .popover-content .back>div.togglable {
+    padding: 15px 14px 0 14px;
+    border-bottom: 2px solid #CCC
+}
+
+.popover-lista .popover-content .back {
+    border: 1px solid #CCC;
+    border-bottom: none
+}
+
+.popover-lista .popover-content .create-new-list input {
+    border-radius: 0;
+    height: 36px
+}
+
+.popover-lista .popover-content .success-msg {
+    font-size: 12px;
+    color: #525252;
+    padding: 15px 22px;
+    font-weight: bold;
+    border-top: 1px solid #EEE
+}
+
+.popover-lista .popover-content .success-msg span:before {
+    content: "";
+    background: transparent url(https://static-1.ivoox.com/img/sprites.png) no-repeat -161px -201px;
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 10px
+}
+
+.modulo-add-options .content ul li.queue:before,
+.popover-lista .popover-content .buttons>li.queue:before {
+    background-position: -109px -217px;
+    width: 21px;
+    height: 7px;
+    position: relative;
+    top: 9px
+}
+
+.popover-lista .popover-content .buttons>li.queue:hover,
+.popover-lista .popover-content .buttons>li.queue.active {
+    background-position: -184px -110px
+}
+
+.modulo-add-options .content ul li a,
+.popover-lista .popover-content .buttons>li>a {
+    color: #606060;
+    font-size: 16px;
+    font-weight: normal
+}
+
+.flip-container {
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -ms-perspective: 1000;
+    perspective: 1000;
+    -ms-transform: perspective(1000px);
+    -moz-transform: perspective(1000px);
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d
+}
+
+.flip-container.hover .back {
+    -webkit-transform: rotateY(0deg);
+    -moz-transform: rotateY(0deg);
+    -o-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    transform: rotateY(0deg)
+}
+
+.flip-container.hover .front {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg)
+}
+
+.no-csstransforms3d .flip-container.hover .front {
+    display: none
+}
+
+.no-csstransforms3d .flip-container.hover .back {}
+
+.flip-container,
+.front,
+.back {
+    width: 100%;
+    height: 370px
+}
+
+.flipper {
+    #-webkit-transition: 0.6s;
+    #-webkit-transform-style: preserve-3d;
+    #-ms-transition: 0.6s;
+    #-moz-transition: 0.6s;
+    #-moz-transform: perspective(1000px);
+    #-moz-transform-style: preserve-3d;
+    #-ms-transform-style: preserve-3d;
+    #transition: 0.6s;
+    #transform-style: preserve-3d;
+    position: relative;
+    height: auto
+}
+
+.front,
+.back {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transition: 0.6s;
+    -webkit-transform-style: preserve-3d;
+    -moz-transition: 0.6s;
+    -moz-transform-style: preserve-3d;
+    -o-transition: 0.6s;
+    -o-transform-style: preserve-3d;
+    -ms-transition: 0.6s;
+    -ms-transform-style: preserve-3d;
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+.front {
+    -webkit-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    z-index: 2
+}
+
+.back {
+    -webkit-transform: rotateY(-180deg);
+    -moz-transform: rotateY(-180deg);
+    -o-transform: rotateY(-180deg);
+    -ms-transform: rotateY(-180deg);
+    transform: rotateY(-180deg)
+}
+
+.wrapper-side-player {
+    background: #EEE;
+    width: 60px;
+    border-left: 1px solid #CCC;
+    text-align: center;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: 45px;
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    z-index: 1
+}
+
+@media(min-width: 768px) {
+    .wrapper-side-player.fixed {
+        position: fixed;
+        top: 0
+    }
+}
+
+.wrapper-side-player>.tiny-scrollbar {
+    height: 100%
+}
+
+.wrapper-side-player>.tiny-scrollbar>.scrollbar {
+    z-index: 1;
+    opacity: 0
+}
+
+.wrapper-side-player>.tiny-scrollbar>.viewport>.overview {
+    padding-bottom: 40px
+}
+
+.wrapper-side-player:hover>.tiny-scrollbar>.scrollbar {
+    opacity: 1
+}
+
+body.side-player-open .wrapper-side-player#side-player {
+    width: 320px;
+    display: block
+}
+
+.wrapper-side-player#side-player .banner .big {
+    display: none
+}
+
+body.side-player-open .wrapper-side-player#side-player .banner .mini {
+    display: none
+}
+
+body.side-player-open .wrapper-side-player#side-player .banner .big {
+    display: block
+}
+
+.wrapper-side-player .player-content {
+    border-left: 1px solid #FFF;
+    min-height: 100%;
+    padding: 17px 4px 0 4px
+}
+
+.wrapper-side-player .separator {
+    border-top: 1px solid #CCC;
+    border-bottom: 1px solid #FFF;
+    margin-bottom: 5px
+}
+
+.wrapper-side-player a.player-icon {
+    background: transparent url(https://static-1.ivoox.com/img/sprites.png) no-repeat 0 0;
+    display: block;
+    margin: 0 auto;
+    text-align: left;
+    text-indent: -3000px;
+    outline: none
+}
+
+.wrapper-side-player .toggle {
+    background: none
+}
+
+.wrapper-side-player .toggle span {
+    display: none
+}
+
+body.side-player-open .wrapper-side-player .toggle span {
+    display: inline
+}
+
+.wrapper-side-player .visible-open {
+    display: none !important
+}
+
+body.side-player-open .wrapper-side-player .visible-open {
+    display: block !important
+}
+
+.wrapper-side-player a.right-link {
+    float: right;
+    margin-top: -24px;
+    font-family: Arial;
+    font-size: 12px;
+    color: #777;
+    margin-right: 4px
+}
+
+.wrapper-side-player #scroll-lista {
+    margin-bottom: 7px
+}
+
+.wrapper-side-player .lista-item {
+    text-align: left;
+    padding: 3px;
+    overflow: hidden;
+    margin-bottom: 3px;
+    background: rgba(204, 204, 204, 0.33);
+    position: relative
+}
+
+.wrapper-side-player .lista-item a.img-wrapper {
+    width: 40px;
+    height: 40px;
+    float: left;
+    text-align: center
+}
+
+.wrapper-side-player .lista-item a.img-wrapper:hover {
+    background: #FF8000
+}
+
+.wrapper-side-player .lista-item a.img-wrapper:hover:before {
+    content: "";
+    background: transparent url(https://static-1.ivoox.com/img/sprites.png) no-repeat -97px -364px;
+    width: 11px;
+    height: 14px;
+    margin: 12px auto 0 auto;
+    display: block
+}
+
+.wrapper-side-player .lista-item a.img-wrapper:hover img {
+    display: none
+}
+
+.wrapper-side-player .lista-item a.img-wrapper img {
+    width: 100%;
+    height: 100%
+}
+
+.wrapper-side-player .lista-item .content {
+    margin-left: 47px;
+    font-size: 12px;
+    color: #777;
+    font-family: Arial;
+    padding-right: 15px
+}
+
+.wrapper-side-player .lista-item .content .drag-drop {
+    background: transparent url(https://static-1.ivoox.com/img/sprites.png) no-repeat -258px -121px;
+    width: 8px;
+    height: 29px;
+    display: block;
+    position: absolute;
+    right: 5px;
+    top: 8px
+}
+
+.player-toggle {
+    padding: 6px 10px
+}
+
+.player-toggle .icon {
+    background: transparent url(https://static-1.ivoox.com/img/sprites.png) no-repeat -108px -229px;
+    display: block;
+    width: 24px;
+    height: 22px
+}
+
+.wrapper-side-player .toggle:before {
+    content: "";
+    background: transparent url(https://static-1.ivoox.com/img/sprites.png) no-repeat -108px -229px;
+    display: block;
+    width: 26px;
+    height: 24px;
+    margin-bottom: 14px;
+    margin-left: auto;
+    margin-right: auto
+}
+
+body.side-player-open .wrapper-side-player .toggle:before {
+    float: left;
+    margin-right: 15px
+}
+
+body.side-player-open .wrapper-side-player .toggle {
+    text-indent: 0;
+    font-weight: 600;
+    color: rgba(33, 33, 33, 0.52);
+    padding-left: 13px;
+    margin-bottom: 16px;
+    display: block;
+    text-align: left
+}
+
+.wrapper-side-player h5 {
+    text-align: left;
+    font-weight: 600;
+    color: #212121;
+    margin-bottom: 8px
+}
+
+#side-player .banner {
+    margin-bottom: 14px
+}
+
+#side-player .banner img {
+    width: 100%
+}
+
+.wrapper-side-player .player-icon.prev {
+    background-position: -73px -263px;
+    width: 28px;
+    height: 28px;
+    margin-bottom: 15px
+}
+
+#side-player .pause,
+#side-player .play {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 15px
+}
+
+#side-player .pause:before,
+#side-player .play:before {
+    content: "Play"
+}
+
+#side-player .circle-progress {
+    display: none
+}
+
+@media(min-width: 768px) {
+    #side-player .pause.circle-progress-button,
+    #side-player .play.circle-progress-button {
+        background: transparent url(https://static-1.ivoox.com/img/circle-2.png) no-repeat 0 0
+    }
+    #side-player .circle-progress {
+        display: block
+    }
+    #side-player .pause:before,
+    #side-player .play:before {
+        content: none
+    }
+}
+
+#side-player .play {
+    background-position: -270px -107px
+}
+
+.wrapper-side-player .player-icon.next {
+    background-position: -106px -263px;
+    width: 30px;
+    height: 30px;
+    margin-bottom: 15px
+}
+
+#side-player .volume {
+    display: none
+}
+
+.wrapper-side-player .player-icon.mute {
+    background-position: -109px -41px;
+    width: 20px;
+    height: 16px;
+    margin-bottom: 10px
+}
+
+.wrapper-side-player .player-icon.shuffle {
+    background-position: -101px -342px;
+    width: 22px;
+    height: 19px
+}
+
+body.side-player-open .player-icon.pause {
+    background-position: -53px -337px;
+    width: 41px;
+    height: 41px
+}
+
+body.side-player-open .player-buttons {
+    overflow: hidden;
+    padding-left: 7px
+}
+
+body.side-player-open .player-buttons a {
+    margin: 0;
+    float: left
+}
+
+body.side-player-open .player-buttons a.prev,
+body.side-player-open .player-buttons a.next {
+    margin-top: 5px
+}
+
+body.side-player-open .player-buttons a.pause,
+body.side-player-open .player-buttons a.play {
+    margin-left: 5px;
+    margin-right: 3px
+}
+
+body.side-player-open .player-buttons a.shuffle {
+    margin-top: 11px;
+    margin-left: 16px
+}
+
+body.side-player-open .player-buttons a.mute {
+    margin-top: 12px;
+    margin-left: 30px;
+    margin-right: 4px;
+    width: 22px
+}
+
+.wrapper-side-player .current-play {
+    margin-top: 10px;
+    position: relative
+}
+
+.wrapper-side-player .current-play img {
+    float: left;
+    width: 55px;
+    height: 55px
+}
+
+.wrapper-side-player .current-play .content {
+    margin-left: 64px;
+    text-align: left;
+    line-height: 16px;
+    padding-right: 25px
+}
+
+.wrapper-side-player .current-play .share {
+    background-position: -111px -300px;
+    width: 17px;
+    height: 17px;
+    position: absolute;
+    right: 5px;
+    top: -3px
+}
+
+.wrapper-side-player .player-timebar {
+    margin-bottom: 5px
+}
+
+.wrapper-side-player .player-buttons .slider.slider-horizontal,
+body.side-player-open .wrapper-side-player .player-buttons .slider.slider-vertical {
+    display: none
+}
+
+body.side-player-open .wrapper-side-player .player-buttons .slider.slider-horizontal {
+    display: block
+}
+
+.wrapper-side-player .player-buttons .slider.slider-vertical {
+    width: 6px;
+    height: 90px;
+    margin-bottom: 10px
+}
+
+.wrapper-side-player .player-buttons .slider.slider-horizontal {
+    width: 73px !important;
+    height: 6px;
+    margin-top: 18px;
+    float: left;
+    margin-left: 7px
+}
+
+.wrapper-side-player .player-buttons .slider.slider-vertical .slider-track {
+    width: 6px;
+    background: #CCC;
+    margin-left: -3px
+}
+
+.wrapper-side-player .player-buttons .slider.slider-horizontal .slider-track {
+    height: 6px;
+    background: #CCC
+}
+
+.wrapper-side-player .player-buttons .slider .slider-selection {
+    background: #FF8000
+}
+
+.wrapper-side-player .slider .slider-handle {
+    width: 10px;
+    height: 10px;
+    background: #888;
+    margin-left: -2px
+}
+
+.wrapper-side-player .slider.slider-vertical .slider-handle {
+    margin-top: -5px
+}
+
+.wrapper-side-player .slider.slider-horizontal .slider-handle {
+    margin-top: -2px
+}
+
+body.side-player #main .container,
+body.side-player-open #main .container {
+    max-width: 100%
+}
+
+body.side-player-open #main {
+    overflow: hidden;
+    position: relative;
+    left: -250px
+}
+
+body.side-player #main {
+    margin-right: 60px;
+    overflow: hidden
+}
+
+@media(max-width: 767px) {
+    body.side-player #main {
+        margin-right: 0
+    }
+    body.side-player-open #main {
+        display: none
+    }
+    body.side-player-open .wrapper-side-player#side-player {
+        width: 100%;
+        right: 0
+    }
+    .wrapper-side-player {
+        top: 0;
+        width: 0
+    }
+    #side-player .banner img.mini {
+        display: none
+    }
+    .wrapper-side-player#side-player .banner .big {
+        display: block
+    }
+    body {
+        overflow-x: hidden
+    }
+    .wrapper-side-player {
+        transition: all 0.4s ease-in-out
+    }
+    .wrapper-side-player .player-icon.prev {
+        background-position: -211px -6px;
+        width: 52px;
+        height: 52px
+    }
+    body.side-player-open #side-player .player-buttons a.pause,
+    body.side-player-open #side-player .player-buttons a.play {
+        width: 54px;
+        height: 54px;
+        margin: 0
+    }
+    body.side-player-open #side-player .player-buttons a.pause {
+        background-position: -188px -121px
+    }
+    body.side-player-open #side-player .player-buttons a.play {
+        background-position: -294px -7px
+    }
+    body.side-player-open #side-player .player-buttons a.player-icon.next {
+        background-position: -211px -63px;
+        width: 52px;
+        height: 52px
+    }
+    body.side-player-open #side-player .player-buttons a.player-icon.shuffle {
+        background-position: -191px -178px;
+        width: 40px;
+        height: 35px;
+        position: relative;
+        top: 10px;
+        margin-left: 0
+    }
+    .wrapper-side-player .player-icon.prev,
+    body.side-player-open #side-player .player-buttons a.pause,
+    body.side-player-open #side-player .player-buttons a.play,
+    body.side-player-open #side-player .player-buttons a.player-icon.next,
+    body.side-player-open #side-player .player-buttons a.player-icon.shuffle {
+        margin-left: 10px;
+        margin-right: 10px;
+        float: none;
+        display: inline-block !important
+    }
+    body.side-player-open #side-player .player-buttons a.player-icon.mute {
+        background-position: -189px -218px;
+        width: 32px;
+        height: 28px;
+        clear: both;
+        margin-top: 20px
+    }
+    body.side-player-open .player-buttons a.prev,
+    body.side-player-open .player-buttons a.next {
+        margin-top: 0;
+        text-align: center
+    }
+    .wrapper-side-player .player-buttons .slider.slider-horizontal {
+        height: 20px;
+        width: 250px !important;
+        margin-left: 25px
+    }
+    .wrapper-side-player .player-buttons .slider.slider-horizontal .slider-track {
+        height: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 5px #9E9E9E
+    }
+    .wrapper-side-player .player-buttons .slider .slider-selection {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px
+    }
+    .wrapper-side-player .slider.slider-horizontal .slider-handle {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #fff;
+        opacity: 1;
+        margin-top: 10px;
+        top: -20px;
+        box-shadow: 0px 4px 5px #9E9E9E;
+        margin-left: -20px
+    }
+    body.side-player-open .player-buttons {
+        padding-left: 0;
+        padding-bottom: 30px
+    }
+}
+
+@media(min-width: 1200px) {
+    body.side-player-open #main {
+        position: static;
+        margin-right: 320px
+    }
+    .carousel-preview .container {
+        width: 1124px;
+        margin: 0 auto
+    }
+}
+
+
+
+
+</style>
+
+
+<div class="row">&nbsp;</div>
+
 {% if episode_list %}
-    <div class="episode-list">
-        {% for episode in episode_list %}
-            <div class="podcast-episode mod">
-                <h2><a href="{% url 'podcasting_episode_detail' show.slug episode.slug %}">{{ episode.title }}</a></h2>
-                <div class="row">
-                    <div class="col-sm-8">
-                        <div class="row">
-                            <p>{{ episode.description }}</p>
-                            {% for enclosure in episode.enclosure_set.all %}
-                                {% if enclosure.mime == 'mp3' %}
-                                    <div class="col-sm-12">
-                                        <audio controls>
-                                            <source src="{{ enclosure.url }}" type="audio/mpeg">
-                                        </audio>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        {{ episode.published|date:"Y-m-d" }}
-                                        <a href="{{ enclosure.url }}" class="tiptip download"
-                                            title="{% trans "to download right click and select 'save link as'" %}">
-                                            {% trans "Download / Stream" %}
-                                        </a>
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
+<div class="row modulo-lista">
+    {% for episode in episode_list %}
+    <!--        {% if forloop.counter0|divisibleby:3 %}-->
+    <!--            <div class="col-xs-12 col-sm-6 col-md-4">-->
+    <!--        {% endif %}-->
+    <div class="col-xs-12 col-sm-6 col-md-4">
+        <div class="flip-container">
+            <div class="flipper" style="height: 368px;">
+                <div class="flipper" style="height: 368px;">
+                    <div class="front modulo-view modulo-type-episodio radius-sm" style="height: 368px;">
+                        <div class="header-modulo">
+                            <a href="">
+                                <img class="img-rounded center-block main lozad radius-sm img-hover"
+                                     src="{{ show.original_image.get_videoprofile_url }}" alt="{{ show.title }}"
+                                     class="left"/>
+                            </a>
+                            <div class="wrapper">
+                                <span>Atala</span><br>
+                                <a href="{% url 'podcasting_episode_detail' show.slug episode.slug %}"
+                                   title="{{ show.title }}">
+                                    <strong>
+                                        {{ show.title }} podcastean
+                                    </strong>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-2">
-                        {% load embed_video_tags %}
-                        {% for myvideo in episode.embedmedia_set.all %}
-                            {% video myvideo.url "340x200" %}
-                        {% endfor %}
+
+                        <div class="content">
+                            <p class="title-wrapper text-ellipsis-multiple">
+                                <a href="{% url 'podcasting_episode_detail' show.slug episode.slug %}">{{ episode.title }}</a>
+                            </p>
+                            <p class="audio-description">
+                                {{ episode.description |truncatechars:100 }}
+                                <button class="btn btn-link info" data-toggle="popover-info" data-type="popover-info"
+                                        data-content="Hoy C&amp;eacute;sar Vidal entrevistar&amp;aacute; a &amp;#381;eljko Petrovi&amp;#263; Zeki&amp;#263;, que nos lo contar&amp;aacute; todo sobre su libro: &quot;Sangre Serbia, coraz&amp;oacute;n espa&amp;ntilde;ol&quot; de la editorial SND Editores.Suscr&amp;iacute;bete a CesarVidal.TV y escucha este audio antes que nadie y sin publicidad: https://www.cesarvidal.tv"
+                                        data-title="Descripción:" title="" data-original-title="Descripción">
+                                </button>
+                            </p>
+                            <div class="d-flex align-items-center">
+                                <p class="time font-12">
+                                    {{ episode.published|date:"Y-m-d" }}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="footer-modulo">
+                            <div class="play">
+                                <a href="{% url 'podcasting_episode_detail' show.slug episode.slug %}">Entzun</a>
+                            </div>
+                            <div class="mini-player">
+                                <div style="width: 25%;"></div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
-            {% if not forloop.last %}<hr/>{% endif %}
-        {% endfor %}
+        </div>
     </div>
-{% else %}
-    <h2>{% trans "Coming soon..." %}</h2>
-{% endif %}
+
+    <!--        {% if forloop.counter|divisibleby:3 or forloop.last %}-->
+    <!--            </div>&lt;!&ndash;col-xs-12 col-sm-6 col-md-4&ndash;&gt;-->
+    <!--        {% endif %}-->
+    {% endfor %}
+    {% endif %}
+</div>
