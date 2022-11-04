@@ -21,100 +21,21 @@
   float: left;
   width: 159px;
 }
-
-
-.header-ficha2 .top-header .cont-img {
-  float: left;
-  width: 159px;
-}
-
-.header-ficha2 .top-header img.main {
-  width: 141px;
-  height: 141px;
-}
-.header-ficha2 .top-header img.main {
-  width: 141px;
-  height: 141px;
-  border-radius: 8px;
-}
-.header-ficha2 .top-header img.main {
-  width: 94px;
-  height: 94px;
-  border-radius: 8px;
-}
-.header-ficha2 .top-header img.main {
-  width: 94px;
-  height: 94px;
-  float: left;
-  margin-right: 18px;
-}
-.elevate-2 {
-  box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.20), 0 4px 8px -2px rgba(0,0,0,0.25);
-}
-img {
-  vertical-align: middle;
-}
-img {
-  border: 0;
-}
-.header-ficha2 .breadcrumb {
-  padding: 0;
-  background: none;
-  margin-bottom: 15px;
-}
-.breadcrumb {
-  padding: 8px 15px;
-  margin-bottom: 20px;
-  list-style: none;
-  background-color: #f5f5f5;
-  border-radius: 4px;
-}
-.header-ficha2 .breadcrumb > li {
-  color: #999;
-}
-.breadcrumb > li {
-  display: inline-block;
-}
-.header-ficha2 .breadcrumb > li > a {
-  color: #999;
-}
-
-.header-ficha2 .top-header .cont-text {
-  width: 76%;
-  float: left;
-}
 .header-ficha2 .cont-text .title {
   display: inline-flex;
 }
 
-.header-ficha2 .cont-text .title h1 {
-  margin-bottom: 0;
-}
-.header-ficha h1 {
-  font-size: 25px;
-  font-weight: 600;
-  color: #444;
-}
-.header-ficha h1 {
-  font-size: 30px;
-  font-weight: 600;
-  color: #444;
-}
-.header-ficha2 h1 {
-  margin-top: 0px;
-  color: #444;
-  font-weight: 600;
-  font-size: 24px !important;
+.cont-text {
+  width: 76%;
+  float: left;
 }
 
-.header-ficha2 ul.mini-navbar {
+.cont-text .title {
+  display: inline-flex;
+}
+ul.mini-navbar {
   color: #777;
   margin-top: 12px;
-}
-
-ul.mini-navbar {
-  margin: 0 0 10px 0;
-    margin-top: 0px;
 }
 ul.mini-navbar {
   font-family: Arial;
@@ -126,36 +47,6 @@ ul.mini-navbar {
   overflow: hidden;
 }
 
-
-.header-ficha2 .player-bar {
-  margin-bottom: 27px;
-}
-
-.header-ficha2 .player-bar {
-  padding-left: 321px;
-}
-
-.header-ficha2 .player-bar {
-  margin-top: 20px;
-  padding-left: 206px;
-  margin-bottom: 18px;
-}
-
-
-.header-ficha2 .player-bar .button {
-  width: 312px;
-  margin-left: -321px;
-  border-radius: 8px;
-}
-.header-ficha2 .player-bar .button {
-  background: #FF8000;
-  float: left;
-  margin-left: -206px;
-  width: 196px;
-  height: 47px;
-  padding-top: 14px;
-  position: relative;
-}
 </style>
 
 {% if episode %}
@@ -169,7 +60,8 @@ ul.mini-navbar {
                     <div class="top-header clearfix">
                         <div>
                             <div class="cont-img">
-                                <img src="{{ show.original_image.get_videoprofile_url }}" alt="{{show.title}} irudia">
+                                <img class="main lozad elevate-2"
+                                     src="{{ show.original_image.get_videoprofile_url }}" alt="{{ show.title }}" />
                             </div>
                             <div class="cont-breadcrumb">
                                 {{show.title}}
@@ -192,15 +84,14 @@ ul.mini-navbar {
                     </div>
 
                     <div id="jp_container_1" class="player-bar player-bar-xs jp-audio">
-                        <div class="button">
-<!--                        <a href="{{ enclosure.url }}" class="tiptip download"-->
-<!--                                    title="{% trans "to download right click and select 'save link as'" %}">-->
-<!--                                    {% trans "Download / Stream" %}-->
-<!--                                </a>-->
-<!--                        </div>-->
-                            <audio controls>
-                                    <source src="{{ enclosure.url }}" type="audio/mpeg">
-                                </audio>
+                        
+                        <a href="{{ enclosure.url }}" class="tiptip download" title="{% trans "to download right click and select 'save link as'" %}">
+                            {% trans "Download / Stream" %}
+                        </a>
+                        <br/>
+                        <audio controls>
+                            <source src="{{ enclosure.url }}" type="audio/mpeg">
+                        </audio>
                     </div>
                 </div>
             </div>
