@@ -3,12 +3,13 @@ on:
 - pull_request_target
 
 jobs:
-  triage:
-    permissions:
-      contents: read
-      pull-requests: write
+  labeler:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/labeler@v4
-      with:
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Check out the repository
+        uses: actions/checkout@v2.3.4
+
+      - name: Run Labeler
+        uses: crazy-max/ghaction-github-labeler@v3.1.1
+        with:
+          skip-delete: true
