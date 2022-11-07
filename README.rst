@@ -36,4 +36,4 @@ http://game-erauntsia.readthedocs.org
 
 Contact
 -------
-You will find us on twitter `@gamerauntsia <http://twitter.com/gamerauntsia>`_ or you can email us to gamerauntsia@gmail.com.
+You will find us on twitter `@gamerauntsia <http://twitter.com/gamerauntsia>`_ or you can email us to bulegoa at gamerauntsia.eus.
