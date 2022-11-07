@@ -3,9 +3,14 @@ Game Erauntsia
 
 .. badges-begin
 
-|Travis| |Coveralls| |Docs| |License|
+|Language| |License|
 
-.. |Travis| image:: https://travis-ci.com/GameErauntsia/GameErauntsia.svg?branch=master
+|Travis| |Coveralls| |Docs|
+
+.. |Language| image:: https://img.shields.io/github/languages/top/gameerauntsia/gameerauntsia
+    :alt: Language
+
+.. |Travis| image:: https://img.shields.io/travis/com/gameerauntsia/gameerauntsia/master?logo=travis
     :target: https://travis-ci.com/GameErauntsia/GameErauntsia
     :alt: Travis CI
 
