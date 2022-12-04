@@ -6,33 +6,37 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('jokoa', '0008_auto_20220604_1709'),
+        ("jokoa", "0008_auto_20220604_1709"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='garatzailea',
-            name='email',
+            model_name="garatzailea",
+            name="email",
             field=models.EmailField(blank=True, max_length=254, null=True),
         ),
         migrations.AddField(
-            model_name='garatzailea',
-            name='facebook_id',
+            model_name="garatzailea",
+            name="facebook_id",
             field=models.CharField(blank=True, max_length=100, null=True),
         ),
         migrations.AddField(
-            model_name='garatzailea',
-            name='phone',
-            field=models.CharField(blank=True, max_length=25, null=True, verbose_name='Telefonoa'),
+            model_name="garatzailea",
+            name="phone",
+            field=models.CharField(
+                blank=True, max_length=25, null=True, verbose_name="Telefonoa"
+            ),
         ),
         migrations.AddField(
-            model_name='garatzailea',
-            name='twitter_id',
+            model_name="garatzailea",
+            name="twitter_id",
             field=models.CharField(blank=True, max_length=100, null=True),
         ),
         migrations.AddField(
-            model_name='garatzailea',
-            name='ytube_channel',
-            field=models.CharField(blank=True, max_length=150, null=True, verbose_name='Youtube kanala'),
+            model_name="garatzailea",
+            name="ytube_channel",
+            field=models.CharField(
+                blank=True, max_length=150, null=True, verbose_name="Youtube kanala"
+            ),
         ),
     ]

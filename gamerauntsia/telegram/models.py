@@ -12,8 +12,8 @@ class TelegramGroup(models.Model):
     is_public = models.BooleanField(default=True)
 
     class Meta:
-        verbose_name = 'Telegram taldea'
-        verbose_name_plural = 'Telegram taldeak'
+        verbose_name = "Telegram taldea"
+        verbose_name_plural = "Telegram taldeak"
 
     def __str__(self):
-        return '%s' % self.izena
+        return "%s" % self.izena

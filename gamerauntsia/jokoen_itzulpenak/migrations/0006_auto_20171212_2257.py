@@ -8,17 +8,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('jokoen_itzulpenak', '0005_euskarazkojokoa_online_url'),
+        ("jokoen_itzulpenak", "0005_euskarazkojokoa_online_url"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='itzulpena',
-            name='instalazioa',
+            model_name="itzulpena",
+            name="instalazioa",
         ),
         migrations.AddField(
-            model_name='euskarazkojokoa',
-            name='instalazioa',
+            model_name="euskarazkojokoa",
+            name="instalazioa",
             field=models.TextField(blank=True),
         ),
     ]

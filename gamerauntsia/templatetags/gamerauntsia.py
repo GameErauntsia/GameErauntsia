@@ -17,11 +17,19 @@ def get_urlxml(url):
 
 def steam_panel():
     try:
-        steam_group = dict(dict(get_urlxml('http://steamcommunity.com/groups/gamerauntsia/memberslistxml/')['memberList'])['groupDetails'])
-        return {'steam_group': steam_group}
+        steam_group = dict(
+            dict(
+                get_urlxml(
+                    "http://steamcommunity.com/groups/gamerauntsia/memberslistxml/"
+                )["memberList"]
+            )["groupDetails"]
+        )
+        return {"steam_group": steam_group}
     except:
-        return {'steam_group': None}
-register.inclusion_tag('steam_panel.html')(steam_panel)
+        return {"steam_group": None}
+
+
+register.inclusion_tag("steam_panel.html")(steam_panel)
 
 
 @register.filter
@@ -33,8 +41,9 @@ def check_seen(obj, user):
 def get_photo_url(obj_id):
     return Photo.objects.get(id=obj_id).get_newsprofile_url()
 
+
 @register.simple_tag(takes_context=True)
 def replace_query_param(context, attr, val):
-    dict_ = context['request'].GET.copy()
+    dict_ = context["request"].GET.copy()
     dict_[attr] = val
     return dict_.urlencode()

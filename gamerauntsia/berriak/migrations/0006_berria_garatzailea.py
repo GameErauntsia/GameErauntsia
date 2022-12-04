@@ -7,14 +7,20 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('jokoa', '0005_auto_20220530_1818'),
-        ('berriak', '0005_auto_20210629_1628'),
+        ("jokoa", "0005_auto_20220530_1818"),
+        ("berriak", "0005_auto_20210629_1628"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='berria',
-            name='garatzailea',
-            field=models.ForeignKey(blank=True, help_text='Artikulu honek garatzaile zehaz batekin loturarik badu, adierazi hemen. Jokoa adierazten bada ez da beharrezkoa.', null=True, on_delete=django.db.models.deletion.SET_NULL, to='jokoa.Garatzailea'),
+            model_name="berria",
+            name="garatzailea",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="Artikulu honek garatzaile zehaz batekin loturarik badu, adierazi hemen. Jokoa adierazten bada ez da beharrezkoa.",
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="jokoa.Garatzailea",
+            ),
         ),
     ]

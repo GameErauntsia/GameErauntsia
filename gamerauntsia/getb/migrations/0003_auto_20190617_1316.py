@@ -7,13 +7,15 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('getb', '0002_auto_20170606_1724'),
+        ("getb", "0002_auto_20170606_1724"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='atala',
-            name='argazkia',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='photologue.Photo'),
+            model_name="atala",
+            name="argazkia",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT, to="photologue.Photo"
+            ),
         ),
     ]

@@ -3,8 +3,12 @@ from .models import TelegramGroup
 
 
 class TelegramAdmin(admin.ModelAdmin):
-    list_display = ['izena', ]
-    ordering = ['izena', ]
+    list_display = [
+        "izena",
+    ]
+    ordering = [
+        "izena",
+    ]
 
 
 admin.site.register(TelegramGroup, TelegramAdmin)

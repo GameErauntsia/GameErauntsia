@@ -11,18 +11,22 @@ from django.utils.timezone import utc
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('bazkidetza', '0001_initial'),
+        ("bazkidetza", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='bazkidea',
-            name='expire_date',
-            field=models.DateTimeField(default=datetime.datetime(2018, 6, 6, 15, 24, 11, 737338, tzinfo=utc)),
+            model_name="bazkidea",
+            name="expire_date",
+            field=models.DateTimeField(
+                default=datetime.datetime(2018, 6, 6, 15, 24, 11, 737338, tzinfo=utc)
+            ),
         ),
         migrations.AlterField(
-            model_name='oparitzekojokoak',
-            name='pub_date',
-            field=models.DateTimeField(default=django.utils.timezone.now, verbose_name='publikazio data'),
+            model_name="oparitzekojokoak",
+            name="pub_date",
+            field=models.DateTimeField(
+                default=django.utils.timezone.now, verbose_name="publikazio data"
+            ),
         ),
     ]

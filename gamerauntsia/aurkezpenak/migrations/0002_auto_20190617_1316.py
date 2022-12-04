@@ -8,13 +8,15 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('aurkezpenak', '0001_initial'),
+        ("aurkezpenak", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='aurkezpena',
-            name='erabiltzailea',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to=settings.AUTH_USER_MODEL),
+            model_name="aurkezpena",
+            name="erabiltzailea",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT, to=settings.AUTH_USER_MODEL
+            ),
         ),
     ]

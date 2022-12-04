@@ -17,18 +17,53 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='MC_Whitelist',
+            name="MC_Whitelist",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('mc_user', models.CharField(max_length=64, verbose_name='MC Erabiltzailea')),
-                ('uuid', models.CharField(blank=True, max_length=64, null=True, verbose_name='UUID')),
-                ('rol', models.CharField(choices=[('n', 'Normal'), ('v', 'VIP'), ('a', 'Administrator')], default='n', max_length=1)),
-                ('created', models.DateTimeField(auto_now_add=True, verbose_name='Sortze data')),
-                ('user', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='GE Erabiltzailea')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "mc_user",
+                    models.CharField(max_length=64, verbose_name="MC Erabiltzailea"),
+                ),
+                (
+                    "uuid",
+                    models.CharField(
+                        blank=True, max_length=64, null=True, verbose_name="UUID"
+                    ),
+                ),
+                (
+                    "rol",
+                    models.CharField(
+                        choices=[("n", "Normal"), ("v", "VIP"), ("a", "Administrator")],
+                        default="n",
+                        max_length=1,
+                    ),
+                ),
+                (
+                    "created",
+                    models.DateTimeField(auto_now_add=True, verbose_name="Sortze data"),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="GE Erabiltzailea",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'MC Erabiltzailea',
-                'verbose_name_plural': 'MC Erabiltzaileak',
+                "verbose_name": "MC Erabiltzailea",
+                "verbose_name_plural": "MC Erabiltzaileak",
             },
         ),
     ]

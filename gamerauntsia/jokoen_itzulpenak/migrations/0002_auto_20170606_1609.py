@@ -9,36 +9,41 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('jokoa', '0003_auto_20170606_1607'),
-        ('jokoen_itzulpenak', '0001_initial'),
+        ("jokoa", "0003_auto_20170606_1607"),
+        ("jokoen_itzulpenak", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='euskarazkojokoa',
-            name='plataforma',
+            model_name="euskarazkojokoa",
+            name="plataforma",
         ),
         migrations.RemoveField(
-            model_name='itzulpena',
-            name='jokoa',
+            model_name="itzulpena",
+            name="jokoa",
         ),
         migrations.RemoveField(
-            model_name='itzulpena',
-            name='plataforma',
+            model_name="itzulpena",
+            name="plataforma",
         ),
         migrations.AddField(
-            model_name='euskarazkojokoa',
-            name='itzulpena',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='jokoen_itzulpenak.Itzulpena'),
+            model_name="euskarazkojokoa",
+            name="itzulpena",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="jokoen_itzulpenak.Itzulpena",
+            ),
         ),
         migrations.AddField(
-            model_name='itzulpena',
-            name='instalazioa',
+            model_name="itzulpena",
+            name="instalazioa",
             field=models.TextField(blank=True),
         ),
         migrations.AlterField(
-            model_name='itzulpena',
-            name='izena',
-            field=models.CharField(max_length=150, verbose_name='Fitxategi izena'),
+            model_name="itzulpena",
+            name="izena",
+            field=models.CharField(max_length=150, verbose_name="Fitxategi izena"),
         ),
     ]

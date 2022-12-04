@@ -6,25 +6,39 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('jokoa', '0006_jokoa_karatula'),
+        ("jokoa", "0006_jokoa_karatula"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Generoa',
+            name="Generoa",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('izena', models.CharField(max_length=64)),
-                ('slug', models.SlugField(help_text='Eremu honetan etiketa honen URL helbidea zehazten ari zara.', unique=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("izena", models.CharField(max_length=64)),
+                (
+                    "slug",
+                    models.SlugField(
+                        help_text="Eremu honetan etiketa honen URL helbidea zehazten ari zara.",
+                        unique=True,
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Generoa',
-                'verbose_name_plural': 'Generoak',
+                "verbose_name": "Generoa",
+                "verbose_name_plural": "Generoak",
             },
         ),
         migrations.AddField(
-            model_name='jokoa',
-            name='generoak',
-            field=models.ManyToManyField(blank=True, null=True, to='jokoa.Generoa'),
+            model_name="jokoa",
+            name="generoak",
+            field=models.ManyToManyField(blank=True, null=True, to="jokoa.Generoa"),
         ),
     ]

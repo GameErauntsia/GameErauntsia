@@ -3,29 +3,37 @@ from django.utils.safestring import mark_safe
 
 register = template.Library()
 
+
 @register.filter
 def breadcrumbs(url):
-    home = ['<strong>Hemen zaude</strong>: <a href="/" title="Sarrera orrira lotura">Sarrera</a> &raquo;',]
-    links = url.strip('/').split('/')
+    home = [
+        '<strong>Hemen zaude</strong>: <a href="/" title="Sarrera orrira lotura">Sarrera</a> &raquo;',
+    ]
+    links = url.strip("/").split("/")
     bread = []
-    total = len(links)-1
+    total = len(links) - 1
     for i, link in enumerate(links):
-        if not link == '':
+        if not link == "":
             bread.append(link)
             this_url = "/".join(bread)
-            sub_link = link.replace('-',' ').replace('?','').replace('=',', ')
+            sub_link = link.replace("-", " ").replace("?", "").replace("=", ", ")
             sub_link = sub_link.title()
             if not i == total:
-                tlink = '<a href="/%s/" title="%s orrira lotura">%s</a> &raquo;' % (this_url, sub_link, sub_link)
+                tlink = '<a href="/%s/" title="%s orrira lotura">%s</a> &raquo;' % (
+                    this_url,
+                    sub_link,
+                    sub_link,
+                )
             else:
-                tlink = '%s' % sub_link
+                tlink = "%s" % sub_link
             home.append(tlink)
     bcrumb = " ".join(home)
     return mark_safe(bcrumb)
-    
+
+
 @register.filter
-def get_range( value ):
-  """
+def get_range(value):
+    """
     Filter - returns a list containing range made from given value
     Usage (in template):
 
@@ -41,5 +49,5 @@ def get_range( value ):
     </ul>
 
     Instead of 3 one may use the variable set in the views
-  """
-  return range( value )
+    """
+    return range(value)

@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand
 from gamerauntsia.gamer.models import GamerUser
- 
+
+
 def calc_karma(days):
     users = GamerUser.objects.filter(is_active=True)
 
@@ -8,11 +9,12 @@ def calc_karma(days):
         user.karma = user.get_karma(days)
         user.save()
 
+
 class Command(BaseCommand):
-    help = 'Calculate users karma'
+    help = "Calculate users karma"
 
     def add_arguments(self, parser):
-        parser.add_argument('--days', default=60, type=int)
+        parser.add_argument("--days", default=60, type=int)
 
     def handle(self, *args, **options):
-        calc_karma(days=options.get('days', 60))
+        calc_karma(days=options.get("days", 60))

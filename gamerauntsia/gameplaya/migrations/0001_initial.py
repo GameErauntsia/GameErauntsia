@@ -14,74 +14,190 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('photologue', '0010_auto_20160105_1307'),
-        ('jokoa', '0001_initial'),
+        ("photologue", "0010_auto_20160105_1307"),
+        ("jokoa", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='GamePlaya',
+            name="GamePlaya",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('izenburua', models.CharField(max_length=64)),
-                ('slug', models.SlugField(help_text='Eremu honetan game play honen URL helbidea zehazten ari zara.', unique=True)),
-                ('desk', models.TextField(max_length=256)),
-                ('iraupena_min', models.IntegerField(default=0)),
-                ('iraupena_seg', models.IntegerField(default=0)),
-                ('bideoa', models.CharField(blank=True, help_text='Eremu honetan Youtube bideoaren URL kodea itsatsi behar duzu. Adb.: c21XAuI3aMo', max_length=100, null=True)),
-                ('publikoa_da', models.BooleanField(default=False, verbose_name='Publikatzeko prest')),
-                ('pub_date', models.DateTimeField(default=timezone.now(), verbose_name='publikazio data')),
-                ('mod_date', models.DateTimeField(default=timezone.now(), verbose_name='modifikazio data')),
-                ('status', models.CharField(choices=[('0', 'Zirriborroa'), ('1', 'Publikoa')], default='0', max_length=1)),
-                ('shared', models.BooleanField(default=False, help_text='Lauki hau automatikoki markatuko da sistemak edukia sare sozialetan elkarbanatzean.')),
-                ('argazkia', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='photologue.Photo')),
-                ('erabiltzailea', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='gameplayak', to=settings.AUTH_USER_MODEL)),
-                ('jokoa', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='gameplay', to='jokoa.Jokoa')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("izenburua", models.CharField(max_length=64)),
+                (
+                    "slug",
+                    models.SlugField(
+                        help_text="Eremu honetan game play honen URL helbidea zehazten ari zara.",
+                        unique=True,
+                    ),
+                ),
+                ("desk", models.TextField(max_length=256)),
+                ("iraupena_min", models.IntegerField(default=0)),
+                ("iraupena_seg", models.IntegerField(default=0)),
+                (
+                    "bideoa",
+                    models.CharField(
+                        blank=True,
+                        help_text="Eremu honetan Youtube bideoaren URL kodea itsatsi behar duzu. Adb.: c21XAuI3aMo",
+                        max_length=100,
+                        null=True,
+                    ),
+                ),
+                (
+                    "publikoa_da",
+                    models.BooleanField(
+                        default=False, verbose_name="Publikatzeko prest"
+                    ),
+                ),
+                (
+                    "pub_date",
+                    models.DateTimeField(
+                        default=timezone.now(), verbose_name="publikazio data"
+                    ),
+                ),
+                (
+                    "mod_date",
+                    models.DateTimeField(
+                        default=timezone.now(), verbose_name="modifikazio data"
+                    ),
+                ),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[("0", "Zirriborroa"), ("1", "Publikoa")],
+                        default="0",
+                        max_length=1,
+                    ),
+                ),
+                (
+                    "shared",
+                    models.BooleanField(
+                        default=False,
+                        help_text="Lauki hau automatikoki markatuko da sistemak edukia sare sozialetan elkarbanatzean.",
+                    ),
+                ),
+                (
+                    "argazkia",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="photologue.Photo",
+                    ),
+                ),
+                (
+                    "erabiltzailea",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="gameplayak",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "jokoa",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="gameplay",
+                        to="jokoa.Jokoa",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Gameplaya',
-                'verbose_name_plural': 'Gameplayak',
+                "verbose_name": "Gameplaya",
+                "verbose_name_plural": "Gameplayak",
             },
         ),
         migrations.CreateModel(
-            name='Kategoria',
+            name="Kategoria",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('izena', models.CharField(max_length=64)),
-                ('slug', models.SlugField(help_text='Eremu honetan kategoria honen URL helbidea zehazten ari zara.', unique=True)),
-                ('desk', models.TextField(blank=True, max_length=256, null=True)),
-                ('irudia', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='photologue.Photo')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("izena", models.CharField(max_length=64)),
+                (
+                    "slug",
+                    models.SlugField(
+                        help_text="Eremu honetan kategoria honen URL helbidea zehazten ari zara.",
+                        unique=True,
+                    ),
+                ),
+                ("desk", models.TextField(blank=True, max_length=256, null=True)),
+                (
+                    "irudia",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="photologue.Photo",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Kategoria',
-                'verbose_name_plural': 'Kategoriak',
+                "verbose_name": "Kategoria",
+                "verbose_name_plural": "Kategoriak",
             },
         ),
         migrations.CreateModel(
-            name='Zailtasuna',
+            name="Zailtasuna",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('izena', models.CharField(max_length=64)),
-                ('slug', models.SlugField(help_text='Eremu honetan zailtasun honen URL helbidea zehazten ari zara.', unique=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("izena", models.CharField(max_length=64)),
+                (
+                    "slug",
+                    models.SlugField(
+                        help_text="Eremu honetan zailtasun honen URL helbidea zehazten ari zara.",
+                        unique=True,
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Zailtasuna',
-                'verbose_name_plural': 'Zailtasunak',
+                "verbose_name": "Zailtasuna",
+                "verbose_name_plural": "Zailtasunak",
             },
         ),
         migrations.AddField(
-            model_name='gameplaya',
-            name='kategoria',
-            field=models.ManyToManyField(related_name='gameplay', to='gameplaya.Kategoria'),
+            model_name="gameplaya",
+            name="kategoria",
+            field=models.ManyToManyField(
+                related_name="gameplay", to="gameplaya.Kategoria"
+            ),
         ),
         migrations.AddField(
-            model_name='gameplaya',
-            name='plataforma',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='gameplay', to='jokoa.Plataforma'),
+            model_name="gameplaya",
+            name="plataforma",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="gameplay",
+                to="jokoa.Plataforma",
+            ),
         ),
         migrations.AddField(
-            model_name='gameplaya',
-            name='zailtasuna',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='gameplay', to='gameplaya.Zailtasuna'),
+            model_name="gameplaya",
+            name="zailtasuna",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="gameplay",
+                to="gameplaya.Zailtasuna",
+            ),
         ),
     ]

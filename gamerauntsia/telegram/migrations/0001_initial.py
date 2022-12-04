@@ -9,23 +9,42 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('photologue', '0010_auto_20160105_1307'),
+        ("photologue", "0010_auto_20160105_1307"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='TelegramGroup',
+            name="TelegramGroup",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('izena', models.CharField(max_length=100)),
-                ('deskribapena', models.TextField(blank=True, null=True, verbose_name='Deskribapena')),
-                ('telegram_kodea', models.CharField(max_length=100)),
-                ('is_public', models.BooleanField(default=True)),
-                ('photo', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='photologue.Photo')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("izena", models.CharField(max_length=100)),
+                (
+                    "deskribapena",
+                    models.TextField(
+                        blank=True, null=True, verbose_name="Deskribapena"
+                    ),
+                ),
+                ("telegram_kodea", models.CharField(max_length=100)),
+                ("is_public", models.BooleanField(default=True)),
+                (
+                    "photo",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="photologue.Photo",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Telegram taldea',
-                'verbose_name_plural': 'Telegram taldeak',
+                "verbose_name": "Telegram taldea",
+                "verbose_name_plural": "Telegram taldeak",
             },
         ),
     ]

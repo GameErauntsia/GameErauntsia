@@ -18,8 +18,8 @@ import telebot
 
 class Terminoa(models.Model):
     term_eu = models.TextField()
-    term_es = models.TextField(null=True,blank=True)
-    term_en = models.TextField(null=True,blank=True)
+    term_es = models.TextField(null=True, blank=True)
+    term_en = models.TextField(null=True, blank=True)
     jokoak = models.ManyToManyField(Jokoa, blank=True)
     jokoa = models.ForeignKey(Jokoa, related_name="jokoa", on_delete=models.PROTECT)
 
@@ -28,7 +28,8 @@ class Terminoa(models.Model):
         verbose_name_plural = "Terminoak"
 
     def __str__(self):
-        return u'%s' % (self.term_eu)
+        return "%s" % (self.term_eu)
+
 
 class ProiektuLaguna(models.Model):
     izena = models.CharField(max_length=150, verbose_name="Izena")
@@ -36,81 +37,136 @@ class ProiektuLaguna(models.Model):
 
     irudia = models.ForeignKey(Photo, on_delete=models.PROTECT)
 
-    publikoa_da = models.BooleanField(default=False,verbose_name="Publikoa da")
-    pub_date = models.DateTimeField('publikazio data', default=datetime.now)
+    publikoa_da = models.BooleanField(default=False, verbose_name="Publikoa da")
+    pub_date = models.DateTimeField("publikazio data", default=datetime.now)
 
     class Meta:
         verbose_name = "Proiektu laguna"
         verbose_name_plural = "Proiektu lagunak"
 
     def __str__(self):
-        return u'%s' % (self.izena)
+        return "%s" % (self.izena)
 
-def send_comment_email(sender,instance,**kwargs):
-    if kwargs['created']:
+
+def send_comment_email(sender, instance, **kwargs):
+    if kwargs["created"]:
         recipient_list = []
-        message = 'Iruzkin berri bat utzi dute zuk iruzkindutako '
-        messagelog = 'Iruzkin berria egin dute '
+        message = "Iruzkin berri bat utzi dute zuk iruzkindutako "
+        messagelog = "Iruzkin berria egin dute "
         ct = ContentType.objects.get_for_id(instance.content_type.id)
         obj = ct.get_object_for_this_type(pk=instance.object_pk)
         try:
-            if obj.__class__.__name__ == 'Berria':
-                message += 'artikulu honetan: \n\n%sbloga/%s\n\n' % (settings.HOST,obj.slug)
-                messagelog += 'artikulu honetan: \n\n%sbloga/%s\n\n' % (settings.HOST,obj.slug)
-            elif obj.__class__.__name__ == 'Txapelketa':
-                message += 'txapelketa honetan: \n\n%stxapelketak/%s\n\n' % (settings.HOST,obj.slug)
-                messagelog += 'txapelketa honetan: \n\n%stxapelketak/%s\n\n' % (settings.HOST,obj.slug)
-            elif obj.__class__.__name__ == 'GamePlaya':
-                message += 'gameplay honetan: \n\n%sgameplayak/%s\n\n' % (settings.HOST,obj.slug)
-                messagelog += 'gameplay honetan: \n\n%sgameplayak/%s\n\n' % (settings.HOST,obj.slug)
-            creators = Comment.objects.filter(object_pk=instance.object_pk,content_type=instance.content_type).values('user__email').distinct()
+            if obj.__class__.__name__ == "Berria":
+                message += "artikulu honetan: \n\n%sbloga/%s\n\n" % (
+                    settings.HOST,
+                    obj.slug,
+                )
+                messagelog += "artikulu honetan: \n\n%sbloga/%s\n\n" % (
+                    settings.HOST,
+                    obj.slug,
+                )
+            elif obj.__class__.__name__ == "Txapelketa":
+                message += "txapelketa honetan: \n\n%stxapelketak/%s\n\n" % (
+                    settings.HOST,
+                    obj.slug,
+                )
+                messagelog += "txapelketa honetan: \n\n%stxapelketak/%s\n\n" % (
+                    settings.HOST,
+                    obj.slug,
+                )
+            elif obj.__class__.__name__ == "GamePlaya":
+                message += "gameplay honetan: \n\n%sgameplayak/%s\n\n" % (
+                    settings.HOST,
+                    obj.slug,
+                )
+                messagelog += "gameplay honetan: \n\n%sgameplayak/%s\n\n" % (
+                    settings.HOST,
+                    obj.slug,
+                )
+            creators = (
+                Comment.objects.filter(
+                    object_pk=instance.object_pk, content_type=instance.content_type
+                )
+                .values("user__email")
+                .distinct()
+            )
 
             for creator in creators:
-                if not instance.user.email == creator['user__email'] and instance.user.email_notification:
-                    send_mail('[Game Erauntsia - Iruzkin berria]', message, settings.DEFAULT_FROM_EMAIL, [creator['user__email']])
+                if (
+                    not instance.user.email == creator["user__email"]
+                    and instance.user.email_notification
+                ):
+                    send_mail(
+                        "[Game Erauntsia - Iruzkin berria]",
+                        message,
+                        settings.DEFAULT_FROM_EMAIL,
+                        [creator["user__email"]],
+                    )
         except:
-            send_mail('[Game Erauntsia]', str(instance.id)+' iruzkina ezin izan da bidali!\n\nMezua honako hau zen: "'+message+'"', settings.DEFAULT_FROM_EMAIL, ['ikerib@gmail.com'])
+            send_mail(
+                "[Game Erauntsia]",
+                str(instance.id)
+                + ' iruzkina ezin izan da bidali!\n\nMezua honako hau zen: "'
+                + message
+                + '"',
+                settings.DEFAULT_FROM_EMAIL,
+                ["ikerib@gmail.com"],
+            )
 
-def send_newuser_msg(sender,instance,**kwargs):
-    if kwargs['created']:
+
+def send_newuser_msg(sender, instance, **kwargs):
+    if kwargs["created"]:
         try:
             tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
-            message = '[Erabiltzailea]\n%skudeatu/gamer/gameruser/%s' % (settings.HOST,instance.id)
+            message = "[Erabiltzailea]\n%skudeatu/gamer/gameruser/%s" % (
+                settings.HOST,
+                instance.id,
+            )
             tb.send_message(settings.ADMIN_CHAT_ID, message)
         except:
             pass
 
-def send_article_msg(sender,instance,**kwargs):
-    if instance.publikoa_da and instance.status == '0':
-        try:
-            tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
-            message = '[Artikulua]\n%skudeatu/berriak/berria/%s' % (settings.HOST,instance.id)
-            tb.send_message(settings.EDITOR_CHAT_ID, message)
-        except:
-            pass
 
-def send_gp_msg(sender,instance,**kwargs):
-    if instance.publikoa_da and instance.status == '0':
+def send_article_msg(sender, instance, **kwargs):
+    if instance.publikoa_da and instance.status == "0":
         try:
             tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
-            message = '[GamePlaya]\n%skudeatu/gameplaya/gameplaya/%s' % (settings.HOST,instance.id)
-            tb.send_message(settings.EDITOR_CHAT_ID, message)
-        except:
-            pass
-
-def send_game_msg(sender,instance,**kwargs):
-    if kwargs['created'] and not instance.publikoa_da:
-        try:
-            tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
-            message = '[Jokoa]\n%skudeatu/jokoa/jokoa/%s' % (settings.HOST,instance.id)
+            message = "[Artikulua]\n%skudeatu/berriak/berria/%s" % (
+                settings.HOST,
+                instance.id,
+            )
             tb.send_message(settings.EDITOR_CHAT_ID, message)
         except:
             pass
 
 
-def send_agenda_tweet(sender,instance,**kwargs):
-    if kwargs['created']:
+def send_gp_msg(sender, instance, **kwargs):
+    if instance.publikoa_da and instance.status == "0":
+        try:
+            tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
+            message = "[GamePlaya]\n%skudeatu/gameplaya/gameplaya/%s" % (
+                settings.HOST,
+                instance.id,
+            )
+            tb.send_message(settings.EDITOR_CHAT_ID, message)
+        except:
+            pass
+
+
+def send_game_msg(sender, instance, **kwargs):
+    if kwargs["created"] and not instance.publikoa_da:
+        try:
+            tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
+            message = "[Jokoa]\n%skudeatu/jokoa/jokoa/%s" % (settings.HOST, instance.id)
+            tb.send_message(settings.EDITOR_CHAT_ID, message)
+        except:
+            pass
+
+
+def send_agenda_tweet(sender, instance, **kwargs):
+    if kwargs["created"]:
         post_to_twitter(instance)
+
 
 post_save.connect(send_comment_email, sender=Comment)
 post_save.connect(send_newuser_msg, sender=GamerUser)

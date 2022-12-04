@@ -8,13 +8,19 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('zerbitzariak', '0001_initial'),
+        ("zerbitzariak", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='mc_whitelist',
-            name='user',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL, verbose_name='GE Erabiltzailea'),
+            model_name="mc_whitelist",
+            name="user",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="GE Erabiltzailea",
+            ),
         ),
     ]

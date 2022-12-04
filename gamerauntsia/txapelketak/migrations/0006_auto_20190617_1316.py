@@ -9,43 +9,71 @@ import mptt.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('txapelketak', '0005_auto_20170606_1724'),
+        ("txapelketak", "0005_auto_20170606_1724"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='partaidea',
-            name='irudia',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='photologue.Photo'),
+            model_name="partaidea",
+            name="irudia",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="photologue.Photo",
+            ),
         ),
         migrations.AlterField(
-            model_name='partaidea',
-            name='kapitaina',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='kapitaina', to=settings.AUTH_USER_MODEL),
+            model_name="partaidea",
+            name="kapitaina",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="kapitaina",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
         migrations.AlterField(
-            model_name='partaidea',
-            name='txapelketa',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='txapelketak.Txapelketa'),
+            model_name="partaidea",
+            name="txapelketa",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT, to="txapelketak.Txapelketa"
+            ),
         ),
         migrations.AlterField(
-            model_name='partida',
-            name='parent',
-            field=mptt.fields.TreeForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='children', to='txapelketak.Partida'),
+            model_name="partida",
+            name="parent",
+            field=mptt.fields.TreeForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="children",
+                to="txapelketak.Partida",
+            ),
         ),
         migrations.AlterField(
-            model_name='partida',
-            name='txapelketa',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='txapelketak.Txapelketa'),
+            model_name="partida",
+            name="txapelketa",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT, to="txapelketak.Txapelketa"
+            ),
         ),
         migrations.AlterField(
-            model_name='txapelketa',
-            name='irudia',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='photologue.Photo'),
+            model_name="txapelketa",
+            name="irudia",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="photologue.Photo",
+            ),
         ),
         migrations.AlterField(
-            model_name='txapelketa',
-            name='jokoa',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='jokoa.Jokoa'),
+            model_name="txapelketa",
+            name="jokoa",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT, to="jokoa.Jokoa"
+            ),
         ),
     ]

@@ -8,14 +8,16 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('jokoa', '0003_auto_20170606_1607'),
-        ('jokoen_itzulpenak', '0002_auto_20170606_1609'),
+        ("jokoa", "0003_auto_20170606_1607"),
+        ("jokoen_itzulpenak", "0002_auto_20170606_1609"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='euskarazkojokoa',
-            name='garatzaileak_itzulia',
-            field=models.BooleanField(default=False, verbose_name='Garatzaileak itzulia'),
+            model_name="euskarazkojokoa",
+            name="garatzaileak_itzulia",
+            field=models.BooleanField(
+                default=False, verbose_name="Garatzaileak itzulia"
+            ),
         ),
     ]

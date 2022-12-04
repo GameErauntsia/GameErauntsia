@@ -7,12 +7,12 @@ from gamerauntsia.agenda.forms import EventForm
 def add_finished(request):
     """ """
     user = request.user
-    if request.method == 'POST':
+    if request.method == "POST":
         eventform = EventForm(request.POST)
         if eventform.is_valid():
             eventform.save()
-            return HttpResponseRedirect(reverse('agenda_index'))
+            return HttpResponseRedirect(reverse("agenda_index"))
 
     else:
         eventform = EventForm()
-    return render(request, 'profile/add_event.html', locals())
+    return render(request, "profile/add_event.html", locals())

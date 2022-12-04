@@ -9,34 +9,38 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('jokoa', '0003_auto_20170606_1607'),
-        ('base', '0001_initial'),
+        ("jokoa", "0003_auto_20170606_1607"),
+        ("base", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='terminoa',
-            name='jokoak',
-            field=models.ManyToManyField(blank=True, to='jokoa.Jokoa'),
+            model_name="terminoa",
+            name="jokoak",
+            field=models.ManyToManyField(blank=True, to="jokoa.Jokoa"),
         ),
         migrations.AlterField(
-            model_name='terminoa',
-            name='jokoa',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='jokoa', to='jokoa.Jokoa'),
+            model_name="terminoa",
+            name="jokoa",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="jokoa",
+                to="jokoa.Jokoa",
+            ),
         ),
         migrations.AlterField(
-            model_name='terminoa',
-            name='term_en',
+            model_name="terminoa",
+            name="term_en",
             field=models.TextField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='terminoa',
-            name='term_es',
+            model_name="terminoa",
+            name="term_es",
             field=models.TextField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='terminoa',
-            name='term_eu',
+            model_name="terminoa",
+            name="term_eu",
             field=models.TextField(),
         ),
     ]

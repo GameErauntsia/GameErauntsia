@@ -6,18 +6,28 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('gamer', '0008_auto_20201221_1808'),
+        ("gamer", "0008_auto_20201221_1808"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='gameruser',
-            name='twitch_sub_id_offline',
-            field=models.CharField(blank=True, max_length=36, null=True, verbose_name='Twitch kanalaren offline harpidetza id-a'),
+            model_name="gameruser",
+            name="twitch_sub_id_offline",
+            field=models.CharField(
+                blank=True,
+                max_length=36,
+                null=True,
+                verbose_name="Twitch kanalaren offline harpidetza id-a",
+            ),
         ),
         migrations.AlterField(
-            model_name='gameruser',
-            name='twitch_sub_id_online',
-            field=models.CharField(blank=True, max_length=36, null=True, verbose_name='Twitch kanalaren online harpidetza id-a'),
+            model_name="gameruser",
+            name="twitch_sub_id_online",
+            field=models.CharField(
+                blank=True,
+                max_length=36,
+                null=True,
+                verbose_name="Twitch kanalaren online harpidetza id-a",
+            ),
         ),
     ]

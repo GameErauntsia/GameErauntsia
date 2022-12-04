@@ -12,29 +12,78 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('photologue', '0010_auto_20160105_1307'),
+        ("photologue", "0010_auto_20160105_1307"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Atala',
+            name="Atala",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('izenburua', models.CharField(max_length=64)),
-                ('slug', models.SlugField(help_text='Eremu honetan game play honen URL helbidea zehazten ari zara.', unique=True)),
-                ('desk', models.TextField(max_length=256)),
-                ('iraupena_min', models.IntegerField(default=0)),
-                ('iraupena_seg', models.IntegerField(default=0)),
-                ('bideoa', models.CharField(blank=True, help_text='Eremu honetan Youtube bideoaren URL kodea itsatsi behar duzu. Adb.: c21XAuI3aMo', max_length=100, null=True)),
-                ('publikoa_da', models.BooleanField(default=False, verbose_name='Publikatzeko prest')),
-                ('pub_date', models.DateTimeField(default=datetime.datetime.now, verbose_name='publikazio data')),
-                ('mod_date', models.DateTimeField(default=datetime.datetime.now, verbose_name='modifikazio data')),
-                ('shared', models.BooleanField(default=False, help_text='Lauki hau automatikoki markatuko da sistemak edukia sare sozialetan elkarbanatzean.')),
-                ('argazkia', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='photologue.Photo')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("izenburua", models.CharField(max_length=64)),
+                (
+                    "slug",
+                    models.SlugField(
+                        help_text="Eremu honetan game play honen URL helbidea zehazten ari zara.",
+                        unique=True,
+                    ),
+                ),
+                ("desk", models.TextField(max_length=256)),
+                ("iraupena_min", models.IntegerField(default=0)),
+                ("iraupena_seg", models.IntegerField(default=0)),
+                (
+                    "bideoa",
+                    models.CharField(
+                        blank=True,
+                        help_text="Eremu honetan Youtube bideoaren URL kodea itsatsi behar duzu. Adb.: c21XAuI3aMo",
+                        max_length=100,
+                        null=True,
+                    ),
+                ),
+                (
+                    "publikoa_da",
+                    models.BooleanField(
+                        default=False, verbose_name="Publikatzeko prest"
+                    ),
+                ),
+                (
+                    "pub_date",
+                    models.DateTimeField(
+                        default=datetime.datetime.now, verbose_name="publikazio data"
+                    ),
+                ),
+                (
+                    "mod_date",
+                    models.DateTimeField(
+                        default=datetime.datetime.now, verbose_name="modifikazio data"
+                    ),
+                ),
+                (
+                    "shared",
+                    models.BooleanField(
+                        default=False,
+                        help_text="Lauki hau automatikoki markatuko da sistemak edukia sare sozialetan elkarbanatzean.",
+                    ),
+                ),
+                (
+                    "argazkia",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="photologue.Photo",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Atala',
-                'verbose_name_plural': 'Atalak',
+                "verbose_name": "Atala",
+                "verbose_name_plural": "Atalak",
             },
         ),
     ]

@@ -11,15 +11,18 @@ from gamerauntsia.utils.text import make_responsive
 from django.template.defaultfilters import truncatechars
 
 STATUS = (
-    ('0', 'Zirriborroa'),
-    ('1', 'Publikoa'),
+    ("0", "Zirriborroa"),
+    ("1", "Publikoa"),
 )
 
 
 class Gaia(models.Model):
     izena = models.CharField(max_length=64)
-    slug = models.SlugField(db_index=True, unique=True,
-                            help_text="Eremu honetan gai honen URL helbidea zehazten ari zara.")
+    slug = models.SlugField(
+        db_index=True,
+        unique=True,
+        help_text="Eremu honetan gai honen URL helbidea zehazten ari zara.",
+    )
     desk = models.TextField(max_length=256, null=True, blank=True)
     irudia = models.ForeignKey(Photo, null=True, blank=True, on_delete=models.SET_NULL)
 
@@ -28,73 +31,105 @@ class Gaia(models.Model):
         verbose_name_plural = "Gaiak"
 
     def __str__(self):
-        return u'%s' % (self.izena)
+        return "%s" % (self.izena)
 
 
 class Berria(models.Model):
     izenburua = models.CharField(max_length=150)
-    slug = models.SlugField(db_index=True, unique=True,
-                            help_text="Eremu honetan berri honen URL helbidea zehazten ari zara.")
+    slug = models.SlugField(
+        db_index=True,
+        unique=True,
+        help_text="Eremu honetan berri honen URL helbidea zehazten ari zara.",
+    )
     azpititularra = models.CharField(max_length=170, null=True, blank=True)
     desk = models.TextField(max_length=256)
     gaia = models.ManyToManyField(Gaia)
 
-    erabiltzailea = models.ForeignKey(GamerUser, related_name='berriak', on_delete=models.PROTECT)
-    argazkia = models.ForeignKey(Photo, null=True, blank=True, on_delete=models.SET_NULL)
-    jokoa = models.ForeignKey(Jokoa, null=True, blank=True, on_delete=models.SET_NULL,
-                              help_text="Artikulu honek joko zehaz batekin loturarik badu, adierazi hemen.")
-    garatzailea = models.ForeignKey(Garatzailea, null=True, blank=True, on_delete=models.SET_NULL,
-                                    help_text="Artikulu honek garatzaile zehaz batekin loturarik badu, adierazi hemen. Jokoa adierazten bada ez da beharrezkoa.")
+    erabiltzailea = models.ForeignKey(
+        GamerUser, related_name="berriak", on_delete=models.PROTECT
+    )
+    argazkia = models.ForeignKey(
+        Photo, null=True, blank=True, on_delete=models.SET_NULL
+    )
+    jokoa = models.ForeignKey(
+        Jokoa,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        help_text="Artikulu honek joko zehaz batekin loturarik badu, adierazi hemen.",
+    )
+    garatzailea = models.ForeignKey(
+        Garatzailea,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        help_text="Artikulu honek garatzaile zehaz batekin loturarik badu, adierazi hemen. Jokoa adierazten bada ez da beharrezkoa.",
+    )
 
     publikoa_da = models.BooleanField(default=False, verbose_name="Publikatzeko prest")
 
-    status = models.CharField(max_length=1, choices=STATUS, default='0')
-    pub_date = models.DateTimeField('publikazio data', default=timezone.now)
-    mod_date = models.DateTimeField('modifikazio data', default=timezone.now)
-    shared = models.BooleanField(default=False,
-                                 help_text="Lauki hau automatikoki markatuko da sistemak edukia sare sozialetan elkarbanatzean.")
+    status = models.CharField(max_length=1, choices=STATUS, default="0")
+    pub_date = models.DateTimeField("publikazio data", default=timezone.now)
+    mod_date = models.DateTimeField("modifikazio data", default=timezone.now)
+    shared = models.BooleanField(
+        default=False,
+        help_text="Lauki hau automatikoki markatuko da sistemak edukia sare sozialetan elkarbanatzean.",
+    )
 
     def get_title(self):
         return self.izenburua
 
     def get_desk_txikia(self):
-        return filters.striptags(self.desk)[:400] + '...'
+        return filters.striptags(self.desk)[:400] + "..."
 
     def get_desk_index(self):
         if len(self.desk) > 400:
-            return filters.striptags(self.desk)[:400] + '...'
+            return filters.striptags(self.desk)[:400] + "..."
         return filters.striptags(self.desk)
 
     def get_absolute_url(self):
-        return '%sbloga/%s' % (settings.HOST, self.slug)
+        return "%sbloga/%s" % (settings.HOST, self.slug)
 
     def getTwitText(self):
         if self.erabiltzailea.twitter_id:
-            return truncatechars(self.izenburua, 230) + ' @%s 2dz ' % (self.erabiltzailea.twitter_id) + self.get_absolute_url()
+            return (
+                truncatechars(self.izenburua, 230)
+                + " @%s 2dz " % (self.erabiltzailea.twitter_id)
+                + self.get_absolute_url()
+            )
         else:
-            return truncatechars(self.izenburua, 250) + ' ' + self.get_absolute_url()
+            return truncatechars(self.izenburua, 250) + " " + self.get_absolute_url()
 
     def getTootText(self):
         if self.erabiltzailea.mastodon_id:
-            return truncatechars(self.izenburua, 230) + ' @%s 2dz ' % (self.erabiltzailea.mastodon_id) + self.get_absolute_url()
+            return (
+                truncatechars(self.izenburua, 230)
+                + " @%s 2dz " % (self.erabiltzailea.mastodon_id)
+                + self.get_absolute_url()
+            )
         else:
-            return truncatechars(self.izenburua, 250) + ' ' + self.get_absolute_url()
+            return truncatechars(self.izenburua, 250) + " " + self.get_absolute_url()
 
     def getTelegramText(self):
-        return self.izenburua + ' ' + self.get_absolute_url() + ' %s 2dz' % (self.erabiltzailea.getFullName())
+        return (
+            self.izenburua
+            + " "
+            + self.get_absolute_url()
+            + " %s 2dz" % (self.erabiltzailea.getFullName())
+        )
 
     def getEmailText(self):
-        htmly = get_template('buletina/buletina.html')
-        plaintext = get_template('buletina/buletina.txt')
+        htmly = get_template("buletina/buletina.html")
+        plaintext = get_template("buletina/buletina.txt")
         d = Context(
             {
-                'izenburua': self.izenburua,
-                'deskribapena': self.get_desk_txikia(),
-                'url': self.get_absolute_url(),
-                'img_url': settings.HOST + self.argazkia.get_buletin_url()
+                "izenburua": self.izenburua,
+                "deskribapena": self.get_desk_txikia(),
+                "url": self.get_absolute_url(),
+                "img_url": settings.HOST + self.argazkia.get_buletin_url(),
             }
         )
-        subject = settings.EMAIL_SUBJECT + ' ' + self.izenburua
+        subject = settings.EMAIL_SUBJECT + " " + self.izenburua
         text_content = plaintext.render(d)
         html_content = htmly.render(d)
         return subject, text_content, html_content
@@ -114,4 +149,4 @@ class Berria(models.Model):
         verbose_name_plural = "berriak"
 
     def __str__(self):
-        return u'%s' % (self.izenburua)
+        return "%s" % (self.izenburua)

@@ -9,32 +9,39 @@ from django.utils import timezone
 import telebot
 
 ESKAINTZA_MOTAK = (
-    (1, 'Eskatzekoa'),
-    (2, 'Parte hartzekoa'),
-    (3, 'Eskubidea'),
+    (1, "Eskatzekoa"),
+    (2, "Parte hartzekoa"),
+    (3, "Eskubidea"),
 )
 
 DENDA_CHOICES = (
-    (1, 'Steam'),
-    (2, 'Origin'),
+    (1, "Steam"),
+    (2, "Origin"),
 )
+
 
 class Bazkidea(models.Model):
     user = models.ForeignKey(GamerUser, unique=True, on_delete=models.PROTECT)
     paid = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
 
-    date_joined = models.DateTimeField(auto_now_add=True, editable=False, null=True, blank=True)
+    date_joined = models.DateTimeField(
+        auto_now_add=True, editable=False, null=True, blank=True
+    )
     expire_date = models.DateTimeField()
 
     def has_eskaera(self):
         return Eskaera.objects.filter(bazkidea=self, is_active=True).exists()
 
     def has_partaidetza_eskaera(self):
-        return Eskaera.objects.filter(bazkidea=self, eskaintza__mota=2, is_active=True).exists()
+        return Eskaera.objects.filter(
+            bazkidea=self, eskaintza__mota=2, is_active=True
+        ).exists()
 
     def get_eskaerak(self):
-        eskaerak = Eskaera.objects.filter(bazkidea=self, is_active=True).order_by("-added")
+        eskaerak = Eskaera.objects.filter(bazkidea=self, is_active=True).order_by(
+            "-added"
+        )
         return eskaerak
 
     class Meta:
@@ -42,7 +49,7 @@ class Bazkidea(models.Model):
         verbose_name_plural = "Bazkideak"
 
     def __str__(self):
-        return u'#%d %s' % (self.id, self.user.username)
+        return "#%d %s" % (self.id, self.user.username)
 
 
 class Eskaintza(models.Model):
@@ -63,10 +70,10 @@ class Eskaintza(models.Model):
         verbose_name_plural = "Eskaintza"
 
     def __str__(self):
-        return u'%s' % (self.izena)
+        return "%s" % (self.izena)
 
     def get_absolute_url(self):
-        return reverse('eskaintza', arg=[self.slug])
+        return reverse("eskaintza", arg=[self.slug])
 
 
 class Eskaera(models.Model):
@@ -81,7 +88,11 @@ class Eskaera(models.Model):
         verbose_name_plural = "Eskaerak"
 
     def __str__(self):
-        return u'%s (#%d %s)' % (self.eskaintza.izena, self.bazkidea.id, self.bazkidea.user.username)
+        return "%s (#%d %s)" % (
+            self.eskaintza.izena,
+            self.bazkidea.id,
+            self.bazkidea.user.username,
+        )
 
 
 class OparitzekoJokoak(models.Model):
@@ -92,27 +103,37 @@ class OparitzekoJokoak(models.Model):
 
     oparituta = models.BooleanField(default=False)
 
-    pub_date = models.DateTimeField('publikazio data', default=timezone.now)
+    pub_date = models.DateTimeField("publikazio data", default=timezone.now)
 
     class Meta:
         verbose_name = "Oparitzeko jokoa"
         verbose_name_plural = "Oparitzeko jokoak"
 
     def __str__(self):
-        return u'%s' % (self.jokoa.izena)
+        return "%s" % (self.jokoa.izena)
 
 
-def send_member_msg(sender,instance,**kwargs):
-    if kwargs['created']:
+def send_member_msg(sender, instance, **kwargs):
+    if kwargs["created"]:
         tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
-        message = '[#%s Bazkidea]\n%skudeatu/bazkidetza/bazkidea/%s' % (instance.id, settings.HOST, instance.id)
+        message = "[#%s Bazkidea]\n%skudeatu/bazkidetza/bazkidea/%s" % (
+            instance.id,
+            settings.HOST,
+            instance.id,
+        )
         tb.send_message(settings.ADMIN_CHAT_ID, message)
 
-def send_eskaera_msg(sender,instance,**kwargs):
-    if kwargs['created']:
+
+def send_eskaera_msg(sender, instance, **kwargs):
+    if kwargs["created"]:
         tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
-        message = '[Eskaera berria]\n%s: %s\n%skudeatu/bazkidetza/eskaera/' % (instance.bazkidea.user.username, instance.eskaintza.izena, settings.HOST)
+        message = "[Eskaera berria]\n%s: %s\n%skudeatu/bazkidetza/eskaera/" % (
+            instance.bazkidea.user.username,
+            instance.eskaintza.izena,
+            settings.HOST,
+        )
         tb.send_message(settings.ADMIN_CHAT_ID, message)
+
 
 post_save.connect(send_member_msg, sender=Bazkidea)
 post_save.connect(send_eskaera_msg, sender=Eskaera)

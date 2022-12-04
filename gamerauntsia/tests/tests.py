@@ -13,160 +13,208 @@ from gamerauntsia.txapelketak.models import Txapelketa
 from photologue.models import Photo
 from django.core.files.base import ContentFile
 
-RES_DIR = os.path.join(os.path.dirname(__file__), '../res')
-LANDSCAPE_IMAGE_PATH = os.path.join(RES_DIR, 'test_photologue_landscape.jpg')
+RES_DIR = os.path.join(os.path.dirname(__file__), "../res")
+LANDSCAPE_IMAGE_PATH = os.path.join(RES_DIR, "test_photologue_landscape.jpg")
+
 
 class BasicTest(TestCase):
     def setUp(self):
-        user = GamerUser.objects.create_user('urtzai', 'uodriozola@gmail.com', 'urtzaipass')
+        user = GamerUser.objects.create_user(
+            "urtzai", "uodriozola@gmail.com", "urtzaipass"
+        )
         user.is_superuser = True
         user.save()
-        photo = Photo(title='GETB atala irudia', slug='gtb-atala-irudia', is_public=True)
-        photo.image.save('test_photologue_landscape.jpg', ContentFile(open(LANDSCAPE_IMAGE_PATH, 'rb').read()))
+        photo = Photo(
+            title="GETB atala irudia", slug="gtb-atala-irudia", is_public=True
+        )
+        photo.image.save(
+            "test_photologue_landscape.jpg",
+            ContentFile(open(LANDSCAPE_IMAGE_PATH, "rb").read()),
+        )
         photo.save()
-        Atala.objects.create(izenburua='GETB atala', slug='getb-atala', desk='Lehen atala duzue honako hau.', argazkia=photo,  publikoa_da=True)
+        Atala.objects.create(
+            izenburua="GETB atala",
+            slug="getb-atala",
+            desk="Lehen atala duzue honako hau.",
+            argazkia=photo,
+            publikoa_da=True,
+        )
 
-        plataforma = Plataforma.objects.create(izena='Play Station 4', slug='play-station-4')
-        jokoa = Jokoa.objects.create(izena='Call of Duty', bertsioa='4', slug='call-of-duty-4', logoa=photo, publikoa_da=True)
-        zailtasuna = Zailtasuna.objects.create(izena='Zaila', slug='zaila')
-        kategoria = Kategoria.objects.create(izena='FPS', slug='fps', desk="First Person Shooter")
-        gameplaya = GamePlaya(izenburua='Barrebusa 1', slug='barrebusa-1', desk="Espero dut gustuko izatea.", argazkia=photo, bideoa='c21XAuI3aMo',
-                                 jokoa=jokoa, plataforma=plataforma, zailtasuna=zailtasuna, erabiltzailea=user, publikoa_da=True, status='1')
+        plataforma = Plataforma.objects.create(
+            izena="Play Station 4", slug="play-station-4"
+        )
+        jokoa = Jokoa.objects.create(
+            izena="Call of Duty",
+            bertsioa="4",
+            slug="call-of-duty-4",
+            logoa=photo,
+            publikoa_da=True,
+        )
+        zailtasuna = Zailtasuna.objects.create(izena="Zaila", slug="zaila")
+        kategoria = Kategoria.objects.create(
+            izena="FPS", slug="fps", desk="First Person Shooter"
+        )
+        gameplaya = GamePlaya(
+            izenburua="Barrebusa 1",
+            slug="barrebusa-1",
+            desk="Espero dut gustuko izatea.",
+            argazkia=photo,
+            bideoa="c21XAuI3aMo",
+            jokoa=jokoa,
+            plataforma=plataforma,
+            zailtasuna=zailtasuna,
+            erabiltzailea=user,
+            publikoa_da=True,
+            status="1",
+        )
         gameplaya.save()
         gameplaya.kategoria.add(kategoria)
         gameplaya.save()
 
-        gaia = Gaia.objects.create(izena='Berriak', slug='berriak')
-        berria = Berria(izenburua='Switch argitaratu da', slug='switch-argitaratu-da', desk="Nintendoren kontsola berria argitaratu da.", erabiltzailea=user, argazkia=photo,
-                              jokoa=jokoa, publikoa_da=True, status='1')
+        gaia = Gaia.objects.create(izena="Berriak", slug="berriak")
+        berria = Berria(
+            izenburua="Switch argitaratu da",
+            slug="switch-argitaratu-da",
+            desk="Nintendoren kontsola berria argitaratu da.",
+            erabiltzailea=user,
+            argazkia=photo,
+            jokoa=jokoa,
+            publikoa_da=True,
+            status="1",
+        )
         berria.save()
         berria.gaia.add(gaia)
         berria.save()
 
-        txapelketa = Txapelketa.objects.create(izena='LoL txapelketa', slug="lol-txapelketa", desk="LoLeko beste txapelketa bat.", jokoa=jokoa)
+        txapelketa = Txapelketa.objects.create(
+            izena="LoL txapelketa",
+            slug="lol-txapelketa",
+            desk="LoLeko beste txapelketa bat.",
+            jokoa=jokoa,
+        )
         txapelketa.adminak.add(user)
 
     def test_index(self):
         c = Client()
-        url = reverse('index')
+        url = reverse("index")
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_getb_index(self):
         c = Client()
-        url = reverse('getb_index')
+        url = reverse("getb_index")
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_getb_atala(self):
         c = Client()
-        url = reverse('getb_atala', kwargs={'slug': 'getb-atala'})
+        url = reverse("getb_atala", kwargs={"slug": "getb-atala"})
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_berriak_index(self):
         c = Client()
-        url = reverse('berriak_index')
+        url = reverse("berriak_index")
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_berriak_gaia(self):
         c = Client()
-        url = reverse('gaia', kwargs={'slug': 'berriak'})
+        url = reverse("gaia", kwargs={"slug": "berriak"})
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_berriak_berria(self):
         c = Client()
-        url = reverse('berria', kwargs={'slug': 'switch-argitaratu-da'})
+        url = reverse("berria", kwargs={"slug": "switch-argitaratu-da"})
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_gameplayak_index(self):
         c = Client()
-        url = reverse('gameplay_index')
+        url = reverse("gameplay_index")
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_gameplayak_category(self):
         c = Client()
-        url = reverse('gameplay_category', kwargs={'kategoria': 'fps'})
+        url = reverse("gameplay_category", kwargs={"kategoria": "fps"})
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_gameplayak_level(self):
         c = Client()
-        url = reverse('gameplay_level', kwargs={'maila': 'zaila'})
+        url = reverse("gameplay_level", kwargs={"maila": "zaila"})
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_gameplayak_game(self):
         c = Client()
-        url = reverse('gameplay_game', kwargs={'jokoa': 'call-of-duty-4'})
+        url = reverse("gameplay_game", kwargs={"jokoa": "call-of-duty-4"})
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_gameplayak_platform(self):
         c = Client()
-        url = reverse('gameplay_platform', kwargs={'plataforma': 'play-station-4'})
+        url = reverse("gameplay_platform", kwargs={"plataforma": "play-station-4"})
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_gameplayak_gameplaya(self):
         c = Client()
-        url = reverse('gameplay', kwargs={'slug': 'barrebusa-1'})
+        url = reverse("gameplay", kwargs={"slug": "barrebusa-1"})
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_jokoa_index(self):
         c = Client()
-        url = reverse('game_index')
+        url = reverse("game_index")
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_bazkidetza_index(self):
         c = Client()
-        url = reverse('bazkidetza')
+        url = reverse("bazkidetza")
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_komunitatea_index(self):
         c = Client()
-        url = reverse('komunitatea')
+        url = reverse("komunitatea")
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_txapelketak_index(self):
         c = Client()
-        url = reverse('txapelketak_index')
+        url = reverse("txapelketak_index")
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_txapelketak_txapelketa(self):
         c = Client()
-        url = reverse('txapelketa', kwargs={'slug': 'lol-txapelketa'})
+        url = reverse("txapelketa", kwargs={"slug": "lol-txapelketa"})
         response = c.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_txapelketak_txapelketa_insk(self):
         c = Client()
-        c.login(username='urtzai', password='urtzaipass')
-        url = reverse('txapelketa_insk', kwargs={'slug': 'lol-txapelketa'})
+        c.login(username="urtzai", password="urtzaipass")
+        url = reverse("txapelketa_insk", kwargs={"slug": "lol-txapelketa"})
         response = c.get(url)
-        tx_url = reverse('txapelketa', kwargs={'slug': "lol-txapelketa"})
+        tx_url = reverse("txapelketa", kwargs={"slug": "lol-txapelketa"})
         self.assertRedirects(response, tx_url)
 
     def test_txapelketak_sortu_partaideak(self):
         c = Client()
-        c.login(username='urtzai', password='urtzaipass')
-        url = reverse('sortu_partaideak', kwargs={'slug': 'lol-txapelketa'})
+        c.login(username="urtzai", password="urtzaipass")
+        url = reverse("sortu_partaideak", kwargs={"slug": "lol-txapelketa"})
         response = c.get(url)
-        tx_url = reverse('txapelketa', kwargs={'slug': "lol-txapelketa"})
+        tx_url = reverse("txapelketa", kwargs={"slug": "lol-txapelketa"})
         self.assertRedirects(response, tx_url)
 
     def test_txapelketak_sortu_taldea(self):
         c = Client()
-        c.login(username='urtzai', password='urtzaipass')
-        url = reverse('sortu_taldea', kwargs={'slug': 'lol-txapelketa'})
+        c.login(username="urtzai", password="urtzaipass")
+        url = reverse("sortu_taldea", kwargs={"slug": "lol-txapelketa"})
         response = c.get(url)
         self.assertEqual(response.status_code, 200)

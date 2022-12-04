@@ -6,33 +6,37 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('txapelketak', '0006_auto_20190617_1316'),
+        ("txapelketak", "0006_auto_20190617_1316"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='txapelketa',
-            name='external_signup',
-            field=models.BooleanField(default=False, verbose_name='Kanpoko izen ematea'),
+            model_name="txapelketa",
+            name="external_signup",
+            field=models.BooleanField(
+                default=False, verbose_name="Kanpoko izen ematea"
+            ),
         ),
         migrations.AddField(
-            model_name='txapelketa',
-            name='external_signup_url',
-            field=models.URLField(blank=True, null=True, verbose_name='Kanpoko izen ematea (URL)'),
+            model_name="txapelketa",
+            name="external_signup_url",
+            field=models.URLField(
+                blank=True, null=True, verbose_name="Kanpoko izen ematea (URL)"
+            ),
         ),
         migrations.AlterField(
-            model_name='partida',
-            name='level',
+            model_name="partida",
+            name="level",
             field=models.PositiveIntegerField(editable=False),
         ),
         migrations.AlterField(
-            model_name='partida',
-            name='lft',
+            model_name="partida",
+            name="lft",
             field=models.PositiveIntegerField(editable=False),
         ),
         migrations.AlterField(
-            model_name='partida',
-            name='rght',
+            model_name="partida",
+            name="rght",
             field=models.PositiveIntegerField(editable=False),
         ),
     ]
