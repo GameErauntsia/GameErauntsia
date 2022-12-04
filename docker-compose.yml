@@ -11,6 +11,9 @@ services:
       - MYSQL_ROOT_PASSWORD
       - MYSQL_BACKUP_USER
       - MYSQL_BACKUP_USER_PASSWORD
+      - MATOMO_DATABASE_DBNAME
+      - MATOMO_DATABASE_USERNAME
+      - MATOMO_DATABASE_PASSWORD
     volumes:
       - ./db:/docker-entrypoint-initdb.d:ro
       - db-data:/var/lib/mysql
