@@ -1,0 +1,72 @@
+<div id="{{id}}" style="margin: 0 auto" class="border"></div>
+
+<script type="text/javascript">
+  Highcharts.chart('{{id}}',{
+      "title": {
+          "text": "{{title}}"
+      },
+      "exporting": {
+          "buttons": {"contextButton": {
+              "menuItems": ['downloadPNG','downloadSVG','downloadCSV']
+          }},
+          "chartOptions": {
+              "chart":
+              {"backgroundColor": "transparent"},
+              "credits": {
+                  "enabled": true,
+                  "text": "Game Erauntsia",
+                  "href": "https://gamerauntsia.eus"
+              }
+          }
+      },
+      "chart": {
+          "type": "pie",
+          "polar": false
+      },
+      "plotOptions": {
+          "pie": {
+              "allowPointSelect": true,
+              "cursor": true,
+              "dataLabels": {
+                  "enabled": true
+              }
+          },
+          "series": {
+              "animation": false,
+              "dataLabels": {
+                  "enabled": false
+              }
+          }
+      },
+      "series": [
+          {
+              "name": "kopurua",
+              "turboThreshold": 0,
+              "marker": {},
+              "data": [
+                  {% for item in data %}
+                  {name: "{{item.taldea}}", y: {{item.kopurua}}},
+                  {% endfor %}
+              ]
+          }
+      ],
+      "yAxis": {
+          "title": {},
+          "labels": {}
+      },
+      "xAxis": {
+          "title": {},
+          "labels": {"enabled": true}
+      },
+      "lang": {
+          downloadPNG: 'Jaitsi PNG',
+          downloadSVG: 'Jaitsi SVG',
+          downloadCSV: 'Jaitsi CSV',
+          contextButtonTitle: 'Menua'
+      },
+      "credits": {"enabled": true},
+      "legend": {"enabled": false},
+      "tooltip": {},
+      "colors": ["#8087E8", "#A3EDBA", "#F19E53", "#6699A1", "#E1D369", "#87B4E7", "#DA6D85", "#BBBAC5"]
+  });
+</script>

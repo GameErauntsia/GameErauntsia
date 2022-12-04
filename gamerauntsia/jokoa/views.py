@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
-from django.db.models import Count, Q, OuterRef, Exists
+from django.db.models import Count, Q, F, OuterRef, Exists, Count
+from django.db.models.functions import Extract
 from django.utils import timezone
 from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.gameplaya.models import GamePlaya
@@ -89,3 +90,26 @@ def euskarazko_jokoak(request):
     filters = EuskarazkoJokoaFilter(filter_params, queryset=jokoak)
 
     return render(request, 'jokoa/euskarazko_jokoak.html', locals())
+
+def taldeak_berrizendatu(taldeak, choices):
+    for taldea in taldeak:
+        taldea['taldea'] = dict(choices).get(taldea['taldea'])
+
+def euskarazko_jokoak_zenbakitan(request):
+    euskaraz = JokoItzulpena.objects.filter(jokoa=OuterRef('pk'))
+    euskarazko_jokoak = Jokoa.objects.annotate(euskaraz=Exists(euskaraz)).filter(euskaraz=True)
+
+    datuak_argitaratze_data = euskarazko_jokoak.filter(argitaratze_data__isnull=False).annotate(urtea=Extract('argitaratze_data','year')).values(taldea=F('urtea')).annotate(kopurua=Count('taldea')).order_by('taldea')
+    datuak_lizentzia = euskarazko_jokoak.values(taldea=F('lizentzia')).annotate(kopurua=Count('taldea'))
+    datuak_plataforma = euskarazko_jokoak.values(taldea=F('jokoitzulpena__plataformak__izena')).annotate(kopurua=Count('taldea'))
+    datuak_generoa = euskarazko_jokoak.values(taldea=F('generoak__izena')).annotate(kopurua=Count('taldea'))
+
+    datuak_euskaratze_data = euskarazko_jokoak.annotate(urtea=Extract('jokoitzulpena__erabilgarritasun_data','year')).values(taldea=F('urtea')).exclude(urtea__isnull=True).annotate(kopurua=Count('taldea')).order_by('taldea')
+    datuak_ofizialtasuna = euskarazko_jokoak.values(taldea=F('jokoitzulpena__ofiziala_da')).annotate(kopurua=Count('taldea'))
+    datuak_euskaratze_mota = euskarazko_jokoak.values(taldea=F('jokoitzulpena__jatorria')).annotate(kopurua=Count('taldea'))
+
+    taldeak_berrizendatu(datuak_lizentzia,Jokoa._meta.get_field('lizentzia').choices)
+    taldeak_berrizendatu(datuak_euskaratze_mota,JokoItzulpena._meta.get_field('jatorria').choices)
+    taldeak_berrizendatu(datuak_ofizialtasuna,[(True, 'Bai'),(False, 'Ez')])
+
+    return render(request,'jokoa/euskarazko_jokoak_zenbakitan.html',locals())
