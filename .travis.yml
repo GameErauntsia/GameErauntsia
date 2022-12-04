@@ -27,4 +27,4 @@ deploy:
   provider: script
   script: bash ./ci/build_push_docker.sh
   on:
-    branch: master
+    branch: main
