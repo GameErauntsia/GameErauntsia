@@ -6,6 +6,7 @@ urlpatterns = [
     url(r'^$', views.index, name='game_index'),
 
     # Euskarazko jokoak
+    url(r'^euskarazko-bideojokoak/zenbakitan$', views.euskarazko_jokoak_zenbakitan, name='euskarazko_jokoak_zenbakitan'),
     url(r'^euskarazko-bideojokoak/$', views.euskarazko_jokoak, name='euskarazko_jokoak'),
 
     # Garatzaileak

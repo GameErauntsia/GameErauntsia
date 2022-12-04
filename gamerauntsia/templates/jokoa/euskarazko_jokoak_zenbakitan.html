@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load include gamerauntsia bootstrap %}
+
+{% block title %}Euskarazko bideojokoak zenbakitan - {% endblock %}
+
+{% block extracss %}
+<link href="{{STATIC_URL}}js/select2/css/select2.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block morejs %}
+{{ articleform.media }}
+<meta name="description" content="Euskarazko bideojokoei buruzko datu estatistikoak"/>
+
+<script src="https://code.highcharts.com/10.3.2/highcharts.js"></script>
+<script src="https://code.highcharts.com/10.3.2/modules/exporting.js"></script>
+
+{% endblock %}
+
+{% block content%}
+
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="page-header">Euskarazko bideojokoak zenbakitan</h1>
+    <p>Game Erauntsiak osatutako <a href="/jokoak/euskarazko-bideojokoak/">euskarazko bidejokoen zerrendan</a> oinarrituta. Edozein zalantza argitu, edo datu gordinak nahi badituzu <a href="/kontaktua/">jarri gurekin harremanetan</a>.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+  <div id="content">
+    <div class="row">
+      <div class="col-sm-12">
+        <h2>Jokoen ezaugarrien arabera</h2>
+      </div>
+      <div class="col-sm-12">
+        {% include 'jokoa/euskarazko_jokoak_zenbakitan/column_chart.html' with id="chart-argitaratze-data" title="Argitaratze data" data=datuak_argitaratze_data %}
+      </div>
+      <div class="col-sm-6">
+        {% include 'jokoa/euskarazko_jokoak_zenbakitan/pie_chart.html' with id="chart-generoa" title="Generoa" data=datuak_generoa %}
+      </div>
+      <div class="col-sm-6">
+        {% include 'jokoa/euskarazko_jokoak_zenbakitan/pie_chart.html' with id="chart-plataforma" title="Plataforma" data=datuak_plataforma %}
+      </div>
+      <div class="col-sm-6">
+        {% include 'jokoa/euskarazko_jokoak_zenbakitan/pie_chart.html' with id="chart-lizentzia" title="Lizentzia" data=datuak_lizentzia %}
+      </div>
+      <div class="col-sm-6">
+        {% include 'jokoa/euskarazko_jokoak_zenbakitan/pie_chart.html' with id="chart-generoa" title="Generoa" data=datuak_generoa %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <h2>Euskaraketa ezaugarrien arabera</h2>
+      </div>
+      <div class="col-sm-12">
+        {% include 'jokoa/euskarazko_jokoak_zenbakitan/column_chart.html' with id="chart-euskaratze-data" title="Euskaratze data" data=datuak_euskaratze_data %}
+      </div>
+      <div class="col-sm-6">
+        {% include 'jokoa/euskarazko_jokoak_zenbakitan/pie_chart.html' with id="chart-euskaraketa-ofiziala" title="Euskaraketa ofiziala" data=datuak_ofizialtasuna %}
+      </div>
+      <div class="col-sm-6">
+        {% include 'jokoa/euskarazko_jokoak_zenbakitan/pie_chart.html' with id="chart-euskaraketa-mota" title="Euskaraketa mota" data=datuak_euskaratze_mota %}
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+{%endblock%}
