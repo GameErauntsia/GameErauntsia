@@ -6,18 +6,20 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('gamer', '0005_gameruser_mastodon_id'),
+        ("gamer", "0005_gameruser_mastodon_id"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='gameruser',
-            name='is_core_team_member',
-            field=models.BooleanField(default=False, verbose_name='Talde motorreko kidea'),
+            model_name="gameruser",
+            name="is_core_team_member",
+            field=models.BooleanField(
+                default=False, verbose_name="Talde motorreko kidea"
+            ),
         ),
         migrations.AlterField(
-            model_name='gameruser',
-            name='is_gamer',
-            field=models.BooleanField(default=False, verbose_name='Sortzailea'),
+            model_name="gameruser",
+            name="is_gamer",
+            field=models.BooleanField(default=False, verbose_name="Sortzailea"),
         ),
     ]

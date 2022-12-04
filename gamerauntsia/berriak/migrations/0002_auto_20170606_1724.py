@@ -9,18 +9,22 @@ import django.utils.timezone
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('berriak', '0001_initial'),
+        ("berriak", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='berria',
-            name='mod_date',
-            field=models.DateTimeField(default=django.utils.timezone.now, verbose_name='modifikazio data'),
+            model_name="berria",
+            name="mod_date",
+            field=models.DateTimeField(
+                default=django.utils.timezone.now, verbose_name="modifikazio data"
+            ),
         ),
         migrations.AlterField(
-            model_name='berria',
-            name='pub_date',
-            field=models.DateTimeField(default=django.utils.timezone.now, verbose_name='publikazio data'),
+            model_name="berria",
+            name="pub_date",
+            field=models.DateTimeField(
+                default=django.utils.timezone.now, verbose_name="publikazio data"
+            ),
         ),
     ]

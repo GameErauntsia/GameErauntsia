@@ -9,18 +9,22 @@ import django.utils.timezone
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('gameplaya', '0001_initial'),
+        ("gameplaya", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='gameplaya',
-            name='mod_date',
-            field=models.DateTimeField(default=django.utils.timezone.now, verbose_name='modifikazio data'),
+            model_name="gameplaya",
+            name="mod_date",
+            field=models.DateTimeField(
+                default=django.utils.timezone.now, verbose_name="modifikazio data"
+            ),
         ),
         migrations.AlterField(
-            model_name='gameplaya',
-            name='pub_date',
-            field=models.DateTimeField(default=django.utils.timezone.now, verbose_name='publikazio data'),
+            model_name="gameplaya",
+            name="pub_date",
+            field=models.DateTimeField(
+                default=django.utils.timezone.now, verbose_name="publikazio data"
+            ),
         ),
     ]

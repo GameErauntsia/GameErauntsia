@@ -6,23 +6,35 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('gamer', '0007_gameruser_twitch_channel_id'),
+        ("gamer", "0007_gameruser_twitch_channel_id"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='gameruser',
-            name='twitch_sub_id_offline',
-            field=models.CharField(blank=True, max_length=150, null=True, verbose_name='Twitch kanalaren offline harpidetza id-a'),
+            model_name="gameruser",
+            name="twitch_sub_id_offline",
+            field=models.CharField(
+                blank=True,
+                max_length=150,
+                null=True,
+                verbose_name="Twitch kanalaren offline harpidetza id-a",
+            ),
         ),
         migrations.AddField(
-            model_name='gameruser',
-            name='twitch_sub_id_online',
-            field=models.CharField(blank=True, max_length=150, null=True, verbose_name='Twitch kanalaren online harpidetza id-a'),
+            model_name="gameruser",
+            name="twitch_sub_id_online",
+            field=models.CharField(
+                blank=True,
+                max_length=150,
+                null=True,
+                verbose_name="Twitch kanalaren online harpidetza id-a",
+            ),
         ),
         migrations.AlterField(
-            model_name='gameruser',
-            name='ytube_channel',
-            field=models.CharField(blank=True, max_length=150, null=True, verbose_name='Youtube kanala'),
+            model_name="gameruser",
+            name="ytube_channel",
+            field=models.CharField(
+                blank=True, max_length=150, null=True, verbose_name="Youtube kanala"
+            ),
         ),
     ]

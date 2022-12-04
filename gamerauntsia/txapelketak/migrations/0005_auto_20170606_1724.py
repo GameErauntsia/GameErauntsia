@@ -9,23 +9,29 @@ import django.utils.timezone
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('txapelketak', '0004_auto_20170426_1820'),
+        ("txapelketak", "0004_auto_20170426_1820"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='txapelketa',
-            name='insk_date',
-            field=models.DateTimeField(default=django.utils.timezone.now, verbose_name='Izen ematea'),
+            model_name="txapelketa",
+            name="insk_date",
+            field=models.DateTimeField(
+                default=django.utils.timezone.now, verbose_name="Izen ematea"
+            ),
         ),
         migrations.AlterField(
-            model_name='txapelketa',
-            name='mod_date',
-            field=models.DateTimeField(default=django.utils.timezone.now, verbose_name='modifikazio data'),
+            model_name="txapelketa",
+            name="mod_date",
+            field=models.DateTimeField(
+                default=django.utils.timezone.now, verbose_name="modifikazio data"
+            ),
         ),
         migrations.AlterField(
-            model_name='txapelketa',
-            name='pub_date',
-            field=models.DateTimeField(default=django.utils.timezone.now, verbose_name='Publikazio data'),
+            model_name="txapelketa",
+            name="pub_date",
+            field=models.DateTimeField(
+                default=django.utils.timezone.now, verbose_name="Publikazio data"
+            ),
         ),
     ]

@@ -8,28 +8,48 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('berriak', '0002_auto_20170606_1724'),
+        ("berriak", "0002_auto_20170606_1724"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='berria',
-            name='argazkia',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='photologue.Photo'),
+            model_name="berria",
+            name="argazkia",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="photologue.Photo",
+            ),
         ),
         migrations.AlterField(
-            model_name='berria',
-            name='erabiltzailea',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='berriak', to=settings.AUTH_USER_MODEL),
+            model_name="berria",
+            name="erabiltzailea",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT,
+                related_name="berriak",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
         migrations.AlterField(
-            model_name='berria',
-            name='jokoa',
-            field=models.ForeignKey(blank=True, help_text='Artikulu honek joko zehaz batekin loturarik badu, adierazi hemen.', null=True, on_delete=django.db.models.deletion.SET_NULL, to='jokoa.Jokoa'),
+            model_name="berria",
+            name="jokoa",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="Artikulu honek joko zehaz batekin loturarik badu, adierazi hemen.",
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="jokoa.Jokoa",
+            ),
         ),
         migrations.AlterField(
-            model_name='gaia',
-            name='irudia',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='photologue.Photo'),
+            model_name="gaia",
+            name="irudia",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="photologue.Photo",
+            ),
         ),
     ]

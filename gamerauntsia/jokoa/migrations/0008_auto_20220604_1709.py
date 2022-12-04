@@ -6,13 +6,21 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('jokoa', '0007_auto_20220604_1650'),
+        ("jokoa", "0007_auto_20220604_1650"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='jokoa',
-            name='lizentzia',
-            field=models.CharField(choices=[('C', 'Jabeduna - ordainpekoa'), ('FR', 'Jabeduna - doakoa'), ('OS', 'Librea edo irekia')], default='C', max_length=2),
+            model_name="jokoa",
+            name="lizentzia",
+            field=models.CharField(
+                choices=[
+                    ("C", "Jabeduna - ordainpekoa"),
+                    ("FR", "Jabeduna - doakoa"),
+                    ("OS", "Librea edo irekia"),
+                ],
+                default="C",
+                max_length=2,
+            ),
         ),
     ]

@@ -8,13 +8,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('jokoen_itzulpenak', '0004_auto_20170606_1744'),
+        ("jokoen_itzulpenak", "0004_auto_20170606_1744"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='euskarazkojokoa',
-            name='online_url',
-            field=models.URLField(blank=True, verbose_name='Online itzulpen proiektua'),
+            model_name="euskarazkojokoa",
+            name="online_url",
+            field=models.URLField(blank=True, verbose_name="Online itzulpen proiektua"),
         ),
     ]

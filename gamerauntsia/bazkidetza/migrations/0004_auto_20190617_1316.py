@@ -10,43 +10,59 @@ from django.utils.timezone import utc
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('bazkidetza', '0003_auto_20170606_1824'),
+        ("bazkidetza", "0003_auto_20170606_1824"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='bazkidea',
-            name='expire_date',
-            field=models.DateTimeField(default=datetime.datetime(2020, 6, 17, 11, 16, 57, 939337, tzinfo=utc)),
+            model_name="bazkidea",
+            name="expire_date",
+            field=models.DateTimeField(
+                default=datetime.datetime(2020, 6, 17, 11, 16, 57, 939337, tzinfo=utc)
+            ),
         ),
         migrations.AlterField(
-            model_name='bazkidea',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to=settings.AUTH_USER_MODEL, unique=True),
+            model_name="bazkidea",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT,
+                to=settings.AUTH_USER_MODEL,
+                unique=True,
+            ),
         ),
         migrations.AlterField(
-            model_name='eskaera',
-            name='bazkidea',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='bazkidetza.Bazkidea'),
+            model_name="eskaera",
+            name="bazkidea",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT, to="bazkidetza.Bazkidea"
+            ),
         ),
         migrations.AlterField(
-            model_name='eskaera',
-            name='eskaintza',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='bazkidetza.Eskaintza'),
+            model_name="eskaera",
+            name="eskaintza",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT, to="bazkidetza.Eskaintza"
+            ),
         ),
         migrations.AlterField(
-            model_name='eskaintza',
-            name='irudia',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='photologue.Photo'),
+            model_name="eskaintza",
+            name="irudia",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT, to="photologue.Photo"
+            ),
         ),
         migrations.AlterField(
-            model_name='oparitzekojokoak',
-            name='jokoa',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='jokoa.Jokoa'),
+            model_name="oparitzekojokoak",
+            name="jokoa",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT, to="jokoa.Jokoa"
+            ),
         ),
         migrations.AlterField(
-            model_name='oparitzekojokoak',
-            name='plataforma',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='jokoa.Plataforma'),
+            model_name="oparitzekojokoak",
+            name="plataforma",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT, to="jokoa.Plataforma"
+            ),
         ),
     ]

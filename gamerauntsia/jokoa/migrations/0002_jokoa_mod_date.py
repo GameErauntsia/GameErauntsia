@@ -10,13 +10,16 @@ from django.utils.timezone import utc
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('jokoa', '0001_initial'),
+        ("jokoa", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='jokoa',
-            name='mod_date',
-            field=models.DateTimeField(default=datetime.datetime(2017, 4, 26, 16, 21, 0, 188826, tzinfo=utc), verbose_name='modifikazio data'),
+            model_name="jokoa",
+            name="mod_date",
+            field=models.DateTimeField(
+                default=datetime.datetime(2017, 4, 26, 16, 21, 0, 188826, tzinfo=utc),
+                verbose_name="modifikazio data",
+            ),
         ),
     ]

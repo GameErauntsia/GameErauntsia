@@ -20,7 +20,7 @@ class JSONResponse(HttpResponse):
 
     def __init__(self, data, **kwargs):
         content = JSONRenderer().render(data)
-        kwargs['content_type'] = 'application/json'
+        kwargs["content_type"] = "application/json"
         super(JSONResponse, self).__init__(content, **kwargs)
 
 
@@ -51,32 +51,41 @@ def berria_detail(request, pk):
     except Berria.DoesNotExist:
         return HttpResponse(status=404)
 
-    if request.method == 'GET':
+    if request.method == "GET":
         serializer = BerriaSerializer(b)
         return JSONResponse(serializer.data)
-    elif request.method == 'HEAD':
+    elif request.method == "HEAD":
         serializer = BerriaSerializer(b)
         return JSONResponse(serializer.data)
 
 
 def index(request):
     h = {}
-    zerr_berriak = Berria.objects.filter(status='1', pub_date__lt=timezone.now()).order_by('-pub_date').select_related('argazkia','erabiltzailea__photo')
-    return render(request, 'berriak/index.html', locals())
+    zerr_berriak = (
+        Berria.objects.filter(status="1", pub_date__lt=timezone.now())
+        .order_by("-pub_date")
+        .select_related("argazkia", "erabiltzailea__photo")
+    )
+    return render(request, "berriak/index.html", locals())
 
 
 def berria(request, slug):
     item = get_object_or_404(Berria, slug=slug)
     facebook_id = settings.FB_APP_ID
-    return render(request, 'berriak/berria.html', locals())
+    return render(request, "berriak/berria.html", locals())
 
 
 def gaia(request, slug):
     gaia = get_object_or_404(Gaia, slug=slug)
-    zerr_berriak = Berria.objects.filter(gaia=gaia, status='1', pub_date__lt=timezone.now()).order_by('-pub_date')
-    return render(request, 'berriak/gaia.html', locals())
+    zerr_berriak = Berria.objects.filter(
+        gaia=gaia, status="1", pub_date__lt=timezone.now()
+    ).order_by("-pub_date")
+    return render(request, "berriak/gaia.html", locals())
+
 
 def jokoa(request, slug):
     jokoa = get_object_or_404(Jokoa, slug=slug)
-    zerr_berriak = Berria.objects.filter(jokoa=jokoa, status='1', pub_date__lt=timezone.now()).order_by('-pub_date')
-    return render(request, 'berriak/jokoa.html', locals())
+    zerr_berriak = Berria.objects.filter(
+        jokoa=jokoa, status="1", pub_date__lt=timezone.now()
+    ).order_by("-pub_date")
+    return render(request, "berriak/jokoa.html", locals())

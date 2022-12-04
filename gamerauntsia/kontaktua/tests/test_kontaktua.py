@@ -4,8 +4,7 @@ from django.urls import reverse
 
 
 class KontaktuaTest(TestCase):
-
     def test_kontaktua_index(self):
         c = Client()
-        response = c.get(reverse('kontaktua'))
+        response = c.get(reverse("kontaktua"))
         self.assertEqual(response.status_code, 200)

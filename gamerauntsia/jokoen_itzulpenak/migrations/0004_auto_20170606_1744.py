@@ -8,14 +8,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('jokoa', '0003_auto_20170606_1607'),
-        ('jokoen_itzulpenak', '0003_auto_20170606_1724'),
+        ("jokoa", "0003_auto_20170606_1607"),
+        ("jokoen_itzulpenak", "0003_auto_20170606_1724"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='euskarazkojokoa',
-            name='plataformak',
-            field=models.ManyToManyField(to='jokoa.Plataforma'),
+            model_name="euskarazkojokoa",
+            name="plataformak",
+            field=models.ManyToManyField(to="jokoa.Plataforma"),
         ),
     ]

@@ -2,6 +2,7 @@ import urllib.request as urllib2
 import xmltodict
 import json
 
+
 def get_urljson(url):
     obj = {}
     req = urllib2.Request(url)
@@ -12,6 +13,7 @@ def get_urljson(url):
     except:
         return None
     return obj
+
 
 def get_urlxml(url):
     stream = []

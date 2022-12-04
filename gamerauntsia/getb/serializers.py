@@ -10,4 +10,5 @@ class GetbSerializer(serializers.ModelSerializer):
         model = Atala
         depth = 1
 
+
 # fields = ('izenburua','slug','desk', 'irudia2',)

@@ -8,14 +8,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('txapelketak', '0002_txapelketa_manual_sign'),
+        ("txapelketak", "0002_txapelketa_manual_sign"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='txapelketa',
-            name='desk',
-            field=models.TextField(default='', max_length=256),
+            model_name="txapelketa",
+            name="desk",
+            field=models.TextField(default="", max_length=256),
             preserve_default=False,
         ),
     ]

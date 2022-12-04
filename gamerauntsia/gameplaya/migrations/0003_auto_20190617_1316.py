@@ -8,38 +8,61 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('gameplaya', '0002_auto_20170606_1724'),
+        ("gameplaya", "0002_auto_20170606_1724"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='gameplaya',
-            name='argazkia',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='photologue.Photo'),
+            model_name="gameplaya",
+            name="argazkia",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT, to="photologue.Photo"
+            ),
         ),
         migrations.AlterField(
-            model_name='gameplaya',
-            name='erabiltzailea',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='gameplayak', to=settings.AUTH_USER_MODEL),
+            model_name="gameplaya",
+            name="erabiltzailea",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT,
+                related_name="gameplayak",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
         migrations.AlterField(
-            model_name='gameplaya',
-            name='jokoa',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='gameplay', to='jokoa.Jokoa'),
+            model_name="gameplaya",
+            name="jokoa",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT,
+                related_name="gameplay",
+                to="jokoa.Jokoa",
+            ),
         ),
         migrations.AlterField(
-            model_name='gameplaya',
-            name='plataforma',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='gameplay', to='jokoa.Plataforma'),
+            model_name="gameplaya",
+            name="plataforma",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT,
+                related_name="gameplay",
+                to="jokoa.Plataforma",
+            ),
         ),
         migrations.AlterField(
-            model_name='gameplaya',
-            name='zailtasuna',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='gameplay', to='gameplaya.Zailtasuna'),
+            model_name="gameplaya",
+            name="zailtasuna",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT,
+                related_name="gameplay",
+                to="gameplaya.Zailtasuna",
+            ),
         ),
         migrations.AlterField(
-            model_name='kategoria',
-            name='irudia',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='photologue.Photo'),
+            model_name="kategoria",
+            name="irudia",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="photologue.Photo",
+            ),
         ),
     ]

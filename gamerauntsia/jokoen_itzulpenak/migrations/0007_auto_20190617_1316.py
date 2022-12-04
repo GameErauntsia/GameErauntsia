@@ -7,28 +7,47 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('jokoen_itzulpenak', '0006_auto_20171212_2257'),
+        ("jokoen_itzulpenak", "0006_auto_20171212_2257"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='euskalinkak',
-            name='irudia',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='photologue.Photo'),
+            model_name="euskalinkak",
+            name="irudia",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT, to="photologue.Photo"
+            ),
         ),
         migrations.AlterField(
-            model_name='euskarazkojokoa',
-            name='itzulpena',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='jokoen_itzulpenak.Itzulpena'),
+            model_name="euskarazkojokoa",
+            name="itzulpena",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="jokoen_itzulpenak.Itzulpena",
+            ),
         ),
         migrations.AlterField(
-            model_name='euskarazkojokoa',
-            name='jokoa',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='jokoa.Jokoa'),
+            model_name="euskarazkojokoa",
+            name="jokoa",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT, to="jokoa.Jokoa"
+            ),
         ),
         migrations.AlterField(
-            model_name='itzulpena',
-            name='status',
-            field=models.CharField(choices=[('-', 'Hasita'), ('0', 'Erdizka'), ('1', 'Probatzeko'), ('2', 'Amaituta')], default='0', max_length=1, verbose_name='Egoera'),
+            model_name="itzulpena",
+            name="status",
+            field=models.CharField(
+                choices=[
+                    ("-", "Hasita"),
+                    ("0", "Erdizka"),
+                    ("1", "Probatzeko"),
+                    ("2", "Amaituta"),
+                ],
+                default="0",
+                max_length=1,
+                verbose_name="Egoera",
+            ),
         ),
     ]

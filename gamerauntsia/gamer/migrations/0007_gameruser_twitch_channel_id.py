@@ -6,13 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('gamer', '0006_auto_20201220_2116'),
+        ("gamer", "0006_auto_20201220_2116"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='gameruser',
-            name='twitch_channel_id',
-            field=models.CharField(blank=True, max_length=150, null=True, verbose_name='Twitch kanalaren IDa'),
+            model_name="gameruser",
+            name="twitch_channel_id",
+            field=models.CharField(
+                blank=True,
+                max_length=150,
+                null=True,
+                verbose_name="Twitch kanalaren IDa",
+            ),
         ),
     ]

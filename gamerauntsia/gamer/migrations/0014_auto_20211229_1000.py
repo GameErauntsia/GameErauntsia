@@ -6,13 +6,30 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('gamer', '0013_gameruser_peertube_channel'),
+        ("gamer", "0013_gameruser_peertube_channel"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='jokuplataforma',
-            name='plataforma',
-            field=models.CharField(choices=[('steam', 'Steam'), ('origin', 'Origin'), ('epic', 'Epic Games'), ('lol', 'League of Legends'), ('uplay', 'Uplay'), ('xbox', 'XBOX'), ('ps4', 'PS4'), ('wii', 'Wii'), ('archeage', 'Archeage'), ('wow', 'World of Warcraft'), ('bnet', 'Battlenet'), ('minecraft', 'Minecraft Java Edition'), ('minecraft_bedrock', 'Minecraft Bedrock Edition')], max_length=20),
+            model_name="jokuplataforma",
+            name="plataforma",
+            field=models.CharField(
+                choices=[
+                    ("steam", "Steam"),
+                    ("origin", "Origin"),
+                    ("epic", "Epic Games"),
+                    ("lol", "League of Legends"),
+                    ("uplay", "Uplay"),
+                    ("xbox", "XBOX"),
+                    ("ps4", "PS4"),
+                    ("wii", "Wii"),
+                    ("archeage", "Archeage"),
+                    ("wow", "World of Warcraft"),
+                    ("bnet", "Battlenet"),
+                    ("minecraft", "Minecraft Java Edition"),
+                    ("minecraft_bedrock", "Minecraft Bedrock Edition"),
+                ],
+                max_length=20,
+            ),
         ),
     ]
