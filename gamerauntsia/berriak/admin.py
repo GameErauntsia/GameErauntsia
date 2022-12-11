@@ -46,7 +46,6 @@ class BerriakAdmin(admin.ModelAdmin):
     ordering = [
         "-pub_date",
     ]
-    readonly_fields = ["shared"]
     form = BerriaAdminForm
 
     def get_readonly_fields(self, request, obj=None):
@@ -57,7 +56,7 @@ class BerriakAdmin(admin.ModelAdmin):
         ):
             return super(BerriakAdmin, self).get_readonly_fields(request, obj)
         else:
-            return ("status", "shared")
+            return ("status")
 
     def queryset(self, request):
         qs = super(BerriakAdmin, self).queryset(request)
