@@ -56,7 +56,7 @@ class BerriakAdmin(admin.ModelAdmin):
         ):
             return super(BerriakAdmin, self).get_readonly_fields(request, obj)
         else:
-            return ("status")
+            return "status"
 
     def queryset(self, request):
         qs = super(BerriakAdmin, self).queryset(request)
