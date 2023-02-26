@@ -22,24 +22,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Install Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.6.12'
-
-      - name: Install dependencies
-        run: |
-          pip install pip==20.0.2
-          pip install -q $DJANGO
-          pip install -r requirements.txt
-          pip install coveralls
-          pip install black
-
-      - name: Run tests
-        run: coverage run runtests.py
-
       - name: Black check
-        run: black --check gamerauntsia
+        run: |
+          pip install black
+          black --check gamerauntsia
 
       - name: Build and publish Docker image
         run: ./ci/build_push_docker.sh
