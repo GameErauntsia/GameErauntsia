@@ -12,9 +12,9 @@ jobs:
   ci-cd:
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: ${{env.IMAGE_NAME}}
-      REGISTRY_ADDRESS: ${{env.REGISTRY_ADDRESS}}
-      REGISTRY_URL: ${{env.REGISTRY_URL}}
+      IMAGE_NAME: ${{vars.IMAGE_NAME}}
+      REGISTRY_ADDRESS: ${{vars.REGISTRY_ADDRESS}}
+      REGISTRY_URL: ${{vars.REGISTRY_URL}}
       REGISTRY_USERNAME: ${{secrets.REGISTRY_USERNAME}}
       REGISTRY_PASSWORD: ${{secrets.REGISTRY_PASSWORD}}
       DJANGO: "Django>2.0.0"
