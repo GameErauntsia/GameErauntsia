@@ -1,5 +1,11 @@
 #!/bin/bash -e
 
+BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+
+if [[ "${BRANCH:=}" != "main" ]]; then
+    exit 0
+fi
+
 TARGET_IMAGE="${REGISTRY_URL}/${IMAGE_NAME}"
 TARGET_IMAGE_LATEST="${TARGET_IMAGE}:latest"
 VERSION=$(date '+%Y-%m-%d__%H-%M-%S')

@@ -1,0 +1,40 @@
+name: CI/CD
+
+on:
+  push:
+    paths-ignore:
+      - "README.md"
+      - "CONTRIBUTING.md"
+      - "CHANGELOG.md"
+      - "LICENSE"
+      - ".gitignore"
+jobs:
+  ci-cd:
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: ${{env.IMAGE_NAME}}
+      REGISTRY_ADDRESS: ${{env.REGISTRY_ADDRESS}}
+      REGISTRY_URL: ${{env.REGISTRY_URL}}
+      REGISTRY_USERNAME: ${{secrets.REGISTRY_USERNAME}}
+      REGISTRY_PASSWORD: ${{secrets.REGISTRY_PASSWORD}}
+      DJANGO: "Django>2.0.0"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          pip install pip==20.0.2
+          pip install -q $DJANGO
+          pip install -r requirements.txt
+          pip install coveralls
+          pip install black
+
+      - name: Run tests
+        run: coverage run runtests.py
+
+      - name: Black check
+        run: black --check gamerauntsia
+
+      - name: Build and publish Docker image
+        run: ./ci/build_push_docker.sh
