@@ -4,7 +4,6 @@ from models import Finished
 
 
 class FinishedForm(forms.ModelForm):
-
     jokoa = forms.CharField(label="Jokoa", widget=forms.Textarea)
     nota = forms.DecimalField(label="Nota")
     fetxa = forms.DateTimeField(

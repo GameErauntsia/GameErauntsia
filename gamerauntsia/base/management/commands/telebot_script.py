@@ -16,7 +16,6 @@ COMMANDS = (
 
 
 def start_telebot():
-
     tb = telebot.TeleBot(settings.TELEBOT_TOKEN)
 
     @tb.message_handler(func=lambda message: "#" in message.text)
@@ -146,7 +145,6 @@ def start_telebot():
 
 
 class Command(DaemonCommand):
-
     STDOUT = "../log/telebot.err"
     STDERR = STDOUT
 

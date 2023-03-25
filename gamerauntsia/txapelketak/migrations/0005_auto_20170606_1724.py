@@ -7,7 +7,6 @@ import django.utils.timezone
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("txapelketak", "0004_auto_20170426_1820"),
     ]

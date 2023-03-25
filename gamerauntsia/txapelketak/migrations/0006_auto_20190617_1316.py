@@ -7,7 +7,6 @@ import mptt.fields
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("txapelketak", "0005_auto_20170606_1724"),
     ]

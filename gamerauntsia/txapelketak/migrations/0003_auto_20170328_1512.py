@@ -6,7 +6,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("txapelketak", "0002_txapelketa_manual_sign"),
     ]

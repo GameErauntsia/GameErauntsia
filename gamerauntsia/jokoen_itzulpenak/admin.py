@@ -5,7 +5,6 @@ from django.utils.safestring import mark_safe
 
 
 class ItzulpenakAdmin(admin.ModelAdmin):
-
     list_display = ["izena", "pub_date", "mod_date", "status", "publikoa_da"]
     list_display_links = ["izena"]
     list_filter = ["publikoa_da", "status"]

@@ -11,7 +11,6 @@ CSS_CLASS_CHOICES = (
 
 
 class EventForm(forms.ModelForm):
-
     desc = forms.CharField(label="", widget=forms.Textarea)
 
     css_class = forms.ChoiceField(label=_("Type"), choices=CSS_CLASS_CHOICES)

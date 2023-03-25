@@ -11,7 +11,6 @@ version = "0.1"
 
 
 def get_requirements(source):
-
     try:
         install_reqs = parse_requirements(source, session=uuid.uuid1())
     except TypeError:

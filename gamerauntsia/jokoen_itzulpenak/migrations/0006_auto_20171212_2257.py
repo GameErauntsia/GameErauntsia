@@ -6,7 +6,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("jokoen_itzulpenak", "0005_euskarazkojokoa_online_url"),
     ]

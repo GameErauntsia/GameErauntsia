@@ -7,7 +7,6 @@ from daemon_command import DaemonCommand
 
 
 def start_telebot():
-
     tb = telebot.TeleBot(settings.PYSSTELEBOT_TOKEN)
 
     @tb.message_handler(
@@ -26,7 +25,6 @@ def start_telebot():
 
 
 class Command(DaemonCommand):
-
     STDOUT = "../log/telebot.err"
     STDERR = STDOUT
 

@@ -56,7 +56,6 @@ class ProfilePhotoForm(forms.Form):
 
 
 class GamerForm(forms.ModelForm):
-
     signature = forms.CharField(
         widget=TinyMCE(
             attrs={
@@ -124,7 +123,6 @@ class NotifyForm(forms.ModelForm):
 
 
 class ArticleForm(forms.ModelForm):
-
     desk = forms.CharField(
         label="",
         widget=TinyMCE(
@@ -224,7 +222,6 @@ class GameCatalogForm(forms.ModelForm):
 
 
 class TopForm(forms.ModelForm):
-
     top_jokoak = forms.ModelMultipleChoiceField(
         queryset=Jokoa.objects.all().order_by("izena", "bertsioa"),
         label="",
@@ -250,7 +247,6 @@ class AmaitutaForm(forms.ModelForm):
 
 
 class GamePlayForm(forms.ModelForm):
-
     desk = forms.CharField(
         label="",
         widget=TinyMCE(

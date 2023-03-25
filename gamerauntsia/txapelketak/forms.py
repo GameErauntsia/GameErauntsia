@@ -57,7 +57,6 @@ class TxapelketaAdminForm(forms.ModelForm):
 
 
 class TaldeaForm(forms.ModelForm):
-
     irudia = forms.ImageField(
         label="Nabarmendutako irudia",
         help_text="Onartutako formatuak: jpg, png, gif.",
