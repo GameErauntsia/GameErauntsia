@@ -45,9 +45,11 @@ jobs:
           --target production .
 
       - name: Publish production latest Docker image
+        if: github.ref == 'refs/heads/main'
         run: docker push ${DOCKER_IMAGE_NAME}:latest
 
       - name: Publish production versioned Docker image
+        if: github.ref == 'refs/heads/main'
         run: |
           VERSION=$(date '+%Y-%m-%d__%H-%M-%S')
           VERSIONED_NAME=${DOCKER_IMAGE_NAME}:${VERSION}
