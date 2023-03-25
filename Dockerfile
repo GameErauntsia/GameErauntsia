@@ -61,4 +61,4 @@ COPY . $APP_HOME/code/
 
 WORKDIR $APP_HOME/code
 CMD start-web.sh \
-    gunicorn gamerauntsia.wsgi:application --bind 0.0.0.0:8000 --workers=4
+    puthon -m gunicorn gamerauntsia.wsgi:application --bind 0.0.0.0:8000 --workers=4
