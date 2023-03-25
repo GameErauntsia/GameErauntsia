@@ -7,6 +7,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 
 ## General config
 DEBUG = os.getenv("DEBUG", False)
+TESTING = os.getenv("TESTING", False)
 TEMPLATE_DEBUG = os.getenv("TEMPLATE_DEBUG", False)
 TEMPLATE_DEBUG = DEBUG
 SITE_ID = 1
@@ -213,7 +214,7 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
 ]
 
-if DEBUG:
+if DEBUG == "True" and not TESTING:
     import socket  # only if you haven't already imported this
 
     hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())

@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DOCKER_IMAGE_NAME: ${{vars.DOCKER_IMAGE_NAME}}
+      COVERALLS_REPO_TOKEN: ${{secrets.COVERALLS_REPO_TOKEN}}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -34,6 +35,16 @@ jobs:
 
       - name: Run black check
         run: docker-compose exec -T --user gamerauntsia web python -m black --check .
+
+      - name: Run tests
+        run: |
+          docker-compose exec -T --user gamerauntsia -e TESTING=True web \
+          python -m coverage run runtests.py
+
+      - name: Publish test coverage
+        run: |
+          docker-compose exec -T --user gamerauntsia -e COVERALLS_REPO_TOKEN web \
+          python -m coveralls --service=github
 
       - name: Stop environment
         run: docker-compose down -t0

@@ -4,7 +4,7 @@ services:
   db:
     image: mariadb:10.5.5
     environment:
-      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_ALLOW_EMPTY_PASSWORD
       - MYSQL_DATABASE
       - MYSQL_USER
       - MYSQL_PASSWORD
