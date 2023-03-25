@@ -39,14 +39,14 @@ jobs:
       - name: Run tests
         run: |
           docker-compose exec -T --user gamerauntsia \
-          -e TESTING=True -e COVERAGE_FILE=/tmp/.coveragerc \
+          -e TESTING=True -e COVERAGE_FILE=/tmp/.coverage \
           web \
           python -m coverage run runtests.py
 
       - name: Publish test coverage
         run: |
           docker-compose exec -T --user gamerauntsia -e COVERALLS_REPO_TOKEN web \
-          python -m coveralls --service=github --rcfile=/tmp/.coveragerc
+          python -m coveralls --service=github --data_file=/tmp/.coverage
 
       - name: Stop environment
         run: docker-compose down -t0
