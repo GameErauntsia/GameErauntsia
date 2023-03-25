@@ -54,5 +54,5 @@ jobs:
         run: |
           VERSION=$(date '+%Y-%m-%d__%H-%M-%S')
           VERSIONED_NAME=${DOCKER_IMAGE_NAME}:${VERSION}
-          docker tag ${DOCKER_IMAGE_NAME}:latest
+          docker tag ${DOCKER_IMAGE_NAME}:latest ${VERSIONED_NAME}
           docker push ${VERSIONED_NAME}
