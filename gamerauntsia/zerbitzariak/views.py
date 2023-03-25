@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from gamerauntsia.zerbitzariak.models import MC_Whitelist
 from gamerauntsia.gamer.models import JokuPlataforma
 from gamerauntsia.utils.urls import get_urljson
-from mcstatus import MinecraftServer
+from mcstatus import JavaServer
 from .forms import MCForm
 import re
 
@@ -27,7 +27,7 @@ def get_mc_version_string(mc_server_status):
 
 def minecraft_status(request):
     try:
-        mc_server = MinecraftServer.lookup("mc.gamerauntsia.eus")
+        mc_server = JavaServer.lookup("mc.gamerauntsia.eus")
         mc_server_status = mc_server.status()
         mc_server_version = get_mc_version_string(mc_server_status)
     except:
