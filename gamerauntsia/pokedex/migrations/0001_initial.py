@@ -7,21 +7,32 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Pokemon',
+            name="Pokemon",
             fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False)),
-                ('izena_ingelesez', models.CharField(max_length=256, verbose_name='Izena ingelesez')),
-                ('izena_euskaraz', models.CharField(max_length=256, verbose_name='Izena euskaraz')),
-                ('izena_euskaraz_azalpena', models.CharField(max_length=256, verbose_name='Euskarazko izenaren azalpen laburra')),
+                ("id", models.IntegerField(primary_key=True, serialize=False)),
+                (
+                    "izena_ingelesez",
+                    models.CharField(max_length=256, verbose_name="Izena ingelesez"),
+                ),
+                (
+                    "izena_euskaraz",
+                    models.CharField(max_length=256, verbose_name="Izena euskaraz"),
+                ),
+                (
+                    "izena_euskaraz_azalpena",
+                    models.CharField(
+                        max_length=256,
+                        verbose_name="Euskarazko izenaren azalpen laburra",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Pokemon',
-                'verbose_name_plural': 'Pokemonak',
+                "verbose_name": "Pokemon",
+                "verbose_name_plural": "Pokemonak",
             },
         ),
     ]
