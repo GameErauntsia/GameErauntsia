@@ -46,7 +46,7 @@ jobs:
       - name: Publish test coverage
         run: |
           docker-compose exec -T --user gamerauntsia -e COVERALLS_REPO_TOKEN web \
-          python -m coveralls --service=github --data_file=/tmp/.coverage
+          python -m coveralls --service=github
 
       - name: Stop environment
         run: docker-compose down -t0
