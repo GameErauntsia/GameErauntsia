@@ -5,14 +5,14 @@ Game Erauntsia
 
 |Language| |License|
 
-|Travis| |Coveralls| |Docs|
+|GithubActions| |Coveralls| |Docs|
 
 .. |Language| image:: https://img.shields.io/github/languages/top/gameerauntsia/gameerauntsia
     :alt: Language
 
-.. |Travis| image:: https://img.shields.io/travis/com/gameerauntsia/gameerauntsia/master?logo=travis
-    :target: https://travis-ci.com/GameErauntsia/GameErauntsia
-    :alt: Travis CI
+.. |GithubActions| image:: https://github.com/GameErauntsia/GameErauntsia/actions/workflows/ci-cd.yml/badge.svg
+    :target: https://github.com/GameErauntsia/GameErauntsia/actions/workflows/ci-cd.yml
+    :alt: CI CD Github Actions
 
 .. |Coveralls| image:: https://coveralls.io/repos/github/GameErauntsia/GameErauntsia/badge.svg?branch=master
     :target: https://coveralls.io/github/GameErauntsia/GameErauntsia?branch=master
