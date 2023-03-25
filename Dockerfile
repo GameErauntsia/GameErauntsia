@@ -52,6 +52,8 @@ CMD start-web.sh \
 #--------------------------------------------------------------------------------
 FROM base AS production
 
+COPY start-web.sh /usr/local/bin/start-web.sh
+
 COPY --from=requirement-compiler-common /root/.local /root/.local
 COPY --from=requirement-compiler-common $APP_HOME/req-src $APP_HOME/req-src
 
