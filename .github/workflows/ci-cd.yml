@@ -23,14 +23,11 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
-      - name: Download latest Docker image for caching
-        run: docker pull ${DOCKER_IMAGE_NAME}
-
       - name: Build dev/ci Docker image
         run: |
           docker build \
-          --target development \
-          --cache-from ${DOCKER_IMAGE_NAME} .
+          --tag ${DOCKER_IMAGE_NAME}:dev \
+          --target development .
 
       - name: Start environment
         run: docker-compose up -d

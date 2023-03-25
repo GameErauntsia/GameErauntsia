@@ -4,7 +4,7 @@ services:
     ports:
       - 3306:3306
   web:
-    image: local/gamerauntsia/web:latest
+    image: gamerauntsia/web:dev
     build:
       context: .
       target: "development"
