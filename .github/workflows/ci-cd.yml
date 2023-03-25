@@ -17,15 +17,17 @@ jobs:
       REGISTRY_URL: ${{vars.REGISTRY_URL}}
       REGISTRY_USERNAME: ${{secrets.REGISTRY_USERNAME}}
       REGISTRY_PASSWORD: ${{secrets.REGISTRY_PASSWORD}}
-      DJANGO: "Django>2.0.0"
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Black check
+      - name: Start environment
         run: |
-          pip install black
-          black --check gamerauntsia
+          docker-compose up -d
+
+      - name: Run black check
+        run: |
+          docker-compose exec -T --user gamerauntsia web python -m black --check .
 
       - name: Build and publish Docker image
         run: ./ci/build_push_docker.sh

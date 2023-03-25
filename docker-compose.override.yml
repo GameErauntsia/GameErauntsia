@@ -3,16 +3,17 @@ services:
   db:
     ports:
       - 3306:3306
+  web:
+    image: local/gamerauntsia/web:latest
+    build:
+      context: .
+      target: "development"
+    environment:
+      - DEBUG=True
+    volumes:
+      - .:/app/code
   proxy:
     extra_hosts:
       - "matomo:0.0.0.0"
     ports:
       - 80:80
-  web:
-    build: .
-    command: >
-      python manage.py runserver 0.0.0.0:8000
-    environment:
-      - DEBUG=True
-    volumes:
-      - .:/app/code

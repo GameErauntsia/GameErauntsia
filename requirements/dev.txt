@@ -1,0 +1,4 @@
+-r common.txt
+click == 8.0.4
+black == 22.8.0
+coveralls == 3.3.1
