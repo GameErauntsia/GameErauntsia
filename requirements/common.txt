@@ -24,7 +24,7 @@ Mastodon.py == 1.8.0
 pyTelegramBotAPI == 4.10.0
 tweepy == 4.13.0
 django-crispy-forms >= 1.10.0
-django-guardian == 2.3.0
+django-guardian == 2.4.0
 djangorestframework == 3.14.0
 django-rest-auth == 0.9.5
 django-cors-headers == 3.6.0
