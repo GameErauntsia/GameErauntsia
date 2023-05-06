@@ -125,9 +125,9 @@
 
 .pokemon-entry {
   display: grid;
-  grid-template-areas: "header header" "image info" "stats evolutions";
+  grid-template-areas: "header header" "image info" "description info" "stats evolutions";
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto 350px 200px;
+  grid-template-rows: auto 225px 125px 200px;
   grid-gap: 15px;
   background-color: #f2f2f2;
   border-radius: 10px;
@@ -274,6 +274,11 @@
   padding: 20px;
 }
 
+.pokemon-entry__description {
+  grid-area: description;
+  padding: 20px;
+}
+
 .pokemon-entry__types {
   display: flex;
   gap: 5px;
@@ -323,8 +328,8 @@
     padding: 5px;
   }
   .pokemon-entry {
-    grid-template-areas: "header" "image" "info" "stats" "evolutions";
+    grid-template-areas: "header" "image" "description" "info" "stats" "evolutions";
     grid-template-columns: minmax(0,1fr);
-    grid-template-rows: auto 150px auto auto auto;
+    grid-template-rows: auto 150px auto auto auto auto;
   }
 }

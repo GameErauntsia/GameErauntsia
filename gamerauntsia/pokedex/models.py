@@ -9,6 +9,7 @@ class Pokemon(models.Model):
     izena_euskaraz_azalpena = models.CharField(
         max_length=256, verbose_name="Euskarazko izenaren azalpen laburra"
     )
+    deskribapena = models.TextField(max_length=256, null=True, blank=True)
 
     def __str__(self):
         return "Pokemon - %d" % (self.id)
