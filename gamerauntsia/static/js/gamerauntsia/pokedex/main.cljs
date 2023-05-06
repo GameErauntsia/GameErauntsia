@@ -4,6 +4,28 @@
             [reagent.core :as r]
             [reagent.dom :as rdom]))
 
+(def ^:const pokemon-type-translations
+  {"normal" "normal"
+   "figthing" "gudu"
+   "flying" "hegal."
+   "poison" "pozoi"
+   "ground" "lur"
+   "rock" "haitz"
+   "bug" "mozor."
+   "ghost" "mamu"
+   "steel" "burdin"
+   "fire" "su"
+   "water" "ur"
+   "grass" "landa."
+   "electric" "elekt."
+   "psychic" "psik."
+   "ice" "izotz"
+   "dragon" "dragoi"
+   "dark" "ilun"
+   "fairy" "mait."
+   "unknown" "???"
+   "shadow" "itzal"})
+
 (rf/reg-fx
  ::make-request
  (fn [{:keys [uri on-success-evt on-failure-evt]}]
@@ -327,7 +349,7 @@
         ^{:keys type-name}
         [:span.pokemon-type.pokemon-entry__type
          {:class (str "pokemon-type--" type-name)}
-         type-name])]]]])
+         (get pokemon-type-translations type-name type-name)])]]]])
 
 (defn- pokedex-entry
   [id]
