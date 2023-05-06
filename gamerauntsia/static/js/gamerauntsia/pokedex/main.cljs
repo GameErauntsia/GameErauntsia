@@ -243,7 +243,7 @@
   (let [pokedex (rf/subscribe [::pokedex])]
     (fn [evolution]
       (if-let [pokedex-entry
-               (some #(when (= (:izena_ingelesez %)
+               (some #(when (= (str/lower-case (:izena_ingelesez %))
                                (get-in evolution [:species :name])) %)
                      @pokedex)]
         [:div.pokemon-evolutions__evolution-container
