@@ -26,6 +26,18 @@
    "unknown" "???"
    "shadow" "itzal"})
 
+(def ^:const pokemon-color-translations
+  {"black" "beltza"
+   "blue" "urdina"
+   "brown" "marroia"
+   "gray" "grisa"
+   "green" "berdea"
+   "pink" "arrosa"
+   "purple" "morea"
+   "red" "gorria"
+   "white" "txuria"
+   "yellow" "horia"})
+
 (rf/reg-fx
  ::make-request
  (fn [{:keys [uri on-success-evt on-failure-evt]}]
@@ -334,7 +346,9 @@
      [:span "Kolorea:"]
      [:span.pokemon-color
       {:style {:background-color (get-in specie [:color :name])}}
-      (get-in specie [:color :name])]]
+      (get pokemon-color-translations
+           (get-in specie [:color :name])
+           (get-in specie [:color :name]))]]
     [:div.pokemon-entry__info-field
      [:span "Forma:"]
      [:span (get-in specie [:shape :name])]]
