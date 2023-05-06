@@ -259,7 +259,7 @@
            [:div.pokemon-evolutions__evolution-children
             (for [child (:evolves_to evolution)]
               [pokemon-evolution child])])]
-        [:div "Errorea"]))))
+        [:div "Kargatzen..."]))))
 
 (defn- pokemon-evolutions
   [evolutions]
@@ -267,6 +267,12 @@
    [:span.pokemon-entry__section-title "Eboluzioak"]
    [:div.pokemon-evolutions
     [pokemon-evolution evolutions]]])
+
+(defn- pokemon-description
+  [deskribapena]
+  [:div.pokemon-entry__section.pokemon-entry__description
+   [:span.pokemon-entry__section-title "Deskribapena"]
+   [:p deskribapena]])
 
 (defn- pokemon-info
   [{:keys [types weight height abilities specie]}]
@@ -327,7 +333,7 @@
   [id]
   (let [pokedex-entry (rf/subscribe [::pokedex-entry id])
         pokemon (rf/subscribe [::pokemon id])]
-    (let [{:keys [izena_euskaraz izena_ingelesez]} @pokedex-entry
+    (let [{:keys [izena_euskaraz izena_ingelesez deskribapena]} @pokedex-entry
           {:keys [stats evolutions]} @pokemon]
       [:<>
        [:span.pokedex__link
@@ -350,6 +356,7 @@
         [:div.pokemon-entry__section.pokemon-entry__image-container
          [:img.pokemon-entry__image
           {:src (pokemon-image-url id)}]]
+        [pokemon-description deskribapena]
         [pokemon-info @pokemon]
         [pokemon-stats stats]
         [pokemon-evolutions evolutions]]])))
