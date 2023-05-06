@@ -227,9 +227,8 @@
     true))
 
 (defn- pokemon-list
-  []
+  [displayed-count]
   (let [pokedex (rf/subscribe [::pokedex])
-        displayed-count (r/atom 12)
         search-text (r/atom "")]
     (fn []
       (let [filtered-entries (->> @pokedex
@@ -399,12 +398,13 @@
 
 (defn- pokedex
   []
-  (let [selected-pokemon (rf/subscribe [::selected-pokemon])]
+  (let [selected-pokemon (rf/subscribe [::selected-pokemon])
+        displayed-count (r/atom 14)]
     (fn []
       [:div.pokedex
        (if-let [pokemon-id @selected-pokemon]
          [pokedex-entry pokemon-id]
-         [pokemon-list])])))
+         [pokemon-list displayed-count])])))
 
 (defn- root-component []
   [pokedex])

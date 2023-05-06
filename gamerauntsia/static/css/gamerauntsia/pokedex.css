@@ -239,8 +239,8 @@
 }
 
 .pokemon-evolutions__evolution-img {
-  max-width: 80px;
-  max-height: 80px;
+  width: 80px;
+  height: 80px;
   border: 2px solid #a4a4a4;
   padding: 15px;
   border-radius: 100%;
