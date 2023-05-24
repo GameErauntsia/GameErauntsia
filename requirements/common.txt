@@ -1,4 +1,4 @@
-sphinx_rtd_theme == 0.4.3
+sphinx_rtd_theme == 1.2.1
 sphinx == 2.2.1
 django-recaptcha == 2.0.6
 -e git+https://github.com/urtzai/django-messages#egg=django-messages
