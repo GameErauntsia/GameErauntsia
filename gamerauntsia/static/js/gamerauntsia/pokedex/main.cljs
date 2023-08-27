@@ -38,6 +38,14 @@
    "white" "txuria"
    "yellow" "horia"})
 
+(def ^:const pokemon-stats-translations
+  {"hp" "osasun puntuak"
+   "attack" "erasoa"
+   "defense" "babesa"
+   "special-attack" "eraso berezia"
+   "special-defense" "babes berezia"
+   "speed" "abiadura"})
+
 (rf/reg-fx
  ::make-request
  (fn [{:keys [uri on-success-evt on-failure-evt]}]
@@ -269,7 +277,9 @@
       [:div.pokemon-stats-graph__stat
        [:span base_stat]
        [pokemon-stats-bar base_stat]
-       [:span (str/capitalize name)]])]])
+       [:span
+        (str/upper-case
+         (get pokemon-stats-translations name name))]])]])
 
 (defn- pokemon-evolution
   [_evolution]
@@ -325,13 +335,13 @@
         (str
          (cond
            (and hidden? (= 1 (count abilities)))
-           "Abilezia ezkutua"
+           "Gaitasun ezkutua"
            (and (not hidden?) (= 1 (count abilities)))
-           "Abilezia"
+           "Gaitasuna"
            hidden?
-           "Abilezia ezkutuak"
+           "Gaitasun ezkutuak"
            :else
-           "Abileziak")
+           "Gaitasunak")
          ": ")]
        [:span (str/join ", " (map (comp :name :ability) abilities))]])
     [:div.pokemon-entry__info-field
@@ -339,7 +349,7 @@
      [:span (->> (map :name (:egg_groups specie))
                  (str/join ", "))]]
     [:div.pokemon-entry__info-field
-     [:span "Bizilekua"]
+     [:span "Bizitokia"]
      [:span (get-in specie [:habitat :name])]]
     [:div.pokemon-entry__info-field
      [:span "Kolorea:"]
@@ -349,7 +359,7 @@
            (get-in specie [:color :name])
            (get-in specie [:color :name]))]]
     [:div.pokemon-entry__info-field
-     [:span "Forma:"]
+     [:span "Itxura:"]
      [:span (get-in specie [:shape :name])]]
     [:div.pokemon-entry__info-field
      [:span "Belaunaldia"]
