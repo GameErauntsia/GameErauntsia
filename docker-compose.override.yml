@@ -3,6 +3,8 @@ services:
   db:
     ports:
       - 3306:3306
+    volumes:
+      - ./db/init-scripts:/docker-entrypoint-initdb.d:ro
   web:
     image: gamerauntsia/web:dev
     build:

@@ -15,8 +15,8 @@ services:
       - MATOMO_DATABASE_USERNAME
       - MATOMO_DATABASE_PASSWORD
     volumes:
-      - ./db:/docker-entrypoint-initdb.d:ro
       - db-data:/var/lib/mysql
+      - ./db/gamerauntsia.cnf:/etc/mysql/conf.d/gamerauntsia.cnf
   web:
     environment:
       - HOST_NAME

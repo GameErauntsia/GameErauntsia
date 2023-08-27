@@ -23,7 +23,7 @@ services:
     environment:
       - DOMAINS=www.gamerauntsia.eus => https://gamerauntsia.eus, gamerauntsia.eus -> http://proxy:80
       - STAGE=production
-      - CLIENT_MAX_BODY_SIZE=10m
+      - CLIENT_MAX_BODY_SIZE=100m
       - PROXY_BUFFERS=4 32k
       - PROXY_CONNECT_TIMEOUT=120
       - PROXY_SEND_TIMEOUT=120
@@ -49,7 +49,7 @@ services:
       - matomo-config:/data/matomo-config/:ro
       - ./backup/hooks:/hooks:ro
   matomo:
-    image: matomo:4.4.1
+    image: matomo:4.15.1
     environment:
       - MATOMO_DATABASE_USERNAME
       - MATOMO_DATABASE_PASSWORD
