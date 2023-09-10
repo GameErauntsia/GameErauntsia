@@ -13,7 +13,7 @@
    "rock" "haitz"
    "bug" "mozor."
    "ghost" "mamu"
-   "steel" "burdin"
+   "steel" "altzairu"
    "fire" "su"
    "water" "ur"
    "grass" "landa."
@@ -45,6 +45,112 @@
    "special-attack" "eraso berezia"
    "special-defense" "babes berezia"
    "speed" "abiadura"})
+
+(def ^:const pokemon-generation-translations
+  {"generation-i" "1.belaunaldia"
+   "generation-ii" "2.belaunaldia"
+   "generation-iii" "3.belaunaldia"})
+
+(def ^:const pokemon-egg-group-translations
+  {"fairy" "maitagarri",
+   "ditto" "kopimun",
+   "mineral" "mineral",
+   "dragon" "dragoi",
+   "humanshape" "giza-itxurako",
+   "ground" "lur",
+   "water2" "ur2",
+   "indeterminate" "zehaztugabe",
+   "water3" "ur3",
+   "monster" "munstru",
+   "no-eggs" "arrautzarik-ez",
+   "flying" "hegazti",
+   "water1" "ur1",
+   "bug" "zomorro",
+   "plant" "landare"})
+
+(def ^:const pokemon-shape-translations
+  {"tentacles" "garroak",
+   "bug-wings" "zomorro-hegoak",
+   "squiggle" "uhindu",
+   "humanoid" "humanoide",
+   "quadruped" "lauoindun",
+   "blob" "tanta",
+   "armor" "armadura",
+   "legs" "hankak",
+   "wings" "hegalak",
+   "heads" "buruak",
+   "ball" "bola",
+   "upright" "tente",
+   "arms" "besoak",
+   "fish" "arrain"})
+
+(def ^:const pokemon-habitat-translations
+  {"grassland" "belardi",
+   "urban" "hiri",
+   "sea" "itsaso",
+   "rough-terrain" "lur-malkartsuak",
+   "cave" "leize",
+   "waters-edge" "ertzeak",
+   "mountain" "mendi",
+   "forest" "baso",
+   "rare" "bitxi"})
+
+(def ^:const pokemon-ability-translations
+  {"overgrow" "oihanarte"
+   "chlorophyll" "klorofila"
+   "blaze" "sugar-bortitzak"
+   "solar-power" "eguzki-ahalmena"
+   "torrent" "uholde"
+   "rain-dish" "euri-sendaketa"
+   "shield-dust" "hautsezko-ezkutua"
+   "run-away" "ihes"
+   "shed-skin" "azalberritu"
+   "compound-eyes" "begi-konposatua"
+   "tinted-lens" "margoleiar"
+   "swarm" "zomorro-mordo"
+   "sniper" "frankotiratzaile"
+   "keen-eye" "begi-zorrotz"
+   "tangled-feet" "kulunka"
+   "big-pecks" "bulartsu"
+   "guts" "bihoztun"
+   "hustle" "gogoberotasun"
+   "intimidate" "beldurrarazte"
+   "unnerve" "urduritasun"
+   "static" "elektrostatiko"
+   "lightning-rod" "tximistorratz"
+   "sand-veil" "hondarrazko-estalki"
+   "sand-rush" "hondarrazko-oldar"
+   "poison-point" "ukipen-edentsu"
+   "rivalry" "norgehiagoko"
+   "sheer-force" "indar-gordina"
+   "cute-charm" "lilur-handi"
+   "magic-guard" "horma-magiko"
+   "friend-guard" "bizkartzain"
+   "unaware" "ezjakintasun"
+   "flash-fire" "suzko-distira"
+   "drought" "agorraldi"
+   "competitive" "irmotasun"
+   "frisk" "araketa"
+   "inner-focus" "buruko-indar"
+   "infiltrator" "sartzaile"
+   "stench" "keru"
+   "effect-spore" "espora-efektu"
+   "dry-skin" "azal-lehor"
+   "damp" "hezetasun"
+   "wonder-skin" "mirarizko-larruazal"
+   "arena-trap" "hondar-tranpa"
+   "sand-force" "hondar-indar"
+   "pickup" "biltze"
+   "technician" "aditu"
+   "limber" "malgutasun"
+   "cloud-nine" "giroratze"
+   "swift-swim" "Igeri-azkar"
+   "vital-spirit" "Bizi-arima"
+   "anger-point" "suminkor"
+   "defiant" "lehia"
+   "justified" "zuzen"
+   "water-absorb" "ur-xurgatze"
+   "synchronize" "sinkronia"})
 
 (rf/reg-fx
  ::make-request
@@ -277,8 +383,8 @@
       [:div.pokemon-stats-graph__stat
        [:span base_stat]
        [pokemon-stats-bar base_stat]
-       [:span
-        (str/upper-case
+       [:span.pokemon-stats-graph__stat-name
+        (str/capitalize
          (get pokemon-stats-translations name name))]])]])
 
 (defn- pokemon-evolution
@@ -319,60 +425,71 @@
 
 (defn- pokemon-info
   [{:keys [types weight height abilities specie]}]
-  [:div.pokemon-entry__section.pokemon-entry__info
-   [:span.pokemon-entry__section-title "Informazio orokorra"]
-   [:div.pokemon-entry__info-table
-    [:div.pokemon-entry__info-field
-     [:span "Pisua:"]
-     [:span (str (/ weight 10) " kg")]]
-    [:div.pokemon-entry__info-field
-     [:span "Garaiera:"]
-     [:span (/ height 10) " m"]]
-    (for [[hidden? abilities] (group-by :is_hidden abilities)]
-      ^{:key (str"pokemon-abilities_hidden_" hidden?)}
+  (let [color-name (get-in specie [:color :name])
+        habitat-name (get-in specie [:habitat :name])
+        generation-name (get-in specie [:generation :name])
+        egg-group-names (map :name (:egg_groups specie))
+        ability-names (map (comp :name :ability) abilities)
+        shape-name (get-in specie [:shape :name])]
+    [:div.pokemon-entry__section.pokemon-entry__info
+     [:span.pokemon-entry__section-title "Informazio orokorra"]
+     [:div.pokemon-entry__info-table
       [:div.pokemon-entry__info-field
-       [:span
-        (str
-         (cond
-           (and hidden? (= 1 (count abilities)))
-           "Gaitasun ezkutua"
-           (and (not hidden?) (= 1 (count abilities)))
-           "Gaitasuna"
-           hidden?
-           "Gaitasun ezkutuak"
-           :else
-           "Gaitasunak")
-         ": ")]
-       [:span (str/join ", " (map (comp :name :ability) abilities))]])
-    [:div.pokemon-entry__info-field
-     [:span "Arrautzak:"]
-     [:span (->> (map :name (:egg_groups specie))
-                 (str/join ", "))]]
-    [:div.pokemon-entry__info-field
-     [:span "Bizitokia"]
-     [:span (get-in specie [:habitat :name])]]
-    [:div.pokemon-entry__info-field
-     [:span "Kolorea:"]
-     [:span.pokemon-color
-      {:style {:background-color (get-in specie [:color :name])}}
-      (get pokemon-color-translations
-           (get-in specie [:color :name])
-           (get-in specie [:color :name]))]]
-    [:div.pokemon-entry__info-field
-     [:span "Itxura:"]
-     [:span (get-in specie [:shape :name])]]
-    [:div.pokemon-entry__info-field
-     [:span "Belaunaldia"]
-     [:span (get-in specie [:generation :name])]]
-    [:div.pokemon-entry__info-field
-     [:span "Mota:"]
-     [:div.pokemon-entry__types
-      (for [type types
-            :let [type-name (get-in type [:type :name])]]
-        ^{:keys type-name}
-        [:span.pokemon-type.pokemon-entry__type
-         {:class (str "pokemon-type--" type-name)}
-         (get pokemon-type-translations type-name type-name)])]]]])
+       [:span "Pisua:"]
+       [:span (str (/ weight 10) " kg")]]
+      [:div.pokemon-entry__info-field
+       [:span "Garaiera:"]
+       [:span (/ height 10) " m"]]
+      (for [[hidden? abilities] (group-by :is_hidden abilities)]
+        ^{:key (str"pokemon-abilities_hidden_" hidden?)}
+        [:div.pokemon-entry__info-field
+         [:span
+          (str
+           (cond
+             (and hidden? (= 1 (count abilities)))
+             "Gaitasun ezkutua"
+             (and (not hidden?) (= 1 (count abilities)))
+             "Gaitasuna"
+             hidden?
+             "Gaitasun ezkutuak"
+             :else
+             "Gaitasunak")
+           ": ")]
+         [:span (->> ability-names
+                     (map #(get pokemon-ability-translations % %))
+                     (str/join ", "))]])
+      [:div.pokemon-entry__info-field
+       [:span "Arrautzak:"]
+       [:span (->> egg-group-names
+                   (map #(get pokemon-egg-group-translations % %))
+                   (str/join ", "))]]
+      [:div.pokemon-entry__info-field
+       [:span "Bizitokia"]
+       [:span (get pokemon-habitat-translations
+                   habitat-name habitat-name)]]
+      [:div.pokemon-entry__info-field
+       [:span "Kolorea:"]
+       [:span.pokemon-color
+        {:style {:background-color color-name}}
+        (get pokemon-color-translations
+             color-name color-name)]]
+      [:div.pokemon-entry__info-field
+       [:span "Itxura:"]
+       [:span (get pokemon-shape-translations
+                   shape-name shape-name)]]
+      [:div.pokemon-entry__info-field
+       [:span "Belaunaldia"]
+       [:span (get pokemon-generation-translations
+                   generation-name generation-name)]]
+      [:div.pokemon-entry__info-field
+       [:span "Mota:"]
+       [:div.pokemon-entry__types
+        (for [type types
+              :let [type-name (get-in type [:type :name])]]
+          ^{:keys type-name}
+          [:span.pokemon-type.pokemon-entry__type
+           {:class (str "pokemon-type--" type-name)}
+           (get pokemon-type-translations type-name type-name)])]]]]))
 
 (defn- pokedex-entry
   [id]
