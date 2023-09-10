@@ -179,12 +179,17 @@
 
 .pokemon-stats-graph {
   display: grid;
-  grid-auto-columns: 1fr;
+  grid-auto-columns: minmax(0,1fr);
   grid-auto-flow: column;
 }
 
 .pokemon-stats-graph__stat {
   text-align: center;
+}
+
+.pokemon-stats-graph__stat-name {
+  font-size: 12px;
+  font-weight: bold;
 }
 
 .pokemon-status-graph__bar {
