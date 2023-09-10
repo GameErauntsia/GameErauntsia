@@ -429,7 +429,6 @@
         habitat-name (get-in specie [:habitat :name])
         generation-name (get-in specie [:generation :name])
         egg-group-names (map :name (:egg_groups specie))
-        ability-names (map (comp :name :ability) abilities)
         shape-name (get-in specie [:shape :name])]
     [:div.pokemon-entry__section.pokemon-entry__info
      [:span.pokemon-entry__section-title "Informazio orokorra"]
@@ -440,7 +439,8 @@
       [:div.pokemon-entry__info-field
        [:span "Garaiera:"]
        [:span (/ height 10) " m"]]
-      (for [[hidden? abilities] (group-by :is_hidden abilities)]
+      (for [[hidden? abilities] (group-by :is_hidden abilities)
+            :let [ability-names (map (comp :name :ability) abilities)]]
         ^{:key (str"pokemon-abilities_hidden_" hidden?)}
         [:div.pokemon-entry__info-field
          [:span
