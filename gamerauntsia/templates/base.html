@@ -79,7 +79,7 @@
                         {% get_flatpages as flatpages %}
                         <ul class="dropdown-menu" role="menu">
                             {% if user.is_staff or user.is_superuser %}
-                                <li><a href="{% url 'podcasting_show_list' %}" title="Podcastak">Podcastak</a></li>
+                                <li><a href="{% url 'podcast_index' %}" title="Podcastak">Podcastak</a></li>
                             {% endif %}
                             {% for page in flatpages %}
                             {% if 'ekimenak' in page.url %}

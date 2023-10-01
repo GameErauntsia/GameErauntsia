@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}{{streaming.title}}Podcast - {% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{STATIC_URL}}css/gamerauntsia/podcast.css">
+<div>
+  <h1 class="podcast-show__title page-header">{{show.name}}</h1>
+  <p class="podcast-show__description">{{show.description}}</p>
+  <div class="podcast-show__episode-list">
+    {% for episode in show_episodes %}
+    <div class="podcast-card">
+      <a href="{% url 'podcast_episode' show.slug episode.slug %}">
+        <h1 class="podcast-card__title">{{episode.get_short_name}}</h1>
+      </a>
+      <p class="podcast-card__pub-date">{{episode.pub_date|date:"Y-m-d"}}</p>
+      <a href="{% url 'podcast_episode' show.slug episode.slug %}">
+        <img class ="podcast-card__image" src="{{episode.image.get_podcast_card_url}}">
+      </a>
+      <div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

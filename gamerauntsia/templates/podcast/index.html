@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}{{streaming.title}}Podcastak - {% endblock %}
+
+{% block content %}
+<div>
+  <h1 class="page-header">Podcastak</h1>
+  {% for show in podcast_shows %}
+  <div>
+    <h1><a href="{% url 'podcast_show' show.slug %}">{{show.name}}</a></h1>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
