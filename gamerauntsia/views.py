@@ -7,7 +7,6 @@ from django.shortcuts import render
 from gamerauntsia.berriak.models import Berria
 from gamerauntsia.gameplaya.models import GamePlaya
 from gamerauntsia.txapelketak.models import Txapelketa
-from gamerauntsia.getb.models import Atala
 from gamerauntsia.bazkidetza.models import Eskaintza
 
 
@@ -24,15 +23,10 @@ def index(request):
         .order_by("-pub_date")
         .select_related("argazkia")
     )
-    atala = Atala.objects.latest("pub_date")
     gp = gameplayak[0]
     berria = berriak[0]
 
-    if atala.pub_date > gp.pub_date and atala.pub_date > berria.pub_date:
-        live = atala
-        gameplayak = gameplayak[:3]
-        berriak = berriak[:8]
-    elif gp.pub_date > atala.pub_date and gp.pub_date > berria.pub_date:
+    if gp.pub_date > berria.pub_date:
         live = gp
         gameplayak = gameplayak[1:4]
         berriak = berriak[:8]
