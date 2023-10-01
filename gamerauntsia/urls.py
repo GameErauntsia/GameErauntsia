@@ -76,7 +76,7 @@ urlpatterns = [
     url(r"^terminologia/$", baseviews.index, name="terminologia"),
     url(r"^terminologia/bilatu", baseviews.search_term, name="search_term"),
     # PODCAST
-    url(r"^podcastak/", include("podcasting.urls")),
+    url(r"^podcastak/", include("gamerauntsia.podcast.urls")),
     # BILAKETA
     url(r"^bilaketa?(?P<bilatu>[-\w]+)/$", indexviews.bilaketa, name="bilaketa"),
     # RSS FEED

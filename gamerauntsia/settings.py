@@ -148,6 +148,7 @@ INSTALLED_APPS = (
     "gamerauntsia.bazkidetza",
     "gamerauntsia.telegram",
     "gamerauntsia.pokedex",
+    "gamerauntsia.podcast",
     "datetimewidget",
     "django_bootstrap_calendar",
     "django_messages",
