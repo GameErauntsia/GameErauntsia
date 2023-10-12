@@ -114,8 +114,12 @@ class PodcastEpisodeVideoPlatform(models.Model):
 class PodcastEpisodeAudioPlatform(models.Model):
     podcast_episode = models.ForeignKey(PodcastEpisode, on_delete=models.CASCADE)
     audio_platform = models.ForeignKey(PodcastAudioPlatform, on_delete=models.CASCADE)
-    audio_id = models.CharField(max_length=100, verbose_name="Audioaren kodea")
-    override_link_url = models.CharField(max_length=250, verbose_name="Audioaren URLa")
+    audio_id = models.CharField(
+        max_length=100, null=True, blank=True, verbose_name="Audioaren kodea"
+    )
+    override_link_url = models.CharField(
+        max_length=250, null=True, blank=True, verbose_name="Audioaren URLa"
+    )
 
     def get_link_url(self):
         if self.override_link_url:
