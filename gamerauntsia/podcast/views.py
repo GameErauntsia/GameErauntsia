@@ -13,7 +13,7 @@ def show(request, show_slug):
     )
     show_episodes = PodcastEpisode.objects.filter(
         is_public=True, podcast_season__podcast_show=show
-    )
+    ).order_by("-podcast_season__number", "-number")
     return render(request, "podcast/show.html", locals())
 
 

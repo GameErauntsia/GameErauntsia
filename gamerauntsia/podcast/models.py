@@ -30,7 +30,7 @@ class PodcastSeason(models.Model):
     podcast_show = models.ForeignKey(PodcastShow, on_delete=models.PROTECT)
     name = models.CharField(max_length=64)
     slug = models.SlugField(db_index=True, unique=True)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     number = models.IntegerField(default=0)
 
     def __str__(self):
