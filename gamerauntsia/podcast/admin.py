@@ -17,6 +17,7 @@ class PodcastShowAdmin(admin.ModelAdmin):
     list_display = ["name"]
     fields = ["name", "slug", "status", "is_public", "image", "description"]
     prepopulated_fields = {"slug": ("name",)}
+    raw_id_fields = ["image"]
 
 
 class PodcastSeasonAdminForm(forms.ModelForm):
@@ -32,6 +33,7 @@ class PodcastSeasonAdmin(admin.ModelAdmin):
     form = PodcastSeasonAdminForm
     list_display = ["podcast_show", "name"]
     prepopulated_fields = {"slug": ("name",)}
+    list_filter = ["podcast_show"]
 
 
 class PodcastEpisodeAdminForm(forms.ModelForm):
@@ -45,7 +47,7 @@ class PodcastEpisodeAdminForm(forms.ModelForm):
 
 class PodcastEpisodeAdmin(admin.ModelAdmin):
     form = PodcastEpisodeAdminForm
-    list_display = ["podcast_season", "name"]
+    list_display = ["podcast_season", "number", "name"]
     fields = [
         "podcast_season",
         "number",
@@ -57,6 +59,9 @@ class PodcastEpisodeAdmin(admin.ModelAdmin):
         "pub_date",
     ]
     prepopulated_fields = {"slug": ("name",)}
+    raw_id_fields = ["image"]
+    ordering = ["pub_date"]
+    list_filter = ["podcast_season__podcast_show", "podcast_season"]
 
 
 admin.site.register(PodcastShow, PodcastShowAdmin)

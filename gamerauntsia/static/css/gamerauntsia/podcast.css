@@ -8,10 +8,10 @@
 }
 .podcast-show__episode-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(0,300px));
-  grid-auto-rows: 196px;
+  grid-template-columns: repeat(auto-fit,minmax(0,360px));
+  grid-auto-rows: 132px;
   grid-gap: 20px;
-  justify-content: center;
+  justify-content: left;
   margin-top: 20px;
 }
 
@@ -29,8 +29,8 @@
   transition: all 0.3s;
   object-fit: cover;
 }
-.podcast-card:hover {
-  transform: scale(1.05);
+.podcast-card:hover .podcast-card__image {
+  transform: scale(1.1);
 }
 .podcast-card__title {
   position: absolute;
