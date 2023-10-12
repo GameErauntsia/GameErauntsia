@@ -3,9 +3,53 @@
 {% block title %}{{streaming.title}}Podcast - {% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href="{{STATIC_URL}}css/gamerauntsia.css">
-<div>
-  <h1>{{episode.get_full_name}}</h1>
-  <p>{{episode.description}}</p>
+<div class="row">
+  <div class="col-sm-8">
+    <div class="flex-video widescreen">
+      <iframe src="{{videos.0.get_embed_url}}"
+              width="700"
+              height="394"
+              frameboder="0"
+              allowfullscreen>
+      </iframe>
+    </div>
+    <h1>{{episode.name}}</h1>
+    <p>{{episode.description|safe}}</p>
+  </div>
+  <div class="col-sm-4">
+    <h3>Podcast saioa</h3>
+    <div class="well">
+      <p><span class="glyphicon glyphicon-play"></span> <strong><a href="{% url 'podcast_show' episode.podcast_season.podcast_show.slug %}">{{episode.podcast_season.podcast_show}}</a></strong></p>
+      <p><span class="glyphicon glyphicon-tag"></span> <strong>{{episode.podcast_season.name}} - {{episode.number}}.saioa</strong></p>
+      <p><span class="glyphicon glyphicon-calendar"></span> <strong>{{episode.pub_date|date:"Y-m-d"}}</strong></p>
+    </div>
+    <h3>Plataformetan</h3>
+    <div class="well">
+      {% if videos %}
+      <h4>Ikusi:</h4>
+      <ul class="list-group">
+        {% for video in videos %}
+        <a class="list-group-item"
+           href="{{video.get_link_url}}"
+           target="_blank">
+          {{video.video_platform.name}}
+        </a>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% if audios %}
+      <h4>Entzun:</h4>
+      <ul class="list-group">
+        {% for audio in audios %}
+        <a class="list-group-item"
+           href="{{audio.get_link_url}}"
+           target="_blank">
+          {{audio.audio_platform.name}}
+        </a>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </div>
 </div>
 {% endblock %}

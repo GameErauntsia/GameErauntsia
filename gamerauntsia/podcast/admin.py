@@ -1,6 +1,22 @@
 from django.contrib import admin
 from django import forms
-from gamerauntsia.podcast.models import PodcastShow, PodcastSeason, PodcastEpisode
+from gamerauntsia.podcast.models import (
+    PodcastShow,
+    PodcastSeason,
+    PodcastEpisode,
+    PodcastVideoPlatform,
+    PodcastAudioPlatform,
+    PodcastEpisodeVideoPlatform,
+    PodcastEpisodeAudioPlatform,
+)
+
+
+class PodcastVideoPlatformAdmin(admin.ModelAdmin):
+    list_display = ["name", "priority"]
+
+
+class PodcastAudioPlatformAdmin(admin.ModelAdmin):
+    list_display = ["name", "priority"]
 
 
 class PodcastShowAdminForm(forms.ModelForm):
@@ -45,6 +61,14 @@ class PodcastEpisodeAdminForm(forms.ModelForm):
         fields = "__all__"
 
 
+class PodcastEpisodeVideoPlatformAdminInline(admin.TabularInline):
+    model = PodcastEpisodeVideoPlatform
+
+
+class PodcastEpisodeAudioPlatformAdminInline(admin.TabularInline):
+    model = PodcastEpisodeAudioPlatform
+
+
 class PodcastEpisodeAdmin(admin.ModelAdmin):
     form = PodcastEpisodeAdminForm
     list_display = ["podcast_season", "number", "name"]
@@ -62,8 +86,14 @@ class PodcastEpisodeAdmin(admin.ModelAdmin):
     raw_id_fields = ["image"]
     ordering = ["pub_date"]
     list_filter = ["podcast_season__podcast_show", "podcast_season"]
+    inlines = [
+        PodcastEpisodeVideoPlatformAdminInline,
+        PodcastEpisodeAudioPlatformAdminInline,
+    ]
 
 
 admin.site.register(PodcastShow, PodcastShowAdmin)
 admin.site.register(PodcastSeason, PodcastSeasonAdmin)
 admin.site.register(PodcastEpisode, PodcastEpisodeAdmin)
+admin.site.register(PodcastVideoPlatform, PodcastVideoPlatformAdmin)
+admin.site.register(PodcastAudioPlatform, PodcastAudioPlatformAdmin)

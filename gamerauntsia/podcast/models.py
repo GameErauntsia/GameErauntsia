@@ -9,6 +9,33 @@ STATUS_TYPES = (
 )
 
 
+class PodcastVideoPlatform(models.Model):
+    name = models.CharField(max_length=150)
+    priority = models.IntegerField(default=0)
+    embed_url_pattern = models.CharField(max_length=200, null=True, blank=True)
+    link_url_pattern = models.CharField(max_length=200, null=True, blank=True)
+
+    class Meta:
+        verbose_name = "Podcast bideo plataforma"
+        verbose_name_plural = "Podcast bideo plataformak"
+
+    def __str__(self):
+        return "%s" % (self.name)
+
+
+class PodcastAudioPlatform(models.Model):
+    name = models.CharField(max_length=150)
+    priority = models.IntegerField(default=0)
+    link_url_pattern = models.CharField(max_length=200, null=True, blank=True)
+
+    class Meta:
+        verbose_name = "Podcast audio paltaforma"
+        verbose_name_plural = "Podcast audio plataformak"
+
+    def __str__(self):
+        return "%s" % (self.name)
+
+
 class PodcastShow(models.Model):
     name = models.CharField(max_length=64)
     slug = models.SlugField(db_index=True, unique=True)
@@ -66,3 +93,36 @@ class PodcastEpisode(models.Model):
     class Meta:
         verbose_name = "Saioa"
         verbose_name_plural = "Saioak"
+
+
+class PodcastEpisodeVideoPlatform(models.Model):
+    podcast_episode = models.ForeignKey(PodcastEpisode, on_delete=models.CASCADE)
+    video_platform = models.ForeignKey(PodcastVideoPlatform, on_delete=models.CASCADE)
+    video_id = models.CharField(max_length=100, verbose_name="Bideoaren kodea")
+
+    def get_embed_url(self):
+        return self.video_platform.embed_url_pattern.replace("{{id}}", self.video_id)
+
+    def get_link_url(self):
+        return self.video_platform.link_url_pattern.replace("{{id}}", self.video_id)
+
+    class Meta:
+        verbose_name = "Saioaren bideoa"
+        verbose_name_plural = "Saioaren bideoak"
+
+
+class PodcastEpisodeAudioPlatform(models.Model):
+    podcast_episode = models.ForeignKey(PodcastEpisode, on_delete=models.CASCADE)
+    audio_platform = models.ForeignKey(PodcastAudioPlatform, on_delete=models.CASCADE)
+    audio_id = models.CharField(max_length=100, verbose_name="Audioaren kodea")
+    override_link_url = models.CharField(max_length=250, verbose_name="Audioaren URLa")
+
+    def get_link_url(self):
+        if self.override_link_url:
+            return self.override_link_url
+        else:
+            return self.audio_platform.link_url_pattern.replace("{{id}}", self.video_id)
+
+    class Meta:
+        verbose_name = "Saioaren audioa"
+        verbose_name_plural = "Saioaren audioak"
