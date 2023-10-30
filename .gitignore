@@ -1,0 +1,9 @@
+src/django-forum-app
+src/django-messages
+src/django-tagging
+src/django-bootstrap-calendar/
+src/django-podcasting
+src/django-datetime-widget
+data/
+src/media
+src/static
