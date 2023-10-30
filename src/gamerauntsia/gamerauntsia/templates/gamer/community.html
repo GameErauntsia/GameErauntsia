@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% load pagination_tags gamerauntsia %}
+
+{%block title%}Komunitatea - {%endblock%}
+
+{% block content %}
+<div class="col-sm-12">
+  <h1 class="page-header">Komunitatea
+    <small>Hau da jende pila!</small>
+  </h1>
+  <p>Hona hemen euskal jokalari komunitatea!! Bertan, mota guztietako jokalariak aurki ditzakezu. Ez galdu aukera lagun berriak egiteko! Komunitate honek pixkanaka sare sozial izaera hartu nahi du eta euskal jokalarien arteko harremana erraztu gustukoen dugunaz jarduteko. Norbait interesgarria aurkitzen baduzu, zuzeneko mezuen bidez harremanetan jar zaitezke <span class="glyphicon glyphicon-envelope"></span> irudian klik eginez.</p>
+  <p>Bestalde, garatzen ari garen <strong>Karma sistema</strong> berriaren bidez, komunitatean aktiboen dauden adituak zerrendatzen ditugu. Hemen dira gure guruak!! Zenbat eta aktiboki gehiago parte hartu komunitatean, orduan eta garrantzia handiagoa izango duzu gure artean. Ez gelditu ba atzean!</p>
+  <p>Kuxkuxeatu, eztabaidatu, gurekin jolastu, iritzia eman, agian bilatu jokorako zure lagun berriak edota aurkaririk gogorrenak!! Parte hartu eta zorte on!!</p>
+</div>
+<div class="col-sm-12">
+  <div class="col-sm-8">
+    <h2>Komunitateko guruak</h2>
+    {% for user_prof in gurus %}
+    {% if forloop.first %}<div class="row">{% endif %}
+      <div class="col-md-4 portfolio-item">
+    	<div class="row">
+    	  <div class="col-xs-4 text-center">
+    	    <a href="{% url 'gamer_profile' user_prof.username %}"><img src="{{user_prof.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive"></a>
+    	  </div>
+    	  <div class="col-xs-8">
+    	    <h4>
+    	      <a href="{% url 'gamer_profile' user_prof.username %}">{{user_prof.getFullName}}
+    	      </a>
+    	    </h4>
+            <p>
+              {% if user_prof.karma %}<i class="glyphicon glyphicon-flash" style="color:#E1E100"></i> <abbr title="Karma">{{user_prof.karma}}</abbr>{% endif %}
+    	    </p>
+    	  </div>
+    	</div>
+      </div>
+      {% if forloop.counter|divisibleby:3 %}</div><hr/><div class="row">{% endif %}
+      {% if forloop.last %}</div>{% endif %}
+    {% endfor %}
+
+    <h2 id="community-title">Taldera sartu diren azkenak</h2>
+    <div class="col-md-12">
+      {% if user_rows > 6 %}<a id="collapse" class="pull-right" href="#more-comments"><i class="glyphicon glyphicon-eye-open"></i> Erakutsi denak</a>{% endif %}
+    </div>
+
+    {% for user_prof in users %}
+
+    {% if forloop.counter == 10 and user_rows > 6 %}
+    </div></div><div id="more-comments" style="display:none"><div class="row">
+    {% else %}
+    {% if forloop.first and user_rows > 6 %}
+    <div id="last-comments">
+      {% endif %}
+      {% endif %}
+
+      {% if forloop.first %}<div class="row">{% endif %}
+
+
+        <div class="col-md-4 portfolio-item">
+    	  <div class="row">
+    	    <div class="col-xs-4 text-center">
+    	      <a href="{% url 'gamer_profile' user_prof.username %}"><img src="{{user_prof.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive"></a>
+    	    </div>
+    	    <div class="col-xs-8">
+    	      <h4>
+    		<a href="{% url 'gamer_profile' user_prof.username %}">{{user_prof.getFullName}}
+    		</a>
+    	      </h4>
+              <p>
+                {% if user_prof.karma %}<i class="glyphicon glyphicon-flash" style="color:#E1E100"></i> <abbr title="Karma">{{user_prof.karma}}</abbr>{% endif %}
+    	      </p>
+    	    </div>
+    	  </div>
+        </div>
+        {% if forloop.counter|divisibleby:3 %}</div><hr/><div class="row">{% endif %}
+
+        {% if forloop.last and user_rows > 6 %}
+    </div></div>
+    {% endif %}
+
+    {% endfor %}
+  </div>
+  <script>
+    $('#collapse').click(function () {
+        //get collapse content selector
+        var collapse_content_selector = $(this).attr('href');
+
+        //make the collapse content to be shown or hide
+        var toggle_switch = $(this);
+        $(collapse_content_selector).toggle(function () {
+            if ($(this).css('display') == 'none') {
+                //change the button label to be 'Show'
+                $('#community-title').html('<h2 id="community-title">Taldera sartu diren azkenak</h2>');
+                toggle_switch.html('<i class="glyphicon glyphicon-eye-open"></i> Erakutsi denak');
+            } else {
+                //change the button label to be 'Hide'
+                $('#community-title').html('<h2 id="community-title">Komunitate osoa ({{users|length}})</h2>');
+                toggle_switch.html('<i class="glyphicon glyphicon-eye-close"></i> Ezkutatu gehienak');
+            }
+        });
+    });
+    </script>
+<div class="col-sm-4">
+  {% steam_panel %}
+  <div class="well">
+    <h2>Bilatu jokalaria</h2>
+    <form id="findgamer" action="">
+      <input type="text" id="gamer" placeholder="Bilatu jokalaria"/>
+      <input type="submit" class="btn btn-default" value="Bilatu" />
+    </form>
+    <script type="text/javascript">
+      $(function() {
+          $("#gamer").autocomplete({
+              source: "{% url 'ajax_user' %}",
+              minLength: 2,
+              select: function(event, ui) {
+                  $('#findgamer').attr("action","/komunitatea/"+ui.item.value);
+              }
+          });
+      });
+    </script>
+  </div>
+</div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+<p>
+    {% if user_prof.ytube_channel %}
+    <a href="{{user_prof.ytube_channel}}" target="_blank"><img src="{{STATIC_URL}}img/youtube.png" width="50"/></a>
+    {% endif %}
+    {% if user_prof.peertube_channel %}
+    <a href="{{user_prof.peertube_channel}}" target="_blank"><img src="{{STATIC_URL}}img/peertube.png" width="50"/></a>
+    {% endif %}
+    {% if user_prof.twitch_channel %}
+    <a href="https://twitch.tv/{{user_prof.twitch_channel}}" target="_blank""><img src="{{STATIC_URL}}img/twitch.png"
+                                                                                   width="50"/></a>
+    {% endif %}
+    {% if user_prof.twitter_id %}
+    <a href="https://twitter.com/{{user_prof.twitter_id}}" target="_blank"><img src="{{STATIC_URL}}img/twitter.png"
+                                                                                width="50"/></a>
+    {% endif %}
+    {% if user_prof.mastodon_id %}
+    <a href="{{user_prof.get_mastodon_url}}" target="_blank"><img src="{{STATIC_URL}}img/mastodon.png" width="50"/></a>
+    {% endif %}
+    {% if user_prof.facebook_id %}
+    <a href="https://facebook.com/{{user_prof.facebook_id}}" target="_blank""><img src="{{STATIC_URL}}img/facebook.png"
+                                                                                   width="50"/></a>
+    {% endif %}
+</p>

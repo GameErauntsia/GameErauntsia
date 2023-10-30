@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}{{streaming.title}} - Streaming - {% endblock %}
+
+{% block content %}
+
+<div class="row">
+    {% if streaming %}
+    <div class="col-sm-8">
+        <div class="flex-video widescreen">
+            <iframe src="https://player.twitch.tv/?channel={{streamer.twitch_channel}}&parent=gamerauntsia.eus" frameborder="0" scrolling="no" width="100%" allowfullscreen=true></iframe>
+        </div>
+        <h2>{{streaming.title}}</h2>
+        <p><a href="{% url 'gamer_profile' streamer.username %}">
+            <img src="{{streamer.get_photo.get_profilesmall_url}}" class="img-circle"/>
+            {{streamer.getFullName}}</a> |
+            <strong>{{streaming.game_name}}</a></strong>
+        </p>
+    </div>
+    <div class="col-sm-4">
+        <h3>Zuzeneko txata</h3>
+        <iframe src="https://www.twitch.tv/embed/{{streamer.twitch_channel}}/chat?parent=gamerauntsia.eus" frameborder="0" height="500" width="100%"></iframe>
+    </div>
+    {% else %}
+    <div class="col-sm-8">
+        <h2>Zuzenekoa amaitu da!</h2>
+        <div class="alert alert-danger">
+            <a class="alert-link" href="{% url 'gamer_profile' streamer.username %}"> {{streamer.getFullName}}</a>
+                erabiltzailea ez da zuzenkorik egiten ari.
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}{{streaming.title}}Podcast - {% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{STATIC_URL}}css/gamerauntsia.css">
+<div>
+  <h1>{{episode.get_full_name}}</h1>
+  <p>{{episode.description}}</p>
+</div>
+{% endblock %}

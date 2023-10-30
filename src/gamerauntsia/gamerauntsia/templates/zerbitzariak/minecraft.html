@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+{% load i18n emoticons_tags include bootstrap %}
+
+{% block content %}
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="page-header">{% block minecraft_title %}Minecraft zerbitzaria{% endblock %}</h1>
+  </div>
+
+  {% block minecraft_content %}
+  <div class="col-sm-8">
+
+    <div class="row carousel-holder">
+      <div class="col-md-12">
+        <div id="carousel-minecraft-generic" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carousel-minecraft-generic" data-slide-to="0" class="active"></li>
+            {% for i in carousel_images %}
+            <li data-target="#carousel-minecraft-generic" data-slide-to="{{i}}"></li>
+            {% endfor %}
+          </ol>
+          <div class="carousel-inner">
+            <div class="item active">
+              <img class="slide-image" src="{{STATIC_URL}}img/minecraft/minecraft_banner.jpg" />
+            </div>
+            {% for i in carousel_images %}
+            <div class="item">
+              <img class="slide-image" src="{{STATIC_URL}}img/minecraft/minecraft_banner{{i}}.jpg" alt="">
+            </div>
+            {% endfor %}
+          </div>
+          <a class="left carousel-control" href="#carousel-minecraft-generic" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+          <a class="right carousel-control" href="#carousel-minecraft-generic" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <br/>
+
+    <h2 id=deskribapena>Zerbitzariari buruz</h2>
+    <p><strong><a href="/komunitatea/Suspekain_"
+                  target="_blank">Suspekain_</a></strong> erabiltzailearen
+        iniziatibaz, eta <strong>Game Erauntsiaren</strong> babesarekin
+        euskarazko hirugarren Minecraft zerbitzaria duzue eskuragai. Hasieran behintzat,
+        aurretik izandako zerbitzarien desberdina izango da: ez dugu Euskal Herri
+        birtualik ez minijokorik izango, mundu ireki bat besterik ez. Helburua konfiantzan
+        eta komunitatean oinarritutako zerbitzaria izatea izango da.</p>
+    <p>Tarteka, denok elkarrekin jokatzeko, ekitaldiak egingo
+    ditugu. Twitch bidez zuzenean emitituko dira, eta garaiaz
+      abisatuko dizuegu prest egon zaitezten. Esate baterako, hauek dira azken egin ditugun batzuk:</p>
+    <ul>
+      <li><strong>Irekiera ekitaldia</strong>
+        <ul>
+          <li>Izena eman duten erabiltzaileei ongi etorria eta lehen azalpenak</li>
+          <li>Errekurtso bila hasiko gara, libreki, lehen materialak lortzeko</li>
+          <li>Etxea eraikitzeko leku bat aukeratuko dugu. 5000 -5000
+            koordenatuan barruan eta spawnchunketatik aldenduta. Beste
+            kideengandik zentzuko distantzia bat mantenduta</li>
+          <li>Infernua eta Amaierako mundua ez dira aktibatuta egongo</li>
+        </ul>
+      </li>
+      <li><strong>Infernura txangoa</strong>
+        <ul>
+          <li>Infernuko dimentsioa aktibatuko da.</li>
+          <li>Infernuko baliabideak libreki eskuratzen hasiko gara.</li>
+          <li>Infernuko biomak eta monumentuak bilatuko ditugu.</li>
+        </ul>
+      </li>
+      <li><strong>Amaierako dragoiaren aurkako borroka</strong>
+        <ul>
+          <li>Dragoia hiltzen saiatuko gara</li>
+          <li>Helburua lortuz gero, amaierako monumentuak arakatuko ditugu hegalen bila</li>
+        </ul>
+      </li>
+    </ul>
+    <h2 id="araudia">Araudia</h2>
+    <ul>
+        <li>Gogoratu Minecraft-eko zerbitzari euskalduna dela,
+            beraz <strong>txat-ean</strong> derrigorrezkoa
+            da <strong>euskaraz</strong> hitz egitea.</li>
+        <li>Zerbitzariko jokalariak eta administratzaileak <strong>errespetatu</strong></li>
+        <li>Txata modu egokian erabili: <strong>Irainak</strong>,
+            spam-a, iruzurrak… <strong>debekatuta</strong> daude</li>
+        <li>Zerbitzariaren eraikuntza irekia da, edozein erabiltzailek
+            hartu dezake parte, beti ere <strong>besteen eraikinak
+            errespetatuz.</strong>
+            <ul>
+                <li>Ezin dira besteen eraikinak <strong>suntsitu</strong></li>
+                <li>Ezin dira besteen baliabideak <strong>lapurtu</strong></li>
+                <li>Ezin da beste eraikinen <strong>gainean eraiki</strong> edo <strong>eraldatu</strong></li>
+            </ul>
+        </li>
+        <li>Mod tranpak ezin dira erabili (hegan egitekoak, x-ray edo x-izpiak...)</li>
+        <li><strong>Gune komunitario</strong> bat egongo da, eta
+            bertan <strong>denek eraikitzeko</strong> aukera izango dute
+            Administratzaileen jarraibideekin.</li>
+        <li>Zerbitzarian jokalarien 3 kategoria
+            daude: <strong>Arruntak</strong>
+            (Mundua <strong>ikusteko</strong> baimena
+            soilik), <strong>Erregistratuak</strong>
+            (Munduan <strong>jolasteko</strong> baimena)
+            eta <strong>Adminak</strong>
+            (Erabiltzaileak <strong>baneatzeko</strong> aukera).</li>
+        <li>Baserri automatikoak zein redstone zirkuitu konplexuak gune
+            komunitariotik kanpo egiteko, adminisratzaileen baimena beharko
+            da.</li>
+        <li>Ezin da Witherra inbokatu administratzaileen baimenik gabe.</li>
+        <li>Aurreko <strong>arauetako bat hausteak zigorra</strong>
+            jasotzea ekarri dezake: Hitzez atentzioa ematetik, zerbitzaritik
+            betirako kanporatua izateraino</li>
+        <li>Arau hauste bat ikusi edo jasan ezkero, idatzi kontaktura
+            noiz/non/nork/zer gertatu den adieraziz eta guk beharrezko
+            ikerketak egin ostean, erabaki bat hartuko dugu.
+            <ul>
+                <li> Twitter: Suspekain_</li>
+                <li> Postaz: minecraft[abildua]gamerauntsia.eus</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>Konektatzeko pausoak</h2>
+    <p>Zerbitzarira sartzeko pausoak ondorengoak dira:</p>
+    <ul>
+        <li> <strong><a href="#araudia">Araudia</a></strong> irakurri</li>
+        <li>Game Erauntsian, eta zerbitzariaren orrialdean <strong><a href="#izen-ematea">izena eman</a></strong>
+            <ul>
+                <li>Izena eman orduko, automatikoki, erabiltzaile <strong>Arrunta</strong>
+                    baimena izango duzu. Baimen honekin, zerbitzarian sartu
+                    eta bertakoa ikusi dezakezu baina ezin izango duzu ezer
+                    editatu. Izena ematerakoan administratzailetako bat
+                    zurekin harremanetan jarriko da</li>
+                <li>Administratzaileak galderarenbat egingo dizu, zure
+                    asmoa ezagutzeko eta gomendioren bat emango dizu.</li>
+                <li>Behin erabiltzaile <strong>Erregistratu</strong> kategoria
+                    izatean, jolasten hasi zaitezke.</li>
+            </ul>
+        </li>
+        <li>Ondorengo pausoak darabilzun Minecraft edizioaren arabera
+          zertxobait aldatuko dira, baina funtsean ondorengoa egin behar
+          da:
+          <ul>
+            <li>Minecraften <strong>1.18.1 bertsioa</strong> aukeratu</li>
+            <li>"Multijokalaria" atalera sartu eta "Gehitu zerbitzaria" botoia sakatu</li>
+            <li>"Zerbitzariaren izena" atalean "Game Erauntsia" idatzi eta
+              "Zerbitzariaren helbidea" atalean
+              <strong>"mc.gamerauntsia.eus"</strong>. Konektatu eta kitto!</li>
+          </ul>
+        </li>
+    </ul>
+    {% comment %}
+    <h2>Minecraft mundua</h2>
+    <div class="col-sm-12">
+      <iframe src="http://198.20.111.238:8123/?worldname=Gamer_Erauntsia&mapname=surface&zoom=1&x=-400&y=65&z=-420" width="100%" height="300"></iframe>
+      <a href="{% url 'minecraft_mapa' %}">Ikusi mapa handia</a>
+    </div>
+    {% endcomment %}
+  </div>
+
+  <div class="col-sm-4">
+    <div class="well">
+      <h2>Zerbitzaria orain</h2>
+      <script>
+        function resizeIframe(obj) {
+            obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
+        }
+      </script>
+      <iframe onload="resizeIframe(this)" scrolling="no" width="100%" frameBorder="0" src="/zerbitzariak/minecraft/status"></iframe>
+    </div>
+    <div class="well" id="izen-ematea">
+      <h2>Izen ematea</h2>
+      {% if user.is_authenticated %}
+      {% if user.is_mc_gamer %}
+      <p class="text-success">Mila esker <strong>{{user.getFullName}}!</strong> Zerbitzarian parte hartzeko zerrendan sartu zara. Hemendik aurrera jolasteko moduan izango zara!.</p>
+      <p class="text-success">Behar izanez gero, erregistratutako Minecraft erabiltzaile izena <a href="/komunitatea/editatu-profil-plat">zure profiletik</a> aldatu dezakezu.</p>
+      <p class="text-success">Arazoren bat baduzu, <strong><a href="{% url 'kontaktua' %}">jarri gurekin harremanetan</a></strong></p>
+      {% else %}
+      <form action="{% url 'minecraft_add' %}" method="POST">
+          {% csrf_token %}
+          {{mc_form|bootstrap}}
+          <input type="submit" class="btn btn-lg btn-primary" value="Bidali" />
+      </form>
+      {% endif %}
+      {% else %}
+      <p>Zerbitzarian erregistratu kategoria izateko, lehendabizi Game Erauntsian izena eman behar duzu.</p>
+      <a class="btn btn-lg btn-primary" href="{% url 'auth_login' %}?next={{request.path}}" title="Log in"><i class="glyphicon glyphicon-user"></i> Eman izena!</a>
+      {% endif %}
+    </div>
+    <div class="well">
+      <h2>Azken 10 erabiltzaileak</h2>
+      <div class="row">
+        <div class="col-sm-12">
+          {% for mc in mc_list %}
+          <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{mc.user.getFullName}}</a></p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% comment %}
+    <div class="well">
+      <h2>VIP erabiltzaileak</h2>
+      <div class="row">
+        <div class="col-sm-12">
+          {% for mc in mc_vip_list %}
+          <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{mc.user.getFullName}}</a></p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endcomment %}
+    <div class="well">
+      <h2>Administratzaileak</h2>
+      <div class="row">
+        <div class="col-sm-12">
+          {% for mc in mc_admin_list %}
+          <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{mc.user.getFullName}}</a></p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="well">
+      <h2>Komunitateak gidatua</h2> <p><strong><a href="/komunitatea/Suspekain_" target="_blank">Suspekain_</a></strong> erabiltzailearen
+      iniziatibaz ireki dugu berriro Minecraft zerbitzaria. Antzeko edo bestelako
+      ideiarik baduzu, <a href="/kontaktua/">jarri gurekin harremanetan</a> eta ziur elkarrekin zerbait egin dezakegula!</p>
+    </div>
+  </div>
+  {% endblock %}
+</div>
+{% endblock %}

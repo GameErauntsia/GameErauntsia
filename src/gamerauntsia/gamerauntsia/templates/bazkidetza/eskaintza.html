@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}{{eskaintza.izena}} - Bazkidetza -{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">{{eskaintza.izena}}</h1>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-md-8">
+        <img class="img-responsive" src="{{eskaintza.irudia.get_member_display_url}}" alt="{{eskaintza.izena}}">
+    </div>
+
+    <div class="col-md-4">
+        <h3>Azalpena</h3>
+        {{eskaintza.deskribapena|safe}}
+        {% if bazkidea.paid and eskaintza.mota == 2 and not bazkidea.has_partaidetza_eskaera %}<a href="{% url 'create_eskaera' eskaintza.id %}" class="btn btn-primary">Parte hartu!</a>{% endif %}
+        {% if bazkidea.paid and eskaintza.mota == 1 %}<a href="{% url 'create_eskaera' eskaintza.id %}" class="btn btn-primary">Eskatu!</a>{% endif %}
+        <a href="{% url 'bazkidetza' %}" class="btn btn-default">Atzera	</a>
+    </div>
+
+</div>
+{% endblock %}

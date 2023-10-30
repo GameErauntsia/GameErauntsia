@@ -1,0 +1,160 @@
+{% load i18n %}
+
+<style>
+
+#main {
+  max-width: 1140px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+.header-ficha2 {
+  padding-top: 25px;
+  border-top: 1px solid #EEE;
+}
+.header-ficha, .header-ficha2 {
+  background: #FFF;
+  margin-bottom: 18px;
+  margin-top: 18px;
+}
+
+.header-ficha2 .top-header .cont-img {
+  float: left;
+  width: 159px;
+}
+.header-ficha2 .cont-text .title {
+  display: inline-flex;
+}
+
+.cont-text {
+  width: 76%;
+  float: left;
+}
+
+.cont-text .title {
+  display: inline-flex;
+}
+ul.mini-navbar {
+  color: #777;
+  margin-top: 12px;
+}
+ul.mini-navbar {
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 11px;
+  padding: 0;
+  list-style: none;
+  margin: 0 -15px 10px -15px;
+  overflow: hidden;
+}
+
+</style>
+
+{% if episode %}
+
+<div id="main">
+    <div class="header-ficha2 header-ficha radio-header">
+        <div class="">
+            <div class="row">
+                <div class="col-lg-9-special col-md-8-special col-sm-12 col-xs-12">
+
+                    <div class="top-header clearfix">
+                        <div>
+                            <div class="cont-img">
+                                <img class="main lozad elevate-2"
+                                     src="{{ show.original_image.get_videoprofile_url }}" alt="{{ show.title }}" />
+                            </div>
+                            <div class="cont-breadcrumb">
+                                {{show.title}}
+                            </div>
+                            <div class="cont-text">
+                                <div class="title">
+                                    <h1 class="pull-left" data-trigger="virtual-hover" data-toggle="label-explicit-hover" data-target=".label-explicit">
+                                        {{ episode.title}}
+                                    </h1>
+                                    <ul class="mini-navbar hidden-xs">
+                                        <li>
+                                            <span class="icon-date">{{ episode.published|date:"Y-m-d" }}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class=""></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div id="jp_container_1" class="player-bar player-bar-xs jp-audio">
+                        
+                        <a href="{{ enclosure.url }}" class="tiptip download" title="{% trans "to download right click and select 'save link as'" %}">
+                            {% trans "Download / Stream" %}
+                        </a>
+                        <br/>
+                        <audio controls>
+                            <source src="{{ enclosure.url }}" type="audio/mpeg">
+                        </audio>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3-special col-md-4-special col-sm-12 col-xs-12 text-center m-bottom-20 banner-audio-player">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container container-oyentes">
+    <div class="row">
+        <div class="col-md-8">
+            {% load embed_video_tags %}
+            {% for myvideo in episode.embedmedia_set.all %}
+                {% video myvideo.url  %}
+            {% endfor %}
+            <h2>{{ episode.title }}</h2>
+            <p>{{episode.description}}</p>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
+<!--    <div class="podcast-episode mod">-->
+<!--        <h2>{{ episode.title }}</h2>-->
+<!--        <div class="row">-->
+<!--            <div class="col-sm-8">-->
+<!--                <div class="row">-->
+<!--                    {% for enclosure in episode.enclosure_set.all %}-->
+<!--                        {% if enclosure.mime == 'mp3' %}-->
+<!--                            <div class="col-sm-12">-->
+<!--                                <audio controls>-->
+<!--                                    <source src="{{ enclosure.url }}" type="audio/mpeg">-->
+<!--                                </audio>-->
+<!--                            </div>-->
+<!--                            <div class="col-sm-12">-->
+<!--                                {{ episode.published|date:"Y-m-d" }}-->
+<!--                                <a href="{{ enclosure.url }}" class="tiptip download"-->
+<!--                                    title="{% trans "to download right click and select 'save link as'" %}">-->
+<!--                                    {% trans "Download / Stream" %}-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        {% endif %}-->
+<!--                    {% endfor %}-->
+<!--                </div>-->
+<!--                <div class="row">-->
+<!--                    <div class="col-sm-12">-->
+<!--                        <h6>{{ episode.subtitle }}</h6>-->
+
+<!--                        {% if episode.description %}-->
+<!--                            <div class="episode-description">{{ episode.description }}</div>-->
+<!--                        {% endif %}-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-sm-2">-->
+<!--                {% load embed_video_tags %}-->
+<!--                {% for myvideo in episode.embedmedia_set.all %}-->
+<!--                    {% video myvideo.url tiny %}-->
+<!--                {% endfor %}-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+{% else %}
+    <h2 class="coming-soon">{% trans "Coming soon..." %}</h2>
+{% endif %}

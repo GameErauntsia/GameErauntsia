@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load i18n bootstrap %}
+
+{% block extracss %}
+    <link href="{{STATIC_URL}}js/select2/css/select2.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block morejs %}
+    {{ articleform.media }}
+    <script src="{{STATIC_URL}}js/select2/js/select2.min.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/select2/js/i18n/eu.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="col-sm-12">
+    <h1>Gehitu artikulua</h1>
+    <form action="{{request.path}}" method="POST" ENCTYPE="multipart/form-data">
+        {% csrf_token %}
+        {{articleform|bootstrap}}
+        <input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
+    </form>
+    <hr/>
+</div>
+{% endblock %}
+
+{% block footerjs %}
+<script type="text/javascript">
+	$('#id_gaia').select2({
+        language: "eu",
+        placeholder: "Aukeratu erlazionaturiko gaiak",
+    });
+    $('#id_jokoa').select2({
+        language: "eu",
+        placeholder: "Aukeratu jokoa",
+    });
+</script>
+{% endblock %}

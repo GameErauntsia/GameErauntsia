@@ -1,0 +1,187 @@
+version: '3.3'
+
+services:
+  db:
+    image: mariadb:10.8.3
+    container_name: gamerauntsia_db
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_BACKUP_USER=${MYSQL_BACKUP_USER}
+      - MYSQL_BACKUP_USER_PASSWORD=${MYSQL_BACKUP_USER_PASSWORD}
+      - MYSQL_ALLOW_EMPTY_PASSWORD=${MYSQL_ALLOW_EMPTY_PASSWORD}
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      default:
+        aliases:
+          - db
+    profiles: [ "develop", "production" ]
+
+  adminer:
+    image: adminer:4.8.1-standalone
+    container_name: gamerauntsia_adminer
+    restart: "no"
+    ports:
+      - 8080:8080
+    networks:
+      default:
+        aliases:
+          - adminer
+    profiles: [ "develop", "production" ]
+
+  web-dev:
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    container_name: gamerauntsia_web_dev
+    environment:
+      - HOST_NAME
+      - SECRET_KEY
+      - MYSQL_HOST
+      - MYSQL_DATABASE
+      - MYSQL_PORT
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+      - EMAIL_HOST
+      - EMAIL_HOST_USER
+      - EMAIL_HOST_PASSWORD
+      - DEFAULT_FROM_EMAIL
+      - DEFAULT_TO_EMAIL
+      - TG_BOT_TOKEN
+      - TG_ADMIN_CHAT_ID
+      - TG_MC_CHAT_ID
+      - TG_EDITOR_CHAT_ID
+      - TG_PUBLIC_CHAT_ID
+      - TW_USERNAME
+      - TW_API_KEY
+      - TW_API_SECRET
+      - TW_ACCESS_TOKEN
+      - TW_ACCESS_TOKEN_SECRET
+      - FB_APP_ID
+      - MA_CLIENT_ID
+      - MA_CLIENT_SECRET
+      - MA_USER_ACCESS_TOKEN
+      - RECAPTCHA_PUBLIC_KEY
+      - RECAPTCHA_PRIVATE_KEY
+      - STREAMING_TWITCH_WEBHOOK_SECRET
+      - STREAMING_TWITCH_CLIENT_ID
+      - STREAMING_TWITCH_CLIENT_SECRET
+      - ENABLE_TRACKING
+    command: python3 bin/manage.py runserver 0.0.0.0:8090
+    ports:
+      - 8090:8090
+    volumes:
+      - staticfiles:/app/static
+      - mediafiles:/app/media
+      - src:/app/src
+    stdin_open: true
+    tty: true
+    profiles: [ "develop" ]
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    container_name: gamerauntsia_nginx
+    ports:
+      - 80:80
+      - 443:443
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    volumes:
+      - staticfiles:/django/static
+      - mediafiles:/django/media
+      - letsencrypt:/etc/letsencrypt
+      - certbot:/var/www/certbot
+    networks:
+      default:
+        aliases:
+          - nginx
+    profiles: [ "production" ]
+
+  web-prod:
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    container_name: gamerauntsia_web_prod
+    volumes:
+      - staticfiles:/django/static
+      - mediafiles:/django/media
+      - src:/app/src
+      - logs:/app/logs
+    command: sh -c "cd src/gamerauntsia && gunicorn gamerauntsia.wsgi:application --bind web-stage:80"
+    networks:
+      default:
+        aliases:
+          - web
+          - web-prod
+    stdin_open: true
+    tty: true
+    profiles: [ "production" ]
+
+  certbot:
+    image: certbot/certbot:v2.6.0
+    container_name: gamerauntsia_certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    volumes:
+      - letsencrypt:/etc/letsencrypt
+      - certbot:/var/www/certbot
+    networks:
+      default:
+        aliases:
+          - certbot
+    profiles: [ "production" ]
+
+volumes:
+  src:
+    name:  gamerauntsia_src
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/src
+  db-data:
+    name:  gamerauntsia_database
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/data/db
+  staticfiles:
+    name:  gamerauntsia_staticfiles
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/data/staticfiles
+  mediafiles:
+    name:  gamerauntsia_mediafiles
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/data/mediafiles
+  logs:
+    name:  gamerauntsia_logs
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/data/logs
+  letsencrypt:
+    name:  gamerauntsia_letsencrypt
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/data/certbot/conf
+  certbot:
+    name:  gamerauntsia_certbot
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/data/certbot/www
+

@@ -1,0 +1,235 @@
+{%load breadcrumbs include flatpages %}
+<!DOCTYPE html>
+<html lang="eu">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bideojokoak euskaraz! Bideojokoen euskal komunitatea osatzen dugu">
+    <meta name="author" content="Gamerauntsia">
+    <link rel="shortcut icon" type="image/ico" href="{{STATIC_URL}}img/favicon.ico" />
+    <title>{% block title %}{% endblock%}Game Erauntsia - Bideojokoak euskaraz</title>
+
+    <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.min.css">
+    <link href="{{STATIC_URL}}css/style.css" rel="stylesheet">
+
+    <script src="{{STATIC_URL}}js/jquery-3.6.0.min.js"></script>
+    <script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+
+    {% block extracss %}{% endblock %}
+    {% block morejs %}{% endblock %}
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">
+                    <img src="{{STATIC_URL}}img/logo.png" width="200px" alt="">
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-left">
+                    <!-- <li {% if request.path|contains:"/getb/" %}class="active"{% endif %}><a href="/getb">GETB</a></li> -->
+                    <!-- <li {% if request.path|contains:"/podcastak/" %}class="active"{% endif %}><a href="/podcastak" title="Podcastak">Podcasta</a></li> -->
+                    <li {% if request.path|contains:"/bloga/" %} class="active"{% endif %}>
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="/bloga" title="Bloga">Bloga <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="/bloga/gaia/analisiak" title="Analisiak">Analisiak</a></li>
+                        <li><a href="/bloga/gaia/artikuluak" title="Artikuluak">Artikuluak</a></li>
+                        <li><a href="/bloga/gaia/berriak" title="Berriak">Berriak</a></li>
+                        <li><a href="/bloga/gaia/ekitaldiak" title="Ekitaldiak">Ekitaldiak</a></li>
+                        <li><a href="/bloga/gaia/elkarrizketak" title="Elkarrizketak">Elkarrizketak</a></li>
+                        <li><a href="/bloga/gaia/komunitatea" title="Komunitatea">Komunitatea</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li><a href="/bloga/gaia/euskal-jokoak" title="Euskal jokoak">Euskal jokoak</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li><a href="/bloga" title="Denak">Denak</a></li>
+                        </ul>
+                    </li>
+                    <li {% if request.path|contains:"/jokoak/" or request.path|contains:"/gameplayak/" or request.path|contains:"/txapelketak/" or request.path|contains:"/minecraft/" or request.path|contains:"/jokoak/" or request.path|contains:"/terminologia/" %}class="active"{% endif %}>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'talde_motorra' %}" title="Jokoak">Jokoak <b class="caret"></b></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{% url 'gameplay_index' %}" title="GamePlayak">GamePlayak</a></li>
+                            <li><a href="{% url 'txapelketak_index' %}" title="Komunitatea">Txapelketak</a></li>
+                            <li role="presentation" class="divider"></li>
+                            <li><a href="{% url 'minecraft_index' %}" title="Minecraft zerbitzaria">Minecraft zerbitzaria</a></li>
+                            <li role="presentation" class="divider"></li>
+                            <li><a href="{% url 'game_index' %}" title="Jokoen katalogoa">Jokoen katalogoa</a></li>
+                            <li><a href="{% url 'euskarazko_jokoak' %}" title="Euskarazko jokoak">Euskarazko jokoak</a></li>
+                            {% if user.is_staff or user.is_superuser %}
+                                <li><a href="{% url 'garatzaileak' %}" title="Garatzaileak">Garatzaileak</a></li>
+                            {% endif %}
+                            <li role="presentation" class="divider"></li>
+                            <li><a href="{% url 'terminologia' %}" title="Terminologia">Terminologia</a></li>
+                        </ul>
+                    </li>
+                    <li class="{% if request.path|contains:"/ekimenak/" %}active{% endif %}">
+                        <a href="{% url 'komunitatea' %}" class="dropdown-toggle" data-toggle="dropdown">Ekimenak <b class="caret"></b></a>
+                        {% get_flatpages as flatpages %}
+                        <ul class="dropdown-menu" role="menu">
+                            {% if user.is_staff or user.is_superuser %}
+                                <li><a href="{% url 'podcast_index' %}" title="Podcastak">Podcastak</a></li>
+                            {% endif %}
+                            {% for page in flatpages %}
+                            {% if 'ekimenak' in page.url %}
+                            <li><a href="{{ page.url }}" title="{{ page.title }}">{{ page.title }}</a></li>
+                            {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li class="{% if request.path|contains:"/komunitatea/" %}active{% endif %}">
+                        <a href="{% url 'komunitatea' %}" class="dropdown-toggle" data-toggle="dropdown">Komunitatea <b class="caret"></b></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{% url 'talde_motorra' %}" title="Nortzuk gara">Nortzuk gara</a></li>
+                            <li><a href="{% url 'komunitatea' %}" title="Komunitatea">Komunitate osoa</a></li>
+                            <li role="presentation" class="divider"></li>
+                            <li><a href="{% url 'forum-index' %}" title="Foroa">Foroa</a></li>
+                            <li role="presentation" class="divider"></li>
+                            <li><a href="/komunitatea/zerbitzuak/" title="Zerbitzuak">Zerbitzuak</a></li>
+                            <li><a href="/komunitatea/harremanetarako/" title="Harremanetarako">Harremanetarako</a></li>
+                        </ul>
+                    </li>
+<!--                    <li><a href="{% url 'euskarazko_jokoak' %}" title="Euskarazko jokoak"><label class="btn btn-warning btnEuskerazkoJolasak" style="color:black;">Euskarazko jokoak</label></a></li>-->
+                    <li><a href="{% url 'euskarazko_jokoak' %}" title="Euskarazko jokoak"><label class="btn btn-warning btnEuskerazkoJolasak" style="color:black;">Euskarazko jokoak</label></a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="">
+                        <form class="navbar-search pull-right" action="/bilaketa">
+                            <div class="input-group search-query">
+                                <input type="text" name="q" class="form-control field" id="q"/>
+                                <span class="input-group-btn">
+                                    <input type="submit" class="submit btn btn-default" id="searchsubmit" value="Bilatu!"/>
+                                </span>
+                            </div>
+                        </form>                         
+                    </li>
+                    <li id="useroptions">
+                    {% include 'useroptions.html' %}
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+    </nav>
+
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+        <footer>
+            <hr>
+            <div class="row">
+                <div class="col-sm-4 col-xs-12 text-center">
+                    <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons-en baimena" style="border-width:0" src="{{STATIC_URL}}img/cc_88x31.png" />
+                    </a><a href="https://twitter.com/gamerauntsia"><img alt="Game Erauntsia twitter" src="{{STATIC_URL}}img/tw-footer.png"/>
+                    </a><a href="https://facebook.com/gamerauntsia"><img alt="Game Erauntsia facebook" src="{{STATIC_URL}}img/fb-footer.png"/>
+                    </a><a href="/feed/bloga"><img alt="Game Erauntsia RSS" src="{{STATIC_URL}}img/rss-footer.png"/>
+                    </a><a href="https://github.com/GameErauntsia"><img alt="Game Erauntsia Github" src="{{STATIC_URL}}img/gh-footer.png" /></a>
+                </div>
+                <div class="col-sm-4 col-xs-12 text-center">
+                    <a href="/pribatutasun-politika/">Pribatutasun politika</a> |
+                    <a href="/cookie">Cookie politika</a> |
+                    <a href="/lizentzia" rel="jslicense">Lizentziak</a>
+                    <br/>
+                    <a href="/erabilera-baldintzak/">Erabilera baldintzak</a>
+                    <br/>
+                    <a href="{% url 'kontaktua' %}">Kontaktua</a> |
+                    <a href="https://statcounter.com/p10060615/?guest=1">Estatistikak</a>
+                </div>
+                <div class="col-sm-4 col-xs-12 pull-right text-center">
+                    <span><strong>Babeslea:</strong></span>
+                    <img src="{{STATIC_URL}}img/footer.png" width="150" style="margin-left: 10px;"/>
+                </div>
+            </div>
+        </footer>
+    </div>
+    {% if ENABLE_TRACKING %}
+    <!-- Matomo -->
+      <script>
+        var _paq = window._paq = window._paq || [];
+        _paq.push(['requireCookieConsent']);
+        _paq.push(['setCustomDimension', 1, "{{user.is_authenticated}}"]);
+        _paq.push(['addDownloadExtensions', "ips|mo|xdelta"]);
+        {% block matomo_pre_tracking %}{% endblock %}
+        _paq.push(['trackPageView']);
+        {% block matomo_after_tracking %}{% endblock %}
+        _paq.push(['enableLinkTracking']);
+        (function() {
+            var u="//matomo.gamerauntsia.eus/";
+            _paq.push(['setTrackerUrl', u+'matomo.php']);
+            _paq.push(['setSiteId', '1']);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+      </script>
+      <noscript>
+        <!-- Matomo Image Tracker-->
+        <img referrerpolicy="no-referrer-when-downgrade" src="https://matomo.gamerauntsia.eus/matomo.php?idsite=1&amp;rec=1" style="border:0" alt="" />
+        <!-- End Matomo -->
+      </noscript>
+      <!-- End Matomo Code -->
+      <script src="{{STATIC_URL}}js/cookie-consent.js"></script>
+      <!-- Statcounter -->
+      <script type="text/javascript">
+        var sc_project=10060615;
+        var sc_invisible=1;
+        var sc_security="e93b838b";
+      </script>
+      <script type="text/javascript" src="https://secure.statcounter.com/counter/counter.js"></script>
+      <!-- End Statcounter -->
+    {% endif %}
+    <!-- Cookie consent -->
+    <script>
+      const CookieConsent = window.CookieConsent
+      const cc = new CookieConsent({
+          title: "Cookieak erabiltzen ditugu",
+          description: "Webgune honek cookie propioak eta hirugarrenen cookie-fitxategiak erabiltzen ditu. Zure esperientzia eta zerbitzuak hobetzeko asmoz, cookie teknologiaz baliatzen gara. Ohar hau onartuz gero, teknologia hori erabiltzeko baimen esplizitua ematen diguzu. <a href=\"/cookie\">Informazio gehiago.</a>",
+          buttons: {
+              acceptAll: "Onartu",
+              acceptSelected: "Onartu cookieak",
+              reject: "Ukatu",
+              showSettings: "Cookieak kudeatu",
+              hideSettings: "Ezkutatu",
+          },
+          categories: {
+              essentials: {
+                  label: "Beharrezkoak",
+                  description: "Webgunearen oinarrizko funtzionalitatea ahalbidetzen dute.",
+                  checked: true,
+                  mandatory: true
+              },
+              analytics: {
+                  label: "Estatistika",
+                  description: "Aukera ematen dute webguneko erabiltzaileen portaera estatistikoki neurtzeko eta aztertzeko.",
+                  checked: true,
+                  mandatory: false
+              }
+          }
+      })
+      function updateConsent() {
+          acceptedCategories = window.CookieConsent.acceptedCategories
+          if (acceptedCategories.includes("analytics")) {
+              _paq.push(['setCookieConsentGiven']);
+              console.log("enable analytics")
+          } else {
+              console.log("disable analytics")
+          }
+      }
+      cc.on("change", (cc) => updateConsent())
+      updateConsent()
+      </script>
+    <!-- End Cookie consent -->
+    {% block footerjs %}{% endblock %}
+</body>
+
+</html>

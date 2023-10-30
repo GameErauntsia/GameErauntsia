@@ -1,0 +1,44 @@
+{% load pagination_tags %}
+
+<div class="row" style="overflow-y:auto">
+  <table class="table table-condensed table-hover">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Jokoa</th>
+        <th>Plataformak</th>
+        <th>Generoak</th>
+        <th>Argitaratze data</th>
+        <th>Euskaratzea</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% autopaginate jokoak 20 %}
+        {% for jokoa in jokoak %}
+        <tr>
+          <td><img src="{{jokoa.logoa.get_forum_thumbnail_url}}"
+                   alt="{{jokoa.izena}} {{jokoa.bertsioa|default_if_none:""}} bideojokoak"
+                   title="{{jokoa.izena}} {{jokoa.bertsioa}} bideojokoak"/></td>
+        <td><a href="{% url 'game' jokoa.slug %}"><strong>{{jokoa.izena}}</strong></a></td>
+        <td>{{jokoa.get_basque_available_platforms}}
+        </td>
+        <td>{{jokoa.get_generoak}}</td>
+        <td>{{jokoa.argitaratze_data|date:"Y-m"}}</td>
+        <td>
+          {% for itzulpena in jokoa.get_itzulpenak %}
+          {% if itzulpena.get_url %}
+          <a target="_blank" href="{{itzulpena.get_url}}">{{itzulpena.get_jatorria}}</a>
+          {% else %}
+          {{itzulpena.get_jatorria}}
+          {% endif %}
+          {% endfor %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<div class="row text-center">
+  {% paginate %}
+</div>
+<br>

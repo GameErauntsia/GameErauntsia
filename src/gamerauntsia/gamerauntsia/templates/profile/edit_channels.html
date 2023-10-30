@@ -1,0 +1,18 @@
+{% extends "profile/base.html" %}
+{% load i18n %}
+
+{% block perfil %}
+<div class="profileform">
+  <h2>Kanalak</h2>
+  {% if user.is_gamer %}
+  <p>Sartu hemen zure kanalen informazioa</p>
+  <form action="{{request.path}}" method="POST" class="gamer-channels-form">
+    {% csrf_token %}
+    {{channelsform.as_p}}
+    <input type="submit" class="btn btn-primary" value="{% trans "Save" %}">
+  </form>
+  {% else %}
+  <p>Sortzailea bazara, <a href="/kontaktua">jarri gurekin
+  harremanetan</a> eta atal hau gaituko dizugu.</p> {% endif %}
+</div>
+{% endblock %}

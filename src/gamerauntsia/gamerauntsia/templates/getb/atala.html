@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load emoticons_tags comments ratings %}
+
+{% block title %}{{atala.izenburua}} - GETB - {% endblock %}
+
+{% block morejs %}
+    <meta property="fb:app_id" content="{{facebook_id}}" />
+    <meta name="twitter:site" content="@gamerauntsia" />
+    <meta name="twitter:creator" content="@gamerauntsia" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:domain" content="gamerauntsia.eus" />
+    <meta name="twitter:description" content="{{atala.desk|truncatewords:15|safe|striptags}}" />
+    <meta name="twitter:title" content="{{atala.izenburua}}" />
+    <meta name="twitter:url" content="{{atala.get_absolute_url}}" />
+    <meta name="twitter:image" content="http://gamerauntsia.eus{{atala.argazkia.get_blog_url}}" />
+
+    <meta property="og:description" content="{{atala.desk|truncatewords:15|safe|striptags}}" />
+    <meta property="og:title" content="{{atala.izenburua}}" />
+    <meta property="og:image" content="http://gamerauntsia.eus{{atala.argazkia.get_blog_url}}" />
+
+    <link rel="stylesheet" href="{{STATIC_URL}}star-ratings/css/star-ratings.css">
+    <script type="text/javascript" src="{{STATIC_URL}}star-ratings/js/dist/star-ratings.min.js"></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "VideoObject",
+      "name": "{{atala.izenburua}}",
+      "description": "{{atala.get_desk_txikia}}",
+      "thumbnailUrl": "https://gamerauntsia.eus{{atala.argazkia.get_gp_thumbnail_url}}",
+      "uploadDate": "{{atala.pub_date}}",
+      "duration": "PT{{atala.iraupena_min}}M{{atala.iraupena_seg}}S",
+      "embedUrl": "https://www.youtube.com/embed/{{atala.bideoa}}"
+    }
+    </script>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-8">
+        <div class="flex-video widescreen">
+            {% if atala.bideoa %}
+            <iframe width="700" height="394" src="//www.youtube.com/embed/{{atala.bideoa}}" frameborder="0" allowfullscreen></iframe>
+            {% endif %}
+        </div>
+        <h1>{{atala.izenburua}}</h1>
+        <p>{{atala.desk|safe|emoticons}}</p>
+
+        <div class="pull-right">{% ratings atala %}</div>
+
+        {% include 'share_buttons.html' with item=atala %}
+
+        {% render_comment_list for atala %}
+
+        {% render_comment_form for atala %}
+    </div>
+    <div class="col-sm-4">
+        {% if user.is_authenticated %}
+            {% if user.is_superuser %}
+            <div class="well">
+                <h3>Editatu atala</h3>
+                <a class="btn btn-default" href="/kudeatu/getb/atala/{{atala.id}}">Editatu</a>
+            </div>
+            {% endif %}
+        {% endif %}
+
+        {% if related_atalak %}
+            <h3>Atal +</h3>
+            <div class="well">
+            {% for atal in related_atalak %}
+                <div class="row bloglist">
+                    <div class="col-sm-4">
+                        <a href="{{atal.get_absolute_url}}"><img src="{{atal.argazkia.get_newsprofile_url}}" /></a>
+                    </div>
+                    <div class="col-sm-8">
+                        <p><strong><a href="{{atal.get_absolute_url}}">{{atal.izenburua}}</strong></a><p>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

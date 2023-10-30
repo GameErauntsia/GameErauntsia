@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load gamerauntsia pagination_tags include comments bootstrap_calendar ratings %}
+
+{% block morejs %}
+<script src="{{STATIC_URL}}js/fancybox/jquery.fancybox.js"></script>
+<link href="{{STATIC_URL}}js/fancybox/jquery.fancybox.css" rel="stylesheet">
+
+<link rel="stylesheet" href="{{STATIC_URL}}js/fancybox/helpers/jquery.fancybox-buttons.css" type="text/css" media="screen" />
+<script type="text/javascript" src="{{STATIC_URL}}js/fancybox/helpers/jquery.fancybox-buttons.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/fancybox/helpers/jquery.fancybox-media.js"></script>
+
+<link rel="stylesheet" href="{{STATIC_URL}}star-ratings/css/star-ratings.css">
+<script type="text/javascript" src="{{STATIC_URL}}star-ratings/js/dist/star-ratings.min.js"></script>
+<meta name="description" content="Bideojokoei buruzko azken berriak euskaraz."/>
+<meta name="robots" content="noindex">
+{% endblock %}
+
+{% block title %}Berriak - {% endblock %}
+
+{% block content%}
+<div class="row">
+    <div class="col-sm-8">
+
+        {% block subtitle %}{% endblock %}
+
+        {% block container %}
+
+        {% autopaginate zerr_berriak 5 %}
+        {% for berria in zerr_berriak %}
+        {% get_comment_count for berria as comment_count %}
+        <div class="row">
+            <div class="col-sm-4">
+                <a class="fancybox" href="{{berria.argazkia.image.url}}">
+                    <img style="margin-top: 25px; margin-bottom: 15px"  src="{{berria.argazkia.get_blog_index_url}}" class="img-responsive"/>
+                </a>
+                <p class="lead, text-center">
+                    <a href="{% url 'gamer_profile' berria.erabiltzailea.username %}"><img src="{{berria.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{berria.erabiltzailea.getFullName}}</a></p>
+                <p class="lead"></p>
+            </div>
+            <div class="col-sm-8">
+                <h1><a href="{% url 'berria' berria.slug %}">{{berria.izenburua}}</a></h1>
+                <p><span class="glyphicon glyphicon-time"></span> {{berria.pub_date|date:"Y/m/d H:i"}}
+                    {% for gai in berria.gaia.all %}<span class="label label-success tags"><a href="{% url 'gaia' gai.slug %}">{{gai.izena}}</a></span>{% endfor %}
+                    {% if comment_count %}<a class="pull-right" href="{% url 'berria' berria.slug %}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}
+                </p>
+                <p>{{berria.azpititularra|default_if_none:""|safe}}</p>
+            </div>
+        </div>
+        <hr>
+        {% endfor %}
+
+        {% paginate %}
+
+        {% endblock %}
+
+    </div>
+
+    <div class="col-sm-4">
+        {% steam_panel %}
+        <div id="azkenErantzunak">
+            <h2>Azken erantzunak</h2>
+            {% azken_erantzunak %}
+        </div>
+        <!--<div id="egutegia">
+            <h2>Egutegia</h2>
+            <div id="calendar"></div>
+        </div>-->
+        <iframe src="https://www.lehenhitza.eus/iframe_laukia" class="center-block" width="300" height="250" frameborder="0" scrolling="no"></iframe>
+        <div class="well commentform">
+            <div class="fb-like-box" data-href="https://www.facebook.com/Gamerauntsia" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
+        </div>
+        <div class="well">
+          <a class="twitter-timeline" data-height="600" data-dnt="true" data-theme="light" href="https://twitter.com/Gamerauntsia?ref_src=twsrc%5Etfw">Gamerauntsia-ren txioak</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+    </div>
+</div>
+
+{%endblock%}
+
+{% block footerjs %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".fancybox").fancybox();
+    });
+</script>
+<!-- {% bootstrap_calendar_init language="eu-ES" %} -->
+{% endblock %}

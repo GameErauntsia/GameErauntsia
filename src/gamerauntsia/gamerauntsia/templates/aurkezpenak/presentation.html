@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="eu" class="fade">
+
+<head>
+  <meta charset="UTF-8">
+  <title>{{item.izena}}</title>
+  <meta name="viewport" content="width=device-width, user-scalable=yes">
+  <link rel="shortcut icon" type="image/ico" href="/static/img/favicon.ico" />
+  <link rel="stylesheet" href="{{STATIC_URL}}mozilla/styles/style.css">
+</head>
+
+
+<body class="list">
+
+  <header class="caption">
+    <h1>{{item.izena}}</h1>
+    <p class="footer">
+      {{item.erabiltzailea.getFullName}}, 
+      {% if item.erabiltzailea.twitter_id %}<a href="http://twitter.com/{{item.erabiltzailea.twitter_id}}">@{{item.erabiltzailea.twitter_id}}</a> | {% endif %}
+      <a href="mailto:{{item.erabiltzailea.email}}">{{item.erabiltzailea.email}}</a>
+    </p>
+  </header>
+
+  <aside class="talkdescription">
+    <p><button onclick="goFullScreen()">Ireki pantaila osoan</button></p>
+    {% if item.abstract %}
+    <p class="abstract">
+      <strong>Abstract: </strong>
+       {{item.abstract|safe}}
+    </p>
+    {% endif %}
+  </aside>
+
+
+  {{item.slides|safe}}
+
+  <div class="progress"><div></div></div>
+  <script src="{{STATIC_URL}}js/mozilla/script.js"></script>
+  <!-- Copyright © 2010–2012 Vadim Makeev — pepelsbey.net -->
+</body>
+</html>

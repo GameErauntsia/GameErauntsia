@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load pagination_tags gamerauntsia %}
+
+{% block title %}Foroa - {% endblock %}
+
+{% block content %}
+<!-- Threads  -->
+
+<div class="row">
+    <div class="col-sm-10">
+        <h1 class="page-header">Foroa <small>{{forum.title}}</small></h1>
+    </div>
+    <div class="col-sm-2">
+        <img class="img-responsive img-circle" src="{{forum.icon.get_forum_profile_url}}" alt="Game Erauntsia {{forum.title}} {{topic.title}}" title="Game Erauntsia {{forum.title}} {{topic.title}}">
+    </div>
+</div>
+<p>{{forum.description}}</p>
+<p class="breadcrumb"><a href="/foroa">Denak</a>-><strong>{{forum.title}}</strong></p>
+
+
+{% if request.user.is_authenticated %}
+<div class="row">
+    <div class="col-sm-12">
+        <a id="new_topic" class="btn btn-primary" href="{% url 'new-topic' forum.slug %}">Gai berria hasi</a>
+    </div>
+</div>
+{% endif %}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div id="list">
+            {% autopaginate topics 20 %}
+            <table class="table table-condensed table-hover footable">
+                <thead>
+                    <tr>
+                        <th>Gaiak</th>
+                        <th data-hide="phone">Mezuak</th>
+                        <th>Azken mezua</th>
+                        <th data-hide="phone">Bisitak</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for topic in topics %}
+                    <tr {% if topic.block_top %}class="active"{% else %}{% if not topic|check_seen:user %}class="bg-success"{% endif %}{% endif %}>
+                        <td>
+                            <div class="title"> <a href="{% url 'topic-detail' forum.slug topic.pk %}"><span class="{% if topic.block_top%}glyphicon glyphicon-envelope{% else %}{%if topic.closed %}glyphicon glyphicon-folder-close{% else %}glyphicon glyphicon-folder-open{% endif %}{% endif %}"></span> {{ topic.title }}</a>
+                            </div>
+                        </td>
+                        <td>{{topic.num_posts}}</td>
+                        <td>
+                            {% if topic.last_post %}
+                            <div class="col-sm-2">
+                                <img src="{{topic.last_post.creator.get_photo.get_profilesmall_url}}" class="img-circle"/>
+                            </div>
+                            <div class="col-sm-10">
+                            <a href="/foroa/{{forum.slug}}{{topic.last_post.get_absolute_url}}">{{topic.last_post.short|linebreaksbr}}</a>
+                            </div>
+                            {% endif %}
+                        </td>
+                        <td>{{topic.visits}}</td>
+                        <td>
+                            {% if not topic|check_seen:user %}
+                                <strong class="text-success"><span aria-hidden="true" class="glyphicon glyphicon-star-empty"></span> BERRIA</strong>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% paginate %}
+        </div>
+    </div>
+</div>
+<p class="breadcrumb"><a href="/foroa">Denak</a>-><strong>{{forum.title}}</strong></p>
+
+<!-- Next/Prev page links  -->
+{% if topics.object_list and topics.paginator.num_pages > 1 %}
+<div class="pagination">
+    <span class="step-links">
+        {% if topics.has_previous %}
+            <a href= "?page={{ topics.previous_page_number }}">previous &lt;&lt; </a>
+        {% endif %}
+
+        <span class="current">
+            &nbsp;Page {{ topics.number }} of {{ topics.paginator.num_pages }}
+        </span>
+
+        {% if topics.has_next %}
+            <a href="?page={{ topics.next_page_number }}"> &gt;&gt; next</a>
+        {% endif %}
+    </span>
+</div>
+{% endif %}
+
+<script src="{{STATIC_URL}}js/footable.min.js"></script>
+<script type="text/javascript">
+$(function () {
+
+    $('.footable').footable();
+
+});
+</script>
+{% endblock %}

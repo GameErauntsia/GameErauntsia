@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% load gamerauntsia emoticons_tags include comments ratings %}
+
+{% block morejs %}
+    <meta property="fb:app_id" content="{{facebook_id}}" />
+    <meta name="twitter:site" content="@gamerauntsia" />
+    <meta name="twitter:creator" content="@gamerauntsia" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:domain" content="gamerauntsia.eus" />
+    <meta name="twitter:description" content="{{item.desk|truncatewords:15|safe|striptags}}" />
+    <meta name="twitter:title" content="{{item.izenburua}}" />
+    <meta name="twitter:url" content="{{item.get_absolute_url}}" />
+    <meta name="twitter:image" content="https://gamerauntsia.eus{{item.argazkia.get_share_url}}" />
+
+    <meta property="og:description" content="{{item.desk|truncatewords:15|safe|striptags}}" />
+    <meta property="og:title" content="{{item.izenburua}}" />
+    <meta property="og:image" content="https://gamerauntsia.eus{{item.argazkia.get_share_url}}" />
+
+    <script src="{{STATIC_URL}}js/fancybox/jquery.fancybox.pack.js"></script>
+    <link href="{{STATIC_URL}}js/fancybox/jquery.fancybox.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{STATIC_URL}}js/fancybox/helpers/jquery.fancybox-buttons.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="{{STATIC_URL}}js/fancybox/helpers/jquery.fancybox-buttons.js"></script>
+    <script type="text/javascript" src="{{STATIC_URL}}js/fancybox/helpers/jquery.fancybox-media.js"></script>
+
+    <link rel="stylesheet" href="{{STATIC_URL}}star-ratings/css/star-ratings.css">
+    <script type="text/javascript" src="{{STATIC_URL}}star-ratings/js/dist/star-ratings.min.js"></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "NewsArticle",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://gamerauntsia.eus/bloga"
+      },
+      "headline": "{{item.izenburua}}",
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://gamerauntsia.eus{{item.argazkia.get_blog_url}}",
+        "height": 300,
+        "width": 900
+      },
+      "datePublished": "{{item.pub_date|date:'c'}}",
+      "dateModified": "{{item.mod_date|date:'c'}}",
+      "author": {
+        "@type": "Person",
+        "name": "{{item.erabiltzailea.getFullName}}"
+      },
+       "publisher": {
+        "@type": "Organization",
+        "name": "Game Erauntsia",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://gamerauntsia.eus{{STATIC_URL}}img/logo.png",
+          "width": 217,
+          "height": 21
+        }
+      },
+      "description": "{{item.get_desk_txikia}}"
+    }
+    </script>
+
+{% endblock %}
+
+{% block title %}{{item.izenburua}} - Berriak - {% endblock %}
+
+{% block content%}
+    <div class="row">
+      <div class="col-sm-8">
+        <h1>{{item.izenburua}}</h1>
+        <p class="lead">
+          <a href="{% url 'gamer_profile' item.erabiltzailea.username %}"><img src="{{item.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{item.erabiltzailea.getFullName}}</a> | <span class="glyphicon glyphicon-time"></span> {{item.pub_date|date:"Y/m/d H:i"}} {% for gai in item.gaia.all %}<span class="label label-success tags"><a href="{% url 'gaia' gai.slug %}">{{gai.izena}}</a></span>{% endfor %}
+        </p>
+        <hr>
+        {% if item.argazkia %}
+        <a class="fancybox" href="{{item.argazkia.image.url}}">
+          <img src="{{item.argazkia.get_blog_url}}" class="img-responsive"/>
+        </a>
+        <hr>
+        {% endif %}
+        {% if user.is_authenticated %}
+        {% if user.is_superuser or user == item.erabiltzailea %}
+        <div class="well">
+          <h3>Editatu berria</h3>
+          <a class="btn btn-default" href="/kudeatu/berriak/berria/{{item.id}}">Editatu</a>
+        </div>
+        {% endif %}
+        {% endif %}
+        <div class="article-body">
+          {% if item.azpititularra %}
+          <h4><strong>{{item.azpititularra|safe}}</strong></h4>
+          {% endif %}
+          <p class="lead">{{item.desk|safe|emoticons}}</p>
+        </div>
+        <div class="pull-right">{% ratings item %}</div>
+
+        {% include 'share_buttons.html' with item=item %}
+
+        <hr>
+
+        {% render_comment_list for item %}
+
+        {% render_comment_form for item %}
+
+      </div>
+      <div class="col-sm-4">
+        {% steam_panel %}
+        <div id="azkenErantzunak">
+            <h2>Azken erantzunak</h2>
+            {% azken_erantzunak %}
+        </div>
+        <iframe src="https://www.lehenhitza.eus/iframe_laukia" class="center-block" width="300" height="250" frameborder="0" scrolling="no"></iframe>
+      </div>
+    </div>
+{%endblock%}
+
+{% block footerjs %}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".fancybox").fancybox();
+    });
+</script>
+{% endblock %}
+<!-- Matomo -->
+{% block matomo_pre_tracking %}
+    {% for gai in item.gaia.all %}
+    _paq.push(['setCustomVariable', {{forloop.counter}}, 'berria_gaia', "{{gai.izena}}", 'page']);
+    {% endfor %}
+{% endblock %}
+{% block matomo_after_tracking %}
+    _paq.push(['enableHeartBeatTimer']);
+{% endblock %}
+<!-- End Matomo -->

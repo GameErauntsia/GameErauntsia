@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="eu">
+  <head>
+    <title>{{item.izena}} - Partida zuhaitza</title>
+    <script
+      src="https://code.jquery.com/jquery-1.12.4.min.js"
+      integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+      crossorigin="anonymous"></script>
+    <script src="{{STATIC_URL}}js/jquery.gracket.min.js"></script>
+    <link href="{{STATIC_URL}}css/gracket.css"  rel="stylesheet" >
+    <script>
+      $( document ).ready(function() {
+          $('#txapelketa-zuhaitza').gracket({
+              src: {{graphdata|safe}},
+              roundLabels: {{roundlabels|safe}}
+          });
+      });
+    </script>
+  </head>
+  <body>
+    <div>
+      <h1 style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif">{{item.izena}}</h1>
+      <div id="txapelketa-zuhaitza"></div>
+    </div>
+  </body>
+</html>

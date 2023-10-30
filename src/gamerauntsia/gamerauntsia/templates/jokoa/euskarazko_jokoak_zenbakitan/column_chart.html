@@ -1,0 +1,62 @@
+<div id="{{id}}" style="margin: 0 auto" class="border"></div>
+
+<script type="text/javascript">
+  Highcharts.chart('{{id}}',{
+      "title": {
+          "text": "{{title}}"
+      },
+      "exporting": {
+          "buttons": {"contextButton": {
+              "menuItems": ['downloadPNG','downloadSVG','downloadCSV'],
+          }},
+          "chartOptions": {
+              "chart":
+              {"backgroundColor": "transparent"},
+              "credits": {
+                  "enabled": true,
+                  "text": "Game Erauntsia",
+                  "href": "https://gamerauntsia.eus"
+              }
+          }
+      },
+      "chart": {
+          "type": "column",
+          "polar": false
+      },
+      "plotOptions": {
+          "series": {
+              "colorByPoint": false,
+              "animation": false,
+              "pointPadding": 0,
+              "groupPadding": 0,
+              "dataLabels": {
+                  "enabled": true
+              }
+          }
+      },
+      "series": [
+          {
+              "name": "kopurua",
+              "turboThreshold": 0,
+              "data": [
+                  {% for item in data %}
+                  {x: {{item.taldea}}, y: {{item.kopurua}}},
+                  {% endfor %}]
+          }
+      ],
+      "legend": {
+          "enabled": false
+      },
+      "yAxis": {
+          "title": {"text": NaN}
+      },
+      "lang": {
+          downloadPNG: 'Jaitsi PNG',
+          downloadSVG: 'Jaitsi SVG',
+          downloadCSV: 'Jaitsi CSV',
+          contextButtonTitle: 'Menua'
+      },
+      "credits": {"enabled": true},
+      "colors": ["#0f843c"]
+  });
+</script>

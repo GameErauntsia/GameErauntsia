@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load include %}
+
+{% block title %}Euskarazko bideo-jokoak - {% endblock %}
+
+{% block content%}
+
+<div class="col-sm-12">
+  <h1 class="page-header">Komunitatearen bidejokoen euskarazko itzulpenak </h1>
+  <p>Game Erauntsia elkarteak zein komunitateko kideek egindako itzulpenak aurkituko dituzu hemen.</p>
+</div>
+
+<div class="col-sm-9">
+    <h2>Proiektu guztiak</h2>
+    <div id="content">
+        <div class="col-sm-12">
+          {% include 'joko_itzulpenak/proiektu_taula.html' with proiektuak=proiektuak %}
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-3">
+    <div class="well">
+        <h3>Lagundu nahi?</h3>
+    </div>
+    <div class="well">
+      <h3>Bideojoko guztiak</h3>
+      <p>Euskarazko bideojoko guztien zerrenda ikusteko egin klik <a href="/jokoak/euskarazko-bideojokoak/">hemen</a>.</p>
+    </div>
+    <div class="well">
+        <h3>Beste proiektu batzuk</h3>
+    </div>
+</div>
+
+{%endblock%}

@@ -1,0 +1,75 @@
+{% load pagination_tags %}
+
+
+<div class="row" style="overflow-y:auto">
+    <table class="table table-condensed table-hover">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Izena</th>
+            <th>Plataformak</th>
+            <th>Sare sozialak</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% autopaginate jokogaratzaileak 16 %}
+        {% for g in jokogaratzaileak %}
+        <tr>
+            <td>
+                <img src="{{g.logoa.get_forum_thumbnail_url}}" alt="{{g.izena}} garatzailea" title="{{jokoa.izena}} {{jokoa.bertsioa}} bideojokoak"/>
+            </td>
+            <td>
+                <a href="{% url 'garatzailea' g.slug %}"><strong>{{g.izena}}</strong></a>
+            </td>
+            <td>
+                {{g.get_available_platforms}}
+            </td>
+            <td>
+                <ul class="list-inline">
+                     {% if g.url %}
+                        <li class="list-item">
+                            <a href="{{g.url}}" target="_blank"><img src="{{STATIC_URL}}img/www.png" width="25" /></a>
+                        </li>
+                    {% endif %}
+
+                    {% if g.twitter_id %}
+                        <li class="list-item">
+                            <a href="https://twitter.com/{{g.twitter_id}}" target="_blank"><img src="{{STATIC_URL}}img/twitter.png" width="25" /></a>
+                        </li>
+                    {% endif %}
+
+                    {% if g.ytube_channel %}
+                        <li class="list-item">
+                            <a href="{{g.ytube_channel}}" target="_blank"><img src="{{STATIC_URL}}img/youtube.png" width="25"/></a>
+                        </li>
+                    {% endif %}
+
+                    {% if g.facebook_id %}
+                        <li class="list-item">
+                            <a href="https://facebook.com/{{g.facebook_id}}" target="_blank"><img src="{{STATIC_URL}}img/facebook.png" width="25"/></a>
+                        </li>
+                    {% endif %}
+
+                    {% if g.email %}
+                        <li class="list-item">
+                            <a href="mailto://{{g.email}}" target="_blank"><img src="{{STATIC_URL}}img/mail.png" width="25"/></a>
+                        </li>
+                    {% endif %}
+
+                    {% if g.phone %}
+                        <li class="list-item">
+                            <a href="tel://{{g.phone}}" target="_blank"><img src="{{STATIC_URL}}img/phone.png" width="25"/></a>
+                        </li>
+                    {% endif %}
+                </ul>
+
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="row text-center">
+    {% paginate %}
+</div>
+<br>

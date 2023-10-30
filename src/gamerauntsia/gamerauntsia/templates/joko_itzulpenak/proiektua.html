@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% load include %}
+
+{% block title %}Euskarazko bideo-jokoak - {% endblock %}
+
+{% block content%}
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="page-header">{{proiektua.jokoa.izena}} euskaraz
+      <small>itzulpen proiektua</small></h1>
+  </div>
+  <div class="col-sm-12">
+    <div class="col-sm-2 text-center">
+      <div class="row">
+        <img class="img-responsive img-thumbnail"
+             src="{{proiektua.jokoa.get_karatula.get_joko_karatula_url}}">
+      </div>
+      <div class="row" style="padding-top: 5px">
+        <a class="btn btn-primary" href="{% url 'game' proiektua.jokoa.slug %}">Ikusi jokoaren fitxa</a>
+      </div>
+    </div>
+    <div class="col-sm-4" style="padding-top: 5px">
+      <p><i class="glyphicon glyphicon-info-sign"></i> Egoera: {{proiektua.get_egoera_display}}</p>
+      {% if proiektua.external_url %}
+      <p><i class="glyphicon glyphicon-globe"></i> <a href="{{proiektua.external_url}}" target="_blank">Itzulpenaren webgunea</a></p>
+      {% endif %}
+      <p><i class="glyphicon glyphicon-screenshot"></i> Plataformak:
+        {% for plataforma in proiektua.plataformak.all %}{% if not forloop.first %},{% endif %} {{plataforma.izena}}{% endfor %}
+      </p>
+      {% if proiektua.sortze_data %}
+      <p><i class="glyphicon glyphicon-calendar"></i> Hasiera data: {{proiektua.sortze_data|date:"Y/m/d"}}</p>
+      {% endif %}
+      {% if proiektua.eguneratze_data %}
+      <p><i class="glyphicon glyphicon-calendar"></i> Azken eguneraketa: {{proiektua.eguneratze_data|date:"Y/m/d"}}</p>
+      {% endif %}
+      <p><i class="glyphicon glyphicon-user"></i> Arduraduna:
+        {% if proiektua.arduraduna %}
+        <a href="{% url 'gamer_profile' proiektua.arduraduna.username %}">
+          {{proiektua.arduraduna.getFullName}} </a>
+        {% else %}
+        <span>Ez dago / ezezaguna</span>
+        {% endif %}
+      </p>
+      {% if proiektua.ofiziala_da %}
+      <p><i class="glyphicon glyphicon-asterisk"></i> Garatzaileek itzulpena jokoan ofizialki onartu dute</p>
+      {% endif %}
+      {% if request.user.is_superuser %}
+      <a class="btn btn-default" href="/kudeatu/joko_itzulpenak/itzulpenproiektua/{{proiektua.id}}">Editatu</a>
+      {% endif %}
+    </div>
+  </div>
+  <div class="col-sm-12">
+    <br>
+    <div class="tabpanel">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="active" role="presentation">
+          <a aria-controls="stats" data-toggle="tab" role="tab" href="#deskribapena"><h3 class="panel-title"><i class="glyphicon glyphicon-align-justify"></i> Deskribapena</h3></a>
+        </li>
+        <li role="presentation">
+          <a aria-controls="comp" data-toggle="tab" role="tab" href="#egileak"><h3 class="panel-title"><i class="glyphicon glyphicon-user"></i> Egileak</h3></a>
+        </li>
+        <li role="presentation">
+          <a aria-controls="comp" data-toggle="tab" role="tab" href="#instalazioa"><h3 class="panel-title"><i class="glyphicon glyphicon-cog"></i> Instalatzeko pausoak</h3></a>
+        </li>
+        {% if proiektua.itzulpenfitxategia_set.all %}
+        <li role="presentation">
+          <a aria-controls="comp" data-toggle="tab" role="tab" href="#fitxategiak"><h3 class="panel-title"><i class="glyphicon glyphicon-folder-open"></i> Fitxategiak</h3></a>
+        </li>
+        {% endif %}
+        {% if proiektua.ohar_teknikoak %}
+        <li role="presentation">
+          <a aria-controls="comp" data-toggle="tab" role="tab" href="#oharteknikoak"><h3 class="panel-title"><i class="glyphicon glyphicon-wrench"></i> Ohar teknikoak</h3></a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+    <div class="tab-content">
+      <div id="deskribapena" class="tab-pane fade in active" role="tabpanel">
+        <p class="lead">{{proiektua.deskribapena|safe}}</p>
+      </div>
+      <div id="egileak" class="tab-pane fade" role="tabpanel">
+        <br>
+        {% if parte_hartzaileak|length > 0 %}
+        <span>Itzulpenean ondorengo erabiltzaileek hartu dute parte:</span>
+        <table class="table table-condensed table-hover">
+          <thead>
+            <tr>
+              <th>Erabiltzailea</th>
+              <th>Rola</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for parte_hartzailea in parte_hartzaileak %}
+            <tr>
+              <td>
+                <a href="{% url 'gamer_profile' parte_hartzailea.erabiltzailea.username %}">
+                  {% if parte_hartzailea.erabiltzailea.get_photo %}
+                  <img src="{{parte_hartzailea.erabiltzailea.get_photo.get_profilesmall_url}}"
+                       class="img-circle"/>
+                  {% endif %}
+                  {{parte_hartzailea.erabiltzailea.getFullName}}
+                </a>
+              </td>
+              <td>{{parte_hartzailea.get_mota_display}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% endif %}
+        {% if proiektua.parte_hartzaileak_oharra %}
+        <p class="lead">{{proiektua.parte_hartzaileak_oharra|safe}}</p>
+        {% endif %}
+      </div>
+      <div id="instalazioa" class="tab-pane fade" role="tabpanel">
+        <p class="lead">{{proiektua.instalazioa|safe}}</p>
+      </div>
+      <div id="fitxategiak" class="tab-pane fade" role="tabpanel">
+        <br>
+        <table class="table table-condensed table-hover">
+          <thead>
+            <tr>
+              <th>Izena</th>
+              <th>Deskribapena</th>
+              <th>Data</th>
+              <th>Deskargatu</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for fitxategia in proiektua.itzulpenfitxategia_set.all %}
+            <tr>
+              <td>{{fitxategia.izena}}</td>
+              <td>{{fitxategia.deskribapen_laburra}}</td>
+              <td>{{fitxategia.sortze_data|date:"Y/m/d"}}</td>
+              <td><a class="matomo_download" href="{{fitxategia.get_download_url}}" target="_blank"><i class="glyphicon glyphicon-download-alt"></i></a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div id="oharteknikoak" class="tab-pane fade" role="tabpanel">
+        <p class="lead">{{proiektua.ohar_teknikoak|safe}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%endblock%}

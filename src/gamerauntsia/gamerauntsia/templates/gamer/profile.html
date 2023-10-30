@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load comments pagination_tags %}
+
+{%block title%}{{user_prof.getFullName}} - {%endblock%}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-8">
+    <div class="row">
+      <div class="col-xs-12 col-sm-4 text-center">
+        <img src="{{user_prof.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive">
+        {% if user_prof.is_core_team_member%}<img src="{{STATIC_URL}}img/kidea.png" alt="Game Erauntsiako Kidea" class="center-block img-responsive"/>{% endif %}
+        <p>{{user_prof.date_joined|date:"Y/m/d H:i"}}
+        </p>
+      </div><!--/col-->
+      <div class="col-xs-12 col-sm-8">
+        <h2>{{user_prof.getFullName}}
+          {% if user_prof.twitter_id or user_prof.nickname %}
+          <small>{% if user_prof.twitter_id %}@{{user_prof.twitter_id}}{% else %}{{user_prof.nickname}}{% endif %}</small>
+          {% endif %}{% if user_prof.karma %}<span class="pull-right"><i class="glyphicon glyphicon-flash" style="color:#E1E100"></i> <abbr title="Karma">{{user_prof.karma}}</abbr></span>{% endif %}
+        </h2>
+        <p>{% if user_prof.bio%}{{user_prof.bio}}
+          {% else %}
+          {% if user_prof == user %}
+          <div class="alert alert-success" role="alert"><strong>Profila erdi hutsik dago!</strong> Bete itzazu zure datu batzuk, besteek ere zurekin jolas eta hitz egin dezaten!</div>
+        <p>Bete zure datuak <a href="{% url 'edit_profile' %}">zure profila</a> editatuz.<p>
+          {% else %}
+          <div class="alert alert-success" role="alert"><strong>Sentitzen dugu!</strong> Erabiltzaile honek ez ditu profileko datu guztiak bete!</div>
+          {% endif %}
+          {% endif %}
+        </p>
+        {% if categs or bcategs %}
+        <p><strong>Kategoriak: </strong>
+          {% for cat in categs %}
+          <span class="label label-info tags"><a href="{% url 'gameplay_category' cat.kategoria__izena|slugify %}">{{cat.kategoria__izena}}</a></span>
+          {% endfor %}
+          {% for bcat in bcategs %}
+          <span class="label label-success tags"><a href="{% url 'gaia' bcat.gaia__izena|slugify  %}">{{bcat.gaia__izena}}</a></span>
+          {% endfor %}
+        </p>
+        {% endif %}
+        {% if user_prof.getplatforms %}
+        <p>
+          <strong>Gustuko plataformak:</strong>
+          <div class="row">
+            {% for plat in user_prof.getplatforms %}
+            {% if forloop.first %}
+            <div class="col-sm-6"><ul class="list-unstyled">
+                {%endif%}
+                <li><img src="{{STATIC_URL}}img/plataformak/{{plat.plataforma}}.png"/> {{plat.nick}}</li>
+                {% if forloop.counter|divisibleby:4 %}</ul></div><div class="col-sm-6"><ul class="list-unstyled">{% endif %}
+                {% if forloop.last %}</ul></div>{% endif %}
+            {% endfor %}
+          </div>
+        </p>
+        {% endif %}
+        {% include 'gamer/profile/sareak.html'%}
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="row">
+      <hr>
+      {% if berriak %}
+      {% include 'gamer/profile/berriak.html'%}
+      {% endif %}
+      {% if gameplayak %}
+      {% include 'gamer/profile/gameplayak.html'%}
+      {% endif %}
+      </div>
+  </div>
+  <div class="col-md-4">
+    <div class="tabpanel">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="active" role="presentation">
+          <a aria-controls="stats" data-toggle="tab" role="tab" href="#stats"><h3 class="panel-title"><i class="glyphicon glyphicon-signal"></i> Estatistikak</h3></a>
+        </li>
+        <li role="presentation">
+          <a aria-controls="comp" data-toggle="tab" role="tab" href="#comp"><h3 class="panel-title"><i class="glyphicon glyphicon-hdd"></i> Ordenagailua</h3></a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div id="stats" class="tab-pane fade in active  " role="tabpanel">
+          <br>
+          {% include 'gamer/profile/estatistikak.html'%}
+        </div>
+        <div id="comp" class="tab-pane fade" role="tabpanel">
+          <br>
+          {% include 'gamer/profile/ordenagailua.html'%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load pagination_tags include comments gamerauntsia %}
+
+{%block title%}Streamerrak - {%endblock%}
+
+{% block morejs %}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) return;
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/eu_ES/sdk.js#xfbml=1&version=v2.0";
+     fjs.parentNode.insertBefore(js, fjs);
+ }(document, 'script', 'facebook-jssdk'));</script>
+{% endblock %}
+
+{% block content %}
+
+<div class="col-sm-12">
+    <h1 class="page-header">Streamerrak
+        <small>Twitchen euskaraz emititzen duten sortzaileak aurkituko dituzu hemen</small>
+    </h1>
+</div>
+
+<div class="col-sm-12">
+    <div class="col-sm-8">
+        {% for user in users %}
+        {% if forloop.first %}<div class="row">{% endif %}
+        <div class="col-sm-4 col-sm-6">
+            <a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profile_url}}" class="img-circle img-responsive"></a>
+            <h3><a href="{% url 'gamer_profile' user.username %}">{{user.getFullName}}</a>
+                <small>@{{user.twitch_channel}}</small>
+            </h3>
+            <p>{{user.channel_description|default_if_none:""|striptags}}</p>
+        </div>
+        {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
+        {% if forloop.last %}</div>{% endif %}
+        {% endfor %}
+        <h2>Azken zuzenekoak</h2>
+        <p>Denetariko edukia aurkituko duzu euskal streamerran komunitatean. Hona azken lau zuzenekoen zerrenda:</p>
+        <table class="table">
+            <tr>
+                <th>Data</th>
+                <th>Streamerra</th>
+                <th>Jokoa</th>
+                <th>Izenburua</th>
+            </tr>
+            {% for streaming in latest_streams %}
+            <tr>
+                <td>{{streaming.start_date}}</td>
+                <td><a href="{% url 'gamer_profile' streaming.user.username %}">{{streaming.user.getFullName}}</a></td>
+                <td>{{streaming.game_name}}</td>
+                <td>{{streaming.title}}</td>
+                </tr>
+                {% endfor %}
+        </table>
+
+    </div>
+    <div class="col-sm-4">
+        <div class="well">
+            <h2>Orain zuzenean!</h2>
+            {% if current_streams %}
+            <p>Zortekoa zu! Streamer hauek zuzenean daude:</p>
+            {% for stream in current_streams %}
+            <a class="btn btn-primary" href="/streaming/{{stream.user.twitch_channel}}">Ikusi {{stream.user.twitch_channel}}</a>
+            {% endfor %}
+            {% else %}
+            <p>Momentu honetan ez da inor emititzen ari.</p>
+            {% endif %}
+        </div>
+        <div class="well">
+            <h2>Zu falta zara?</h2>
+            <p>Jarri <a href="/komunitatea">gurekin harremanetan</a>, eta zerrenda honetan agertzeko jarraibideak bidaliko dizkizugu.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

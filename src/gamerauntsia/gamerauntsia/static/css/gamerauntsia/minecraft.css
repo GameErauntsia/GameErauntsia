@@ -1,0 +1,21 @@
+body {
+  background-color: transparent !important;
+}
+.minecraft-status {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 350px;
+  max-height: 300px;
+}
+.minecraft-status * {
+  margin: 0;
+}
+.minecraft-status__player-list {
+  flex: 1;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill,32px);
+  grid-gap: 10px;
+  scrollbar-width: thin;
+}

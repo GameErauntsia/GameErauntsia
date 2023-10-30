@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% load include gamerauntsia bootstrap %}
+
+{% block title %}Euskarazko bideojokoak - {% endblock %}
+
+{% block extracss %}
+<link href="{{STATIC_URL}}js/select2/css/select2.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block morejs %}
+{{ articleform.media }}
+<script src="{{STATIC_URL}}js/select2/js/select2.min.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}js/select2/js/i18n/eu.js"></script>
+<meta name="description" content="Entretenimendura zuzendutako euskarazko bideojokoen zerrenda."/>
+{% endblock %}
+
+{% block content%}
+
+<div class="row">
+  <div class="col-sm-12">
+    <h1 class="page-header">Euskarazko bideojokoak</h1>
+    <p>Entretenimendura zuzendutako euskarazko bideojokoen zerrenda da hau. Helburu didaktikoa duten joko eta aplikazioak ez daude zerrenda honetan. Zerrendako bideojoko batzuk euskaraz merkaturatu dira, eta beraz, ez da ezer berezirik egin behar euskaraz jokatzeko. Beste batzuk, aldiz, itzulpen ez ofizialak dira, eta, horregatik,  itzulpena deskargatu eta instalatu egin behar da. Horren inguruko xehetasunak bideojokoen fitxetan aurkituko dituzu.</p>
+    <p>Euskarazko bideojoko bat sortu edo itzuli baduzu edota zerrendan jokoren bat falta dela ikusten baduzu, <a href="/kontaktua/">jarri gurekin harremanetan</a> eta ahal bezain laster gehituko dugu.</p>
+    <p>Gaur egun, <strong>zerrendan {{jokoak_kop}} bideojoko</strong> daude, eta horietatik <strong>{{jokoak_azken_urtea_kop}} azken urtean</strong> gehitutakoak dira. Euskarazko jokoei buruzko datu estatistiko gehiago <a href="/jokoak/euskarazko-bideojokoak/zenbakitan">hemen</a> aurkituko duzu.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-9">
+  <div id="content">
+    <div class="col-sm-12 text-right"
+         style="margin-bottom:10px;padding-right:0px">
+      <a href="?{% replace_query_param 'view_mode' 'grid' %}"
+         title="Ikusi mosaiko moduan">
+        <i class="glyphicon glyphicon-th-large" style="font-size: 20px;{% if request.GET.view_mode == 'list' %}color: gray;{% endif %}"></i></a>
+      <a href="?{% replace_query_param 'view_mode' 'list' %}"
+         title="Ikusi zerrenda moduan">
+        <i class="glyphicon glyphicon-th-list" style="font-size: 20px;{% if request.GET.view_mode == 'grid' or not request.GET.view_mode %}color: gray;{% endif %}"></i></a>
+    </div>
+    <div class="col-sm-12">
+      {% if request.GET.view_mode == 'list' %}
+      {% include 'jokoa/jokoak_list.html' with jokoak=filters.qs %}
+      {% else %}
+      {% include 'jokoa/jokoak_grid.html' with jokoak=filters.qs %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+  <div class="col-sm-3">
+    <div class="well">
+      <form class ="game-filters" method="get">
+        <h4><strong>Bilatu</strong></h4>
+        <p>
+          {{filters.form.izena}}
+        </p>
+        <hr>
+        <h4><strong>Ordenatu</strong></h4>
+        <p>
+          {{filters.form.ordena}}
+        </p>
+        <hr>
+        <h4><strong>Iragazi ezaugarriak</strong></h4>
+        <p>
+          {{filters.form.plataformak.label_tag}}
+          {{filters.form.plataformak}}
+        </p>
+        <p>
+          {{filters.form.generoak.label_tag}}
+          {{filters.form.generoak}}
+        </p>
+        <p>
+          {{filters.form.lizentzia.label_tag}}
+          {{filters.form.lizentzia}}
+        </p>
+        <hr>
+        <h4><strong>Euskaraketa</strong></h4>
+        <p>
+          {{filters.form.ofiziala_da.label_tag}}
+          {{filters.form.ofiziala_da}}
+        </p>
+        <p>
+          {{filters.form.jatorria.label_tag}}
+          {{filters.form.jatorria}}
+        </p>
+        <hr>
+        <input type="hidden" name="view_mode" value="{{request.GET.view_mode}}">
+        <input class="btn btn-primary" type="submit" value="Aplikatu">
+      </form>
+    </div>
+    <div class="well">
+      <h3>Euskarazko eduki gehiago</h3>
+      <hr/>
+      <ul class="list-unstyled">
+        {% for pl in proiektu_lagunak %}
+        <li style="margin-bottom: 5px"><a href="{{pl.url}}" target="_blank"><img src="{{pl.irudia.get_profilesmall_url}}" alt="{{pl.izena}}" title="{{pl.izena}}"> {{pl.izena}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+</div>
+</div>
+
+
+{%endblock%}
+
+{% block footerjs %}
+<script type="text/javascript">
+  $('#id_plataformak').select2({
+      language: "eu",
+      placeholder: "Aukeratu zerrendatik",
+      width: "100%"
+  });
+  $('#id_generoak').select2({
+      language: "eu",
+      placeholder: "Aukeratu zerrendatik",
+      width: "100%"
+  });
+  $('#id_lizentzia').select2({
+      language: "eu",
+      width: "100%"
+  });
+  $('#id_ofiziala_da').select2({
+      language: "eu",
+      width: "100%",
+      minimumResultsForSearch: Infinity
+  });
+  $('#id_jatorria').select2({
+      language: "eu",
+      width: "100%",
+      minimumResultsForSearch: Infinity
+  });
+  $('#id_ordena').select2({
+      language: "eu",
+      width: "100%",
+      minimumResultsForSearch: Infinity
+  });
+</script>
+{% endblock %}

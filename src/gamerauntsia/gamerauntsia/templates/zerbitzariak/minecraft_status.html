@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/css/gamerauntsia/minecraft.css">
+    <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.min.css">
+    <link href="{{STATIC_URL}}css/style.css" rel="stylesheet">
+    <script src="{{STATIC_URL}}js/jquery-3.6.0.min.js"></script>
+    <script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function(){
+          $('[data-toggle="tooltip"]').tooltip();
+      });
+      </script>
+  </head>
+  <body>
+    <div class="minecraft-status">
+      {% if mc_server %}
+      <p>Helbidea: <strong>mc.gamerauntsia.eus</strong></p>
+      <p>Bertsioa: <strong>{{mc_server_version}}</strong></p>
+      <p>Konektatutako jokalariak: <strong>{{mc_server_status.players.online}}</strong></p>
+      <div class="minecraft-status__player-list">
+        {% for p in mc_server_status.players.sample %}
+        <img data-toggle="tooltip" data-placement="top" title="{{p.name}}" src="https://minotar.net/avatar/{{p.name}}/32.png">
+        {% endfor %}
+      </div>
+      {% else %}
+      <p>Zerbitzaria ez dago erabilgarri momentu honetan. Denbora
+        luzez zerbitzarira sartu ezinik
+        bazabiltza <a href="/kontaktua">jarri gurekin
+          harremanetan</a>. Barkatu eragozpenak.</p>  {% endif %}
+    </div>
+  </body>
+</html>
