@@ -66,6 +66,14 @@ django-start-app:   ## Create new django app, app name must be specified (make d
 docker-logs:   ## Visualize docker-compose services logs
 	@docker-compose logs
 
+.PHONY: docker-delete-all
+docker-delete-all:   ## Delete all docker data (Containers, volumes, images, ...)
+	@docker rm $$(docker ps -aq)
+	@docker volume rm $$(docker volume ls -q)
+	@docker rmi $$(docker images -q)
+	@docker system prune -f
+	@sudo rm -rf data/db/*
+
 .PHONY: init-volume-dir
 init-volume-dir:   ## Initializer volume directories for docker
 	@mkdir data

@@ -1,7 +1,7 @@
-from django.conf.urls import url
+from django.urls import re_path
 from gamerauntsia.aurkezpenak import views
 
 urlpatterns = [
-    url(r"^$", views.index, name="aurkezpenak_index"),
-    url(r"^(?P<slug>[-\w]+)$", views.aurkezpena, name="aurkezpena"),
+    re_path(r"^$", views.index, name="aurkezpenak_index"),
+    re_path(r"^(?P<slug>[-\w]+)$", views.aurkezpena, name="aurkezpena"),
 ]

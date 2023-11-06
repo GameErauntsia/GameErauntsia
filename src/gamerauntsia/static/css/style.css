@@ -1,0 +1,317 @@
+.flex-video {
+position: relative;
+padding-top: 25px;
+padding-bottom: 67.5%;
+height: 0;
+margin-bottom: 16px;
+overflow: hidden;
+}
+
+.flex-video.widescreen { padding-bottom: 57.25%; }
+.flex-video.vimeo { padding-top: 0; }
+
+.flex-video iframe,
+.flex-video object,
+.flex-video embed {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+}
+@media only screen and (max-device-width: 800px), only screen and (device-width: 1024px) and (device-height: 600px), only screen and (width: 1280px) and (orientation: landscape), only screen and (device-width: 800px), only screen and (max-width: 767px) {
+.flex-video { padding-top: 0; }
+}
+
+a {
+  color: #149845;
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+    color: #0f843c;
+    text-decoration: none;
+}
+
+.lead {
+  font-size: 14px;
+}
+
+.navbar-brand {
+  float: left;
+  font-size: 18px;
+  line-height: 20px;
+  padding-top: 5px;
+}
+
+.btn-primary {
+  background-color: #149845;
+  border-color: #0f843c;
+  color: #fff;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+  background-color: #19ae51;
+  border-color: #0f843c;
+  color: #fff;
+}
+
+.pagination > li > a, .pagination > li > span {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  color: #149845;
+  float: left;
+  line-height: 1.42857;
+  margin-left: -1px;
+  padding: 6px 12px;
+  position: relative;
+  text-decoration: none;
+}
+
+.tags a {
+  color: #fff;
+}
+
+.gsc-search-button
+{
+background-color: #149845;
+border-radius: 5px;
+}
+
+input.gsc-search-button, input.gsc-search-button:hover, input.gsc-search-button:focus {
+background-color: #149845 !important;
+background-image: url("http://www.google.com/uds/css/v2/search_box_icon.png") !important;
+background-position: 50% 50%;
+background-repeat: no-repeat;
+height: 16px !important;
+border-color: #149845 !important;
+filter: none;
+}
+
+#useroptions a.btn{
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    margin-left:0.5em;
+    margin-top: 10px;
+    padding:5px 10px !important;
+    font-size:100%;
+}
+
+#useroptions .dropdown-toggle img{
+    border-radius:20px;
+    -moz-border-radius:20px;
+    -webkit-border-radius:20px;
+    behavior: url("/static/css/PIE.htc");
+    border:2px solid #149845 !important;
+}
+
+#useroptions a.login {
+  color: #fff;
+}
+
+#useroptions a.login:hover {
+  background-color: #19ae51;
+  border-color: #0f843c;
+  color: #fff;
+}
+
+.row.bloglist {
+  margin-bottom: 10px;
+}
+
+.forum-img {
+  margin-top: 25px;
+}
+
+.well.commentform {
+  margin-top: 20px;
+}
+
+.forumlist {
+  height: 160px;
+}
+
+.imageHolder {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.imageHolder .caption {
+  background: rgba(0, 0, 0, 0.7);
+  bottom: 40px;
+  color: #fff;
+  font-weight: bold;
+  height: 40px;
+  position: relative;
+  text-align: center;
+}
+
+.search-query {
+  margin-top: 10px;
+  max-width: 250px;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+  background-color: #149845;
+  border-color: #149845;
+  color: #fff;
+  cursor: default;
+  z-index: 2;
+}
+
+.subnavilist {
+  display: inline;
+}
+
+.nickname {
+  color: #999;
+}
+
+hr.dotted {
+  background-color: #fff;
+  border-top: 1px dotted #000;
+  margin-left: 0;
+  width: 50%;
+}
+
+.profileform ul {
+  list-style: none;
+}
+
+/*table#id_body_tbl {
+  width: 100% !important;
+}*/
+
+#tweetstreaming {
+  border: 1px solid #efefef;
+  border-radius: 10px;
+  padding: 1em;
+}
+
+.tweet {
+  border-bottom: 1px solid #efefef;
+  margin-bottom: 10px;
+  padding-bottom: 1em;
+}
+
+.tags {
+  margin-right: 5px;
+}
+
+.helptext {
+  clear: both;
+  color: #333;
+  display: block;
+  font-size: 80%;
+  font-style: italic;
+}
+
+.steam-group-button {
+font: normal normal normal 11px/18px 'Helvetica Neue',Arial,sans-serif;
+height: 28px;
+border-radius: 4px;
+color: #FFF;
+font-size: 13px;
+line-height: 26px;
+outline: none;
+text-decoration: none;
+position: relative;
+font-weight: bold;
+display: inline-block;
+vertical-align: top;
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+-ms-box-sizing: border-box;
+box-sizing: border-box;
+border: #333 solid 1px;
+background-color: #4D4B48;
+background-image: -webkit-gradient(linear,left top,left bottom,from(#4D4B48),to(#111));
+background-image: -moz-linear-gradient(top,#4D4B48,#111);
+background-image: linear-gradient(top,#4D4B48,#111);
+}
+
+.steam-group-button:focus, .steam-group-button:hover, .steam-group-button:active {
+color: #FFF;
+border-color: #111;
+background-color: #333;
+background-image: -webkit-gradient(linear,left top,left bottom,from(#444),to(#111));
+background-image: -moz-linear-gradient(top,#444,#111);
+background-image: linear-gradient(top,#444,#111);
+box-shadow: none;
+}
+
+.steam-group-button:active {
+box-shadow: inset 0 3px 7px rgba(255,255,255,0.15);
+}
+
+.steam-group-icon {
+  width: 16px;
+  height: 16px;
+  left: 4px;
+  margin-top: -8px;
+  position: absolute;
+  top: 50%;
+  background: transparent url('/static/img/steam-icon.ico') 0 0 no-repeat;
+  background-size: contain;
+}
+
+.steam-group-label {
+padding: 0 7px 0 26px;
+}
+.my_tinymce {
+  height: 150px;
+}
+
+#game_carousel {
+  margin-top: 100px;
+}
+
+.userpic {
+  left: 5px;
+  position: relative;
+  text-align: center;
+  top: -25px;
+  width: 70px;
+}
+
+.play {
+  left: 70px;
+  max-width: 100%;
+  position: absolute;
+  top: 9px;
+  z-index: 2;
+}
+
+.img-center {
+  margin: 0 auto;
+  box-shadow: 1px 5px 5px rgba(0, 0, 0, .3);
+}
+
+.gamer-channels-form p{
+  display: flex;
+  flex-direction: column;
+}
+
+.article-body {
+  font-size: 16px;
+}
+
+.article-body figure {
+  margin: 2% 5%;
+}
+
+.navbar-fixed-top .nav {
+	padding: 15px 0;
+}
+
+.search-query {
+    margin-top: 10px;
+}
+
+footer {
+	padding: 30px 0;	
+}
+
+.btnEuskerazkoJolasak {
+  margin-top: -5px !important;
+}

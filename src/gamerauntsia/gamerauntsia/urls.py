@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.urls import include, re_path
 from django.contrib import admin
 from django.http import HttpResponse
@@ -20,6 +19,7 @@ from gamerauntsia.kontaktua import views as kontaktuaviews
 from gamerauntsia.base import views as baseviews
 from gamerauntsia.finished import views as finishedviews
 
+from django.conf.urls.static import static
 
 router = DefaultRouter()
 
@@ -27,7 +27,7 @@ berria_list = BerriaViewSet.as_view({"get": "list"})
 
 admin.autodiscover()
 
-re_pathpatterns = [
+urlpatterns = [
     re_path(
         r"^robots.txt$",
         lambda r: HttpResponse(
@@ -43,73 +43,73 @@ re_pathpatterns = [
     ),
     re_path(r"^$", indexviews.index, name="index"),
     # GETB
-    re_path(r"^getb/", include("gamerauntsia.getb.re_paths")),
+    re_path(r"^getb/", include("gamerauntsia.getb.urls")),
     # GAMEPLAYAK
-    re_path(r"^gameplayak/", include("gamerauntsia.gameplaya.re_paths")),
+    re_path(r"^gameplayak/", include("gamerauntsia.gameplaya.urls")),
     # BLOGA
-    re_path(r"^bloga/", include("gamerauntsia.berriak.re_paths"), name="bloga"),
+    re_path(r"^bloga/", include("gamerauntsia.berriak.urls"), name="bloga"),
     # JOKOAK
-    re_path(r"^jokoak/", include("gamerauntsia.jokoa.re_paths"), name="jokoak"),
+    re_path(r"^jokoak/", include("gamerauntsia.jokoa.urls"), name="jokoak"),
     # JOKO ITZULPENAK
     re_path(
         r"^itzulpenak/",
-        include("gamerauntsia.joko_itzulpenak.re_paths"),
+        include("gamerauntsia.joko_itzulpenak.urls"),
         name="joko_itzulpenak",
     ),
     # JOKALARIAK
-    re_path(r"^komunitatea/", include("gamerauntsia.gamer.re_paths")),
-    re_path(r"^komunitatea/", include("registration.backends.default.re_paths")),
+    re_path(r"^komunitatea/", include("gamerauntsia.gamer.urls")),
+    re_path(r"^komunitatea/", include("registration.backends.default.urls")),
     # AURKEZPENAK
-    re_path(r"^aurkezpenak/", include("gamerauntsia.aurkezpenak.re_paths")),
+    re_path(r"^aurkezpenak/", include("gamerauntsia.aurkezpenak.urls")),
     # TXAPELKETAK
-    re_path(r"^txapelketak/", include("gamerauntsia.txapelketak.re_paths")),
+    re_path(r"^txapelketak/", include("gamerauntsia.txapelketak.urls")),
     # MINECRAFT SERVER
-    re_path(r"^zerbitzariak/", include("gamerauntsia.zerbitzariak.re_paths")),
+    re_path(r"^zerbitzariak/", include("gamerauntsia.zerbitzariak.urls")),
     # AGENDA
-    re_path(r"^agenda/", include("gamerauntsia.agenda.re_paths")),
+    re_path(r"^agenda/", include("gamerauntsia.agenda.urls")),
     # FOROA
     re_path(r"^foroa/reset-topics$", gamerviews.reset_topics, name="reset_topics"),
-    re_path(r"^foroa/", include("django_forum_app.re_paths")),
+    re_path(r"^foroa/", include("django_forum_app.urls")),
     # KONTAKTUA
     re_path(r"^kontaktua/$", kontaktuaviews.contact_form, name="kontaktua"),
     # TERMINOLOGIA
     re_path(r"^terminologia/$", baseviews.index, name="terminologia"),
     re_path(r"^terminologia/bilatu", baseviews.search_term, name="search_term"),
     # PODCAST
-    re_path(r"^podcastak/", include("gamerauntsia.podcast.re_paths")),
+    re_path(r"^podcastak/", include("gamerauntsia.podcast.urls")),
     # BILAKETA
     re_path(r"^bilaketa?(?P<bilatu>[-\w]+)/$", indexviews.bilaketa, name="bilaketa"),
     # RSS FEED
     re_path(r"^feed/gameplayak$", LatestEntriesFeed()),
     re_path(r"^feed/bloga$", LatestNewsFeed()),
-    re_path(r"^feed/podcastak/", include("podcasting.re_paths_feeds")),
+    re_path(r"^feed/podcastak/", include("podcasting.urls_feeds")),
     # FB
-    re_path(r"^2b27b83ad50e677714b2dd832b42acc3", include("facebookpagewriter.re_paths")),
+    re_path(r"^2b27b83ad50e677714b2dd832b42acc3", include("facebookpagewriter.urls")),
     # COMMENTS
-    re_path(r"^comments/", include("django_comments.re_paths")),
+    re_path(r"^comments/", include("django_comments.urls")),
     # KUDEATU
-    re_path(r"^kudeatu/", admin.site.re_paths),
-    re_path(r"^photologue/", include("photologue.re_paths", namespace="photologue")),
+    re_path(r"^kudeatu/", admin.site.urls),
+    re_path(r"^photologue/", include("photologue.urls", namespace="photologue")),
     # MEZUAK
-    re_path(r"^mezuak/", include("django_messages.re_paths")),
+    re_path(r"^mezuak/", include("django_messages.urls")),
     # EGUTEGIA
-    re_path(r"^calendar/", include("django_bootstrap_calendar.re_paths")),
+    re_path(r"^calendar/", include("django_bootstrap_calendar.urls")),
     # TINYMCE
-    re_path(r"^tinymce/", include("tinymce.re_paths")),
+    re_path(r"^tinymce/", include("tinymce.urls")),
     # STAR RATINGS
-    re_path(r"^ratings/", include("star_ratings.re_paths", namespace="ratings")),
+    re_path(r"^ratings/", include("star_ratings.urls", namespace="ratings")),
     # APIA
-    re_path(r"^api/1.0/", include("gamerauntsia.api.re_paths")),
+    re_path(r"^api/1.0/", include("gamerauntsia.api.urls")),
     # STREAMING
-    re_path(r"^streaming/", include("gamerauntsia.streaming.re_paths")),
+    re_path(r"^streaming/", include("gamerauntsia.streaming.urls")),
     # POKEDEX
-    re_path(r"^pokedex/", include("gamerauntsia.pokedex.re_paths")),
+    re_path(r"^pokedex/", include("gamerauntsia.pokedex.urls")),
     # APP
     # Auth
-    # re_path(r'^rest-auth/', include('rest_auth.re_paths')),
+    # re_path(r'^rest-auth/', include('rest_auth.urls')),
     # re_path(r'^rest-token-auth/$', obtain_auth_token),
     # # re_path(r'^rest-user/$',views.UserViewSet),
-    # re_path(r'^app/v1/', include('gamerauntsia.app.authentication.re_paths')),
+    # re_path(r'^app/v1/', include('gamerauntsia.app.authentication.urls')),
     # re_path(r'^app/berriak/$', berria_list, name='app_berria_list'),
     # re_path(r'^app/berria/(?P<pk>[0-9]+)/$', 'gamerauntsia.berriak.views.berria_detail', name='app_berria_detail'),
     # re_path(r'^app/getb/$', 'gamerauntsia.getb.views.app_getb_list', name='app_getb_list'),
@@ -136,15 +136,19 @@ re_pathpatterns = [
     re_path(r"^ajax/get_erabiltzaileak/", gamerviews.get_user, name="ajax_user"),
     re_path(r"^ajax/post_finished/", finishedviews.add_finished, name="ajax_finished"),
     # FLATPAGEAK
-    re_path(r"^(?P<re_path>.*/)$", views.flatpage),
+    re_path(r"^(?P<url>.*/)$", views.flatpage),
     # DEBUG
 ]
 
-if settings.DEBUG:
+from django.conf import settings
+if hasattr(settings, 'ROOT_URLCONF'):
     import debug_toolbar
 
-    re_pathpatterns = [
-        re_path(r"^__debug__/", include(debug_toolbar.re_paths)),
-    ] + re_pathpatterns
+    urlpatterns = [
+        re_path(r"^__debug__/", include(debug_toolbar.urls)),
+    ] + urlpatterns
+
+
+urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 router.register(r"profile", UsersViewSet)

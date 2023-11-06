@@ -1,6 +1,6 @@
-from django.conf.urls import url
+from django.urls import re_path
 from gamerauntsia.agenda import views
 
 urlpatterns = [
-    url(r"^$", views.index, name="agenda_index"),
+    re_path(r"^$", views.index, name="agenda_index"),
 ]

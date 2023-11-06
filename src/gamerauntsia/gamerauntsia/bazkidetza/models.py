@@ -21,7 +21,7 @@ DENDA_CHOICES = (
 
 
 class Bazkidea(models.Model):
-    user = models.ForeignKey(GamerUser, unique=True, on_delete=models.PROTECT)
+    user = models.ForeignKey(GamerUser, on_delete=models.PROTECT)
     paid = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
 

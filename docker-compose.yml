@@ -2,18 +2,24 @@ version: '3.3'
 
 services:
   db:
-    image: mariadb:10.8.3
+    # image: mariadb:10.8.3
+    build:
+      context: .
+      dockerfile: ./docker/db/Dockerfile
     container_name: gamerauntsia_db
     environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_BACKUP_USER=${MYSQL_BACKUP_USER}
-      - MYSQL_BACKUP_USER_PASSWORD=${MYSQL_BACKUP_USER_PASSWORD}
-      - MYSQL_ALLOW_EMPTY_PASSWORD=${MYSQL_ALLOW_EMPTY_PASSWORD}
     volumes:
       - db-data:/var/lib/mysql
+    healthcheck:
+        # test: ["CMD", "mysqladmin" ,"ping","-u", "gamerauntsia", "-p","safepassword", "-h", "localhost"]
+        test: ["CMD", "mysqladmin" ,"ping", "-u", "gamerauntsia", "--password=safepassword", "-h", "localhost"]
+        timeout: 20s
+        retries: 10
     networks:
       default:
         aliases:
@@ -77,6 +83,9 @@ services:
       - staticfiles:/app/static
       - mediafiles:/app/media
       - src:/app/src
+    depends_on:
+      db:
+        condition: service_healthy
     stdin_open: true
     tty: true
     profiles: [ "develop" ]

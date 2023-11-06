@@ -62,6 +62,7 @@ COPY --from=requirement-compiler-dev --chown=gamerauntsia:gamerauntsia $APP_HOME
 COPY ./docker/app/bin/entrypoint.sh $APP_HOME/bin
 WORKDIR $APP_HOME/
 
+RUN python3 -m pip install src/django-forum-app/
 ENTRYPOINT [ "./bin/entrypoint.sh" ]
 
 #--------------------------------------------------------------------------------
@@ -77,5 +78,5 @@ COPY ./docker/app/bin/entrypoint.sh $APP_HOME/bin
 COPY . $APP_HOME/code/
 WORKDIR $APP_HOME/
 
-
+RUN python3 -m pip install src/django-forum-app/
 ENTRYPOINT [ "./bin/entrypoint.sh" ]

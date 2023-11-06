@@ -3,10 +3,16 @@
 import os
 import raven
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+
+from pathlib import Path
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 ## General config
-DEBUG = os.getenv("DEBUG", False)
+# DEBUG = os.getenv("DEBUG", False)
+DEBUG = True
 TESTING = os.getenv("TESTING", False)
 TEMPLATE_DEBUG = os.getenv("TEMPLATE_DEBUG", False)
 TEMPLATE_DEBUG = DEBUG
@@ -68,6 +74,7 @@ NOCAPTCHA = True
 STREAMING_TWITCH_WEBHOOK_SECRET = os.getenv("STREAMING_TWITCH_WEBHOOK_SECRET")
 STREAMING_TWITCH_CLIENT_ID = os.getenv("STREAMING_TWITCH_CLIENT_ID")
 STREAMING_TWITCH_CLIENT_SECRET = os.getenv("STREAMING_TWITCH_CLIENT_SECRET")
+
 ## Database
 DATABASES = {
     "default": {
@@ -90,8 +97,6 @@ ADMINS = ()
 
 MANAGERS = (("Urtzi Odriozola", "urtzi.odriozola@gmail.com"),)
 
-import django
-django.setup()
 
 ## Paths
 STATIC_URL = "/static/"
@@ -127,7 +132,6 @@ INSTALLED_APPS = (
     "tinymce",
     "emoticons",
     "registration",
-    "django_forum_app",
     "django_comments",
     "facebookpagewriter",
     "bootstrapform",
@@ -167,6 +171,7 @@ INSTALLED_APPS = (
     "corsheaders",
     "podcasting",
     "embed_video",
+    # "django_forum_app",
 )
 
 this = os.path.dirname(os.path.abspath(__file__))
@@ -213,7 +218,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django_pagination_bootstrap.middleware.PaginationMiddleware",
     "django.middleware.locale.LocaleMiddleware",
-    "django_mobile.middleware.MobileDetectionMiddleware",
+    # "django_mobile.middleware.MobileDetectionMiddleware",
     "django_mobile.middleware.SetFlavourMiddleware",
     "django.middleware.common.CommonMiddleware",
 ]
@@ -238,6 +243,7 @@ if DEBUG == "True" and not TESTING:
     INSTALLED_APPS += (
         "debug_toolbar",
         "template_debug",
+        "django_forum_app",
     )
 
     DEBUG_TOOLBAR_CONFIG = {"SHOW_TOOLBAR_CALLBACK": lambda _request: DEBUG}
@@ -290,7 +296,7 @@ HOST = os.getenv("HOST_NAME") + "/"
 
 USE_X_FORWARDED_HOST = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['0.0.0.0',]
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
@@ -330,7 +336,7 @@ LOGGING = {
         "store_to_file": {
             "level": "INFO",
             "class": "logging.handlers.RotatingFileHandler",
-            "filename": os.path.join(BASE_DIR, "../logs/event.log"),
+            "filename": os.path.join(BASE_DIR, "../../logs/event.log"),
             "maxBytes": 1024 * 1024 * 5,  # 5 MB
             "backupCount": 5,
             "formatter": "simple",
@@ -350,6 +356,12 @@ LOGGING = {
         },
     },
 }
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+INSTALLED_APPS += (
+    "django_forum_app",
+)
 
 # TINIYMCE
 # TINYMCE_JS_ROOT = STATIC_ROOT + "js/tiny_mce/"

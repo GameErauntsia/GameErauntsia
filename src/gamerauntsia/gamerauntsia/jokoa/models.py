@@ -130,7 +130,7 @@ class Jokoa(models.Model):
     garatzailea = models.ForeignKey(
         Garatzailea, blank=True, null=True, on_delete=models.PROTECT
     )
-    generoak = models.ManyToManyField(Generoa, blank=True, null=True)
+    generoak = models.ManyToManyField(Generoa, blank=True,)
     publikoa_da = models.BooleanField(default=False)
     mod_date = models.DateTimeField("modifikazio data", default=timezone.now)
 

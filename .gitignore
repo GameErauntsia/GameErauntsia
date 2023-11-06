@@ -4,6 +4,8 @@ src/django-tagging
 src/django-bootstrap-calendar/
 src/django-podcasting
 src/django-datetime-widget
+src/django-emoticons
+src/facebookpagewriter
 data/
 src/media
 src/static
