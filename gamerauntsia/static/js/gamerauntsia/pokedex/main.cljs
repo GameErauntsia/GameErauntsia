@@ -332,12 +332,15 @@
   [search-text pokemon-entry]
   (if (seq search-text)
     (or
-     (str/includes? (get pokemon-entry :izena_euskaraz)
-                    (str/lower-case search-text))
-     (str/includes? (get pokemon-entry :izena_ingelesez)
-                    (str/lower-case search-text))
-     (str/includes? (str (get pokemon-entry :id))
-                    search-text))
+     (str/includes?
+      (str/lower-case (get pokemon-entry :izena_euskaraz))
+      (str/lower-case search-text))
+     (str/includes?
+      (str/lower-case (get pokemon-entry :izena_ingelesez))
+      (str/lower-case search-text))
+     (str/includes?
+      (str (get pokemon-entry :id))
+      search-text))
     true))
 
 (defn- pokemon-list
