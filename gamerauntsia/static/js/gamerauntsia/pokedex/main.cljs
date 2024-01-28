@@ -5,7 +5,7 @@
             [reagent.dom :as rdom]))
 
 (def ^:const pokemon-type-translations
-  {"normal" "normal"
+  {"normal" "arrunt"
    "figthing" "gudu"
    "flying" "hegal."
    "poison" "pozoi"
