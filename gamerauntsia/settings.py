@@ -125,7 +125,6 @@ INSTALLED_APPS = (
     "registration",
     "django_forum_app",
     "django_comments",
-    "facebookpagewriter",
     "bootstrapform",
     "star_ratings",
     "gamerauntsia",

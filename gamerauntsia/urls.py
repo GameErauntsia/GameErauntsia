@@ -80,8 +80,6 @@ urlpatterns = [
     # RSS FEED
     url(r"^feed/gameplayak$", LatestEntriesFeed()),
     url(r"^feed/bloga$", LatestNewsFeed()),
-    # FB
-    url(r"^2b27b83ad50e677714b2dd832b42acc3", include("facebookpagewriter.urls")),
     # COMMENTS
     url(r"^comments/", include("django_comments.urls")),
     # KUDEATU

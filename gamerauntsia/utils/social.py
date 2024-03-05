@@ -1,7 +1,6 @@
 from django.conf import settings
 import tweepy
 import telebot
-from facebookpagewriter.utils import post
 from django.core.mail import EmailMultiAlternatives
 from django.template import defaultfilters as filters
 from gamerauntsia.gamer.models import GamerUser
