@@ -80,7 +80,6 @@ urlpatterns = [
     # RSS FEED
     url(r"^feed/gameplayak$", LatestEntriesFeed()),
     url(r"^feed/bloga$", LatestNewsFeed()),
-    url(r"^feed/podcastak/", include("podcasting.urls_feeds")),
     # FB
     url(r"^2b27b83ad50e677714b2dd832b42acc3", include("facebookpagewriter.urls")),
     # COMMENTS

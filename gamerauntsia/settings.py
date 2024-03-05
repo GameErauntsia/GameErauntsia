@@ -160,7 +160,6 @@ INSTALLED_APPS = (
     # 'gamerauntsia.app.services',
     "captcha",
     "corsheaders",
-    "podcasting",
     "embed_video",
 )
 
