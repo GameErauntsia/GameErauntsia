@@ -65,8 +65,6 @@ urlpatterns = [
     url(r"^txapelketak/", include("gamerauntsia.txapelketak.urls")),
     # MINECRAFT SERVER
     url(r"^zerbitzariak/", include("gamerauntsia.zerbitzariak.urls")),
-    # AGENDA
-    url(r"^agenda/", include("gamerauntsia.agenda.urls")),
     # FOROA
     url(r"^foroa/reset-topics$", gamerviews.reset_topics, name="reset_topics"),
     url(r"^foroa/", include("django_forum_app.urls")),
@@ -92,8 +90,6 @@ urlpatterns = [
     url(r"^photologue/", include("photologue.urls", namespace="photologue")),
     # MEZUAK
     url(r"^mezuak/", include("django_messages.urls")),
-    # EGUTEGIA
-    url(r"^calendar/", include("django_bootstrap_calendar.urls")),
     # TINYMCE
     url(r"^tinymce/", include("tinymce.urls")),
     # STAR RATINGS

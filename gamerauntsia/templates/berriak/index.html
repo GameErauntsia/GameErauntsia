@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load gamerauntsia pagination_tags include comments bootstrap_calendar ratings %}
+{% load gamerauntsia pagination_tags include comments ratings %}
 
 {% block morejs %}
 <script src="{{STATIC_URL}}js/fancybox/jquery.fancybox.js"></script>
@@ -61,10 +61,6 @@
             <h2>Azken erantzunak</h2>
             {% azken_erantzunak %}
         </div>
-        <!--<div id="egutegia">
-            <h2>Egutegia</h2>
-            <div id="calendar"></div>
-        </div>-->
         <iframe src="https://www.lehenhitza.eus/iframe_laukia" class="center-block" width="300" height="250" frameborder="0" scrolling="no"></iframe>
         <div class="well commentform">
             <div class="fb-like-box" data-href="https://www.facebook.com/Gamerauntsia" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
@@ -83,5 +79,4 @@
         $(".fancybox").fancybox();
     });
 </script>
-<!-- {% bootstrap_calendar_init language="eu-ES" %} -->
 {% endblock %}

@@ -10,7 +10,6 @@ from gamerauntsia.gamer.models import GamerUser
 from gamerauntsia.jokoa.models import Jokoa
 from gamerauntsia.berriak.models import Berria
 from gamerauntsia.gameplaya.models import GamePlaya
-from django_bootstrap_calendar.models import CalendarEvent
 from photologue.models import Photo
 from datetime import datetime
 import telebot
@@ -173,4 +172,3 @@ post_save.connect(send_newuser_msg, sender=GamerUser)
 post_save.connect(send_article_msg, sender=Berria)
 post_save.connect(send_gp_msg, sender=GamePlaya)
 post_save.connect(send_game_msg, sender=Jokoa)
-post_save.connect(send_agenda_tweet, sender=CalendarEvent)
