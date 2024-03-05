@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load emoticons_tags comments ratings %}
+{% load comments ratings %}
 
 {% block title %}{{gp.izenburua}} - Game playak - {% endblock %}
 
@@ -43,7 +43,7 @@
         <iframe width="700" height="394" src="{{gp.get_bideo_url}}" frameborder="0" allowfullscreen></iframe> -->
         </div>
         <h1>{{gp.izenburua}}</h1>
-        <p>{{gp.desk|safe|emoticons}}</p>
+        <p>{{gp.desk|safe}}</p>
 
         <div class="pull-right">{% ratings gp %}</div>
 

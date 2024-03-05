@@ -1,5 +1,3 @@
-{% load emoticons_tags %}
-
 <div id="comments">
 	<p id="iruzkinak"></p>
 	{% if comment_list|length > 6 %}</i><a id="collapse" class="pull-right" href="#more-comments"><i class="glyphicon glyphicon-comment"></i> Erakutsi denak</a>{% endif %}
@@ -21,7 +19,7 @@
 		        <h4 class="media-heading"><a href="{% url 'gamer_profile' comment.user.username %}">{{ comment.name }}</a>
 		        <small><a href="{{comment.get_absolute_url}}">{{ comment.submit_date }}</a></small>
 		        </h4>
-		        {{comment.comment|linebreaks|emoticons|safe}}
+		        {{comment.comment|linebreaks|safe}}
 		    </div>
 		</div>
 	

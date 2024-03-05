@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load gamerauntsia emoticons_tags include comments ratings %}
+{% load gamerauntsia include comments ratings %}
 
 {% block morejs %}
     <meta property="fb:app_id" content="{{facebook_id}}" />
@@ -91,7 +91,7 @@
           {% if item.azpititularra %}
           <h4><strong>{{item.azpititularra|safe}}</strong></h4>
           {% endif %}
-          <p class="lead">{{item.desk|safe|emoticons}}</p>
+          <p class="lead">{{item.desk|safe}}</p>
         </div>
         <div class="pull-right">{% ratings item %}</div>
 

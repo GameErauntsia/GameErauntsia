@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n emoticons_tags include comments %}
+{% load i18n include comments %}
 
 {% block title %}{{item.izena}} - {% endblock %}
 
@@ -119,7 +119,7 @@
                 <br/>
                 <div class="tab-content" id="myTabContent">
                     <div id="desk" class="tab-pane fade in active" role="tabpanel">
-                        <p class="lead">{{item.desk|safe|emoticons}}</p>
+                        <p class="lead">{{item.desk|safe}}</p>
                     </div>
                     {% if not item.insk_date|irekita and item.status == '2' or item.status == '3' %}
                     <div id="sailk" class="tab-pane fade" role="tabpanel">

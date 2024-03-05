@@ -122,7 +122,6 @@ INSTALLED_APPS = (
     "sortedm2m",
     "django_pagination_bootstrap",
     "tinymce",
-    "emoticons",
     "registration",
     "django_forum_app",
     "django_comments",

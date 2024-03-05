@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load emoticons_tags comments ratings %}
+{% load comments ratings %}
 
 {% block title %}{{atala.izenburua}} - GETB - {% endblock %}
 
@@ -46,7 +46,7 @@
             {% endif %}
         </div>
         <h1>{{atala.izenburua}}</h1>
-        <p>{{atala.desk|safe|emoticons}}</p>
+        <p>{{atala.desk|safe}}</p>
 
         <div class="pull-right">{% ratings atala %}</div>
 

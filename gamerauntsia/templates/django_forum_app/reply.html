@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load pagination_tags emoticons_tags include bootstrap %}
+{% load pagination_tags include bootstrap %}
 {% block title %}Erantzuna - {% endblock %}
 
 {% block morejs %}
@@ -31,10 +31,10 @@
         <div class="col-xs-12 col-sm-10">
           <a id="{{post.id}}"></a>
           <h4><a href="/foroa/{{forum.slug}}{{post.get_absolute_url}}">#</a> {{post.title}}</h4>
-          <p>{{post.body|safe|emoticons}}</p>
+          <p>{{post.body|safe}}</p>
           {% if post.creator.signature %}
                 <hr class="dotted" />
-                <p>{{post.creator.signature|safe|emoticons}}</p>
+                <p>{{post.creator.signature|safe}}</p>
           {% endif %}
         </div>
       </div>
