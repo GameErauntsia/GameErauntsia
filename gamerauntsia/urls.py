@@ -88,8 +88,6 @@ urlpatterns = [
     # KUDEATU
     url(r"^kudeatu/", admin.site.urls),
     url(r"^photologue/", include("photologue.urls", namespace="photologue")),
-    # MEZUAK
-    url(r"^mezuak/", include("django_messages.urls")),
     # TINYMCE
     url(r"^tinymce/", include("tinymce.urls")),
     # STAR RATINGS

@@ -6,7 +6,6 @@ from gamerauntsia.gamer.models import GamerUser
 from django_comments.models import Comment
 from django.contrib.contenttypes.models import ContentType
 from django.utils import timezone
-from django_messages.models import Message
 
 register = template.Library()
 
@@ -151,14 +150,6 @@ def azken_erantzunak(model="Berria"):
 @register.filter
 def ken1(value):
     return value - 1
-
-
-@register.filter
-def inbox_count_for(user):
-    return Message.objects.filter(
-        recipient=user, read_at__isnull=True, recipient_deleted_at__isnull=True
-    ).count()
-
 
 def get_comment_object(comment):
     """

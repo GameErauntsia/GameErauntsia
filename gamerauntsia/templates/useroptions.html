@@ -4,7 +4,7 @@
 
 	<a class="dropdown-toggle" data-toggle="dropdown" href="{% url 'gamer_profile' user.username  %}">
 		<img class="userlogged" width="30" height="30" src="{{user.get_photo.get_profilesmall_url}}" alt="{{user.username}}" />
-		&nbsp;{% if user|inbox_count_for > 0 %}{{ user|inbox_count_for }}{% endif %}
+		&nbsp;
 		<b class="caret"></b>
 	</a>
 	<ul  class="dropdown-menu pull-right">

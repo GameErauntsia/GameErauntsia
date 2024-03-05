@@ -150,7 +150,6 @@ INSTALLED_APPS = (
     "gamerauntsia.pokedex",
     "gamerauntsia.podcast",
     "datetimewidget",
-    "django_messages",
     "django_mobile",
     "django.contrib.admin",
     "django_filters",
