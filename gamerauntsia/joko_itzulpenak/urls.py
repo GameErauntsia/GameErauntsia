@@ -1,9 +1,9 @@
-from django.conf.urls import url
+from django.urls import re_path
 from gamerauntsia.joko_itzulpenak import views
 
 urlpatterns = [
-    url(r"^proiektuak$", views.itzulpen_proiektuak),
-    url(
+    re_path(r"^proiektuak$", views.itzulpen_proiektuak),
+    re_path(
         r"^proiektuak/(?P<slug>[-\w]+)$",
         views.itzulpen_proiektua,
         name="itzulpen_proiektua",

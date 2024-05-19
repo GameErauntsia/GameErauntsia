@@ -6,6 +6,7 @@ from django.template import defaultfilters as filters
 
 
 class Aurkezpena(models.Model):
+    id = models.AutoField(primary_key=True)
     izena = models.CharField(max_length=64)
     slug = models.SlugField(
         db_index=True,

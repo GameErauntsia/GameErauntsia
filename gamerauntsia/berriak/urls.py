@@ -1,9 +1,9 @@
-from django.conf.urls import url
+from django.urls import re_path
 from gamerauntsia.berriak import views
 
 urlpatterns = [
-    url(r"^$", views.index, name="berriak_index"),
-    url(r"^gaia/(?P<slug>[-\w]+)/$", views.gaia, name="gaia"),
-    url(r"^jokoa/(?P<slug>[-\w]+)/$", views.jokoa, name="jokoa"),
-    url(r"^(?P<slug>[-\w]+)/$", views.berria, name="berria"),
+    re_path(r"^$", views.index, name="berriak_index"),
+    re_path(r"^gaia/(?P<slug>[-\w]+)/$", views.gaia, name="gaia"),
+    re_path(r"^jokoa/(?P<slug>[-\w]+)/$", views.jokoa, name="jokoa"),
+    re_path(r"^(?P<slug>[-\w]+)/$", views.berria, name="berria"),
 ]

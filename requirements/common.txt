@@ -1,21 +1,21 @@
 sphinx_rtd_theme == 0.4.3
 sphinx == 2.2.1
-django-recaptcha == 2.0.6
+django-recaptcha == 3.0.0
 -e git+https://github.com/urtzai/django-mobile.git#egg=django-mobile
 django-pagination-bootstrap == 2.4.6
 django-datetime-widget == 0.9.3
 django-star-ratings == 0.9.2
-django-forum-app == 0.10
-django-mptt == 0.11.0
-Django == 2.2.28
-mysqlclient == 2.1.1
+-e git+https://github.com/urtzai/django-forum-app@c5730ed11e72e8b7918e5b98403b77c4ec1a3a0b#egg=django-forum-app
+django-mptt == 0.15.0
+Django == 4.2.13
+mysqlclient == 2.2.0
 pillow == 9.4.0
-django-sortedm2m == 3.0.2
+django-sortedm2m == 3.1.1
 django-extensions == 3.1.5
 django-bootstrap-form == 3.4
 xmltodict == 0.13.0
 django-model-utils == 4.1.1
-django-photologue == 3.13
+django-photologue == 3.15.1
 django-tinymce == 3.4.0
 django-tagging == 0.5.0
 django-registration-redux == 2.9
@@ -35,5 +35,4 @@ gunicorn == 20.1.0
 raven == 6.10.0
 mcstatus == 10.0.2
 django-debug-toolbar==3.2.4
-django-template-debug==0.3.5
 django-embed-video==1.4.5

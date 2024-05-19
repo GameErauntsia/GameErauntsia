@@ -151,6 +151,7 @@ def azken_erantzunak(model="Berria"):
 def ken1(value):
     return value - 1
 
+
 def get_comment_object(comment):
     """
     This is the reverse, it gets an object from the comment

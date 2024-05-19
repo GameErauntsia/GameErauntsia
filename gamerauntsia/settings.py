@@ -153,9 +153,6 @@ INSTALLED_APPS = (
     "django_filters",
     "rest_framework",
     "rest_framework.authtoken",
-    # 'rest_auth',
-    # 'gamerauntsia.app.authentication',
-    # 'gamerauntsia.app.services',
     "captcha",
     "corsheaders",
     "embed_video",
@@ -205,7 +202,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django_pagination_bootstrap.middleware.PaginationMiddleware",
     "django.middleware.locale.LocaleMiddleware",
-    "django_mobile.middleware.MobileDetectionMiddleware",
+    # "django_mobile.middleware.MobileDetectionMiddleware",
     "django_mobile.middleware.SetFlavourMiddleware",
     "django.middleware.common.CommonMiddleware",
 ]
@@ -227,10 +224,7 @@ if DEBUG == "True" and not TESTING:
         return True
 
     MIDDLEWARE += ("debug_toolbar.middleware.DebugToolbarMiddleware",)
-    INSTALLED_APPS += (
-        "debug_toolbar",
-        "template_debug",
-    )
+    INSTALLED_APPS += ("debug_toolbar",)
 
     DEBUG_TOOLBAR_CONFIG = {"SHOW_TOOLBAR_CALLBACK": lambda _request: DEBUG}
 
@@ -361,3 +355,18 @@ try:
     from .local_settings import *
 except:
     pass
+
+# Other
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
+
+# Compatibility hacks
+import django
+from django.utils.encoding import smart_str
+
+django.utils.encoding.smart_text = smart_str
+
+# Compatibility hacks for django-forum-app
+# from django.utils.translation import gettext, gettext_lazy
+
+# django.utils.translation.ugettext = gettext
+# django.utils.translation.ugettext_lazy = gettext_lazy

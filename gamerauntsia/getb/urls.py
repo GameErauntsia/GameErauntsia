@@ -1,7 +1,7 @@
-from django.conf.urls import url
+from django.urls import re_path
 from gamerauntsia.getb import views
 
 urlpatterns = [
-    url(r"^$", views.index, name="getb_index"),
-    url(r"^(?P<slug>[-\w]+)$", views.atala, name="getb_atala"),
+    re_path(r"^$", views.index, name="getb_index"),
+    re_path(r"^(?P<slug>[-\w]+)$", views.atala, name="getb_atala"),
 ]

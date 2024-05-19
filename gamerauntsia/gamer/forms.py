@@ -5,7 +5,7 @@ from gamerauntsia.gamer.models import GamerUser, JokuPlataforma, AmaitutakoJokoa
 from gamerauntsia.gameplaya.models import Kategoria, GamePlaya, BideoPlataforma
 from gamerauntsia.jokoa.models import Jokoa
 from tinymce.widgets import TinyMCE
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 from django.conf import settings
 from registration.forms import RegistrationFormUniqueEmail
 from captcha.fields import ReCaptchaField

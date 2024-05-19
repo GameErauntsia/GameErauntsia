@@ -1,6 +1,6 @@
 from django.contrib import admin
 from gamerauntsia.gamer.models import GamerUser, JokuPlataforma
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import gettext, gettext_lazy as _
 from django.contrib.auth.forms import (
     AdminPasswordChangeForm,
     UserCreationForm,

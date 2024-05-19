@@ -22,17 +22,17 @@
 		        {{comment.comment|linebreaks|safe}}
 		    </div>
 		</div>
-	
+
 	{% if forloop.last and comment_list|length > 6 %}
 	</div>
 	{% endif %}
 	{% endfor %}
-	
+
 	<script>
 	$('#collapse').click(function () {
 	    //get collapse content selector
 	    var collapse_content_selector = $(this).attr('href');
-	
+
 	    //make the collapse content to be shown or hide
 	    var toggle_switch = $(this);
 	    $(collapse_content_selector).toggle(function () {

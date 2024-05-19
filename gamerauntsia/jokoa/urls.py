@@ -1,20 +1,22 @@
-from django.conf.urls import url
+from django.urls import re_path
 from gamerauntsia.jokoa import views
 from gamerauntsia.jokoen_itzulpenak import views as itzulpenakviews
 
 urlpatterns = [
-    url(r"^$", views.index, name="game_index"),
+    re_path(r"^$", views.index, name="game_index"),
     # Euskarazko jokoak
-    url(
+    re_path(
         r"^euskarazko-bideojokoak/zenbakitan$",
         views.euskarazko_jokoak_zenbakitan,
         name="euskarazko_jokoak_zenbakitan",
     ),
-    url(
+    re_path(
         r"^euskarazko-bideojokoak/$", views.euskarazko_jokoak, name="euskarazko_jokoak"
     ),
     # Garatzaileak
-    url(r"^garatzaileak$", views.garatzaileak, name="garatzaileak"),
-    url(r"^garatzaile-fitxa/(?P<slug>[-\w]+)$", views.garatzailea, name="garatzailea"),
-    url(r"^(?P<slug>[-\w]+)$", views.jokoa, name="game"),
+    re_path(r"^garatzaileak$", views.garatzaileak, name="garatzaileak"),
+    re_path(
+        r"^garatzaile-fitxa/(?P<slug>[-\w]+)$", views.garatzailea, name="garatzailea"
+    ),
+    re_path(r"^(?P<slug>[-\w]+)$", views.jokoa, name="game"),
 ]

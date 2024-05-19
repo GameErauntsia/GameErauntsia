@@ -1,7 +1,7 @@
-from django.conf.urls import url
+from django.urls import re_path
 from .views import *
 
 urlpatterns = [
-    url(r"^get_minecraft_user$", mc_whitelist),
-    url(r"^send_mctelebot_msg/(?P<username>[-\w]+)/$", mc_telebot),
+    re_path(r"^get_minecraft_user$", mc_whitelist),
+    re_path(r"^send_mctelebot_msg/(?P<username>[-\w]+)/$", mc_telebot),
 ]
