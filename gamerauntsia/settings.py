@@ -278,6 +278,11 @@ USE_X_FORWARDED_HOST = True
 
 ALLOWED_HOSTS = ["*"]
 
+CSRF_TRUSTED_ORIGINS = (
+    os.getenv("HOST_NAME"),
+    "https://127.0.0.1",
+)
+
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.SessionAuthentication",
