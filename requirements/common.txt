@@ -30,7 +30,7 @@ django-rest-auth == 0.9.5
 django-cors-headers == 3.6.0
 django-autoslug == 1.9.8
 django-filter == 2.4.0
-gunicorn == 20.1.0
+gunicorn == 22.0.0
 raven == 6.10.0
 mcstatus == 10.0.2
 django-debug-toolbar==3.2.4
