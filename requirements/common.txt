@@ -1,5 +1,5 @@
 sphinx_rtd_theme == 0.4.3
-sphinx == 2.2.1
+sphinx == 7.3.7
 django-recaptcha == 3.0.0
 -e git+https://github.com/urtzai/django-mobile.git#egg=django-mobile
 django-pagination-bootstrap == 2.4.6
