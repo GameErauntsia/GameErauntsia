@@ -1,4 +1,4 @@
-sphinx_rtd_theme == 0.4.3
+sphinx_rtd_theme == 2.0.0
 sphinx == 2.2.1
 django-recaptcha == 3.0.0
 -e git+https://github.com/urtzai/django-mobile.git#egg=django-mobile
