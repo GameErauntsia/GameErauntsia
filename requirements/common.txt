@@ -33,5 +33,5 @@ django-filter == 2.4.0
 gunicorn == 22.0.0
 raven == 6.10.0
 mcstatus == 10.0.2
-django-debug-toolbar==3.2.4
+django-debug-toolbar==4.3.0
 django-embed-video==1.4.5
