@@ -312,6 +312,7 @@ footer {
   padding: 30px 0;
 }
 
-.btnEuskerazkoJolasak {
-  margin-top: -5px !important;
+.navbar-btn {
+  margin-left: 10px;
+  color: black !important;
 }
