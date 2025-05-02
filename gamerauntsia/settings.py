@@ -153,7 +153,7 @@ INSTALLED_APPS = (
     "django_filters",
     "rest_framework",
     "rest_framework.authtoken",
-    "captcha",
+    "django_recaptcha",
     "corsheaders",
     "embed_video",
 )

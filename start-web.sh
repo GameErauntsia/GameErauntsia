@@ -1,7 +1,7 @@
 #!/bin/sh
 #Wait for mysql to be ready
 echo "Waiting for mysql to be ready"
-while ! mysqladmin ping -h db --silent; do
+while ! mariadb-admin ping --host db --skip-ssl-verify-server-cert --silent; do
     sleep 5
     echo "Retrying mysql connection"
 done

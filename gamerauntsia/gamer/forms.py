@@ -8,7 +8,7 @@ from tinymce.widgets import TinyMCE
 from django.utils.translation import gettext as _
 from django.conf import settings
 from registration.forms import RegistrationFormUniqueEmail
-from captcha.fields import ReCaptchaField
+from django_recaptcha.fields import ReCaptchaField
 import re
 
 TINYMCE_SMALL_BODY_CONFIG = getattr(settings, "TINYMCE_SMALL_BODY_CONFIG", {})

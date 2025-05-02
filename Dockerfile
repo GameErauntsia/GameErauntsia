@@ -1,4 +1,4 @@
-FROM python:3.10.14-alpine AS base
+FROM python:3.10.17-alpine AS base
 
 ENV APP_HOME=/app
 WORKDIR $APP_HOME
@@ -16,8 +16,7 @@ RUN apk add --no-cache mysql-client mariadb-connector-c-dev libjpeg
 #-------------------------------------------------------------------------------
 FROM base AS requirement-compiler-common
 
-RUN pip install pip==20.0.2 && \
-    apk add mariadb-dev git gcc python3-dev musl-dev jpeg-dev zlib-dev
+RUN apk add mariadb-dev git gcc python3-dev musl-dev jpeg-dev zlib-dev
 
 COPY requirements/common.txt requirements/common.txt
 
