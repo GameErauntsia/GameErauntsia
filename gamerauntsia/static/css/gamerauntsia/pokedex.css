@@ -8,6 +8,9 @@
   cursor: pointer;
   font-size: 16px;
 }
+.pokedex__link--clear-generation {
+  margin-top: 10px;
+}
 
 .pokedex__link:hover {
   text-decoration: underline;
@@ -18,10 +21,10 @@
   border: 1px solid;
   border-radius: 10px;
   padding: 5px 10px;
-  margin-bottom: 20px;
 }
 
 .pokemon-list {
+  margin-top: 20px;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill,200px);
@@ -73,6 +76,8 @@
   width: 150px;
   height: 150px;
   margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .pokemon-card__name-container {
@@ -85,6 +90,9 @@
 .pokemon-card__name {
   font-weight: bold;
   font-size: 20px;
+}
+.pokemon-card__name--generation {
+  text-align: center;
 }
 
 .pokemon-card__name-desc {

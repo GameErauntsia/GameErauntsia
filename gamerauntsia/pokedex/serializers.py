@@ -1,5 +1,13 @@
 from rest_framework.serializers import ModelSerializer
-from gamerauntsia.pokedex.models import Pokemon
+from gamerauntsia.pokedex.models import Pokemon, PokemonGeneration
+
+
+class PokemonGenerationSerializer(ModelSerializer):
+    class Meta:
+        model = PokemonGeneration
+        fields = [
+            "id",
+        ]
 
 
 class PokemonSerializer(ModelSerializer):
@@ -11,4 +19,5 @@ class PokemonSerializer(ModelSerializer):
             "izena_euskaraz",
             "izena_euskaraz_azalpena",
             "deskribapena",
+            "pokemon_generation",
         ]

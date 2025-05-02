@@ -191,6 +191,16 @@
    (assoc db :selected-pokemon pokemon-id)))
 
 (rf/reg-sub
+ ::selected-generation
+ (fn [db _]
+   (get db :selected-generation)))
+
+(rf/reg-event-db
+ ::set-selected-generation
+ (fn [db [_ generation-id]]
+   (assoc db :selected-generation generation-id)))
+
+(rf/reg-sub
  ::pokedex
  (fn [db _]
    (get db :pokedex)))
@@ -214,8 +224,29 @@
 (rf/reg-event-fx
  ::load-pokedex
  (fn [_ _]
-   {::make-request {:uri "/pokedex/api/pokemon"
+   {::make-request {:uri "/pokedex/api/pokemons"
                     :on-success-evt [::got-pokedex]}}))
+
+(rf/reg-sub
+ ::generations
+ (fn [db _]
+   (get db :generations)))
+
+(rf/reg-event-db
+ ::set-generations
+ (fn [db [_ generations]]
+   (assoc db :generations generations)))
+
+(rf/reg-event-fx
+ ::got-generations
+ (fn [_ [_ response]]
+   {:fx [[:dispatch [::set-generations response]]]}))
+
+(rf/reg-event-fx
+ ::load-generations
+ (fn [_ _]
+   {::make-request {:uri "/pokedex/api/pokemon-generations"
+                    :on-success-evt [::got-generations]}}))
 
 (rf/reg-sub
  ::pokemon
@@ -289,7 +320,8 @@
  ::load-app
  (fn [_]
    {:db {}
-    :fx [[:dispatch [::load-pokedex]]]}))
+    :fx [[:dispatch [::load-generations]]
+         [:dispatch [::load-pokedex]]]}))
 
 (defn- pokemon-image-url
   [pokemon-id]
@@ -297,7 +329,8 @@
 
 (defn- pokemon-card
   [{:keys [id izena_ingelesez
-           izena_euskaraz izena_euskaraz_azalpena] :as _pokedex-entry}]
+           izena_euskaraz izena_euskaraz_azalpena] :as _pokedex-entry}
+   selected-generation]
   (let [show-english? (r/atom false)]
     (fn []
       [:div.pokemon-card
@@ -325,7 +358,9 @@
             (fn [e]
               (.stopPropagation e)
               (rf/dispatch [::load-and-set-selected-pokemon id])
-              (rf/dispatch [::set-history {:query-params {"pokemon_id" id}}]))}
+              (rf/dispatch [::set-history {:query-params (cond-> {"pokemon_id" id}
+                                                           selected-generation
+                                                           (assoc "generation_id" selected-generation))}]))}
            "Informazio gehiago"]])])))
 
 (defn- matches-search?
@@ -344,27 +379,40 @@
     true))
 
 (defn- pokemon-list
-  [displayed-count]
-  (let [pokedex (rf/subscribe [::pokedex])
-        search-text (r/atom "")]
+  [_ _ _]
+  (let [pokedex (rf/subscribe [::pokedex])]
+    (fn [displayed-count search-text selected-generation]
+      (let [filtered-entries (cond->> @pokedex
+                               (seq search-text)
+                               (filter (partial matches-search? search-text))
+
+                               selected-generation
+                               (filter #(= selected-generation (:pokemon_generation %))))]
+        [:div.pokemon-list
+         (for [pokemon-entry (take @displayed-count filtered-entries)]
+           ^{:key (str "pokemon_" (:id pokemon-entry))}
+           [pokemon-card pokemon-entry selected-generation])
+         (when (< @displayed-count (count filtered-entries))
+           [:btn.pokemon-list__load-more-btn
+            {:on-click #(swap! displayed-count + 12)}
+            "Kargatu gehiago"])]))))
+
+(defn- generation-list
+  [selected-generation]
+  (let [generations (rf/subscribe [::generations])]
     (fn []
-      (let [filtered-entries (->> @pokedex
-                                  (filter (partial matches-search? @search-text)))]
-        [:<>
-         [:input.pokedex__search-bar
-          {:type :text
-           :placeholder "Bilatu"
-           :value @search-text
-           :on-change (fn [e]
-                        (reset! search-text (.. e -target -value)))}]
-         [:div.pokemon-list
-          (for [pokemon-entry (take @displayed-count filtered-entries)]
-            ^{:key (str "pokemon_" (:id pokemon-entry))}
-            [pokemon-card pokemon-entry])
-          (when (< @displayed-count (count filtered-entries))
-            [:btn.pokemon-list__load-more-btn
-             {:on-click #(swap! displayed-count + 12)}
-             "Kargatu gehiago"])]]))))
+      [:div.pokemon-list
+       (for [generation @generations]
+         ^{:key (str "generation__" (:id generation))}
+         [:div.pokemon-card
+          {:on-click
+           (fn [_]
+             (rf/dispatch [::set-history {:query-params {"generation_id" (:id generation)}}])
+             (rf/dispatch [::set-selected-generation (:id generation)]))}
+          [:img.pokemon-card__img
+           {:src "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/0.png"}]
+          [:span.pokemon-card__name.pokemon-card__name--generation
+           (str (:id generation) ".belaunaldia")]])])))
 
 (defn pokemon-stats-bar
   [stat-n]
@@ -498,43 +546,64 @@
   [id]
   (let [pokedex-entry (rf/subscribe [::pokedex-entry id])
         pokemon (rf/subscribe [::pokemon id])]
-    (let [{:keys [izena_euskaraz izena_ingelesez deskribapena]} @pokedex-entry
-          {:keys [stats evolutions]} @pokemon]
-      [:<>
-       [:span.pokedex__link
-        {:on-click
-         (fn [e]
-           (.stopPropagation e)
-           (rf/dispatch [::set-selected-pokemon nil])
-           (rf/dispatch [::set-history {:query-params {}}]))}
-        "Itzuli zerrendara"]
-       [:div.pokemon-entry
-        [:div.pokemon-entry__header
-         [:h1.pokemon-entry__title
-          (if izena_euskaraz
-            (str (str/capitalize izena_euskaraz)
-                 " - "
-                 (.padStart (str id) 3 0)
-                 " - "
-                 (str/capitalize izena_ingelesez))
-            "xxx")]]
-        [:div.pokemon-entry__section.pokemon-entry__image-container
-         [:img.pokemon-entry__image
-          {:src (pokemon-image-url id)}]]
-        [pokemon-description deskribapena]
-        [pokemon-info @pokemon]
-        [pokemon-stats stats]
-        [pokemon-evolutions evolutions]]])))
+    (fn []
+      (let [{:keys [izena_euskaraz izena_ingelesez deskribapena]} @pokedex-entry
+            {:keys [stats evolutions]} @pokemon]
+        [:<>
+         [:span.pokedex__link
+          {:on-click
+           (fn [e]
+             (.stopPropagation e)
+             (rf/dispatch [::set-selected-pokemon nil])
+             (rf/dispatch [::set-history {:query-params {}}]))}
+          "Itzuli zerrendara"]
+         [:div.pokemon-entry
+          [:div.pokemon-entry__header
+           [:h1.pokemon-entry__title
+            (if izena_euskaraz
+              (str (str/capitalize izena_euskaraz)
+                   " - "
+                   (.padStart (str id) 3 0)
+                   " - "
+                   (str/capitalize izena_ingelesez))
+              "xxx")]]
+          [:div.pokemon-entry__section.pokemon-entry__image-container
+           [:img.pokemon-entry__image
+            {:src (pokemon-image-url id)}]]
+          [pokemon-description deskribapena]
+          [pokemon-info @pokemon]
+          [pokemon-stats stats]
+          [pokemon-evolutions evolutions]]]))))
 
 (defn- pokedex
   []
   (let [selected-pokemon (rf/subscribe [::selected-pokemon])
-        displayed-count (r/atom 14)]
+        selected-generation (rf/subscribe [::selected-generation])
+        displayed-count (r/atom 14)
+        search-text (r/atom "")]
     (fn []
       [:div.pokedex
        (if-let [pokemon-id @selected-pokemon]
          [pokedex-entry pokemon-id]
-         [pokemon-list displayed-count])])))
+         [:<>
+          [:input.pokedex__search-bar
+           {:type :text
+            :placeholder "Bilatu"
+            :value @search-text
+            :on-change (fn [e]
+                         (reset! search-text (.. e -target -value)))}]
+          (when-let [generation @selected-generation]
+            [:span.pokedex__link.pokedex__link--clear-generation
+             {:on-click
+              (fn [e]
+                (.stopPropagation e)
+                (rf/dispatch [::set-history {}])
+                (rf/dispatch [::set-selected-generation nil]))}
+             (str generation ".belaunaldia. Egin klik hemen denak ikusteko.")])
+          (if (or @selected-generation
+                  (seq @search-text))
+            [pokemon-list displayed-count @search-text @selected-generation]
+            [generation-list selected-generation])])])))
 
 (defn- root-component []
   [pokedex])
@@ -549,7 +618,10 @@
   (let [searcher (js/URLSearchParams. js/window.location.search)]
     (if-let [pokemon-id  (.get searcher "pokemon_id")]
       (rf/dispatch [::load-and-set-selected-pokemon (js/parseInt pokemon-id)])
-      (rf/dispatch [::set-selected-pokemon nil]))))
+      (rf/dispatch [::set-selected-pokemon nil]))
+    (if-let [generation (.get searcher "generation_id")]
+      (rf/dispatch [::set-selected-generation (js/parseInt generation)])
+      (rf/dispatch [::set-selected-generation nil]))))
 
 (.addEventListener js/window "popstate" read-query-params-pokemon)
 
