@@ -7,7 +7,7 @@ django-datetime-widget == 0.9.3
 django-star-ratings == 0.9.2
 -e git+https://github.com/urtzai/django-forum-app@c5730ed11e72e8b7918e5b98403b77c4ec1a3a0b#egg=django-forum-app
 django-mptt == 0.15.0
-Django == 4.2.20
+Django == 4.2.22
 mysqlclient == 2.2.7
 pillow == 11.2.1
 django-sortedm2m == 4.0.0
