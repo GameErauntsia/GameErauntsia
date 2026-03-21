@@ -1,5 +1,3 @@
-version: '2.1'
-
 services:
   db:
    restart: unless-stopped
@@ -7,6 +5,11 @@ services:
      - MATOMO_DATABASE_DBNAME
      - MATOMO_DATABASE_USERNAME
      - MATOMO_DATABASE_PASSWORD
+   ulimits:
+    nproc: 65535
+    nofile:
+     soft: 20000
+     hard: 40000
   web:
    image: gamerauntsia/web:latest
    restart: unless-stopped
@@ -21,7 +24,7 @@ services:
     depends_on:
       - proxy
     environment:
-      - DOMAINS=www.gamerauntsia.eus => https://gamerauntsia.eus, gamerauntsia.eus -> http://proxy:80
+      - DOMAINS=www.gamerauntsia.eus => https://gamerauntsia.eus, gamerauntsia.eus -> http://proxy:80, matomo.gamerauntsia.eus -> http://proxy:80
       - STAGE=production
       - CLIENT_MAX_BODY_SIZE=100m
       - PROXY_BUFFERS=4 32k
@@ -34,27 +37,14 @@ services:
     build: backup
     depends_on:
       - db
-    environment:
-      - RESTIC_REPOSITORY
-      - RESTIC_PASSWORD
-      - RESTIC_FORGET_ARGS
-      - BACKUP_CRON
-      - B2_ACCOUNT_ID
-      - B2_ACCOUNT_KEY
-      - MYSQL_DATABASE
-      - MYSQL_BACKUP_USER
-      - MYSQL_BACKUP_USER_PASSWORD
+    env_file: backup.env
     volumes:
       - mediafiles:/data/media/:ro
       - matomo-config:/data/matomo-config/:ro
       - ./backup/hooks:/hooks:ro
   matomo:
-    image: matomo:4.15.1
-    environment:
-      - MATOMO_DATABASE_USERNAME
-      - MATOMO_DATABASE_PASSWORD
-      - MATOMO_DATABASE_DBNAME
-      - MATOMO_DATABASE_HOST
+    image: matomo:5.8.0
+    env_file: matomo.env
     volumes:
       - matomo-config:/var/www/html/config
 volumes:
