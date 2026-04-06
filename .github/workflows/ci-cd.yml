@@ -75,3 +75,10 @@ jobs:
           VERSIONED_NAME=${DOCKER_IMAGE_NAME}:${VERSION}
           docker tag ${DOCKER_IMAGE_NAME}:latest ${VERSIONED_NAME}
           docker push ${VERSIONED_NAME}
+      - name: Debug failure
+        if: failure()
+        run: |
+          docker ps -a
+          docker stats --no-stream
+          docker-compose logs web
+          docker-compose logs db
