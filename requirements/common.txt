@@ -27,7 +27,7 @@ django-crispy-forms >= 1.10.0
 django-guardian == 2.4.0
 djangorestframework == 3.16.0
 django-rest-auth == 0.9.5
-django-cors-headers == 4.7.0
+django-cors-headers == 4.9.0
 django-autoslug == 1.9.8
 django-filter == 25.1
 gunicorn == 23.0.0
