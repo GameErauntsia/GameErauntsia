@@ -3,11 +3,11 @@
 <div class="row">
   {% autopaginate jokoak 20 %}
   {% for jokoa in jokoak %}
-  <div class="col-xs-6 col-sm-3 col-md2"
+  <div class="col-6 col-sm-3 col-md2"
        style="margin-bottom: 20px">
     <a href="{% url 'game' jokoa.slug %}"
        title="{{jokoa.izena}}">
-      <img class="img-responsive img-thumbnail"
+      <img class="img-fluid img-thumbnail"
            src="{{jokoa.get_karatula.get_joko_karatula_url}}"
            alt="{{jokoa.izena}} bideojokoaren karatula">
     </a>

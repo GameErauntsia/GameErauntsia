@@ -7,7 +7,7 @@
 <div class="row">
 
         <div class="col-sm-12">
-            <h1 class="page-header">Txapelketak
+            <h1 class="border-bottom pb-2 mb-4">Txapelketak
             <small>BETA</small>
             </h1>
         </div>
@@ -23,12 +23,12 @@
 
                 <div class="col-md-6 portfolio-item">
                     <a href="{% url 'txapelketa' tx.slug %}">
-                        <img class="img-responsive" src="{{tx.irudia.get_gp_thumbnail_url}}">
+                        <img class="img-fluid" src="{{tx.irudia.get_gp_thumbnail_url}}">
                     </a>
                     <h3>
-                        <a href="{% url 'txapelketa' tx.slug %}">{{tx.izena}}</a> {% if tx.insk_date|irekita %}<span class="pull-right text-success glyphicon glyphicon-plus-sign"></span>{% endif %}{% if tx.status == '1' %}<span class="pull-right text-warning glyphicon glyphicon-question-sign"></span>{% endif %}{% if tx.status == '2' %}<span class="pull-right text-info glyphicon glyphicon-ok-sign"></span>{% endif %}{% if tx.status == '3' %}<span class="pull-right text-danger glyphicon glyphicon-remove-sign"></span>{% endif %}
+                        <a href="{% url 'txapelketa' tx.slug %}">{{tx.izena}}</a> {% if tx.insk_date|irekita %}<i class="float-end text-success bi bi-plus-circle"></i>{% endif %}{% if tx.status == '1' %}<i class="float-end text-warning bi bi-question-circle"></i>{% endif %}{% if tx.status == '2' %}<i class="float-end text-info bi bi-check-circle"></i>{% endif %}{% if tx.status == '3' %}<i class="float-end text-danger bi bi-x-circle"></i>{% endif %}
                     </h3>
-                    <p><span class="glyphicon glyphicon-play"></span> <a href="{% url 'game' tx.jokoa.slug %}">{{tx.jokoa.izena}} {%if tx.jokoa.bertsioa %}{{tx.jokoa.bertsioa}}{% endif %}</a> | {{tx.get_mota_display}} | {{tx.get_modalitatea_display}}{% if comment_count %} | <a href="{{tx.get_absolute_url}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}</p>
+                    <p><i class="bi bi-play"></i> <a href="{% url 'game' tx.jokoa.slug %}">{{tx.jokoa.izena}} {%if tx.jokoa.bertsioa %}{{tx.jokoa.bertsioa}}{% endif %}</a> | {{tx.get_mota_display}} | {{tx.get_modalitatea_display}}{% if comment_count %} | <a href="{{tx.get_absolute_url}}#iruzkinak">{{comment_count}} <i class="bi bi-chat"></i></a>{% endif %}</p>
                     <p>{{tx.get_desk_txikia|safe}}</p>
                 </div>
 

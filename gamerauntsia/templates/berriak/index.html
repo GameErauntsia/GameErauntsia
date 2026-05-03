@@ -31,17 +31,17 @@
         <div class="row">
             <div class="col-sm-4">
                 <a class="fancybox" href="{{berria.argazkia.image.url}}">
-                    <img style="margin-top: 25px; margin-bottom: 15px"  src="{{berria.argazkia.get_blog_index_url}}" class="img-responsive"/>
+                    <img style="margin-top: 25px; margin-bottom: 15px"  src="{{berria.argazkia.get_blog_index_url}}" class="img-fluid"/>
                 </a>
                 <p class="lead, text-center">
-                    <a href="{% url 'gamer_profile' berria.erabiltzailea.username %}"><img src="{{berria.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{berria.erabiltzailea.getFullName}}</a></p>
+                    <a href="{% url 'gamer_profile' berria.erabiltzailea.username %}"><img src="{{berria.erabiltzailea.get_photo.get_profilesmall_url}}" class="rounded-circle"/> {{berria.erabiltzailea.getFullName}}</a></p>
                 <p class="lead"></p>
             </div>
             <div class="col-sm-8">
                 <h1><a href="{% url 'berria' berria.slug %}">{{berria.izenburua}}</a></h1>
-                <p><span class="glyphicon glyphicon-time"></span> {{berria.pub_date|date:"Y/m/d H:i"}}
-                    {% for gai in berria.gaia.all %}<span class="label label-success tags"><a href="{% url 'gaia' gai.slug %}">{{gai.izena}}</a></span>{% endfor %}
-                    {% if comment_count %}<a class="pull-right" href="{% url 'berria' berria.slug %}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}
+                <p><i class="bi bi-clock"></i> {{berria.pub_date|date:"Y/m/d H:i"}}
+                    {% for gai in berria.gaia.all %}<span class="badge text-bg-success tags"><a href="{% url 'gaia' gai.slug %}">{{gai.izena}}</a></span>{% endfor %}
+                    {% if comment_count %}<a class="float-end" href="{% url 'berria' berria.slug %}#iruzkinak">{{comment_count}} <i class="bi bi-chat"></i></a>{% endif %}
                 </p>
                 <p>{{berria.azpititularra|default_if_none:""|safe}}</p>
             </div>
@@ -61,11 +61,11 @@
             <h2>Azken erantzunak</h2>
             {% azken_erantzunak %}
         </div>
-        <iframe src="https://www.lehenhitza.eus/iframe_laukia" class="center-block" width="300" height="250" frameborder="0" scrolling="no"></iframe>
-        <div class="well commentform">
+        <iframe src="https://www.lehenhitza.eus/iframe_laukia" class="d-block mx-auto" width="300" height="250" frameborder="0" scrolling="no"></iframe>
+        <div class="p-3 mb-3 bg-light border rounded commentform">
             <div class="fb-like-box" data-href="https://www.facebook.com/Gamerauntsia" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
         </div>
-        <div class="well">
+        <div class="p-3 mb-3 bg-light border rounded">
           <a class="twitter-timeline" data-height="600" data-dnt="true" data-theme="light" href="https://twitter.com/Gamerauntsia?ref_src=twsrc%5Etfw">Gamerauntsia-ren txioak</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
     </div>

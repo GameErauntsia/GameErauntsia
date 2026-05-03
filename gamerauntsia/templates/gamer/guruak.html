@@ -17,7 +17,7 @@
 {% block content %}
 
 <div class="col-sm-12">
-    <h1 class="page-header">Guruak
+    <h1 class="border-bottom pb-2 mb-4">Guruak
         <small>Komunitatean karma gehien dutenak!</small>
     </h1>
 </div>
@@ -29,7 +29,7 @@
 
             {% if forloop.first %}<div class="row">{% endif %}
                 <div class="col-sm-4 col-sm-6">
-                    <a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profile_url}}" class="img-circle img-responsive"></a>
+                    <a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profile_url}}" class="rounded-circle img-fluid"></a>
                     <h3><a href="{% url 'gamer_profile' user.username %}">{{user.fullname}}</a>
                         <small>{% if user.twitter_id %}@{{user.twitter_id}}{% else %}{{user.nickname}}{% endif %}</small>
                     </h3>

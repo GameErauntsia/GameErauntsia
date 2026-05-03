@@ -5,7 +5,7 @@
 <div class="profileform">
 	<h2>{% trans "Photo" %}</h2>
 	{% if profile.photo %}
-		<img src="{{user.get_photo.get_profile_url}}" alt="" class="img-circle img-responsive">
+		<img src="{{user.get_photo.get_profile_url}}" alt="" class="rounded-circle img-fluid">
 	{% else %}
 		<p class="message">{% trans "You haven't got any photo!" %}</p>
 	{% endif %}

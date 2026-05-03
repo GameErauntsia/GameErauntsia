@@ -4,7 +4,7 @@
 
 {% block content %}
 <div>
-  <h1 class="page-header">Podcastak</h1>
+  <h1 class="border-bottom pb-2 mb-4">Podcastak</h1>
   {% for show in podcast_shows %}
   <div>
     <h1><a href="{% url 'podcast_show' show.slug %}">{{show.name}}</a></h1>

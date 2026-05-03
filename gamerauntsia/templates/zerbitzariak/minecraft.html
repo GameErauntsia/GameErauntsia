@@ -4,7 +4,7 @@
 {% block content %}
 <div class="row">
   <div class="col-sm-12">
-    <h1 class="page-header">{% block minecraft_title %}Minecraft zerbitzaria{% endblock %}</h1>
+    <h1 class="border-bottom pb-2 mb-4">{% block minecraft_title %}Minecraft zerbitzaria{% endblock %}</h1>
   </div>
 
   {% block minecraft_content %}
@@ -12,11 +12,11 @@
 
     <div class="row carousel-holder">
       <div class="col-md-12">
-        <div id="carousel-minecraft-generic" class="carousel slide" data-ride="carousel">
+        <div id="carousel-minecraft-generic" class="carousel slide" data-bs-ride="carousel">
           <ol class="carousel-indicators">
-            <li data-target="#carousel-minecraft-generic" data-slide-to="0" class="active"></li>
+            <li data-bs-target="#carousel-minecraft-generic" data-slide-to="0" class="active"></li>
             {% for i in carousel_images %}
-            <li data-target="#carousel-minecraft-generic" data-slide-to="{{i}}"></li>
+            <li data-bs-target="#carousel-minecraft-generic" data-slide-to="{{i}}"></li>
             {% endfor %}
           </ol>
           <div class="carousel-inner">
@@ -29,11 +29,11 @@
             </div>
             {% endfor %}
           </div>
-          <a class="left carousel-control" href="#carousel-minecraft-generic" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left"></span>
+          <a class="left carousel-control" href="#carousel-minecraft-generic" data-bs-slide="prev">
+            <i class="bi bi-chevron-left"></i>
           </a>
-          <a class="right carousel-control" href="#carousel-minecraft-generic" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right"></span>
+          <a class="right carousel-control" href="#carousel-minecraft-generic" data-bs-slide="next">
+            <i class="bi bi-chevron-right"></i>
           </a>
         </div>
       </div>
@@ -160,7 +160,7 @@
   </div>
 
   <div class="col-sm-4">
-    <div class="well">
+    <div class="p-3 mb-3 bg-light border rounded">
       <h2>Zerbitzaria orain</h2>
       <script>
         function resizeIframe(obj) {
@@ -169,7 +169,7 @@
       </script>
       <iframe onload="resizeIframe(this)" scrolling="no" width="100%" frameBorder="0" src="/zerbitzariak/minecraft/status"></iframe>
     </div>
-    <div class="well" id="izen-ematea">
+    <div class="p-3 mb-3 bg-light border rounded" id="izen-ematea">
       <h2>Izen ematea</h2>
       {% if user.is_authenticated %}
       {% if user.is_mc_gamer %}
@@ -185,42 +185,42 @@
       {% endif %}
       {% else %}
       <p>Zerbitzarian erregistratu kategoria izateko, lehendabizi Game Erauntsian izena eman behar duzu.</p>
-      <a class="btn btn-lg btn-primary" href="{% url 'auth_login' %}?next={{request.path}}" title="Log in"><i class="glyphicon glyphicon-user"></i> Eman izena!</a>
+      <a class="btn btn-lg btn-primary" href="{% url 'auth_login' %}?next={{request.path}}" title="Log in"><i class="bi bi-person"></i> Eman izena!</a>
       {% endif %}
     </div>
-    <div class="well">
+    <div class="p-3 mb-3 bg-light border rounded">
       <h2>Azken 10 erabiltzaileak</h2>
       <div class="row">
         <div class="col-sm-12">
           {% for mc in mc_list %}
-          <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{mc.user.getFullName}}</a></p>
+          <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="rounded-circle"/> {{mc.user.getFullName}}</a></p>
           {% endfor %}
         </div>
       </div>
     </div>
     {% comment %}
-    <div class="well">
+    <div class="p-3 mb-3 bg-light border rounded">
       <h2>VIP erabiltzaileak</h2>
       <div class="row">
         <div class="col-sm-12">
           {% for mc in mc_vip_list %}
-          <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{mc.user.getFullName}}</a></p>
+          <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="rounded-circle"/> {{mc.user.getFullName}}</a></p>
           {% endfor %}
         </div>
       </div>
     </div>
     {% endcomment %}
-    <div class="well">
+    <div class="p-3 mb-3 bg-light border rounded">
       <h2>Administratzaileak</h2>
       <div class="row">
         <div class="col-sm-12">
           {% for mc in mc_admin_list %}
-          <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{mc.user.getFullName}}</a></p>
+          <p><a href="{% url 'gamer_profile' mc.user.username %}"><img src="{{mc.user.get_photo.get_profilesmall_url}}" class="rounded-circle"/> {{mc.user.getFullName}}</a></p>
           {% endfor %}
         </div>
       </div>
     </div>
-    <div class="well">
+    <div class="p-3 mb-3 bg-light border rounded">
       <h2>Komunitateak gidatua</h2> <p><strong><a href="/komunitatea/Suspekain_" target="_blank">Suspekain_</a></strong> erabiltzailearen
       iniziatibaz ireki dugu berriro Minecraft zerbitzaria. Antzeko edo bestelako
       ideiarik baduzu, <a href="/kontaktua/">jarri gurekin harremanetan</a> eta ziur elkarrekin zerbait egin dezakegula!</p>

@@ -2,7 +2,7 @@
 
 {% for eran in comments %}
 <div class="media">
-    <a class="pull-left" href="{% url 'gamer_profile' eran.user.username %}">
+    <a class="float-start" href="{% url 'gamer_profile' eran.user.username %}">
         <img class="media-object" src="{{eran.user.get_photo.get_profilesmall_url}}">
     </a>
     <div class="media-body">

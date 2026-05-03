@@ -7,17 +7,17 @@
 <div class="row">
   <div class="col-md-8">
     <div class="row">
-      <div class="col-xs-12 col-sm-4 text-center">
-        <img src="{{user_prof.get_photo.get_profile_url}}" alt="" class="center-block img-circle img-responsive">
-        {% if user_prof.is_core_team_member%}<img src="{{STATIC_URL}}img/kidea.png" alt="Game Erauntsiako Kidea" class="center-block img-responsive"/>{% endif %}
+      <div class="col-12 col-sm-4 text-center">
+        <img src="{{user_prof.get_photo.get_profile_url}}" alt="" class="d-block mx-auto rounded-circle img-fluid">
+        {% if user_prof.is_core_team_member%}<img src="{{STATIC_URL}}img/kidea.png" alt="Game Erauntsiako Kidea" class="d-block mx-auto img-fluid"/>{% endif %}
         <p>{{user_prof.date_joined|date:"Y/m/d H:i"}}
         </p>
       </div><!--/col-->
-      <div class="col-xs-12 col-sm-8">
+      <div class="col-12 col-sm-8">
         <h2>{{user_prof.getFullName}}
           {% if user_prof.twitter_id or user_prof.nickname %}
           <small>{% if user_prof.twitter_id %}@{{user_prof.twitter_id}}{% else %}{{user_prof.nickname}}{% endif %}</small>
-          {% endif %}{% if user_prof.karma %}<span class="pull-right"><i class="glyphicon glyphicon-flash" style="color:#E1E100"></i> <abbr title="Karma">{{user_prof.karma}}</abbr></span>{% endif %}
+          {% endif %}{% if user_prof.karma %}<span class="float-end"><i class="bi bi-lightning-fill" style="color:#E1E100"></i> <abbr title="Karma">{{user_prof.karma}}</abbr></span>{% endif %}
         </h2>
         <p>{% if user_prof.bio%}{{user_prof.bio}}
           {% else %}
@@ -32,10 +32,10 @@
         {% if categs or bcategs %}
         <p><strong>Kategoriak: </strong>
           {% for cat in categs %}
-          <span class="label label-info tags"><a href="{% url 'gameplay_category' cat.kategoria__izena|slugify %}">{{cat.kategoria__izena}}</a></span>
+          <span class="badge text-bg-info tags"><a href="{% url 'gameplay_category' cat.kategoria__izena|slugify %}">{{cat.kategoria__izena}}</a></span>
           {% endfor %}
           {% for bcat in bcategs %}
-          <span class="label label-success tags"><a href="{% url 'gaia' bcat.gaia__izena|slugify  %}">{{bcat.gaia__izena}}</a></span>
+          <span class="badge text-bg-success tags"><a href="{% url 'gaia' bcat.gaia__izena|slugify  %}">{{bcat.gaia__izena}}</a></span>
           {% endfor %}
         </p>
         {% endif %}
@@ -72,10 +72,10 @@
     <div class="tabpanel">
       <ul class="nav nav-tabs" role="tablist">
         <li class="active" role="presentation">
-          <a aria-controls="stats" data-toggle="tab" role="tab" href="#stats"><h3 class="panel-title"><i class="glyphicon glyphicon-signal"></i> Estatistikak</h3></a>
+          <a aria-controls="stats" data-bs-toggle="tab" role="tab" href="#stats"><h3 class="h5 mb-0"><i class="bi bi-reception-4"></i> Estatistikak</h3></a>
         </li>
         <li role="presentation">
-          <a aria-controls="comp" data-toggle="tab" role="tab" href="#comp"><h3 class="panel-title"><i class="glyphicon glyphicon-hdd"></i> Ordenagailua</h3></a>
+          <a aria-controls="comp" data-bs-toggle="tab" role="tab" href="#comp"><h3 class="h5 mb-0"><i class="bi bi-device-hdd"></i> Ordenagailua</h3></a>
         </li>
       </ul>
       <div class="tab-content" id="myTabContent">

@@ -6,7 +6,7 @@
 <div class="row">
 
     <div class="col-sm-12">
-        <h1 class="page-header">{{garatzailea.izena}}</h1>
+        <h1 class="border-bottom pb-2 mb-4">{{garatzailea.izena}}</h1>
         <ul class="list-inline">
             {% if garatzailea.url %}
             <li class="list-item">
@@ -62,9 +62,9 @@
             <div class="12">
                 <h2>Euskerazko jokoak</h2>
                 {% for jokoa in jokoak %}
-                    <div class="col-xs-6 col-sm-3 col-md2" style="margin-bottom: 20px">
+                    <div class="col-6 col-sm-3 col-md2" style="margin-bottom: 20px">
                         <a href="{% url 'game' jokoa.slug %}" title="{{jokoa.izena}}">
-                            <img class="img-responsive img-thumbnail" src="{{jokoa.get_karatula.get_joko_karatula_url}}" alt="{{jokoa.izena}} bideojokoaren karatula">
+                            <img class="img-fluid img-thumbnail" src="{{jokoa.get_karatula.get_joko_karatula_url}}" alt="{{jokoa.izena}} bideojokoaren karatula">
                         </a>
                     </div>
                 {% endfor %}
@@ -84,9 +84,9 @@
                     <div class="col-sm-8">
                         <h3 style="margin-top: 0"><a href="{% url 'berria' berri.slug %}">{{berri.izenburua}}</a></h3>
                         <p>
-                            <span class="glyphicon glyphicon-time"></span> {{berri.pub_date|date:"Y/m/d H:i"}}
+                            <i class="bi bi-clock"></i> {{berri.pub_date|date:"Y/m/d H:i"}}
                             {% for gai in berri.gaia.all %}
-                            <span class="label label-success tags">{{gai.izena}}</span>
+                            <span class="badge text-bg-success tags">{{gai.izena}}</span>
                             {% endfor %}
                         </p>
                         <p>{{berri.get_desk_txikia|safe}}</p>
