@@ -9,10 +9,10 @@
 
         <div class="row">
             <div class="col-sm-10">
-                <h1 class="page-header">Foroa <small>{{forum.title}}: {{topic.title}}</small></h1>
+                <h1 class="border-bottom pb-2 mb-4">Foroa <small>{{forum.title}}: {{topic.title}}</small></h1>
             </div>
             <div class="col-sm-2">
-                <img class="img-responsive img-circle" src="{{forum.icon.get_forum_profile_url}}" alt="Game Erauntsia {{forum.title}} {{topic.title}}" title="Game Erauntsia {{forum.title}} {{topic.title}}">
+                <img class="img-fluid rounded-circle" src="{{forum.icon.get_forum_profile_url}}" alt="Game Erauntsia {{forum.title}} {{topic.title}}" title="Game Erauntsia {{forum.title}} {{topic.title}}">
             </div>
         </div>
 
@@ -27,21 +27,21 @@
 
             {% for post in posts %}
                 <div class="row">
-                    <div class="col-xs-12 col-sm-2 text-center">
-                        <a href="{% url 'gamer_profile' post.creator.username %}"><img src="{{post.creator.get_photo.get_forum_profile_url}}" alt="" class="center-block img-circle img-responsive"/></a>
-                        <p><strong><a href="{% url 'gamer_profile' post.creator.username %}">{{post.creator.getFullName}}</a></strong><br/>{% if post.creator.is_core_team_member %}<img src="{{STATIC_URL}}img/kidea.png" alt="Game Erauntsiako Kidea" class="center-block img-responsive"/>{% endif %}<span class="date">{{post.created|date:"Y/m/d H:i"}}</span>{% if user.is_authenticated %}<br/><a href="{% url 'messages_compose_to' post.creator.username  %}"><span class="glyphicon glyphicon-envelope"></span></a>{% endif %}{% if post.creator.karma %}<i class="glyphicon glyphicon-flash" style="color:#E1E100"></i> <abbr title="Karma">{{post.creator.karma}}</abbr>{% endif %}
+                    <div class="col-12 col-sm-2 text-center">
+                        <a href="{% url 'gamer_profile' post.creator.username %}"><img src="{{post.creator.get_photo.get_forum_profile_url}}" alt="" class="d-block mx-auto rounded-circle img-fluid"/></a>
+                        <p><strong><a href="{% url 'gamer_profile' post.creator.username %}">{{post.creator.getFullName}}</a></strong><br/>{% if post.creator.is_core_team_member %}<img src="{{STATIC_URL}}img/kidea.png" alt="Game Erauntsiako Kidea" class="d-block mx-auto img-fluid"/>{% endif %}<span class="date">{{post.created|date:"Y/m/d H:i"}}</span>{% if user.is_authenticated %}<br/><a href="{% url 'messages_compose_to' post.creator.username  %}"><i class="bi bi-envelope"></i></a>{% endif %}{% if post.creator.karma %}<i class="bi bi-lightning-fill" style="color:#E1E100"></i> <abbr title="Karma">{{post.creator.karma}}</abbr>{% endif %}
                         </p>
                     </div>
-                    <div class="col-xs-12 col-sm-10">
+                    <div class="col-12 col-sm-10">
                         <a id="{{post.id}}"></a>
                         <h3><a href="/foroa/{{forum.slug}}{{post.get_absolute_url}}">#</a> {{post.title}}
                         {% if request.user.is_authenticated %}
-                        <div class="btn-group pull-right" role="group" aria-label="...">
+                        <div class="btn-group float-end" role="group" aria-label="...">
                         {% if request.user.is_superuser %}
-                        <a class="btn btn-default" href="/kudeatu/django_forum_app/post/{{post.id}}">Editatu</a>
+                        <a class="btn btn-outline-secondary" href="/kudeatu/django_forum_app/post/{{post.id}}">Editatu</a>
                         {% endif %}
                         {% if not topic.closed %}
-                        <a class="btn btn-default" href="{% url 'reply' forum.slug topic.id %}?author={{post.creator}}&quote={{post.body|truncatewords:30}}">Zitatu</a>
+                        <a class="btn btn-outline-secondary" href="{% url 'reply' forum.slug topic.id %}?author={{post.creator}}&quote={{post.body|truncatewords:30}}">Zitatu</a>
                         {% endif %}
                         </div>
                         {% endif %}
@@ -54,7 +54,7 @@
                     </div>
                 </div>
                 <div class="col-sm-12">
-                    <a class="pull-right" href="#"><i class="glyphicon glyphicon-upload"></i> Gora igo</a>
+                    <a class="float-end" href="#"><i class="bi bi-upload"></i> Gora igo</a>
                 </div>
                 <hr/>
             {% empty %}
@@ -69,11 +69,11 @@
         <div class="row">
             <div class="col-sm-12">
                 {% if topic.closed %}
-                <div class="alert alert-warning pull-right" role="alert"><strong>Berandu!</strong> Gai hau dagoeneko itxita dago...</div>
+                <div class="alert alert-warning float-end" role="alert"><strong>Berandu!</strong> Gai hau dagoeneko itxita dago...</div>
                 {% else %}
-                <a class="btn btn-primary pull-right" href="{% url 'reply' forum.slug topic.id %}">Erantzun</a>
+                <a class="btn btn-primary float-end" href="{% url 'reply' forum.slug topic.id %}">Erantzun</a>
                 {% if user.is_superuser %}
-                <a class="btn btn-default pull-right" href="{% url 'close-topic' forum.slug topic.id %}">Itxi gaia</a>
+                <a class="btn btn-outline-secondary float-end" href="{% url 'close-topic' forum.slug topic.id %}">Itxi gaia</a>
                 {% endif %}
                 {% endif %}
             </div>

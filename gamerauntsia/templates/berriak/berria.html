@@ -70,20 +70,20 @@
       <div class="col-sm-8">
         <h1>{{item.izenburua}}</h1>
         <p class="lead">
-          <a href="{% url 'gamer_profile' item.erabiltzailea.username %}"><img src="{{item.erabiltzailea.get_photo.get_profilesmall_url}}" class="img-circle"/> {{item.erabiltzailea.getFullName}}</a> | <span class="glyphicon glyphicon-time"></span> {{item.pub_date|date:"Y/m/d H:i"}} {% for gai in item.gaia.all %}<span class="label label-success tags"><a href="{% url 'gaia' gai.slug %}">{{gai.izena}}</a></span>{% endfor %}
+          <a href="{% url 'gamer_profile' item.erabiltzailea.username %}"><img src="{{item.erabiltzailea.get_photo.get_profilesmall_url}}" class="rounded-circle"/> {{item.erabiltzailea.getFullName}}</a> | <i class="bi bi-clock"></i> {{item.pub_date|date:"Y/m/d H:i"}} {% for gai in item.gaia.all %}<span class="badge text-bg-success tags"><a href="{% url 'gaia' gai.slug %}">{{gai.izena}}</a></span>{% endfor %}
         </p>
         <hr>
         {% if item.argazkia %}
         <a class="fancybox" href="{{item.argazkia.image.url}}">
-          <img src="{{item.argazkia.get_blog_url}}" class="img-responsive"/>
+          <img src="{{item.argazkia.get_blog_url}}" class="img-fluid"/>
         </a>
         <hr>
         {% endif %}
         {% if user.is_authenticated %}
         {% if user.is_superuser or user == item.erabiltzailea %}
-        <div class="well">
+        <div class="p-3 mb-3 bg-light border rounded">
           <h3>Editatu berria</h3>
-          <a class="btn btn-default" href="/kudeatu/berriak/berria/{{item.id}}">Editatu</a>
+          <a class="btn btn-outline-secondary" href="/kudeatu/berriak/berria/{{item.id}}">Editatu</a>
         </div>
         {% endif %}
         {% endif %}
@@ -93,7 +93,7 @@
           {% endif %}
           <p class="lead">{{item.desk|safe}}</p>
         </div>
-        <div class="pull-right">{% ratings item %}</div>
+        <div class="float-end">{% ratings item %}</div>
 
         {% include 'share_buttons.html' with item=item %}
 
@@ -110,7 +110,7 @@
             <h2>Azken erantzunak</h2>
             {% azken_erantzunak %}
         </div>
-        <iframe src="https://www.lehenhitza.eus/iframe_laukia" class="center-block" width="300" height="250" frameborder="0" scrolling="no"></iframe>
+        <iframe src="https://www.lehenhitza.eus/iframe_laukia" class="d-block mx-auto" width="300" height="250" frameborder="0" scrolling="no"></iframe>
       </div>
     </div>
 {%endblock%}

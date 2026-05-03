@@ -12,7 +12,7 @@
 <div class="row">
 
         <div class="col-sm-12">
-            <h1 class="page-header">GETB
+            <h1 class="border-bottom pb-2 mb-4">GETB
                 <small>
                     Bideojokoen telebista
                 </small>
@@ -34,10 +34,10 @@
 
             <div class="row">
                 <a href="{{atala.get_absolute_url}}">
-                    <img class="img-responsive" src="{{atala.argazkia.get_gp_thumbnail_url}}">
+                    <img class="img-fluid" src="{{atala.argazkia.get_gp_thumbnail_url}}">
                 </a>
                 <h4><a href="{{atala.get_absolute_url}}">{{atala.izenburua}}</a></h4>
-                <p><span class="glyphicon glyphicon-time"></span> {{atala.iraupena_min}}min {{atala.iraupena_seg}}seg{% if comment_count %} | <a href="{{atala.get_absolute_url}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}</p>
+                <p><i class="bi bi-clock"></i> {{atala.iraupena_min}}min {{atala.iraupena_seg}}seg{% if comment_count %} | <a href="{{atala.get_absolute_url}}#iruzkinak">{{comment_count}} <i class="bi bi-chat"></i></a>{% endif %}</p>
             </div>
             {% endfor %}
             {% if not forloop.last %}
@@ -52,10 +52,10 @@
         {% get_comment_count for atala as comment_count %}
         <div class="col-sm-3">
             <a href="{{atala.get_absolute_url}}">
-                <img class="img-responsive" src="{{atala.argazkia.get_gp_thumbnail_url}}">
+                <img class="img-fluid" src="{{atala.argazkia.get_gp_thumbnail_url}}">
             </a>
             <h4><a href="{{atala.get_absolute_url}}">{{atala.izenburua}}</a></h4>
-            <p><span class="glyphicon glyphicon-time"></span> {{atala.iraupena_min}}min {{atala.iraupena_seg}}seg{% if comment_count %} | <a href="{{atala.get_absolute_url}}#iruzkinak">{{comment_count}} <span class="glyphicon glyphicon-comment"></span></a>{% endif %}</p>
+            <p><i class="bi bi-clock"></i> {{atala.iraupena_min}}min {{atala.iraupena_seg}}seg{% if comment_count %} | <a href="{{atala.get_absolute_url}}#iruzkinak">{{comment_count}} <i class="bi bi-chat"></i></a>{% endif %}</p>
             <hr>
         </div>
     {% endfor %}

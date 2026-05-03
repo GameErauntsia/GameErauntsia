@@ -6,7 +6,7 @@
 {% block content %}
 <link rel="stylesheet" href="{{STATIC_URL}}css/gamerauntsia/podcast.css">
 <div>
-  <h1 class="podcast-show__title page-header">{{show.name}}</h1>
+  <h1 class="podcast-show__title border-bottom pb-2 mb-4">{{show.name}}</h1>
   <p class="podcast-show__description">{{show.description}}</p>
   <div class="podcast-show__episode-list">
     {% autopaginate show_episodes 18 %}

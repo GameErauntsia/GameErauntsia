@@ -7,34 +7,34 @@
 <div class="row">
 
         <div class="col-sm-12">
-            <h1 class="page-header">{% if partaidea.get_photo %}<img src="{{partaidea.get_photo.get_forum_profile_url}}" class="img-thumbnail"/> {% endif %}{{partaidea.izena}}</h1>
+            <h1 class="border-bottom pb-2 mb-4">{% if partaidea.get_photo %}<img src="{{partaidea.get_photo.get_forum_profile_url}}" class="img-thumbnail"/> {% endif %}{{partaidea.izena}}</h1>
         </div>
 
         <div class="col-sm-8">
           {% if partaidea.is_group %}
-            <h2><span class="glyphicon glyphicon-user"></span> Jokalari titularrak</h2>
+            <h2><i class="bi bi-person"></i> Jokalari titularrak</h2>
             <div class="col-sm-12">
                 {% for j in partaidea.jokalariak.all %}
                 <div class="player col-sm-2">
-                    <a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{j.getFullName}}"/><span class="badge userpic">{{j.getFullName}}</span></a>
+                    <a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_news_thumbnail_url}}" class="rounded-circle" title="{{j.getFullName}}"/><span class="badge userpic">{{j.getFullName}}</span></a>
                 </div>
                 {% endfor %}
             </div>
             {% endif %}
             <div class="col-sm-12">
                 {% if partaidea.ordezkoak.all %}
-                <h2><span class="glyphicon glyphicon-user"></span> Ordezko jokalariak</h2>
+                <h2><i class="bi bi-person"></i> Ordezko jokalariak</h2>
                 {% for j in partaidea.ordezkoak.all %}
                 <div class="player col-sm-2">
-                    <a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{j.getFullName}}"/><span class="badge userpic">{{j.getFullName}}</span></a>
+                    <a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_news_thumbnail_url}}" class="rounded-circle" title="{{j.getFullName}}"/><span class="badge userpic">{{j.getFullName}}</span></a>
                 </div>
                 {% endfor %}
                 {% endif %}
             </div>
             {% if partaidea.get_partidak %}
-            <h2><span class="glyphicon glyphicon-calendar"></span> Jardunaldiak</h2>
+            <h2><i class="bi bi-calendar"></i> Jardunaldiak</h2>
             <div class="table-responsive">
-                <table class="table table-condensed table-hover">
+                <table class="table table-sm table-hover">
                     <thead>
                         <tr>
                             <th>Jardunaldia</th>
@@ -51,7 +51,7 @@
                             <td>{{partida.render_izena|safe}}</td>
                             <td>{% if partida.emaitza %}{{partida.emaitza}}{% else %}---{% endif %}</td>
                             <td>{{partida.date|date:"Y/m/d H:i"}}</td>
-                            <td>{% if partida.has_video %}<a href="{{partida.get_absolute_url}}"><i class="glyphicon glyphicon-play-circle"></i></a>{% endif %}</td>
+                            <td>{% if partida.has_video %}<a href="{{partida.get_absolute_url}}"><i class="bi bi-play-circle"></i></a>{% endif %}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -59,16 +59,16 @@
             </div>
             {% endif %}
             {% if next_parts %}
-                <h2><span class="glyphicon glyphicon-tower"></span> Partida +</h2>
+                <h2><i class="bi bi-building"></i> Partida +</h2>
                 {% for part in next_parts %}
                 <div class="col-md-4 text-center">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">{{part.jardunaldia}}. partida {% if user.is_authenticated %}{% if user.is_superuser or user == item.erabiltzailea %}<a class="btn btn-default" href="/kudeatu/txapelketak/partida/{{part.id}}">Edit</a>{% endif %}{% endif %}</h3>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="h5 mb-0">{{part.jardunaldia}}. partida {% if user.is_authenticated %}{% if user.is_superuser or user == item.erabiltzailea %}<a class="btn btn-outline-secondary" href="/kudeatu/txapelketak/partida/{{part.id}}">Edit</a>{% endif %}{% endif %}</h3>
                         </div>
-                        <div class="panel-body">
+                        <div class="card-body">
                             {% for partaide in part.get_partaideak %}
-                            <p>{% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="{% if partaide.is_group %}img-thumbnail{% else %}img-circle{% endif %}"/> {% endif %}{% if partaide.get_absolute_url %}<a href="{{partaide.get_absolute_url}}">{{partaide.get_izena}}</a>{% else %}{{partaide.get_izena}}{% endif %}</p>
+                            <p>{% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="{% if partaide.is_group %}img-thumbnail{% else %}rounded-circle{% endif %}"/> {% endif %}{% if partaide.get_absolute_url %}<a href="{{partaide.get_absolute_url}}">{{partaide.get_izena}}</a>{% else %}{{partaide.get_izena}}{% endif %}</p>
                             {%if not forloop.last %}
                             <p><img src="{{STATIC_URL}}img/versus.png"/></p>
                             {% endif %}
@@ -84,25 +84,25 @@
 
         <div class="col-sm-4">
             <a href="{{partaidea.txapelketa.get_absolute_url}}">
-                <img src="{{partaidea.txapelketa.irudia.get_gp_thumbnail_url}}" class="img-responsive"/>
+                <img src="{{partaidea.txapelketa.irudia.get_gp_thumbnail_url}}" class="img-fluid"/>
             </a>
-            <div class="well">
+            <div class="p-3 mb-3 bg-light border rounded">
               {% if partaidea.kapitaina %}
-                <h2><span class="glyphicon glyphicon-star"></span> Kapitaina</h2>
+                <h2><i class="bi bi-star"></i> Kapitaina</h2>
                 <div class="col-sm-12">
                     <div class="player col-sm-2">
-                        <a href="{% url 'gamer_profile' partaidea.kapitaina %}"><img src="{{partaidea.kapitaina.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{partaidea.kapitaina.getFullName}}"/><span class="badge userpic">{{partaidea.kapitaina.getFullName}}</span></a>
+                        <a href="{% url 'gamer_profile' partaidea.kapitaina %}"><img src="{{partaidea.kapitaina.get_photo.get_news_thumbnail_url}}" class="rounded-circle" title="{{partaidea.kapitaina.getFullName}}"/><span class="badge userpic">{{partaidea.kapitaina.getFullName}}</span></a>
                     </div>
                 </div>
                 {% endif %}
-                <h2><span class="glyphicon glyphicon-align-justify"></span> Sailkapen puntuak</h2>
+                <h2><i class="bi bi-justify"></i> Sailkapen puntuak</h2>
                 <div class="row text-center">
                     <div class="col-sm-4 text-success"><h3><strong>{{partaidea.win}}</strong><br>Irabazi</h3></div>
                     <div class="col-sm-4 text-danger"><h3><strong>{{partaidea.lose}}</strong><br>Galdu</h3></div>
                     <div class="col-sm-4"><h3><strong>{{partaidea.points}}</strong><br>Puntu</h3></div>
                 </div>
                 {% if user.is_authenticated and user.is_superuser or user in partaidea.txapelketa.adminak.all %}
-                <a class="btn btn-default pull-right" href="/kudeatu/txapelketak/partaidea/{{partaidea.id}}">Editatu</a>
+                <a class="btn btn-outline-secondary float-end" href="/kudeatu/txapelketak/partaidea/{{partaidea.id}}">Editatu</a>
                 {% endif %}
             </div>
         </div>

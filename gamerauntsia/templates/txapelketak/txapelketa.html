@@ -22,20 +22,20 @@
 <div class="row">
 
         <div class="col-sm-12">
-            <h1 class="page-header">{{item.izena}} <small>BETA</small></h1>
+            <h1 class="border-bottom pb-2 mb-4">{{item.izena}} <small>BETA</small></h1>
         </div>
 
         <div class="col-sm-8">
             {% if item.irudia %}
             <a class="fancybox" href="{{item.irudia.image.url}}">
-                <img src="{{item.irudia.get_blog_url}}" class="img-responsive"/>
+                <img src="{{item.irudia.get_blog_url}}" class="img-fluid"/>
             </a>
             <hr>
             {% endif %}
 
             <div class="col-sm-12">
                 {% if item.live_bideoa or item.twitch%}
-                <h2><span class="glyphicon glyphicon-play-circle"></span> Zuzenean</h2>
+                <h2><i class="bi bi-play-circle"></i> Zuzenean</h2>
                 <div class="flex-video widescreen">
                     {% if item.live_bideoa %}
                     <iframe width="700" height="394" src="//www.youtube.com/embed/{{item.live_bideoa}}" frameborder="0" allowfullscreen></iframe>
@@ -50,7 +50,7 @@
                 {% for partida in video_parts %}
                 <div class="col-sm-4 player">
                     <a href="{{partida.get_absolute_url}}">
-                        <img class="img-responsive" src="http://img.youtube.com/vi/{{partida.bideoa}}/maxresdefault.jpg"/>
+                        <img class="img-fluid" src="http://img.youtube.com/vi/{{partida.bideoa}}/maxresdefault.jpg"/>
                         <img src="{{STATIC_URL}}img/play_white.png" class="play">
                     </a>
                 </div>
@@ -61,56 +61,56 @@
             <div class="tabpanel">
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="active" role="presentation">
-                        <a aria-controls="desk" data-toggle="tab" role="tab" href="#desk"><h4 class="panel-title"><i class="glyphicon glyphicon-info-sign"></i></i> Deskribapena</h4></a>
+                        <a aria-controls="desk" data-bs-toggle="tab" role="tab" href="#desk"><h4 class="h5 mb-0"><i class="bi bi-info-circle"></i></i> Deskribapena</h4></a>
                     </li>
                     {% if not item.insk_date|irekita and item.status == '2' or item.status == '3' %}
                     <li role="presentation">
-                        <a aria-controls="egu" data-toggle="tab" role="tab" href="#egu">
-                            <h4 class="panel-title">
-                                <i class="glyphicon glyphicon-calendar"></i> Egutegia
+                        <a aria-controls="egu" data-bs-toggle="tab" role="tab" href="#egu">
+                            <h4 class="h5 mb-0">
+                                <i class="bi bi-calendar"></i> Egutegia
                             </h4>
                         </a>
                     </li>
                     <li role="presentation">
-                        <a aria-controls="sailk" data-toggle="tab" role="tab" href="#sailk">
-                            <h4 class="panel-title">
-                                <i class="glyphicon glyphicon-align-justify"></i> {% if item.mota == '0' %}Kanporaketa{% else %}Sailkapena{% endif %}
+                        <a aria-controls="sailk" data-bs-toggle="tab" role="tab" href="#sailk">
+                            <h4 class="h5 mb-0">
+                                <i class="bi bi-justify"></i> {% if item.mota == '0' %}Kanporaketa{% else %}Sailkapena{% endif %}
                             </h4>
                         </a>
                     </li>
                     {% endif %}
                     {% if next_parts %}
                     <li role="presentation">
-                        <a aria-controls="part" data-toggle="tab" role="tab" href="#part">
-                            <h4 class="panel-title">
-                                <i class="glyphicon glyphicon-tower"></i> Partida +
+                        <a aria-controls="part" data-bs-toggle="tab" role="tab" href="#part">
+                            <h4 class="h5 mb-0">
+                                <i class="bi bi-building"></i> Partida +
                             </h4>
                         </a>
                     </li>
                     {% endif %}
                     {% if item.external_signup %}
                     <li role="presentation">
-                        <a aria-controls="partaide-anonimoak" data-toggle="tab" role="tab" href="#partaide-anonimoak">
-                            <h4 class="panel-title">
-                                <i class="glyphicon glyphicon-user"></i> Partaideak {% if item.partaideak_count %}({{item.partaideak_count}}){% endif %}
+                        <a aria-controls="partaide-anonimoak" data-bs-toggle="tab" role="tab" href="#partaide-anonimoak">
+                            <h4 class="h5 mb-0">
+                                <i class="bi bi-person"></i> Partaideak {% if item.partaideak_count %}({{item.partaideak_count}}){% endif %}
                             </h4>
                         </a>
                     </li>
                     {% elif item.modalitatea == '1' %} <!-- 1 = taldeka -->
                     <li class="dropdown" role="presentation">
-                        <a aria-controls="myTabDrop1-contents" data-toggle="dropdown" class="dropdown-toggle" id="myTabDrop1" href="#" aria-expanded="false"><i class="glyphicon glyphicon-user"></i> Partaideak {% if item.jokalariak_count %}({{item.jokalariak_count}}){% endif %} <span class="caret"></span></a>
+                        <a aria-controls="myTabDrop1-contents" data-bs-toggle="dropdown" class="dropdown-toggle" id="myTabDrop1" href="#" aria-expanded="false"><i class="bi bi-person"></i> Partaideak {% if item.jokalariak_count %}({{item.jokalariak_count}}){% endif %} <span class="caret"></span></a>
                         <ul id="myTabDrop1-contents" aria-labelledby="myTabDrop1" role="menu" class="dropdown-menu">
-                            <li class=""><a aria-controls="taldeak" data-toggle="tab" id="taldeak-tab" role="tab" tabindex="-1" href="#taldeak" aria-expanded="false"><i class="glyphicon glyphicon-user"></i><i class="glyphicon glyphicon-user"></i> Taldeak</a></li>
+                            <li class=""><a aria-controls="taldeak" data-bs-toggle="tab" id="taldeak-tab" role="tab" tabindex="-1" href="#taldeak" aria-expanded="false"><i class="bi bi-person"></i><i class="bi bi-person"></i> Taldeak</a></li>
                             {% if single_gamers %}
-                            <li class=""><a aria-controls="talderik-gabeko-jokalariak" data-toggle="tab" id="talderik-gabeko-jokalariak-tab" role="tab" tabindex="-1" href="#talderik-gabeko-jokalariak" aria-expanded="true"><i class="glyphicon glyphicon-user"></i> Talderik gabe</a></li>
+                            <li class=""><a aria-controls="talderik-gabeko-jokalariak" data-bs-toggle="tab" id="talderik-gabeko-jokalariak-tab" role="tab" tabindex="-1" href="#talderik-gabeko-jokalariak" aria-expanded="true"><i class="bi bi-person"></i> Talderik gabe</a></li>
                             {% endif %}
                         </ul>
                     </li>
                     {% else %} <!-- 0 = bakarka -->
                     <li role="presentation">
-                        <a aria-controls="banakako-partaideak" data-toggle="tab" role="tab" href="#banakako-partaideak">
-                            <h4 class="panel-title">
-                                <i class="glyphicon glyphicon-user"></i> Partaideak {% if item.jokalariak_count %}({{item.jokalariak_count}}){% endif %}
+                        <a aria-controls="banakako-partaideak" data-bs-toggle="tab" role="tab" href="#banakako-partaideak">
+                            <h4 class="h5 mb-0">
+                                <i class="bi bi-person"></i> Partaideak {% if item.jokalariak_count %}({{item.jokalariak_count}}){% endif %}
                             </h4>
                         </a>
                     </li>
@@ -132,7 +132,7 @@
                       {% endif %}
                         {% if item.mota == '1' or item.mota == '2'  %}
                         <div class="table-responsive">
-                            <table class="table table-condensed table-hover">
+                            <table class="table table-sm table-hover">
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -165,7 +165,7 @@
                     </div>
                     <div id="egu" class="tab-pane fade" role="tabpanel">
                         <div class="table-responsive">
-                            <table class="table table-condensed table-hover">
+                            <table class="table table-sm table-hover">
                                 <thead>
                                     <tr>
                                         <th>Jardunaldia</th>
@@ -182,7 +182,7 @@
                                         <td>{{partida.render_izena|safe}}</td>
                                         <td>{% if partida.emaitza %}{{partida.emaitza}}{% else %}---{% endif %}</td>
                                         <td>{{partida.date|date:"Y/m/d H:i"}}</td>
-                                        <td>{% if partida.has_video %}<a href="{{partida.get_absolute_url}}"><i class="glyphicon glyphicon-play-circle"></i></a>{% endif %}</td>
+                                        <td>{% if partida.has_video %}<a href="{{partida.get_absolute_url}}"><i class="bi bi-play-circle"></i></a>{% endif %}</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
@@ -193,13 +193,13 @@
                         {% if next_parts %}
                         {% for part in next_parts %}
                         <div class="col-md-4 text-center">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">{{part.jardunaldia}}. partida {% if user.is_authenticated %}{% if user.is_superuser or user == item.erabiltzailea %}<a class="btn btn-default" href="/kudeatu/txapelketak/partida/{{part.id}}">Edit</a>{% endif %}{% endif %}</h3>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="h5 mb-0">{{part.jardunaldia}}. partida {% if user.is_authenticated %}{% if user.is_superuser or user == item.erabiltzailea %}<a class="btn btn-outline-secondary" href="/kudeatu/txapelketak/partida/{{part.id}}">Edit</a>{% endif %}{% endif %}</h3>
                                 </div>
-                                <div class="panel-body">
+                                <div class="card-body">
                                     {% for partaide in part.get_partaideak %}
-                                    <p>{% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="{% if partaide.is_group %}img-thumbnail{% else %}img-circle{% endif %}"/> {% endif %}{% if partaide.get_absolute_url %}<a href="{{partaide.get_absolute_url}}">{{partaide.get_izena}}</a>{% else %}{{partaide.get_izena}}{% endif %}</p>
+                                    <p>{% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="{% if partaide.is_group %}img-thumbnail{% else %}rounded-circle{% endif %}"/> {% endif %}{% if partaide.get_absolute_url %}<a href="{{partaide.get_absolute_url}}">{{partaide.get_izena}}</a>{% else %}{{partaide.get_izena}}{% endif %}</p>
                                     {%if not forloop.last %}
                                     <p><img src="{{STATIC_URL}}img/versus.png"/></p>
                                     {% endif %}
@@ -219,7 +219,7 @@
                             <br>
                             {% for partaide in list_sailkapena %}
                               {% if forloop.first %} <div class="col-sm-6"><ul class="list-unstyled">{% endif %}
-                              <li><a href="{{partaide.get_absolute_url}}"><img src="{{partaide.get_photo.getprofilesmall_url}}" class="img-circle"/> {{partaide.get_izena|safe}}</a></li>
+                              <li><a href="{{partaide.get_absolute_url}}"><img src="{{partaide.get_photo.getprofilesmall_url}}" class="rounded-circle"/> {{partaide.get_izena|safe}}</a></li>
                               {% if forloop.counter|divisibleby:4 %}</ul></div><div class="col-sm-6"><ul class="list-unstyled">{% endif %}
                               {% if forloop.last %}</ul></div>{% endif %}
                             {% endfor %}
@@ -233,7 +233,7 @@
                                     {% if forloop.first %}
                                     <div class="col-sm-6"><ul class="list-unstyled">
                                     {%endif%}
-                                        <li><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.getFullName|truncatechars:14}}</a></li>
+                                        <li><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="rounded-circle"/> {{user.getFullName|truncatechars:14}}</a></li>
                                     {% if forloop.counter|divisibleby:4 %}</ul></div><div class="col-sm-6"><ul class="list-unstyled">{% endif %}
                                     {% if forloop.last %}</ul></div>{% endif %}
                                 {% endfor %}
@@ -247,20 +247,20 @@
                         <p>
                             {% for partaide in list_sailkapena %}
                                 {% if partaide.is_group %}
-                                <div class="panel panel-success">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">
+                                <div class="card border-success">
+                                    <div class="card-header">
+                                        <h3 class="h5 mb-0">
                                         <a href="{{partaide.get_absolute_url}}">
                                         {% if partaide.get_photo %}<img src="{{partaide.get_photo.get_profilesmall_url}}" class="img-thumbnail  "/> {% endif %}
                                         {{partaide.get_izena}}
                                         </a>
                                         </h3>
                                     </div>
-                                    <div class="panel-body">
+                                    <div class="card-body">
                                         <div class="col-sm-12">
                                             {% for j in partaide.jokalariak.all %}
                                             <div class="player col-sm-2">
-                                                <a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_news_thumbnail_url}}" class="img-circle" title="{{j.getFullName}}"/><span class="badge userpic">{{j.getFullName}}</span></a>
+                                                <a href="{% url 'gamer_profile' j.username %}"><img src="{{j.get_photo.get_news_thumbnail_url}}" class="rounded-circle" title="{{j.getFullName}}"/><span class="badge userpic">{{j.getFullName}}</span></a>
                                             </div>
                                             {% endfor %}
                                         </div>
@@ -281,7 +281,7 @@
                                 {% if forloop.first %}
                                 <div class="col-sm-6"><ul class="list-unstyled">
                                 {%endif%}
-                                    <li><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="img-circle"/> {{user.getFullName|truncatechars:14}}</a></li>
+                                    <li><a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profilesmall_url}}" class="rounded-circle"/> {{user.getFullName|truncatechars:14}}</a></li>
                                 {% if forloop.counter|divisibleby:4 %}</ul></div><div class="col-sm-6"><ul class="list-unstyled">{% endif %}
                                 {% if forloop.last %}</ul></div>{% endif %}
                             {% endfor %}
@@ -300,7 +300,7 @@
         <div class="col-sm-4">
             {% if item.insk_date|irekita %}
                 <div class="alert alert-success" role="alert">
-                    <span class="glyphicon glyphicon-plus-sign"></span> <strong>EGOERA:</strong><br/>Izen emate epea zabalik ({{item.insk_date|date:"Y/m/d H:i"}})
+                    <i class="bi bi-plus-circle"></i> <strong>EGOERA:</strong><br/>Izen emate epea zabalik ({{item.insk_date|date:"Y/m/d H:i"}})
                     <div class="progress">
                         <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%">
                             <span class="sr-only">Izen ematea (%25)</span>
@@ -310,7 +310,7 @@
             {% endif %}
             {% if item.status == '0' and not item.insk_date|irekita or item.status == '1' %}
                 <div class="alert alert-warning" role="alert">
-                    <span class="glyphicon glyphicon-question-sign"></span> <strong>EGOERA:</strong><br/>Partidak sortzen
+                    <i class="bi bi-question-circle"></i> <strong>EGOERA:</strong><br/>Partidak sortzen
                     <div class="progress">
                         <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
                             <span class="sr-only">Partidak sortzen (%50)</span>
@@ -320,7 +320,7 @@
             {% endif %}
             {% if item.status == '2' %}
                 <div class="alert alert-info" role="alert">
-                    <span class="glyphicon glyphicon-ok-sign"></span> <strong>EGOERA:</strong><br/>Txapelketa jokoan
+                    <i class="bi bi-check-circle"></i> <strong>EGOERA:</strong><br/>Txapelketa jokoan
                     <div class="progress">
                         <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
                             <span class="sr-only">Txapelketa jokoan (%75)</span>
@@ -330,7 +330,7 @@
             {% endif %}
             {% if item.status == '3' %}
                 <div class="alert alert-danger" role="alert">
-                    <span class="glyphicon glyphicon-remove-sign"></span><strong> EGOERA:</strong><br/>Txapelketa amaituta
+                    <i class="bi bi-x-circle"></i><strong> EGOERA:</strong><br/>Txapelketa amaituta
                     <div class="progress">
                         <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
                             <span class="sr-only">Amaituta (%100)</span>
@@ -339,13 +339,13 @@
                 </div>
             {% endif %}
             {% if item.insk_date|irekita and user not in item.jokalariak.all and not item.manual_sign %}
-            <div class="well">
+            <div class="p-3 mb-3 bg-light border rounded">
                 <h3>Izena eman</h3>
                 {% if item.external_signup %}
                 <p>Izen ematea ondorengo <strong>kanpoko webgunean</strong> egin behar da. Irakurri arauak, eta ziurtatu parte hartzeko baldintzak betetzen dituzula izena eman aurretik.</p>
-                <a href="{{item.external_signup_url}}" target="_blank" class="btn btn-default">Parte hartu!</a>
+                <a href="{{item.external_signup_url}}" target="_blank" class="btn btn-outline-secondary">Parte hartu!</a>
                 {% elif user.is_authenticated %}
-                <a href="{% url 'txapelketa_insk' item.slug %}" class="btn btn-default">Parte hartu!</a>
+                <a href="{% url 'txapelketa_insk' item.slug %}" class="btn btn-outline-secondary">Parte hartu!</a>
                 {% else %}
                 <p>Txapelketetan parte hartu ahal izateko lehendabizi Game Erauntsian izena eman behar duzu.</p>
                 <a class="btn btn-primary" href="{% url 'auth_login' %}?next={{item.get_absolute_url}}" title="Log in">{% trans 'Log in' %}</a>
@@ -353,18 +353,18 @@
             </div>
             {% endif %}
             {% if item.twitch %}
-            <div class="well">
+            <div class="p-3 mb-3 bg-light border rounded">
                 <h3>Zuzeneko txata</h3>
                 <iframe src="http://www.twitch.tv/gamerauntsia/chat?popout=" frameborder="0" height="500" width="100%"></iframe>
             </div>
             {% endif %}
-            <div class="well">
+            <div class="p-3 mb-3 bg-light border rounded">
                 <h3>Modalitatea</h3>
-                <p><i class="glyphicon glyphicon-align-justify"></i> <strong>{{item.get_mota_display}}</strong></p>
-                <p><i class="glyphicon glyphicon-dashboard"></i> {{item.get_modalitatea_display}}</p>
+                <p><i class="bi bi-justify"></i> <strong>{{item.get_mota_display}}</strong></p>
+                <p><i class="bi bi-speedometer2"></i> {{item.get_modalitatea_display}}</p>
             </div>
 
-                <div class="well">
+                <div class="p-3 mb-3 bg-light border rounded">
                     <h3>Saria</h3>
                     {% if item.saria %}
                     <p>{{item.saria|safe}}</p>
@@ -373,32 +373,32 @@
                     {% endif %}
                 </div>
 
-            <div class="well">
+            <div class="p-3 mb-3 bg-light border rounded">
                 <h3>Arauak</h3>
                 {{item.arauak|safe}}
             </div>
-            <div class="well">
+            <div class="p-3 mb-3 bg-light border rounded">
                 <h3>Antolatzaileak</h3>
                 {% for admin in item.adminak.all %}
-                <p><a href="{% url 'gamer_profile' admin.username %}"><img src="{{admin.get_photo.get_profilesmall_url}}" class="img-circle"/> {{admin.getFullName}}</a></p>
+                <p><a href="{% url 'gamer_profile' admin.username %}"><img src="{{admin.get_photo.get_profilesmall_url}}" class="rounded-circle"/> {{admin.getFullName}}</a></p>
                 {% endfor %}
             </div>
             {% if user.is_authenticated %}
             {% if user.is_superuser or user in item.adminak.all %}
-            <div class="well">
+            <div class="p-3 mb-3 bg-light border rounded">
                 <h3>Editatu txapelketa</h3>
                 <div class="btn-group" role="group" aria-label="...">
-                    <a class="btn btn-default" href="/kudeatu/txapelketak/txapelketa/{{item.id}}">Txapelketa</a>
-                    <a class="btn btn-default" href="/kudeatu/txapelketak/partida/?txapelketa__id__exact={{item.id}}">Partidak</a>
-                    <a class="btn btn-default" href="/kudeatu/txapelketak/partaidea/?txapelketa__id__exact={{item.id}}">Partaideak</a>
+                    <a class="btn btn-outline-secondary" href="/kudeatu/txapelketak/txapelketa/{{item.id}}">Txapelketa</a>
+                    <a class="btn btn-outline-secondary" href="/kudeatu/txapelketak/partida/?txapelketa__id__exact={{item.id}}">Partidak</a>
+                    <a class="btn btn-outline-secondary" href="/kudeatu/txapelketak/partaidea/?txapelketa__id__exact={{item.id}}">Partaideak</a>
                 </div>
                 {% if item.modalitatea == '0' and item.partaideak_count == 0 %}
-                    <a href="{% url 'sortu_partaideak' item.slug %}" class="btn btn-warning pull-right">Sortu partaideak</a>
+                    <a href="{% url 'sortu_partaideak' item.slug %}" class="btn btn-warning float-end">Sortu partaideak</a>
                 {% endif %}
             </div>
             {% endif %}
             {% endif %}
-            <div class="well">
+            <div class="p-3 mb-3 bg-light border rounded">
                 <h3>Partekatu</h3>
                 {% include 'share_buttons.html' with item=item %}
             </div>

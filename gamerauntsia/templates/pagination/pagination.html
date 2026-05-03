@@ -6,11 +6,11 @@
         <ul class="pagination">
 
         {% if page_obj.has_previous %}
-            <li><a href="?page=1{{ getvars }}"><i class="glyphicon glyphicon-step-backward"></i></a></li>
-            <li><a href="?page={{ page_obj.previous_page_number }}{{ getvars }}"><i class="glyphicon glyphicon-chevron-left"></i> Aurrekoa</a></li>
+            <li><a href="?page=1{{ getvars }}"><i class="bi bi-skip-backward-fill"></i></a></li>
+            <li><a href="?page={{ page_obj.previous_page_number }}{{ getvars }}"><i class="bi bi-chevron-left"></i> Aurrekoa</a></li>
         {% else %}
-        <li class="disabled"><a href="#"><i class="glyphicon glyphicon-step-backward"></i></a></li>
-            <li class="disabled"><a href="#"><i class="glyphicon glyphicon-chevron-left"></i> Aurrekoa</a></li>
+        <li class="disabled"><a href="#"><i class="bi bi-skip-backward-fill"></i></a></li>
+            <li class="disabled"><a href="#"><i class="bi bi-chevron-left"></i> Aurrekoa</a></li>
         {% endif %}
         {% for page in pages %}
             {% if page %}
@@ -24,11 +24,11 @@
             {% endif %}
         {% endfor %}
         {% if page_obj.has_next %}
-            <li><a class="next" href="?page={{ page_obj.next_page_number }}{{ getvars }}">Hurrengoa <i class="glyphicon glyphicon-chevron-right"></i></a></li>
-            <li><a class="next" href="?page={{ page_obj.paginator.num_pages }}{{ getvars }}"><i class="glyphicon glyphicon-step-forward"></i></a></li>
+            <li><a class="next" href="?page={{ page_obj.next_page_number }}{{ getvars }}">Hurrengoa <i class="bi bi-chevron-right"></i></a></li>
+            <li><a class="next" href="?page={{ page_obj.paginator.num_pages }}{{ getvars }}"><i class="bi bi-skip-forward-fill"></i></a></li>
         {% else %}
-            <li class="disabled" ><a href="#">Hurrengoa <i class="glyphicon glyphicon-chevron-right"></i></a></li>
-            <li class="disabled" ><a href="#"><i class="glyphicon glyphicon-step-forward"></i></a></li>
+            <li class="disabled" ><a href="#">Hurrengoa <i class="bi bi-chevron-right"></i></a></li>
+            <li class="disabled" ><a href="#"><i class="bi bi-skip-forward-fill"></i></a></li>
         {% endif %}
         </ul>
     </div>

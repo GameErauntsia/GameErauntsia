@@ -1,5 +1,5 @@
 <div class="table-responsive">
-  <table class="table table-condensed table-hover">
+  <table class="table table-sm table-hover">
     <thead>
       <tr>
         <th>#</th>
@@ -23,13 +23,13 @@
           <a href="{% url 'gamer_profile' proiektua.arduraduna.username %}">
             {% if proiektua.arduraduna.get_photo %}
             <img src="{{proiektua.arduraduna.get_photo.get_profilesmall_url}}"
-                 class="img-circle"/>
+                 class="rounded-circle"/>
             {% endif %}
             {{proiektua.arduraduna.getFullName}}
           </a>
         </td>
         <td>
-          <a href="{% url 'itzulpen_proiektua' proiektua.slug %}"><i class="glyphicon glyphicon-book"></i> Ikusi</a>
+          <a href="{% url 'itzulpen_proiektua' proiektua.slug %}"><i class="bi bi-book"></i> Ikusi</a>
         </td>
       </tr>
       {% endfor %}

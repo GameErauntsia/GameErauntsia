@@ -18,13 +18,13 @@
   </div>
   <div class="col-sm-4">
     <h3>Podcast saioa</h3>
-    <div class="well">
-      <p><span class="glyphicon glyphicon-play"></span> <strong><a href="{% url 'podcast_show' episode.podcast_season.podcast_show.slug %}">{{episode.podcast_season.podcast_show}}</a></strong></p>
-      <p><span class="glyphicon glyphicon-tag"></span> <strong>{{episode.podcast_season.name}} - {{episode.number}}.saioa</strong></p>
-      <p><span class="glyphicon glyphicon-calendar"></span> <strong>{{episode.pub_date|date:"Y-m-d"}}</strong></p>
+    <div class="p-3 mb-3 bg-light border rounded">
+      <p><i class="bi bi-play"></i> <strong><a href="{% url 'podcast_show' episode.podcast_season.podcast_show.slug %}">{{episode.podcast_season.podcast_show}}</a></strong></p>
+      <p><i class="bi bi-tag"></i> <strong>{{episode.podcast_season.name}} - {{episode.number}}.saioa</strong></p>
+      <p><i class="bi bi-calendar"></i> <strong>{{episode.pub_date|date:"Y-m-d"}}</strong></p>
     </div>
     <h3>Plataformetan</h3>
-    <div class="well">
+    <div class="p-3 mb-3 bg-light border rounded">
       {% if videos %}
       <h4>Ikusi:</h4>
       <ul class="list-group">

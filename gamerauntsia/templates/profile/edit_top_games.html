@@ -10,7 +10,7 @@
     <div class="col-sm-12">
         <div class="col-sm-8">
             <div class="col-sm-12">
-                <form class="pull-right" action="{{request.path}}" method="POST">
+                <form class="float-end" action="{{request.path}}" method="POST">
                     {% csrf_token %}
                     <div class="ui-widget">
                         <input placeholder="Bilatu jokoa" id="game-picker"></input>
@@ -25,7 +25,7 @@
                 {% if forloop.first %}<div class="row">{% endif %}
                 <div class="col-sm-3 text-center">
                     <a href="{% url 'game' joko.slug %}">
-                        <img class="img-responsive center-block" src="{{joko.get_photo.get_newsprofile_url}}" alt="" />
+                        <img class="img-fluid d-block mx-auto" src="{{joko.get_photo.get_newsprofile_url}}" alt="" />
                         <h3>{{joko.izena}} {{joko.bertsioa}}</h3>
                     </a>
                 </div>
@@ -36,20 +36,20 @@
             </div>
         </div>
         <div class="col-sm-4">
-            <div class="well">
+            <div class="p-3 mb-3 bg-light border rounded">
                 <h3>Lagun posibleak</h3>
                 <hr/>
                 <div class="row">
                     <div class="col-sm-12">
                         {% for lagun in lagunak %}
-                        <p><a href="{% url 'gamer_profile' lagun.username %}"><img src="{{lagun.get_photo.get_profilesmall_url}}" class="img-circle"/> {{lagun.getFullName}}</a></p>
+                        <p><a href="{% url 'gamer_profile' lagun.username %}"><img src="{{lagun.get_photo.get_profilesmall_url}}" class="rounded-circle"/> {{lagun.getFullName}}</a></p>
                         {% empty %}
                         <p>Sentitzen dugu... ez dugu zure gustu berdinak dituen lagunik aurkitu. Jokoren bat aukeratu duzu?</p>
                         {% endfor %}
                     </div>
                 </div>
             </div>
-            <div class="well">
+            <div class="p-3 mb-3 bg-light border rounded">
                 <h3>Jokuen Top-a:</h3>
                 {% for k in topjokoak %}
     	            {% if k.top_jokoak__count %}

@@ -42,7 +42,7 @@
                             <td>#{{bazkidea.id}}</td>
                             <td>{{bazkidea.date_joined}}</td>
                             <td>{{bazkidea.expire_date}}</td>
-                            <td>{% if bazkidea.paid %}<i class="text-success glyphicon glyphicon-ok"></i>{% else %}<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                            <td>{% if bazkidea.paid %}<i class="text-success bi bi-check"></i>{% else %}<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                             <input type="hidden" name="cmd" value="_s-xclick">
                             <input type="hidden" name="hosted_button_id" value="PNA5BKQ7QK7RG">
                             <input type="image" src="{{STATIC_URL}}/img/paypal-ordaindu.png" border="0" name="submit" alt="PayPal. La forma rápida y segura de pagar en Internet.">
@@ -54,7 +54,7 @@
                 </table>
                 {% if not bazkidea.paid %}
                 <div class="alert alert-warning" role="alert">
-                    <p><strong><span class="glyphicon glyphicon-warning-sign"></span> ADI</strong> Ordainketa gauzatu ostean denboratxo bat igaroko da bazkidetza gauzatu arte. Izan pazientzia pixka bat! Alta prozesua amaitzen denean parte hartu ahal izango duzu gure eskaitzetan.</p>
+                    <p><strong><i class="bi bi-exclamation-triangle"></i> ADI</strong> Ordainketa gauzatu ostean denboratxo bat igaroko da bazkidetza gauzatu arte. Izan pazientzia pixka bat! Alta prozesua amaitzen denean parte hartu ahal izango duzu gure eskaitzetan.</p>
                 </div>
                 {% endif %}
              </div>
@@ -93,7 +93,7 @@
                         <p>
                             {% if bazkidea.paid and eskaintza.mota == 2 and not bazkidea.has_partaidetza_eskaera %}<a href="{% url 'create_eskaera' eskaintza.id %}" class="btn btn-primary">Parte hartu!</a>{% endif %}
                             {% if bazkidea.paid and eskaintza.mota == 1 %}<a href="{% url 'create_eskaera' eskaintza.id %}" class="btn btn-primary">Eskatu!</a>{% endif %}
-                            <a href="{% url 'eskaintza' eskaintza.slug %}" class="btn btn-default">Info gehiago</a>
+                            <a href="{% url 'eskaintza' eskaintza.slug %}" class="btn btn-outline-secondary">Info gehiago</a>
                         </p>
                     </div>
                 </div>
