@@ -1,54 +1,77 @@
 {% extends 'base.html' %}
 
 {% block title %}{{streaming.title}}Podcast - {% endblock %}
+{% block extracss %}
+<link rel="stylesheet" href="{{STATIC_URL}}css/gamerauntsia/podcast.css">
+{% endblock %}
 
 {% block content %}
-<div class="row">
-  <div class="col-sm-8">
-    <div class="flex-video widescreen">
-      <iframe src="{{videos.0.get_embed_url}}"
-              width="700"
-              height="394"
-              frameboder="0"
-              allowfullscreen>
-      </iframe>
-    </div>
-    <h1>{{episode.name}}</h1>
-    <p>{{episode.description|safe}}</p>
+<div class="container py-3 podcast-page">
+  <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-4">
+    <h1 class="h2 mb-0">{{episode.name}}</h1>
+    <a class="btn btn-outline-secondary btn-sm" href="{% url 'podcast_show' episode.podcast_season.podcast_show.slug %}">Show-ra itzuli</a>
   </div>
-  <div class="col-sm-4">
-    <h3>Podcast saioa</h3>
-    <div class="p-3 mb-3 bg-light border rounded">
-      <p><i class="bi bi-play"></i> <strong><a href="{% url 'podcast_show' episode.podcast_season.podcast_show.slug %}">{{episode.podcast_season.podcast_show}}</a></strong></p>
-      <p><i class="bi bi-tag"></i> <strong>{{episode.podcast_season.name}} - {{episode.number}}.saioa</strong></p>
-      <p><i class="bi bi-calendar"></i> <strong>{{episode.pub_date|date:"Y-m-d"}}</strong></p>
-    </div>
-    <h3>Plataformetan</h3>
-    <div class="p-3 mb-3 bg-light border rounded">
+
+  <div class="row g-4">
+    <div class="col-12 col-lg-8">
       {% if videos %}
-      <h4>Ikusi:</h4>
-      <ul class="list-group">
-        {% for video in videos %}
-        <a class="list-group-item"
-           href="{{video.get_link_url}}"
-           target="_blank">
-          {{video.video_platform.name}}
-        </a>
-        {% endfor %}
-      </ul>
+      <div class="flex-video widescreen mb-3">
+        <iframe src="{{videos.0.get_embed_url}}"
+                width="700"
+                height="394"
+                frameborder="0"
+                allowfullscreen>
+        </iframe>
+      </div>
       {% endif %}
-      {% if audios %}
-      <h4>Entzun:</h4>
-      <ul class="list-group">
-        {% for audio in audios %}
-        <a class="list-group-item"
-           href="{{audio.get_link_url}}"
-           target="_blank">
-          {{audio.audio_platform.name}}
-        </a>
-        {% endfor %}
-      </ul>
-      {% endif %}
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <p class="mb-0">{{episode.description|safe}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-4">
+      <div class="card shadow-sm mb-3">
+        <div class="card-header"><strong>Podcast saioa</strong></div>
+        <div class="card-body">
+          <p><i class="bi bi-play"></i> <strong><a href="{% url 'podcast_show' episode.podcast_season.podcast_show.slug %}">{{episode.podcast_season.podcast_show}}</a></strong></p>
+          <p><i class="bi bi-tag"></i> <strong>{{episode.podcast_season.name}} - {{episode.number}}.saioa</strong></p>
+          <p class="mb-0"><i class="bi bi-calendar"></i> <strong>{{episode.pub_date|date:"Y-m-d"}}</strong></p>
+        </div>
+      </div>
+
+      <div class="card shadow-sm">
+        <div class="card-header"><strong>Plataformetan</strong></div>
+        <div class="card-body">
+          {% if videos %}
+          <h4 class="h6">Ikusi:</h4>
+          <div class="list-group mb-3">
+            {% for video in videos %}
+            <a class="list-group-item list-group-item-action"
+               href="{{video.get_link_url}}"
+               target="_blank"
+               rel="noopener noreferrer">
+              {{video.video_platform.name}}
+            </a>
+            {% endfor %}
+          </div>
+          {% endif %}
+          {% if audios %}
+          <h4 class="h6">Entzun:</h4>
+          <div class="list-group">
+            {% for audio in audios %}
+            <a class="list-group-item list-group-item-action"
+               href="{{audio.get_link_url}}"
+               target="_blank"
+               rel="noopener noreferrer">
+              {{audio.audio_platform.name}}
+            </a>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+      </div>
     </div>
   </div>
 </div>

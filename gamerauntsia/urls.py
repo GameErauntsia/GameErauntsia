@@ -10,7 +10,11 @@ from django.contrib.flatpages import views
 from django.contrib.sitemaps import views as sitemapsviews
 from .sitemaps import sitemaps
 
-from gamerauntsia.base.feed import LatestEntriesFeed, LatestNewsFeed
+from gamerauntsia.base.feed import (
+    LatestEntriesFeed,
+    LatestNewsFeed,
+    LatestPodcastEpisodesFeed,
+)
 from gamerauntsia.berriak.views import BerriaViewSet
 from rest_framework.authtoken.views import obtain_auth_token
 
@@ -79,6 +83,7 @@ urlpatterns = [
     # RSS FEED
     re_path(r"^feed/gameplayak$", LatestEntriesFeed()),
     re_path(r"^feed/bloga$", LatestNewsFeed()),
+    re_path(r"^feed/podcastak$", LatestPodcastEpisodesFeed()),
     # COMMENTS
     re_path(r"^comments/", include("django_comments.urls")),
     # KUDEATU

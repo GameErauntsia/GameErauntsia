@@ -125,7 +125,7 @@ class PodcastEpisodeAudioPlatform(models.Model):
         if self.override_link_url:
             return self.override_link_url
         else:
-            return self.audio_platform.link_url_pattern.replace("{{id}}", self.video_id)
+            return self.audio_platform.link_url_pattern.replace("{{id}}", self.audio_id)
 
     class Meta:
         verbose_name = "Saioaren audioa"
