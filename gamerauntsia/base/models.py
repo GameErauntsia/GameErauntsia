@@ -121,7 +121,7 @@ def send_newuser_msg(sender, instance, **kwargs):
                 settings.HOST,
                 instance.id,
             )
-            tb.send_message(settings.ADMIN_CHAT_ID, message)
+            tb.send_message(settings.EDITOR_CHAT_ID, message)
         except:
             pass
 
