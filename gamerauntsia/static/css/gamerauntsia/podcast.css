@@ -64,3 +64,238 @@
   height: 190px;
   object-fit: cover;
 }
+
+.podcast-episode-shell {
+  background: #f4f5f7;
+  padding-top: 1.5rem;
+  padding-bottom: 4rem;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+@media (max-width: 767.98px) {
+  .podcast-episode-shell {
+    padding-top: 1rem;
+  }
+}
+
+.podcast-episode-container {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.podcast-hero-card,
+.podcast-side-card,
+.podcast-audio-card {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: none;
+}
+
+.podcast-hero-card .card-body {
+  padding: 2rem 2.25rem;
+}
+
+.podcast-side-card .card-body {
+  padding: 1.7rem 1.55rem 1.45rem;
+}
+
+.podcast-audio-card .card-body {
+  padding: 1.75rem 2.25rem;
+}
+
+.podcast-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.podcast-meta-text {
+  color: #5f6a75;
+  font-weight: 500;
+}
+
+.podcast-episode-title {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.12;
+  color: #1f242b;
+}
+
+.podcast-episode-description {
+  color: #454f5b;
+  font-size: 1.18rem;
+  line-height: 1.55;
+}
+
+.podcast-video-frame {
+  margin-top: 1.5rem;
+  border-radius: 0.85rem;
+  overflow: hidden;
+  background: #111;
+}
+
+.podcast-video-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.podcast-side-list li {
+  margin-bottom: 1.35rem;
+}
+
+.podcast-side-list li:last-child {
+  margin-bottom: 0;
+}
+
+.podcast-side-row {
+  display: grid;
+  grid-template-columns: 1rem 1fr;
+  column-gap: 0.95rem;
+  align-items: start;
+}
+
+.podcast-side-row i {
+  color: #2d3640;
+  margin-top: 0.25rem;
+  font-size: 0.95rem;
+}
+
+.podcast-side-label {
+  display: block;
+  color: #6c7784;
+  font-size: 0.95rem;
+  margin-bottom: 0.2rem;
+}
+
+.podcast-platform-list li {
+  margin-bottom: 1.15rem;
+}
+
+.podcast-platform-list li:last-child {
+  margin-bottom: 0;
+}
+
+.podcast-platform-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.9rem;
+  text-decoration: none;
+  color: #1f242b;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  font-size: 1.05rem;
+}
+
+.podcast-platform-list a:hover {
+  color: #000;
+}
+
+.podcast-platform-list span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.podcast-platform-list .bi-box-arrow-up-right {
+  color: #2c3238;
+}
+
+.podcast-side-card {
+  border: 0;
+  border-radius: 1.35rem;
+  background: #f1f3f5;
+}
+
+.podcast-side-title {
+  font-size: 1.6rem;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #1f242b;
+}
+
+.podcast-side-row strong {
+  font-size: 1.1rem;
+  line-height: 1.25;
+  color: #1f242b;
+}
+
+@media (min-width: 992px) {
+  .podcast-side-card .card-body {
+    padding: 2rem 1.75rem 1.65rem;
+  }
+}
+
+.podcast-audio-card audio {
+  height: 46px;
+}
+
+/* Subtle visual highlight for the audio card (minimalist) */
+.podcast-audio-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f4faf7 100%);
+  border: 1px solid rgba(24, 135, 84, 0.12);
+  box-shadow: 0 18px 45px rgba(31, 36, 43, 0.07);
+  position: relative;
+  overflow: hidden;
+}
+
+.podcast-audio-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #198754 0%, rgba(25,135,84,0.25) 100%);
+  opacity: 0.95;
+}
+
+.podcast-audio-card .card-body {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 991.98px) {
+  .podcast-episode-shell {
+    margin-top: -1.5rem;
+    padding: 1.25rem 0 3.25rem;
+  }
+
+  .podcast-episode-container {
+    padding-left: 0.95rem;
+    padding-right: 0.95rem;
+  }
+
+  .podcast-episode-title {
+    font-size: clamp(1.8rem, 7vw, 2.4rem);
+  }
+
+  .podcast-episode-description {
+    font-size: 1.05rem;
+  }
+
+  .podcast-hero-card .card-body,
+  .podcast-side-card .card-body,
+  .podcast-audio-card .card-body {
+    padding: 1.2rem 1.15rem;
+  }
+
+  .podcast-side-title {
+    font-size: 1.5rem;
+  }
+
+  .podcast-side-row strong,
+  .podcast-platform-list a,
+  .podcast-side-label {
+    font-size: 1rem;
+  }
+}

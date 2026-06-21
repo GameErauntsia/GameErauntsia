@@ -67,6 +67,8 @@ class PodcastEpisodeVideoPlatformAdminInline(admin.TabularInline):
 
 class PodcastEpisodeAudioPlatformAdminInline(admin.TabularInline):
     model = PodcastEpisodeAudioPlatform
+    verbose_name = "Plataforma audio kanpokoa"
+    verbose_name_plural = "Plataforma audio kanpokoak (Spotify, etab.)"
 
 
 class PodcastEpisodeAdmin(admin.ModelAdmin):
@@ -78,6 +80,8 @@ class PodcastEpisodeAdmin(admin.ModelAdmin):
         "name",
         "slug",
         "image",
+        "audio_file",
+        "audio_duration",
         "description",
         "is_public",
         "pub_date",
