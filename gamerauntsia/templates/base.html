@@ -21,75 +21,75 @@
     {% block morejs %}{% endblock %}
 </head>
 
-<body>
+<body id="top">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation">
+    <nav class="navbar navbar-expand-xl navbar-light bg-white border-bottom py-2" data-bs-theme="light" role="navigation">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand d-flex align-items-center me-4" href="/">
                 <img src="{{STATIC_URL}}img/logo.png" width="200" alt="">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="main-navbar">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown {% if request.path|contains:"/bloga/" %}active{% endif %}">
-                        <a class="nav-link dropdown-toggle" href="/bloga" title="Bloga" role="button" data-bs-toggle="dropdown" aria-expanded="false">Bloga</a>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-lg-center gap-lg-1">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark {% if request.path|contains:"/bloga/" %}fw-semibold{% endif %}" href="/bloga" title="Bloga" role="button" data-bs-toggle="dropdown" aria-expanded="false">Bloga</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/bloga/gaia/analisiak" title="Analisiak">Analisiak</a></li>
-                            <li><a class="dropdown-item" href="/bloga/gaia/artikuluak" title="Artikuluak">Artikuluak</a></li>
-                            <li><a class="dropdown-item" href="/bloga/gaia/berriak" title="Berriak">Berriak</a></li>
-                            <li><a class="dropdown-item" href="/bloga/gaia/ekitaldiak" title="Ekitaldiak">Ekitaldiak</a></li>
-                            <li><a class="dropdown-item" href="/bloga/gaia/elkarrizketak" title="Elkarrizketak">Elkarrizketak</a></li>
-                            <li><a class="dropdown-item" href="/bloga/gaia/komunitatea" title="Komunitatea">Komunitatea</a></li>
+                            <li><a class="dropdown-item text-dark" href="/bloga/gaia/analisiak" title="Analisiak">Analisiak</a></li>
+                            <li><a class="dropdown-item text-dark" href="/bloga/gaia/artikuluak" title="Artikuluak">Artikuluak</a></li>
+                            <li><a class="dropdown-item text-dark" href="/bloga/gaia/berriak" title="Berriak">Berriak</a></li>
+                            <li><a class="dropdown-item text-dark" href="/bloga/gaia/ekitaldiak" title="Ekitaldiak">Ekitaldiak</a></li>
+                            <li><a class="dropdown-item text-dark" href="/bloga/gaia/elkarrizketak" title="Elkarrizketak">Elkarrizketak</a></li>
+                            <li><a class="dropdown-item text-dark" href="/bloga/gaia/komunitatea" title="Komunitatea">Komunitatea</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="/bloga/gaia/euskal-jokoak" title="Euskal jokoak">Euskal jokoak</a></li>
+                            <li><a class="dropdown-item text-dark" href="/bloga/gaia/euskal-jokoak" title="Euskal jokoak">Euskal jokoak</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="/bloga" title="Denak">Denak</a></li>
+                            <li><a class="dropdown-item text-dark" href="/bloga" title="Denak">Denak</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown {% if request.path|contains:"/jokoak/" or request.path|contains:"/gameplayak/" or request.path|contains:"/txapelketak/" or request.path|contains:"/minecraft/" or request.path|contains:"/jokoak/" or request.path|contains:"/terminologia/" %}active{% endif %}">
-                        <a class="nav-link dropdown-toggle" href="{% url 'talde_motorra' %}" title="Jokoak" role="button" data-bs-toggle="dropdown" aria-expanded="false">Jokoak</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-dark {% if request.path|contains:"/jokoak/" or request.path|contains:"/gameplayak/" or request.path|contains:"/txapelketak/" or request.path|contains:"/minecraft/" or request.path|contains:"/jokoak/" or request.path|contains:"/terminologia/" %}fw-semibold{% endif %}" href="{% url 'talde_motorra' %}" title="Jokoak" role="button" data-bs-toggle="dropdown" aria-expanded="false">Jokoak</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'gameplay_index' %}" title="GamePlayak">GamePlayak</a></li>
-                            <li><a class="dropdown-item" href="{% url 'txapelketak_index' %}" title="Komunitatea">Txapelketak</a></li>
+                            <li><a class="dropdown-item text-dark" href="{% url 'gameplay_index' %}" title="GamePlayak">GamePlayak</a></li>
+                            <li><a class="dropdown-item text-dark" href="{% url 'txapelketak_index' %}" title="Komunitatea">Txapelketak</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{% url 'game_index' %}" title="Jokoen katalogoa">Jokoen katalogoa</a></li>
-                            <li><a class="dropdown-item" href="{% url 'euskarazko_jokoak' %}" title="Euskarazko jokoak">Euskarazko jokoak</a></li>
+                            <li><a class="dropdown-item text-dark" href="{% url 'game_index' %}" title="Jokoen katalogoa">Jokoen katalogoa</a></li>
+                            <li><a class="dropdown-item text-dark" href="{% url 'euskarazko_jokoak' %}" title="Euskarazko jokoak">Euskarazko jokoak</a></li>
                             {% if user.is_staff or user.is_superuser %}
-                                <li><a class="dropdown-item" href="{% url 'garatzaileak' %}" title="Garatzaileak">Garatzaileak</a></li>
+                                <li><a class="dropdown-item text-dark" href="{% url 'garatzaileak' %}" title="Garatzaileak">Garatzaileak</a></li>
                             {% endif %}
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{% url 'pokedex' %}" title="Pokedex">Pokedex</a></li>
+                            <li><a class="dropdown-item text-dark" href="{% url 'pokedex' %}" title="Pokedex">Pokedex</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{% url 'terminologia' %}" title="Terminologia">Terminologia</a></li>
+                            <li><a class="dropdown-item text-dark" href="{% url 'terminologia' %}" title="Terminologia">Terminologia</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown {% if request.path|contains:"/ekimenak/" %}active{% endif %}">
-                        <a href="{% url 'komunitatea' %}" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ekimenak</a>
+                    <li class="nav-item dropdown">
+                        <a href="{% url 'komunitatea' %}" class="nav-link dropdown-toggle text-dark {% if request.path|contains:"/ekimenak/" %}fw-semibold{% endif %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ekimenak</a>
                         {% get_flatpages as flatpages %}
                         <ul class="dropdown-menu">
                             {% if user.is_staff or user.is_superuser %}
-                                <li><a class="dropdown-item" href="{% url 'podcast_index' %}" title="Podcastak">Podcastak</a></li>
+                                <li><a class="dropdown-item text-dark" href="{% url 'podcast_index' %}" title="Podcastak">Podcastak</a></li>
                             {% endif %}
                             {% for page in flatpages %}
                             {% if 'ekimenak' in page.url %}
-                            <li><a class="dropdown-item" href="{{ page.url }}" title="{{ page.title }}">{{ page.title }}</a></li>
+                            <li><a class="dropdown-item text-dark" href="{{ page.url }}" title="{{ page.title }}">{{ page.title }}</a></li>
                             {% endif %}
                             {% endfor %}
                         </ul>
                     </li>
-                    <li class="nav-item dropdown {% if request.path|contains:"/komunitatea/" %}active{% endif %}">
-                        <a href="{% url 'komunitatea' %}" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Komunitatea</a>
+                    <li class="nav-item dropdown">
+                        <a href="{% url 'komunitatea' %}" class="nav-link dropdown-toggle text-dark {% if request.path|contains:"/komunitatea/" %}fw-semibold{% endif %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">Komunitatea</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'talde_motorra' %}" title="Nortzuk gara">Nortzuk gara</a></li>
-                            <li><a class="dropdown-item" href="{% url 'komunitatea' %}" title="Komunitatea">Komunitate osoa</a></li>
+                            <li><a class="dropdown-item text-dark" href="{% url 'talde_motorra' %}" title="Nortzuk gara">Nortzuk gara</a></li>
+                            <li><a class="dropdown-item text-dark" href="{% url 'komunitatea' %}" title="Komunitatea">Komunitate osoa</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{% url 'forum-index' %}" title="Foroa">Foroa</a></li>
+                            <li><a class="dropdown-item text-dark" href="{% url 'forum-index' %}" title="Foroa">Foroa</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="/komunitatea/zerbitzuak/" title="Zerbitzuak">Zerbitzuak</a></li>
-                            <li><a class="dropdown-item" href="/komunitatea/harremanetarako/" title="Harremanetarako">Harremanetarako</a></li>
+                            <li><a class="dropdown-item text-dark" href="/komunitatea/zerbitzuak/" title="Zerbitzuak">Zerbitzuak</a></li>
+                            <li><a class="dropdown-item text-dark" href="/komunitatea/harremanetarako/" title="Harremanetarako">Harremanetarako</a></li>
                         </ul>
                     </li>
                     <li class="nav-item d-flex align-items-center ms-lg-2">
@@ -99,53 +99,86 @@
                         <a href="/jokoak/gurasoak/" class="btn btn-info btn-sm">Gurasoentzako gida</a>
                     </li>
                 </ul>
-                <ul class="navbar-nav ms-auto align-items-lg-center">
-                    <li class="nav-item">
-                        <form class="navbar-search mt-2 mt-lg-0" action="/bilaketa">
-                            <div class="input-group search-query mb-0">
-                                <input type="text" name="q" class="form-control field" id="q"/>
-                                <button type="submit" class="submit btn btn-outline-light" id="searchsubmit">Bilatu!</button>
-                            </div>
-                        </form>
-                    </li>
-                    <li id="useroptions" class="nav-item dropdown ms-lg-2">
-                        {% include 'useroptions.html' %}
-                    </li>
-                </ul>
+                <div class="d-flex align-items-center gap-2 ms-lg-auto">
+                    <form class="mb-0" action="/bilaketa">
+                        <div class="input-group input-group-sm" style="width: 260px;">
+                            <input type="text" name="q" class="form-control" id="q">
+                            <button type="submit" class="btn btn-outline-secondary" id="searchsubmit">Bilatu!</button>
+                        </div>
+                    </form>
+                    {% comment %}{% include 'useroptions.html' %}{% endcomment %}
+                    <a href="/komunitatea/login/?next=/" class="btn btn-success btn-sm" title="Sartu">Sartu</a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <div class="container">
+    <main class="bg-light">
+    <div class="{% block page_container_class %}container{% endblock %}">
         {% block content %}
         {% endblock %}
-        <footer>
-            <hr>
-            <div class="row">
-                <div class="col-sm-4 col-12 text-center">
-                    <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons-en baimena" style="border-width:0" src="{{STATIC_URL}}img/cc_88x31.png" />
-                    </a><a href="https://twitter.com/gamerauntsia"><img alt="Game Erauntsia twitter" src="{{STATIC_URL}}img/tw-footer.png"/>
-                    </a><a href="https://facebook.com/gamerauntsia"><img alt="Game Erauntsia facebook" src="{{STATIC_URL}}img/fb-footer.png"/>
-                    </a><a href="/feed/bloga"><img alt="Game Erauntsia RSS" src="{{STATIC_URL}}img/rss-footer.png"/>
-                    </a><a href="https://github.com/GameErauntsia"><img alt="Game Erauntsia Github" src="{{STATIC_URL}}img/gh-footer.png" /></a>
+        <footer class="site-footer bg-light border-top mt-5 py-4">
+            <div class="container-fluid px-4">
+                <div class="row align-items-center gy-4">
+                    <div class="col-lg-4 order-2 order-lg-1">
+                        <div class="d-flex justify-content-center justify-content-lg-start align-items-center gap-2">
+                            <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" class="footer-social-link bg-dark text-white rounded-circle d-inline-flex justify-content-center align-items-center text-decoration-none" style="width:44px;height:44px;" aria-label="Creative Commons BY-SA 4.0">
+                                <i class="bi bi-c-circle"></i>
+                            </a>
+                            <a href="https://mastodon.eus/@gamerauntsia" target="_blank" rel="noopener noreferrer" class="footer-social-link bg-dark text-white rounded-circle d-inline-flex justify-content-center align-items-center text-decoration-none" style="width:44px;height:44px;" aria-label="Mastodon" title="Mastodon">
+                                <i class="bi bi-mastodon"></i>
+                            </a>
+                            <a href="https://telegram.me/gamerauntsia" target="_blank" rel="noopener noreferrer" class="footer-social-link bg-dark text-white rounded-circle d-inline-flex justify-content-center align-items-center text-decoration-none" style="width:44px;height:44px;" aria-label="Telegram" title="Telegram">
+                                <i class="bi bi-telegram"></i>
+                            </a>
+                            <a href="https://peertube.eus/c/gamerauntsia_tb/videos" target="_blank" rel="noopener noreferrer" class="footer-social-link bg-dark text-white rounded-circle d-inline-flex justify-content-center align-items-center text-decoration-none" style="width:44px;height:44px;" aria-label="Peertube" title="Peertube">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="M6 4l12 8-12 8z" fill="currentColor" />
+                                </svg>
+                            </a>
+                            <a href="/feed/bloga" class="footer-social-link bg-dark text-white rounded-circle d-inline-flex justify-content-center align-items-center text-decoration-none" style="width:44px;height:44px;" aria-label="Game Erauntsia RSS">
+                                <i class="bi bi-rss-fill"></i>
+                            </a>
+                            <a href="https://github.com/GameErauntsia" class="footer-social-link bg-dark text-white rounded-circle d-inline-flex justify-content-center align-items-center text-decoration-none" style="width:44px;height:44px;" aria-label="Game Erauntsia GitHub">
+                                <i class="bi bi-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 order-1 order-lg-2 text-center">
+                        <p class="mb-2 small text-muted">© {% now "Y" %} Game Erauntsia</p>
+                        <div class="d-flex justify-content-center align-items-center gap-2 flex-wrap">
+                            <span class="small"><strong>Babeslea:</strong></span>
+                            <img src="{{STATIC_URL}}img/footer.png" class="footer-sponsor-logo" alt="Babeslea">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 order-3 order-lg-3 d-flex justify-content-center justify-content-lg-end">
+                        <a href="#top" class="btn btn-dark rounded-pill btn-sm px-3">↑ Gora</a>
+                    </div>
                 </div>
-                <div class="col-sm-4 col-12 text-center">
-                    <a href="/pribatutasun-politika/">Pribatutasun politika</a> |
-                    <a href="/cookie">Cookie politika</a> |
-                    <a href="/lizentzia" rel="jslicense">Lizentziak</a>
-                    <br/>
-                    <a href="/erabilera-baldintzak/">Erabilera baldintzak</a>
-                    <br/>
-                    <a href="{% url 'kontaktua' %}">Kontaktua</a> |
-                    <a href="https://statcounter.com/p10060615/?guest=1">Estatistikak</a>
-                </div>
-                <div class="col-sm-4 col-12 float-end text-center">
-                    <span><strong>Babeslea:</strong></span>
-                    <img src="{{STATIC_URL}}img/footer.png" width="150" style="margin-left: 10px;"/>
+                <div class="border-top mt-4 pt-3 text-center">
+                    <div class="footer-legal small d-flex justify-content-center align-items-center gap-2 flex-wrap">
+                        <a href="/pribatutasun-politika/" class="link-secondary text-decoration-none">Pribatutasun politika</a>
+                        <span class="text-muted">·</span>
+                        <a href="/cookie" class="link-secondary text-decoration-none">Cookie politika</a>
+                        <span class="text-muted">·</span>
+                        <a href="/lizentzia" rel="jslicense" class="link-secondary text-decoration-none">Lizentziak</a>
+                        <span class="text-muted">·</span>
+                        <a href="/erabilera-baldintzak/" class="link-secondary text-decoration-none">Erabilera baldintzak</a>
+                        <span class="text-muted">·</span>
+                        <a href="{% url 'kontaktua' %}" class="link-secondary text-decoration-none">Kontaktua</a>
+                        <span class="text-muted">·</span>
+                        <a href="https://statcounter.com/p10060615/?guest=1" class="link-secondary text-decoration-none">Estatistikak</a>
+                    </div>
+                    <p class="small text-muted mt-2 mb-0">
+                        Edukia
+                        <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/" class="link-secondary text-decoration-none">Creative Commons BY-SA 4.0</a>
+                        lizentziarekin argitaratzen da.
+                    </p>
                 </div>
             </div>
         </footer>
     </div>
+    </main>
     {% if ENABLE_TRACKING %}
     <!-- Matomo -->
       <script>

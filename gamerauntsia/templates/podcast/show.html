@@ -10,28 +10,38 @@
 <div class="container py-3 podcast-page">
   <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-4">
     <h1 class="h2 mb-0 podcast-show__title">{{show.name}}</h1>
-    <a class="btn btn-outline-secondary btn-sm" href="{% url 'podcast_index' %}">Show guztiak</a>
+    <a class="btn btn-outline-secondary btn-sm" href="{% url 'podcast_index' %}">Itzuli</a>
   </div>
   <p class="podcast-show__description text-muted mb-4">{{show.description}}</p>
 
-  <div class="podcast-show__episode-list">
-    {% autopaginate show_episodes 18 %}
+  {% autopaginate show_episodes 18 %}
+  <div class="row g-4">
     {% for episode in show_episodes %}
-    <article class="podcast-card card border-0 shadow-sm">
-      <a href="{% url 'podcast_episode' show.slug episode.slug %}">
-        <h2 class="podcast-card__title h6">{{episode.get_short_name}}</h2>
-      </a>
-      <p class="podcast-card__pub-date">{{episode.pub_date|date:"Y-m-d"}}</p>
-      <a href="{% url 'podcast_episode' show.slug episode.slug %}">
-        {% if episode.image %}
-        <img class="podcast-card__image" src="{{episode.image.get_podcast_card_url}}" alt="{{episode.get_short_name}}">
-        {% else %}
-        <div class="podcast-card__image podcast-card__image--placeholder"></div>
-        {% endif %}
-      </a>
-    </article>
+    <div class="col-12 col-md-6 col-xl-4">
+      <article class="card h-100 border-0 shadow-sm">
+        <a href="{% url 'podcast_episode' show.slug episode.slug %}" class="text-decoration-none">
+          {% if episode.image and episode.image.get_podcast_card_url %}
+          <img class="card-img-top podcast-show-card__image" src="{{episode.image.get_podcast_card_url}}" alt="{{episode.get_short_name}}">
+          {% elif episode.image and episode.image.image %}
+          <img class="card-img-top podcast-show-card__image" src="{{episode.image.image.url}}" alt="{{episode.get_short_name}}">
+          {% else %}
+          <div class="bg-light d-flex align-items-center justify-content-center text-muted small" style="height: 190px;">
+            Irudirik gabe
+          </div>
+          {% endif %}
+        </a>
+        <div class="card-body">
+          <p class="text-muted small mb-2">{{episode.pub_date|date:"Y-m-d"}}</p>
+          <h2 class="h5 card-title mb-0">
+            <a class="text-success text-decoration-none" href="{% url 'podcast_episode' show.slug episode.slug %}">{{episode.get_short_name}}</a>
+          </h2>
+        </div>
+      </article>
+    </div>
     {% empty %}
-    <div class="alert alert-info">Oraingoz ez dago saiorik show honetan.</div>
+    <div class="col-12">
+      <div class="alert alert-info mb-0">Oraingoz ez dago saiorik show honetan.</div>
+    </div>
     {% endfor %}
   </div>
 

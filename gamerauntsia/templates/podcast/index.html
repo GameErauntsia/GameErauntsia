@@ -14,16 +14,13 @@
 
   <div class="row g-3">
     {% for show in podcast_shows %}
-    <div class="col-12 col-md-6 col-lg-4">
-      <article class="card h-100 shadow-sm podcast-show-card">
-        {% if show.image %}
-        <img class="card-img-top podcast-show-card__image" src="{{show.image.get_podcast_card_url}}" alt="{{show.name}}">
-        {% endif %}
-        <div class="card-body d-flex flex-column">
+    <div class="col-12">
+      <article class="card border-0 shadow-sm mb-3">
+        <div class="card-body">
           <h2 class="h5 card-title mb-2">
-            <a class="stretched-link text-decoration-none" href="{% url 'podcast_show' show.slug %}">{{show.name}}</a>
+            <a class="text-success text-decoration-none" href="{% url 'podcast_show' show.slug %}">{{show.name}}</a>
           </h2>
-          <p class="card-text text-muted small mb-0">{{show.description|striptags|truncatechars:160}}</p>
+          <p class="card-text text-muted mb-0">{{show.description|striptags|truncatechars:160}}</p>
         </div>
       </article>
     </div>
