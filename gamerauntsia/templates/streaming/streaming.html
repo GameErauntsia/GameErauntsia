@@ -12,7 +12,7 @@
         </div>
         <h2>{{streaming.title}}</h2>
         <p><a href="{% url 'gamer_profile' streamer.username %}">
-            <img src="{{streamer.get_photo.get_profilesmall_url}}" class="img-circle"/>
+            <img src="{{streamer.get_photo.get_profilesmall_url}}" class="rounded-circle"/>
             {{streamer.getFullName}}</a> |
             <strong>{{streaming.game_name}}</a></strong>
         </p>

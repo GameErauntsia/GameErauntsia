@@ -6,7 +6,7 @@
 {% block content%}
 
 <div class="col-sm-12">
-    <h1 class="page-header">
+    <h1 class="border-bottom pb-2 mb-4">
         Euskarazko bideo-jokoak
     </h1>
     <p>Batzuk garai bateko joko zaharrak izanik ere xarma berezia dute eta gure nostalgia elikatzeko iturri mugagabea dira. Orain arte euskaraz izan ez ditugun arren, hemendik aurrera gure txikitako momentu miragarri horiek berriz bizi nahi ditugu gure hizkuntzan.</p>
@@ -19,7 +19,7 @@
     <div id="content">
         <div class="col-sm-12">
             <div class="table-responsive">
-                <table class="table table-condensed table-hover">
+                <table class="table table-sm table-hover">
                     <thead>
                         <tr>
                             <th></th>
@@ -35,8 +35,8 @@
                             <td><img src="{{item.jokoa.logoa.get_forum_thumbnail_url}}" alt="{{item.jokoa.izena}} {{item.jokoa.bertsioa|default_if_none:""}} bideojokoak" title="{{item.jokoa.izena}} {{item.jokoa.bertsioa}} bideojokoak"/></td>
                             <td><strong><a href="{{item.jokoa.get_absolute_url}}">{{item.jokoa.izena}} {{item.jokoa.bertsioa|default_if_none:""}}</a></strong></td>
                             <td>{% for plat in item.plataformak.all %}{{plat.izena}}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
-                            <td>{% if item.itzulpena %}{{item.is_ge_translation_icon}} <br/><a class="matomo_download" href="{{item.itzulpena.get_absolute_url}}"><i class="glyphicon glyphicon-download-alt"></i> Deskargatu</a>{% elif item.garatzaileak_itzulia %}<i class="glyphicon glyphicon-home"></i> Garatzaileek itzulita{% else %}{% if item.online_url %}<a href="{{item.online_url}}"><i class="glyphicon glyphicon-globe"></i> Online</a>{% else %}<i class="glyphicon glyphicon-globe"></i> Online{% endif %}{% endif %}</td>
-                            <td class="text-center">{% if item.instalazioa %}<a role="button" data-toggle="modal" data-target="#instalazioa" title="Euskaratzeko pausoak" data-title="{{item.jokoa.izena}} euskaratzeko pausoak" data-content="{{item.instalazioa}}"><i class="glyphicon glyphicon-book"></i></a>{% else %}-{% endif %}</td>
+                            <td>{% if item.itzulpena %}{{item.is_ge_translation_icon}} <br/><a class="matomo_download" href="{{item.itzulpena.get_absolute_url}}"><i class="bi bi-download"></i> Deskargatu</a>{% elif item.garatzaileak_itzulia %}<i class="bi bi-house"></i> Garatzaileek itzulita{% else %}{% if item.online_url %}<a href="{{item.online_url}}"><i class="bi bi-globe"></i> Online</a>{% else %}<i class="bi bi-globe"></i> Online{% endif %}{% endif %}</td>
+                            <td class="text-center">{% if item.instalazioa %}<a role="button" data-bs-toggle="modal" data-bs-target="#instalazioa" title="Euskaratzeko pausoak" data-title="{{item.jokoa.izena}} euskaratzeko pausoak" data-content="{{item.instalazioa}}"><i class="bi bi-book"></i></a>{% else %}-{% endif %}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -45,13 +45,13 @@
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title"></h4>
                             </div>
                             <div class="modal-body">
                             </div>
                             <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Ados</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ados</button>
                             </div>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                         var title = button.data('title')
                         var content = button.data('content')
                         var modal = $(this)
-                        modal.find('.modal-title').html('<span class="glyphicon glyphicon-book"></span> ' + title)
+                        modal.find('.modal-title').html('<i class="bi bi-book"></i> ' + title)
                         modal.find('.modal-body').html(content)
                     })
                 </script>
@@ -72,19 +72,19 @@
 </div>
 
 <div class="col-sm-3">
-    <div class="well">
+    <div class="p-3 mb-3 bg-light border rounded">
         <h3>Itzulpen motak</h3>
         <hr/>
         <ul class="list-unstyled">
-            <li><strong><i class="glyphicon glyphicon-home"></i> Garatzaileek itzulita:</strong> Jokoa hasieratik itzulita dagoela esan nahi du. Garatzaileek euskara kontutan izan dute eta ez dugu guk itzuli behar izan.</li>
-            <li><strong><i class="glyphicon glyphicon-globe"></i> Online:</strong> Itzulpenak auzolanean egin dira online dagoen itzulpen tresna bat erabiliaz. Jokoaren bertsioren batean itzulpenak sartuko dituzte, beraz webgune ofizialean euskarazko bertsio hori eskuratzea besterik ez duzu beharko.</li>
-            <li><strong><i class="glyphicon glyphicon-file"></i> Fitxategia probatzeko:</strong> Itzulpen fitxategiak erauzi eta itzultzea lortu dugu. Jokoa ondo probatzea falta da itzulpenak ondo dauden jakiteko. Jokoa euskaratzeko instalazio azalpenak jarraitu.<li>
-            <li><strong><i class="glyphicon glyphicon-file"></i> Fitxategia erdizka:</strong> Itzulpen fitxategiak erauzi eta erdizka itzultzea lortu dugu. Baliteke jokoaren zati handi bat itzuli gabe egotea. Jokoa euskaratzeko instalazio azalpenak jarraitu.<li>
-            <li><strong><i class="glyphicon glyphicon-file"></i> Fitxategia amaituta:</strong> Itzulpen fitxategiak erauzi eta osorik itzultzea lortu dugu. Jokoa euskaraz dagoela probatuta dago. Jokoa euskaratzeko instalazio azalpenak jarraitu.<li>
+            <li><strong><i class="bi bi-house"></i> Garatzaileek itzulita:</strong> Jokoa hasieratik itzulita dagoela esan nahi du. Garatzaileek euskara kontutan izan dute eta ez dugu guk itzuli behar izan.</li>
+            <li><strong><i class="bi bi-globe"></i> Online:</strong> Itzulpenak auzolanean egin dira online dagoen itzulpen tresna bat erabiliaz. Jokoaren bertsioren batean itzulpenak sartuko dituzte, beraz webgune ofizialean euskarazko bertsio hori eskuratzea besterik ez duzu beharko.</li>
+            <li><strong><i class="bi bi-file-earmark"></i> Fitxategia probatzeko:</strong> Itzulpen fitxategiak erauzi eta itzultzea lortu dugu. Jokoa ondo probatzea falta da itzulpenak ondo dauden jakiteko. Jokoa euskaratzeko instalazio azalpenak jarraitu.<li>
+            <li><strong><i class="bi bi-file-earmark"></i> Fitxategia erdizka:</strong> Itzulpen fitxategiak erauzi eta erdizka itzultzea lortu dugu. Baliteke jokoaren zati handi bat itzuli gabe egotea. Jokoa euskaratzeko instalazio azalpenak jarraitu.<li>
+            <li><strong><i class="bi bi-file-earmark"></i> Fitxategia amaituta:</strong> Itzulpen fitxategiak erauzi eta osorik itzultzea lortu dugu. Jokoa euskaraz dagoela probatuta dago. Jokoa euskaratzeko instalazio azalpenak jarraitu.<li>
         </ul>
     </div>
 
-    <div class="well">
+    <div class="p-3 mb-3 bg-light border rounded">
         <h3>Beste proiektu batzuk</h3>
         <hr/>
         <ul class="list-unstyled">

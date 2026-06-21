@@ -5,7 +5,7 @@
 {% block content%}
 
 <div class="col-sm-12">
-    <h1 class="page-header">
+    <h1 class="border-bottom pb-2 mb-4">
         Terminologia
         <small>
 
@@ -15,9 +15,9 @@
 </div>
 
 <div class="col-sm-12">
-    <form class="pull-right" method="get" action="{% url 'search_term' %}">
+    <form class="float-end" method="get" action="{% url 'search_term' %}">
         <input id="search_term" value="" name="term" placeholder="Bilatu terminoa"/>
-        <input type="submit" value="Bilatu" class="btn btn-default"/>
+        <input type="submit" value="Bilatu" class="btn btn-outline-secondary"/>
     </form>
 </div>
 
@@ -25,7 +25,7 @@
     <div id="content">
         <div class="col-sm-12">
             <div class="table-responsive">
-                <table class="table table-condensed table-hover">
+                <table class="table table-sm table-hover">
                     <thead>
                         <tr>
                             <th>Terminoa</th>

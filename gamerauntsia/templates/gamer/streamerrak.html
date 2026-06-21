@@ -17,7 +17,7 @@
 {% block content %}
 
 <div class="col-sm-12">
-    <h1 class="page-header">Streamerrak
+    <h1 class="border-bottom pb-2 mb-4">Streamerrak
         <small>Twitchen euskaraz emititzen duten sortzaileak aurkituko dituzu hemen</small>
     </h1>
 </div>
@@ -27,7 +27,7 @@
         {% for user in users %}
         {% if forloop.first %}<div class="row">{% endif %}
         <div class="col-sm-4 col-sm-6">
-            <a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profile_url}}" class="img-circle img-responsive"></a>
+            <a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profile_url}}" class="rounded-circle img-fluid"></a>
             <h3><a href="{% url 'gamer_profile' user.username %}">{{user.getFullName}}</a>
                 <small>@{{user.twitch_channel}}</small>
             </h3>
@@ -57,7 +57,7 @@
 
     </div>
     <div class="col-sm-4">
-        <div class="well">
+        <div class="p-3 mb-3 bg-light border rounded">
             <h2>Orain zuzenean!</h2>
             {% if current_streams %}
             <p>Zortekoa zu! Streamer hauek zuzenean daude:</p>
@@ -68,7 +68,7 @@
             <p>Momentu honetan ez da inor emititzen ari.</p>
             {% endif %}
         </div>
-        <div class="well">
+        <div class="p-3 mb-3 bg-light border rounded">
             <h2>Zu falta zara?</h2>
             <p>Jarri <a href="/komunitatea">gurekin harremanetan</a>, eta zerrenda honetan agertzeko jarraibideak bidaliko dizkizugu.</p>
         </div>

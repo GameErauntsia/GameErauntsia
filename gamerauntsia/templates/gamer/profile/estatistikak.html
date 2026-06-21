@@ -12,7 +12,7 @@
   </div>
   <div class="col-sm-6">
     {% for cat in categs %}
-    <p><strong>{{cat.count}}</strong> <span class="label label-info tags"><a href="{% url 'gameplay_category' cat.kategoria__izena|slugify %}">{{cat.kategoria__izena}}</a></span></p>
+    <p><strong>{{cat.count}}</strong> <span class="badge text-bg-info tags"><a href="{% url 'gameplay_category' cat.kategoria__izena|slugify %}">{{cat.kategoria__izena}}</a></span></p>
     {% endfor %}
   </div>
 </div>
@@ -31,7 +31,7 @@
   </div>
   <div class="col-sm-6">
     {% for bcat in bcategs %}
-    <p><strong>{{bcat.count}}</strong> <span class="label label-success tags">{{bcat.gaia__izena}}</span></p>
+    <p><strong>{{bcat.count}}</strong> <span class="badge text-bg-success tags">{{bcat.gaia__izena}}</span></p>
     {% endfor %}
   </div>
 </div>
@@ -50,7 +50,7 @@
   </div>
   <div class="col-sm-6">
     {% for cat in streaming_categs %}
-    <p><strong>{{cat.count}}</strong> <span class="label label-warning tags">{{cat.game_name}}</span></p>
+    <p><strong>{{cat.count}}</strong> <span class="badge text-bg-warning tags">{{cat.game_name}}</span></p>
     {% endfor %}
   </div>
 </div>
@@ -69,7 +69,7 @@
   </div>
   <div class="col-sm-6">
     {% for cat in itzulpenak_categs %}
-    <p><strong>{{cat.count}}</strong> <span class="label label-primary tags">{{cat.izena}}</span></p>
+    <p><strong>{{cat.count}}</strong> <span class="badge text-bg-primary tags">{{cat.izena}}</span></p>
     {% endfor %}
   </div>
 </div>

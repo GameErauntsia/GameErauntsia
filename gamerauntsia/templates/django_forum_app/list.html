@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="col-sm-12">
-            <h1 class="page-header">Foroa <small>Denak</small></h1>
+            <h1 class="border-bottom pb-2 mb-4">Foroa <small>Denak</small></h1>
             <p>Game Erauntsian tratatuko diren gai ezberdinei buruz hitz egiteko txoko bat sortu da. Horretarako foro zerrenda bat proposatu dugu, denboran zehar aldatzen eta handitzen joango dena. <a href="{% url 'auth_login' %}?next={{request.path}}">Hemen erregistratzen</a> den edonork parte har dezake beti ere besteekiko errespetuz jokatzen badu. Hala ez bada, hori ekiditeko neurriak hartuko dira. Bada, animatu eta parte hartu gure komunitatean!</p>
         </div>
 
@@ -16,7 +16,7 @@
                 <div class="col-sm-12">
                     <h2>{{cat.title}}</h2>
 
-                        <table class="table table-condensed table-hover footable">
+                        <table class="table table-sm table-hover footable">
                             <thead>
                                 <tr>
                                     <th>Foroak</th>
@@ -40,7 +40,7 @@
                                     <td>
                                         {% if forum.last_post %}
                                         <div class="col-sm-2">
-                                            <img src="{{forum.last_post.creator.get_photo.get_profilesmall_url}}" class="img-circle"/>
+                                            <img src="{{forum.last_post.creator.get_photo.get_profilesmall_url}}" class="rounded-circle"/>
                                         </div>
                                         <div class="col-sm-10">
                                         <a href="/foroa/{{forum.slug}}{{forum.last_post.get_absolute_url}}">{{forum.last_post.short|linebreaksbr}}</a>
@@ -50,7 +50,7 @@
                                     <td>{{forum.get_visits}}</td>
                                     <td>
                                         {% if not forum|check_seen:user %}
-                                            <strong class="text-success"><span aria-hidden="true" class="glyphicon glyphicon-star-empty"></span> BERRIA</strong>
+                                            <strong class="text-success"><i aria-hidden="true" class="bi bi-star"></i> BERRIA</strong>
                                         {% endif %}
                                     </td>
                                 </tr>
@@ -63,7 +63,7 @@
         <form action="{% url 'reset_topics' %}" method="POST">
             {% csrf_token %}
             <input type="hidden" name="user" value="{{user.id}}"/>
-            <input type="submit" class="btn btn-default pull-right" value="Markatu foro guztiak irakurrita">
+            <input type="submit" class="btn btn-outline-secondary float-end" value="Markatu foro guztiak irakurrita">
         </form>
         </div>
 </div>

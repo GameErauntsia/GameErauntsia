@@ -1,6 +1,7 @@
 from django.db import models
 from photologue.models import Photo
 from django.utils import timezone
+from urllib.parse import urlparse
 
 STATUS_TYPES = (
     ("0", "Planned"),
@@ -75,6 +76,15 @@ class PodcastEpisode(models.Model):
     slug = models.SlugField(db_index=True, unique=True)
     description = models.TextField()
     image = models.ForeignKey(Photo, null=True, blank=True, on_delete=models.SET_NULL)
+    audio_file = models.FileField(
+        upload_to="podcasts/audio/",
+        null=True,
+        blank=True,
+        verbose_name="Audio fitxategia",
+    )
+    audio_duration = models.CharField(
+        max_length=20, null=True, blank=True, verbose_name="Audioaren iraupena"
+    )
     pub_date = models.DateTimeField(default=timezone.now)
     number = models.IntegerField(default=0)
 
@@ -125,7 +135,17 @@ class PodcastEpisodeAudioPlatform(models.Model):
         if self.override_link_url:
             return self.override_link_url
         else:
-            return self.audio_platform.link_url_pattern.replace("{{id}}", self.video_id)
+            return self.audio_platform.link_url_pattern.replace("{{id}}", self.audio_id)
+
+    @property
+    def is_direct_audio_url(self):
+        link_url = self.get_link_url()
+        if not link_url:
+            return False
+
+        parsed_url = urlparse(link_url)
+        path = parsed_url.path.lower()
+        return path.endswith((".mp3", ".ogg", ".wav", ".m4a", ".aac"))
 
     class Meta:
         verbose_name = "Saioaren audioa"

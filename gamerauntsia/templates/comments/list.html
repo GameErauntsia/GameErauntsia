@@ -1,6 +1,6 @@
 <div id="comments">
 	<p id="iruzkinak"></p>
-	{% if comment_list|length > 6 %}</i><a id="collapse" class="pull-right" href="#more-comments"><i class="glyphicon glyphicon-comment"></i> Erakutsi denak</a>{% endif %}
+	{% if comment_list|length > 6 %}</i><a id="collapse" class="float-end" href="#more-comments"><i class="bi bi-chat"></i> Erakutsi denak</a>{% endif %}
 	<h3>Iruzkinak {% if comment_list %}({{comment_list|length}}){% endif %}</h3>
 	{% for comment in comment_list %}
 	{% if forloop.counter == comment_list|length|add:-5 and comment_list|length > 6 %}
@@ -12,7 +12,7 @@
 	{% endif %}
 		<div class="media">
 			<a id="c{{comment.id}}"></a>
-	        <a class="pull-left" href="{% url 'gamer_profile' comment.user.username %}">
+	        <a class="float-start" href="{% url 'gamer_profile' comment.user.username %}">
 	            <img class="media-object" src="{{comment.user.get_photo.get_comment_url}}">
 	        </a>
 		    <div class="media-body">
@@ -38,10 +38,10 @@
 	    $(collapse_content_selector).toggle(function () {
 	        if ($(this).css('display') == 'none') {
 	            //change the button label to be 'Show'
-	            toggle_switch.html('<i class="glyphicon glyphicon-comment"></i> Erakutsi denak');
+	            toggle_switch.html('<i class="bi bi-chat"></i> Erakutsi denak');
 	        } else {
 	            //change the button label to be 'Hide'
-	            toggle_switch.html('<i class="glyphicon glyphicon-comment"></i> Ezkutatu gehienak');
+	            toggle_switch.html('<i class="bi bi-chat"></i> Ezkutatu gehienak');
 	        }
 	    });
 	});

@@ -7,7 +7,7 @@
 <div class="row">
 
     <div class="col-sm-12">
-            <h1 class="page-header">Jokoen katalogoa</h1>
+            <h1 class="border-bottom pb-2 mb-4">Jokoen katalogoa</h1>
         </div>
 
     <div class="col-sm-8">
@@ -26,7 +26,7 @@
             {% if forloop.first %}<div class="row">{% endif %}
             <div class="col-sm-3 text-center">
                 <a href="{% url 'game' joko.slug %}">
-                    <img class="img-responsive center-block" src="{{joko.get_photo.get_newsprofile_url}}" alt="" />
+                    <img class="img-fluid d-block mx-auto" src="{{joko.get_photo.get_newsprofile_url}}" alt="" />
                     <h3>{{joko.izena}} {{joko.bertsioa|default_if_none:""}}</h3>
                 </a>
             </div>
@@ -38,7 +38,7 @@
         {% paginate %}
     </div>
     <div class="col-sm-4">
-        <div class="well">
+        <div class="p-3 mb-3 bg-light border rounded">
             <h3>Euskarazko jokoak</h3>
             {% for ejokoa in euskaljokoak %}
             <div class="row bloglist">
@@ -55,7 +55,7 @@
             <p><a href="{% url 'euskarazko_jokoak' %}">Katalogo osoa ikusi</a></p>
         </div>
 
-        <div class="well">
+        <div class="p-3 mb-3 bg-light border rounded">
             <h3>Jokuen Top 10</h3>
 	        {% for k in topjokoak %}
 	            {% if k.top_jokoak__count %}
@@ -72,7 +72,7 @@
 	            {% endif %}
 	        {% endfor %}
         </div>
-        <div class="well">
+        <div class="p-3 mb-3 bg-light border rounded">
         	<h3>Katalogoko azkenak</h3>
     		{% for joko in last_jokoak %}
     		<div class="row bloglist">
@@ -87,7 +87,7 @@
     		</div>
     		{% endfor %}
         </div>
-        <div class="well">
+        <div class="p-3 mb-3 bg-light border rounded">
             <p>Zure gustuko jokoa gure katalogoan ez badago, <a href="{% url 'kontaktua' %}">idatziguzu</a> eta ahalik eta lasterren jarriko dugu!</p>
         </div>
     </div>

@@ -6,7 +6,7 @@
 {% block content %}
 
 <div class="col-sm-12">
-  <h1 class="page-header">Nortzuk gara</h1>
+  <h1 class="border-bottom pb-2 mb-4">Nortzuk gara</h1>
 </div>
 <div class="col-sm-8">
     <p>Game Erauntsia egitasmo bezala <strong>2014. urtean</strong> sortu zen
@@ -45,7 +45,7 @@
         {% if user.is_core_team_member and user.is_active %}
             {% if forloop.first %}<div class="row">{% endif %}
                 <div class="col-sm-4 col-sm-6">
-                    <a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profile_url}}" class="img-circle img-responsive"></a>
+                    <a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profile_url}}" class="rounded-circle img-fluid"></a>
                     <h3><a href="{% url 'gamer_profile' user.username %}">{{user.fullname}}</a>
                         <small>{% if user.twitter_id %}@{{user.twitter_id}}{% else %}{{user.nickname}}{% endif %}</small>
                     </h3>

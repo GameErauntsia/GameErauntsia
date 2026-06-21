@@ -23,26 +23,40 @@ def index(request):
         .order_by("-pub_date")
         .select_related("argazkia")
     )
-    gp = gameplayak[0]
-    berria = berriak[0]
+    live = None
 
-    if gp.pub_date > berria.pub_date:
+    gp = gameplayak.first()
+    berria = berriak.first()
+
+    if gp and berria:
+        if gp.pub_date > berria.pub_date:
+            live = gp
+            gameplayak = gameplayak[1:4]
+            berriak = berriak[:8]
+        else:
+            live = berria
+            gameplayak = gameplayak[:3]
+            berriak = berriak[1:9]
+    elif gp:
         live = gp
         gameplayak = gameplayak[1:4]
         berriak = berriak[:8]
-    else:
+    elif berria:
         live = berria
         gameplayak = gameplayak[:3]
         berriak = berriak[1:9]
+    else:
+        gameplayak = gameplayak[:3]
+        berriak = berriak[:8]
 
-    if Txapelketa.objects.filter(publikoa_da=True, status__in=("0", "1", "2")).exists():
-        list_tx = Txapelketa.objects.filter(
-            publikoa_da=True, status__in=("0", "1", "2")
-        ).order_by("-pub_date")
-        if len(list_tx) > 1:
+    list_tx = Txapelketa.objects.filter(
+        publikoa_da=True, status__in=("0", "1", "2")
+    ).order_by("-pub_date")
+    if list_tx.exists():
+        if list_tx.count() > 1:
             txapelketak = list_tx
         else:
-            txapelketa = list_tx[0]
+            txapelketa = list_tx.first()
 
     eskaintzak = Eskaintza.objects.filter(
         Q(is_public=True),

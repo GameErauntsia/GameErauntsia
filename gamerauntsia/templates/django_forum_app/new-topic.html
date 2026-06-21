@@ -16,7 +16,7 @@
 		        {% csrf_token %}
             {{ form|bootstrap }}
 		        <input class="btn btn-primary" type="submit" value="Bidali" />
-		        <a class="btn btn-default" href="{% url 'forum-detail' forum.slug %}">Ezeztatu</a>
+		        <a class="btn btn-outline-secondary" href="{% url 'forum-detail' forum.slug %}">Ezeztatu</a>
 		</form>
 	</div>
 </div>

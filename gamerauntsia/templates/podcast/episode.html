@@ -1,55 +1,306 @@
 {% extends 'base.html' %}
 
 {% block title %}{{streaming.title}}Podcast - {% endblock %}
+{% block page_container_class %}container{% endblock %}
+{% block extracss %}
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+<link rel="stylesheet" href="{{STATIC_URL}}css/gamerauntsia/podcast.css?v=20260504-2">
+<style>
+  .podcast-hero-card,
+  .podcast-side-card {
+    border: 0 !important;
+    border-radius: 1.35rem;
+    background: #fff !important;
+    box-shadow: none !important;
+  }
+  .podcast-audio-card {
+    border-radius: 1.35rem;
+    background: #eef8f2 !important;
+    border: 1px solid rgba(25, 135, 84, 0.20) !important;
+    box-shadow: 0 12px 32px rgba(31, 36, 43, 0.055) !important;
+    position: relative;
+    overflow: hidden;
+  }
+  .podcast-audio-card .plyr {
+    --plyr-color-main: #198754;
+    --plyr-control-background: transparent;
+    --plyr-control-hover: rgba(25, 135, 84, 0.16);
+    --plyr-control-icon: #198754;
+  }
+  .podcast-audio-card .plyr__control[data-plyr="play"],
+  .podcast-audio-card .plyr__control[data-plyr="download"] {
+    color: #198754;
+  }
+  .podcast-audio-card .plyr__control[data-plyr="play"]:hover,
+  .podcast-audio-card .plyr__control[data-plyr="play"]:focus-visible,
+  .podcast-audio-card .plyr__control[data-plyr="download"]:hover,
+  .podcast-audio-card .plyr__control[data-plyr="download"]:focus-visible {
+    color: #ffffff;
+    background: #198754;
+  }
+  .podcast-audio-card .card-body {
+    position: relative;
+    z-index: 1;
+  }
+  .podcast-side-card .card-body {
+    padding: 1.7rem 1.55rem 1.45rem;
+  }
+  .podcast-side-title {
+    font-size: 1.6rem;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #1f242b;
+  }
+  .podcast-side-list li {
+    margin-bottom: 1.35rem;
+  }
+  .podcast-side-row {
+    display: grid;
+    grid-template-columns: 1rem 1fr;
+    column-gap: 0.95rem;
+    align-items: start;
+  }
+  .podcast-side-row i {
+    color: #2d3640;
+    margin-top: 0.25rem;
+    font-size: 0.95rem;
+  }
+  .podcast-side-label {
+    display: block;
+    color: #6c7784;
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+  }
+  .podcast-side-row strong {
+    font-size: 1.1rem;
+    line-height: 1.25;
+    color: #1f242b;
+  }
+  .podcast-platform-list li {
+    margin-bottom: 1.15rem;
+  }
+  .podcast-platform-list a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.9rem;
+    text-decoration: none;
+    color: #1f242b;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    background: transparent;
+    font-size: 1.05rem;
+  }
+  .podcast-platform-list a:hover {
+    color: #000;
+  }
+  .podcast-platform-list span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+  .podcast-platform-list .bi-box-arrow-up-right {
+    color: #2c3238;
+  }
+  @media (min-width: 992px) {
+    .podcast-side-card .card-body {
+      padding: 2rem 1.75rem 1.65rem;
+    }
+  }
+  @media (max-width: 991.98px) {
+    .podcast-side-title {
+      font-size: 1.5rem;
+    }
+    .podcast-side-row strong,
+    .podcast-platform-list a,
+    .podcast-side-label {
+      font-size: 1rem;
+    }
+  }
+</style>
+{% endblock %}
 
 {% block content %}
-<div class="row">
-  <div class="col-sm-8">
-    <div class="flex-video widescreen">
-      <iframe src="{{videos.0.get_embed_url}}"
-              width="700"
-              height="394"
-              frameboder="0"
+<div class="podcast-episode-shell">
+  <div class="container-fluid podcast-episode-container">
+    <div class="row g-4 g-xl-5 align-items-start podcast-layout">
+      <main class="col-12 col-lg-8">
+        <article class="card podcast-hero-card">
+          <div class="card-body">
+          <div class="d-flex justify-content-between align-items-start gap-3 mb-3 flex-wrap">
+            <div class="podcast-meta-row mb-0">
+              <span class="badge text-bg-dark"><i class="bi bi-mic-fill me-1" aria-hidden="true"></i>Podcast</span>
+              <span class="podcast-meta-text"><i class="bi bi-calendar3 me-1" aria-hidden="true"></i>{{episode.pub_date|date:"Y-m-d"}}</span>
+              <span class="podcast-meta-text"># {{episode.number}}. atala</span>
+            </div>
+            <a href="{% url 'podcast_show' episode.podcast_season.podcast_show.slug %}" class="btn btn-outline-secondary btn-sm bg-white flex-shrink-0">Itzuli</a>
+          </div>
+
+          <h1 class="podcast-episode-title mb-3">{{episode.get_full_name}}</h1>
+
+            {% if videos %}
+          <div class="ratio ratio-16x9 podcast-video-frame">
+            <iframe
+              src="{{videos.0.get_embed_url}}"
+              title="{{episode.get_full_name}}"
               allowfullscreen>
-      </iframe>
-    </div>
-    <h1>{{episode.name}}</h1>
-    <p>{{episode.description|safe}}</p>
-  </div>
-  <div class="col-sm-4">
-    <h3>Podcast saioa</h3>
-    <div class="well">
-      <p><span class="glyphicon glyphicon-play"></span> <strong><a href="{% url 'podcast_show' episode.podcast_season.podcast_show.slug %}">{{episode.podcast_season.podcast_show}}</a></strong></p>
-      <p><span class="glyphicon glyphicon-tag"></span> <strong>{{episode.podcast_season.name}} - {{episode.number}}.saioa</strong></p>
-      <p><span class="glyphicon glyphicon-calendar"></span> <strong>{{episode.pub_date|date:"Y-m-d"}}</strong></p>
-    </div>
-    <h3>Plataformetan</h3>
-    <div class="well">
-      {% if videos %}
-      <h4>Ikusi:</h4>
-      <ul class="list-group">
-        {% for video in videos %}
-        <a class="list-group-item"
-           href="{{video.get_link_url}}"
-           target="_blank">
-          {{video.video_platform.name}}
-        </a>
-        {% endfor %}
-      </ul>
-      {% endif %}
-      {% if audios %}
-      <h4>Entzun:</h4>
-      <ul class="list-group">
-        {% for audio in audios %}
-        <a class="list-group-item"
-           href="{{audio.get_link_url}}"
-           target="_blank">
-          {{audio.audio_platform.name}}
-        </a>
-        {% endfor %}
-      </ul>
-      {% endif %}
+            </iframe>
+          </div>
+            {% endif %}
+
+          <div class="podcast-episode-description mt-3 mb-4">
+            {{episode.description|safe}}
+          </div>
+          </div>
+        </article>
+
+        <section class="card podcast-audio-card mt-4" id="podcast-audio-block">
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between gap-3 mb-3">
+            <h2 class="h4 mb-0"><i class="bi bi-headphones me-2" aria-hidden="true"></i>Entzun saioa</h2>
+            {% if episode.audio_duration %}
+            <span class="text-muted small">{{ episode.audio_duration }}</span>
+            {% else %}
+            <span class="text-muted small">Audio nagusia</span>
+            {% endif %}
+          </div>
+
+          {% if episode.audio_file %}
+          <div class="podcast-native-player mb-3">
+            <audio class="js-podcast-player" controls preload="metadata" data-download-url="{{ episode.audio_file.url }}">
+              <source src="{{ episode.audio_file.url }}" type="audio/mpeg">
+              Zure nabigatzaileak ez du audio erreproduzitzailea onartzen.
+            </audio>
+          </div>
+          {% else %}
+          <div class="alert alert-light border mb-0" role="alert">
+            Audioa ez dago eskuragarri.
+          </div>
+          {% endif %}
+          </div>
+        </section>
+      </main>
+
+      <aside class="col-12 col-lg-4">
+        <section class="card podcast-side-card mb-4">
+          <div class="card-body">
+          <h2 class="podcast-side-title mb-4">Podcastaren infoa</h2>
+          <ul class="list-unstyled mb-0 podcast-side-list">
+            <li class="podcast-side-row">
+              <i class="bi bi-play-fill" aria-hidden="true"></i>
+              <span>
+                <span class="podcast-side-label">Saioa</span>
+                <strong>{{episode.podcast_season.podcast_show}}</strong>
+              </span>
+            </li>
+            <li class="podcast-side-row">
+              <i class="bi bi-collection-play" aria-hidden="true"></i>
+              <span>
+                <span class="podcast-side-label">Denboraldia</span>
+                <strong>{{episode.podcast_season.name}}</strong>
+              </span>
+            </li>
+            <li class="podcast-side-row">
+              <i class="bi bi-hash" aria-hidden="true"></i>
+              <span>
+                <span class="podcast-side-label">Atala</span>
+                <strong>{{episode.number}}</strong>
+              </span>
+            </li>
+          </ul>
+          </div>
+        </section>
+
+        <section class="card podcast-side-card">
+          <div class="card-body">
+          <h2 class="podcast-side-title mb-4">Plataformetan</h2>
+          <ul class="list-unstyled mb-0 podcast-platform-list">
+            {% for video in videos %}
+            <li>
+              <a href="{{video.get_link_url}}" target="_blank" rel="noopener noreferrer">
+                <span><i class="bi bi-play-btn-fill me-2" aria-hidden="true"></i>{{video.video_platform.name}}</span>
+                <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+              </a>
+            </li>
+            {% endfor %}
+            {% for audio in audios %}
+            <li>
+              <a href="{{audio.get_link_url}}" target="_blank" rel="noopener noreferrer">
+                <span><i class="bi bi-spotify me-2" aria-hidden="true"></i>{{audio.audio_platform.name}}</span>
+                <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+              </a>
+            </li>
+            {% endfor %}
+            <li>
+              <a href="/feed/podcastak" target="_blank" rel="noopener noreferrer">
+                <span><i class="bi bi-rss-fill me-2" aria-hidden="true"></i>RSS</span>
+                <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+              </a>
+            </li>
+          </ul>
+          </div>
+        </section>
+      </aside>
     </div>
   </div>
 </div>
+{% endblock %}
+
+{% block footerjs %}
+<script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.js-podcast-player').forEach(function(audio) {
+      var downloadUrl = audio.dataset.downloadUrl || '';
+      var player = new Plyr(audio);
+
+      // try to insert a download button into the Plyr controls near settings
+      try {
+        var controls = player.elements && player.elements.controls;
+        if (controls) {
+          // create button
+          var btn = document.createElement('button');
+          btn.setAttribute('type', 'button');
+          btn.className = 'plyr__controls__item plyr__control plyr__download';
+          btn.setAttribute('aria-label', 'Deskargatu audioa');
+          btn.setAttribute('title', 'Deskargatu audioa');
+          btn.innerHTML = '<i class="bi bi-download" aria-hidden="true"></i>';
+          btn.addEventListener('click', function () {
+            if (!downloadUrl) return;
+            var a = document.createElement('a');
+            a.href = downloadUrl;
+            a.setAttribute('download', '');
+            a.rel = 'noopener noreferrer';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+          });
+
+          // try to find the settings button to insert after it
+          var settingsBtn = controls.querySelector('button[title="Settings"], button[aria-label="Settings"], button[title="Ezarpenak"], button[aria-label="Ezarpenak"]');
+          if (settingsBtn && settingsBtn.parentNode) {
+            settingsBtn.parentNode.insertBefore(btn, settingsBtn.nextSibling);
+          } else {
+            // append at the end of controls
+            controls.appendChild(btn);
+          }
+        } else {
+          throw new Error('No Plyr controls element');
+        }
+      } catch (e) {
+        // Fallback: create a small Bootstrap download button right after the audio element
+        if (downloadUrl) {
+          var fallback = document.createElement('a');
+          fallback.href = downloadUrl;
+          fallback.className = 'btn btn-sm btn-outline-secondary mt-2 d-inline-flex align-items-center';
+          fallback.setAttribute('download', '');
+          fallback.setAttribute('rel', 'noopener noreferrer');
+          fallback.innerHTML = '<i class="bi bi-download me-1" aria-hidden="true"></i>Deskargatu audioa';
+          audio.parentNode.insertBefore(fallback, audio.nextSibling);
+        }
+      }
+    });
+  });
+</script>
 {% endblock %}

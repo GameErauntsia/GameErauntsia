@@ -2,7 +2,7 @@
 {% if status %}
 {% localize off %}
 <div class="media">
- <img class="media-object img-rounded pull-left" src="{{status.user.profile_image_url}}" height="50" width="50" />
+ <img class="media-object img-rounded float-start" src="{{status.user.profile_image_url}}" height="50" width="50" />
  <div class="media-body">
    <h4 class="tweet_header">{{status.user.user_name}}
    <small><a href="http://twitter.com/{{status.user.screen_name}}"> @{{status.user.screen_name}}</a>

@@ -1,14 +1,34 @@
 {% extends 'base.html' %}
 
 {% block title %}{{streaming.title}}Podcastak - {% endblock %}
+{% block extracss %}
+<link rel="stylesheet" href="{{STATIC_URL}}css/gamerauntsia/podcast.css">
+{% endblock %}
 
 {% block content %}
-<div>
-  <h1 class="page-header">Podcastak</h1>
-  {% for show in podcast_shows %}
-  <div>
-    <h1><a href="{% url 'podcast_show' show.slug %}">{{show.name}}</a></h1>
+<div class="container py-3 podcast-page">
+  <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-4">
+    <h1 class="h2 mb-0">Podcastak</h1>
+    <span class="badge text-bg-secondary">{{ podcast_shows|length }} show</span>
   </div>
-  {% endfor %}
+
+  <div class="row g-3">
+    {% for show in podcast_shows %}
+    <div class="col-12">
+      <article class="card border-0 shadow-sm mb-3">
+        <div class="card-body">
+          <h2 class="h5 card-title mb-2">
+            <a class="text-success text-decoration-none" href="{% url 'podcast_show' show.slug %}">{{show.name}}</a>
+          </h2>
+          <p class="card-text text-muted mb-0">{{show.description|striptags|truncatechars:160}}</p>
+        </div>
+      </article>
+    </div>
+    {% empty %}
+    <div class="col-12">
+      <div class="alert alert-info mb-0">Oraingoz ez dago podcastik.</div>
+    </div>
+    {% endfor %}
+  </div>
 </div>
 {% endblock %}
