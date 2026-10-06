@@ -216,42 +216,44 @@
     <!-- Cookie consent -->
     <script>
       const CookieConsent = window.CookieConsent
-      const cc = new CookieConsent({
-          title: "Cookieak erabiltzen ditugu",
-          description: "Webgune honek cookie propioak eta hirugarrenen cookie-fitxategiak erabiltzen ditu. Zure esperientzia eta zerbitzuak hobetzeko asmoz, cookie teknologiaz baliatzen gara. Ohar hau onartuz gero, teknologia hori erabiltzeko baimen esplizitua ematen diguzu. <a href=\"/cookie\">Informazio gehiago.</a>",
-          buttons: {
-              acceptAll: "Onartu",
-              acceptSelected: "Onartu cookieak",
-              reject: "Ukatu",
-              showSettings: "Cookieak kudeatu",
-              hideSettings: "Ezkutatu",
-          },
-          categories: {
-              essentials: {
-                  label: "Beharrezkoak",
-                  description: "Webgunearen oinarrizko funtzionalitatea ahalbidetzen dute.",
-                  checked: true,
-                  mandatory: true
-              },
-              analytics: {
-                  label: "Estatistika",
-                  description: "Aukera ematen dute webguneko erabiltzaileen portaera estatistikoki neurtzeko eta aztertzeko.",
-                  checked: true,
-                  mandatory: false
-              }
-          }
-      })
-      function updateConsent() {
-          acceptedCategories = window.CookieConsent.acceptedCategories
-          if (acceptedCategories.includes("analytics")) {
-              _paq.push(['setCookieConsentGiven']);
-              console.log("enable analytics")
-          } else {
-              console.log("disable analytics")
-          }
+      if (typeof CookieConsent === "function") {
+        const cc = new CookieConsent({
+            title: "Cookieak erabiltzen ditugu",
+            description: "Webgune honek cookie propioak eta hirugarrenen cookie-fitxategiak erabiltzen ditu. Zure esperientzia eta zerbitzuak hobetzeko asmoz, cookie teknologiaz baliatzen gara. Ohar hau onartuz gero, teknologia hori erabiltzeko baimen esplizitua ematen diguzu. <a href=\"/cookie\">Informazio gehiago.</a>",
+            buttons: {
+                acceptAll: "Onartu",
+                acceptSelected: "Onartu cookieak",
+                reject: "Ukatu",
+                showSettings: "Cookieak kudeatu",
+                hideSettings: "Ezkutatu",
+            },
+            categories: {
+                essentials: {
+                    label: "Beharrezkoak",
+                    description: "Webgunearen oinarrizko funtzionalitatea ahalbidetzen dute.",
+                    checked: true,
+                    mandatory: true
+                },
+                analytics: {
+                    label: "Estatistika",
+                    description: "Aukera ematen dute webguneko erabiltzaileen portaera estatistikoki neurtzeko eta aztertzeko.",
+                    checked: true,
+                    mandatory: false
+                }
+            }
+        })
+        function updateConsent() {
+            acceptedCategories = window.CookieConsent.acceptedCategories
+            if (acceptedCategories.includes("analytics")) {
+                _paq.push(['setCookieConsentGiven']);
+                console.log("enable analytics")
+            } else {
+                console.log("disable analytics")
+            }
+        }
+        cc.on("change", (cc) => updateConsent())
+        updateConsent()
       }
-      cc.on("change", (cc) => updateConsent())
-      updateConsent()
       </script>
     <!-- End Cookie consent -->
     {% block footerjs %}{% endblock %}
