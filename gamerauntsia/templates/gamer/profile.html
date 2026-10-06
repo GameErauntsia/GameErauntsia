@@ -71,19 +71,19 @@
   <div class="col-md-4">
     <div class="tabpanel">
       <ul class="nav nav-tabs" role="tablist">
-        <li class="active" role="presentation">
-          <a aria-controls="stats" data-bs-toggle="tab" role="tab" href="#stats"><h3 class="h5 mb-0"><i class="bi bi-reception-4"></i> Estatistikak</h3></a>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" id="stats-tab" aria-controls="stats" aria-selected="true" data-bs-toggle="tab" role="tab" href="#stats"><h3 class="h5 mb-0"><i class="bi bi-reception-4"></i> Estatistikak</h3></a>
         </li>
-        <li role="presentation">
-          <a aria-controls="comp" data-bs-toggle="tab" role="tab" href="#comp"><h3 class="h5 mb-0"><i class="bi bi-device-hdd"></i> Ordenagailua</h3></a>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="comp-tab" aria-controls="comp" aria-selected="false" data-bs-toggle="tab" role="tab" href="#comp"><h3 class="h5 mb-0"><i class="bi bi-device-hdd"></i> Ordenagailua</h3></a>
         </li>
       </ul>
       <div class="tab-content" id="myTabContent">
-        <div id="stats" class="tab-pane fade in active  " role="tabpanel">
+        <div id="stats" class="tab-pane fade show active" role="tabpanel" aria-labelledby="stats-tab" tabindex="0">
           <br>
           {% include 'gamer/profile/estatistikak.html'%}
         </div>
-        <div id="comp" class="tab-pane fade" role="tabpanel">
+        <div id="comp" class="tab-pane fade" role="tabpanel" aria-labelledby="comp-tab" tabindex="0">
           <br>
           {% include 'gamer/profile/ordenagailua.html'%}
         </div>
