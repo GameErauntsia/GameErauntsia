@@ -1,23 +1,23 @@
-{% load include i18n %}
-
-<div id="useroptions" class="d-flex align-items-center m-0 p-0{% if user.is_authenticated %} dropdown{% endif %}">
+<div id="useroptions" class="d-flex align-items-center{% if user.is_authenticated %} dropdown{% endif %}">
 {% if user.is_authenticated %}
-	<a class="nav-link dropdown-toggle d-flex align-items-center px-0" data-bs-toggle="dropdown" href="{% url 'gamer_profile' user.username  %}" role="button" aria-expanded="false">
-		<img class="userlogged" width="30" height="30" src="{{user.get_photo.get_profilesmall_url}}" alt="{{user.username}}" />
-		<span class="ms-1">{{ user.username }}</span>
-	</a>
-	<ul class="dropdown-menu dropdown-menu-end">
-		<li><a class="dropdown-item" href="{% url 'gamer_profile' user.username  %}">{{user.getFullName}}</a></li>
-        {% if user.is_staff or user.is_superuser %}<li><a class="dropdown-item" href="/kudeatu">Admin gunea</a></li>{% endif %}
-		<li><a class="dropdown-item" href="{% url 'edit_profile' %}">Profila editatu</a></li>
-		<li><hr class="dropdown-divider"></li>
-		<li><a class="dropdown-item" href="{% url 'add_gameplay' %}">Gehitu gameplaya</a></li>
-		<li><a class="dropdown-item" href="{% url 'add_article' %}">Idatzi artikulua</a></li>
-		<li><a class="dropdown-item" href="{% url 'add_game' %}">Gehitu jokoa</a></li>
-		<li><hr class="dropdown-divider"></li>
-		<li><a class="dropdown-item" href="{% url 'auth_logout' %}?next=/">Irten</a></li>
-	</ul>
-{%else%}
+    <button class="btn btn-light btn-sm dropdown-toggle d-flex align-items-center" id="userMenuButton" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <img class="userlogged" width="30" height="30" src="{{ user.get_photo.get_profilesmall_url }}" alt="{{ user.username }}" />
+        <span class="ms-2">{{ user.username }}</span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-xl-end" aria-labelledby="userMenuButton">
+        <li><a class="dropdown-item" href="{% url 'gamer_profile' user.username %}"><i class="bi bi-person me-2"></i>{{ user.getFullName }}</a></li>
+        {% if user.is_staff or user.is_superuser %}
+        <li><a class="dropdown-item" href="/kudeatu"><i class="bi bi-gear me-2"></i>Admin gunea</a></li>
+        {% endif %}
+        <li><a class="dropdown-item" href="{% url 'edit_profile' %}"><i class="bi bi-pencil me-2"></i>Profila editatu</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="{% url 'add_gameplay' %}"><i class="bi bi-share me-2"></i>Gehitu gameplaya</a></li>
+        <li><a class="dropdown-item" href="{% url 'add_article' %}"><i class="bi bi-pencil-square me-2"></i>Idatzi artikulua</a></li>
+        <li><a class="dropdown-item" href="{% url 'add_game' %}"><i class="bi bi-controller me-2"></i>Gehitu jokoa</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="{% url 'auth_logout' %}?next=/"><i class="bi bi-box-arrow-right me-2"></i>Irten</a></li>
+    </ul>
+{% else %}
     <a class="btn btn-success btn-sm px-3" href="{% url 'auth_login' %}?next={{ request.path }}" title="Sartu">Sartu</a>
-{%endif%}
+{% endif %}
 </div>

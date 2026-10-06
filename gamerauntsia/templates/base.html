@@ -99,15 +99,14 @@
                         <a href="/jokoak/gurasoak/" class="btn btn-info btn-sm">Gurasoentzako gida</a>
                     </li>
                 </ul>
-                <div class="d-flex align-items-center gap-2 ms-lg-auto">
+                <div class="d-flex flex-column flex-xl-row align-items-stretch align-items-xl-center gap-2 ms-xl-auto">
                     <form class="mb-0" action="/bilaketa">
                         <div class="input-group input-group-sm" style="width: 260px;">
                             <input type="text" name="q" class="form-control" id="q">
                             <button type="submit" class="btn btn-outline-secondary" id="searchsubmit">Bilatu!</button>
                         </div>
                     </form>
-                    {% comment %}{% include 'useroptions.html' %}{% endcomment %}
-                    <a href="/komunitatea/login/?next=/" class="btn btn-success btn-sm" title="Sartu">Sartu</a>
+                    {% include 'useroptions.html' %}
                 </div>
             </div>
         </div>
