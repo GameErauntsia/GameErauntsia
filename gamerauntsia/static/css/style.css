@@ -274,6 +274,34 @@ hr.dotted {
   font-size: 16px;
 }
 
+.article-body img,
+.article-body iframe,
+.article-body embed,
+.article-body object {
+  max-width: 100%;
+}
+
+.article-body img {
+  height: auto;
+}
+
+.article-body iframe[src*="youtube.com/embed"],
+.article-body iframe[src*="youtube-nocookie.com/embed"],
+.article-body iframe[src*="player.vimeo.com/video"] {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 0;
+}
+
+.article-body video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
 .article-body figure {
   margin: 2% 5%;
 }
