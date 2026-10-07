@@ -9,15 +9,15 @@
 <h1>Editatu profila</h1>
 <div id="editprofile">
   <ul class="nav nav-tabs">
-    <li class="{% if tab == 'personal' %}active{%endif%}"><a href="{% url 'edit_profile' %}">Datu orokorrak</a></li>
-    <li class="{% if tab == 'channels' %}active{%endif%}"><a href="{% url 'edit_profile_kanalak' %}">Kanalak</a></li>
-    <li class="{% if tab == 'photo' %}active{%endif%}"><a href="{% url 'edit_profile_photo' %}">Argazkia</a></li>
-    <li class="{% if tab == 'platforms' %}active{%endif%}"><a href="{% url 'edit_profile_plat' %}">Plataformak</a></li>
-    <li class="{% if tab == 'top_games' %}active{%endif%}"><a href="{% url 'edit_profile_top' %}">Joko gustukoenak</a></li>
-    <li class="{% if tab == 'tab_amaitutakoak' %}active{%endif%}"><a href="{% url 'edit_profile_amaitutakoak' %}">Amaitutako jokoak</a></li>
-    <li class="{% if tab == 'computer' %}active{%endif%}"><a href="{% url 'edit_profile_comp' %}">Ordenagailua</a></li>
-    <li class="{% if tab == 'notifications' %}active{%endif%}"><a href="{% url 'edit_profile_noti' %}">Jakinarazpenak</a></li>
-    <li class="{% if tab == 'pass' %}active{%endif%}"><a href="{% url 'edit_profile_pass' %}">Aldatu pasahitza</a></li>
+    <li class="nav-item"><a class="nav-link{% if tab == 'personal' %} active{% endif %}"{% if tab == 'personal' %} aria-current="page"{% endif %} href="{% url 'edit_profile' %}">Datu orokorrak</a></li>
+    <li class="nav-item"><a class="nav-link{% if tab == 'channels' %} active{% endif %}"{% if tab == 'channels' %} aria-current="page"{% endif %} href="{% url 'edit_profile_kanalak' %}">Kanalak</a></li>
+    <li class="nav-item"><a class="nav-link{% if tab == 'photo' %} active{% endif %}" {% if tab == 'photo' %}aria-current="page"{% endif %} href="{% url 'edit_profile_photo' %}">Argazkia</a></li>
+    <li class="nav-item"><a class="nav-link{% if tab == 'platforms' %} active{% endif %}"{% if tab == 'platforms' %} aria-current="page"{% endif %} href="{% url 'edit_profile_plat' %}">Plataformak</a></li>
+    <li class="nav-item"><a class="nav-link{% if tab == 'top_games' %} active{% endif %}"{% if tab == 'top_games' %} aria-current="page"{% endif %} href="{% url 'edit_profile_top' %}">Joko gustukoenak</a></li>
+    <li class="nav-item"><a class="nav-link{% if tab == 'tab_amaitutakoak' %} active{% endif %}"{% if tab == 'tab_amaitutakoak' %} aria-current="page"{% endif %} href="{% url 'edit_profile_amaitutakoak' %}">Amaitutako jokoak</a></li>
+    <li class="nav-item"><a class="nav-link{% if tab == 'computer' %} active{% endif %}"{% if tab == 'computer' %} aria-current="page"{% endif %} href="{% url 'edit_profile_comp' %}">Ordenagailua</a></li>
+    <li class="nav-item"><a class="nav-link{% if tab == 'notifications' %} active{% endif %}"{% if tab == 'notifications' %} aria-current="page"{% endif %} href="{% url 'edit_profile_noti' %}">Jakinarazpenak</a></li>
+    <li class="nav-item"><a class="nav-link{% if tab == 'pass' %} active{% endif %}"{% if tab == 'pass' %} aria-current="page"{% endif %} href="{% url 'edit_profile_pass' %}">Aldatu pasahitza</a></li>
   </ul>
   {% block perfil %}{% endblock%}
 </div>

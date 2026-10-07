@@ -306,7 +306,7 @@ def edit_computer(request):
 @login_required
 def edit_platform(request):
     """ """
-    tab = "finished_games"
+    tab = "platforms"
     user = request.user
     GameFormSet = modelformset_factory(JokuPlataforma, form=GameForm, can_delete=True)
     if request.method == "POST":
