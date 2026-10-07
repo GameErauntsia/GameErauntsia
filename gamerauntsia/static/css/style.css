@@ -184,6 +184,26 @@ hr.dotted {
   font-style: italic;
 }
 
+.steam-panel {
+  container-type: inline-size;
+}
+
+@container (max-width: 12rem) {
+  .steam-panel .steam-panel-stat {
+    flex: 0 0 100%;
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: .5rem;
+  }
+
+  .steam-panel .steam-panel-stat strong {
+    display: inline !important;
+    margin-bottom: 0 !important;
+  }
+}
+
 .steam-group-button {
   font: normal normal normal 11px/18px 'Helvetica Neue',Arial,sans-serif;
   height: 28px;
