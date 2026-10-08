@@ -4,7 +4,7 @@
 {%block title%}Komunitatea - {%endblock%}
 
 {% block content %}
-<div class="col-sm-12">
+<div>
   <h1 class="border-bottom pb-2 mb-4">Komunitatea
     <small>Hau da jende pila!</small>
   </h1>
@@ -12,8 +12,8 @@
   <p>Bestalde, garatzen ari garen <strong>Karma sistema</strong> berriaren bidez, komunitatean aktiboen dauden adituak zerrendatzen ditugu. Hemen dira gure guruak!! Zenbat eta aktiboki gehiago parte hartu komunitatean, orduan eta garrantzia handiagoa izango duzu gure artean. Ez gelditu ba atzean!</p>
   <p>Kuxkuxeatu, eztabaidatu, gurekin jolastu, iritzia eman, agian bilatu jokorako zure lagun berriak edota aurkaririk gogorrenak!! Parte hartu eta zorte on!!</p>
 </div>
-<div class="col-sm-12">
-  <div class="col-sm-8">
+<div class="row">
+  <div class="col-12 col-sm-8">
     <h2>Komunitateko guruak</h2>
     {% for user_prof in gurus %}
     {% if forloop.first %}<div class="row">{% endif %}
@@ -76,9 +76,9 @@
         {% if forloop.last and user_rows > 6 %}
     </div></div>
     {% endif %}
+        {% if forloop.last and user_rows <= 6 %}</div>{% endif %}
 
     {% endfor %}
-  </div>
   <script>
     $('#collapse').click(function () {
         //get collapse content selector
@@ -99,7 +99,8 @@
         });
     });
     </script>
-<div class="col-sm-4">
+  </div>
+<div class="col-12 col-sm-4">
   {% steam_panel %}
   <div class="p-3 mb-3 bg-light border rounded">
     <h2>Bilatu jokalaria</h2>
@@ -119,7 +120,6 @@
       });
     </script>
   </div>
-</div>
 </div>
 </div>
 {% endblock %}
