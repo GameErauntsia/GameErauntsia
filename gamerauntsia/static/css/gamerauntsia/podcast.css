@@ -69,9 +69,9 @@
   background: #f4f5f7;
   padding-top: 1.5rem;
   padding-bottom: 4rem;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  width: 100%;
+  box-shadow: 0 0 0 100vmax #f4f5f7;
+  clip-path: inset(0 -100vmax);
 }
 
 @media (max-width: 767.98px) {
