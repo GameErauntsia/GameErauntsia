@@ -16,7 +16,7 @@ jobs:
       COVERALLS_REPO_TOKEN: ${{secrets.COVERALLS_REPO_TOKEN}}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install Docker Compose v1
         run: |
@@ -24,7 +24,7 @@ jobs:
           chmod +x /usr/local/bin/docker-compose
 
       - name: Login to Docker Hub
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
@@ -75,3 +75,10 @@ jobs:
           VERSIONED_NAME=${DOCKER_IMAGE_NAME}:${VERSION}
           docker tag ${DOCKER_IMAGE_NAME}:latest ${VERSIONED_NAME}
           docker push ${VERSIONED_NAME}
+      - name: Debug failure
+        if: failure()
+        run: |
+          docker ps -a
+          docker stats --no-stream
+          docker-compose logs web
+          docker-compose logs db

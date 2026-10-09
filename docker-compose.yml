@@ -1,19 +1,12 @@
-version: '2.1'
-
 services:
   db:
-    image: mariadb:10.5.5
+    image: mariadb:10.5.29
     environment:
-      - MYSQL_ALLOW_EMPTY_PASSWORD
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
       - MYSQL_DATABASE
       - MYSQL_USER
       - MYSQL_PASSWORD
       - MYSQL_ROOT_PASSWORD
-      - MYSQL_BACKUP_USER
-      - MYSQL_BACKUP_USER_PASSWORD
-      - MATOMO_DATABASE_DBNAME
-      - MATOMO_DATABASE_USERNAME
-      - MATOMO_DATABASE_PASSWORD
     volumes:
       - db-data:/var/lib/mysql
       - ./db/gamerauntsia.cnf:/etc/mysql/conf.d/gamerauntsia.cnf
@@ -51,6 +44,7 @@ services:
       - STREAMING_TWITCH_CLIENT_ID
       - STREAMING_TWITCH_CLIENT_SECRET
       - ENABLE_TRACKING
+      - FILE_UPLOAD_PERMISSIONS
     volumes:
       - staticfiles:/app/static
       - mediafiles:/app/media
@@ -58,8 +52,6 @@ services:
       - db
   proxy:
     image: nginx:mainline-alpine
-    ports:
-      - 9000:9000
     volumes:
       - ./proxy:/etc/nginx/conf.d:ro
       - staticfiles:/app/static/:ro

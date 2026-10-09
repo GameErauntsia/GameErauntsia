@@ -584,6 +584,7 @@
     (fn []
       [:div.pokedex
        (if-let [pokemon-id @selected-pokemon]
+         ^{:key (str "pokemon-" pokemon-id)}
          [pokedex-entry pokemon-id]
          [:<>
           [:input.pokedex__search-bar
