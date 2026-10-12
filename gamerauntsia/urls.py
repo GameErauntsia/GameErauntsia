@@ -23,7 +23,6 @@ from gamerauntsia.gamer import views as gamerviews
 from gamerauntsia.kontaktua import views as kontaktuaviews
 from gamerauntsia.base import views as baseviews
 
-
 router = DefaultRouter()
 
 berria_list = BerriaViewSet.as_view({"get": "list"})

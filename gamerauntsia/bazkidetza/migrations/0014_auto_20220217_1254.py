@@ -2,7 +2,7 @@
 
 import datetime
 from django.db import migrations, models
-from django.utils.timezone import utc
+from datetime import timezone
 
 
 class Migration(migrations.Migration):
@@ -15,7 +15,9 @@ class Migration(migrations.Migration):
             model_name="bazkidea",
             name="expire_date",
             field=models.DateTimeField(
-                default=datetime.datetime(2023, 2, 17, 12, 54, 33, 200032, tzinfo=utc)
+                default=datetime.datetime(
+                    2023, 2, 17, 12, 54, 33, 200032, tzinfo=timezone.utc
+                )
             ),
         ),
     ]

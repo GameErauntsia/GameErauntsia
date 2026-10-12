@@ -6,7 +6,6 @@ import django
 from django.conf import settings
 from django.test.utils import get_runner
 
-
 APP_NAME = "gamerauntsia"
 
 os.environ["DJANGO_SETTINGS_MODULE"] = "gamerauntsia.settings"

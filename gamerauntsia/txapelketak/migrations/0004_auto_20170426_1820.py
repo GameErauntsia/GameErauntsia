@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 import datetime
 from django.db import migrations, models
-from django.utils.timezone import utc
+from datetime import timezone
 
 
 class Migration(migrations.Migration):
@@ -17,7 +17,9 @@ class Migration(migrations.Migration):
             model_name="txapelketa",
             name="mod_date",
             field=models.DateTimeField(
-                default=datetime.datetime(2017, 4, 26, 16, 20, 20, 648538, tzinfo=utc),
+                default=datetime.datetime(
+                    2017, 4, 26, 16, 20, 20, 648538, tzinfo=timezone.utc
+                ),
                 verbose_name="modifikazio data",
             ),
         ),
@@ -25,7 +27,9 @@ class Migration(migrations.Migration):
             model_name="txapelketa",
             name="insk_date",
             field=models.DateTimeField(
-                default=datetime.datetime(2017, 4, 26, 16, 20, 20, 648559, tzinfo=utc),
+                default=datetime.datetime(
+                    2017, 4, 26, 16, 20, 20, 648559, tzinfo=timezone.utc
+                ),
                 verbose_name="Izen ematea",
             ),
         ),
@@ -33,7 +37,9 @@ class Migration(migrations.Migration):
             model_name="txapelketa",
             name="pub_date",
             field=models.DateTimeField(
-                default=datetime.datetime(2017, 4, 26, 16, 20, 20, 648507, tzinfo=utc),
+                default=datetime.datetime(
+                    2017, 4, 26, 16, 20, 20, 648507, tzinfo=timezone.utc
+                ),
                 verbose_name="Publikazio data",
             ),
         ),

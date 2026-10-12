@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 import datetime
 from django.db import migrations, models
 import django.utils.timezone
-from django.utils.timezone import utc
+from datetime import timezone
 
 
 class Migration(migrations.Migration):
@@ -18,7 +18,9 @@ class Migration(migrations.Migration):
             model_name="bazkidea",
             name="expire_date",
             field=models.DateTimeField(
-                default=datetime.datetime(2018, 6, 6, 15, 24, 11, 737338, tzinfo=utc)
+                default=datetime.datetime(
+                    2018, 6, 6, 15, 24, 11, 737338, tzinfo=timezone.utc
+                )
             ),
         ),
         migrations.AlterField(

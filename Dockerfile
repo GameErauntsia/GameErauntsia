@@ -1,4 +1,4 @@
-FROM python:3.10.17-alpine AS base
+FROM python:3.14.8-alpine AS base
 
 ENV APP_HOME=/app
 WORKDIR $APP_HOME

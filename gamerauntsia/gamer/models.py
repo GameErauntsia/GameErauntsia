@@ -9,7 +9,6 @@ from photologue.models import Photo
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from gamerauntsia.jokoa.models import Jokoa
 
-
 MEMBER_PHOTO_SLUG = getattr(settings, "PROFILE_PHOTO_DEFAULT_SLUG", "no-profile-photo")
 
 

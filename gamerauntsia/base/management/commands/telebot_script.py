@@ -45,18 +45,18 @@ def start_telebot():
 
                 tb.send_message(
                     message.chat.id,
-                    "Aupa %s! Mezua jasota \U0001F44D" % (message.from_user.first_name),
+                    "Aupa %s! Mezua jasota \U0001f44d" % (message.from_user.first_name),
                 )
             else:
                 tb.send_message(
                     message.chat.id,
-                    "Barkatu... nor zara? \U0001F605\nKonfiguratu zure Telegram /kodea eta saiatu berriz!",
+                    "Barkatu... nor zara? \U0001f605\nKonfiguratu zure Telegram /kodea eta saiatu berriz!",
                 )
 
         except:
             tb.send_message(
                 message.chat.id,
-                "Barkatu %s, ez dut zure mezua ulertu \U0001F62D"
+                "Barkatu %s, ez dut zure mezua ulertu \U0001f62d"
                 % (message.from_user.first_name),
             )
 

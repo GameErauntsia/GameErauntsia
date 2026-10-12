@@ -3,11 +3,10 @@
 from __future__ import unicode_literals
 
 import datetime
-from django.utils import timezone
 from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
-from django.utils.timezone import utc
+from datetime import timezone
 
 
 class Migration(migrations.Migration):
@@ -39,7 +38,7 @@ class Migration(migrations.Migration):
                     "expire_date",
                     models.DateTimeField(
                         default=datetime.datetime(
-                            2018, 3, 9, 7, 51, 26, 114457, tzinfo=utc
+                            2018, 3, 9, 7, 51, 26, 114457, tzinfo=timezone.utc
                         )
                     ),
                 ),
@@ -149,7 +148,8 @@ class Migration(migrations.Migration):
                 (
                     "pub_date",
                     models.DateTimeField(
-                        default=timezone.now(), verbose_name="publikazio data"
+                        default=datetime.datetime.now(timezone.utc),
+                        verbose_name="publikazio data",
                     ),
                 ),
                 (

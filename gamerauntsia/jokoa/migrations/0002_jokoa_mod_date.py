@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 import datetime
 from django.db import migrations, models
-from django.utils.timezone import utc
+from datetime import timezone
 
 
 class Migration(migrations.Migration):
@@ -17,7 +17,9 @@ class Migration(migrations.Migration):
             model_name="jokoa",
             name="mod_date",
             field=models.DateTimeField(
-                default=datetime.datetime(2017, 4, 26, 16, 21, 0, 188826, tzinfo=utc),
+                default=datetime.datetime(
+                    2017, 4, 26, 16, 21, 0, 188826, tzinfo=timezone.utc
+                ),
                 verbose_name="modifikazio data",
             ),
         ),
