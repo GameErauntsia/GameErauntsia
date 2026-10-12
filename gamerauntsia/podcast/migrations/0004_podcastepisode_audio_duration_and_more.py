@@ -6,18 +6,25 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('podcast', '0003_auto_20231012_1655'),
+        ("podcast", "0003_auto_20231012_1655"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='podcastepisode',
-            name='audio_duration',
-            field=models.CharField(blank=True, max_length=20, null=True, verbose_name='Audioaren iraupena'),
+            model_name="podcastepisode",
+            name="audio_duration",
+            field=models.CharField(
+                blank=True, max_length=20, null=True, verbose_name="Audioaren iraupena"
+            ),
         ),
         migrations.AddField(
-            model_name='podcastepisode',
-            name='audio_file',
-            field=models.FileField(blank=True, null=True, upload_to='podcasts/audio/', verbose_name='Audio fitxategia'),
+            model_name="podcastepisode",
+            name="audio_file",
+            field=models.FileField(
+                blank=True,
+                null=True,
+                upload_to="podcasts/audio/",
+                verbose_name="Audio fitxategia",
+            ),
         ),
     ]
