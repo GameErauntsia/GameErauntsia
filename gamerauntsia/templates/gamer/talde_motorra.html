@@ -5,10 +5,9 @@
 
 {% block content %}
 
-<div class="col-sm-12">
-  <h1 class="border-bottom pb-2 mb-4">Nortzuk gara</h1>
-</div>
-<div class="col-sm-8">
+<h1 class="border-bottom pb-2 mb-4">Nortzuk gara</h1>
+<div class="row">
+<div class="col-12 col-sm-8">
     <p>Game Erauntsia egitasmo bezala <strong>2014. urtean</strong> sortu zen
     euskarazko bideojokoen kopuru eta hauei lotutako edukien
     eskaintza urriari aurre egiteko. Horregatik hasieratik oinarrizko
@@ -41,24 +40,22 @@
       <li><a href="https://discord.com/invite/zYv84NQ" target="_blank"">Discord zerbitzaria</a>: online jokatzeko testu eta ahots zerbitzaria.</li>
     </ul>
         <h2>Erabaki taldea</h2>
+        <div class="row g-4">
         {% for user in users %}
         {% if user.is_core_team_member and user.is_active %}
-            {% if forloop.first %}<div class="row">{% endif %}
-                <div class="col-sm-4 col-sm-6">
+            <div class="col-12 col-sm-6 col-lg-4">
                     <a href="{% url 'gamer_profile' user.username %}"><img src="{{user.get_photo.get_profile_url}}" class="rounded-circle img-fluid"></a>
                     <h3><a href="{% url 'gamer_profile' user.username %}">{{user.fullname}}</a>
                         <small>{% if user.twitter_id %}@{{user.twitter_id}}{% else %}{{user.nickname}}{% endif %}</small>
                     </h3>
                     <p>{{user.bio|striptags}}</p>
-                </div>
-
-            {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
-            {% if forloop.last %}</div>{% endif %}
+            </div>
         {% endif %}
         {% endfor %}
+        </div>
     </div>
 
-    <div class="col-sm-4">
+    <div class="col-12 col-sm-4">
         {% steam_panel %}
     </div>
 </div>
