@@ -250,55 +250,59 @@
 {% block footerjs %}
 <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.js-podcast-player').forEach(function(audio) {
-      var downloadUrl = audio.dataset.downloadUrl || '';
-      var player = new Plyr(audio);
+  document.addEventListener("DOMContentLoaded", function () {
+    function addFallbackDownload(audio, downloadUrl) {
+      if (!downloadUrl || audio.parentNode.querySelector(".podcast-download-fallback")) return;
 
-      // try to insert a download button into the Plyr controls near settings
+      var fallback = document.createElement("a");
+      fallback.href = downloadUrl;
+      fallback.className = "podcast-download-fallback btn btn-sm btn-outline-secondary mt-2 d-inline-flex align-items-center";
+      fallback.setAttribute("download", "");
+      fallback.setAttribute("rel", "noopener noreferrer");
+      fallback.innerHTML = "<i class=\"bi bi-download me-1\" aria-hidden=\"true\"></i>Deskargatu audioa";
+      audio.parentNode.insertBefore(fallback, audio.nextSibling);
+    }
+
+    function addPlyrDownload(controls, downloadUrl) {
+      if (!downloadUrl || controls.querySelector(".plyr__download")) return;
+
+      var btn = document.createElement("button");
+      btn.setAttribute("type", "button");
+      btn.className = "plyr__controls__item plyr__control plyr__download";
+      btn.dataset.downloadUrl = downloadUrl;
+      btn.setAttribute("aria-label", "Deskargatu audioa");
+      btn.setAttribute("title", "Deskargatu audioa");
+      btn.innerHTML = "<i class=\"bi bi-download\" aria-hidden=\"true\"></i>";
+      btn.addEventListener("click", function () {
+        var link = document.createElement("a");
+        link.href = downloadUrl;
+        link.setAttribute("download", "");
+        link.rel = "noopener noreferrer";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      });
+
+      controls.appendChild(btn);
+    }
+
+    document.querySelectorAll(".js-podcast-player").forEach(function(audio) {
+      var downloadUrl = audio.dataset.downloadUrl || "";
+
+      if (typeof window.Plyr !== "function") {
+        addFallbackDownload(audio, downloadUrl);
+        return;
+      }
+
       try {
+        var player = new window.Plyr(audio, {
+          controls: ["play", "progress", "current-time", "mute", "volume", "settings"]
+        });
         var controls = player.elements && player.elements.controls;
-        if (controls) {
-          // create button
-          var btn = document.createElement('button');
-          btn.setAttribute('type', 'button');
-          btn.className = 'plyr__controls__item plyr__control plyr__download';
-          btn.setAttribute('aria-label', 'Deskargatu audioa');
-          btn.setAttribute('title', 'Deskargatu audioa');
-          btn.innerHTML = '<i class="bi bi-download" aria-hidden="true"></i>';
-          btn.addEventListener('click', function () {
-            if (!downloadUrl) return;
-            var a = document.createElement('a');
-            a.href = downloadUrl;
-            a.setAttribute('download', '');
-            a.rel = 'noopener noreferrer';
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-          });
-
-          // try to find the settings button to insert after it
-          var settingsBtn = controls.querySelector('button[title="Settings"], button[aria-label="Settings"], button[title="Ezarpenak"], button[aria-label="Ezarpenak"]');
-          if (settingsBtn && settingsBtn.parentNode) {
-            settingsBtn.parentNode.insertBefore(btn, settingsBtn.nextSibling);
-          } else {
-            // append at the end of controls
-            controls.appendChild(btn);
-          }
-        } else {
-          throw new Error('No Plyr controls element');
-        }
+        if (!controls) throw new Error("No Plyr controls element");
+        addPlyrDownload(controls, downloadUrl);
       } catch (e) {
-        // Fallback: create a small Bootstrap download button right after the audio element
-        if (downloadUrl) {
-          var fallback = document.createElement('a');
-          fallback.href = downloadUrl;
-          fallback.className = 'btn btn-sm btn-outline-secondary mt-2 d-inline-flex align-items-center';
-          fallback.setAttribute('download', '');
-          fallback.setAttribute('rel', 'noopener noreferrer');
-          fallback.innerHTML = '<i class="bi bi-download me-1" aria-hidden="true"></i>Deskargatu audioa';
-          audio.parentNode.insertBefore(fallback, audio.nextSibling);
-        }
+        addFallbackDownload(audio, downloadUrl);
       }
     });
   });
