@@ -236,8 +236,29 @@
   }
 }
 
+.podcast-audio-card .podcast-native-player,
+.podcast-audio-card audio,
+.podcast-audio-card .plyr,
+.podcast-audio-card .plyr__controls {
+  width: 100%;
+  min-width: 0;
+}
+
 .podcast-audio-card audio {
+  display: block;
   height: 46px;
+}
+
+.podcast-audio-card .plyr__controls {
+  box-sizing: border-box;
+}
+
+.podcast-audio-card .plyr__progress__container {
+  min-width: 0;
+}
+
+.podcast-audio-card .plyr__download {
+  flex: 0 0 auto;
 }
 
 /* Subtle visual highlight for the audio card (minimalist) */
@@ -298,5 +319,17 @@
   .podcast-platform-list a,
   .podcast-side-label {
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .podcast-audio-card .plyr__volume,
+  .podcast-audio-card .plyr__menu {
+    display: none;
+  }
+
+  .podcast-audio-card .plyr__controls {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 }
