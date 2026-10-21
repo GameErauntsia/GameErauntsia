@@ -175,12 +175,11 @@
 
 <hr>
 
-<div class="row">
-    <h3 class="text-center"><strong>Gameplay gehiago</strong></h3>
-    <br>
+<h3 class="text-center mb-4"><strong>Gameplay gehiago</strong></h3>
+<div class="row row-cols-1 row-cols-md-3 g-4">
     {% for gp in gameplayak %}
     {% get_comment_count for gp as comment_count %}
-    <div class="col-sm-4">
+    <div class="col">
         <!--<iframe width="350" height="197" src="//www.youtube.com/embed/{{gp.bideoa}}" frameborder="0" allowfullscreen></iframe>-->
         <a href="{{gp.get_absolute_url}}"><img class="img-fluid" src="{{gp.argazkia.get_gp_thumbnail_url}}"></a>
         <h2><a href="{{gp.get_absolute_url}}">{{gp.izenburua}}</a></h2>
