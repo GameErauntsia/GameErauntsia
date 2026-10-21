@@ -62,7 +62,8 @@
 .podcast-show-card__image {
   width: 100%;
   height: 190px;
-  object-fit: cover;
+  object-fit: contain;
+  background-color: #f4f5f7;
 }
 
 .podcast-episode-shell {
