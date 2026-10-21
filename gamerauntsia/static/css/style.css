@@ -295,31 +295,37 @@ hr.dotted {
 }
 
 .article-body img,
+.article-body video,
 .article-body iframe,
 .article-body embed,
 .article-body object {
-  max-width: 100%;
+  max-width: 100% !important;
+  min-width: 0 !important;
 }
 
-.article-body img {
-  height: auto;
+.article-body img,
+.article-body video {
+  height: auto !important;
 }
 
-.article-body iframe[src*="youtube.com/embed"],
-.article-body iframe[src*="youtube-nocookie.com/embed"],
-.article-body iframe[src*="player.vimeo.com/video"] {
+.article-body video,
+.article-body iframe,
+.article-body embed,
+.article-body object {
   display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
-  border: 0;
 }
 
 .article-body video {
-  display: block;
   width: 100%;
-  max-width: 100%;
-  height: auto;
+}
+
+.article-body iframe,
+.article-body embed,
+.article-body object {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 16 / 9;
+  border: 0;
 }
 
 .article-body figure {
