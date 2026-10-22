@@ -8,7 +8,6 @@ from photologue.models import Photo
 
 from gamerauntsia.podcast.models import PodcastEpisode, PodcastSeason, PodcastShow
 
-
 ITUNES_NAMESPACE = "http://www.itunes.com/dtds/podcast-1.0.dtd"
 
 
