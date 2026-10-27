@@ -1,6 +1,5 @@
 from django.db import migrations
 
-
 PHOTO_SIZE_NAME = "podcast_card_contain"
 
 
