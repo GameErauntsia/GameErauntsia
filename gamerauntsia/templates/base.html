@@ -70,9 +70,7 @@
                         <a href="{% url 'komunitatea' %}" class="nav-link dropdown-toggle text-dark {% if request.path|contains:"/ekimenak/" %}fw-semibold{% endif %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ekimenak</a>
                         {% get_flatpages as flatpages %}
                         <ul class="dropdown-menu">
-                            {% if user.is_staff or user.is_superuser %}
-                                <li><a class="dropdown-item text-dark" href="{% url 'podcast_index' %}" title="Podcastak">Podcastak</a></li>
-                            {% endif %}
+                            <li><a class="dropdown-item text-dark" href="{% url 'podcast_index' %}" title="Podcastak">Podcastak</a></li>
                             {% for page in flatpages %}
                             {% if 'ekimenak' in page.url %}
                             <li><a class="dropdown-item text-dark" href="{{ page.url }}" title="{{ page.title }}">{{ page.title }}</a></li>
