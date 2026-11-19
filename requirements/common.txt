@@ -29,7 +29,7 @@ djangorestframework == 3.18.3
 django-rest-auth == 0.9.5
 django-cors-headers == 4.9.0
 django-autoslug == 1.9.8
-django-filter == 25.1
+django-filter == 26.2
 gunicorn == 26.2.0
 raven == 6.10.0
 mcstatus == 10.0.2
